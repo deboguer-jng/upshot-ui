@@ -1,0 +1,11 @@
+# Storybook
+/storybook-static
+
+# Dependencies
+node_modules
+
+# macOS
+.DS_Store
+
+# Debug
+*.log*
