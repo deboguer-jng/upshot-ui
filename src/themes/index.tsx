@@ -2,7 +2,7 @@ import { css, Global } from '@emotion/react'
 import React from 'react'
 import { ThemeProvider } from 'theme-ui'
 
-import theme from './theme'
+import theme from './UpshotUI'
 interface Props {
   children: React.ReactNode
 }
