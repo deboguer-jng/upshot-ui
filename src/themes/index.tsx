@@ -1,9 +1,11 @@
 import { css, Global } from '@emotion/react'
 import React from 'react'
-import { ThemeProvider } from 'theme-ui'
+import { ThemeProvider, Theme } from '@emotion/react'
 
 import theme from './UpshotUI'
+
 interface Props {
+  theme: Theme
   children: React.ReactNode
 }
 
