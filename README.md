@@ -25,3 +25,9 @@ yarn lint
 ```bash
 yarn build
 ```
+
+### Publish on NPM
+
+```bash
+npm publish
+```
