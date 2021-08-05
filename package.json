@@ -1,11 +1,11 @@
 {
-  "name": "upshot-ui",
+  "name": "@upshot-tech/upshot-ui",
+  "description": "The official design system used in Upshot.",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "start": "start-storybook -p 6006 -s public",
-    "build": "build-storybook -s public",
-    "lint": "prettier --write . && eslint . --fix"
+    "lint": "prettier --write . && eslint . --fix",
+    "prepublishOnly": "rollup -c"
   },
   "dependencies": {
     "react": "^17.0.2",
@@ -18,6 +18,7 @@
     "@babel/core": "^7.14.8",
     "@babel/preset-react": "^7.14.5",
     "@emotion/babel-plugin": "^11.3.0",
+    "@rollup/plugin-typescript": "^8.2.5",
     "@storybook/addon-actions": "^6.3.6",
     "@storybook/addon-docs": "^6.3.6",
     "@storybook/addon-essentials": "^6.3.6",
@@ -35,6 +36,8 @@
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^7.0.1",
     "prettier": "^2.3.2",
+    "rollup": "^2.55.1",
+    "rollup-plugin-svg": "^2.0.0",
     "webpack": "^5.47.1"
   },
   "lint-staged": {
@@ -44,5 +47,18 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  }
+  },
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "types": "dist/upshot-ui.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/upshot-tech/upshot-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/upshot-tech/upshot-ui/issues"
+  },
+  "homepage": "https://github.com/upshot-tech/upshot-ui#readme"
 }
