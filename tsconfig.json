@@ -16,5 +16,5 @@
     "baseUrl": "./src",
     "noImplicitAny": false
   },
-  "include": ["src"]
+  "include": ["src", "./custom.d.ts"]
 }
