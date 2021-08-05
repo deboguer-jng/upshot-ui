@@ -6,7 +6,7 @@ module.exports = {
   stories: ['../src/components/**/*.stories.tsx'],
   addons: ['@storybook/addon-docs'],
   features: {
-    postcss: false, // We use styled-components instead.
+    postcss: false, // We use Styled Components instead.
   },
   core: {
     builder: 'webpack5',

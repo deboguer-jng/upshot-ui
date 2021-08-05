@@ -1,19 +1,18 @@
 import React from 'react'
 import { PanelBase } from './Styled'
+import { BoxProps } from 'theme-ui'
 
-interface PanelProps {
+export interface PanelProps extends BoxProps {
   /**
-   * Render the darker Panel variant.
+   * Inner variants use a darker color with a smaller
+   * border radius.
    */
-  isDark?: boolean
+  isInner?: boolean
 }
 
 /**
- * Icon component for SVG assets.
+ * Provides a surface for UI elements.
  */
-export default function Icon({
-  isDark,
-  ...props
-}: PanelProps & React.HTMLAttributes<HTMLDivElement>) {
-  return <PanelBase {...props} />
+export default function Panel({ isInner, ...props }: PanelProps) {
+  return <PanelBase {...{ isInner, ...props }} />
 }
