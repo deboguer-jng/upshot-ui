@@ -1,6 +1,4 @@
-import { Theme } from 'theme-ui'
-
-const gradients: Theme['gradients'] = {
+const gradients = {
   primary: 'linear-gradient(215.79deg, #E44BBE 11.28%, #FF5628 86.25%)',
   secondary: 'linear-gradient(131.94deg, #1891FC 4.44%, #1BB441 97.35%)',
   hype: `radial-gradient(
