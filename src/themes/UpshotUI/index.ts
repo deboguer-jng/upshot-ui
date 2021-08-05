@@ -44,6 +44,8 @@ export const styles = {
   root: {
     body: {
       margin: 0,
+      backgroundColor: colors.black,
+      color: colors.text,
     },
   },
 }
