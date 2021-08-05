@@ -52,7 +52,6 @@
     "index.js",
     "index.d.ts"
   ],
-  "types": "dist/upshot-ui.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/upshot-tech/upshot-ui.git"
