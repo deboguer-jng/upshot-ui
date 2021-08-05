@@ -8,6 +8,16 @@ export const breakpoints = ['23em', '43em', '80em']
 
 export const sizes = [0, 4, 8, 16, 32, 64, 128, 256, 512]
 
+export const radii = {
+  square: '0',
+  xs: '5px',
+  sm: '10px',
+  md: '20px',
+  lg: '30px',
+  pill: '9999px',
+  circle: '50%',
+}
+
 export const fonts = {
   body: 'proxima-nova, sans-serif',
   heading: 'degular-display, sans-serif',
@@ -33,6 +43,7 @@ export const lineHeights = {
 const theme = {
   sizes,
   space: sizes,
+  radii,
   breakpoints,
   fonts,
   fontWeights,

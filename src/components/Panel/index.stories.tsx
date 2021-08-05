@@ -11,4 +11,7 @@ export default {
 const Template: ComponentStory<typeof Panel> = (args) => <Panel {...args} />
 
 export const Default = Template.bind({})
-Default.args = {}
+Default.args = { sx: { width: '300px', height: '225px' } }
+
+export const Inner = Template.bind({})
+Inner.args = { isInner: true, sx: { width: '300px', height: '225px' } }
