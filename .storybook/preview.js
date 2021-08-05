@@ -1,12 +1,13 @@
-import ThemeProvider, { globalstyles } from '../src/themes'
+import { ThemeProvider } from '@emotion/react'
+import { theme, globalStyles } from '../src'
 
 export const decorators = [
   (Story) => (
     /**
-     * Wrap the stories with a styled-components theme provider.
+     * Wrap the stories with the UpshotUI theme provider.
      */
-    <ThemeProvider>
-      {globalstyles}
+    <ThemeProvider {...{ theme }}>
+      {globalStyles}
       <Story />
     </ThemeProvider>
   ),

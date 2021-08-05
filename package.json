@@ -5,7 +5,8 @@
   "scripts": {
     "start": "start-storybook -p 6006 -s public",
     "lint": "prettier --write . && eslint . --fix",
-    "prepublishOnly": "rollup -c"
+    "build": "rollup -c",
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "@emotion/styled": "^11.3.0",

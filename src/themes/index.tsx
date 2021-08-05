@@ -20,13 +20,15 @@ export const globalStyles = (
       *::after {
         box-sizing: border-box;
       }
-      body {
-        margin: 0;
-      }
     `}
   />
 )
 
 export default function UpshotThemeProvider({ children }: Props) {
-  return <ThemeProvider {...{ theme }}>{children}</ThemeProvider>
+  return (
+    <ThemeProvider {...{ theme }}>
+      {globalStyles}
+      {children}
+    </ThemeProvider>
+  )
 }
