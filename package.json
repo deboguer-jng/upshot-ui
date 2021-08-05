@@ -2,10 +2,12 @@
   "name": "@upshot-tech/upshot-ui",
   "description": "The official design system used in Upshot.",
   "version": "0.1.0",
+  "main": "./dist/index.js",
   "scripts": {
     "start": "start-storybook -p 6006 -s public",
     "lint": "prettier --write . && eslint . --fix",
-    "prepublishOnly": "rollup -c"
+    "build": "rollup -c",
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "@emotion/styled": "^11.3.0",
@@ -37,6 +39,7 @@
     "husky": "^7.0.1",
     "prettier": "^2.3.2",
     "rollup": "^2.56.0",
+    "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-svg": "^2.0.0",
     "typescript": "^4.3.5",
     "webpack": "^5.48.0"

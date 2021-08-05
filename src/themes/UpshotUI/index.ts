@@ -40,6 +40,16 @@ export const lineHeights = {
   heading: '2.625rem',
 }
 
+export const styles = {
+  root: {
+    body: {
+      margin: 0,
+      backgroundColor: colors.black,
+      color: colors.text,
+    },
+  },
+}
+
 const theme = {
   sizes,
   space: sizes,
@@ -54,6 +64,7 @@ const theme = {
   buttons,
   gradients,
   text,
+  styles,
 }
 
 export default theme
