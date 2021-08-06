@@ -7,12 +7,12 @@ export interface PanelProps extends BoxProps {
    * Inner variants use a darker color with a smaller
    * border radius.
    */
-  isInner?: boolean
+  inner?: boolean
 }
 
 /**
  * Provides a surface for UI elements.
  */
-export default function Panel({ isInner, ...props }: PanelProps) {
-  return <PanelBase {...{ isInner, ...props }} />
+export default function Panel({ inner, ...props }: PanelProps) {
+  return <PanelBase {...{ inner, ...props }} />
 }
