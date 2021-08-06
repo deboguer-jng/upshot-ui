@@ -9,7 +9,14 @@ export default function Checkbox({
 }) {
   return (
     <Label {...props}>
-      <ThemeCheckbox defaultChecked={true} />
+      <ThemeCheckbox defaultChecked={true} 
+        sx={{
+          backgroundColor: 'secondary',
+          '&:checked': {
+            backgroundColor: 'pink',
+          },
+        }}
+      />
     </Label>
   )
 }
