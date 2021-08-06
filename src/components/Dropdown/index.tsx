@@ -35,12 +35,7 @@ export default function Dropdown({
   ...props
 }: DropdownProps) {
   return (
-    <select name="cars" id="cars"
-      className={['storybook-dropdown'].join(
-        ' '
-      )}
-      {...props}
-    >
+    <select {...props}>
       {options.map((option, index) => {
         return <option value={option.value}>{option.label}</option>
       })}
