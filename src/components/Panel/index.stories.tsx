@@ -14,4 +14,4 @@ export const Default = Template.bind({})
 Default.args = { sx: { width: '300px', height: '225px' } }
 
 export const Inner = Template.bind({})
-Inner.args = { isInner: true, sx: { width: '300px', height: '225px' } }
+Inner.args = { inner: true, sx: { width: '300px', height: '225px' } }
