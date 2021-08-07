@@ -14,5 +14,5 @@ export interface PanelProps extends BoxProps {
  * Provides a surface for UI elements.
  */
 export default function Panel({ inner, ...props }: PanelProps) {
-  return <PanelBase {...{ inner, ...props }} />
+  return <PanelBase $inner={inner} {...props} />
 }

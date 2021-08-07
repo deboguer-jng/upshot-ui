@@ -1,4 +1,4 @@
-import fontSizes from './fontSizes'
+import { fontSizes } from './text'
 
 const avatars = {
   /**
@@ -18,7 +18,7 @@ const avatars = {
   /**
    * Initials typography sizes
    */
-  initialSizes: {
+  initialsSizes: {
     /**
      * @notice xs sized Avatars do not display initials.
      */

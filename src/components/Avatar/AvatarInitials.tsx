@@ -3,7 +3,7 @@ import { Text, TextProps } from 'theme-ui'
 import { AvatarInitialsBase } from './Styled'
 import avatars from '../../themes/UpshotUI/avatars'
 
-type AvatarInitialsSize = keyof typeof avatars.initialSizes
+type AvatarInitialsSize = keyof typeof avatars.initialsSizes
 
 export interface AvatarInitialsProps extends TextProps {
   /**
@@ -27,7 +27,7 @@ export default function AvatarInitials({
         color="black"
         sx={{
           textTransform: 'uppercase',
-          fontSize: avatars.initialSizes[size],
+          fontSize: avatars.initialsSizes[size],
           lineHeight: 1,
         }}
         {...props}
