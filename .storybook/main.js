@@ -12,6 +12,10 @@ module.exports = {
     builder: 'webpack5',
   },
   docs: {
+    /**
+     * Disables inline to prevent duplicate globalStyles.
+     * @see https://github.com/storybookjs/storybook/issues/9312
+     */
     inlineStories: false,
   },
   webpackFinal: async (config) => ({
