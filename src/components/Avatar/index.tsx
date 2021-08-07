@@ -26,7 +26,7 @@ export interface AvatarProps {
 }
 
 /**
- * Provides a surface for UI elements.
+ * Provides a circular avatar.
  */
 export default function Avatar({
   initials,
