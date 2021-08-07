@@ -14,19 +14,17 @@ module.exports = {
   docs: {
     inlineStories: false,
   },
-  webpackFinal: async (config) => {
-    return {
-      ...config,
-      resolve: {
-        ...config.resolve,
-        alias: {
-          ...config.resolve.alias,
-          /* Support for Emotion 11 */
-          '@emotion/core': toPath('node_modules/@emotion/react'),
-          '@emotion/styled': toPath('node_modules/@emotion/styled'),
-          'emotion-theming': toPath('node_modules/@emotion/react'),
-        },
+  webpackFinal: async (config) => ({
+    ...config,
+    resolve: {
+      ...config.resolve,
+      alias: {
+        ...config.resolve.alias,
+        /* Support for Emotion 11 */
+        '@emotion/core': toPath('node_modules/@emotion/react'),
+        '@emotion/styled': toPath('node_modules/@emotion/styled'),
+        'emotion-theming': toPath('node_modules/@emotion/react'),
       },
-    }
-  },
+    },
+  }),
 }
