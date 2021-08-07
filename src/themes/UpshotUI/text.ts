@@ -1,6 +1,4 @@
-import { Theme } from 'theme-ui'
-
-const text: Theme['text'] = {
+const text = {
   h0Primary: {
     fontFamily: 'body',
     fontWeight: 'bold',
@@ -78,9 +76,6 @@ const text: Theme['text'] = {
     fontWeight: 'heading',
     fontSize: 0,
     lineHeight: '0.875rem',
-  },
-  caps: {
-    textTransform: 'uppercase',
   },
 }
 

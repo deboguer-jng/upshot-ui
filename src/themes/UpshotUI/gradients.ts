@@ -1,5 +1,5 @@
 const gradients = {
-  primary: 'linear-gradient(215.79deg, #E44BBE 11.28%, #FF5628 86.25%)',
+  primary: 'linear-gradient(-215.79deg, #E44BBE 11.28%, #FF5628 86.25%)',
   secondary: 'linear-gradient(131.94deg, #1891FC 4.44%, #1BB441 97.35%)',
   hype: `radial-gradient(
     147.52% 141.3% at 9.16% 1.3%,

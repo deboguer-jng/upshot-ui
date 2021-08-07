@@ -1,7 +1,9 @@
 import alerts from './alerts'
+import avatars from './avatars'
 import buttons from './buttons'
 import colors from './colors'
 import gradients from './gradients'
+import fontSizes from './fontSizes'
 import text from './text'
 
 export const breakpoints = ['23em', '43em', '80em']
@@ -24,10 +26,6 @@ export const fonts = {
   serif: 'glysa, serif',
   monospace: 'Menlo, monospace',
 }
-
-export const fontSizes = [
-  0.625, 0.75, 0.875, 1, 1.125, 1.438, 2, 2.188, 3.25,
-].map((n) => n + 'rem')
 
 export const fontWeights = {
   body: 400,
@@ -60,6 +58,7 @@ const theme = {
   fontSizes,
   lineHeights,
   colors,
+  avatars,
   alerts,
   buttons,
   gradients,
