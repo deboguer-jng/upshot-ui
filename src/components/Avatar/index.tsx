@@ -16,11 +16,11 @@ export interface AvatarProps {
    */
   initials?: string
   /**
-   * Is a src prop is defined, the image is rendered inside the Avatar.
+   * Image urls used by image variant avatars.
    */
   src?: string
   /**
-   * Border color for the avatar. (Default: black)
+   * Border color used by image variant avatars. (Default: black)
    */
   borderColor?: keyof typeof colors
 }

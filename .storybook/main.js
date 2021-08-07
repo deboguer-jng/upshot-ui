@@ -11,6 +11,9 @@ module.exports = {
   core: {
     builder: 'webpack5',
   },
+  docs: {
+    inlineStories: false,
+  },
   webpackFinal: async (config) => {
     return {
       ...config,

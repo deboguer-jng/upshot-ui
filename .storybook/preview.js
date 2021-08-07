@@ -8,7 +8,7 @@ export const decorators = [
      */
     <ThemeProvider {...{ theme }}>
       {globalStyles}
-      <Story />
+      <Story inline={false} />
     </ThemeProvider>
   ),
 ]
