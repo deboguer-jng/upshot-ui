@@ -1,36 +1,37 @@
 import styled from '@emotion/styled'
-import { AvatarProps } from './'
+import { createAvatarBorder } from './utils'
+import colors from '../../themes/UpshotUI/colors'
 import { Flex } from 'theme-ui'
 
-export const AvatarBase = styled.div<AvatarProps>`
+import avatars from '../../themes/UpshotUI/avatars'
+
+interface AvatarBaseProps {
+  $size: keyof typeof avatars.sizes
+  $borderColor: keyof typeof colors
+  $hasInitials: boolean
+}
+
+export const AvatarBase = styled.div<AvatarBaseProps>`
   position: relative;
   overflow: hidden;
-  width: ${({ theme, size }) => theme.avatars.sizes[size]}px;
-  height: ${({ theme, size }) => theme.avatars.sizes[size]}px;
+  width: ${({ theme, $size }) => theme.avatars.sizes[$size]}px;
+  height: ${({ theme, $size }) => theme.avatars.sizes[$size]}px;
   border-radius: 50%;
   background: ${({ theme }) => theme.gradients.primary};
-`
 
-export const AvatarOutline = styled.div<AvatarProps>`
-  position: absolute;
-  pointer-events: none;
-  display: inline-block;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-
-  /* Create a box-shadow border (min: 1px) relative to avatar size. */
-  box-shadow: inset 0 0 0
-    ${({ theme, size, borderColor }) =>
-      `max(1px,
-        ${
-          Number(theme.avatars.sizes[size]) *
-          theme.avatars.borderThickness *
-          0.01
-        }px
-      ) ${theme.colors[borderColor]}`};
+  /* Add a border to the Avatar if no initials are provided. */
+  ${({ theme, $hasInitials, $borderColor, $size }) =>
+    !$hasInitials &&
+    createAvatarBorder(
+      theme.colors[$borderColor],
+      /**
+       * @notice borderThickness is relative to the avatar size.
+       */
+      Number(theme.avatars.sizes[$size]) *
+        theme.avatars.borderThickness *
+        0.01 +
+        'px'
+    )};
 `
 
 export const AvatarInitialsBase = styled(Flex)`

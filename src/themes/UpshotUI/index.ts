@@ -3,8 +3,7 @@ import avatars from './avatars'
 import buttons from './buttons'
 import colors from './colors'
 import gradients from './gradients'
-import fontSizes from './fontSizes'
-import text from './text'
+import text, { fontSizes } from './text'
 
 export const breakpoints = ['23em', '43em', '80em']
 
