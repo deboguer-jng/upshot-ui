@@ -1,5 +1,5 @@
 import React from 'react'
-import { AvatarBase } from './Styled'
+import { AvatarBase, AvatarBackground } from './Styled'
 import { Avatar as ThemeUIAvatar } from 'theme-ui'
 import avatars from '../../themes/UpshotUI/avatars'
 import colors from '../../themes/UpshotUI/colors'
@@ -36,21 +36,21 @@ export default function Avatar({
   ...props
 }: AvatarProps & React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <AvatarBase
-      $size={size}
-      $borderColor={borderColor}
-      $hasInitials={Boolean(initials)}
-      {...props}
-    >
-      {/* Image variant: Render with ThemeUI */}
-      {!!src && <ThemeUIAvatar size={avatars.sizes[size]} {...{ src }} />}
+    <AvatarBase $size={size} {...props}>
+      <AvatarBackground
+        $borderColor={borderColor}
+        $hasInitials={Boolean(initials)}
+      >
+        {/* Image variant: Render with ThemeUI */}
+        {!!src && <ThemeUIAvatar size={avatars.sizes[size]} {...{ src }} />}
 
-      {/* Initials variant: Render if the size is defined. */}
-      {!!initials && size in avatars.initialsSizes && (
-        <AvatarInitials size={size as keyof typeof avatars.initialsSizes}>
-          {initials}
-        </AvatarInitials>
-      )}
+        {/* Initials variant: Render if the size is defined. */}
+        {!!initials && size in avatars.initialsSizes && (
+          <AvatarInitials size={size as keyof typeof avatars.initialsSizes}>
+            {initials}
+          </AvatarInitials>
+        )}
+      </AvatarBackground>
     </AvatarBase>
   )
 }
