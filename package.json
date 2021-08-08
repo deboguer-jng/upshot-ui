@@ -8,7 +8,7 @@
     "lint": "prettier --write . && eslint . --fix",
     "build": "rollup -c",
     "prepublishOnly": "yarn build",
-    "build-static": "yarn build-storybook -o ./static"
+    "build-static": "yarn build-storybook -o ./static -s public"
   },
   "dependencies": {
     "@emotion/styled": "^11.3.0",

@@ -11,19 +11,24 @@ module.exports = {
   core: {
     builder: 'webpack5',
   },
-  webpackFinal: async (config) => {
-    return {
-      ...config,
-      resolve: {
-        ...config.resolve,
-        alias: {
-          ...config.resolve.alias,
-          /* Support for Emotion 11 */
-          '@emotion/core': toPath('node_modules/@emotion/react'),
-          '@emotion/styled': toPath('node_modules/@emotion/styled'),
-          'emotion-theming': toPath('node_modules/@emotion/react'),
-        },
-      },
-    }
+  docs: {
+    /**
+     * Disables inline to prevent duplicate globalStyles.
+     * @see https://github.com/storybookjs/storybook/issues/9312
+     */
+    inlineStories: false,
   },
+  webpackFinal: async (config) => ({
+    ...config,
+    resolve: {
+      ...config.resolve,
+      alias: {
+        ...config.resolve.alias,
+        /* Support for Emotion 11 */
+        '@emotion/core': toPath('node_modules/@emotion/react'),
+        '@emotion/styled': toPath('node_modules/@emotion/styled'),
+        'emotion-theming': toPath('node_modules/@emotion/react'),
+      },
+    },
+  }),
 }
