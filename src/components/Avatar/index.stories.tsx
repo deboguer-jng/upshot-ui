@@ -36,36 +36,36 @@ SmallInitials.args = {
 
 export const ExtraLarge = Template.bind({})
 ExtraLarge.args = {
-  src: '../../../img/defaultAvatar.png',
+  src: '/img/defaultAvatar.png',
   size: 'xl',
 }
 
 export const Large = Template.bind({})
 Large.args = {
-  src: '../../../img/defaultAvatar.png',
+  src: '/img/defaultAvatar.png',
   size: 'lg',
 }
 
 export const Medium = Template.bind({})
 Medium.args = {
-  src: '../../../img/defaultAvatar.png',
+  src: '/img/defaultAvatar.png',
   size: 'md',
 }
 
 export const Small = Template.bind({})
 Small.args = {
-  src: '../../../img/defaultAvatar.png',
+  src: '/img/defaultAvatar.png',
   size: 'sm',
 }
 
 export const ExtraSmall = Template.bind({})
 ExtraSmall.args = {
-  src: '../../../img/defaultAvatar.png',
+  src: '/img/defaultAvatar.png',
   size: 'xs',
 }
 
 export const Yellow = Template.bind({})
 Yellow.args = {
-  src: '../../../img/defaultAvatar.png',
+  src: '/img/defaultAvatar.png',
   borderColor: 'yellow',
 }
