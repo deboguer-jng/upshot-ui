@@ -36,6 +36,6 @@ export const AvatarInitialsBase = styled(Flex)`
   align-items: center;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: ${({ theme }) => theme.radii.circle};
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
 `
