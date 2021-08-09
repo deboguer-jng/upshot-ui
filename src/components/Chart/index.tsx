@@ -131,7 +131,7 @@ export const ChartArea = ({
         yAlign: 'bottom',
         xAlign: 'center',
         callbacks: {
-          label: (context) => {
+          label: (context: Object) => {
             let label = ''
             if (context.parsed.y !== null) {
               label += new Intl.NumberFormat('en-US', {
