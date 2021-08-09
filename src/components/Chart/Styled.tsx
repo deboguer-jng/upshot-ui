@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 interface NoDataBoardProps {
   color?: string
   borderColor?: string
+  font: string
 }
 
 interface ChartWrapperProps {
@@ -32,6 +33,7 @@ export const NoDataBoard = styled.div`
   position: relative;
   border-left: 1px solid ${(props: NoDataBoardProps) => props.borderColor};
   border-bottom: 1px solid ${(props: NoDataBoardProps) => props.borderColor};
+  font-family: ${(props: NoDataBoardProps) => props.font};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,11 +41,13 @@ export const NoDataBoard = styled.div`
 
   p {
     color: ${(props: NoDataBoardProps) => props.color};
-    margin-bottom: 0.5rem;
+    margin: 0;
   }
 
   h1 {
     color: ${(props: NoDataBoardProps) => props.color};
-    font-size: 20px;
+    margin: 0;
+    font-size: 35px;
+    line-height: 42px;
   }
 `

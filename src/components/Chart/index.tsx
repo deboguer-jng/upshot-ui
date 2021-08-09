@@ -84,17 +84,19 @@ export const ChartArea = ({
         label: 'item3',
         data: [14, 16, 10, 7, 4, 9],
         fill: true,
-        backgroundColor: generateGradient(theme.colors?.text?.toString() || ''),
-        borderColor: theme.colors?.text,
-        legendBackgroundColor: theme.colors?.text,
+        backgroundColor: generateGradient(theme.colors?.red?.toString() || ''),
+        borderColor: theme.colors?.red,
+        legendBackgroundColor: theme.colors?.red,
         pointStyle: 'circle',
         pointRadius: 6,
         pointHitRadius: 6,
-        pointBorderColor: theme.colors?.text,
+        pointBorderColor: theme.colors?.red,
         pointBackgroundColor: 'black',
       },
     ],
   }
+
+  const xAxisLabels = ['1H', '1D', '1W', '1Y', 'ALL']
 
   const options = {
     scales: {
@@ -102,6 +104,12 @@ export const ChartArea = ({
         grid: {
           display: true,
           borderColor: theme.colors?.text,
+        },
+        ticks: {
+          callback: function (value, index, values) {
+            return xAxisLabels[index]
+          },
+          backdropColor: theme.colors['grey-800'].toString(),
         },
       },
       y: {
@@ -163,7 +171,7 @@ export const ChartArea = ({
     return (
       <ChartWrapper width={getChartWidth()}>
         <p> Loading Data </p>
-        <ChartLoadingBoard background={theme.colors?.background?.toString()}>
+        <ChartLoadingBoard background={theme.colors?.['grey-900']?.toString()}>
           <Spinner />
         </ChartLoadingBoard>
       </ChartWrapper>
@@ -176,6 +184,7 @@ export const ChartArea = ({
         <NoDataBoard
           borderColor={theme.colors?.text?.toString()}
           color={theme.colors?.text?.toString()}
+          font={theme.fonts.body}
         >
           <div>
             <p> SORRY: </p>
@@ -192,6 +201,7 @@ export const ChartArea = ({
         <NoDataBoard
           color={theme.colors?.text?.toString()}
           borderColor={theme.colors?.text?.toString()}
+          font={theme.fonts.body}
         >
           <div>
             <p> SORRY: </p>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyledSpinner } from './Styled'
-import { useThemeUI } from 'theme-ui'
+import { useTheme } from '@emotion/react'
 
 export interface SpinnerProps {
   theme?: 'dark' | 'light'
@@ -8,7 +8,7 @@ export interface SpinnerProps {
 }
 
 export const Spinner = ({ theme = 'dark', size = 'medium' }: SpinnerProps) => {
-  const context = useThemeUI()
+  const th = useTheme()
   const getSize = () => {
     switch (size) {
       case 'small':
@@ -23,9 +23,7 @@ export const Spinner = ({ theme = 'dark', size = 'medium' }: SpinnerProps) => {
   return (
     <StyledSpinner
       borderColor={
-        theme === 'dark'
-          ? context.theme.colors?.text?.toString()
-          : context.theme.colors?.background?.toString()
+        theme === 'dark' ? 'white' : th.colors?.background?.toString()
       }
       size={getSize()}
     />
