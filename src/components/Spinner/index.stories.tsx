@@ -5,7 +5,7 @@ import { Spinner } from './'
 import UpshotThemeProvider from '../../themes'
 
 export default {
-  title: 'Example/Spinner',
+  title: '@UI/Spinner',
   component: Spinner,
   argTypes: {
     backgroundColor: { control: 'color' },

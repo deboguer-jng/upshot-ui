@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { useTheme } from '@emotion/react'
 import { Line, Chart } from 'react-chartjs-2'
 import { Spinner } from '../Spinner'
 import { NoDataBoard, ChartWrapper, ChartLoadingBoard } from './Styled'
-import { useThemeUI } from 'theme-ui'
 
-interface ChartProps {
+export interface ChartProps {
   loading?: boolean
   noData?: boolean
   error?: boolean
@@ -17,7 +17,7 @@ export const ChartArea = ({
   error = false,
   size = 'medium',
 }: ChartProps) => {
-  const context = useThemeUI()
+  const theme = useTheme()
   const canvas = document.createElement('canvas')
   const ctx = (canvas as HTMLCanvasElement)?.getContext('2d')
 
@@ -55,14 +55,14 @@ export const ChartArea = ({
         data: [12, 19, 3, 5, 2, 3],
         fill: true,
         backgroundColor: generateGradient(
-          context.theme.colors?.primary?.toString() || ''
+          theme.colors?.primary?.toString() || ''
         ),
-        legendBackgroundColor: context.theme.colors?.primary,
-        borderColor: context.theme.colors?.primary,
+        legendBackgroundColor: theme.colors?.primary,
+        borderColor: theme.colors?.primary,
         pointStyle: 'circle',
         pointRadius: 6,
         pointHitRadius: 6,
-        pointBorderColor: context.theme.colors?.primary,
+        pointBorderColor: theme.colors?.primary,
         pointBackgroundColor: 'black',
       },
       {
@@ -70,29 +70,27 @@ export const ChartArea = ({
         data: [1, 7, 3, 12, 5, 3],
         fill: true,
         backgroundColor: generateGradient(
-          context.theme.colors?.secondary?.toString() || ''
+          theme.colors?.secondary?.toString() || ''
         ),
-        borderColor: context.theme.colors?.secondary,
-        legendBackgroundColor: context.theme.colors?.secondary,
+        borderColor: theme.colors?.secondary,
+        legendBackgroundColor: theme.colors?.secondary,
         pointStyle: 'circle',
         pointRadius: 6,
         pointHitRadius: 6,
-        pointBorderColor: context.theme.colors?.secondary,
+        pointBorderColor: theme.colors?.secondary,
         pointBackgroundColor: 'black',
       },
       {
         label: 'item3',
         data: [14, 16, 10, 7, 4, 9],
         fill: true,
-        backgroundColor: generateGradient(
-          context.theme.colors?.text?.toString() || ''
-        ),
-        borderColor: context.theme.colors?.text,
-        legendBackgroundColor: context.theme.colors?.text,
+        backgroundColor: generateGradient(theme.colors?.text?.toString() || ''),
+        borderColor: theme.colors?.text,
+        legendBackgroundColor: theme.colors?.text,
         pointStyle: 'circle',
         pointRadius: 6,
         pointHitRadius: 6,
-        pointBorderColor: context.theme.colors?.text,
+        pointBorderColor: theme.colors?.text,
         pointBackgroundColor: 'black',
       },
     ],
@@ -103,13 +101,13 @@ export const ChartArea = ({
       x: {
         grid: {
           display: true,
-          borderColor: context.theme.colors?.text,
+          borderColor: theme.colors?.text,
         },
       },
       y: {
         grid: {
           dispaly: true,
-          borderColor: context.theme.colors?.text,
+          borderColor: theme.colors?.text,
         },
       },
     },
@@ -165,9 +163,7 @@ export const ChartArea = ({
     return (
       <ChartWrapper width={getChartWidth()}>
         <p> Loading Data </p>
-        <ChartLoadingBoard
-          background={context.theme.colors?.background1?.toString()}
-        >
+        <ChartLoadingBoard background={theme.colors?.background?.toString()}>
           <Spinner />
         </ChartLoadingBoard>
       </ChartWrapper>
@@ -178,8 +174,8 @@ export const ChartArea = ({
     return (
       <ChartWrapper width={getChartWidth()}>
         <NoDataBoard
-          borderColor={context.theme.colors?.text?.toString()}
-          color={context.theme.colors?.text?.toString()}
+          borderColor={theme.colors?.text?.toString()}
+          color={theme.colors?.text?.toString()}
         >
           <div>
             <p> SORRY: </p>
@@ -194,8 +190,8 @@ export const ChartArea = ({
     return (
       <ChartWrapper width={getChartWidth()}>
         <NoDataBoard
-          color={context.theme.colors?.text?.toString()}
-          borderColor={context.theme.colors?.text?.toString()}
+          color={theme.colors?.text?.toString()}
+          borderColor={theme.colors?.text?.toString()}
         >
           <div>
             <p> SORRY: </p>

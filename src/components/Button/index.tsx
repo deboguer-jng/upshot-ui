@@ -2,7 +2,7 @@ import React from 'react'
 import { useThemeUI } from 'theme-ui'
 import { MainButton } from './Styled'
 
-interface ButtonProps {
+export interface ButtonProps {
   /**
    * Is this the principal call to action on the page?
    */

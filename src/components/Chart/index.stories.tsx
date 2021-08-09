@@ -5,11 +5,8 @@ import { ChartArea } from './'
 import UpshotThemeProvider from '../../themes'
 
 export default {
-  title: 'Example/Chart',
+  title: '@UI/Chart',
   component: ChartArea,
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
 } as ComponentMeta<typeof ChartArea>
 
 const Template: ComponentStory<typeof ChartArea> = (args) => (

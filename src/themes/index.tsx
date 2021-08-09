@@ -5,7 +5,7 @@ import { ThemeProvider, Theme } from '@emotion/react'
 import theme from './UpshotUI'
 
 interface Props {
-  theme: Theme
+  theme?: Theme
   children: React.ReactNode
 }
 
