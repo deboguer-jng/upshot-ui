@@ -17,14 +17,21 @@ defaultCheckbox.args = {
   text: 'text',
 }
 
-export const errorCheckbox = Template.bind({})
-errorCheckbox.args = {
+export const error = Template.bind({})
+error.args = {
   type: 'error',
   text: 'text',
 }
 
-export const disabledCheckbox = Template.bind({})
-disabledCheckbox.args = {
+export const disabled = Template.bind({})
+disabled.args = {
   type: 'disabled',
   text: 'text',
+}
+
+export const disabledChecked = Template.bind({})
+disabledChecked.args = {
+  type: 'disabled',
+  text: 'text',
+  checked: true,
 }
