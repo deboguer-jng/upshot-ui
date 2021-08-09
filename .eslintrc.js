@@ -1,4 +1,8 @@
 module.exports = {
+  parserOptions: {
+    sourceType: 'module',
+    ecmaVersion: 2017,
+  },
   extends: ['plugin:react/recommended'],
   plugins: ['simple-import-sort'],
   rules: {

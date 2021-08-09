@@ -1,38 +1,34 @@
 const path = require('path')
-const fs = require('fs')
-const { merge } = require('webpack-merge')
 
-function getPackageDir(filepath) {
-  let currDir = path.dirname(require.resolve(filepath))
-  while (true) {
-    if (fs.existsSync(path.join(currDir, 'package.json'))) {
-      return currDir
-    }
-    const { dir, root } = path.parse(currDir)
-    if (dir === root) {
-      throw new Error(
-        `Could not find package.json in the parent directories starting from ${filepath}.`
-      )
-    }
-    currDir = dir
-  }
-}
+const toPath = (_path) => path.join(process.cwd(), _path)
 
 module.exports = {
   stories: ['../src/components/**/*.stories.tsx'],
+  addons: ['@storybook/addon-docs'],
   features: {
-    postcss: false, // We use styled-components instead.
+    postcss: false, // We use Styled Components instead.
   },
   core: {
     builder: 'webpack5',
   },
-  webpackFinal: async (config) => {
-    return merge(config, {
-      resolve: {
-        alias: {
-          '@emotion/styled': getPackageDir('@emotion/styled'),
-        },
-      },
-    })
+  docs: {
+    /**
+     * Disables inline to prevent duplicate globalStyles.
+     * @see https://github.com/storybookjs/storybook/issues/9312
+     */
+    inlineStories: false,
   },
+  webpackFinal: async (config) => ({
+    ...config,
+    resolve: {
+      ...config.resolve,
+      alias: {
+        ...config.resolve.alias,
+        /* Support for Emotion 11 */
+        '@emotion/core': toPath('node_modules/@emotion/react'),
+        '@emotion/styled': toPath('node_modules/@emotion/styled'),
+        'emotion-theming': toPath('node_modules/@emotion/react'),
+      },
+    },
+  }),
 }

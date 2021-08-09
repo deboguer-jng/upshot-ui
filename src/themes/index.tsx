@@ -1,9 +1,11 @@
 import { css, Global } from '@emotion/react'
 import React from 'react'
-import { ThemeProvider } from 'theme-ui'
+import { ThemeProvider, Theme } from '@emotion/react'
 
-import darkTheme from './dark'
+import theme from './UpshotUI'
+
 interface Props {
+  theme: Theme
   children: React.ReactNode
 }
 
@@ -18,13 +20,15 @@ export const globalStyles = (
       *::after {
         box-sizing: border-box;
       }
-      body {
-        margin: 0;
-      }
     `}
   />
 )
 
 export default function UpshotThemeProvider({ children }: Props) {
-  return <ThemeProvider theme={darkTheme}>{children}</ThemeProvider>
+  return (
+    <ThemeProvider {...{ theme }}>
+      {globalStyles}
+      {children}
+    </ThemeProvider>
+  )
 }

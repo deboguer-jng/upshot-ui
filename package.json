@@ -1,11 +1,14 @@
 {
-  "name": "upshot-ui",
+  "name": "@upshot-tech/upshot-ui",
+  "description": "The official design system used in Upshot.",
   "version": "0.1.0",
-  "private": true,
+  "main": "./dist/index.js",
   "scripts": {
     "start": "start-storybook -p 6006 -s public",
-    "build": "build-storybook -s public",
-    "lint": "prettier --write . && eslint . --fix"
+    "lint": "prettier --write . && eslint . --fix",
+    "build": "rollup -c",
+    "prepublishOnly": "yarn build",
+    "build-static": "yarn build-storybook -o ./static -s public"
   },
   "dependencies": {
     "@emotion/styled": "^11.3.0",
@@ -17,13 +20,16 @@
     "react-dom": "^17.0.2",
     "theme-ui": "^0.10.0",
     "typescript": "^4.3.5",
-    "webpack-merge": "^5.8.0"
+    "webpack-merge": "^5.8.0",
+    "react-inlinesvg": "^2.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.8",
+    "@babel/core": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
     "@emotion/babel-plugin": "^11.3.0",
+    "@rollup/plugin-typescript": "^8.2.5",
     "@storybook/addon-actions": "^6.3.6",
+    "@storybook/addon-docs": "^6.3.6",
     "@storybook/addon-essentials": "^6.3.6",
     "@storybook/addon-links": "^6.3.6",
     "@storybook/builder-webpack5": "^6.3.6",
@@ -31,15 +37,19 @@
     "@storybook/node-logger": "^6.3.6",
     "@storybook/preset-create-react-app": "^3.2.0",
     "@storybook/react": "^6.3.6",
-    "@types/node": "^12.0.0",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "eslint": "^7.31.0",
+    "@types/node": "^16.4.12",
+    "@types/react": "^17.0.15",
+    "@types/react-dom": "^17.0.9",
+    "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^7.0.1",
     "prettier": "^2.3.2",
-    "webpack": "^5.47.1"
+    "rollup": "^2.56.0",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-svg": "^2.0.0",
+    "typescript": "^4.3.5",
+    "webpack": "^5.48.0"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": "yarn lint"
@@ -48,5 +58,18 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  }
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "./src/themes/emotion.d.ts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/upshot-tech/upshot-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/upshot-tech/upshot-ui/issues"
+  },
+  "homepage": "https://github.com/upshot-tech/upshot-ui#readme"
 }
