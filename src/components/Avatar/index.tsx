@@ -38,14 +38,15 @@ export default function Avatar({
   return (
     <AvatarBase $size={size} {...props}>
       <AvatarBackground
+        $size={size}
         $borderColor={borderColor}
         $hasInitials={Boolean(initials)}
       >
-        {/* Image variant: Render with ThemeUI */}
-        {!!src && <ThemeUIAvatar size={avatars.sizes[size]} {...{ src }} />}
-
-        {/* Initials variant: Render if the size is defined. */}
-        {!!initials && size in avatars.initialsSizes && (
+        {src ? (
+          /* Render image variant if a src is defined. */
+          <ThemeUIAvatar size="100%" {...{ src }} />
+        ) : (
+          /* Render initials variant if no image src provided. */
           <AvatarInitials size={size as keyof typeof avatars.initialsSizes}>
             {initials}
           </AvatarInitials>

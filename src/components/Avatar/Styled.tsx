@@ -1,13 +1,13 @@
 import styled from '@emotion/styled'
 import colors from '../../themes/UpshotUI/colors'
 import { Flex } from 'theme-ui'
-
+import { calcBorderPx } from './utils'
 import avatars from '../../themes/UpshotUI/avatars'
 
 interface AvatarBaseProps {
   $size: keyof typeof avatars.sizes
 }
-interface AvatarBackgroundProps {
+interface AvatarBackgroundProps extends AvatarBaseProps {
   $borderColor: keyof typeof colors
   $hasInitials: boolean
 }
@@ -15,9 +15,9 @@ interface AvatarBackgroundProps {
 export const AvatarBase = styled.div<AvatarBaseProps>`
   position: relative;
   overflow: hidden;
-  border-radius: 50%;
-  width: ${({ theme, $size }) => theme.avatars.sizes[$size]};
-  height: ${({ theme, $size }) => theme.avatars.sizes[$size]};
+  border-radius: ${({ theme }) => theme.radii.circle};
+  width: ${({ theme, $size }) => theme.avatars.sizes[$size] + 'px'};
+  height: ${({ theme, $size }) => theme.avatars.sizes[$size] + 'px'};
 `
 
 export const AvatarBackground = styled.div<AvatarBackgroundProps>`
@@ -27,7 +27,8 @@ export const AvatarBackground = styled.div<AvatarBackgroundProps>`
 
   background: ${({ theme, $borderColor, $hasInitials }) =>
     $hasInitials ? theme.gradients.primary : theme.colors[$borderColor]};
-  padding: ${({ theme }) => theme.avatars.borderThickness};
+  padding: ${({ theme, $size }) =>
+    calcBorderPx(theme.avatars.sizes[$size], theme.avatars.borderThickness)};
 `
 
 export const AvatarInitialsBase = styled(Flex)`
