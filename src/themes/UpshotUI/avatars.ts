@@ -2,18 +2,18 @@ import { fontSizes } from './text'
 
 const avatars = {
   /**
-   * Border thickness (% container width)
+   * Border thickness (% avatar width)
    */
-  borderThickness: '4%',
+  borderThickness: 4,
   /**
    * Avatar sizes (px)
    */
   sizes: {
-    xs: '16px',
-    sm: '46px',
-    md: '58px',
-    lg: '94px',
-    xl: '188px',
+    xs: 16,
+    sm: 46,
+    md: 58,
+    lg: 94,
+    xl: 188,
   },
   /**
    * Initials typography sizes
