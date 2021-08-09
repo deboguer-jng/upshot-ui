@@ -5,7 +5,7 @@ import icons from './icons'
 
 interface IconProps extends Omit<SVGProps, 'src'> {
   /**
-   * Specifies the width & height for the square svg icon.
+   * Specifies the width & height for the square svg icon. (Default: 64)
    */
   size: number
   /**
@@ -13,7 +13,7 @@ interface IconProps extends Omit<SVGProps, 'src'> {
    */
   icon: keyof typeof icons
   /**
-   * Named color from theme specification.
+   * Named color from theme specification. (Default: primary)
    */
   color: keyof typeof colors
 }
