@@ -1,5 +1,7 @@
+/** @jsxImportSource theme-ui */
+
 import React from 'react'
-import { Label, Checkbox as ThemeCheckbox } from 'theme-ui'
+import { Paragraph, Label, Checkbox as ThemeCheckbox } from 'theme-ui'
 import checkboxes from '../../themes/UpshotUI/checkboxes'
   
 export interface CheckboxProps {
@@ -13,15 +15,20 @@ export interface CheckboxProps {
   text?: string
 }
 
+/**
+ * Checkbox component with label
+ */
+
 export default function Checkbox({
   type = 'default',
   text = '',
   ...props
 }: CheckboxProps & React.HTMLAttributes<HTMLDivElement>) {
+  const isDisabled = (type == 'disabled')
   return (
     <Label {...props}>
-      <ThemeCheckbox defaultChecked={true} sx={checkboxes[type]} />
-      {text}
+      <ThemeCheckbox defaultChecked={true} sx={checkboxes[type]} disabled={isDisabled} />
+      <Paragraph sx={{color: isDisabled ? 'grey-600' : 'text'}}>{text}</Paragraph>
     </Label>
   )
 }
