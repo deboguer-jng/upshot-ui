@@ -1590,7 +1590,7 @@
     "@emotion/styled-base" "^10.0.27"
     babel-plugin-emotion "^10.0.27"
 
-"@emotion/styled@^11.0.0":
+"@emotion/styled@^11.0.0", "@emotion/styled@^11.3.0":
   version "11.3.0"
   resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-11.3.0.tgz#d63ee00537dfb6ff612e31b0e915c5cf9925a207"
   integrity sha512-fUoLcN3BfMiLlRhJ8CuPUMEyKkLEoM+n+UyAbnqGEsCd5IzKQ7VQFLtzpJOaCD2/VR2+1hXQTnSZXVJeiTNltA==
@@ -1702,6 +1702,11 @@
     "@types/node" "*"
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
+
+"@kurkle/color@^0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@kurkle/color/-/color-0.1.9.tgz#949ea1494581b15576fca50d8486e5816fccfd27"
+  integrity sha512-K3Aul4Ct6O48yWw0/az5rqk2K76oNXXX3Su32Xkh4SfMFvPt0QEkq0Q6+3icE5S3U2c88WAuq3Vh1Iaz4aUH+w==
 
 "@mdx-js/loader@^1.6.22":
   version "1.6.22"
@@ -4439,6 +4444,11 @@ character-reference-invalid@^1.0.0:
   resolved "https://registry.yarnpkg.com/character-reference-invalid/-/character-reference-invalid-1.1.4.tgz#083329cda0eae272ab3dbbf37e9a382c13af1560"
   integrity sha512-mKKUkUbhPpQlCOfIuZkvSEgktjPFIsZKRRbC6KWVEMvlzblj3i3asQv5ODsrwt0N3pHAEvjP8KTQPHkp0+6jOg==
 
+chart.js@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-3.5.0.tgz#6eb075332d4ebbbb20a94e5a07a234052ed6c4fb"
+  integrity sha512-J1a4EAb1Gi/KbhwDRmoovHTRuqT8qdF0kZ4XgwxpGethJHUdDrkqyPYwke0a+BuvSeUxPf8Cos6AX2AB8H8GLA==
+
 chokidar@^2.1.8:
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.1.8.tgz#804b3a7b6a99358c3c5c61e71d8728f041cff917"
@@ -4528,7 +4538,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.5:
+classnames@^2.2.5, classnames@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
   integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
@@ -9197,6 +9207,13 @@ raw-loader@^4.0.2:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
+react-chartjs-2@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/react-chartjs-2/-/react-chartjs-2-3.0.4.tgz#88e14c6b4d577941c736f0657b071c8273916652"
+  integrity sha512-pcbFNpkPMTkGXXJ7k7hnukbRD0ZV01qB6JQY1ontITc2IYvhGlK6BBDy28VeydYs1Dl/c5ZpRgRVEtT5GUnxcQ==
+  dependencies:
+    lodash "^4.17.19"
+
 react-colorful@^5.1.2:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/react-colorful/-/react-colorful-5.3.0.tgz#bcbae49c1affa9ab9a3c8063398c5948419296bd"
@@ -11262,6 +11279,14 @@ webpack-log@^2.0.0:
     ansi-colors "^3.0.0"
     uuid "^3.3.2"
 
+webpack-merge@^5.8.0:
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-5.8.0.tgz#2b39dbf22af87776ad744c390223731d30a68f61"
+  integrity sha512-/SaI7xY0831XwP6kzuwhKWVKDP9t1QY1h65lAFLbZqMPIuYcD9QAW4u9STIbU9kaJbPBB/geU/gLr1wDjOhQ+Q==
+  dependencies:
+    clone-deep "^4.0.1"
+    wildcard "^2.0.0"
+
 webpack-sources@^1.4.0, webpack-sources@^1.4.1, webpack-sources@^1.4.3:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-1.4.3.tgz#eedd8ec0b928fbf1cbfe994e22d2d890f330a933"
@@ -11391,6 +11416,11 @@ widest-line@^3.1.0:
   integrity sha512-NsmoXalsWVDMGupxZ5R08ka9flZjjiLvHVAWYOKtiKM8ujtZWr9cRffak+uSE48+Ob8ObalXpwyeUiyDD6QFgg==
   dependencies:
     string-width "^4.0.0"
+
+wildcard@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/wildcard/-/wildcard-2.0.0.tgz#a77d20e5200c6faaac979e4b3aadc7b3dd7f8fec"
+  integrity sha512-JcKqAHLPxcdb9KM49dufGXn2x3ssnfjbcaQdLlfZsL9rH9wgDQjUtDxbo8NE0F6SFvydeu1VhZe7hZuHsB2/pw==
 
 word-wrap@^1.2.3, word-wrap@~1.2.3:
   version "1.2.3"

@@ -1,11 +1,19 @@
 import React from 'react'
-import './button.css'
+import { useThemeUI } from 'theme-ui'
+import { MainButton } from './Styled'
 
 interface ButtonProps {
   /**
    * Is this the principal call to action on the page?
    */
-  primary?: boolean
+  type?:
+    | 'primary'
+    | 'secondary'
+    | 'tertiary'
+    | 'plain'
+    | 'disclosure'
+    | 'accent'
+    | 'large'
   /**
    * What background color to use
    */
@@ -14,6 +22,12 @@ interface ButtonProps {
    * How large should the button be?
    */
   size?: 'small' | 'medium' | 'large'
+
+  status: 'disabled' | 'active' | 'default'
+
+  icon: string
+
+  width?: number
   /**
    * Button contents
    */
@@ -28,25 +42,68 @@ interface ButtonProps {
  * Primary UI component for user interaction
  */
 export const Button = ({
-  primary = false,
+  type = 'primary',
   size = 'medium',
+  status = 'default',
   backgroundColor,
   label,
+  width,
   ...props
 }: ButtonProps) => {
-  const mode = primary
-    ? 'storybook-button--primary'
-    : 'storybook-button--secondary'
+  const context = useThemeUI()
+
+  const getBackgroundColor = () => {
+    switch (type) {
+      case 'primary':
+        if (status === 'default')
+          return context.theme.colors?.primary?.toString()
+        else return context.theme.colors?.background?.toString()
+    }
+  }
+
+  const getColor = () => {
+    switch (status) {
+      case 'default':
+        return context.theme.colors?.text?.toString()
+      case 'active':
+        return context.theme.colors?.primary?.toString()
+    }
+  }
+
+  const getBorderColor = () => {
+    switch (status) {
+      case 'active':
+        if (type === 'primary') return context.theme.colors?.primary?.toString()
+        else return 'transparent'
+      default:
+        return 'transparent'
+    }
+  }
+
+  const getHeight = () => {
+    switch (size) {
+      case 'medium':
+        return 30
+    }
+  }
+
+  const getWidth = () => {
+    if (width) return width
+    return 85
+  }
+
   return (
-    <button
-      type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(
-        ' '
-      )}
-      style={{ backgroundColor }}
+    <MainButton
+      background={getBackgroundColor()}
+      color={getColor()}
+      border={getBorderColor()}
+      height={getHeight()}
+      width={getWidth()}
+      color1={context.theme.colors?.primary?.toString()}
+      color2={context.theme.colors?.text?.toString()}
       {...props}
     >
       {label}
-    </button>
+    </MainButton>
   )
 }

@@ -2,8 +2,9 @@ const theme = {
   colors: {
     text: '#000',
     background: '#fff',
-    primary: '#07c',
-    secondary: '#609',
+    background1: '#151515',
+    primary: '#0091FF',
+    secondary: '#E44BBE',
   },
   fonts: {
     body: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',

@@ -15,23 +15,19 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />
 
 export const Primary = Template.bind({})
 Primary.args = {
-  primary: true,
+  type: 'primary',
   label: 'Button',
 }
 
-export const Secondary = Template.bind({})
-Secondary.args = {
+export const Active = Template.bind({})
+Active.args = {
+  status: 'active',
   label: 'Button',
 }
 
-export const Large = Template.bind({})
-Large.args = {
-  size: 'large',
+export const FixedWidth = Template.bind({})
+FixedWidth.args = {
+  status: 'active',
   label: 'Button',
-}
-
-export const Small = Template.bind({})
-Small.args = {
-  size: 'small',
-  label: 'Button',
+  width: 300,
 }
