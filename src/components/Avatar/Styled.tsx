@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import colors from '../../themes/UpshotUI/colors'
 import { Flex } from 'theme-ui'
-import { calcBorderPx } from './utils'
+import { calcBorder } from './utils'
 import avatars from '../../themes/UpshotUI/avatars'
 
 interface AvatarBaseProps {
@@ -28,7 +28,7 @@ export const AvatarBackground = styled.div<AvatarBackgroundProps>`
   background: ${({ theme, $borderColor, $hasInitials }) =>
     $hasInitials ? theme.gradients.primary : theme.colors[$borderColor]};
   padding: ${({ theme, $size }) =>
-    calcBorderPx(theme.avatars.sizes[$size], theme.avatars.borderThickness)};
+    calcBorder(theme.avatars.sizes[$size], theme.avatars.borderThickness)};
 `
 
 export const AvatarInitialsBase = styled(Flex)`
