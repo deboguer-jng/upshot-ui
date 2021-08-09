@@ -40,7 +40,7 @@ export default function Avatar({
       <AvatarBackground
         $size={size}
         $borderColor={borderColor}
-        $hasInitials={Boolean(initials)}
+        $hasImage={Boolean(src)}
       >
         {src ? (
           /* Render image variant if a src is defined. */

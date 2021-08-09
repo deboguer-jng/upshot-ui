@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import colors from '../../themes/UpshotUI/colors'
 import { Flex } from 'theme-ui'
-import { calcBorder } from './utils'
+import { calcBorderThickness, createAvatarImageBorder } from './utils'
 import avatars from '../../themes/UpshotUI/avatars'
 
 interface AvatarBaseProps {
@@ -9,7 +9,7 @@ interface AvatarBaseProps {
 }
 interface AvatarBackgroundProps extends AvatarBaseProps {
   $borderColor: keyof typeof colors
-  $hasInitials: boolean
+  $hasImage: boolean
 }
 
 export const AvatarBase = styled.div<AvatarBaseProps>`
@@ -25,10 +25,29 @@ export const AvatarBackground = styled.div<AvatarBackgroundProps>`
   width: 100%;
   height: 100%;
 
-  background: ${({ theme, $borderColor, $hasInitials }) =>
-    $hasInitials ? theme.gradients.primary : theme.colors[$borderColor]};
-  padding: ${({ theme, $size }) =>
-    calcBorder(theme.avatars.sizes[$size], theme.avatars.borderThickness)};
+  background: ${({ theme, $hasImage }) =>
+    !$hasImage && theme.gradients.primary};
+
+  /* Add a padding to text variant Avatars.
+   * to create space for AvatarInitialsBase box-shadow.
+   */
+  padding: ${({ theme, $size, $hasImage }) =>
+    !$hasImage &&
+    calcBorderThickness(
+      theme.avatars.sizes[$size],
+      theme.avatars.borderThickness
+    )};
+
+  /* Creates a border overlay for image variant Avatars. */
+  ${({ theme, $hasImage, $borderColor, $size }) =>
+    $hasImage &&
+    createAvatarImageBorder(
+      theme.colors[$borderColor],
+      Number(theme.avatars.sizes[$size]) *
+        theme.avatars.borderThickness *
+        0.01 +
+        'px'
+    )};
 `
 
 export const AvatarInitialsBase = styled(Flex)`
