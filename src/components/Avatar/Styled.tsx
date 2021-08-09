@@ -28,8 +28,8 @@ export const AvatarBackground = styled.div<AvatarBackgroundProps>`
   background: ${({ theme, $hasImage }) =>
     !$hasImage && theme.gradients.primary};
 
-  /* Add a padding to text variant Avatars.
-   * to create space for AvatarInitialsBase box-shadow.
+  /* Add a padding to text variant Avatars
+   * leaving space for AvatarInitialsBase's box-shadow.
    */
   padding: ${({ theme, $size, $hasImage }) =>
     !$hasImage &&
