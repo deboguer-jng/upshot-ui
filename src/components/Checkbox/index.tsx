@@ -13,6 +13,10 @@ export interface CheckboxProps {
    * Display text
    */
   text?: string
+  /**
+   * Is textbox checked?
+   */
+  checked?: boolean
 }
 
 /**
@@ -22,12 +26,13 @@ export interface CheckboxProps {
 export default function Checkbox({
   type = 'default',
   text = '',
+  checked = false,
   ...props
 }: CheckboxProps & React.HTMLAttributes<HTMLDivElement>) {
   const isDisabled = (type == 'disabled')
   return (
     <Label {...props}>
-      <ThemeCheckbox defaultChecked={true} sx={checkboxes[type]} disabled={isDisabled} />
+      <ThemeCheckbox defaultChecked={checked} sx={checkboxes[type]} disabled={isDisabled} />
       <Paragraph sx={{color: isDisabled ? 'grey-600' : 'text'}}>{text}</Paragraph>
     </Label>
   )

@@ -7,9 +7,15 @@ const checkboxes = {
   },
   error: {
     color: 'red',
+    '&:checked': {
+      color: 'red',
+    },
   },
   disabled: {
     color: 'grey-600',
+    '&:checked': {
+      color: 'grey-600',
+    },
   },
 }
 
