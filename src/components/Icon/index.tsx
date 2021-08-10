@@ -30,7 +30,7 @@ export default function Icon({ size = 64, color, icon, ...props }: IconProps) {
       }
       width={size}
       height="auto"
-      color={colors[color] || 'inherit'}
+      color={colors[color] ?? 'inherit'}
       src={icons[icon]}
       {...props}
     />
