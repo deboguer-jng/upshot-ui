@@ -23,7 +23,7 @@ export const MainButton = styled.button`
   &:hover {
     background: ${(props: ButtonProps) =>
       props.background === props.color1 ? props.color2 : props.color1};
-    border: 2px solid ${(props: ButtonProps) => props.border};
+    border: 2px solid ${(props: ButtonProps) => props.color1};
     color: ${(props: ButtonProps) =>
       props.color === props.color1 ? props.color2 : props.color1};
   }
@@ -35,7 +35,7 @@ export const MainButton = styled.button`
   &:active {
     background: ${(props: ButtonProps) =>
       props.background === props.color1 ? props.color2 : props.color1};
-    border: 2px solid ${(props: ButtonProps) => props.border};
+    border: 2px solid ${(props: ButtonProps) => props.color1};
     color: ${(props: ButtonProps) =>
       props.color === props.color1 ? props.color2 : props.color1};
     transform: scale(0.95);

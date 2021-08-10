@@ -48,7 +48,7 @@ export const ChartArea = ({
   }
 
   const data = {
-    labels: ['1', '2', '3', '4', '5', '6'],
+    labels: ['1', '2', '3', '4', '5'],
     datasets: [
       {
         label: 'item1',
@@ -138,6 +138,9 @@ export const ChartArea = ({
       tooltip: {
         yAlign: 'bottom',
         xAlign: 'center',
+        backgroundColor: 'black',
+        cornerRadius: 15,
+        displayColors: false,
         callbacks: {
           label: (context: Object) => {
             let label = ''
@@ -148,6 +151,13 @@ export const ChartArea = ({
               }).format(context.parsed.y)
             }
             return label
+          },
+          labelTextColor: (context: Object) => {
+            return context.chart.config.data.datasets[context.datasetIndex]
+              .legendBackgroundColor
+          },
+          title: (context: Object) => {
+            return null
           },
         },
       },

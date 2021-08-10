@@ -1,5 +1,5 @@
 import React from 'react'
-import { useThemeUI } from 'theme-ui'
+import { useTheme } from '@emotion/react'
 import { MainButton } from './Styled'
 
 export interface ButtonProps {
@@ -50,30 +50,29 @@ export const Button = ({
   width,
   ...props
 }: ButtonProps) => {
-  const context = useThemeUI()
+  const theme = useTheme()
 
   const getBackgroundColor = () => {
     switch (type) {
       case 'primary':
-        if (status === 'default')
-          return context.theme.colors?.primary?.toString()
-        else return context.theme.colors?.background?.toString()
+        if (status === 'default') return theme.colors?.primary?.toString()
+        else return theme.colors?.background?.toString()
     }
   }
 
   const getColor = () => {
     switch (status) {
       case 'default':
-        return context.theme.colors?.text?.toString()
+        return theme.colors?.text?.toString()
       case 'active':
-        return context.theme.colors?.primary?.toString()
+        return theme.colors?.primary?.toString()
     }
   }
 
   const getBorderColor = () => {
     switch (status) {
       case 'active':
-        if (type === 'primary') return context.theme.colors?.primary?.toString()
+        if (type === 'primary') return theme.colors?.primary?.toString()
         else return 'transparent'
       default:
         return 'transparent'
@@ -99,8 +98,8 @@ export const Button = ({
       border={getBorderColor()}
       height={getHeight()}
       width={getWidth()}
-      color1={context.theme.colors?.primary?.toString()}
-      color2={context.theme.colors?.text?.toString()}
+      color1={theme.colors?.primary?.toString()}
+      color2={theme.colors?.black?.toString()}
       {...props}
     >
       {label}
