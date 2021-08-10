@@ -1,21 +1,17 @@
+import colors from '../../themes/UpshotUI/colors'
+
 const checkboxes = {
   default: {
-    color: 'text',
-    '&:checked': {
-      color: 'primary',
-    },
+    color: colors.text,
+    checkedColor: colors.primary,
   },
   error: {
-    color: 'red',
-    '&:checked': {
-      color: 'red',
-    },
+    color: colors.red,
+    checkedColor: colors.red,
   },
   disabled: {
-    color: 'grey-600',
-    '&:checked': {
-      color: 'grey-600',
-    },
+    color: colors['grey-600'],
+    checkedColor: colors['grey-600'],
   },
 }
 
