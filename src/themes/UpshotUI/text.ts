@@ -1,6 +1,24 @@
+export const fonts = {
+  body: 'proxima-nova, sans-serif',
+  heading: 'degular-display, sans-serif',
+  serif: 'glysa, serif',
+  monospace: 'Menlo, monospace',
+}
+
 export const fontSizes = [
   0.625, 0.75, 0.875, 1, 1.125, 1.438, 2, 2.188, 3.25,
 ].map((n) => n + 'rem')
+
+export const fontWeights = {
+  body: 400,
+  heading: 500,
+  bold: 700,
+}
+
+export const lineHeights = {
+  body: '1.125rem',
+  heading: '2.625rem',
+}
 
 const text = {
   h0Primary: {
