@@ -3,6 +3,7 @@ import avatars from './avatars'
 import buttons from './buttons'
 import colors from './colors'
 import gradients from './gradients'
+import transitions from './transitions'
 import forms from './forms'
 import text, { fonts, fontSizes, fontWeights, lineHeights } from './text'
 
@@ -45,6 +46,7 @@ const theme = {
   alerts,
   buttons,
   gradients,
+  transitions,
   text,
   styles,
 }

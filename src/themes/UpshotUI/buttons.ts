@@ -1,5 +1,6 @@
 import { Theme } from 'theme-ui'
 import { transparentize } from '@theme-ui/color'
+import transitions from './transitions'
 
 const buttons: Theme['buttons'] = {
   primary: {
@@ -19,7 +20,7 @@ const buttons: Theme['buttons'] = {
     borderRadius: 'circle',
     cursor: 'pointer',
     size: 30,
-    transition: 'background-color 0.125s ease',
+    transition: transitions.default,
     '&:not(:disabled):hover': {
       bg: transparentize('grey-800', 0.5),
     },
