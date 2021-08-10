@@ -21,7 +21,7 @@ const buttons: Theme['buttons'] = {
     size: 30,
     transition: 'background-color 0.125s ease',
     '&:not(:disabled):hover': {
-      bg: transparentize('grey-900', 0.5),
+      bg: transparentize('grey-800', 0.5),
     },
     '&:disabled': {
       color: 'grey-400',
