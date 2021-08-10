@@ -15,13 +15,17 @@ const buttons: Theme['buttons'] = {
   },
   icon: {
     color: 'grey-600',
-    '&:hover': {
-      bg: 'grey-300',
-    },
     borderRadius: 'circle',
     cursor: 'pointer',
     size: 30,
     transition: 'background-color 0.125s ease',
+    '&:not(:disabled):hover': {
+      bg: 'grey-300',
+    },
+    '&:disabled': {
+      color: 'grey-400',
+      pointerEvents: 'none',
+    },
   },
 }
 

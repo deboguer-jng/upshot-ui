@@ -18,3 +18,10 @@ Default.args = {
   onClick: () => {},
   children: <Icon aria-label="arrow pointing right" icon="arrowSmallRight" />,
 }
+
+export const Disabled = Template.bind({})
+Disabled.args = {
+  disabled: true,
+  onClick: () => {},
+  children: <Icon aria-label="arrow pointing right" icon="arrowSmallRight" />,
+}
