@@ -13,7 +13,7 @@ interface IconProps extends Omit<SVGProps, 'src'> {
    */
   size?: number | string
   /**
-   * Named color from theme specification. (Default: primary)
+   * Named color from theme specification. (Default: inherit)
    */
   color?: keyof typeof colors
 }
