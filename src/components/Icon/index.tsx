@@ -5,28 +5,23 @@ import icons from './icons'
 
 interface IconProps extends Omit<SVGProps, 'src'> {
   /**
-   * Specifies the width & height for the square svg icon. (Default: 64)
-   */
-  size: number
-  /**
    * Defines the SVG icon to render.
    */
   icon: keyof typeof icons
   /**
-   * Named color from theme specification. (Default: primary)
+   * Specifies the width & height for the square svg icon. (Default: 64)
    */
-  color: keyof typeof colors
+  size?: number | string
+  /**
+   * Named color from theme specification. (Default: inherit)
+   */
+  color?: keyof typeof colors
 }
 
 /**
  * Icon component for SVG assets.
  */
-export default function Icon({
-  size = 64,
-  color = 'primary',
-  icon,
-  ...props
-}: IconProps) {
+export default function Icon({ size = 64, color, icon, ...props }: IconProps) {
   return (
     <SVG
       /* Preprocess SVGs to use color prop. */
@@ -35,7 +30,7 @@ export default function Icon({
       }
       width={size}
       height="auto"
-      color={colors[color]}
+      color={colors[color] ?? 'inherit'}
       src={icons[icon]}
       {...props}
     />
