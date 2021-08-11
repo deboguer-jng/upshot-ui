@@ -21,15 +21,6 @@ interface PlainButtonProps {
   clickedColor: string
 }
 
-interface DisclosureButtonProps {
-  color: string
-  background: string
-  width?: number
-  active: boolean
-  size: boolean
-  height: number
-}
-
 export const PrimaryButton = styled.button`
   background: ${(props: PrimaryButtonProps) => props.background};
   border: ${(props: PrimaryButtonProps) =>
@@ -86,6 +77,12 @@ export const PrimaryButton = styled.button`
     span {
       color: ${(props: PrimaryButtonProps) => props.activeColor};
     }
+
+    svg {
+      path {
+        fill: ${(props: PrimaryButtonProps) => props.activeColor};
+      }
+    }
     transform: scale(0.95);
   }
 `
@@ -118,46 +115,5 @@ export const PlainButton = styled.button`
 
   &:focus {
     color: ${(props: PlainButtonProps) => props.clickedColor};
-  }
-`
-
-export const DisclosureButton = styled.button`
-  background: ${(props: DisclosureButtonProps) => props.background};
-  color: ${(props: DisclosureButtonProps) => props.color};
-  width: ${(props: PrimaryButtonProps) => props.width}px;
-  height: ${(props: PrimaryButtonProps) => props.height}px;
-  border-radius: ${(props: PrimaryButtonProps) => props.height / 2}px;
-  border: none;
-  display: flex;
-  font-size: ${(props: PrimaryButtonProps) => (props.size ? 18 : 24)}px;
-  align-items: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  cursor: pointer;
-
-  span {
-    flex-grow: 1;
-    text-align: left;
-  }
-
-  &:disabled {
-    cursor: not-allowed !important;
-
-    svg {
-      path {
-        fill: ${(props: DisclosureButtonProps) => props.color};
-      }
-    }
-  }
-
-  & svg {
-    width: 1rem;
-    margin-left: 1rem;
-    transform: ${(props: PrimaryButtonProps) =>
-      props.active ? 'rotate(180deg)' : 'rotate(0)'};
-  }
-
-  &:focus {
-    box-shadow: 0px 4px 4px rgba(0, 145, 255, 0.6);
   }
 `
