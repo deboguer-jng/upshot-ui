@@ -18,7 +18,7 @@ export const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
   input:focus ~ & {
     background: #00000000;
     border: 2px solid ${({ $type }) => 
-      checkboxes.default.checkedColor};
+      checkboxes[$type].checkedColor};
     color: ${({ $type }) => 
       checkboxes[$type].color};
   }

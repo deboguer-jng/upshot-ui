@@ -18,7 +18,7 @@ export const StyledRadio = styled(Radio)<RadioProps>`
   input:focus ~ & {
     background: #00000000;
     border: 2px solid ${({ $type }) => 
-      radios.default.checkedColor};
+      radios[$type].checkedColor};
     color: ${({ $type }) => 
       radios[$type].color};
   }
