@@ -28,10 +28,3 @@ disabled.args = {
   type: 'disabled',
   text: 'text',
 }
-
-export const disabledChecked = Template.bind({})
-disabledChecked.args = {
-  type: 'disabled',
-  text: 'text',
-  checked: true,
-}
