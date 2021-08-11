@@ -25,7 +25,7 @@ const buttons: Theme['buttons'] = {
       bg: transparentize('grey-800', 0.5),
     },
     '&:disabled': {
-      color: 'grey-400',
+      color: 'grey-700',
       pointerEvents: 'none',
     },
   },
