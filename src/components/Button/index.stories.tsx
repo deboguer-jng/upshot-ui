@@ -157,34 +157,3 @@ PlainDisabled.args = {
   label: 'Button',
   status: 'disabled',
 }
-
-export const DisclosureDisabled = Template.bind({})
-DisclosureDisabled.args = {
-  type: 'disclosure',
-  label: 'Button',
-  status: 'disabled',
-}
-
-export const DisclosureActive = Template.bind({})
-DisclosureActive.args = {
-  type: 'disclosure',
-  label: 'Button',
-  status: 'active',
-}
-
-export const DisclosureFixedWidth = Template.bind({})
-DisclosureFixedWidth.args = {
-  type: 'disclosure',
-  label: 'Button',
-  status: 'active',
-  width: 135,
-}
-
-export const DisclosureLarge = Template.bind({})
-DisclosureLarge.args = {
-  type: 'disclosure',
-  status: 'active',
-  label: 'Button',
-  size: 'large',
-  icon: <Icon icon="analytics" />,
-}
