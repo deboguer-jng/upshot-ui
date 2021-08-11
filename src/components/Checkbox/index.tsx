@@ -34,7 +34,7 @@ export default function Checkbox({
   return (
     <Label {...props}>
       <StyledCheckbox $type={type} defaultChecked={checked} disabled={isDisabled} {...props} />
-      <Paragraph sx={{color: isDisabled ? 'grey-600' : 'text'}}>{text}</Paragraph>
+      <Paragraph sx={{color: isDisabled ? 'grey-600' : 'text', lineHeight: '1.5rem'}}>{text}</Paragraph>
     </Label>
   )
 }
