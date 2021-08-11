@@ -51,3 +51,10 @@ export const NoDataBoard = styled.div`
     line-height: 42px;
   }
 `
+
+export const Tooltip = styled.div`
+  background: black;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  color: white;
+`

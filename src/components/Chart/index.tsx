@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useTheme } from '@emotion/react'
-import { Line, Chart } from 'react-chartjs-2'
+import Chart from 'react-apexcharts'
 import { Spinner } from '../Spinner'
-import { NoDataBoard, ChartWrapper, ChartLoadingBoard } from './Styled'
+import { NoDataBoard, ChartWrapper, ChartLoadingBoard, Tooltip } from './Styled'
+import './index.css'
 
 export interface ChartProps {
   loading?: boolean
@@ -45,136 +46,6 @@ export const ChartArea = ({
     gradient?.addColorStop(1, 'transparent')
 
     return gradient
-  }
-
-  const data = {
-    labels: ['1', '2', '3', '4', '5'],
-    datasets: [
-      {
-        label: 'item1',
-        data: [12, 19, 3, 5, 2, 3],
-        fill: true,
-        backgroundColor: generateGradient(
-          theme.colors?.primary?.toString() || ''
-        ),
-        legendBackgroundColor: theme.colors?.primary,
-        borderColor: theme.colors?.primary,
-        pointStyle: 'circle',
-        pointRadius: 6,
-        pointHitRadius: 6,
-        pointBorderColor: theme.colors?.primary,
-        pointBackgroundColor: 'black',
-      },
-      {
-        label: 'item2',
-        data: [1, 7, 3, 12, 5, 3],
-        fill: true,
-        backgroundColor: generateGradient(
-          theme.colors?.secondary?.toString() || ''
-        ),
-        borderColor: theme.colors?.secondary,
-        legendBackgroundColor: theme.colors?.secondary,
-        pointStyle: 'circle',
-        pointRadius: 6,
-        pointHitRadius: 6,
-        pointBorderColor: theme.colors?.secondary,
-        pointBackgroundColor: 'black',
-      },
-      {
-        label: 'item3',
-        data: [14, 16, 10, 7, 4, 9],
-        fill: true,
-        backgroundColor: generateGradient(theme.colors?.red?.toString() || ''),
-        borderColor: theme.colors?.red,
-        legendBackgroundColor: theme.colors?.red,
-        pointStyle: 'circle',
-        pointRadius: 6,
-        pointHitRadius: 6,
-        pointBorderColor: theme.colors?.red,
-        pointBackgroundColor: 'black',
-      },
-    ],
-  }
-
-  const xAxisLabels = ['1H', '1D', '1W', '1Y', 'ALL']
-
-  const options = {
-    scales: {
-      x: {
-        grid: {
-          display: true,
-          borderColor: theme.colors?.text,
-        },
-        ticks: {
-          callback: function (value, index, values) {
-            return xAxisLabels[index]
-          },
-          backdropColor: theme.colors['grey-800'].toString(),
-        },
-      },
-      y: {
-        grid: {
-          dispaly: true,
-          borderColor: theme.colors?.text,
-        },
-      },
-    },
-    elements: {
-      line: {
-        tension: 0.4,
-      },
-    },
-    plugins: {
-      legend: {
-        display: true,
-        position: 'bottom',
-        align: 'start',
-        labels: {
-          pointStyle: 'circle',
-          usePointStyle: true,
-          padding: 30,
-        },
-      },
-      tooltip: {
-        yAlign: 'bottom',
-        xAlign: 'center',
-        backgroundColor: 'black',
-        cornerRadius: 15,
-        displayColors: false,
-        callbacks: {
-          label: (context: Object) => {
-            let label = ''
-            if (context.parsed.y !== null) {
-              label += new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD',
-              }).format(context.parsed.y)
-            }
-            return label
-          },
-          labelTextColor: (context: Object) => {
-            return context.chart.config.data.datasets[context.datasetIndex]
-              .legendBackgroundColor
-          },
-          title: (context: Object) => {
-            return null
-          },
-        },
-      },
-    },
-  }
-
-  const plugin = {
-    id: 'custom_legend_title_color',
-    beforeDraw: (chart) => {
-      chart.config.data.datasets.forEach((dataset, i) => {
-        if (dataset.legendBackgroundColor) {
-          chart.legend.legendItems[i].fillStyle = dataset.legendBackgroundColor
-          chart.legend.legendItems[i].fontColor = dataset.legendBackgroundColor
-          chart.legend.legendItems[i].text = 'ITEM'
-        }
-      })
-    },
   }
 
   if (loading) {
@@ -222,10 +93,89 @@ export const ChartArea = ({
     )
   }
 
+  const colors = [
+    theme.colors.primary.toString(),
+    theme.colors.secondary.toString(),
+  ]
+
+  const options = {
+    chart: {
+      height: 350,
+      type: 'area',
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    colors,
+    stroke: {
+      curve: 'smooth',
+    },
+    grid: {
+      show: false,
+    },
+    markets: {
+      size: [4, 7],
+      colors,
+      strokeColors: colors,
+    },
+    xaxis: {
+      type: 'category',
+      categories: ['1H', '1D', '1W', '1Y', 'ALL'],
+    },
+    legend: {
+      horizontalAlign: 'left',
+      fontSize: '14px',
+      labels: {
+        useSeriesColors: true,
+      },
+      markers: {
+        width: 16,
+        height: 16,
+      },
+    },
+    tooltip: {
+      enabled: true,
+      shared: false,
+      custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+        return `
+          <style>
+            .apexcharts-tooltip {
+              background: transparent!important;
+              border: none!important;
+              box-shadow: none!important;
+            }
+          </style>
+          <div style="
+            background: black; 
+            border-radius: 1rem;
+            padding: 0.1rem 1rem;
+            font-family: Proxima Nova; 
+            color: ${colors[seriesIndex]};
+            border: 1px solid ${colors[seriesIndex]};
+          ">
+            $ ${series[seriesIndex][dataPointIndex]}
+          </div>`
+      },
+      x: {
+        format: 'dd/MM/yy HH:mm',
+      },
+    },
+  }
+  const series = [
+    {
+      name: 'series1',
+      data: [31, 40, 28, 32, 51, 42, 109, 100],
+    },
+    {
+      name: 'series2',
+      data: [11, 32, 45, 32, 33, 34, 52, 41],
+    },
+  ]
+
   return (
     <>
       <ChartWrapper width={getChartWidth()}>
-        <Line data={data} options={options} plugins={[plugin]} />
+        <Chart options={options} series={series} type="area" />
       </ChartWrapper>
     </>
   )

@@ -7,14 +7,7 @@ export interface ButtonProps {
   /**
    * Is this the principal call to action on the page?
    */
-  type?:
-    | 'primary'
-    | 'secondary'
-    | 'tertiary'
-    | 'plain'
-    | 'disclosure'
-    | 'accent'
-    | 'large'
+  type?: 'primary' | 'secondary' | 'tertiary' | 'plain' | 'accent' | 'large'
   /**
    * What background color to use
    */
@@ -53,33 +46,6 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   const theme = useTheme()
-  console.log({ size })
-
-  if (type === 'disclosure') {
-    return (
-      <DisclosureButton
-        background={
-          status === 'disabled'
-            ? theme.colors['grey-700'].toString()
-            : theme.colors['grey-800'].toString()
-        }
-        color={
-          status === 'disabled'
-            ? theme.colors.black.toString()
-            : theme.colors['grey-300'].toString()
-        }
-        width={width || undefined}
-        active={status === 'active'}
-        disabled={status === 'disabled'}
-        height={size === 'medium' ? 30 : 46}
-        size={size === 'medium'}
-        {...props}
-      >
-        <span>{label}</span>
-        <Icon icon="arrowDropdown" />
-      </DisclosureButton>
-    )
-  }
 
   if (type === 'plain') {
     return (
