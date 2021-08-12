@@ -25,13 +25,26 @@ export const ChartArea = ({
   const getChartWidth = () => {
     switch (size) {
       case 'tiny':
-        return 336
+        return 375
       case 'small':
-        return 776
+        return 640
       case 'medium':
-        return 912
+        return 876
       case 'large':
-        return 1080
+        return 1044
+    }
+  }
+
+  const getChartHeight = () => {
+    switch (size) {
+      case 'tiny':
+        return 165
+      case 'small':
+        return 290
+      case 'medium':
+        return 275
+      case 'large':
+        return 290
     }
   }
 
@@ -100,7 +113,7 @@ export const ChartArea = ({
 
   const options = {
     chart: {
-      height: 350,
+      height: getChartHeight(),
       type: 'area',
     },
     dataLabels: {
@@ -175,7 +188,13 @@ export const ChartArea = ({
   return (
     <>
       <ChartWrapper width={getChartWidth()}>
-        <Chart options={options} series={series} type="area" />
+        <Chart
+          options={options}
+          series={series}
+          type="area"
+          height={getChartHeight()}
+          width={getChartWidth()}
+        />
       </ChartWrapper>
     </>
   )

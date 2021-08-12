@@ -25,7 +25,7 @@ export const PrimaryButton = styled.button`
   background: ${(props: PrimaryButtonProps) => props.background};
   border: ${(props: PrimaryButtonProps) =>
     props.border ? `2px solid ${props.border}` : 'none'};
-  font-size: ${(props: PrimaryButtonProps) => (props.size ? 18 : 24)}px;
+  font-size: ${(props: PrimaryButtonProps) => (props.size ? 18 : 32)}px;
   height: ${(props: PrimaryButtonProps) => props.height}px;
   border-radius: ${(props: PrimaryButtonProps) => props.height / 2}px;
   width: ${(props: PrimaryButtonProps) => props.width}px;
@@ -33,13 +33,13 @@ export const PrimaryButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 11px;
+  padding-right: 11px;
 
   & svg {
     margin-right: ${(props: PrimaryButtonProps) =>
-      props.minimized ? 0.25 : 0}rem;
-    width: 1rem;
+      props.minimized ? 0 : props.size ? 4 : 12}px;
+    width: ${(props: PrimaryButtonProps) => (props.size ? 16 : 25)}px;
   }
 
   & * {

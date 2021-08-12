@@ -73,15 +73,18 @@ export const Button = ({
   let color1
   let color2
   let color3
+  let color4
 
   if (type === 'primary') {
     color1 = theme.colors.primary.toString()
     color2 = theme.colors.black.toString()
     color3 = theme.colors['grey-700'].toString()
+    color4 = theme.colors.transparent.toString()
   } else if (type === 'secondary') {
     color1 = theme.colors['grey-800'].toString()
     color2 = theme.colors['grey-300'].toString()
     color3 = theme.colors['grey-700'].toString()
+    color4 = theme.colors.transparent.toString()
   } else if (type === 'tertiary') {
     color1 = theme.colors['grey-800'].toString()
     color2 = theme.colors['grey-200'].toString()
@@ -111,7 +114,7 @@ export const Button = ({
         activeBackgroundColor={status === 'active' ? color1 : color2}
         activeColor={status === 'active' ? color2 : color1}
         disabled={status === 'disabled'}
-        minimized={!!label}
+        minimized={!label}
         {...props}
       >
         {icon && icon}
@@ -123,7 +126,7 @@ export const Button = ({
   return (
     <PrimaryButton
       background={
-        status === 'default' ? color1 : status === 'disabled' ? color3 : color2
+        status === 'default' ? color1 : status === 'disabled' ? color3 : color4
       }
       color={
         status === 'default'
@@ -136,12 +139,12 @@ export const Button = ({
       height={size === 'medium' ? 30 : 46}
       size={size === 'medium'}
       width={width || undefined}
-      hoverBackgroundColor={status === 'default' ? color2 : color1}
+      hoverBackgroundColor={status === 'default' ? color4 : color1}
       hoverColor={status === 'default' ? color1 : color2}
-      activeBackgroundColor={status === 'active' ? color2 : color1}
+      activeBackgroundColor={status === 'active' ? color4 : color1}
       activeColor={status === 'active' ? color1 : color2}
       disabled={status === 'disabled'}
-      minimized={!!label}
+      minimized={!label}
       {...props}
     >
       {icon && icon}
