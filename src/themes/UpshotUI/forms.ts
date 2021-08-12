@@ -1,22 +1,7 @@
-import { Theme } from 'theme-ui'
+import formInputs from './forms.inputs'
 
-const forms: Theme['forms'] = {
-  input: {
-    height: '45px',
-    bg: 'grey-800',
-    border: 'none',
-    borderRadius: 'pill',
-    color: 'grey-500',
-    padding: '0 1rem',
-    outline: 'none',
-    fontFamily: 'degular',
-    fontWeight: 'heading',
-    fontSize: 4,
-    lineHeight: 1,
-    '&::placeholder': {
-      fontWeight: 'heading',
-    },
-  },
+const forms = {
+  inputs: formInputs,
   switch: {
     bg: 'grey-500', // Off: background
     '& div': {
