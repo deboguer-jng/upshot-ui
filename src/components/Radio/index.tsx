@@ -1,40 +1,24 @@
-/** @jsxImportSource theme-ui */
-
 import React from 'react'
-import { Paragraph, Label } from 'theme-ui'
-import radios from '../../themes/UpshotUI/radios'
-import { StyledRadio } from './Styled'
-  
-export interface RadioProps {
+import {
+  Radio as ThemeUIRadio,
+  RadioProps as ThemeUIRadioProps,
+} from 'theme-ui'
+
+interface RadioProps extends ThemeUIRadioProps {
   /**
-   * Defines the type of the checkbox. (Default: 'default')
+   * Use the radio.error variant styling.
    */
-  type?: keyof typeof radios
-  /**
-   * Display text
-   */
-  text?: string
-  /**
-   * Is textbox checked?
-   */
-  checked?: boolean
+  error?: boolean
 }
 
 /**
- * Checkbox component with label
+ * Provides a radio
  */
-
-export default function Checkbox({
-  type = 'default',
-  text = '',
-  checked = false,
-  ...props
-}: RadioProps & React.HTMLAttributes<HTMLDivElement>) {
-  const isDisabled = (type == 'disabled')
+export default function Radio({ error, ...props }: RadioProps) {
   return (
-    <Label {...props}>
-      <StyledRadio $type={type} defaultChecked={checked} disabled={isDisabled} {...props} />
-      <Paragraph sx={{color: radios[type].color, lineHeight: '1.5rem'}}>{text}</Paragraph>
-    </Label>
+    <ThemeUIRadio
+      variant={`radio.${error ? 'error' : 'primary'}`}
+      {...props}
+    />
   )
 }

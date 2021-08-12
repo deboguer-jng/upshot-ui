@@ -1,5 +1,6 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { Label } from 'theme-ui'
 
 import Radio from './'
 
@@ -8,23 +9,22 @@ export default {
   component: Radio,
 } as ComponentMeta<typeof Radio>
 
-const Template: ComponentStory<typeof Radio> = (args) => <Radio {...args} />
+const Template: ComponentStory<typeof Radio> = (args) => (
+  <Label>
+    <Radio {...args} />
+  </Label>
+)
 
 
-export const defaultRadio = Template.bind({})
-defaultRadio.args = {
-  type: 'default',
-  text: 'text',
-}
+export const Default = Template.bind({})
+Default.args = {}
 
 export const error = Template.bind({})
 error.args = {
-  type: 'error',
-  text: 'text',
+  error: true,
 }
 
-export const disabled = Template.bind({})
-disabled.args = {
-  type: 'disabled',
-  text: 'text',
+export const Disabled = Template.bind({})
+Disabled.args = {
+  disabled: true,
 }

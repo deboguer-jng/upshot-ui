@@ -1,25 +1,24 @@
-import styled from '@emotion/styled'
-import { Checkbox } from 'theme-ui'
-import checkboxes from '../../themes/UpshotUI/checkboxes'
+import React from 'react'
+import {
+  Checkbox as ThemeUICheckbox,
+  CheckboxProps as ThemeUICheckboxProps,
+} from 'theme-ui'
 
-interface CheckboxProps {
-  $type: keyof typeof checkboxes
+interface CheckboxProps extends ThemeUICheckboxProps {
+  /**
+   * Use the checkbox.error variant styling.
+   */
+  error?: boolean
 }
 
-export const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
-  input ~ & {
-    color: ${({ $type }) => 
-      checkboxes[$type].color};
-  },
-  input:checked ~ & {
-    fill: ${({ $type }) => 
-      checkboxes[$type].checkedColor};
-  },
-  input:focus ~ & {
-    background: #00000000;
-    border: 2px solid ${({ $type }) => 
-      checkboxes[$type].checkedColor};
-    color: ${({ $type }) => 
-      checkboxes[$type].color};
-  }
-`
+/**
+ * Provides a checkbox
+ */
+export default function Checkbox({ error, ...props }: CheckboxProps) {
+  return (
+    <ThemeUICheckbox
+      variant={`checkbox.${error ? 'error' : 'primary'}`}
+      {...props}
+    />
+  )
+}

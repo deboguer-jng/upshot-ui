@@ -1,40 +1,24 @@
-/** @jsxImportSource theme-ui */
-
 import React from 'react'
-import { Paragraph, Label } from 'theme-ui'
-import checkboxes from '../../themes/UpshotUI/checkboxes'
-import { StyledCheckbox } from './Styled'
-  
-export interface CheckboxProps {
+import {
+  Checkbox as ThemeUICheckbox,
+  CheckboxProps as ThemeUICheckboxProps,
+} from 'theme-ui'
+
+interface CheckboxProps extends ThemeUICheckboxProps {
   /**
-   * Defines the type of the checkbox. (Default: 'default')
+   * Use the checkbox.error variant styling.
    */
-  type?: keyof typeof checkboxes
-  /**
-   * Display text
-   */
-  text?: string
-  /**
-   * Is textbox checked?
-   */
-  checked?: boolean
+  error?: boolean
 }
 
 /**
- * Checkbox component with label
+ * Provides a checkbox
  */
-
-export default function Checkbox({
-  type = 'default',
-  text = '',
-  checked = false,
-  ...props
-}: CheckboxProps & React.HTMLAttributes<HTMLDivElement>) {
-  const isDisabled = (type == 'disabled')
+export default function Checkbox({ error, ...props }: CheckboxProps) {
   return (
-    <Label {...props}>
-      <StyledCheckbox $type={type} defaultChecked={checked} disabled={isDisabled} {...props} />
-      <Paragraph sx={{color: checkboxes[type].color, lineHeight: '1.5rem'}}>{text}</Paragraph>
-    </Label>
+    <ThemeUICheckbox
+      variant={`checkbox.${error ? 'error' : 'primary'}`}
+      {...props}
+    />
   )
 }
