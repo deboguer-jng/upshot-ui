@@ -1,4 +1,4 @@
-import iconButtons from './buttons.icon'
+import iconButtons from './buttons.icons'
 
 const buttons = {
   primary: {
@@ -13,7 +13,7 @@ const buttons = {
     fontSize: 6,
     lineHeight: '2.625rem',
   },
-  icon: iconButtons,
+  icons: iconButtons,
 }
 
 export default buttons

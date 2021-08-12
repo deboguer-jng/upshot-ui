@@ -1,6 +1,6 @@
 import { transparentize } from '@theme-ui/color'
 import transitions from './transitions'
-import { inputDefault } from './forms.input'
+import { inputDefault } from './forms.inputs'
 import sizes from './sizes'
 
 /**

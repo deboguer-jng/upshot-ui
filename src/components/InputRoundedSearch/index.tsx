@@ -21,7 +21,7 @@ export default function InputRoundedSearch({
       <IconButton
         color="primary"
         variant="buttons.icon.input"
-        sx={{ marginLeft: '-' + buttons.icon.input.size }}
+        sx={{ marginLeft: '-' + buttons.icons.input.size }}
       >
         <Icon icon="searchCircle" />
       </IconButton>

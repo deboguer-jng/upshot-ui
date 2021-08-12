@@ -1,7 +1,7 @@
-import formInputs from './forms.input'
+import formInputs from './forms.inputs'
 
 const forms = {
-  input: formInputs,
+  inputs: formInputs,
   switch: {
     bg: 'grey-500', // Off: background
     '& div': {
