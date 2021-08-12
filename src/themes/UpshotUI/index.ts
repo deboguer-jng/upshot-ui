@@ -5,11 +5,10 @@ import colors from './colors'
 import gradients from './gradients'
 import transitions from './transitions'
 import forms from './forms'
+import sizes from './sizes'
 import text, { fonts, fontSizes, fontWeights, lineHeights } from './text'
 
 export const breakpoints = ['23em', '43em', '80em']
-
-export const sizes = [0, 4, 8, 16, 32, 64, 128, 256, 512]
 
 export const radii = {
   square: '0',
