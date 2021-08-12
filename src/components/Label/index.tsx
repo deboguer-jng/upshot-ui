@@ -5,18 +5,18 @@ import forms from '../../themes/UpshotUI/forms'
 
 export interface LabelBasicProps {
   /**
-   * The text to be displayed on the label
+   * The text to be displayed on the label.
    */
   text?: string,
   /**
-   * Defines the size and style of the label. Defaults to basicSmall.
+   * Defines the size and style of the label.
    */
   variant?: keyof typeof forms.label
 }
 
 /**
  * 
- * Provides a basic label.
+ * Provides a basic label or a currency label of various sizes.
  */
 export default function Label({
   text,
