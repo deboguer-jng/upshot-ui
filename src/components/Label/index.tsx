@@ -3,7 +3,7 @@ import { Label as ThemeUILabel } from '@theme-ui/components'
 import forms from '../../themes/UpshotUI/forms'
 
 
-export interface LabelBasicProps {
+export interface LabelProps {
   /**
    * The text to be displayed on the label.
    */
@@ -21,16 +21,16 @@ export interface LabelBasicProps {
 export default function Label({
   text,
   variant
-}: LabelBasicProps) {
+}: LabelProps) {
   return (
     <>
       { 
         (variant as string).includes('currency') &&
           <ThemeUILabel variant={`${variant}DollarSign`}>$</ThemeUILabel>
       }
-    <ThemeUILabel variant={variant}>
-      { text }
-    </ThemeUILabel>
+      <ThemeUILabel variant={variant}>
+        { text }
+      </ThemeUILabel>
     </>
   )
 }
