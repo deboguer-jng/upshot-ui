@@ -1,4 +1,17 @@
 import { Theme } from 'theme-ui'
+import sizes from './sizes'
+
+const labelBase = {
+  fontFamily: 'body',
+  color: 'grey-300',
+  border: 'solid',
+  borderColor: 'grey-300',
+  borderWidth: 2,
+  borderRadius: 'xs',
+  display: 'inline-block',
+  width: 'auto',
+  padding: sizes[1] + 'px',
+}
 
 const forms: Theme['forms'] = {
   input: {
@@ -31,6 +44,14 @@ const forms: Theme['forms'] = {
     'input:checked ~ & div': {
       bg: 'grey-900', // On: circle
     },
+  },
+  basicSmall: {
+    ...labelBase,
+    fontSize: 0
+  },
+  basicMedium: {
+    ...labelBase,
+    fontSize: 2
   },
 }
 

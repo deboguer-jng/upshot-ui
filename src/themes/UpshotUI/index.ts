@@ -6,10 +6,9 @@ import gradients from './gradients'
 import transitions from './transitions'
 import forms from './forms'
 import text, { fonts, fontSizes, fontWeights, lineHeights } from './text'
+import sizes from './sizes'
 
 export const breakpoints = ['23em', '43em', '80em']
-
-export const sizes = [0, 4, 8, 16, 32, 64, 128, 256, 512]
 
 export const radii = {
   square: '0',
@@ -32,7 +31,6 @@ export const styles = {
 }
 
 const theme = {
-  sizes,
   space: sizes,
   radii,
   breakpoints,
