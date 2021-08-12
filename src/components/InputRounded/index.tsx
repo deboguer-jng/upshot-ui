@@ -13,7 +13,7 @@ export interface InputRoundedProps extends InputProps {
  * Provides a rounded input.
  */
 export default function InputRounded({ dark, ...props }: InputRoundedProps) {
-  const variant = `forms.input.${dark ? 'roundedDark' : 'rounded'}`
+  const variant = `forms.inputs.${dark ? 'roundedDark' : 'rounded'}`
 
   return <InputRoundedBase {...{ variant, ...props }} />
 }
