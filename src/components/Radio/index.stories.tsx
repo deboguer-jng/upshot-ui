@@ -1,6 +1,6 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Label } from 'theme-ui'
+import { Label, Paragraph } from 'theme-ui'
 
 import Radio from './'
 
@@ -10,9 +10,14 @@ export default {
 } as ComponentMeta<typeof Radio>
 
 const Template: ComponentStory<typeof Radio> = (args) => (
-  <Label>
-    <Radio {...args} />
-  </Label>
+  <div>
+    <Label>
+      <Radio name="testradio" defaultChecked={true} {...args} />
+    </Label>
+    <Label>
+      <Radio name="testradio" {...args} />
+    </Label>
+  </div>
 )
 
 
