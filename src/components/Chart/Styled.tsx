@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 interface NoDataBoardProps {
   color?: string
   borderColor?: string
-  font: string
 }
 
 interface ChartWrapperProps {
@@ -50,6 +49,7 @@ export const ChartNoSelectedTextArea = styled.div`
   h1 {
     color: white;
     margin: 0;
+    font-family: ${({ theme }) => theme.fonts.body};
   }
 
   p {
@@ -75,7 +75,7 @@ export const NoDataBoard = styled.div<NoDataBoardProps>`
   position: relative;
   border-left: 1px solid ${(props) => props.borderColor};
   border-bottom: 1px solid ${(props) => props.borderColor};
-  font-family: ${(props) => props.font};
+  font-family: ${({ theme }) => theme.fonts.body};
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -92,7 +92,6 @@ export const ChartArea = ({
   if (loading) {
     return (
       <ChartWrapper width={theme.chart.size[size].width}>
-        <p> Loading Data </p>
         <ChartLoadingBoard
           background={theme.colors?.['grey-900']?.toString()}
         ></ChartLoadingBoard>
@@ -106,7 +105,6 @@ export const ChartArea = ({
         <NoDataBoard
           borderColor={theme.colors?.text?.toString()}
           color={theme.colors?.text?.toString()}
-          font={theme.fonts.body}
         >
           <div>
             <p> SORRY: </p>
@@ -123,7 +121,6 @@ export const ChartArea = ({
         <NoDataBoard
           color={theme.colors?.text?.toString()}
           borderColor={theme.colors?.text?.toString()}
-          font={theme.fonts.body}
         >
           <div>
             <p> SORRY: </p>
