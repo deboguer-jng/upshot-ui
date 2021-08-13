@@ -18,7 +18,6 @@ const iconButtonDefault = {
   },
   '&:disabled': {
     color: 'grey-700',
-    pointerEvents: 'none',
   },
 }
 

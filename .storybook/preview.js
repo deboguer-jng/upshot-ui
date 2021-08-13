@@ -1,4 +1,5 @@
-import { ThemeProvider } from '@emotion/react'
+import { Global } from '@emotion/react'
+import { ThemeProvider } from 'theme-ui'
 import { theme, globalStyles } from '../src'
 
 export const decorators = [
@@ -10,7 +11,7 @@ export const decorators = [
      * @see https://github.com/storybookjs/storybook/issues/9312
      */
     <ThemeProvider {...{ theme }}>
-      {globalStyles}
+      <Global styles={globalStyles} />
       <Story inline={false} />
     </ThemeProvider>
   ),

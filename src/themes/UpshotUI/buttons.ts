@@ -1,5 +1,3 @@
-import iconButtons from './buttons.icons'
-
 const buttons = {
   primary: {
     fontFamily: 'body',
@@ -13,7 +11,6 @@ const buttons = {
     fontSize: 6,
     lineHeight: '2.625rem',
   },
-  icons: iconButtons,
 }
 
 export default buttons
