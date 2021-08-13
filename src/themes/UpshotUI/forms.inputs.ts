@@ -1,19 +1,18 @@
-import sizes from './sizes'
+import sizes, { getSize } from './sizes'
 
 /**
  * Base styling for a text input.
  */
 export const inputDefault = {
-  height: '45px',
+  height: getSize(10) + 'px',
   border: 'none',
+  outline: 'none',
   bg: 'grey-800',
   color: 'grey-500',
-  padding: `0 ${sizes[3]}px`,
-  outline: 'none',
+  padding: sizes[3] + 'px',
   fontFamily: 'degular',
   fontWeight: 'heading',
   fontSize: 4,
-  lineHeight: 1,
   '&::placeholder': {
     fontWeight: 'heading',
   },

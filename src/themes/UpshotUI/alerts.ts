@@ -1,6 +1,4 @@
-import { Theme } from 'theme-ui'
-
-const alerts: Theme['alerts'] = {
+const alerts = {
   success: {
     bg: 'primary',
   },

@@ -3,5 +3,5 @@ import InputRounded from '../InputRounded'
 
 export const InputRoundedSearchBase = styled(InputRounded)`
   /* Leave space for the right-aligned IconButton. */
-  padding-right: ${({ theme }) => theme.buttons.icons.input.size};
+  padding-right: ${({ theme }) => theme.forms.inputs.rounded.height};
 `
