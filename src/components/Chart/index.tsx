@@ -1,8 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useTheme } from '@emotion/react'
 import Chart from 'react-apexcharts'
+import ApexCharts from 'apexcharts'
 import { Spinner } from '../Spinner'
-import { NoDataBoard, ChartWrapper, ChartLoadingBoard, Tooltip } from './Styled'
+import {
+  NoDataBoard,
+  ChartWrapper,
+  ChartLoadingBoard,
+  FilterWrapper,
+  FilterButton,
+  CustomLegendWrapper,
+  CustomLegend,
+} from './Styled'
 import './index.css'
 
 export interface ChartProps {
@@ -19,8 +28,8 @@ export const ChartArea = ({
   size = 'medium',
 }: ChartProps) => {
   const theme = useTheme()
-  const canvas = document.createElement('canvas')
-  const ctx = (canvas as HTMLCanvasElement)?.getContext('2d')
+  const [filter, setFilter] = useState(0)
+  const [filterStatus, setFilterStatus] = useState([true, true])
 
   const getChartWidth = () => {
     switch (size) {
@@ -46,19 +55,6 @@ export const ChartArea = ({
       case 'large':
         return 290
     }
-  }
-
-  const generateGradient = (color: string) => {
-    const gradient = (ctx as CanvasRenderingContext2D)?.createLinearGradient(
-      0,
-      -100,
-      0,
-      getChartWidth() / 2 + 200
-    )
-    gradient?.addColorStop(0, color)
-    gradient?.addColorStop(1, 'transparent')
-
-    return gradient
   }
 
   if (loading) {
@@ -113,6 +109,7 @@ export const ChartArea = ({
 
   const options = {
     chart: {
+      id: 'myChart',
       height: getChartHeight(),
       type: 'area',
     },
@@ -132,10 +129,12 @@ export const ChartArea = ({
       strokeColors: colors,
     },
     xaxis: {
-      type: 'category',
-      categories: ['1H', '1D', '1W', '1Y', 'ALL'],
+      labels: {
+        show: false,
+      },
     },
     legend: {
+      show: false,
       horizontalAlign: 'left',
       fontSize: '14px',
       labels: {
@@ -185,6 +184,13 @@ export const ChartArea = ({
     },
   ]
 
+  const toggle = (value: number) => {
+    ApexCharts.exec('myChart', 'toggleSeries', `series${value}`)
+    const newStatus = [...filterStatus]
+    newStatus[value - 1] = !newStatus[value - 1]
+    setFilterStatus(newStatus)
+  }
+
   return (
     <>
       <ChartWrapper width={getChartWidth()}>
@@ -195,6 +201,41 @@ export const ChartArea = ({
           height={getChartHeight()}
           width={getChartWidth()}
         />
+        <FilterWrapper>
+          <FilterButton active={filter === 0} onClick={() => setFilter(0)}>
+            1H
+          </FilterButton>
+          <FilterButton active={filter === 1} onClick={() => setFilter(1)}>
+            1D
+          </FilterButton>
+          <FilterButton active={filter === 2} onClick={() => setFilter(2)}>
+            1W
+          </FilterButton>
+          <FilterButton active={filter === 3} onClick={() => setFilter(3)}>
+            1Y
+          </FilterButton>
+          <FilterButton active={filter === 4} onClick={() => setFilter(4)}>
+            ALL
+          </FilterButton>
+        </FilterWrapper>
+        <CustomLegendWrapper>
+          <CustomLegend
+            active={filterStatus[0]}
+            color={theme.colors?.primary?.toString()}
+            onClick={() => toggle(1)}
+          >
+            <div />
+            <span> SERIES 1 </span>
+          </CustomLegend>
+          <CustomLegend
+            active={filterStatus[1]}
+            color={theme.colors?.secondary?.toString()}
+            onClick={() => toggle(2)}
+          >
+            <div />
+            <span> SERIES 2 </span>
+          </CustomLegend>
+        </CustomLegendWrapper>
       </ChartWrapper>
     </>
   )
