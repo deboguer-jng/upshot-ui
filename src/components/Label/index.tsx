@@ -1,4 +1,4 @@
-import React, { FormHTMLAttributes } from 'react'
+import React from 'react'
 import { Label as ThemeUILabel } from '@theme-ui/components'
 import forms from '../../themes/UpshotUI/forms'
 
