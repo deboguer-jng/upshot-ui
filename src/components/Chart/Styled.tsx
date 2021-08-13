@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import theme from '../../themes/UpshotUI'
 
 interface ChartWrapperProps {
   width: number
@@ -100,11 +101,13 @@ export const FilterWrapper = styled.div`
 
 export const FilterButton = styled.button<FilterButtonProps>`
   border: none;
-  color: ${(props) => (props.active ? 'black' : 'white')};
+  color: ${({ theme, active }) =>
+    active ? theme.colors.black : theme.colors.white};
   font-size: 14px;
   height: 18px;
   width: 50px;
-  background: ${(props) => (props.active ? '#0091FF' : 'transparent')};
+  background: ${({ theme, active }) =>
+    active ? theme.colors.primary : theme.colors.transparent};
   outline: none;
   border-radius: 9px;
 `
@@ -128,14 +131,15 @@ export const CustomLegend = styled.button<CustomLegendProps>`
     height: 18px;
     border-radius: 9px;
     margin-right: 10px;
-    border: 2px solid ${(props) => props.color};
-    background: ${(props) => (props.active ? props.color : 'transparent')};
+    border: 2px solid ${({ color }) => color};
+    background: ${({ theme, active, color }) =>
+      active ? color : theme.colors.transparent};
   }
 
   span {
     font-size: 14px;
     line-height: 18px;
     font-weight: 600;
-    color: ${(props) => props.color};
+    color: ${({ color }) => color};
   }
 `
