@@ -1,8 +1,6 @@
-import { Theme } from 'theme-ui'
-import { transparentize } from '@theme-ui/color'
-import transitions from './transitions'
+import iconButtons from './buttons.icons'
 
-const buttons: Theme['buttons'] = {
+const buttons = {
   primary: {
     fontFamily: 'body',
     fontWeight: 'heading',
@@ -15,20 +13,7 @@ const buttons: Theme['buttons'] = {
     fontSize: 6,
     lineHeight: '2.625rem',
   },
-  icon: {
-    color: 'grey-600',
-    borderRadius: 'circle',
-    cursor: 'pointer',
-    size: 30,
-    transition: transitions.default,
-    '&:not(:disabled):hover': {
-      bg: transparentize('grey-800', 0.5),
-    },
-    '&:disabled': {
-      color: 'grey-400',
-      pointerEvents: 'none',
-    },
-  },
+  icons: iconButtons,
 }
 
 export default buttons

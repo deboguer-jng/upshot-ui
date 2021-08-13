@@ -14,3 +14,6 @@ const Template: ComponentStory<typeof InputRounded> = (args) => (
 
 export const Default = Template.bind({})
 Default.args = { placeholder: 'Search...', sx: { width: 300 } }
+
+export const Dark = Template.bind({})
+Dark.args = { dark: true, placeholder: 'Search...', sx: { width: 300 } }
