@@ -9,6 +9,10 @@ import sizes from './sizes'
 import text, { fonts, fontSizes, fontWeights, lineHeights } from './text'
 import { Theme, useThemeUI, ThemeUIContextValue } from 'theme-ui'
 
+interface ExactContextValue<T> extends Omit<ThemeUIContextValue, 'theme'> {
+  theme: T
+}
+
 const makeTheme = <T extends Theme>(t: T) => t
 
 export const breakpoints = ['23em', '43em', '80em']
@@ -53,10 +57,8 @@ const theme = makeTheme({
   styles,
 })
 
-interface ExactContextValue extends Omit<ThemeUIContextValue, 'theme'> {
-  theme: typeof theme
-}
-
-export const useTheme = useThemeUI as unknown as () => ExactContextValue
+export const useTheme = useThemeUI as unknown as () => ExactContextValue<
+  typeof theme
+>
 
 export default theme
