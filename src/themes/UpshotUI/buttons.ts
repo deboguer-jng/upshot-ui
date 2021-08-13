@@ -238,7 +238,7 @@ const buttons = {
       iconWidth: 25
     }
   },
-  icons: iconButtons,
+  icon: iconButtons,
 }
 
 export default buttons

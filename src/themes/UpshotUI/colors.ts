@@ -1,9 +1,6 @@
-const colors = {
-  text: '#E4E4E4',
-  background: '#000',
-  primary: '#0091FF',
-  darkPrimary: '#0082E5',
-  secondary: '#EC5B94',
+const swatches = {
+  blue: '#0091FF',
+  pink: '#EC5B94',
   red: '#FF562B',
   yellow: '#FFC503',
   green: '#7B61FF',
@@ -17,6 +14,17 @@ const colors = {
   'grey-800': '#231F20',
   'grey-900': '#151515',
   transparent: 'transparent',
+}
+
+const colors = {
+  ...swatches,
+  /* Aliases */
+  primary: swatches.blue,
+  secondary: swatches.pink,
+  background: swatches.black,
+  error: swatches.red,
+  text: swatches['grey-300'],
+  disabled: swatches['grey-700'],
 }
 
 export default colors
