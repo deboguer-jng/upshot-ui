@@ -92,9 +92,7 @@ export const ChartArea = ({
   if (loading) {
     return (
       <ChartWrapper width={theme.chart.size[size].width}>
-        <ChartLoadingBoard
-          background={theme.colors?.['grey-900']?.toString()}
-        ></ChartLoadingBoard>
+        <ChartLoadingBoard />
       </ChartWrapper>
     )
   }
@@ -102,10 +100,7 @@ export const ChartArea = ({
   if (error) {
     return (
       <ChartWrapper width={theme.chart.size[size].width}>
-        <NoDataBoard
-          borderColor={theme.colors?.text?.toString()}
-          color={theme.colors?.text?.toString()}
-        >
+        <NoDataBoard>
           <div>
             <p> SORRY: </p>
             <h1> ERROR LOADING DATA </h1>
@@ -118,10 +113,7 @@ export const ChartArea = ({
   if (noData) {
     return (
       <ChartWrapper width={theme.chart.size[size].width}>
-        <NoDataBoard
-          color={theme.colors?.text?.toString()}
-          borderColor={theme.colors?.text?.toString()}
-        >
+        <NoDataBoard>
           <div>
             <p> SORRY: </p>
             <h1> NO DATA (YET) </h1>
@@ -194,7 +186,7 @@ export const ChartArea = ({
         <CustomLegendWrapper>
           <CustomLegend
             active={filterStatus[0]}
-            color={theme.colors?.primary?.toString()}
+            color={theme.colors.primary}
             onClick={() => toggle(1)}
           >
             <div />
@@ -202,7 +194,7 @@ export const ChartArea = ({
           </CustomLegend>
           <CustomLegend
             active={filterStatus[1]}
-            color={theme.colors?.secondary?.toString()}
+            color={theme.colors.secondary}
             onClick={() => toggle(2)}
           >
             <div />

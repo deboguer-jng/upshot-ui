@@ -60,20 +60,6 @@ const buttons = {
           colors.primary,
           colors.primary,
           colors.black
-        ),
-        disabled: generateColors(
-          colors["grey-700"],
-          colors["grey-700"],
-          colors.black,
-          colors["grey-700"],
-          colors["grey-700"],
-          colors.black,
-          colors["grey-700"],
-          colors["grey-700"],
-          colors.black,
-          colors["grey-700"],
-          colors["grey-700"],
-          colors.black
         )
       },
       fontFamily: 'body',
@@ -110,20 +96,6 @@ const buttons = {
           colors["grey-800"],
           colors["grey-800"],
           colors["grey-300"],
-        ),
-        disabled: generateColors(
-          colors["grey-700"],
-          colors["grey-700"],
-          colors.black,
-          colors["grey-700"],
-          colors["grey-700"],
-          colors.black,
-          colors["grey-700"],
-          colors["grey-700"],
-          colors.black,
-          colors["grey-700"],
-          colors["grey-700"],
-          colors.black
         )
       },
     },
@@ -156,20 +128,6 @@ const buttons = {
           colors.transparent,
           colors["grey-300"],
           colors["grey-300"],
-        ),
-        disabled: generateColors(
-          colors["grey-700"],
-          colors["grey-700"],
-          colors.black,
-          colors["grey-700"],
-          colors["grey-700"],
-          colors.black,
-          colors["grey-700"],
-          colors["grey-700"],
-          colors.black,
-          colors["grey-700"],
-          colors["grey-700"],
-          colors.black
         )
       },
       fontFamily: 'heading',
@@ -177,52 +135,6 @@ const buttons = {
       fontSize: 6,
       lineHeight: '2.625rem',
     },
-    plain: {
-      colors: {
-        default: generateColors(
-          '',
-          '',
-          colors.primary,
-          '',
-          '',
-          colors.primary,
-          '',
-          '',
-          colors.primary,
-          '',
-          '',
-          ''
-        ),
-        active: generateColors(
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          ''
-        ),
-        disabled: generateColors(
-          '',
-          '',
-          colors["grey-500"],
-          '',
-          '',
-          colors["grey-500"],
-          '',
-          '',
-          colors["grey-500"],
-          '',
-          '',
-          ''
-        )
-      }
-    }
   },
   property: {
     medium: {

@@ -4,6 +4,7 @@ import buttons from './buttons'
 import colors from './colors'
 import gradients from './gradients'
 import transitions from './transitions'
+import chart from './chart'
 import forms from './forms'
 import styles from './styles'
 import sizes, { breakpoints, radii } from './sizes'
@@ -22,6 +23,7 @@ const theme = makeTheme({
   buttons,
   colors,
   fonts,
+  chart,
   fontSizes,
   fontWeights,
   forms,

@@ -28,7 +28,7 @@ PrimaryActive.args = {
 
 export const PrimaryDisabled = Template.bind({})
 PrimaryDisabled.args = {
-  status: 'disabled',
+  disabled: true,
   label: 'Button',
 }
 
@@ -84,7 +84,7 @@ SecondaryActive.args = {
 export const SecondaryDisabled = Template.bind({})
 SecondaryDisabled.args = {
   type: 'secondary',
-  status: 'disabled',
+  disabled: true,
   label: 'Button',
 }
 
@@ -119,7 +119,7 @@ TertiaryActive.args = {
 export const TertiaryDisabled = Template.bind({})
 TertiaryDisabled.args = {
   type: 'tertiary',
-  status: 'disabled',
+  disabled: true,
   label: 'Button',
 }
 
@@ -155,5 +155,5 @@ export const PlainDisabled = Template.bind({})
 PlainDisabled.args = {
   type: 'plain',
   label: 'Button',
-  status: 'disabled',
+  disabled: true,
 }

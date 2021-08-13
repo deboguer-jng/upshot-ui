@@ -53,6 +53,11 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
 
   &:disabled {
     cursor: not-allowed !important;
+    background: ${({ theme }) => theme.colors['grey-700']};
+    span {
+      color: ${({ theme }) => theme.colors.black};
+    }
+    border: ${({ theme }) => theme.colors['grey-700']};
   }
 
   &:not(:disabled):hover {
@@ -102,8 +107,7 @@ export const PlainButton = styled.button<PlainButtonProps>`
   border: none;
   background: transparent;
   outline: none;
-  color: ${({ theme, $type, $status }) =>
-    theme.buttons.variants[$type].colors[$status].color};
+  color: ${({ theme }) => theme.colors.primary};
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -115,18 +119,16 @@ export const PlainButton = styled.button<PlainButtonProps>`
     }
   }
 
+  &:disabled {
+    color: ${({ theme }) => theme.colors['grey-700']};
+  }
+
   & svg {
     margin-left: 0.25rem;
     width: ${({ theme, $size }) => theme.buttons.property[$size].iconWidth}px;
 
     & * {
-      fill: ${({ theme, $type, $status }) =>
-        theme.buttons.variants[$type].colors[$status].color};
+      fill: ${({ theme }) => theme.colors.primary};
     }
-  }
-
-  &:focus {
-    color: ${({ theme, $type, $status }) =>
-      theme.buttons.variants[$type].colors[$status].color};
   }
 `

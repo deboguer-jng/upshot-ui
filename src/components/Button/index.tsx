@@ -11,7 +11,7 @@ export interface ButtonProps {
    */
   size?: 'medium' | 'large'
 
-  status: 'disabled' | 'active' | 'default'
+  status: 'active' | 'default'
 
   icon: string
 
@@ -36,13 +36,7 @@ export const Button = ({
 }: ButtonProps) => {
   if (type === 'plain') {
     return (
-      <PlainButton
-        $type={type}
-        $status={status}
-        $size={size}
-        disabled={status === 'disabled'}
-        {...props}
-      >
+      <PlainButton $size={size} {...props}>
         <>
           <span>{label}</span>
           {icon && icon}
@@ -57,7 +51,6 @@ export const Button = ({
       $size={size}
       $status={status}
       width={width || undefined}
-      disabled={status === 'disabled'}
       minimized={!label}
       {...props}
     >

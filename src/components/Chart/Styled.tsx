@@ -1,16 +1,7 @@
 import styled from '@emotion/styled'
 
-interface NoDataBoardProps {
-  color?: string
-  borderColor?: string
-}
-
 interface ChartWrapperProps {
   width: number
-}
-
-interface ChartLoadingBoardProps {
-  background?: string
 }
 
 interface FilterButtonProps {
@@ -61,20 +52,20 @@ export const ChartNoSelectedTextArea = styled.div`
   }
 `
 
-export const ChartLoadingBoard = styled.div<ChartLoadingBoardProps>`
+export const ChartLoadingBoard = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
   border-radius: 0.5rem;
-  background: ${(props) => props.background};
+  background: ${({ theme }) => theme.colors['grey-900']};
 `
 
-export const NoDataBoard = styled.div<NoDataBoardProps>`
+export const NoDataBoard = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
-  border-left: 1px solid ${(props) => props.borderColor};
-  border-bottom: 1px solid ${(props) => props.borderColor};
+  border-left: 1px solid ${({ theme }) => theme.colors.text};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.body};
   display: flex;
   flex-direction: column;
@@ -82,12 +73,12 @@ export const NoDataBoard = styled.div<NoDataBoardProps>`
   justify-content: center;
 
   p {
-    color: ${(props) => props.color};
+    color: ${({ theme }) => theme.colors.text};
     margin: 0;
   }
 
   h1 {
-    color: ${(props) => props.color};
+    color: ${({ theme }) => theme.colors.text};
     margin: 0;
     font-size: 35px;
     line-height: 42px;
