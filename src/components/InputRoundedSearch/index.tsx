@@ -4,7 +4,7 @@ import { InputRoundedProps } from '../InputRounded'
 import IconButton from '../IconButton'
 import { InputRoundedSearchBase } from './Styled'
 import Icon from '../Icon'
-import buttons from '../../themes/UpshotUI/buttons'
+import { useTheme } from '../../themes/UpshotUI'
 
 export interface InputRoundedSearchProps extends InputRoundedProps {}
 
@@ -14,14 +14,18 @@ export interface InputRoundedSearchProps extends InputRoundedProps {}
 export default function InputRoundedSearch({
   ...props
 }: InputRoundedSearchProps) {
+  const { theme } = useTheme()
+
+  const size = theme.forms.inputs.rounded.height
+  const padding = theme.sizes[1] + 'px'
+
   return (
     <Flex>
-      <InputRoundedSearchBase dark sx={{ background: 'green' }} {...props} />
+      <InputRoundedSearchBase dark {...props} />
 
       <IconButton
         color="primary"
-        variant="buttons.icons.input"
-        sx={{ marginLeft: '-' + buttons.icons.input.size }}
+        sx={{ marginLeft: '-' + size, height: size, width: size, padding }}
       >
         <Icon icon="searchCircle" />
       </IconButton>

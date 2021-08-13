@@ -1,22 +1,22 @@
 import React from 'react'
 import { Text, TextProps } from 'theme-ui'
 import { AvatarInitialsBase } from './Styled'
-import avatars from '../../themes/UpshotUI/avatars'
+import images from '../../themes/UpshotUI/images'
 
-type AvatarInitialsSize = keyof typeof avatars.initialsSizes
+// type AvatarInitialsSize = keyof typeof avatars.initialsSizes
 
 export interface AvatarInitialsProps extends TextProps {
   /**
    * Base size of the Avatar container.
    */
-  size: AvatarInitialsSize
+  size: 'sm' | 'md' | 'lg' | 'xl'
 }
 
 /**
  * Used internally in the Avatar component.
  */
 export default function AvatarInitials({
-  size,
+  // size,
   children,
   ...props
 }: AvatarInitialsProps) {
@@ -27,7 +27,7 @@ export default function AvatarInitials({
         color="black"
         sx={{
           textTransform: 'uppercase',
-          fontSize: avatars.initialsSizes[size],
+          // fontSize: avatars.initialsSizes[size],
           lineHeight: 1,
         }}
         {...props}

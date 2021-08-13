@@ -1,20 +1,15 @@
 import alerts from './alerts'
-import avatars from './avatars'
+import images from './images'
 import buttons from './buttons'
-import iconButtons from './buttons.icons'
 import colors from './colors'
 import gradients from './gradients'
 import transitions from './transitions'
 import forms from './forms'
 import sizes from './sizes'
 import text, { fonts, fontSizes, fontWeights, lineHeights } from './text'
-import { Theme, ThemeUIStyleObject } from 'theme-ui'
+import { Theme, useThemeUI, ThemeUIContextValue } from 'theme-ui'
 
-export interface UpshotUITheme extends Theme {
-  avatars: Record<string, ThemeUIStyleObject>
-  gradients: ThemeUIStyleObject
-  iconButtons: Record<string, ThemeUIStyleObject>
-}
+const makeTheme = <T extends Theme>(t: T) => t
 
 export const breakpoints = ['23em', '43em', '80em']
 
@@ -38,7 +33,7 @@ export const styles = {
   },
 }
 
-const theme: UpshotUITheme = {
+const theme = makeTheme({
   sizes,
   space: sizes,
   radii,
@@ -48,15 +43,20 @@ const theme: UpshotUITheme = {
   fontSizes,
   lineHeights,
   colors,
-  avatars,
+  images,
   forms,
   alerts,
   buttons,
-  iconButtons,
   gradients,
   transitions,
   text,
   styles,
+})
+
+interface ExactContextValue extends Omit<ThemeUIContextValue, 'theme'> {
+  theme: typeof theme
 }
+
+export const useTheme = useThemeUI as unknown as () => ExactContextValue
 
 export default theme
