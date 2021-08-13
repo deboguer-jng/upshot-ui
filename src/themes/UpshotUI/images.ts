@@ -1,7 +1,7 @@
-import { fontSizes } from './text'
+import avatar from './images.avatar'
 
 const images = {
-  avatar: {},
+  avatar,
 }
 
 export default images

@@ -7,6 +7,12 @@ import IconButton from './'
 export default {
   title: '@UI/IconButton',
   component: IconButton,
+  argTypes: {
+    children: {
+      description: 'Slot for an inner Icon component.',
+      control: { disable: true },
+    },
+  },
 } as ComponentMeta<typeof IconButton>
 
 const Template: ComponentStory<typeof IconButton> = (args) => (

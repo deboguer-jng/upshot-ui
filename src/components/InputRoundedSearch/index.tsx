@@ -16,7 +16,10 @@ export default function InputRoundedSearch({
 }: InputRoundedSearchProps) {
   const { theme } = useTheme()
 
-  const size = theme.forms.inputs.rounded.height
+  /* Size the button equal to the height of the field. */
+  const buttonSize = theme.forms.inputs.rounded.height
+
+  /* Padding used between button and container. */
   const padding = theme.sizes[1] + 'px'
 
   return (
@@ -25,7 +28,13 @@ export default function InputRoundedSearch({
 
       <IconButton
         color="primary"
-        sx={{ marginLeft: '-' + size, height: size, width: size, padding }}
+        sx={{
+          /* Negative margin to render button inside input field. */
+          marginLeft: '-' + buttonSize,
+          height: buttonSize,
+          width: buttonSize,
+          padding,
+        }}
       >
         <Icon icon="searchCircle" />
       </IconButton>

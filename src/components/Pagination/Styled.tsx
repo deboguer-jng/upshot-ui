@@ -20,7 +20,7 @@ export const PaginationBase = styled.div`
     min-width: ${({ theme }) => theme.sizes[3] + 'px'};
 
     &.disabled {
-      color: ${({ theme }) => theme.colors['grey-700']};
+      color: ${({ theme }) => theme.colors.disabled};
     }
 
     &.selected {
