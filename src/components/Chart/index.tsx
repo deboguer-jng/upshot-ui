@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { useTheme } from '@emotion/react'
 import Chart from 'react-apexcharts'
 import ApexCharts from 'apexcharts'
-import { Spinner } from '../Spinner'
+// import { Spinner } from '../Spinner'
 import {
   NoDataBoard,
   ChartWrapper,
@@ -62,7 +62,7 @@ export const ChartArea = ({
       <ChartWrapper width={getChartWidth()}>
         <p> Loading Data </p>
         <ChartLoadingBoard background={theme.colors?.['grey-900']?.toString()}>
-          <Spinner />
+          {/* <Spinner /> */}
         </ChartLoadingBoard>
       </ChartWrapper>
     )
