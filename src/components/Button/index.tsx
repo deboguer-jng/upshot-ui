@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode, Children } from 'react'
 import { PrimaryButton, PlainButton } from './Styled'
 
 export interface ButtonProps {
@@ -13,13 +13,14 @@ export interface ButtonProps {
 
   status: 'active' | 'default'
 
-  icon: string
+  icon: ReactNode
 
   width?: number
   /**
    * Button contents
    */
   label: string
+  children: ReactNode
 }
 
 /**
@@ -30,15 +31,15 @@ export const Button = ({
   size = 'medium',
   status = 'default',
   icon,
-  label,
   width,
+  children,
   ...props
 }: ButtonProps) => {
   if (type === 'plain') {
     return (
       <PlainButton $size={size} {...props}>
         <>
-          <span>{label}</span>
+          <span>{children}</span>
           {icon && icon}
         </>
       </PlainButton>
@@ -51,11 +52,11 @@ export const Button = ({
       $size={size}
       $status={status}
       width={width || undefined}
-      minimized={!label}
+      minimized={!children}
       {...props}
     >
       {icon}
-      <span>{label}</span>
+      <span>{children}</span>
     </PrimaryButton>
   )
 }

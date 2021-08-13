@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import theme from '../../themes/UpshotUI'
 
 interface ChartWrapperProps {
   width: number
