@@ -23,42 +23,71 @@ interface CustomLegendProps {
   color: string
 }
 
-export const ChartWrapper = styled.div`
-  width: ${(props: ChartWrapperProps) => props.width}px;
-  height: ${(props: ChartWrapperProps) => props.width / 2}px;
+export const ChartWrapper = styled.div<ChartWrapperProps>`
+  width: ${(props) => props.width}px;
+  height: ${(props) => props.width / 2}px;
 
   & > div:first-of-type {
     min-height: unset !important;
   }
 `
 
-export const ChartLoadingBoard = styled.div`
+export const ChartNoSelectedWrapper = styled.div`
+  position: relative;
+`
+
+export const ChartNoSelectedTextArea = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p,
+  h1 {
+    color: white;
+    margin: 0;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 35px;
+  }
+`
+
+export const ChartLoadingBoard = styled.div<ChartLoadingBoardProps>`
   position: relative;
   width: 100%;
   height: 100%;
   border-radius: 0.5rem;
-  background: ${(props: ChartLoadingBoardProps) => props.background};
+  background: ${(props) => props.background};
 `
 
-export const NoDataBoard = styled.div`
+export const NoDataBoard = styled.div<NoDataBoardProps>`
   width: 100%;
   height: 100%;
   position: relative;
-  border-left: 1px solid ${(props: NoDataBoardProps) => props.borderColor};
-  border-bottom: 1px solid ${(props: NoDataBoardProps) => props.borderColor};
-  font-family: ${(props: NoDataBoardProps) => props.font};
+  border-left: 1px solid ${(props) => props.borderColor};
+  border-bottom: 1px solid ${(props) => props.borderColor};
+  font-family: ${(props) => props.font};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
   p {
-    color: ${(props: NoDataBoardProps) => props.color};
+    color: ${(props) => props.color};
     margin: 0;
   }
 
   h1 {
-    color: ${(props: NoDataBoardProps) => props.color};
+    color: ${(props) => props.color};
     margin: 0;
     font-size: 35px;
     line-height: 42px;
@@ -75,17 +104,16 @@ export const Tooltip = styled.div`
 export const FilterWrapper = styled.div`
   display: flex;
   margin-left: 50px;
-  justify-content: space-around;
+  justify-content: space-between;
 `
 
-export const FilterButton = styled.button`
+export const FilterButton = styled.button<FilterButtonProps>`
   border: none;
-  color: ${(props: FilterButtonProps) => (props.active ? 'black' : 'white')};
+  color: ${(props) => (props.active ? 'black' : 'white')};
   font-size: 14px;
   height: 18px;
   width: 50px;
-  background: ${(props: FilterButtonProps) =>
-    props.active ? '#0091FF' : 'transparent'};
+  background: ${(props) => (props.active ? '#0091FF' : 'transparent')};
   outline: none;
   border-radius: 9px;
 `
@@ -97,7 +125,7 @@ export const CustomLegendWrapper = styled.div`
   margin-top: 1rem;
 `
 
-export const CustomLegend = styled.button`
+export const CustomLegend = styled.button<CustomLegendProps>`
   display: flex;
   align-items: center;
   border: none;
@@ -109,16 +137,14 @@ export const CustomLegend = styled.button`
     height: 18px;
     border-radius: 9px;
     margin-right: 10px;
-    border: 2px solid ${(props: CustomLegendProps) => props.color};
-    background: ${(props: CustomLegendProps) =>
-      props.active ? props.color : 'transparent'};
+    border: 2px solid ${(props) => props.color};
+    background: ${(props) => (props.active ? props.color : 'transparent')};
   }
 
   span {
     font-size: 14px;
     line-height: 18px;
     font-weight: 600;
-    font-family: Proxima Nova;
-    color: ${(props: CustomLegendProps) => props.color};
+    color: ${(props) => props.color};
   }
 `

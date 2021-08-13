@@ -47,3 +47,14 @@ export const ChartError = Template.bind({})
 ChartError.args = {
   error: true,
 }
+
+export const ChartNoSelected = Template.bind({})
+ChartNoSelected.args = {
+  noSelected: true,
+}
+
+export const ChartNoSelectedLarge = Template.bind({})
+ChartNoSelectedLarge.args = {
+  noSelected: true,
+  size: 'large',
+}

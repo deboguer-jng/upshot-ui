@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react'
 import { useTheme } from '@emotion/react'
 import Chart from 'react-apexcharts'
 import ApexCharts from 'apexcharts'
-// import { Spinner } from '../Spinner'
 import {
   NoDataBoard,
   ChartWrapper,
@@ -11,6 +10,8 @@ import {
   FilterButton,
   CustomLegendWrapper,
   CustomLegend,
+  ChartNoSelectedWrapper,
+  ChartNoSelectedTextArea,
 } from './Styled'
 import './index.css'
 
@@ -18,6 +19,7 @@ export interface ChartProps {
   loading?: boolean
   noData?: boolean
   error?: boolean
+  noSelected?: boolean
   size?: 'tiny' | 'small' | 'medium' | 'large'
 }
 
@@ -25,82 +27,12 @@ export const ChartArea = ({
   loading = false,
   noData = false,
   error = false,
+  noSelected = false,
   size = 'medium',
 }: ChartProps) => {
   const theme = useTheme()
   const [filter, setFilter] = useState(0)
   const [filterStatus, setFilterStatus] = useState([true, true])
-
-  const getChartWidth = () => {
-    switch (size) {
-      case 'tiny':
-        return 375
-      case 'small':
-        return 640
-      case 'medium':
-        return 876
-      case 'large':
-        return 1044
-    }
-  }
-
-  const getChartHeight = () => {
-    switch (size) {
-      case 'tiny':
-        return 165
-      case 'small':
-        return 290
-      case 'medium':
-        return 275
-      case 'large':
-        return 290
-    }
-  }
-
-  if (loading) {
-    return (
-      <ChartWrapper width={getChartWidth()}>
-        <p> Loading Data </p>
-        <ChartLoadingBoard background={theme.colors?.['grey-900']?.toString()}>
-          {/* <Spinner /> */}
-        </ChartLoadingBoard>
-      </ChartWrapper>
-    )
-  }
-
-  if (error) {
-    return (
-      <ChartWrapper width={getChartWidth()}>
-        <NoDataBoard
-          borderColor={theme.colors?.text?.toString()}
-          color={theme.colors?.text?.toString()}
-          font={theme.fonts.body}
-        >
-          <div>
-            <p> SORRY: </p>
-            <h1> ERROR LOADING DATA </h1>
-          </div>
-        </NoDataBoard>
-      </ChartWrapper>
-    )
-  }
-
-  if (noData) {
-    return (
-      <ChartWrapper width={getChartWidth()}>
-        <NoDataBoard
-          color={theme.colors?.text?.toString()}
-          borderColor={theme.colors?.text?.toString()}
-          font={theme.fonts.body}
-        >
-          <div>
-            <p> SORRY: </p>
-            <h1> NO DATA (YET) </h1>
-          </div>
-        </NoDataBoard>
-      </ChartWrapper>
-    )
-  }
 
   const colors = [
     theme.colors.primary.toString(),
@@ -108,45 +40,19 @@ export const ChartArea = ({
   ]
 
   const options = {
+    ...theme.chart.options,
     chart: {
       id: 'myChart',
-      height: getChartHeight(),
       type: 'area',
     },
-    dataLabels: {
-      enabled: false,
-    },
     colors,
-    stroke: {
-      curve: 'smooth',
-    },
-    grid: {
-      show: false,
-    },
     markets: {
       size: [4, 7],
       colors,
       strokeColors: colors,
     },
-    xaxis: {
-      labels: {
-        show: false,
-      },
-    },
-    legend: {
-      show: false,
-      horizontalAlign: 'left',
-      fontSize: '14px',
-      labels: {
-        useSeriesColors: true,
-      },
-      markers: {
-        width: 16,
-        height: 16,
-      },
-    },
     tooltip: {
-      enabled: true,
+      enabled: false,
       shared: false,
       custom: function ({ series, seriesIndex, dataPointIndex, w }) {
         return `
@@ -158,10 +64,9 @@ export const ChartArea = ({
             }
           </style>
           <div style="
-            background: black; 
+            background: black;
             border-radius: 1rem;
             padding: 0.1rem 1rem;
-            font-family: Proxima Nova; 
             color: ${colors[seriesIndex]};
             border: 1px solid ${colors[seriesIndex]};
           ">
@@ -184,6 +89,77 @@ export const ChartArea = ({
     },
   ]
 
+  if (loading) {
+    return (
+      <ChartWrapper width={theme.chart.size[size].width}>
+        <p> Loading Data </p>
+        <ChartLoadingBoard
+          background={theme.colors?.['grey-900']?.toString()}
+        ></ChartLoadingBoard>
+      </ChartWrapper>
+    )
+  }
+
+  if (error) {
+    return (
+      <ChartWrapper width={theme.chart.size[size].width}>
+        <NoDataBoard
+          borderColor={theme.colors?.text?.toString()}
+          color={theme.colors?.text?.toString()}
+          font={theme.fonts.body}
+        >
+          <div>
+            <p> SORRY: </p>
+            <h1> ERROR LOADING DATA </h1>
+          </div>
+        </NoDataBoard>
+      </ChartWrapper>
+    )
+  }
+
+  if (noData) {
+    return (
+      <ChartWrapper width={theme.chart.size[size].width}>
+        <NoDataBoard
+          color={theme.colors?.text?.toString()}
+          borderColor={theme.colors?.text?.toString()}
+          font={theme.fonts.body}
+        >
+          <div>
+            <p> SORRY: </p>
+            <h1> NO DATA (YET) </h1>
+          </div>
+        </NoDataBoard>
+      </ChartWrapper>
+    )
+  }
+
+  if (noSelected) {
+    return (
+      <ChartWrapper width={theme.chart.size[size].width}>
+        <ChartNoSelectedWrapper>
+          <Chart
+            options={options}
+            series={theme.chart.defaultSeries}
+            type="area"
+            height={theme.chart.size[size].height}
+            width={theme.chart.size[size].width}
+          />
+          <ChartNoSelectedTextArea>
+            <div>
+              <p> NOTHING SELECTED: </p>
+              <h1>
+                {' '}
+                SELECT A COLLECTION (OR MULITPLE) <br /> FROM THE CONTAINER
+                BELOW.{' '}
+              </h1>
+            </div>
+          </ChartNoSelectedTextArea>
+        </ChartNoSelectedWrapper>
+      </ChartWrapper>
+    )
+  }
+
   const toggle = (value: number) => {
     ApexCharts.exec('myChart', 'toggleSeries', `series${value}`)
     const newStatus = [...filterStatus]
@@ -193,13 +169,13 @@ export const ChartArea = ({
 
   return (
     <>
-      <ChartWrapper width={getChartWidth()}>
+      <ChartWrapper width={theme.chart.size[size].width}>
         <Chart
           options={options}
           series={series}
           type="area"
-          height={getChartHeight()}
-          width={getChartWidth()}
+          height={theme.chart.size[size].height}
+          width={theme.chart.size[size].width}
         />
         <FilterWrapper>
           <FilterButton active={filter === 0} onClick={() => setFilter(0)}>

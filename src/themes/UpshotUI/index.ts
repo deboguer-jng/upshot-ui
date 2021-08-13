@@ -6,6 +6,7 @@ import gradients from './gradients'
 import transitions from './transitions'
 import forms from './forms'
 import sizes from './sizes'
+import chart from './chart'
 import text, { fonts, fontSizes, fontWeights, lineHeights } from './text'
 
 export const breakpoints = ['23em', '43em', '80em']
@@ -40,6 +41,7 @@ const theme = {
   fontSizes,
   lineHeights,
   colors,
+  chart,
   avatars,
   forms,
   alerts,
