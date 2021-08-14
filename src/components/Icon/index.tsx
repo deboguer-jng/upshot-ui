@@ -32,6 +32,7 @@ export default function Icon({ size = 64, color, icon, ...props }: IconProps) {
       height={size}
       color={colors[color] ?? 'inherit'}
       src={icons[icon]}
+      /* Ignore mouse events. Use IconButton wrapper instead. */
       style={{ pointerEvents: 'none' }}
       {...props}
     />
