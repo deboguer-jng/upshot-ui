@@ -26,7 +26,6 @@ export const PaginationBase = styled.div`
     &.selected {
       background: ${({ theme }) => theme.colors.primary};
       border-radius: ${({ theme }) => theme.radii.xs};
-      min-width: ${({ theme }) => theme.sizes[3] + 'px'};
       justify-content: center;
     }
 
