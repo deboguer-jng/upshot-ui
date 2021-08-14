@@ -17,6 +17,11 @@ export const globalStyles = css`
   *::after {
     box-sizing: border-box;
   }
+
+  a {
+    outline: 0;
+    cursor: pointer;
+  }
 `
 
 export default function UpshotThemeProvider({ children }: Props) {
