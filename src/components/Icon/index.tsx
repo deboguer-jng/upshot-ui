@@ -32,6 +32,7 @@ export default function Icon({ size = 64, color, icon, ...props }: IconProps) {
       height={size}
       color={colors[color] ?? 'inherit'}
       src={icons[icon]}
+      style={{ pointerEvents: 'none' }}
       {...props}
     />
   )
