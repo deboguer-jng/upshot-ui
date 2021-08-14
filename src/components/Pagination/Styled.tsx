@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { transparentize } from '@theme-ui/color'
 
 export const PaginationBase = styled.div`
   color: ${({ theme }) => theme.colors['grey-300']};
@@ -14,11 +15,18 @@ export const PaginationBase = styled.div`
     justify-content: center;
   }
 
+  & ul,
+  & a {
+    gap: ${({ theme }) => theme.space[1] + 'px'};
+  }
+
   /* Pagination buttons */
   & li {
-    margin: 0 ${({ theme }) => theme.space[1] + 'px'};
-    padding: ${({ theme }) => theme.space[1] + 'px'};
-    min-width: ${({ theme }) => theme.sizes[3] + 'px'};
+    &.disabled,
+    &.selected,
+    & svg {
+      pointer-events: none;
+    }
 
     &.disabled {
       color: ${({ theme }) => theme.colors.disabled};
@@ -29,9 +37,21 @@ export const PaginationBase = styled.div`
       border-radius: ${({ theme }) => theme.radii.xs};
     }
 
+    /* Unselected interactive buttons */
+    &:not(.selected):not(.break) {
+      border-radius: ${({ theme }) => theme.radii.xs};
+      transition: ${({ theme }) => theme.transitions.default};
+
+      &:hover {
+        background: ${({ theme }) => transparentize(theme.colors.primary, 0.5)};
+      }
+    }
+
     /* Button contents */
     & a {
-      gap: ${({ theme }) => theme.sizes[1] + 'px'};
+      user-select: none;
+      cursor: pointer;
+      padding: ${({ theme }) => `${theme.space[1]}px ${theme.space[2]}px`};
 
       /* Chevron arrows */
       & svg {
