@@ -19,7 +19,7 @@ export default function Pagination({ ...props }: ReactPaginateProps) {
         nextLabel={
           <>
             Next
-            <Icon size={14} icon="arrowSmallRight" />
+            <Icon icon="arrowSmallRight" />
           </>
         }
         {...props}
