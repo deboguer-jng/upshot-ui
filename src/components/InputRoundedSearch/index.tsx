@@ -9,7 +9,7 @@ import { useTheme } from '../../themes/UpshotUI'
 export interface InputRoundedSearchProps extends InputRoundedProps {}
 
 /**
- * Provides a rounded input.
+ * Provides a rounded search input.
  */
 export default function InputRoundedSearch({
   ...props
