@@ -31,8 +31,6 @@ export default function Icon({ size = 64, color, icon, ...props }: IconProps) {
       preProcessor={(svg) => svg.replace(/fill=".*?"/g, 'fill="currentColor"')}
       /* If no color is provided, inherit color from the container. */
       color={colors[color] ?? 'inherit'}
-      /* Ignore mouse events. Use IconButton wrapper instead. */
-      style={{ pointerEvents: 'none' }}
       {...props}
     />
   )

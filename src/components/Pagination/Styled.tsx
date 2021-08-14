@@ -26,8 +26,7 @@ export const PaginationBase = styled.div`
     transition: ${({ theme }) => theme.transitions.default};
 
     &.disabled,
-    &.selected,
-    & svg {
+    &.selected {
       pointer-events: none;
     }
 
