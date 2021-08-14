@@ -19,7 +19,6 @@ export const globalStyles = css`
   }
 
   a {
-    outline: 0;
     cursor: pointer;
   }
 `
