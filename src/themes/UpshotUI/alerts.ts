@@ -3,7 +3,7 @@ const alerts = {
     bg: 'primary',
   },
   error: {
-    bg: 'red',
+    bg: 'error',
   },
 }
 
