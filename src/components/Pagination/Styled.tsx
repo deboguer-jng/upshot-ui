@@ -22,6 +22,9 @@ export const PaginationBase = styled.div`
 
   /* Pagination buttons */
   & li {
+    border-radius: ${({ theme }) => theme.radii.xs};
+    transition: ${({ theme }) => theme.transitions.default};
+
     &.disabled,
     &.selected,
     & svg {
@@ -34,17 +37,11 @@ export const PaginationBase = styled.div`
 
     &.selected {
       background: ${({ theme }) => theme.colors.primary};
-      border-radius: ${({ theme }) => theme.radii.xs};
     }
 
     /* Unselected interactive buttons */
-    &:not(.selected):not(.break) {
-      border-radius: ${({ theme }) => theme.radii.xs};
-      transition: ${({ theme }) => theme.transitions.default};
-
-      &:hover {
-        background: ${({ theme }) => transparentize(theme.colors.primary, 0.5)};
-      }
+    &:not(.selected):not(.break):hover {
+      background: ${({ theme }) => transparentize(theme.colors.primary, 0.5)};
     }
 
     /* Button contents */
