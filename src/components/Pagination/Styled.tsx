@@ -11,6 +11,7 @@ export const PaginationBase = styled.div`
   & a {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
   }
 
   /* Pagination buttons */
@@ -26,7 +27,6 @@ export const PaginationBase = styled.div`
     &.selected {
       background: ${({ theme }) => theme.colors.primary};
       border-radius: ${({ theme }) => theme.radii.xs};
-      justify-content: center;
     }
 
     /* Button contents */
