@@ -2,7 +2,7 @@ import sizes, { getSize } from './sizes'
 
 const avatar = {
   default: {
-    display: 'inline-flex',
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     color: 'black',
