@@ -62,7 +62,7 @@ PrimaryIconMinimized.args = {
 export const PrimaryLarge = Template.bind({})
 PrimaryLarge.args = {
   status: 'active',
-  size: 'large',
+  size: 'lg',
 
   icon: <Icon icon="analytics" />,
 }

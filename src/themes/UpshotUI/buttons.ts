@@ -137,13 +137,13 @@ const buttons = {
     },
   },
   property: {
-    medium: {
+    md: {
       fontSize: 18,
       height: 30,
       iconMargin: 4,
       iconWidth: 16,
     },
-    large: {
+    lg: {
       fontSize: 32,
       height: 46,
       iconMargin: 12,
