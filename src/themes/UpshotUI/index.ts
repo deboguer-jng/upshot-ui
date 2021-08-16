@@ -10,6 +10,10 @@ import sizes, { breakpoints, radii } from './sizes'
 import text, { fonts, fontSizes, fontWeights, lineHeights } from './text'
 import { Theme, useThemeUI, ThemeUIContextValue } from 'theme-ui'
 
+/**
+ * Provides typed UpshotUI theme context.
+ * @see https://theme-ui.com/guides/typescript/
+ */
 interface ExactContextValue<T> extends Omit<ThemeUIContextValue, 'theme'> {
   theme: T
 }
