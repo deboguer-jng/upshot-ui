@@ -20,7 +20,6 @@ const Template: ComponentStory<typeof Radio> = (args) => (
   </div>
 )
 
-
 export const Default = Template.bind({})
 Default.args = {}
 
