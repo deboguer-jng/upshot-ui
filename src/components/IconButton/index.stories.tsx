@@ -7,6 +7,12 @@ import IconButton from './'
 export default {
   title: '@UI/IconButton',
   component: IconButton,
+  argTypes: {
+    children: {
+      description: 'Slot for an inner Icon component.',
+      control: { disable: true },
+    },
+  },
 } as ComponentMeta<typeof IconButton>
 
 const Template: ComponentStory<typeof IconButton> = (args) => (
@@ -15,13 +21,11 @@ const Template: ComponentStory<typeof IconButton> = (args) => (
 
 export const Default = Template.bind({})
 Default.args = {
-  onClick: () => {},
   children: <Icon aria-label="arrow pointing right" icon="arrowSmallRight" />,
 }
 
 export const Disabled = Template.bind({})
 Disabled.args = {
   disabled: true,
-  onClick: () => {},
   children: <Icon aria-label="arrow pointing right" icon="arrowSmallRight" />,
 }

@@ -29,7 +29,7 @@ export default function Icon({ size = 64, color, icon, ...props }: IconProps) {
         code.replace(/fill=".*?"/g, 'fill="currentColor"')
       }
       width={size}
-      height="auto"
+      height={size}
       color={colors[color] ?? 'inherit'}
       src={icons[icon]}
       {...props}
