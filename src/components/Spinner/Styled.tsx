@@ -2,7 +2,6 @@ import styled from '@emotion/styled'
 import colors from '../../themes/UpshotUI/colors'
 
 interface StyledSpinnerProps {
-  borderColor?: string
   size: number
 }
 
