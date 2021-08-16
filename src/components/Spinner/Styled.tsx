@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import colors from '../../themes/UpshotUI/colors'
 
 interface StyledSpinnerProps {
   borderColor?: string
@@ -13,11 +14,11 @@ export const StyledSpinner = styled.div`
   height: ${(props: StyledSpinnerProps) => props.size}px;
   border-radius: 50%;
   background: #ffffff;
-  background: -moz-linear-gradient(left, #ffffff 0%, rgba(255, 255, 255, 0) 90%);
-  background: -webkit-linear-gradient(left, #ffffff 0%, rgba(255, 255, 255, 0) 90%);
-  background: -o-linear-gradient(left, #ffffff 0%, rgba(255, 255, 255, 0) 90%);
-  background: -ms-linear-gradient(left, #ffffff 0%, rgba(255, 255, 255, 0) 90%);
-  background: linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0) 90%);
+  background: -moz-linear-gradient(left, #ffffff 0%, rgba(255, 255, 255, 0) 80%);
+  background: -webkit-linear-gradient(left, #ffffff 0%, rgba(255, 255, 255, 0) 80%);
+  background: -o-linear-gradient(left, #ffffff 0%, rgba(255, 255, 255, 0) 80%);
+  background: -ms-linear-gradient(left, #ffffff 0%, rgba(255, 255, 255, 0) 80%);
+  background: linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0) 80%);
   position: relative;
   -webkit-animation: load3 1.4s infinite linear;
   animation: load3 1.4s infinite linear;
@@ -40,9 +41,9 @@ export const StyledSpinner = styled.div`
     content: '';
   }
   &:after {
-    background: #0dc5c1;
-    width: 75%;
-    height: 75%;
+    background: ${({ theme }) => theme.colors.background};
+    width: 70%;
+    height: 70%;
     border-radius: 50%;
     content: '';
     margin: auto;
@@ -73,14 +74,3 @@ export const StyledSpinner = styled.div`
     }
   }
 `
-
-
-/*   height: ${(props: StyledSpinnerProps) => props.size}px;
-  width: ${(props: StyledSpinnerProps) => props.size}px;
-  margin: -${(props: StyledSpinnerProps) => props.size / 2}px 0 0 -${(
-      props: StyledSpinnerProps
-    ) => props.size / 2}px;
-  border: 4px rgba(0, 0, 0, 0.25) solid;
-  border-top: 4px ${(props: StyledSpinnerProps) => props.borderColor} solid;
-  border-right: 4px ${(props: StyledSpinnerProps) => props.borderColor} solid;
-  border-bottom: 4px ${(props: StyledSpinnerProps) => props.borderColor} solid; */

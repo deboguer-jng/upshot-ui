@@ -18,24 +18,17 @@ const Template: ComponentStory<typeof Spinner> = (args) => (
   </UpshotThemeProvider>
 )
 
-export const Dark = Template.bind({})
-Dark.args = {
-  theme: 'dark',
+export const Large = Template.bind({})
+Large.args = {
+  size: 'large',
 }
 
-export const Light = Template.bind({})
-Light.args = {
-  theme: 'light',
+export const Medium = Template.bind({})
+Medium.args = {
+  size: 'medium',
 }
 
 export const Small = Template.bind({})
 Small.args = {
-  theme: 'light',
   size: 'small',
-}
-
-export const Large = Template.bind({})
-Large.args = {
-  theme: 'light',
-  size: 'large',
 }
