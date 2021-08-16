@@ -16,9 +16,6 @@ interface RadioProps extends ThemeUIRadioProps {
  */
 export default function Radio({ error, ...props }: RadioProps) {
   return (
-    <ThemeUIRadio
-      variant={`radio.${error ? 'error' : 'primary'}`}
-      {...props}
-    />
+    <ThemeUIRadio variant={`radio.${error ? 'error' : 'primary'}`} {...props} />
   )
 }
