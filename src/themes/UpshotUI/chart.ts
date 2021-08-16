@@ -1,18 +1,18 @@
 const chart = {
   size: {
-    tiny: {
+    xs: {
       width: 375,
       height: 165,
     },
-    small: {
+    sm: {
       width: 640,
       height: 290
     },
-    medium: {
+    md: {
       width: 876,
       height: 275,
     },
-    large: {
+    lg: {
       width: 1044,
       height: 290
     }

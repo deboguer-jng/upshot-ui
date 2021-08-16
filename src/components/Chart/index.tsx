@@ -20,7 +20,7 @@ export interface ChartProps {
   noData?: boolean
   error?: boolean
   noSelected?: boolean
-  size?: 'tiny' | 'small' | 'medium' | 'large'
+  size?: 'xs' | 'sm' | 'md' | 'lg'
 }
 
 export const ChartArea = ({
@@ -28,7 +28,7 @@ export const ChartArea = ({
   noData = false,
   error = false,
   noSelected = false,
-  size = 'medium',
+  size = 'md',
 }: ChartProps) => {
   const theme = useTheme()
   const [filter, setFilter] = useState(0)
@@ -52,26 +52,54 @@ export const ChartArea = ({
       strokeColors: colors,
     },
     tooltip: {
-      enabled: false,
+      enabled: true,
       shared: false,
-      custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+      custom: function ({ series, seriesIndex, dataPointIndex, w, ...props }) {
+        const x = w.globals.clientX
+        let offset
+
+        if (x <= theme.chart.size[size].width / 2) {
+          offset = 'calc(-50% - 12px)'
+        } else {
+          offset = 'calc(50% + 9.5px)'
+        }
+
         return `
           <style>
             .apexcharts-tooltip {
               background: transparent!important;
               border: none!important;
               box-shadow: none!important;
+              transform: translateX(${offset}) translateY(-10px);
+              overflow: visible;
             }
           </style>
           <div style="
+            position: relative;
             background: black;
             border-radius: 1rem;
             padding: 0.1rem 1rem;
+            overflow: visible;
+            font-family: Arial;
             color: ${colors[seriesIndex]};
             border: 1px solid ${colors[seriesIndex]};
-          ">
+          " id="apexcharts-custom-tooltip"
+          >
             $ ${series[seriesIndex][dataPointIndex]}
-          </div>`
+            <div style="
+              position: absolute;
+              bottom: -6px;
+              left: 50%;
+              transform: translateX(-50%) rotate(-45deg);
+              width: 10px;
+              height: 10px;
+              background: black;
+              border-left: 1px solid ${colors[seriesIndex]};
+              border-bottom: 1px solid ${colors[seriesIndex]};
+            ">
+            </div>
+          </div>
+          `
       },
       x: {
         format: 'dd/MM/yy HH:mm',

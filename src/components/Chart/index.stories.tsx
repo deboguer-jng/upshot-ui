@@ -17,12 +17,12 @@ const Template: ComponentStory<typeof ChartArea> = (args) => (
 
 export const Tiny = Template.bind({})
 Tiny.args = {
-  size: 'tiny',
+  size: 'xs',
 }
 
 export const Small = Template.bind({})
 Small.args = {
-  size: 'small',
+  size: 'sm',
 }
 
 export const Medium = Template.bind({})
@@ -30,7 +30,7 @@ Medium.args = {}
 
 export const Large = Template.bind({})
 Large.args = {
-  size: 'large',
+  size: 'lg',
 }
 
 export const ChartLoading = Template.bind({})
