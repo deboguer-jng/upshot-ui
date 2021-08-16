@@ -1,7 +1,5 @@
 import '@emotion/react'
-import UpshotUITheme from './UpshotUI'
-
-type UpshotUIThemeType = typeof UpshotUITheme
+import { UpshotUIThemeType } from './UpshotUI'
 
 /**
  * Provides theme types for styled components.
