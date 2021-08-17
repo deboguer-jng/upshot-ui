@@ -11,12 +11,12 @@ export interface LabelProps {
    * Defaults to basic.
    */
   style?: 'basic' | 'currency'
-    /**
+  /**
    * Defines the size of the label.
    * Defaults to small.
    */
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-    /**
+  /**
    * If the label is for a price, this symbol will be its prefix.
    * Defaults to ether.
    */

@@ -25,5 +25,19 @@ export const LabelText = styled.div`
   font-size: ${ fontSizes[4] };
   padding-left: ${ sizes[3] + 'px' };
   padding-top: ${ sizes[1] + 'px' };
-  opacity: 1;
+  display: inline-block;
+  `
+
+  export const RightAlignBlock = styled.div`
+    float: right;
+    padding-right: ${ sizes[3] + 'px' };
+  `
+
+  export const Division = styled.div`
+    padding-right: ${ sizes[3] + 'px' };
+    display: inline-block;
+    font-size: ${ fontSizes[5] };
+    vertical-align: middle;
+    margin-top: -3px;
+    font-weight: 200;
   `
