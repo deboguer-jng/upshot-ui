@@ -23,6 +23,7 @@ const theme = {
   breakpoints,
   buttons,
   colors,
+  rawColors: colors,
   fonts,
   fontSizes,
   fontWeights,
