@@ -1,7 +1,7 @@
-import React from "react";
-import { ComponentStory } from "@storybook/react"
+import React from 'react';
+import { ComponentStory } from '@storybook/react'
 
-import AttributeLabel from "."
+import AttributeLabel from '.'
 
 export default {
   title: '@UI/LabelAttribute',
@@ -10,6 +10,8 @@ export default {
 
 const Template: ComponentStory<typeof AttributeLabel> = (args) => <AttributeLabel {...args} />
 
-export const AttributeLabelRegular = Template.bind({})
-AttributeLabelRegular.args = { text: '3D Glasses' }
+export const AttributeLabelRegularTransparent = Template.bind({})
+AttributeLabelRegularTransparent.args = { text: '3D Glasses' }
 
+export const AttributeLabelRegularBlue = Template.bind({})
+AttributeLabelRegularBlue.args = { text: '3D Glasses', transparent: false }

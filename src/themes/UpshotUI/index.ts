@@ -6,7 +6,6 @@ import gradients from './gradients'
 import transitions from './transitions'
 import forms from './forms'
 import text, { fonts, fontSizes, fontWeights, lineHeights } from './text'
-import boxes from './boxes'
 import sizes from './sizes'
 
 export const breakpoints = ['23em', '43em', '80em']

@@ -1,5 +1,5 @@
 import React from 'react'
-import { AttributeLabelBase } from './Styled'
+import { AttributeLabelBase, LabelText } from './Styled'
 
 export interface AttributeLabelProps {
   /**
@@ -11,6 +11,11 @@ export interface AttributeLabelProps {
    * Defaults to regular.
    */
   variant?: 'regular' | 'percent' | 'removeable'
+  /**
+   * Defines whether the label's background should be transparent.
+   * Defaults to true.
+   */
+  transparent?: boolean
   /** 
    * The removal callback for the removable variant.
    */
@@ -19,7 +24,13 @@ export interface AttributeLabelProps {
 
 export default function AttributeLabel({
   text,
-  variant = 'regular'
+  variant = 'regular',
+  transparent = true
 }: AttributeLabelProps) {
-  return (<AttributeLabelBase>{text}</AttributeLabelBase>)
+  return (
+    <AttributeLabelBase $transparent={transparent}>
+      <LabelText>
+        {text}
+      </LabelText>
+    </AttributeLabelBase>)
 }
