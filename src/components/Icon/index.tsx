@@ -24,14 +24,13 @@ interface IconProps extends Omit<SVGProps, 'src'> {
 export default function Icon({ size = 64, color, icon, ...props }: IconProps) {
   return (
     <SVG
-      /* Preprocess SVGs to use color prop. */
-      preProcessor={(code) =>
-        code.replace(/fill=".*?"/g, 'fill="currentColor"')
-      }
+      src={icons[icon]}
       width={size}
       height={size}
+      /* Preprocess SVGs to use color prop. */
+      preProcessor={(svg) => svg.replace(/fill=".*?"/g, 'fill="currentColor"')}
+      /* If no color is provided, inherit color from the container. */
       color={colors[color] ?? 'inherit'}
-      src={icons[icon]}
       {...props}
     />
   )

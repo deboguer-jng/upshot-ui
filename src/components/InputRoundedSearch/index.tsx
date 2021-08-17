@@ -9,7 +9,7 @@ import { useTheme } from '../../themes/UpshotUI'
 export interface InputRoundedSearchProps extends InputRoundedProps {}
 
 /**
- * Provides a rounded input.
+ * Provides a rounded search input.
  */
 export default function InputRoundedSearch({
   ...props
@@ -17,7 +17,7 @@ export default function InputRoundedSearch({
   const { theme } = useTheme()
 
   /* Size the button equal to the height of the field. */
-  const buttonSize = theme.forms.inputs.rounded.height
+  const buttonSize = theme.forms.inputs.default.height
 
   /* Padding used between button and container. */
   const padding = theme.sizes[1] + 'px'
