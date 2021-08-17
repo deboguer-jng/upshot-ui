@@ -1,9 +1,5 @@
 import styled from '@emotion/styled'
 
-interface ChartWrapperProps {
-  width: number
-}
-
 interface FilterButtonProps {
   active: boolean
 }
@@ -13,9 +9,18 @@ interface CustomLegendProps {
   color: string
 }
 
-export const ChartWrapper = styled.div<ChartWrapperProps>`
-  width: ${(props) => props.width}px;
-  height: ${(props) => props.width / 2}px;
+export const ChartWrapper = styled.div`
+  width: 100%;
+  padding-top: 35%;
+  position: relative;
+
+  & > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 
   & > div:first-of-type {
     min-height: unset !important;
@@ -24,6 +29,8 @@ export const ChartWrapper = styled.div<ChartWrapperProps>`
 
 export const ChartNoSelectedWrapper = styled.div`
   position: relative;
+  height: 100%;
+  width: 100%;
 `
 
 export const ChartNoSelectedTextArea = styled.div`

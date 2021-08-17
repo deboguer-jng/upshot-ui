@@ -15,23 +15,8 @@ const Template: ComponentStory<typeof ChartArea> = (args) => (
   </UpshotThemeProvider>
 )
 
-export const Tiny = Template.bind({})
-Tiny.args = {
-  size: 'xs',
-}
-
-export const Small = Template.bind({})
-Small.args = {
-  size: 'sm',
-}
-
-export const Medium = Template.bind({})
-Medium.args = {}
-
-export const Large = Template.bind({})
-Large.args = {
-  size: 'lg',
-}
+export const Main = Template.bind({})
+Main.args = {}
 
 export const ChartLoading = Template.bind({})
 ChartLoading.args = {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { useTheme } from '@emotion/react'
 import Chart from 'react-apexcharts'
 import ApexCharts from 'apexcharts'
@@ -20,7 +20,6 @@ export interface ChartProps {
   noData?: boolean
   error?: boolean
   noSelected?: boolean
-  size?: 'xs' | 'sm' | 'md' | 'lg'
 }
 
 export const ChartArea = ({
@@ -28,7 +27,6 @@ export const ChartArea = ({
   noData = false,
   error = false,
   noSelected = false,
-  size = 'md',
 }: ChartProps) => {
   const theme = useTheme()
   const [filter, setFilter] = useState(0)
@@ -58,7 +56,9 @@ export const ChartArea = ({
         const x = w.globals.clientX
         let offset
 
-        if (x <= theme.chart.size[size].width / 2) {
+        const width = document.getElementById('apexchartsmyChart').offsetWidth
+
+        if (x <= width / 2) {
           offset = 'calc(-50% - 12px)'
         } else {
           offset = 'calc(50% + 9.5px)'
@@ -119,60 +119,68 @@ export const ChartArea = ({
 
   if (loading) {
     return (
-      <ChartWrapper width={theme.chart.size[size].width}>
-        <ChartLoadingBoard />
+      <ChartWrapper>
+        <div>
+          <ChartLoadingBoard />
+        </div>
       </ChartWrapper>
     )
   }
 
   if (error) {
     return (
-      <ChartWrapper width={theme.chart.size[size].width}>
-        <NoDataBoard>
-          <div>
-            <p> SORRY: </p>
-            <h1> ERROR LOADING DATA </h1>
-          </div>
-        </NoDataBoard>
+      <ChartWrapper>
+        <div>
+          <NoDataBoard>
+            <div>
+              <p> SORRY: </p>
+              <h1> ERROR LOADING DATA </h1>
+            </div>
+          </NoDataBoard>
+        </div>
       </ChartWrapper>
     )
   }
 
   if (noData) {
     return (
-      <ChartWrapper width={theme.chart.size[size].width}>
-        <NoDataBoard>
-          <div>
-            <p> SORRY: </p>
-            <h1> NO DATA (YET) </h1>
-          </div>
-        </NoDataBoard>
+      <ChartWrapper>
+        <div>
+          <NoDataBoard>
+            <div>
+              <p> SORRY: </p>
+              <h1> NO DATA (YET) </h1>
+            </div>
+          </NoDataBoard>
+        </div>
       </ChartWrapper>
     )
   }
 
   if (noSelected) {
     return (
-      <ChartWrapper width={theme.chart.size[size].width}>
-        <ChartNoSelectedWrapper>
-          <Chart
-            options={options}
-            series={theme.chart.defaultSeries}
-            type="area"
-            height={theme.chart.size[size].height}
-            width={theme.chart.size[size].width}
-          />
-          <ChartNoSelectedTextArea>
-            <div>
-              <p> NOTHING SELECTED: </p>
-              <h1>
-                {' '}
-                SELECT A COLLECTION (OR MULITPLE) <br /> FROM THE CONTAINER
-                BELOW.{' '}
-              </h1>
-            </div>
-          </ChartNoSelectedTextArea>
-        </ChartNoSelectedWrapper>
+      <ChartWrapper>
+        <div>
+          <ChartNoSelectedWrapper>
+            <Chart
+              options={options}
+              series={theme.chart.defaultSeries}
+              type="area"
+              height="100%"
+              width="100%"
+            />
+            <ChartNoSelectedTextArea>
+              <div>
+                <p> NOTHING SELECTED: </p>
+                <h1>
+                  {' '}
+                  SELECT A COLLECTION (OR MULITPLE) <br /> FROM THE CONTAINER
+                  BELOW.{' '}
+                </h1>
+              </div>
+            </ChartNoSelectedTextArea>
+          </ChartNoSelectedWrapper>
+        </div>
       </ChartWrapper>
     )
   }
@@ -186,49 +194,51 @@ export const ChartArea = ({
 
   return (
     <>
-      <ChartWrapper width={theme.chart.size[size].width}>
-        <Chart
-          options={options}
-          series={series}
-          type="area"
-          height={theme.chart.size[size].height}
-          width={theme.chart.size[size].width}
-        />
-        <FilterWrapper>
-          <FilterButton active={filter === 0} onClick={() => setFilter(0)}>
-            1H
-          </FilterButton>
-          <FilterButton active={filter === 1} onClick={() => setFilter(1)}>
-            1D
-          </FilterButton>
-          <FilterButton active={filter === 2} onClick={() => setFilter(2)}>
-            1W
-          </FilterButton>
-          <FilterButton active={filter === 3} onClick={() => setFilter(3)}>
-            1Y
-          </FilterButton>
-          <FilterButton active={filter === 4} onClick={() => setFilter(4)}>
-            ALL
-          </FilterButton>
-        </FilterWrapper>
-        <CustomLegendWrapper>
-          <CustomLegend
-            active={filterStatus[0]}
-            color={theme.colors.primary}
-            onClick={() => toggle(1)}
-          >
-            <div />
-            <span> SERIES 1 </span>
-          </CustomLegend>
-          <CustomLegend
-            active={filterStatus[1]}
-            color={theme.colors.secondary}
-            onClick={() => toggle(2)}
-          >
-            <div />
-            <span> SERIES 2 </span>
-          </CustomLegend>
-        </CustomLegendWrapper>
+      <ChartWrapper>
+        <div>
+          <Chart
+            options={options}
+            series={series}
+            type="area"
+            height="100%"
+            width="100%"
+          />
+          <FilterWrapper>
+            <FilterButton active={filter === 0} onClick={() => setFilter(0)}>
+              1H
+            </FilterButton>
+            <FilterButton active={filter === 1} onClick={() => setFilter(1)}>
+              1D
+            </FilterButton>
+            <FilterButton active={filter === 2} onClick={() => setFilter(2)}>
+              1W
+            </FilterButton>
+            <FilterButton active={filter === 3} onClick={() => setFilter(3)}>
+              1Y
+            </FilterButton>
+            <FilterButton active={filter === 4} onClick={() => setFilter(4)}>
+              ALL
+            </FilterButton>
+          </FilterWrapper>
+          <CustomLegendWrapper>
+            <CustomLegend
+              active={filterStatus[0]}
+              color={theme.colors.primary}
+              onClick={() => toggle(1)}
+            >
+              <div />
+              <span> SERIES 1 </span>
+            </CustomLegend>
+            <CustomLegend
+              active={filterStatus[1]}
+              color={theme.colors.secondary}
+              onClick={() => toggle(2)}
+            >
+              <div />
+              <span> SERIES 2 </span>
+            </CustomLegend>
+          </CustomLegendWrapper>
+        </div>
       </ChartWrapper>
     </>
   )

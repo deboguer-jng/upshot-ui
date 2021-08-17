@@ -1,22 +1,4 @@
 const chart = {
-  size: {
-    xs: {
-      width: 375,
-      height: 165,
-    },
-    sm: {
-      width: 640,
-      height: 290
-    },
-    md: {
-      width: 876,
-      height: 275,
-    },
-    lg: {
-      width: 1044,
-      height: 290
-    }
-  },
   options: {
     stroke: {
       curve: 'smooth',
