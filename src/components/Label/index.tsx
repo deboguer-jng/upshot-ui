@@ -9,11 +9,17 @@ export interface LabelProps {
    */
   text?: string,
   /**
-   * Defines the size and style of the label.
+   * Defines the style of the label.
+   * Defaults to basic.
    */
-  variant?: keyof typeof forms.label
+  style?: 'basic' | 'currency'
     /**
-   * If the label is for currency, this is the symbol it will use as a prefix.
+   * Defines the size of the label.
+   * Defaults to small.
+   */
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+    /**
+   * If the label is for a price, this symbol will be its prefix.
    * Defaults to ether.
    */
   currencySymbol?: string
@@ -25,16 +31,18 @@ export interface LabelProps {
  */
 export default function Label({
   text,
-  variant,
+  style = 'basic',
+  size = 'sm',
   currencySymbol = 'Ξ'
 }: LabelProps) {
   return (
     <>
       { 
-        (variant as string).includes('currency') &&
-          <ThemeUILabel variant={`${variant}CurrencySymbol`}>{currencySymbol}</ThemeUILabel>
+        style === 'currency' &&
+          <ThemeUILabel variant={`${size}CurrencySymbol`}>{currencySymbol}</ThemeUILabel>
       }
-      <ThemeUILabel variant={variant}>
+      {/* Each combination of style and size is a unique variant of the theme */}
+      <ThemeUILabel variant={style + size[0].toUpperCase() + size[1]}>
         { text }
       </ThemeUILabel>
     </>

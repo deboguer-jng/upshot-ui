@@ -11,19 +11,19 @@ export default {
 const Template: ComponentStory<typeof Label> = (args) => <Label {...args} />
 
 export const LabelBasicSmall = Template.bind({})
-LabelBasicSmall.args = { text: 'CryptoPunks', variant: 'basicSmall' }
+LabelBasicSmall.args = { text: 'CryptoPunks' }
 
 export const LabelBasicMedium = Template.bind({})
-LabelBasicMedium.args = { text: 'CryptoPunks', variant: 'basicMedium' }
+LabelBasicMedium.args = { text: 'CryptoPunks', size: 'md' }
 
 export const LabelCurrencyMini = Template.bind({})
-LabelCurrencyMini.args = { text: '420.69', variant: 'currencyMini'}
+LabelCurrencyMini.args = { text: '420.69', style: 'currency', size: 'xs' }
 
 export const LabelCurrencySmall = Template.bind({})
-LabelCurrencySmall.args = { text: '420.69', variant: 'currencySmall', currencySymbol: '$' }
+LabelCurrencySmall.args = { text: '420.69', style: 'currency', currencySymbol: '$' }
 
 export const LabelCurrencyMedium = Template.bind({})
-LabelCurrencyMedium.args = { text: '420.69', variant: 'currencyMedium'}
+LabelCurrencyMedium.args = { text: '420.69', style: 'currency', size: 'md' }
 
 export const LabelCurrencyLarge = Template.bind({})
-LabelCurrencyLarge.args = { text: '420.69', variant: 'currencyLarge', currencySymbol: '$' }
+LabelCurrencyLarge.args = { text: '420.69', style: 'currency', size: 'lg', currencySymbol: '$' }

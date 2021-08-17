@@ -55,48 +55,48 @@ const forms: Theme['forms'] = {
       bg: 'grey-900', // On: circle
     },
   },
-  basicSmall: {
+  basicSm: {
     ...basicLabelBase,
     fontSize: 0
   },
-  basicMedium: {
+  basicMd: {
     ...basicLabelBase,
     fontSize: 2
   },
-  currencyMini: {
+  currencyXs: {
     ...labelBase,
     fontSize: 2
   },
-  currencySmall: {
+  currencySm: {
     ...labelBase,
     fontSize: 4
   },
-  currencyMedium: {
+  currencyMd: {
     ...labelBase,
     fontSize: 6
   },
-  currencyLarge: {
+  currencyLg: {
     ...labelBase,
     fontSize: 8
   },
-  currencyMiniCurrencySymbol: {
+  xsCurrencySymbol: {
     ...currencySymbolBase,
     fontSize: 0,
     marginRight: '-2px',
     paddingTop: '3px'
   },
-  currencySmallCurrencySymbol: {
+  smCurrencySymbol: {
     ...currencySymbolBase,
     fontSize: 0,
     marginRight: '-2px',
     paddingTop: '4px'
   },
-  currencyMediumCurrencySymbol: {
+  mdCurrencySymbol: {
     ...currencySymbolBase,
     fontSize: 2,
     paddingTop: '5px'
   },
-  currencyLargeCurrencySymbol: {
+  lgCurrencySymbol: {
     ...currencySymbolBase,
     fontSize: 3,
     paddingTop: '7px'
