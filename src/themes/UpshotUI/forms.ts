@@ -1,5 +1,6 @@
 import { Theme } from 'theme-ui'
 import sizes from './sizes'
+import { fontWeights } from './text'
 
 const labelBase = {
   fontFamily: 'body',
@@ -65,28 +66,34 @@ const forms: Theme['forms'] = {
   },
   currencyXs: {
     ...labelBase,
+    fontWeight: 'heading',
     fontSize: 2
   },
   currencySm: {
     ...labelBase,
+    fontWeight: 'heading',
     fontSize: 4
   },
   currencyMd: {
     ...labelBase,
+    fontWeight: 'bold',
     fontSize: 6
   },
   currencyLg: {
     ...labelBase,
+    fontWeight: 'bold',
     fontSize: 8
   },
   xsCurrencySymbol: {
     ...currencySymbolBase,
+    fontWeight: 'heading',
     fontSize: 0,
     marginRight: '-2px',
     paddingTop: '3px'
   },
   smCurrencySymbol: {
     ...currencySymbolBase,
+    fontWeight: 'heading',
     fontSize: 0,
     marginRight: '-2px',
     paddingTop: '4px'
@@ -94,12 +101,14 @@ const forms: Theme['forms'] = {
   mdCurrencySymbol: {
     ...currencySymbolBase,
     fontSize: 2,
-    paddingTop: '5px'
+    paddingTop: '5px',
+    fontWeight: 'bold'
   },
   lgCurrencySymbol: {
     ...currencySymbolBase,
     fontSize: 3,
-    paddingTop: '7px'
+    paddingTop: '7px',
+    fontWeight: 'bold'
   }
 }
 
