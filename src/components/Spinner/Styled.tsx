@@ -13,10 +13,6 @@ export const StyledSpinner = styled.div`
   height: ${(props: StyledSpinnerProps) => props.size}px;
   border-radius: 50%;
   background: #ffffff;
-  background: -moz-linear-gradient(left, #ffffff 0%, rgba(255, 255, 255, 0) 80%);
-  background: -webkit-linear-gradient(left, #ffffff 0%, rgba(255, 255, 255, 0) 80%);
-  background: -o-linear-gradient(left, #ffffff 0%, rgba(255, 255, 255, 0) 80%);
-  background: -ms-linear-gradient(left, #ffffff 0%, rgba(255, 255, 255, 0) 80%);
   background: linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0) 80%);
   position: relative;
   -webkit-animation: load3 1.4s infinite linear;
@@ -28,10 +24,6 @@ export const StyledSpinner = styled.div`
     width: 100%;
     height: 50%;
     background: #ffffff;
-    background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #fff 80%);
-    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #fff 80%);
-    background: -o-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #fff 80%);
-    background: -ms-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #fff 80%);
     background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #fff 80%);
     border-radius: ${(props: StyledSpinnerProps) => props.size/2}px ${(props: StyledSpinnerProps) => props.size/2}px 0 0;
     position: absolute;
