@@ -6,7 +6,6 @@ interface PanelBaseProps {
 }
 
 export const PanelBase = styled(Box)<PanelBaseProps>`
-  display: inline-block;
   padding: ${({ theme }) => theme.space[4] + 'px'};
   background-color: ${({ theme, $inner }) =>
     theme.colors[$inner ? 'black' : 'grey-800']};
