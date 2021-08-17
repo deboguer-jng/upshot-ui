@@ -1,3 +1,6 @@
+import commonjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 import copy from 'rollup-plugin-copy'
 import svg from 'rollup-plugin-svg'
 import typescript from 'rollup-plugin-typescript2'
@@ -8,14 +11,29 @@ export default {
     dir: 'dist',
     format: 'cjs',
   },
-  /* External dependencies not included in bundle. */
-  external: ['@emotion/css', 'react', 'react-inlinesvg', '@theme-ui/color'],
+  external: [
+    '@emotion/css',
+    '@emotion/react',
+    '@emotion/styled',
+    '@theme-ui/color',
+    'react',
+    'react-inlinesvg',
+  ],
   plugins: [
     /* Clear cache on build for local development. */
     typescript({ clean: true }),
 
-    /* Enable support for SVG assets. */
+    /* Support commonjs modules. */
+    commonjs(),
+
+    /* Support SVG assets. */
     svg(),
+
+    /* Support JSON files. */
+    json(),
+
+    /* Resolve dependencies */
+    nodeResolve(),
 
     /* Additional static assets included in bundle. */
     copy({
