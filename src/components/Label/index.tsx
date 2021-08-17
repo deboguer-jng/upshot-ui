@@ -1,7 +1,5 @@
 import React from 'react'
 import { Label as ThemeUILabel } from '@theme-ui/components'
-import forms from '../../themes/UpshotUI/forms'
-
 
 export interface LabelProps {
   /**
