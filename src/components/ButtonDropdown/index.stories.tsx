@@ -32,3 +32,11 @@ Disabled.args = {
   disabled: true,
   name: 'test3',
 }
+
+export const MultiDisabled = Template.bind({})
+MultiDisabled.args = {
+  options: ['option1', 'option2', 'option3', 'option4', 'option5', 'option6'],
+  disabled: true,
+  isMulti: true,
+  name: 'test4',
+}

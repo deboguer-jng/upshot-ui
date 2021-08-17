@@ -10,7 +10,8 @@ import {
   DropdownMenuArrow,
   DropdownMultiSelectedCount,
 } from './Styled'
-import { Radio, Checkbox } from 'theme-ui'
+import Checkbox from '../Checkbox'
+import Radio from '../Radio'
 import Icon from '../Icon'
 
 export interface ButtonDropdownInterface {
@@ -58,7 +59,7 @@ export default function ButtonDropdown({
         >
           <span> {isMulti ? 'Filter By' : 'Category:'} </span>
           {isMulti ? (
-            <DropdownMultiSelected>
+            <DropdownMultiSelected disabled={disabled}>
               <Icon icon="filter" />
               {value.length ? (
                 <DropdownMultiSelectedCount>
@@ -87,9 +88,9 @@ export default function ButtonDropdown({
                   onClick={() => itemSelected(option)}
                 >
                   {isMulti ? (
-                    <Checkbox name={name} />
+                    <Checkbox checked={value.includes(option)} />
                   ) : (
-                    <Radio name={name} value={option} />
+                    <Radio name={name} checked={option === value} />
                   )}
                   {option}
                 </DropdownMenuItem>

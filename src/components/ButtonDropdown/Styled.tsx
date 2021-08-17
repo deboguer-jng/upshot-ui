@@ -22,6 +22,10 @@ interface DropdownMenuItemProps {
   isMulti: boolean
 }
 
+interface DropdownMultiSelectedProps {
+  disabled: boolean
+}
+
 export const DropdownWrapper = styled.div`
   position: relative;
 `
@@ -38,12 +42,13 @@ export const Dropdown = styled.div<DropdownProps>`
   align-items: center;
 
   span {
+    font-family: ${({ theme }) => theme.fonts.body};
     color: ${({ theme, isMulti, disabled }) =>
       disabled
-        ? theme.colors['grey-600']
+        ? theme.buttons.dropdown.variants.disabled.color
         : isMulti
-        ? theme.colors['grey-300']
-        : theme.colors['grey-500']};
+        ? theme.buttons.dropdown.variants.isMulti.color
+        : theme.buttons.dropdown.variants.default.color};
   }
 `
 
@@ -57,7 +62,9 @@ export const DropdownMenuArrow = styled.div<DropdownMenuArrowProps>`
 
     path {
       fill: ${({ theme, disabled }) =>
-        disabled ? theme.colors['grey-600'] : theme.colors.primary};
+        disabled
+          ? theme.buttons.dropdown.variants.disabled.color
+          : theme.buttons.dropdown.arrow.color};
     }
   }
 `
@@ -76,7 +83,7 @@ export const DropdownMenuItems = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => theme.colors['grey-700']};
+    background-color: ${({ theme }) => theme.buttons.dropdown.scroll.color};
     border-radius: 5px;
     outline: none;
   }
@@ -101,12 +108,13 @@ export const DropdownMenu = styled.div`
 export const DropdownSelected = styled.div<DropdownSelectedProps>`
   flex-grow: 1;
   margin-left: 6px;
+  font-family: ${({ theme }) => theme.fonts.body};
   color: ${({ theme, isSelected, disabled }) =>
     disabled
-      ? theme.colors['grey-600']
+      ? theme.buttons.dropdown.variants.disabled.color
       : isSelected
-      ? theme.colors.primary
-      : theme.colors['grey-300']};
+      ? theme.buttons.dropdown.variants.default.selected
+      : theme.buttons.dropdown.variants.isMulti.color};
 `
 
 export const DropdownMenuItem = styled.div<DropdownMenuItemProps>`
@@ -114,11 +122,12 @@ export const DropdownMenuItem = styled.div<DropdownMenuItemProps>`
   align-items: center;
   padding: 8px 11px;
   user-select: none;
+  font-family: ${({ theme }) => theme.fonts.body};
   color: ${({ theme, isSelected, noSelected, isMulti }) => {
-    if (isMulti) return theme.colors['grey-300']
-    if (noSelected) return 'white'
-    if (isSelected) return 'white'
-    return theme.colors['grey-700']
+    if (isMulti) return theme.buttons.dropdown.variants.isMulti.color
+    if (noSelected) return theme.buttons.dropdown.variants.default.isSelected
+    if (isSelected) return theme.buttons.dropdown.variants.default.isSelected
+    return theme.buttons.dropdown.variants.default.unSelected
   }};
 
   &:hover {
@@ -126,18 +135,21 @@ export const DropdownMenuItem = styled.div<DropdownMenuItemProps>`
   }
 `
 
-export const DropdownMultiSelected = styled.div`
+export const DropdownMultiSelected = styled.div<DropdownMultiSelectedProps>`
   position: relative;
   flex-grow: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   margin-right: 12px;
+  font-family: ${({ theme }) => theme.fonts.body};
 
   svg {
     width: 15px;
+    height: 15px;
     path {
-      fill: ${({ theme }) => theme.colors['grey-400']};
+      fill: ${({ theme, disabled }) =>
+        disabled ? theme.colors.transparent : theme.colors['grey-400']};
     }
   }
 `
@@ -154,7 +166,8 @@ export const DropdownMultiSelectedCount = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors['grey-800']};
-  border: 1px solid ${({ theme }) => theme.colors['grey-800']};
+  font-family: ${({ theme }) => theme.fonts.body};
+  background-color: ${({ theme }) => theme.buttons.dropdown.count.background};
+  color: ${({ theme }) => theme.buttons.dropdown.count.color};
+  border: 1px solid ${({ theme }) => theme.buttons.dropdown.count.border};
 `
