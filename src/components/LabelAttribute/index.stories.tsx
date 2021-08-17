@@ -21,3 +21,9 @@ AttributeLabelPercentageTransparent.args = { text: '3D Glasses', percentage: 69,
 
 export const AttributeLabelPercentageBlue = Template.bind({})
 AttributeLabelPercentageBlue.args = { text: '3D Glasses', percentage: 69, variant: 'percentage', transparent: false }
+
+export const AttributeLabelRemoveableTransparent = Template.bind({})
+AttributeLabelRemoveableTransparent.args = { text: '3D Glasses', variant: 'removeable' }
+
+export const AttributeLabelRemoveableBlue = Template.bind({})
+AttributeLabelRemoveableBlue.args = { text: '3D Glasses', variant: 'removeable', transparent: false }

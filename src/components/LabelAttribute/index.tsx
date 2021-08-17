@@ -3,7 +3,8 @@ import {
   AttributeLabelBase,
   LabelText,
   RightAlignBlock,
-  Division
+  Division,
+  CloseButton
 } from './Styled'
 
 export interface AttributeLabelProps {
@@ -28,14 +29,15 @@ export interface AttributeLabelProps {
   /** 
    * The removal callback for the removable variant.
    */
-  onRemove?: (e: React.MouseEvent<HTMLDivElement>) => void
+  onRemove?: React.MouseEventHandler<HTMLButtonElement>
 }
 
 export default function AttributeLabel({
   text,
   variant = 'regular',
   transparent = true,
-  percentage
+  percentage,
+  onRemove
 }: AttributeLabelProps) {
   return (
     <AttributeLabelBase $transparent={transparent}>
@@ -48,6 +50,10 @@ export default function AttributeLabel({
             <Division>|</Division>
             <LabelText>{percentage}%</LabelText>
           </RightAlignBlock>
+      }
+      {
+        variant === 'removeable' &&
+          <CloseButton onClick={onRemove}>+</CloseButton>
       }
     </AttributeLabelBase>)
 }
