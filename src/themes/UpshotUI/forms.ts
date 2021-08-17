@@ -17,7 +17,7 @@ const basicLabelBase = {
   borderRadius: 'xs',
 }
 
-const dollarSignBase = {
+const currencySymbolBase = {
   ...labelBase,
   padding: 0,
   verticalAlign: 'top'
@@ -79,25 +79,25 @@ const forms: Theme['forms'] = {
     ...labelBase,
     fontSize: 8
   },
-  currencyMiniDollarSign: {
-    ...dollarSignBase,
+  currencyMiniCurrencySymbol: {
+    ...currencySymbolBase,
     fontSize: 0,
     marginRight: '-2px',
     paddingTop: '3px'
   },
-  currencySmallDollarSign: {
-    ...dollarSignBase,
+  currencySmallCurrencySymbol: {
+    ...currencySymbolBase,
     fontSize: 0,
     marginRight: '-2px',
     paddingTop: '4px'
   },
-  currencyMediumDollarSign: {
-    ...dollarSignBase,
+  currencyMediumCurrencySymbol: {
+    ...currencySymbolBase,
     fontSize: 2,
     paddingTop: '5px'
   },
-  currencyLargeDollarSign: {
-    ...dollarSignBase,
+  currencyLargeCurrencySymbol: {
+    ...currencySymbolBase,
     fontSize: 3,
     paddingTop: '7px'
   }

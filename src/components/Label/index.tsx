@@ -12,6 +12,11 @@ export interface LabelProps {
    * Defines the size and style of the label.
    */
   variant?: keyof typeof forms.label
+    /**
+   * If the label is for currency, this is the symbol it will use as a prefix.
+   * Defaults to ether.
+   */
+  currencySymbol?: string
 }
 
 /**
@@ -20,13 +25,14 @@ export interface LabelProps {
  */
 export default function Label({
   text,
-  variant
+  variant,
+  currencySymbol = 'Ξ'
 }: LabelProps) {
   return (
     <>
       { 
         (variant as string).includes('currency') &&
-          <ThemeUILabel variant={`${variant}DollarSign`}>$</ThemeUILabel>
+          <ThemeUILabel variant={`${variant}CurrencySymbol`}>{currencySymbol}</ThemeUILabel>
       }
       <ThemeUILabel variant={variant}>
         { text }

@@ -20,10 +20,10 @@ export const LabelCurrencyMini = Template.bind({})
 LabelCurrencyMini.args = { text: '420.69', variant: 'currencyMini'}
 
 export const LabelCurrencySmall = Template.bind({})
-LabelCurrencySmall.args = { text: '420.69', variant: 'currencySmall' }
+LabelCurrencySmall.args = { text: '420.69', variant: 'currencySmall', currencySymbol: '$' }
 
 export const LabelCurrencyMedium = Template.bind({})
 LabelCurrencyMedium.args = { text: '420.69', variant: 'currencyMedium'}
 
 export const LabelCurrencyLarge = Template.bind({})
-LabelCurrencyLarge.args = { text: '420.69', variant: 'currencyLarge' }
+LabelCurrencyLarge.args = { text: '420.69', variant: 'currencyLarge', currencySymbol: '$' }
