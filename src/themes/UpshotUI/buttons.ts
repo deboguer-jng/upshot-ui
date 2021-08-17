@@ -13,7 +13,7 @@ const buttons = {
     fontSize: 6,
     lineHeight: '2.625rem',
   },
-  icons: iconButtons,
+  icon: iconButtons,
 }
 
 export default buttons

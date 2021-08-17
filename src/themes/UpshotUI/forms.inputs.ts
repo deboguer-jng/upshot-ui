@@ -1,39 +1,26 @@
-import sizes from './sizes'
-
-/**
- * Base styling for a text input.
- */
-export const inputDefault = {
-  height: '45px',
-  border: 'none',
-  bg: 'grey-800',
-  color: 'grey-500',
-  padding: `0 ${sizes[3]}px`,
-  outline: 'none',
-  fontFamily: 'degular',
-  fontWeight: 'heading',
-  fontSize: 4,
-  lineHeight: 1,
-  '&::placeholder': {
-    fontWeight: 'heading',
-  },
-}
-
-/**
- * Adds a rounded border radius to an input.
- */
-export const inputRounded = {
-  borderRadius: 'pill',
-}
+import sizes, { getSize } from './sizes'
 
 const formInputs = {
+  default: {
+    height: getSize(10) + 'px',
+    border: 'none',
+    outline: 'none',
+    bg: 'grey-800',
+    color: 'grey-500',
+    padding: sizes[3] + 'px',
+    fontFamily: 'degular',
+    fontWeight: 'heading',
+    fontSize: 4,
+    '&::placeholder': {
+      fontWeight: 'heading',
+    },
+  },
   rounded: {
-    ...inputDefault,
-    ...inputRounded,
+    variant: 'forms.inputs.default',
+    borderRadius: 'pill',
   },
   roundedDark: {
-    ...inputDefault,
-    ...inputRounded,
+    variant: 'forms.inputs.rounded',
     bg: 'black',
   },
 }

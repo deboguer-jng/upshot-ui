@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { transparentize } from '@theme-ui/color'
 
 export const PaginationBase = styled.div`
   color: ${({ theme }) => theme.colors['grey-300']};
@@ -6,22 +7,52 @@ export const PaginationBase = styled.div`
   font-weight: ${({ theme }) => theme.fontWeights.heading};
   font-size: ${({ theme }) => theme.fontSizes[1]};
 
-  & ul {
-    display: inline-block;
+  & ul,
+  & li,
+  & a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
+  & ul,
+  & a {
+    gap: ${({ theme }) => theme.space[1] + 'px'};
+  }
+
+  /* Pagination buttons */
   & li {
-    display: inline-block;
-    margin: 0 ${({ theme }) => theme.space[1] + 'px'};
-    padding: ${({ theme }) => theme.space[2] + 'px'};
-  }
-
-  & li.disabled {
-    color: ${({ theme }) => theme.colors['grey-700']};
-  }
-
-  & li.selected {
-    background: ${({ theme }) => theme.colors.primary};
     border-radius: ${({ theme }) => theme.radii.xs};
+    transition: ${({ theme }) => theme.transitions.default};
+
+    &.disabled,
+    &.selected {
+      pointer-events: none;
+    }
+
+    &.disabled {
+      color: ${({ theme }) => theme.colors.disabled};
+    }
+
+    &.selected {
+      background: ${({ theme }) => theme.colors.primary};
+    }
+
+    /* Unselected interactive buttons */
+    &:not(.selected):not(.break):hover {
+      background: ${({ theme }) => transparentize(theme.colors.primary, 0.5)};
+    }
+
+    /* Button contents */
+    & a {
+      user-select: none;
+      padding: ${({ theme }) => `${theme.space[1]}px ${theme.space[2]}px`};
+
+      /* Chevron arrows */
+      & svg {
+        height: ${({ theme }) => theme.sizes[3] + 'px'};
+        width: ${({ theme }) => theme.sizes[3] + 'px'};
+      }
+    }
   }
 `
