@@ -10,7 +10,18 @@ export default {
 
 const Template: ComponentStory<typeof ButtonDropdown> = (args) => {
   const [value, setValue] = useState(args.isMulti ? [] : '')
-  return <ButtonDropdown value={value} setValue={setValue} {...args} />
+  const optionChanged = (option: string) => {
+    if (typeof value === 'object')
+      return setValue(
+        value.includes(option)
+          ? value.filter((val) => val !== option)
+          : [...value, option]
+      )
+
+    setValue(option)
+  }
+
+  return <ButtonDropdown value={value} onChange={optionChanged} {...args} />
 }
 
 export const Single = Template.bind({})

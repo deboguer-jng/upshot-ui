@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import {
   Dropdown,
   DropdownMenu,
@@ -19,7 +19,7 @@ export interface ButtonDropdownInterface {
   name: string
   isMulti: boolean
   value: string | Array<string>
-  setValue: Function
+  onChange: Function
   disabled: boolean
 }
 
@@ -28,29 +28,28 @@ export default function ButtonDropdown({
   isMulti = false,
   name,
   value,
-  setValue,
   disabled,
+  onChange,
   ...props
 }: ButtonDropdownInterface) {
   const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>()
 
-  const itemSelected = (option: string) => {
-    if (!isMulti) {
-      setValue(option)
-      setOpen(false)
-    } else {
-      const previousValue = [...(value as Array<string>)]
-      let newValue = []
-      if (previousValue.indexOf(option) < 0)
-        newValue = [...previousValue, option]
-      else newValue = previousValue.filter((item) => item !== option)
-      setValue(newValue)
+  useEffect(() => {
+    const handleClickOutside = (e: { target: HTMLElement }) => {
+      if (ref && !ref.current.contains(e.target)) {
+        setOpen(false)
+      }
     }
-  }
+
+    document.addEventListener('mousedown', handleClickOutside)
+
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   return (
     <>
-      <DropdownWrapper>
+      <DropdownWrapper ref={ref}>
         <Dropdown
           disabled={disabled}
           open={open}
@@ -83,9 +82,8 @@ export default function ButtonDropdown({
                 <DropdownMenuItem
                   key={index}
                   isMulti={isMulti}
-                  isSelected={option === value}
-                  noSelected={!value.length}
-                  onClick={() => itemSelected(option)}
+                  unSelected={option !== value && !!value.length}
+                  onClick={() => onChange(option)}
                 >
                   {isMulti ? (
                     <Checkbox checked={value.includes(option)} />

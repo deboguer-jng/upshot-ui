@@ -6,6 +6,7 @@ import gradients from './gradients'
 import transitions from './transitions'
 import forms from './forms'
 import styles from './styles'
+import scroll from './scroll'
 import sizes, { breakpoints, radii } from './sizes'
 import text, { fonts, fontSizes, fontWeights, lineHeights } from './text'
 import { useThemeUI, ThemeUIContextValue } from 'theme-ui'
@@ -35,6 +36,7 @@ const theme = {
   sizes,
   space: sizes,
   styles,
+  scroll,
   text,
   transitions,
 }

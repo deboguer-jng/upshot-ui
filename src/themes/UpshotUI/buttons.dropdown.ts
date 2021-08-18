@@ -1,9 +1,6 @@
 import colors from './colors'
 
 const dropdownButtons = {
-  scroll: {
-    color: colors["grey-700"],
-  },
   arrow: {
     color: colors.primary
   },

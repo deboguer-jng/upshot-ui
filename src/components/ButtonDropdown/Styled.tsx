@@ -17,8 +17,7 @@ interface DropdownSelectedProps {
 }
 
 interface DropdownMenuItemProps {
-  isSelected: boolean
-  noSelected: boolean
+  unSelected: boolean
   isMulti: boolean
 }
 
@@ -83,7 +82,7 @@ export const DropdownMenuItems = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => theme.buttons.dropdown.scroll.color};
+    background-color: ${({ theme }) => theme.scroll.color};
     border-radius: 5px;
     outline: none;
   }
@@ -123,11 +122,10 @@ export const DropdownMenuItem = styled.div<DropdownMenuItemProps>`
   padding: 8px 11px;
   user-select: none;
   font-family: ${({ theme }) => theme.fonts.body};
-  color: ${({ theme, isSelected, noSelected, isMulti }) => {
+  color: ${({ theme, unSelected, isMulti }) => {
     if (isMulti) return theme.buttons.dropdown.variants.isMulti.color
-    if (noSelected) return theme.buttons.dropdown.variants.default.isSelected
-    if (isSelected) return theme.buttons.dropdown.variants.default.isSelected
-    return theme.buttons.dropdown.variants.default.unSelected
+    if (unSelected) return theme.buttons.dropdown.variants.default.unSelected
+    return theme.buttons.dropdown.variants.default.isSelected
   }};
 
   &:hover {
