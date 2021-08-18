@@ -2,10 +2,16 @@ import React from 'react'
 import { StyledSpinner } from './Styled'
 import spinners from '../../themes/UpshotUI/spinners'
 
-export interface SpinnerProps {
+export interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Size of the loading spinner
+   */
   size?: keyof typeof spinners['sizes']
 }
 
+/**
+ * Provides a loading spinner
+ */
 export const Spinner = ({ size = 'md' }: SpinnerProps) => {
   return (
     <StyledSpinner

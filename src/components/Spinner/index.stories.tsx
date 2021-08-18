@@ -7,9 +7,6 @@ import UpshotThemeProvider from '../../themes'
 export default {
   title: '@UI/Spinner',
   component: Spinner,
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
 } as ComponentMeta<typeof Spinner>
 
 const Template: ComponentStory<typeof Spinner> = (args) => (
