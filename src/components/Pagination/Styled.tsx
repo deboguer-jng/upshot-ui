@@ -40,7 +40,8 @@ export const PaginationBase = styled.div`
 
     /* Unselected interactive buttons */
     &:not(.selected):not(.break):hover {
-      background: ${({ theme }) => transparentize(theme.colors.primary, 0.5)};
+      background: ${({ theme }) =>
+        transparentize(theme.rawColors.primary, 0.5)};
     }
 
     /* Button contents */
