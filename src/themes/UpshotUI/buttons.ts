@@ -1,5 +1,6 @@
 import iconButtons from './buttons.icons'
 import colors from './colors'
+import dropdownButtons from './buttons.dropdown'
 
 const generateColors = (
   background: string, 
@@ -151,6 +152,7 @@ const buttons = {
     }
   },
   icon: iconButtons,
+  dropdown: dropdownButtons
 }
 
 export default buttons

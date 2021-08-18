@@ -26,6 +26,9 @@
     "@babel/core": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
     "@emotion/babel-plugin": "^11.3.0",
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.4",
     "@storybook/addon-docs": "^6.3.7",
     "@storybook/addons": "^6.3.7",
     "@storybook/builder-webpack5": "^6.3.7",
@@ -61,6 +64,7 @@
       "pre-commit": "lint-staged"
     }
   },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/upshot-tech/upshot-ui.git"
