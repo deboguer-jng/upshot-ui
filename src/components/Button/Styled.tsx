@@ -10,10 +10,7 @@ interface PrimaryButtonProps {
 }
 
 interface PlainButtonProps {
-  $type: keyof typeof Buttons.variants
   $size: keyof typeof Buttons.property
-  $status: keyof typeof Buttons.variants.plain.colors
-  disabled: boolean
 }
 
 export const PrimaryButton = styled.button<PrimaryButtonProps>`
@@ -47,6 +44,7 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
 
   span {
     flex-grow: 1;
+    font-family: ${({ theme }) => theme.fonts.body};
     color: ${({ theme, $type, $status }) =>
       theme.buttons.variants[$type].colors[$status].color};
   }
@@ -110,6 +108,7 @@ export const PlainButton = styled.button<PlainButtonProps>`
   color: ${({ theme }) => theme.colors.primary};
   display: flex;
   align-items: center;
+  font-family: ${({ theme }) => theme.fonts.body};
   cursor: pointer;
   height: ${({ theme, $size }) => theme.buttons.property[$size].height}px;
 
