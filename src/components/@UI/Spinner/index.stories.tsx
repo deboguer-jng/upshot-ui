@@ -2,7 +2,6 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import Spinner from './'
-import UpshotThemeProvider from '../../../themes'
 
 export default {
   title: '@UI/Spinner',
