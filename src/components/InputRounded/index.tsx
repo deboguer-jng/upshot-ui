@@ -1,12 +1,18 @@
 import React from 'react'
-import { InputRoundedBase } from './Styled'
-import { InputProps } from 'theme-ui'
+import { Input, InputProps } from 'theme-ui'
 
-export interface InputRoundedProps extends InputProps {}
+export interface InputRoundedProps extends InputProps {
+  /**
+   * Render using the darker grey variant.
+   */
+  dark?: boolean
+}
 
 /**
  * Provides a rounded input.
  */
-export default function InputRounded({ ...props }: InputRoundedProps) {
-  return <InputRoundedBase {...props} />
+export default function InputRounded({ dark, ...props }: InputRoundedProps) {
+  const variant = `forms.inputs.rounded${dark ? 'Dark' : ''}`
+
+  return <Input {...{ variant, ...props }} />
 }

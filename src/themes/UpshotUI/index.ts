@@ -1,52 +1,53 @@
 import alerts from './alerts'
-import avatars from './avatars'
+import images from './images'
 import buttons from './buttons'
 import colors from './colors'
 import gradients from './gradients'
 import transitions from './transitions'
+import chart from './chart'
 import forms from './forms'
+import spinners from './spinners'
+import styles from './styles'
+import scroll from './scroll'
+import sizes, { breakpoints, radii } from './sizes'
 import text, { fonts, fontSizes, fontWeights, lineHeights } from './text'
-import sizes from './sizes'
+import { useThemeUI, ThemeUIContextValue } from 'theme-ui'
 
-export const breakpoints = ['23em', '43em', '80em']
-
-export const radii = {
-  square: '0',
-  xs: '5px',
-  sm: '10px',
-  md: '20px',
-  lg: '30px',
-  pill: '9999px',
-  circle: '50%',
-}
-
-export const styles = {
-  root: {
-    body: {
-      margin: 0,
-      backgroundColor: colors.black,
-      color: colors.text,
-    },
-  },
+/**
+ * Provides typed UpshotUI theme context.
+ * @see https://theme-ui.com/guides/typescript/
+ */
+interface ExactContextValue<T> extends Omit<ThemeUIContextValue, 'theme'> {
+  theme: T
 }
 
 const theme = {
-  space: sizes,
-  radii,
-  breakpoints,
-  fonts,
-  fontWeights,
-  fontSizes,
-  lineHeights,
-  colors,
-  avatars,
-  forms,
   alerts,
+  breakpoints,
   buttons,
+  colors,
+  rawColors: colors,
+  fonts,
+  chart,
+  fontSizes,
+  fontWeights,
+  forms,
   gradients,
-  transitions,
-  text,
+  images,
+  lineHeights,
+  radii,
+  sizes,
+  space: sizes,
+  spinners,
   styles,
+  scroll,
+  text,
+  transitions,
 }
+
+export type UpshotUIThemeType = typeof theme
+
+export const useTheme =
+  useThemeUI as unknown as () => ExactContextValue<UpshotUIThemeType>
 
 export default theme
