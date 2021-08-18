@@ -2,18 +2,14 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import Spinner from './'
-import UpshotThemeProvider from '../../themes'
+import UpshotThemeProvider from '../../../themes'
 
 export default {
   title: '@UI/Spinner',
   component: Spinner,
 } as ComponentMeta<typeof Spinner>
 
-const Template: ComponentStory<typeof Spinner> = (args) => (
-  <UpshotThemeProvider>
-    <Spinner {...args} />
-  </UpshotThemeProvider>
-)
+const Template: ComponentStory<typeof Spinner> = (args) => <Spinner {...args} />
 
 export const ExtraLarge = Template.bind({})
 ExtraLarge.args = {
