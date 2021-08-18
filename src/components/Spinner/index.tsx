@@ -12,7 +12,7 @@ export interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
 /**
  * Provides a loading spinner
  */
-export default const Spinner = ({ size = 'md' }: SpinnerProps) => {
+export default function Spinner({ size = 'md' }: SpinnerProps) {
   return (
     <StyledSpinner
       $size={spinners.sizes[size]}
