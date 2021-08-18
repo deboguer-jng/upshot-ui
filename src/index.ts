@@ -10,6 +10,7 @@ export { default as InputRoundedSearch } from './components/InputRoundedSearch'
 export { default as Pagination } from './components/Pagination'
 export { default as Panel } from './components/Panel'
 export { default as Radio } from './components/Radio'
+export { default as Spinner } from './components/Spinner'
 export { default as Switch } from './components/Switch'
 
 /* Theme */
