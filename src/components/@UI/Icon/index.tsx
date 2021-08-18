@@ -1,6 +1,6 @@
 import React from 'react'
 import SVG, { Props as SVGProps } from 'react-inlinesvg'
-import colors from '../../themes/UpshotUI/colors'
+import colors from '../../../themes/UpshotUI/colors'
 import icons from './icons'
 
 interface IconProps extends Omit<SVGProps, 'src'> {

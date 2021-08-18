@@ -1,5 +1,5 @@
 import React from 'react'
-import colors from '../../themes/UpshotUI/colors'
+import colors from '../../../themes/UpshotUI/colors'
 import {
   Avatar as ThemeUIAvatar,
   AvatarProps as ThemeUIAvatarProps,

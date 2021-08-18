@@ -1,18 +1,33 @@
-/* Components */
-export { default as Avatar } from './components/Avatar'
-export { default as AvatarInitials } from './components/AvatarInitials'
-export { default as Checkbox } from './components/Checkbox'
-export { default as Container } from './components/Container'
-export { default as Icon } from './components/Icon'
-export { default as IconButton } from './components/IconButton'
-export { default as InputRounded } from './components/InputRounded'
-export { default as InputRoundedSearch } from './components/InputRoundedSearch'
-export { default as Pagination } from './components/Pagination'
-export { default as Panel } from './components/Panel'
-export { default as Radio } from './components/Radio'
-export { default as Spinner } from './components/Spinner'
-export { default as Switch } from './components/Switch'
+/**
+ * Components: @UI
+ *
+ * Core building blocks for the Upshot design system.
+ */
+export { default as Avatar } from './components/@UI/Avatar'
+export { default as AvatarInitials } from './components/@UI/AvatarInitials'
+export { default as Checkbox } from './components/@UI/Checkbox'
+export { default as Icon } from './components/@UI/Icon'
+export { default as IconButton } from './components/@UI/IconButton'
+export { default as InputRounded } from './components/@UI/InputRounded'
+export { default as InputRoundedSearch } from './components/@UI/InputRoundedSearch'
+export { default as Pagination } from './components/@UI/Pagination'
+export { default as Panel } from './components/@UI/Panel'
+export { default as Radio } from './components/@UI/Radio'
+export { default as Spinner } from './components/@UI/Spinner'
+export { default as Switch } from './components/@UI/Switch'
 
-/* Theme */
+/**
+ * Components: Layout
+ *
+ * Shared app-level components used in the main layout.
+ */
+export { default as Container } from './components/Layout/Container'
+
+/**
+ * Theme
+ *
+ * Theme-UI compatible theme & global styles.
+ */
 export { default as UpshotThemeProvider, globalStyles } from './themes'
-export { default as theme, UpshotUIThemeType } from './themes/UpshotUI'
+export { default as theme, useTheme } from './themes/UpshotUI'
+export { UpshotUIThemeType } from './themes/UpshotUI'
