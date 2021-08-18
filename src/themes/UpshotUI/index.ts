@@ -6,6 +6,7 @@ import gradients from './gradients'
 import transitions from './transitions'
 import chart from './chart'
 import forms from './forms'
+import spinners from './spinners'
 import styles from './styles'
 import sizes, { breakpoints, radii } from './sizes'
 import text, { fonts, fontSizes, fontWeights, lineHeights } from './text'
@@ -24,6 +25,7 @@ const theme = {
   breakpoints,
   buttons,
   colors,
+  rawColors: colors,
   fonts,
   chart,
   fontSizes,
@@ -35,6 +37,7 @@ const theme = {
   radii,
   sizes,
   space: sizes,
+  spinners,
   styles,
   text,
   transitions,
