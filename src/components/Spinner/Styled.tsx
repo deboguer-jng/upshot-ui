@@ -2,15 +2,15 @@ import styled from '@emotion/styled'
 import colors from '../../themes/UpshotUI/colors'
 
 interface StyledSpinnerProps {
-  size: number
+  $size: number
 }
 
 export const StyledSpinner = styled.div`
   font-size: 10px;
   margin: 50px auto;
   text-indent: -9999em;
-  width: ${(props: StyledSpinnerProps) => props.size}px;
-  height: ${(props: StyledSpinnerProps) => props.size}px;
+  width: ${(props: StyledSpinnerProps) => props.$size}px;
+  height: ${(props: StyledSpinnerProps) => props.$size}px;
   border-radius: 50%;
   background: #ffffff;
   background: linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0) 80%);
@@ -25,7 +25,7 @@ export const StyledSpinner = styled.div`
     height: 50%;
     background: #ffffff;
     background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #fff 80%);
-    border-radius: ${(props: StyledSpinnerProps) => props.size/2}px ${(props: StyledSpinnerProps) => props.size/2}px 0 0;
+    border-radius: ${(props: StyledSpinnerProps) => props.$size/2}px ${(props: StyledSpinnerProps) => props.$size/2}px 0 0;
     position: absolute;
     top: 0;
     left: 0;

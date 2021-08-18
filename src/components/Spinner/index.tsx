@@ -9,7 +9,7 @@ export interface SpinnerProps {
 export const Spinner = ({ size = 'md' }: SpinnerProps) => {
   return (
     <StyledSpinner
-      size={spinners.sizes[size]}
+      $size={spinners.sizes[size]}
     />
   )
 }
