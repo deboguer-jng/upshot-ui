@@ -4,6 +4,7 @@ import buttons from './buttons'
 import colors from './colors'
 import gradients from './gradients'
 import transitions from './transitions'
+import chart from './chart'
 import forms from './forms'
 import spinners from './spinners'
 import styles from './styles'
@@ -27,6 +28,7 @@ const theme = {
   colors,
   rawColors: colors,
   fonts,
+  chart,
   fontSizes,
   fontWeights,
   forms,
