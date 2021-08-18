@@ -1,4 +1,5 @@
 import iconButtons from './buttons.icons'
+import dropdownButtons from './buttons.dropdown'
 
 const buttons = {
   primary: {
@@ -14,6 +15,7 @@ const buttons = {
     lineHeight: '2.625rem',
   },
   icon: iconButtons,
+  dropdown: dropdownButtons
 }
 
 export default buttons
