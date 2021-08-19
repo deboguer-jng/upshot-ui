@@ -1,4 +1,4 @@
-import React, { ReactNode, Children, HTMLAttributes } from 'react'
+import React, { ReactNode, HTMLAttributes } from 'react'
 import { PrimaryButton, PlainButton } from './Styled'
 
 export interface ButtonProps {
@@ -9,7 +9,7 @@ export interface ButtonProps {
   /**
    * How large should the button be?
    */
-  size?: 'xs' | 'sm' | 'md ' | 'lg' | 'xl'
+  size?: 'md' | 'lg'
 
   icon: ReactNode
 
@@ -21,20 +21,20 @@ export interface ButtonProps {
 /**
  * Primary UI component for user interaction
  */
-export const Button = ({
+export default function Button({
   type = 'primary',
   size = 'md',
   icon,
   width,
   children,
   ...props
-}: ButtonProps & HTMLAttributes<HTMLButtonElement>) => {
+}: ButtonProps & HTMLAttributes<HTMLButtonElement>) {
   if (type === 'plain') {
     return (
       <PlainButton $size={size} {...props}>
         <>
           <span>{children}</span>
-          {icon && icon}
+          {icon}
         </>
       </PlainButton>
     )

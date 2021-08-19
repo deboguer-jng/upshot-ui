@@ -13,7 +13,9 @@ const Template: ComponentStory<typeof Flex> = (args) => <Flex {...args} />
 export const Default = Template.bind({})
 Default.args = {
   p: 4,
-  sx: { width: '200px', height: '200px', background: '#000', color: '#fff' },
+  bg: 'background',
+  color: 'text',
+  sx: { width: '200px', height: '200px' },
   children: (
     <>
       {[...new Array(3)].map((_, i) => (

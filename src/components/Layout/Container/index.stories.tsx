@@ -16,6 +16,7 @@ const Template: ComponentStory<typeof Container> = (args) => (
 export const Default = Template.bind({})
 Default.args = {
   p: 4,
-  sx: { background: '#000', color: '#fff' },
+  bg: 'background',
+  color: 'text',
   children: <Text>Content</Text>,
 }

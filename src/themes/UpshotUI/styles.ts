@@ -10,6 +10,12 @@ const styles = {
       fontFamily: fonts.body,
     },
   },
+  a: {
+    cursor: 'pointer',
+    '&:hover': {
+      textDecoration: 'underline',
+    },
+  },
 }
 
 export default styles

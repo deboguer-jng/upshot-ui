@@ -18,6 +18,13 @@ export { default as Switch } from './components/@UI/Switch'
 export { default as Text } from './components/@UI/Text'
 
 /**
+ * Components: App
+ *
+ * Shared app-level components.
+ */
+export { default as AppBar } from './components/App/AppBar'
+
+/**
  * Components: Layout
  *
  * Generic low-level components for page layout and component design.
