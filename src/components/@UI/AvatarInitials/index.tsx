@@ -5,7 +5,7 @@ import { AvatarSize } from '../Avatar'
 
 export interface AvatarInitialsProp extends BoxProps {
   /**
-   * Defines the size for the circle's radius. (Default: md)
+   * Defines the size for the circle's radius.
    */
   size?: AvatarSize
 }

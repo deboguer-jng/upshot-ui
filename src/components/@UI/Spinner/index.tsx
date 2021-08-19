@@ -3,7 +3,7 @@ import { StyledSpinner, StyledGradient } from './Styled'
 
 export type SpinnerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 export interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Defines the size for the circle's radius. (Default: md) */
+  /* Defines the size for the circle's radius. */
   size?: SpinnerSize
 }
 
