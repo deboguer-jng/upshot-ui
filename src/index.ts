@@ -20,7 +20,7 @@ export { default as Text } from './components/@UI/Text'
 /**
  * Components: Layout
  *
- * Shared app-level components used in the main layout.
+ * Generic low-level components for page layout and component design.
  */
 export { default as Box } from './components/Layout/Box'
 export { default as Container } from './components/Layout/Container'
