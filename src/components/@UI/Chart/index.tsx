@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useTheme } from '@emotion/react'
-import Chart from 'react-apexcharts'
+import { default as ReactApexCharts } from 'react-apexcharts'
 import { Text } from 'theme-ui'
-import ApexCharts from 'apexcharts'
+import ApexCharts, { ApexOptions } from 'apexcharts'
 import {
   NoDataBoard,
   ChartWrapper,
@@ -14,7 +14,6 @@ import {
   ChartNoSelectedWrapper,
   ChartNoSelectedTextArea,
 } from './Styled'
-import './index.css'
 import Spinner from '../Spinner'
 
 export interface ChartProps {
@@ -22,16 +21,16 @@ export interface ChartProps {
   noData?: boolean
   error?: boolean
   noSelected?: boolean
-  data: Array<Array<Object>>
+  data?: ApexOptions['series']
 }
 
-export const ChartArea = ({
+export default function Chart({
   loading = false,
   noData = false,
   error = false,
   noSelected = false,
   data,
-}: ChartProps) => {
+}: ChartProps) {
   const theme = useTheme()
   const [filter, setFilter] = useState(0)
   const [filterStatus, setFilterStatus] = useState([true, true])
@@ -41,14 +40,14 @@ export const ChartArea = ({
     theme.colors.secondary.toString(),
   ]
 
-  const options = {
-    ...theme.chart.options,
+  const options: ApexOptions = {
+    ...(theme.chart.options as ApexOptions),
     chart: {
       id: 'myChart',
       type: 'area',
     },
     colors,
-    markets: {
+    markers: {
       size: [4, 7],
       colors,
       strokeColors: colors,
@@ -110,16 +109,6 @@ export const ChartArea = ({
       },
     },
   }
-  const series = [
-    {
-      name: 'series1',
-      data: [31, 40, 28, 32, 51, 42, 109, 100],
-    },
-    {
-      name: 'series2',
-      data: [11, 32, 45, 32, 33, 34, 52, 41],
-    },
-  ]
 
   if (loading) {
     return (
@@ -168,7 +157,7 @@ export const ChartArea = ({
       <ChartWrapper>
         <div>
           <ChartNoSelectedWrapper>
-            <Chart
+            <ReactApexCharts
               options={options}
               series={theme.chart.defaultSeries}
               type="area"
@@ -202,9 +191,9 @@ export const ChartArea = ({
     <>
       <ChartWrapper>
         <div>
-          <Chart
+          <ReactApexCharts
             options={options}
-            series={series}
+            series={data}
             type="area"
             height="100%"
             width="100%"
