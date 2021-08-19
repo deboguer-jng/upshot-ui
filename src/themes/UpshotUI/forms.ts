@@ -1,4 +1,3 @@
-import { Theme } from 'theme-ui'
 import inputs from './forms.inputs'
 import switches from './forms.switch'
 import checkbox from './forms.checkbox'

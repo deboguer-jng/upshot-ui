@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
-import colors from '../../themes/UpshotUI/colors'
-import { fonts, fontWeights, fontSizes } from '../../themes/UpshotUI/text'
-import sizes from '../../themes/UpshotUI/sizes'
+import colors from '../../../themes/UpshotUI/colors'
+import { fonts, fontWeights, fontSizes } from '../../../themes/UpshotUI/text'
+import sizes from '../../../themes/UpshotUI/sizes'
 import IconButton from '../IconButton'
 
 interface AttributeLabelBaseProps {
