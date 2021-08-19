@@ -27,6 +27,7 @@ export default function Icon({ size = 64, color, icon, ...props }: IconProps) {
       src={icons[icon]}
       width={size}
       height={size}
+      style={{ flexShrink: 0 }}
       /* Preprocess SVGs to use color prop. */
       preProcessor={(svg) => svg.replace(/fill=".*?"/g, 'fill="currentColor"')}
       /* If no color is provided, inherit color from the container. */
