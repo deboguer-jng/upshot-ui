@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useTheme } from '@emotion/react'
 import Chart from 'react-apexcharts'
+import { Text } from 'theme-ui'
 import ApexCharts from 'apexcharts'
 import {
   NoDataBoard,
@@ -14,12 +15,14 @@ import {
   ChartNoSelectedTextArea,
 } from './Styled'
 import './index.css'
+import Spinner from '../Spinner'
 
 export interface ChartProps {
   loading?: boolean
   noData?: boolean
   error?: boolean
   noSelected?: boolean
+  data: Array<Array<Object>>
 }
 
 export const ChartArea = ({
@@ -27,6 +30,7 @@ export const ChartArea = ({
   noData = false,
   error = false,
   noSelected = false,
+  data,
 }: ChartProps) => {
   const theme = useTheme()
   const [filter, setFilter] = useState(0)
@@ -121,7 +125,9 @@ export const ChartArea = ({
     return (
       <ChartWrapper>
         <div>
-          <ChartLoadingBoard />
+          <ChartLoadingBoard>
+            <Spinner />
+          </ChartLoadingBoard>
         </div>
       </ChartWrapper>
     )
@@ -133,8 +139,8 @@ export const ChartArea = ({
         <div>
           <NoDataBoard>
             <div>
-              <p> SORRY: </p>
-              <h1> ERROR LOADING DATA </h1>
+              <Text variant="largeWhite"> SORRY: </Text> <br />
+              <Text variant="h1PrimaryWhite"> ERROR LOADING DATA </Text>
             </div>
           </NoDataBoard>
         </div>
@@ -148,8 +154,8 @@ export const ChartArea = ({
         <div>
           <NoDataBoard>
             <div>
-              <p> SORRY: </p>
-              <h1> NO DATA (YET) </h1>
+              <Text variant="largeWhite"> SORRY: </Text> <br />
+              <Text variant="h1PrimaryWhite"> NO DATA (YET) </Text>
             </div>
           </NoDataBoard>
         </div>
@@ -171,12 +177,12 @@ export const ChartArea = ({
             />
             <ChartNoSelectedTextArea>
               <div>
-                <p> NOTHING SELECTED: </p>
-                <h1>
-                  {' '}
+                <Text variant="largeWhite"> NOTHING SELECTED: </Text>
+                <br />
+                <Text variant="h1PrimaryWhite">
                   SELECT A COLLECTION (OR MULITPLE) <br /> FROM THE CONTAINER
-                  BELOW.{' '}
-                </h1>
+                  BELOW.
+                </Text>
               </div>
             </ChartNoSelectedTextArea>
           </ChartNoSelectedWrapper>
