@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useTheme } from '@emotion/react'
 import { default as ReactApexCharts } from 'react-apexcharts'
 import { Text } from 'theme-ui'
@@ -55,17 +55,16 @@ export default function Chart({
     tooltip: {
       enabled: true,
       shared: false,
-      custom: function ({ series, seriesIndex, dataPointIndex, w, ...props }) {
-        const x = w.globals.clientX
-        let offset
-
-        const width = document.getElementById('apexchartsmyChart').offsetWidth
-
-        if (x <= width / 2) {
-          offset = 'calc(-50% - 12px)'
-        } else {
-          offset = 'calc(50% + 9.5px)'
-        }
+      custom: function ({
+        series,
+        seriesIndex,
+        dataPointIndex,
+        w: {
+          globals: { clientX: x, svgWidth: width },
+        },
+      }) {
+        const offset =
+          x <= width / 2 ? 'calc(-50% - 12px)' : 'calc(50% + 9.5px)'
 
         return `
           <style>
