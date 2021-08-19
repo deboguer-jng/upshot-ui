@@ -11,6 +11,7 @@ const styles = {
     },
   },
   a: {
+    variant: 'text.default',
     cursor: 'pointer',
     '&:hover': {
       textDecoration: 'underline',

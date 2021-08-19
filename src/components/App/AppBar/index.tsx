@@ -19,11 +19,14 @@ export default function AppBar({ ...props }: AppBarProps) {
     <Grid columns={'1fr auto'} sx={{ height, alignItems: 'center' }} {...props}>
       {/* Left-aligned section. */}
       <Flex sx={{ gap: 4, alignItems: 'center' }}>
-        <Icon icon="upshot" color="primary" size={height} />
+        <Icon
+          icon="upshot"
+          color="primary"
+          size={height}
+          style={{ flexShrink: 0 }}
+        />
         <InputRounded placeholder="Search..." sx={{ width: 300 }} />
-        <Text>
-          <Link>FAQ</Link>
-        </Text>
+        <Link>FAQ</Link>
       </Flex>
 
       {/* Right-aligned section. */}
