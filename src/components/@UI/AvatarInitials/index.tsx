@@ -11,7 +11,7 @@ export interface AvatarInitialsProp extends BoxProps {
 }
 
 /**
- * Provides a surface for UI elements.
+ * Provides a circular avatar gradient with user initials.
  */
 export default function AvatarInitials({
   size = 'md',
