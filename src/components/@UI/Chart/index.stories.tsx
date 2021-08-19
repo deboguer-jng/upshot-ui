@@ -2,7 +2,7 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { ChartArea } from './'
-import UpshotThemeProvider from '../../themes'
+import UpshotThemeProvider from '../../../themes'
 
 export default {
   title: '@UI/Chart',
