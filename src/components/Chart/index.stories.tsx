@@ -10,9 +10,7 @@ export default {
 } as ComponentMeta<typeof ChartArea>
 
 const Template: ComponentStory<typeof ChartArea> = (args) => (
-  <UpshotThemeProvider>
-    <ChartArea {...args} />
-  </UpshotThemeProvider>
+  <ChartArea {...args} />
 )
 
 export const Main = Template.bind({})
