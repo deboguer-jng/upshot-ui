@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { useTheme } from '@emotion/react'
 import { default as ReactApexCharts } from 'react-apexcharts'
 import { Text } from 'theme-ui'
