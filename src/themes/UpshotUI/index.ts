@@ -8,6 +8,7 @@ import chart from './chart'
 import forms from './forms'
 import spinners from './spinners'
 import styles from './styles'
+import scroll from './scroll'
 import sizes, { breakpoints, radii } from './sizes'
 import text, { fonts, fontSizes, fontWeights, lineHeights } from './text'
 import { useThemeUI, ThemeUIContextValue } from 'theme-ui'
@@ -39,6 +40,7 @@ const theme = {
   space: sizes,
   spinners,
   styles,
+  scroll,
   text,
   transitions,
 }

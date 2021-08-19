@@ -4,7 +4,7 @@ import { InputRoundedProps } from '../InputRounded'
 import IconButton from '../IconButton'
 import { InputRoundedSearchBase } from './Styled'
 import Icon from '../Icon'
-import { useTheme } from '../../themes/UpshotUI'
+import { useTheme } from '../../../themes/UpshotUI'
 
 export interface InputRoundedSearchProps extends InputRoundedProps {}
 
