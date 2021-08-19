@@ -13,6 +13,7 @@ export { default as InputRoundedSearch } from './components/@UI/InputRoundedSear
 export { default as Pagination } from './components/@UI/Pagination'
 export { default as Panel } from './components/@UI/Panel'
 export { default as Radio } from './components/@UI/Radio'
+export { default as Skeleton } from './components/@UI/Skeleton'
 export { default as Spinner } from './components/@UI/Spinner'
 export { default as Switch } from './components/@UI/Switch'
 
