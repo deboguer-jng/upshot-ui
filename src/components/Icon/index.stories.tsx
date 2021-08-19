@@ -112,6 +112,9 @@ Ellipsis.args = { icon: 'ellipsis', color: 'primary' }
 export const Enter = Template.bind({})
 Enter.args = { icon: 'enter', color: 'primary' }
 
+export const ErrorIcon = Template.bind({})
+ErrorIcon.args = { icon: 'error', color: 'primary' }
+
 export const EthBlock = Template.bind({})
 EthBlock.args = { icon: 'ethBlock', color: 'primary' }
 

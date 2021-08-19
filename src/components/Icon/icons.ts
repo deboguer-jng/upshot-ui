@@ -100,6 +100,7 @@ import SVGYoutubeBlock from '../../assets/svg/icons/Youtube_BlockColor.svg'
 import SVGYoutube from '../../assets/svg/icons/Youtube.svg'
 import SVGZoraBlock from '../../assets/svg/icons/Zora_BlockColor.svg'
 import SVGZora from '../../assets/svg/icons/Zora.svg'
+import SVGError from '../../assets/svg/icons/Error.svg'
 
 const icons = {
   addLinkBlock: SVGAddLinkBlock,
@@ -136,6 +137,7 @@ const icons = {
   dislike: SVGDislike,
   ellipsis: SVGEllipis,
   enter: SVGEnter,
+  error: SVGError,
   ethBlock: SVGEthBlock,
   ethereum: SVGEthereum,
   expandCircle: SVGExpandCircle,
