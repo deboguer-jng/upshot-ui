@@ -5,7 +5,7 @@ import Container from './'
 import { Text } from 'theme-ui'
 
 export default {
-  title: '@UI/Container',
+  title: 'Layout/Container',
   component: Container,
 } as ComponentMeta<typeof Container>
 
@@ -15,6 +15,7 @@ const Template: ComponentStory<typeof Container> = (args) => (
 
 export const Default = Template.bind({})
 Default.args = {
+  p: 4,
   sx: { background: '#000', color: '#fff' },
-  children: <Text variant="h3Primary">Content</Text>,
+  children: <Text>Content</Text>,
 }

@@ -5,13 +5,13 @@ import { AvatarSize } from '../Avatar'
 
 export interface AvatarInitialsProp extends BoxProps {
   /**
-   * Defines the size for the circle's radius. (Default: md)
+   * Defines the size for the circle's radius.
    */
   size?: AvatarSize
 }
 
 /**
- * Provides a surface for UI elements.
+ * Provides a circular avatar gradient with user initials.
  */
 export default function AvatarInitials({
   size = 'md',

@@ -23,6 +23,12 @@ export const lineHeights = {
 }
 
 const text = {
+  default: {
+    fontFamily: 'body',
+    fontWeight: 'body',
+    fontSize: 3,
+    lineHeight: lineHeights.body,
+  },
   h0Primary: {
     fontFamily: 'body',
     fontWeight: 'bold',
