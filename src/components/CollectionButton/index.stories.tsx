@@ -20,6 +20,11 @@ Default.args = {
   icon: <Icon icon="comment" />,
 }
 
+export const Error = Template.bind({})
+Error.args = {
+  error: true,
+}
+
 export const HighlightBlue = Template.bind({})
 HighlightBlue.args = {
   text: 'name',

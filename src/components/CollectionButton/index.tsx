@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+import ErrorSvg from '../../assets/svg/icons/Error.svg'
 import {
   CollectionButtonWrapper,
   CollectionButtonTextWrapper,
@@ -26,7 +27,17 @@ const CollectionButton = ({
   ...props
 }: CollectionButtonProps) => {
   if (error) {
-    return <CollectionButtonWrapper></CollectionButtonWrapper>
+    return (
+      <CollectionButtonWrapper>
+        <CollectionButtonIcon>
+          <img src={ErrorSvg} />
+        </CollectionButtonIcon>
+        <CollectionButtonTextWrapper>
+          <CollectionButtonText>Error</CollectionButtonText>
+          <CollectionButtonSubText>Error loading data</CollectionButtonSubText>
+        </CollectionButtonTextWrapper>
+      </CollectionButtonWrapper>
+    )
   }
 
   if (loading) {
