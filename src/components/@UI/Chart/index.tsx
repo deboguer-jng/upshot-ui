@@ -15,6 +15,7 @@ import {
   ChartNoSelectedTextArea,
 } from './Styled'
 import './index.css'
+import Spinner from '../Spinner'
 
 export interface ChartProps {
   loading?: boolean
@@ -124,7 +125,9 @@ export const ChartArea = ({
     return (
       <ChartWrapper>
         <div>
-          <ChartLoadingBoard />
+          <ChartLoadingBoard>
+            <Spinner />
+          </ChartLoadingBoard>
         </div>
       </ChartWrapper>
     )

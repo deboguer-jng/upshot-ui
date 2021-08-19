@@ -65,6 +65,9 @@ export const ChartLoadingBoard = styled.div`
   height: 100%;
   border-radius: 0.5rem;
   background: ${({ theme }) => theme.colors['grey-900']};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export const NoDataBoard = styled.div`

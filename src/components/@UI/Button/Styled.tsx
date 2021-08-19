@@ -51,7 +51,7 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
     span {
       color: ${({ theme }) => theme.colors.black};
     }
-    border: ${({ theme }) => theme.colors['grey-700']};
+    border-color: ${({ theme }) => theme.colors['grey-700']};
   }
 
   &:not(:disabled):hover {
