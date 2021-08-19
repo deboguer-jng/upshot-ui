@@ -11,8 +11,6 @@ export interface ButtonProps {
    */
   size?: 'xs' | 'sm' | 'md ' | 'lg' | 'xl'
 
-  status: 'active' | 'default'
-
   icon: ReactNode
 
   width?: number
@@ -26,7 +24,6 @@ export interface ButtonProps {
 export const Button = ({
   type = 'primary',
   size = 'md',
-  status = 'default',
   icon,
   width,
   children,
@@ -47,7 +44,6 @@ export const Button = ({
     <PrimaryButton
       $type={type}
       $size={size}
-      $status={status}
       width={width || undefined}
       minimized={!children}
       {...props}

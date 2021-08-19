@@ -4,7 +4,6 @@ import Buttons from '../../themes/UpshotUI/buttons'
 interface PrimaryButtonProps {
   $type: keyof typeof Buttons.variants
   $size: keyof typeof Buttons.property
-  $status: keyof typeof Buttons.variants.primary.colors
   width: number
   minimized: boolean
 }
@@ -14,11 +13,10 @@ interface PlainButtonProps {
 }
 
 export const PrimaryButton = styled.button<PrimaryButtonProps>`
-  background: ${({ theme, $type, $status }) =>
-    theme.buttons.variants[$type].colors[$status].background};
+  background: ${({ theme, $type }) =>
+    theme.buttons.variants[$type].colors.background};
   border: 2px solid
-    ${({ theme, $type, $status }) =>
-      theme.buttons.variants[$type].colors[$status].border};
+    ${({ theme, $type }) => theme.buttons.variants[$type].colors.border};
   font-size: ${({ theme, $size }) => theme.buttons.property[$size].fontSize}px;
   height: ${({ theme, $size }) => theme.buttons.property[$size].height}px;
   border-radius: ${({ theme, $size }) =>
@@ -38,15 +36,13 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   }
 
   & * {
-    fill: ${({ theme, $type, $status }) =>
-      theme.buttons.variants[$type].colors[$status].color};
+    fill: ${({ theme, $type }) => theme.buttons.variants[$type].colors.color};
   }
 
   span {
     flex-grow: 1;
     font-family: ${({ theme }) => theme.fonts.body};
-    color: ${({ theme, $type, $status }) =>
-      theme.buttons.variants[$type].colors[$status].color};
+    color: ${({ theme, $type }) => theme.buttons.variants[$type].colors.color};
   }
 
   &:disabled {
@@ -59,19 +55,18 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   }
 
   &:not(:disabled):hover {
-    background: ${({ theme, $type, $status }) =>
-      theme.buttons.variants[$type].colors[$status].hoverBackground};
+    background: ${({ theme, $type }) =>
+      theme.buttons.variants[$type].colors.hoverBackground};
     border: 2px solid
-      ${({ theme, $type, $status }) =>
-        theme.buttons.variants[$type].colors[$status].hoverBorder};
+      ${({ theme, $type }) => theme.buttons.variants[$type].colors.hoverBorder};
     span {
-      color: ${({ theme, $type, $status }) =>
-        theme.buttons.variants[$type].colors[$status].hoverColor};
+      color: ${({ theme, $type }) =>
+        theme.buttons.variants[$type].colors.hoverColor};
     }
 
     & * {
-      fill: ${({ theme, $type, $status }) =>
-        theme.buttons.variants[$type].colors[$status].hoverColor};
+      fill: ${({ theme, $type }) =>
+        theme.buttons.variants[$type].colors.hoverColor};
     }
   }
 
@@ -80,20 +75,20 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   }
 
   &:not(:disabled):active {
-    background: ${({ theme, $type, $status }) =>
-      theme.buttons.variants[$type].colors[$status].pressedBackground};
+    background: ${({ theme, $type }) =>
+      theme.buttons.variants[$type].colors.pressedBackground};
     border: 2px solid
-      ${({ theme, $type, $status }) =>
-        theme.buttons.variants[$type].colors[$status].pressedBorder};
+      ${({ theme, $type }) =>
+        theme.buttons.variants[$type].colors.pressedBorder};
     span {
-      color: ${({ theme, $type, $status }) =>
-        theme.buttons.variants[$type].colors[$status].pressedColor};
+      color: ${({ theme, $type }) =>
+        theme.buttons.variants[$type].colors.pressedColor};
     }
 
     svg {
       path {
-        fill: ${({ theme, $type, $status }) =>
-          theme.buttons.variants[$type].colors[$status].pressedColor};
+        fill: ${({ theme, $type }) =>
+          theme.buttons.variants[$type].colors.pressedColor};
       }
     }
     transform: scale(0.95);
