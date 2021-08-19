@@ -6,7 +6,7 @@
   "scripts": {
     "start": "start-storybook -p 6006 -s public",
     "lint": "prettier --write . && eslint . --fix",
-    "build": "rollup -c",
+    "build": "rollup -c", 
     "prepublishOnly": "yarn build",
     "build-static": "yarn build-storybook -o ./static -s public"
   },
