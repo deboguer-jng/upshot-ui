@@ -66,7 +66,7 @@ const InputRoundedSearch = (
         }}
         {...buttonProps}
       >
-        <Icon icon="searchCircle" />
+        <Icon icon="searchCircle" aria-label="Search icon" />
       </IconButton>
     </Flex>
   )
