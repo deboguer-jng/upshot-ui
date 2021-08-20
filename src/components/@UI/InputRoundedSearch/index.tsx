@@ -61,7 +61,7 @@ const InputRoundedSearch = (
           pointerEvents: hasButton ? 'auto' : 'none',
           opacity: Number(hasButton),
           transition: 'default',
-          transitionDuration: '.5s',
+          transitionDuration: theme.durations.normal,
           ...buttonSx,
         }}
         {...buttonProps}

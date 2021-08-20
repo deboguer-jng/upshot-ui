@@ -2,6 +2,12 @@ import css from '@emotion/css'
 import { keyframes } from '@emotion/react'
 import { Keyframes } from '@emotion/serialize'
 
+export const durations = {
+  fast: '.125s',
+  normal: '.5s',
+  slow: '1s',
+}
+
 export const fade: Keyframes = keyframes({
   from: { opacity: 0 },
   to: { opacity: 1 },
@@ -14,10 +20,10 @@ export const spin: Keyframes = keyframes({
 
 const animations = {
   fadeIn: css`
-    ${fade} 1s forwards
+    ${fade} ${durations.slow} forwards
   `,
   spin: css`
-    ${spin} 1.4s infinite linear
+    ${spin} ${durations.slow} infinite linear
   `,
 }
 

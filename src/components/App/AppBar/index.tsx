@@ -109,7 +109,7 @@ const AppBar = (
             flexDirection: 'column',
             width: expandedMobile ? '100%' : isSmBreakpoint ? 140 : 300,
             transition: 'default',
-            transitionDuration: '.5s',
+            transitionDuration: theme.durations.normal,
           }}
         >
           <InputRoundedSearch

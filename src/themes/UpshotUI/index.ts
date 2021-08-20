@@ -1,4 +1,4 @@
-import animations from './animations'
+import animations, { durations } from './animations'
 import alerts from './alerts'
 import images from './images'
 import buttons from './buttons'
@@ -27,10 +27,10 @@ const theme = {
   animations,
   breakpoints,
   buttons,
-  colors,
-  rawColors: colors,
-  fonts,
   chart,
+  colors,
+  durations,
+  fonts,
   fontSizes,
   fontWeights,
   forms,
@@ -38,11 +38,12 @@ const theme = {
   images,
   lineHeights,
   radii,
+  rawColors: colors,
+  scroll,
   sizes,
   space: sizes,
   spinners,
   styles,
-  scroll,
   text,
   transitions,
 }
