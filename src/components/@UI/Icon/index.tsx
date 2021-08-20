@@ -1,6 +1,6 @@
 import React from 'react'
 import SVG, { Props as SVGProps } from 'react-inlinesvg'
-import colors from '../../themes/UpshotUI/colors'
+import colors from '../../../themes/UpshotUI/colors'
 import icons from './icons'
 
 interface IconProps extends Omit<SVGProps, 'src'> {
@@ -9,11 +9,11 @@ interface IconProps extends Omit<SVGProps, 'src'> {
    */
   icon: keyof typeof icons
   /**
-   * Specifies the width & height for the square svg icon. (Default: 64)
+   * Specifies the width & height for the square svg icon.
    */
   size?: number | string
   /**
-   * Named color from theme specification. (Default: inherit)
+   * Named color from theme specification.
    */
   color?: keyof typeof colors
 }

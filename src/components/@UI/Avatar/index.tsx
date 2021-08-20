@@ -1,5 +1,5 @@
 import React from 'react'
-import colors from '../../themes/UpshotUI/colors'
+import colors from '../../../themes/UpshotUI/colors'
 import {
   Avatar as ThemeUIAvatar,
   AvatarProps as ThemeUIAvatarProps,
@@ -9,11 +9,11 @@ export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export interface AvatarProps extends Omit<ThemeUIAvatarProps, 'size'> {
   /**
-   * Defines the size for the circle's radius. (Default: md)
+   * Defines the size for the circle's radius.
    */
   size?: AvatarSize
   /**
-   * Border color used by image variant avatars. (Default: transparent)
+   * Border color used by image variant avatars.
    */
   color?: keyof typeof colors
 }
