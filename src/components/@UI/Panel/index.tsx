@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { PanelBase } from './Styled'
 import { BoxProps } from 'theme-ui'
 
@@ -13,6 +13,9 @@ export interface PanelProps extends BoxProps {
 /**
  * Provides a surface for UI elements.
  */
-export default function Panel({ inner, ...props }: PanelProps) {
-  return <PanelBase $inner={inner} {...props} />
-}
+const Panel = (
+  { inner = false, ...props }: PanelProps,
+  ref: React.RefObject<HTMLDivElement>
+) => <PanelBase $inner={inner} {...{ ref, ...props }} />
+
+export default forwardRef(Panel)

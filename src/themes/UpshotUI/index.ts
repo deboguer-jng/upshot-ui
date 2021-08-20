@@ -1,3 +1,4 @@
+import animations from './animations'
 import alerts from './alerts'
 import images from './images'
 import buttons from './buttons'
@@ -23,6 +24,7 @@ interface ExactContextValue<T> extends Omit<ThemeUIContextValue, 'theme'> {
 
 const theme = {
   alerts,
+  animations,
   breakpoints,
   buttons,
   colors,

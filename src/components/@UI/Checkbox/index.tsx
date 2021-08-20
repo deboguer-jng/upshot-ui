@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import {
   Checkbox as ThemeUICheckbox,
   CheckboxProps as ThemeUICheckboxProps,
@@ -14,11 +14,14 @@ interface CheckboxProps extends ThemeUICheckboxProps {
 /**
  * Provides a checkbox
  */
-export default function Checkbox({ error, ...props }: CheckboxProps) {
-  return (
-    <ThemeUICheckbox
-      variant={`checkbox.${error ? 'error' : 'primary'}`}
-      {...props}
-    />
-  )
-}
+const Checkbox = (
+  { error = false, ...props }: CheckboxProps,
+  ref: React.RefObject<HTMLInputElement>
+) => (
+  <ThemeUICheckbox
+    variant={`checkbox.${error ? 'error' : 'primary'}`}
+    {...{ ref, ...props }}
+  />
+)
+
+export default forwardRef(Checkbox)

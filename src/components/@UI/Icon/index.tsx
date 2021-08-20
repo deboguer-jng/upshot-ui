@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import SVG, { Props as SVGProps } from 'react-inlinesvg'
 import colors from '../../../themes/UpshotUI/colors'
 import icons from './icons'
@@ -21,17 +21,22 @@ interface IconProps extends Omit<SVGProps, 'src'> {
 /**
  * Icon component for SVG assets.
  */
-export default function Icon({ size = 64, color, icon, ...props }: IconProps) {
-  return (
-    <SVG
-      src={icons[icon]}
-      width={size}
-      height={size}
-      /* Preprocess SVGs to use color prop. */
-      preProcessor={(svg) => svg.replace(/fill=".*?"/g, 'fill="currentColor"')}
-      /* If no color is provided, inherit color from the container. */
-      color={colors[color] ?? 'inherit'}
-      {...props}
-    />
-  )
-}
+const Icon = (
+  { size = '100%', color, icon, ...props }: IconProps,
+  ref: React.RefObject<SVG>
+) => (
+  <SVG
+    src={icons[icon]}
+    /* Preprocess SVGs to use color prop. */
+    preProcessor={(svg) => svg.replace(/fill=".*?"/g, 'fill="currentColor"')}
+    /* If no color is provided, inherit color from the container. */
+    color={colors[color] ?? 'inherit'}
+    /* Fixed square size */
+    width={size}
+    height={size}
+    style={{ flexShrink: 0 }}
+    {...{ ref, ...props }}
+  />
+)
+
+export default forwardRef(Icon)

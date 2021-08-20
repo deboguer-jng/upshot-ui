@@ -1,9 +1,6 @@
-import React from 'react'
-import { Box as ThemeUIBox, BoxProps } from 'theme-ui'
+import { Box } from 'theme-ui'
 
 /**
  * Provides a Box component.
  */
-export default function Box({ ...props }: BoxProps) {
-  return <ThemeUIBox {...props} />
-}
+export default Box

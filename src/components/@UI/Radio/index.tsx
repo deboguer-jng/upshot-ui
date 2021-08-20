@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import {
   Radio as ThemeUIRadio,
   RadioProps as ThemeUIRadioProps,
@@ -14,8 +14,14 @@ interface RadioProps extends ThemeUIRadioProps {
 /**
  * Provides a radio
  */
-export default function Radio({ error, ...props }: RadioProps) {
-  return (
-    <ThemeUIRadio variant={`radio.${error ? 'error' : 'primary'}`} {...props} />
-  )
-}
+const Radio = (
+  { error = false, ...props }: RadioProps,
+  ref: React.RefObject<HTMLInputElement>
+) => (
+  <ThemeUIRadio
+    variant={`radio.${error ? 'error' : 'primary'}`}
+    {...{ ref, ...props }}
+  />
+)
+
+export default forwardRef(Radio)
