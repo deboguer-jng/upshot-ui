@@ -1,7 +1,7 @@
 import React, { useState, useRef, forwardRef } from 'react'
 import Icon from '../../@UI/Icon'
 import IconButton from '../../@UI/IconButton'
-import { Box, Text, Link, Grid, Flex, GridProps } from 'theme-ui'
+import { Text, Link, Grid, Flex, GridProps } from 'theme-ui'
 import InputRoundedSearch from '../../@UI/InputRoundedSearch'
 import { useTheme } from '../../../themes/UpshotUI'
 import { useBreakpointIndex } from '@theme-ui/match-media'
@@ -87,6 +87,7 @@ const AppBar = (
             color={expandedMobile ? 'grey-600' : 'primary'}
             size={expandedMobile ? 24 : '100%'}
             style={{ marginLeft: expandedMobile ? -4 : 0 }}
+            aria-label={expandedMobile ? 'Back button' : 'Upshot logo'}
           />
         </IconButton>
         <Flex
