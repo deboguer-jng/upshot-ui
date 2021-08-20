@@ -20,6 +20,7 @@ const AppBar = (
   const [mobileExpand, setMobileExpand] = useState(false)
   const [mobileShow, setMobileShow] = useState(true)
   const inputRef = useRef<HTMLInputElement>()
+  const [search, setSearch] = useState('')
 
   /* The app bar height should be the same size as input fields. */
   const { height } = theme.forms.inputs.default
@@ -68,7 +69,10 @@ const AppBar = (
     if (!isMobileBreakpoint) handleCollapse(true)
   }
 
-  const handleSearch = () => {}
+  const handleSearch = (e: React.FormEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    console.log({ search })
+  }
 
   return (
     <Grid
@@ -77,11 +81,12 @@ const AppBar = (
       {...{ ref, ...props }}
     >
       {/* Left-aligned section. */}
-      <Flex sx={{ gap: 4, alignItems: 'center' }}>
-        <IconButton
-          sx={{ height, width: height, padding: 0 }}
-          onClick={() => handleCollapse()}
-        >
+      <Flex
+        as="form"
+        sx={{ gap: 4, alignItems: 'center' }}
+        onSubmit={handleSearch}
+      >
+        <IconButton sx={{ height, width: height, padding: 0 }}>
           <Icon
             icon={expandedMobile ? 'arrowSmallLeft' : 'upshot'}
             color={expandedMobile ? 'grey-600' : 'primary'}
@@ -103,7 +108,9 @@ const AppBar = (
             onBlur={handleBlur}
             hasButton={expandedMobile}
             ref={inputRef}
-            buttonProps={{ onClick: handleSearch }}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            buttonProps={{ type: 'submit' }}
           />
         </Flex>
 
