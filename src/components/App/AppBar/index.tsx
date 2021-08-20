@@ -71,6 +71,10 @@ const AppBar = (
 
   const handleSearch = (e: React.FormEvent<HTMLDivElement>) => {
     e.preventDefault()
+
+    /**
+     * @todo Connect to search API
+     */
     console.log({ search })
   }
 
