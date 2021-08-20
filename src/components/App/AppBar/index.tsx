@@ -15,20 +15,21 @@ const AppBar = (
   { ...props }: AppBarProps,
   ref: React.RefObject<HTMLDivElement>
 ) => {
-  const { theme } = useTheme()
-  const breakpointIndex = useBreakpointIndex()
-  const [mobileExpand, setMobileExpand] = useState(false)
-  const [mobileShow, setMobileShow] = useState(true)
-  const inputRef = useRef<HTMLInputElement>()
-  const [search, setSearch] = useState('')
-
   /* The app bar height should be the same size as input fields. */
+  const { theme } = useTheme()
   const { height } = theme.forms.inputs.default
 
   /* Use expansion toggling on narrow viewports. */
-  const isMobileBreakpoint = breakpointIndex < 2
-  const expandedMobile = mobileExpand && isMobileBreakpoint
-  const showContent = !isMobileBreakpoint || mobileShow
+  const breakpointIndex = useBreakpointIndex()
+  const [mobileExpand, setMobileExpand] = useState(false)
+  const [mobileShow, setMobileShow] = useState(true)
+
+  const isSmBreakpoint = breakpointIndex < 2 // Mobile & Tablet
+  const expandedMobile = mobileExpand && isSmBreakpoint
+  const showContent = !isSmBreakpoint || mobileShow
+
+  /* Search state */
+  const [search, setSearch] = useState('')
 
   /**
    * Expand handler (Mobile UX)
@@ -66,7 +67,7 @@ const AppBar = (
    * state, when a field is blurred from a desktop-wide device.
    */
   const handleBlur = () => {
-    if (!isMobileBreakpoint) handleCollapse(true)
+    if (!isSmBreakpoint) handleCollapse(true)
   }
 
   const handleSearch = (e: React.FormEvent<HTMLDivElement>) => {
@@ -90,7 +91,11 @@ const AppBar = (
         sx={{ gap: 4, alignItems: 'center' }}
         onSubmit={handleSearch}
       >
-        <IconButton sx={{ height, width: height, padding: 0 }}>
+        <IconButton
+          type="button"
+          onClick={() => handleCollapse()}
+          sx={{ height, width: height, padding: 0 }}
+        >
           <Icon
             icon={expandedMobile ? 'arrowSmallLeft' : 'upshot'}
             color={expandedMobile ? 'grey-600' : 'primary'}
@@ -102,7 +107,7 @@ const AppBar = (
         <Flex
           sx={{
             flexDirection: 'column',
-            width: expandedMobile ? '100%' : isMobileBreakpoint ? 140 : 300,
+            width: expandedMobile ? '100%' : isSmBreakpoint ? 140 : 300,
             transition: 'default',
             transitionDuration: '.5s',
           }}
@@ -111,7 +116,6 @@ const AppBar = (
             onFocus={handleExpand}
             onBlur={handleBlur}
             hasButton={expandedMobile}
-            ref={inputRef}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             buttonProps={{ type: 'submit' }}
