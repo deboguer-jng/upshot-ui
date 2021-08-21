@@ -29,16 +29,14 @@ export default function Chart({
   noData = false,
   error = false,
   noSelected = false,
-  data,
+  data = [],
 }: ChartProps) {
   const theme = useTheme()
   const [filter, setFilter] = useState(0)
-  const [filterStatus, setFilterStatus] = useState([true, true])
+  const [filterStatus, setFilterStatus] = useState(data.map((_) => true))
 
-  const colors = [
-    theme.colors.primary.toString(),
-    theme.colors.secondary.toString(),
-  ]
+  const colors = [theme.rawColors.primary, theme.rawColors.secondary]
+  const filterLabels = ['1H', '1D', '1W', '1Y', 'ALL']
 
   const options: ApexOptions = {
     ...(theme.chart.options as ApexOptions),
@@ -127,8 +125,12 @@ export default function Chart({
         <div>
           <NoDataBoard>
             <div>
-              <Text variant="largeWhite"> SORRY: </Text> <br />
-              <Text variant="h1PrimaryWhite"> ERROR LOADING DATA </Text>
+              <Text variant="largeWhite" sx={{ display: 'block' }}>
+                Sorry
+              </Text>
+              <Text variant="h1PrimaryWhite" sx={{ lineHeight: 'heading' }}>
+                Error loading data
+              </Text>
             </div>
           </NoDataBoard>
         </div>
@@ -142,8 +144,12 @@ export default function Chart({
         <div>
           <NoDataBoard>
             <div>
-              <Text variant="largeWhite"> SORRY: </Text> <br />
-              <Text variant="h1PrimaryWhite"> NO DATA (YET) </Text>
+              <Text variant="largeWhite" sx={{ display: 'block' }}>
+                Sorry:
+              </Text>
+              <Text variant="h1PrimaryWhite" sx={{ lineHeight: 'heading' }}>
+                No data (yet)
+              </Text>
             </div>
           </NoDataBoard>
         </div>
@@ -165,11 +171,13 @@ export default function Chart({
             />
             <ChartNoSelectedTextArea>
               <div>
-                <Text variant="largeWhite"> NOTHING SELECTED: </Text>
-                <br />
-                <Text variant="h1PrimaryWhite">
-                  SELECT A COLLECTION (OR MULITPLE) <br /> FROM THE CONTAINER
-                  BELOW.
+                <Text variant="largeWhite" sx={{ display: 'block' }}>
+                  Nothing selected.
+                </Text>
+                <Text variant="h1PrimaryWhite" sx={{ lineHeight: 'heading' }}>
+                  Select a collection (or multiple)
+                  <br />
+                  from the container below.
                 </Text>
               </div>
             </ChartNoSelectedTextArea>
@@ -179,10 +187,11 @@ export default function Chart({
     )
   }
 
-  const toggle = (value: number) => {
-    ApexCharts.exec('myChart', 'toggleSeries', `series${value}`)
+  const toggle = (idx: number) => {
+    ApexCharts.exec('myChart', 'toggleSeries', `series${idx + 1}`)
+
     const newStatus = [...filterStatus]
-    newStatus[value - 1] = !newStatus[value - 1]
+    newStatus[idx] = !newStatus[idx]
     setFilterStatus(newStatus)
   }
 
@@ -198,39 +207,28 @@ export default function Chart({
             width="100%"
           />
           <FilterWrapper>
-            <FilterButton active={filter === 0} onClick={() => setFilter(0)}>
-              1H
-            </FilterButton>
-            <FilterButton active={filter === 1} onClick={() => setFilter(1)}>
-              1D
-            </FilterButton>
-            <FilterButton active={filter === 2} onClick={() => setFilter(2)}>
-              1W
-            </FilterButton>
-            <FilterButton active={filter === 3} onClick={() => setFilter(3)}>
-              1Y
-            </FilterButton>
-            <FilterButton active={filter === 4} onClick={() => setFilter(4)}>
-              ALL
-            </FilterButton>
+            {[...new Array(5)].map((_, i) => (
+              <FilterButton
+                key={i}
+                active={filter === i}
+                onClick={() => setFilter(i)}
+              >
+                {filterLabels[i]}
+              </FilterButton>
+            ))}
           </FilterWrapper>
           <CustomLegendWrapper>
-            <CustomLegend
-              active={filterStatus[0]}
-              color={theme.colors.primary}
-              onClick={() => toggle(1)}
-            >
-              <div />
-              <span> SERIES 1 </span>
-            </CustomLegend>
-            <CustomLegend
-              active={filterStatus[1]}
-              color={theme.colors.secondary}
-              onClick={() => toggle(2)}
-            >
-              <div />
-              <span> SERIES 2 </span>
-            </CustomLegend>
+            {data.map((_, i) => (
+              <CustomLegend
+                key={i}
+                active={filterStatus[i]}
+                color={colors[i]}
+                onClick={() => toggle(i)}
+              >
+                <div />
+                <Text>Series {i + 1}</Text>
+              </CustomLegend>
+            ))}
           </CustomLegendWrapper>
         </div>
       </ChartWrapper>
