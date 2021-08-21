@@ -1,4 +1,4 @@
-import React, { ReactNode, HTMLAttributes } from 'react'
+import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
 import { PrimaryButton, PlainButton } from './Styled'
 
 export interface ButtonProps {
@@ -21,17 +21,20 @@ export interface ButtonProps {
 /**
  * Primary UI component for user interaction
  */
-export default function Button({
-  type = 'primary',
-  size = 'md',
-  icon,
-  width,
-  children,
-  ...props
-}: ButtonProps & HTMLAttributes<HTMLButtonElement>) {
+const Button = (
+  {
+    type = 'primary',
+    size = 'md',
+    icon,
+    width,
+    children,
+    ...props
+  }: ButtonProps & HTMLAttributes<HTMLButtonElement>,
+  ref: React.RefObject<HTMLButtonElement>
+) => {
   if (type === 'plain') {
     return (
-      <PlainButton $size={size} {...props}>
+      <PlainButton $size={size} {...{ ref, ...props }}>
         <>
           <span>{children}</span>
           {icon}
@@ -46,10 +49,12 @@ export default function Button({
       $size={size}
       width={width || undefined}
       minimized={!children}
-      {...props}
+      {...{ ref, ...props }}
     >
       {icon}
       <span>{children}</span>
     </PrimaryButton>
   )
 }
+
+export default forwardRef(Button)

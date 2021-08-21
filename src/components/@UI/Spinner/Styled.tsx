@@ -8,15 +8,9 @@ interface StyledSpinnerProps {
 export const StyledSpinner = styled.div<StyledSpinnerProps>`
   width: ${({ theme, $size }) => theme.spinners.sizes[$size]}px;
   height: ${({ theme, $size }) => theme.spinners.sizes[$size]}px;
-  transform: rotate(0deg);
 
   /* Continuously rotate the spinner. */
-  animation: spin 1.4s infinite linear;
-  @keyframes spin {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
+  animation: ${({ theme }) => theme.animations.spin};
 `
 
 export const StyledGradient = styled.div`
