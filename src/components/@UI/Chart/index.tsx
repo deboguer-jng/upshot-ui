@@ -196,42 +196,40 @@ export default function Chart({
   }
 
   return (
-    <>
-      <ChartWrapper>
-        <div>
-          <ReactApexCharts
-            options={options}
-            series={data}
-            type="area"
-            height="100%"
-            width="100%"
-          />
-          <FilterWrapper>
-            {[...new Array(5)].map((_, i) => (
-              <FilterButton
-                key={i}
-                active={filter === i}
-                onClick={() => setFilter(i)}
-              >
-                {filterLabels[i]}
-              </FilterButton>
-            ))}
-          </FilterWrapper>
-          <CustomLegendWrapper>
-            {data.map((_, i) => (
-              <CustomLegend
-                key={i}
-                active={filterStatus[i]}
-                color={colors[i]}
-                onClick={() => toggle(i)}
-              >
-                <div />
-                <Text>Series {i + 1}</Text>
-              </CustomLegend>
-            ))}
-          </CustomLegendWrapper>
-        </div>
-      </ChartWrapper>
-    </>
+    <ChartWrapper>
+      <div>
+        <ReactApexCharts
+          options={options}
+          series={data}
+          type="area"
+          height="100%"
+          width="100%"
+        />
+        <FilterWrapper>
+          {[...new Array(5)].map((_, i) => (
+            <FilterButton
+              key={i}
+              active={filter === i}
+              onClick={() => setFilter(i)}
+            >
+              {filterLabels[i]}
+            </FilterButton>
+          ))}
+        </FilterWrapper>
+        <CustomLegendWrapper>
+          {data.map((_, i) => (
+            <CustomLegend
+              key={i}
+              active={filterStatus[i]}
+              color={colors[i]}
+              onClick={() => toggle(i)}
+            >
+              <div />
+              <Text>Series {i + 1}</Text>
+            </CustomLegend>
+          ))}
+        </CustomLegendWrapper>
+      </div>
+    </ChartWrapper>
   )
 }
