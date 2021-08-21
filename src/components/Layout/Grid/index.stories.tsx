@@ -15,7 +15,8 @@ Default.args = {
   p: 4,
   gap: 4,
   columns: 2,
-  sx: { background: '#000', color: '#fff' },
+  bg: 'background',
+  color: 'text',
   children: (
     <>
       {[...new Array(3)].map((_, i) => (

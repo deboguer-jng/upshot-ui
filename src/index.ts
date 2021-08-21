@@ -5,6 +5,7 @@
  */
 export { default as Avatar } from './components/@UI/Avatar'
 export { default as AvatarInitials } from './components/@UI/AvatarInitials'
+export { default as Chart } from './components/@UI/Chart'
 export { default as Checkbox } from './components/@UI/Checkbox'
 export { default as Icon } from './components/@UI/Icon'
 export { default as IconButton } from './components/@UI/IconButton'
@@ -16,6 +17,13 @@ export { default as Radio } from './components/@UI/Radio'
 export { default as Spinner } from './components/@UI/Spinner'
 export { default as Switch } from './components/@UI/Switch'
 export { default as Text } from './components/@UI/Text'
+
+/**
+ * Components: App
+ *
+ * Shared app-level components.
+ */
+export { default as AppBar } from './components/App/AppBar'
 
 /**
  * Components: Layout

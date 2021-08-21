@@ -28,16 +28,16 @@ const chart = {
     },
     yaxis: {
       tootlip: {
-        enabled: true
-      }
-    }
+        enabled: true,
+      },
+    },
   },
   defaultSeries: [
     {
       name: 'default',
-      data: [31, 40, 28, 32, 51, 42, 109, 100]
-    }
-  ]
+      data: [31, 40, 28, 32, 51, 42, 109, 100],
+    },
+  ],
 }
 
 export default chart
