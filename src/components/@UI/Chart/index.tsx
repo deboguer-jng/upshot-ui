@@ -163,11 +163,11 @@ export default function Chart({
         <div>
           <ChartNoSelectedWrapper>
             <ReactApexCharts
-              options={options}
               series={theme.chart.defaultSeries}
               type="area"
               height="100%"
               width="100%"
+              {...{ options }}
             />
             <ChartNoSelectedTextArea>
               <div>
@@ -199,11 +199,11 @@ export default function Chart({
     <ChartWrapper>
       <div>
         <ReactApexCharts
-          options={options}
           series={data}
           type="area"
           height="100%"
           width="100%"
+          {...{ options }}
         />
         <FilterWrapper>
           {[...new Array(5)].map((_, i) => (
