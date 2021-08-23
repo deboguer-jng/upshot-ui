@@ -6,6 +6,7 @@ import {
   Division,
   CloseButton
 } from './Styled'
+import Icon from '../Icon'
 
 export interface AttributeLabelProps {
   /**
@@ -56,7 +57,8 @@ export default function AttributeLabel({
           <CloseButton
             onClick={onRemove}
             type='plain'
-          >+</CloseButton>
+            icon={<Icon icon='x' size='12' />}
+          />
       }
-    </AttributeLabelBase>)
-}
+    </AttributeLabelBase>
+  )}

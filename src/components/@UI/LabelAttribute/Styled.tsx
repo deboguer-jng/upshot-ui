@@ -41,10 +41,7 @@ export const Division = styled.div`
 export const CloseButton = styled(Button)`
   float: right;
   padding-right: ${ sizes[3] + 'px' };
-  display: inline-block;
-  transform: rotateY(0deg) rotate(45deg);
-  font-size: ${ fontSizes[6] };
-  margin-top: -5px;
+  padding-bottom: 10px;
 
   &:not(:disabled):hover {
     span {

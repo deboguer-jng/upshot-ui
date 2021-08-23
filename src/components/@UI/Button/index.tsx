@@ -15,7 +15,7 @@ export interface ButtonProps {
 
   width?: number
 
-  children: ReactNode
+  children?: ReactNode
 }
 
 /**
