@@ -1,5 +1,5 @@
 import React from 'react'
-import { CenteredSpinner, BigEmptyFlex, BlurryFlex } from './Styled'
+import { CenteredSpinner, BigEmptyFlex, BlurryFlex, CollectionGrid } from './Styled'
 import { FlexProps } from 'theme-ui'
 
 export interface SkeletonProps extends FlexProps {
@@ -8,18 +8,23 @@ export interface SkeletonProps extends FlexProps {
 }
 
 /** Provides a loading Skeleton */
-export default function SkeletonCollection({ type, ...props }: SkeletonProps) {
-  if (type === 'loadingBox') {
+export default function SkeletonTemplate({ type, ...props }: SkeletonProps) {
+  if (type === 'LoadingBox') {
     return (
       <BigEmptyFlex {...props} >
         <CenteredSpinner />
       </BigEmptyFlex>
     )
-  } else if (type === 'blurrySquare') {
+  } else if (type === 'BlurrySquare') {
     return (
       <BlurryFlex {...props} >
         <CenteredSpinner size={'md'} />
       </BlurryFlex>
+    )
+  } else if (type === 'CollectionGrid') {
+    return (
+      <CollectionGrid {...props} >
+      </CollectionGrid>
     )
   }
 }

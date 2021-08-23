@@ -1,25 +1,31 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import SkeletonCollection from './'
+import SkeletonTemplate from './'
 
 export default {
-  title: '@UI/SkeletonCollection',
-  component: SkeletonCollection,
-} as ComponentMeta<typeof SkeletonCollection>
+  title: '@UI/SkeletonTemplate',
+  component: SkeletonTemplate,
+} as ComponentMeta<typeof SkeletonTemplate>
 
-const Template: ComponentStory<typeof SkeletonCollection> = (args) => <SkeletonCollection {...args} />
+const Template: ComponentStory<typeof SkeletonTemplate> = (args) => <SkeletonTemplate {...args} />
 
 export const SpinnerBox = Template.bind({})
 SpinnerBox.args = { 
-  type: 'loadingBox',
+  type: 'LoadingBox',
   sx: { width: '600px', height: '300px' }
 }
 
 export const BlurrySquare = Template.bind({})
 BlurrySquare.args = { 
-  type: 'blurrySquare',
+  type: 'BlurrySquare',
   sx: { width: '160px', height: '160px' }
+}
+
+export const CollectionGrid = Template.bind({})
+CollectionGrid.args = { 
+  type: 'CollectionGrid',
+  sx: { width: '160px', height: '30px' }
 }
 
 /* export const ExtraSmallRectangle = Template.bind({})
