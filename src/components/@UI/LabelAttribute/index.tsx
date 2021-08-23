@@ -53,7 +53,10 @@ export default function AttributeLabel({
       }
       {
         variant === 'removeable' &&
-          <CloseButton onClick={onRemove}>+</CloseButton>
+          <CloseButton
+            onClick={onRemove}
+            type='plain'
+          >+</CloseButton>
       }
     </AttributeLabelBase>)
 }

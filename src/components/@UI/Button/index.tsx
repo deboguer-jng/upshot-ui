@@ -11,9 +11,9 @@ export interface ButtonProps {
    */
   size?: 'xs' | 'sm' | 'md ' | 'lg' | 'xl'
 
-  status: 'active' | 'default'
+  status?: 'active' | 'default'
 
-  icon: ReactNode
+  icon?: ReactNode
 
   width?: number
 

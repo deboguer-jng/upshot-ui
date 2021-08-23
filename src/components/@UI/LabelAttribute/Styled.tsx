@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import colors from '../../../themes/UpshotUI/colors'
 import { fonts, fontWeights, fontSizes } from '../../../themes/UpshotUI/text'
 import sizes from '../../../themes/UpshotUI/sizes'
-import IconButton from '../IconButton'
+import { Button } from '../Button'
 
 interface AttributeLabelBaseProps {
   $transparent: boolean
@@ -38,7 +38,7 @@ export const Division = styled.div`
   padding-right: ${ sizes[3] + 'px' };
   display: inline-block;
 `
-export const CloseButton = styled(IconButton)`
+export const CloseButton = styled(Button)`
   float: right;
   padding-right: ${ sizes[3] + 'px' };
   display: inline-block;

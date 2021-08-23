@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import Buttons from '../../themes/UpshotUI/buttons'
+import Buttons from '../../../themes/UpshotUI/buttons'
 
 interface PrimaryButtonProps {
   $type: keyof typeof Buttons.variants
