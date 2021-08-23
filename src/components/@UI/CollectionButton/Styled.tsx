@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import CollectionButtons from '../../themes/UpshotUI/buttons.collections'
+import CollectionButtons from '../../../themes/UpshotUI/buttons.collections'
 
 interface CollectionButtonWrapperProps {
   highlight?: keyof typeof CollectionButtons.highlight
@@ -26,7 +26,7 @@ export const CollectionButtonIcon = styled.div`
   width: ${({ theme }) => theme.buttons.collection.iconHeight}px;
   border-radius: ${({ theme }) => theme.buttons.collection.iconHeight / 2}px;
   margin-right: ${({ theme }) => theme.buttons.collection.gap}px;
-  background-color: #c4c4c4;
+  background-color: ${({ theme }) => theme.colors['grey-900']};
 
   svg {
     height: 18px;

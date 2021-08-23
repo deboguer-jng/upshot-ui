@@ -1,7 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import CollectionButton from './'
+import CollectionButton from '.'
 import Icon from '../Icon'
 
 export default {

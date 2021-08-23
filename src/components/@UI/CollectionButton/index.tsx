@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import ErrorSvg from '../../assets/svg/icons/Error.svg'
+import ErrorSvg from '../../../assets/svg/icons/Error.svg'
 import {
   CollectionButtonWrapper,
   CollectionButtonTextWrapper,
