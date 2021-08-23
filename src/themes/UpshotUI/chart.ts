@@ -2,6 +2,7 @@ const chart = {
   options: {
     stroke: {
       curve: 'smooth',
+      width: 2,
     },
     grid: {
       show: false,
@@ -27,7 +28,7 @@ const chart = {
       },
     },
     yaxis: {
-      tootlip: {
+      tooltip: {
         enabled: true,
       },
     },
