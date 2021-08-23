@@ -13,14 +13,12 @@ const Template: ComponentStory<typeof SkeletonCollection> = (args) => <SkeletonC
 export const SpinnerBox = Template.bind({})
 SpinnerBox.args = { 
   type: 'loadingBox',
-  bg: 'background',
   sx: { width: '600px', height: '300px' }
 }
 
 export const BlurrySquare = Template.bind({})
 BlurrySquare.args = { 
   type: 'blurrySquare',
-  bg: 'background',
   sx: { width: '160px', height: '160px' }
 }
 

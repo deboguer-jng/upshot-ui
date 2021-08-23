@@ -10,6 +10,7 @@ export const BigEmptyFlex = styled(Flex)`
   display: flex;
   align-items: center;
   border-radius: ${({ theme }) => theme.radii.md};
+  background-color: ${({ theme }) => theme.colors['grey-900']};
 `
 
 export const BlurryFlex = styled(Flex)`
