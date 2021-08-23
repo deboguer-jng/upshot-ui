@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, forwardRef } from 'react'
 import ErrorSvg from '../../../assets/svg/icons/Error.svg'
 import {
   CollectionButtonWrapper,
@@ -8,27 +8,29 @@ import {
   CollectionButtonIcon,
 } from './Styled'
 
-interface CollectionButtonProps {
+export interface CollectionButtonProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   text: string
   subText: string
   icon: ReactNode
   highlight?: 'blue' | 'pink' | 'red' | 'green' | 'yellow' | 'grey'
-  error: boolean
-  loading: boolean
+  error?: boolean
 }
 
-const CollectionButton = ({
-  text,
-  subText,
-  icon,
-  highlight,
-  error = false,
-  loading = false,
-  ...props
-}: CollectionButtonProps) => {
+const CollectionButton = (
+  {
+    text,
+    subText,
+    icon,
+    highlight,
+    error = false,
+    ...props
+  }: CollectionButtonProps,
+  ref: React.RefObject<HTMLDivElement>
+) => {
   if (error) {
     return (
-      <CollectionButtonWrapper>
+      <CollectionButtonWrapper {...{ ref, ...props }}>
         <CollectionButtonIcon>
           <img src={ErrorSvg} />
         </CollectionButtonIcon>
@@ -40,20 +42,8 @@ const CollectionButton = ({
     )
   }
 
-  if (loading) {
-    return (
-      <CollectionButtonWrapper>
-        <div />
-        <CollectionButtonTextWrapper>
-          <div />
-          <div />
-        </CollectionButtonTextWrapper>
-      </CollectionButtonWrapper>
-    )
-  }
-
   return (
-    <CollectionButtonWrapper highlight={highlight}>
+    <CollectionButtonWrapper {...{ highlight, ref, ...props }}>
       <CollectionButtonIcon>{icon}</CollectionButtonIcon>
       <CollectionButtonTextWrapper>
         <CollectionButtonText>{text}</CollectionButtonText>
@@ -63,4 +53,4 @@ const CollectionButton = ({
   )
 }
 
-export default CollectionButton
+export default forwardRef(CollectionButton)
