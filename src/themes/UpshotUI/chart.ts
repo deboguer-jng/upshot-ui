@@ -27,11 +27,6 @@ const chart = {
         show: false,
       },
     },
-    yaxis: {
-      tooltip: {
-        enabled: true,
-      },
-    },
   },
   defaultSeries: [
     {

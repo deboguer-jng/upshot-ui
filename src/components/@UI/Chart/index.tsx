@@ -51,7 +51,9 @@ export default function Chart({
     fill: {
       type: 'gradient',
       gradient: {
-        gradientToColors: [...new Array(data.length)].map((_) => 'transparent'),
+        gradientToColors: [
+          ...new Array(data.length || theme.chart.defaultSeries.length),
+        ].map((_) => 'transparent'),
         opacityFrom: 0.9,
         opacityTo: 0.6,
         stops: [0, 90, 100],
