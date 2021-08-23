@@ -22,7 +22,7 @@ export interface ChartProps {
   error?: boolean
   noSelected?: boolean
   data?: {
-    name?: string
+    name: string
     data: number[]
   }[]
 }
@@ -206,8 +206,8 @@ export default function Chart({
     )
   }
 
-  const toggle = (idx: number) => {
-    ApexCharts.exec('myChart', 'toggleSeries', `series${idx + 1}`)
+  const toggle = (idx: number, seriesName: string) => {
+    ApexCharts.exec('myChart', 'toggleSeries', seriesName)
 
     const newStatus = [...filterStatus]
     newStatus[idx] = !newStatus[idx]
@@ -241,10 +241,10 @@ export default function Chart({
               key={i}
               active={filterStatus[i]}
               color={colors[i]}
-              onClick={() => toggle(i)}
+              onClick={() => toggle(i, data[i].name)}
             >
               <div />
-              <Text>{data[i].name ?? `Series ${i + 1}`}</Text>
+              <Text>{data[i].name}</Text>
             </CustomLegend>
           ))}
         </CustomLegendWrapper>
