@@ -11,8 +11,8 @@ interface StyledSkeletonProps {
   $circle: boolean
 }
 
-const minWidth = '12px'
-const minHeight = '12px'
+const minWidth = '10px'
+const minHeight = '10px'
 
 export const StyledSkeleton = styled(Box)<StyledSkeletonProps>`
   background: ${({ theme }) => theme.colors['grey-700'] };

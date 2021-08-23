@@ -11,21 +11,21 @@ export default {
 const Template: ComponentStory<typeof SkeletonTemplate> = (args) => <SkeletonTemplate {...args} />
 
 export const SpinnerBox = Template.bind({})
-SpinnerBox.args = { 
+SpinnerBox.args = {
   type: 'LoadingBox',
   sx: { width: '600px', height: '300px' }
 }
 
 export const BlurrySquare = Template.bind({})
-BlurrySquare.args = { 
+BlurrySquare.args = {
   type: 'BlurrySquare',
   sx: { width: '160px', height: '160px' }
 }
 
 export const CollectionGrid = Template.bind({})
-CollectionGrid.args = { 
+CollectionGrid.args = {
   type: 'CollectionGrid',
-  sx: { width: '160px', height: '30px' }
+  sx: { width: '220px', height: '46px' }
 }
 
 /* export const ExtraSmallRectangle = Template.bind({})

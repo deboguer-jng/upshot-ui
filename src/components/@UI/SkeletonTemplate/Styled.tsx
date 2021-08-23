@@ -25,6 +25,9 @@ export const BlurryFlex = styled(Flex)`
 `
 
 export const CollectionGrid = styled(Grid)`
-  background-color: ${({ theme }) => theme.colors.red};
+  align-items: center;
+  background-color: ${({ theme }) => theme.colors.black};
+  border-radius: ${({ theme }) => theme.radii.circle};
+  padding: 4px;
 `
 
