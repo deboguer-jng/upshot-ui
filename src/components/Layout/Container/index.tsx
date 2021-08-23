@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { ContainerBase } from './Styled'
 import { FlexProps } from 'theme-ui'
 
@@ -7,6 +7,9 @@ export interface ContainerProps extends FlexProps {}
 /**
  * Provides a centered layout container with mobile-first breakpoints.
  */
-export default function Container({ ...props }: ContainerProps) {
-  return <ContainerBase {...props} />
-}
+const Container = (
+  { ...props }: ContainerProps,
+  ref: React.RefObject<HTMLDivElement>
+) => <ContainerBase {...{ ref, ...props }} />
+
+export default forwardRef(Container)

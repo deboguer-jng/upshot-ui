@@ -3,17 +3,17 @@ import colors from './colors'
 import dropdownButtons from './buttons.dropdown'
 
 const generateColors = (
-  background: string, 
-  border: string, 
-  color: string, 
-  hoverBackground: string, 
-  hoverBorder: string, 
-  hoverColor: string, 
-  pressedBackground: string, 
-  pressedBorder: string, 
-  pressedColor: string, 
-  focusBackground: string, 
-  focusBorder: string, 
+  background: string,
+  border: string,
+  color: string,
+  hoverBackground: string,
+  hoverBorder: string,
+  hoverColor: string,
+  pressedBackground: string,
+  pressedBorder: string,
+  pressedColor: string,
+  focusBackground: string,
+  focusBorder: string,
   focusColor: string
 ) => ({
   background,
@@ -33,104 +33,56 @@ const generateColors = (
 const buttons = {
   variants: {
     primary: {
-      colors: {
-        default: generateColors(
-          colors.primary,
-          colors.primary,
-          colors.black,
-          colors.transparent,
-          colors.primary,
-          colors.primary,
-          colors.transparent,
-          colors.primary,
-          colors.primary,
-          colors.primary,
-          colors.primary,
-          colors.black,
-        ),
-        active: generateColors(
-          colors.transparent,
-          colors.primary,
-          colors.primary,
-          colors.transparent,
-          colors.primary,
-          colors.primary,
-          colors.transparent,
-          colors.primary,
-          colors.primary,
-          colors.primary,
-          colors.primary,
-          colors.black
-        )
-      },
+      colors: generateColors(
+        colors.primary,
+        colors.primary,
+        colors.black,
+        colors.transparent,
+        colors.primary,
+        colors.primary,
+        colors.transparent,
+        colors.primary,
+        colors.primary,
+        colors.transparent,
+        colors.primary,
+        colors.primary
+      ),
       fontFamily: 'body',
       fontWeight: 'heading',
       fontSize: 4,
       lineHeight: '1.5rem',
     },
     tertiary: {
-      colors: {
-        default: generateColors(
-          colors["grey-800"],
-          colors["grey-800"],
-          colors["grey-300"],
-          colors["grey-800"],
-          colors["grey-800"],
-          colors["grey-300"],
-          colors["grey-200"],
-          colors["grey-200"],
-          colors["grey-800"],
-          colors["grey-800"],
-          colors["grey-800"],
-          colors["grey-300"],
-        ),
-        active: generateColors(
-          colors["grey-800"],
-          colors["grey-800"],
-          colors["grey-300"],
-          colors["grey-800"],
-          colors["grey-800"],
-          colors["grey-300"],
-          colors["grey-200"],
-          colors["grey-200"],
-          colors["grey-800"],
-          colors["grey-800"],
-          colors["grey-800"],
-          colors["grey-300"],
-        )
-      },
+      colors: generateColors(
+        colors['grey-800'],
+        colors['grey-800'],
+        colors['grey-300'],
+        colors['grey-900'],
+        colors['grey-900'],
+        colors['grey-300'],
+        colors['grey-900'],
+        colors['grey-900'],
+        colors['grey-300'],
+        colors['grey-200'],
+        colors['grey-200'],
+        colors['grey-800']
+      ),
     },
     secondary: {
-      colors: {
-        default: generateColors(
-          colors.transparent,
-          colors["grey-300"],
-          colors["grey-300"],
-          colors["grey-300"],
-          colors["grey-300"],
-          colors["grey-800"],
-          colors["grey-300"],
-          colors["grey-300"],
-          colors["grey-800"],
-          colors.transparent,
-          colors["grey-300"],
-          colors["grey-300"],
-        ),
-        active: generateColors(
-          colors["grey-300"],
-          colors["grey-300"],
-          colors["grey-800"],
-          colors["grey-300"],
-          colors["grey-300"],
-          colors["grey-800"],
-          colors["grey-300"],
-          colors["grey-300"],
-          colors["grey-800"],
-          colors.transparent,
-          colors["grey-300"],
-          colors["grey-300"],
-        )
-      },
+      colors: generateColors(
+        colors.transparent,
+        colors['grey-300'],
+        colors['grey-300'],
+        colors['grey-300'],
+        colors['grey-300'],
+        colors['grey-800'],
+        colors['grey-400'],
+        colors['grey-400'],
+        colors['grey-800'],
+        colors['grey-300'],
+        colors['grey-300'],
+        colors['grey-800']
+      ),
       fontFamily: 'heading',
       fontWeight: 'heading',
       fontSize: 6,
@@ -148,11 +100,11 @@ const buttons = {
       fontSize: 32,
       height: 46,
       iconMargin: 12,
-      iconWidth: 25
-    }
+      iconWidth: 25,
+    },
   },
   icon: iconButtons,
-  dropdown: dropdownButtons
+  dropdown: dropdownButtons,
 }
 
 export default buttons

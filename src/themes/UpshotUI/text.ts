@@ -1,3 +1,5 @@
+import colors from './colors'
+
 export const fonts = {
   body: 'proxima-nova, sans-serif',
   heading: 'degular-display, sans-serif',
@@ -21,6 +23,12 @@ export const lineHeights = {
 }
 
 const text = {
+  default: {
+    fontFamily: 'body',
+    fontWeight: 'body',
+    fontSize: 3,
+    lineHeight: lineHeights.body,
+  },
   h0Primary: {
     fontFamily: 'body',
     fontWeight: 'bold',
@@ -38,6 +46,13 @@ const text = {
     fontWeight: 'bold',
     fontSize: 7,
     lineHeight: '3.25rem',
+  },
+  h1PrimaryWhite: {
+    fontFamily: 'body',
+    fontWeight: 'bold',
+    fontSize: 7,
+    lineHeight: '3.25rem',
+    color: colors.white,
   },
   h1Secondary: {
     fontFamily: 'heading',
@@ -86,6 +101,13 @@ const text = {
     fontWeight: 'bold',
     fontSize: 3,
     lineHeight: '1.375rem',
+  },
+  largeWhite: {
+    fontFamily: 'body',
+    fontWeight: 'bold',
+    fontSize: 3,
+    lineHeight: '1.375rem',
+    color: colors.white,
   },
   small: {
     fontFamily: 'body',

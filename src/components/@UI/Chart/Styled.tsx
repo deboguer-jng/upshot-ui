@@ -42,6 +42,7 @@ export const ChartNoSelectedTextArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  text-transform: uppercase;
 
   p,
   h1 {
@@ -65,6 +66,9 @@ export const ChartLoadingBoard = styled.div`
   height: 100%;
   border-radius: 0.5rem;
   background: ${({ theme }) => theme.colors['grey-900']};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export const NoDataBoard = styled.div`
@@ -78,6 +82,7 @@ export const NoDataBoard = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-transform: uppercase;
 
   p {
     color: ${({ theme }) => theme.colors.text};
@@ -106,6 +111,9 @@ export const FilterWrapper = styled.div`
 `
 
 export const FilterButton = styled.button<FilterButtonProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   color: ${({ theme, active }) =>
     active ? theme.colors.black : theme.colors.white};
@@ -131,6 +139,7 @@ export const CustomLegend = styled.button<CustomLegendProps>`
   border: none;
   background: none;
   outline: none;
+  text-transform: uppercase;
 
   div {
     width: 18px;

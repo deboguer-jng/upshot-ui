@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, forwardRef } from 'react'
 import {
   Dropdown,
   DropdownMenu,
@@ -23,21 +23,24 @@ export interface ButtonDropdownInterface {
   disabled: boolean
 }
 
-export default function ButtonDropdown({
-  options,
-  isMulti = false,
-  name,
-  value,
-  disabled,
-  onChange,
-  ...props
-}: ButtonDropdownInterface) {
+const ButtonDropdown = (
+  {
+    options,
+    isMulti = false,
+    name,
+    value,
+    disabled,
+    onChange,
+    ...props
+  }: ButtonDropdownInterface,
+  ref: React.RefObject<HTMLDivElement>
+) => {
   const [open, setOpen] = useState(false)
-  const ref = useRef<HTMLDivElement>()
+  const dropdownRef = useRef<HTMLDivElement>()
 
   useEffect(() => {
-    const handleClickOutside = (e: { target: HTMLElement }) => {
-      if (ref && !ref.current.contains(e.target)) {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (!dropdownRef.current.contains(e.target as Node)) {
         setOpen(false)
       }
     }
@@ -48,8 +51,8 @@ export default function ButtonDropdown({
   }, [])
 
   return (
-    <>
-      <DropdownWrapper ref={ref}>
+    <div {...{ ref, ...props }}>
+      <DropdownWrapper ref={dropdownRef}>
         <Dropdown
           disabled={disabled}
           open={open}
@@ -86,9 +89,9 @@ export default function ButtonDropdown({
                   onClick={() => onChange(option)}
                 >
                   {isMulti ? (
-                    <Checkbox checked={value.includes(option)} />
+                    <Checkbox readOnly checked={value.includes(option)} />
                   ) : (
-                    <Radio name={name} checked={option === value} />
+                    <Radio readOnly name={name} checked={option === value} />
                   )}
                   {option}
                 </DropdownMenuItem>
@@ -97,6 +100,8 @@ export default function ButtonDropdown({
           </DropdownMenu>
         )}
       </DropdownWrapper>
-    </>
+    </div>
   )
 }
+
+export default forwardRef(ButtonDropdown)

@@ -48,6 +48,7 @@ export const PaginationBase = styled.div`
     & a {
       user-select: none;
       padding: ${({ theme }) => `${theme.space[1]}px ${theme.space[2]}px`};
+      cursor: pointer;
 
       /* Chevron arrows */
       & svg {
