@@ -13,4 +13,7 @@ const Template: ComponentStory<typeof InputRoundedSearch> = (args) => (
 )
 
 export const Default = Template.bind({})
-Default.args = { placeholder: 'Search...', sx: { width: 300 } }
+Default.args = { sx: { width: 300 } }
+
+export const SearchButton = Template.bind({})
+SearchButton.args = { hasButton: true, sx: { width: 300 } }

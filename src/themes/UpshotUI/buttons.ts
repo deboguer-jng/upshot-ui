@@ -80,7 +80,7 @@ const buttons = {
         colors['grey-400'],
         colors['grey-400'],
         colors['grey-800'],
-        colors["grey-300"],
+        colors['grey-300'],
         colors['grey-300'],
         colors['grey-800']
       ),

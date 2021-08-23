@@ -8,7 +8,7 @@ const formInputs = {
     bg: 'grey-800',
     color: 'grey-500',
     padding: sizes[3] + 'px',
-    fontFamily: 'degular',
+    fontFamily: 'body',
     fontWeight: 'heading',
     fontSize: 4,
     '&::placeholder': {

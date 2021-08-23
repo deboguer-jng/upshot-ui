@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import colors from '../../../themes/UpshotUI/colors'
 import {
   Avatar as ThemeUIAvatar,
@@ -21,16 +21,15 @@ export interface AvatarProps extends Omit<ThemeUIAvatarProps, 'size'> {
 /**
  * Provides a circular avatar.
  */
-export default function Avatar({
-  color = 'transparent',
-  size = 'md',
-  ...props
-}: AvatarProps) {
-  return (
-    <ThemeUIAvatar
-      variant={`images.avatar.${size}`}
-      sx={{ borderColor: color }}
-      {...props}
-    ></ThemeUIAvatar>
-  )
-}
+const Avatar = (
+  { color: borderColor = 'transparent', size = 'md', ...props }: AvatarProps,
+  ref: React.RefObject<HTMLImageElement>
+) => (
+  <ThemeUIAvatar
+    variant={`images.avatar.${size}`}
+    sx={{ borderColor }}
+    {...{ ref, ...props }}
+  ></ThemeUIAvatar>
+)
+
+export default forwardRef(Avatar)

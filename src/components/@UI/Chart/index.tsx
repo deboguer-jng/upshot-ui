@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useTheme } from '@emotion/react'
-import Chart from 'react-apexcharts'
+import { default as ReactApexCharts } from 'react-apexcharts'
 import { Text } from 'theme-ui'
-import ApexCharts from 'apexcharts'
+import ApexCharts, { ApexOptions } from 'apexcharts'
 import {
   NoDataBoard,
   ChartWrapper,
@@ -14,7 +14,6 @@ import {
   ChartNoSelectedWrapper,
   ChartNoSelectedTextArea,
 } from './Styled'
-import './index.css'
 import Spinner from '../Spinner'
 
 export interface ChartProps {
@@ -22,33 +21,31 @@ export interface ChartProps {
   noData?: boolean
   error?: boolean
   noSelected?: boolean
-  data: Array<Array<Object>>
+  data?: ApexOptions['series']
 }
 
-export const ChartArea = ({
+export default function Chart({
   loading = false,
   noData = false,
   error = false,
   noSelected = false,
-  data,
-}: ChartProps) => {
+  data = [],
+}: ChartProps) {
   const theme = useTheme()
   const [filter, setFilter] = useState(0)
-  const [filterStatus, setFilterStatus] = useState([true, true])
+  const [filterStatus, setFilterStatus] = useState(data.map((_) => true))
 
-  const colors = [
-    theme.colors.primary.toString(),
-    theme.colors.secondary.toString(),
-  ]
+  const colors = [theme.rawColors.primary, theme.rawColors.secondary]
+  const filterLabels = ['1H', '1D', '1W', '1Y', 'ALL']
 
-  const options = {
-    ...theme.chart.options,
+  const options: ApexOptions = {
+    ...(theme.chart.options as ApexOptions),
     chart: {
       id: 'myChart',
       type: 'area',
     },
     colors,
-    markets: {
+    markers: {
       size: [4, 7],
       colors,
       strokeColors: colors,
@@ -56,17 +53,16 @@ export const ChartArea = ({
     tooltip: {
       enabled: true,
       shared: false,
-      custom: function ({ series, seriesIndex, dataPointIndex, w, ...props }) {
-        const x = w.globals.clientX
-        let offset
-
-        const width = document.getElementById('apexchartsmyChart').offsetWidth
-
-        if (x <= width / 2) {
-          offset = 'calc(-50% - 12px)'
-        } else {
-          offset = 'calc(50% + 9.5px)'
-        }
+      custom: function ({
+        series,
+        seriesIndex,
+        dataPointIndex,
+        w: {
+          globals: { clientX: x, svgWidth: width },
+        },
+      }) {
+        const offset =
+          x <= width / 2 ? 'calc(-50% - 12px)' : 'calc(50% + 9.5px)'
 
         return `
           <style>
@@ -110,16 +106,6 @@ export const ChartArea = ({
       },
     },
   }
-  const series = [
-    {
-      name: 'series1',
-      data: [31, 40, 28, 32, 51, 42, 109, 100],
-    },
-    {
-      name: 'series2',
-      data: [11, 32, 45, 32, 33, 34, 52, 41],
-    },
-  ]
 
   if (loading) {
     return (
@@ -139,8 +125,12 @@ export const ChartArea = ({
         <div>
           <NoDataBoard>
             <div>
-              <Text variant="largeWhite"> SORRY: </Text> <br />
-              <Text variant="h1PrimaryWhite"> ERROR LOADING DATA </Text>
+              <Text variant="largeWhite" sx={{ display: 'block' }}>
+                Sorry
+              </Text>
+              <Text variant="h1PrimaryWhite" sx={{ lineHeight: 'heading' }}>
+                Error loading data
+              </Text>
             </div>
           </NoDataBoard>
         </div>
@@ -154,8 +144,12 @@ export const ChartArea = ({
         <div>
           <NoDataBoard>
             <div>
-              <Text variant="largeWhite"> SORRY: </Text> <br />
-              <Text variant="h1PrimaryWhite"> NO DATA (YET) </Text>
+              <Text variant="largeWhite" sx={{ display: 'block' }}>
+                Sorry:
+              </Text>
+              <Text variant="h1PrimaryWhite" sx={{ lineHeight: 'heading' }}>
+                No data (yet)
+              </Text>
             </div>
           </NoDataBoard>
         </div>
@@ -168,20 +162,22 @@ export const ChartArea = ({
       <ChartWrapper>
         <div>
           <ChartNoSelectedWrapper>
-            <Chart
-              options={options}
+            <ReactApexCharts
               series={theme.chart.defaultSeries}
               type="area"
               height="100%"
               width="100%"
+              {...{ options }}
             />
             <ChartNoSelectedTextArea>
               <div>
-                <Text variant="largeWhite"> NOTHING SELECTED: </Text>
-                <br />
-                <Text variant="h1PrimaryWhite">
-                  SELECT A COLLECTION (OR MULITPLE) <br /> FROM THE CONTAINER
-                  BELOW.
+                <Text variant="largeWhite" sx={{ display: 'block' }}>
+                  Nothing selected.
+                </Text>
+                <Text variant="h1PrimaryWhite" sx={{ lineHeight: 'heading' }}>
+                  Select a collection (or multiple)
+                  <br />
+                  from the container below.
                 </Text>
               </div>
             </ChartNoSelectedTextArea>
@@ -191,61 +187,49 @@ export const ChartArea = ({
     )
   }
 
-  const toggle = (value: number) => {
-    ApexCharts.exec('myChart', 'toggleSeries', `series${value}`)
+  const toggle = (idx: number) => {
+    ApexCharts.exec('myChart', 'toggleSeries', `series${idx + 1}`)
+
     const newStatus = [...filterStatus]
-    newStatus[value - 1] = !newStatus[value - 1]
+    newStatus[idx] = !newStatus[idx]
     setFilterStatus(newStatus)
   }
 
   return (
-    <>
-      <ChartWrapper>
-        <div>
-          <Chart
-            options={options}
-            series={series}
-            type="area"
-            height="100%"
-            width="100%"
-          />
-          <FilterWrapper>
-            <FilterButton active={filter === 0} onClick={() => setFilter(0)}>
-              1H
+    <ChartWrapper>
+      <div>
+        <ReactApexCharts
+          series={data}
+          type="area"
+          height="100%"
+          width="100%"
+          {...{ options }}
+        />
+        <FilterWrapper>
+          {[...new Array(5)].map((_, i) => (
+            <FilterButton
+              key={i}
+              active={filter === i}
+              onClick={() => setFilter(i)}
+            >
+              {filterLabels[i]}
             </FilterButton>
-            <FilterButton active={filter === 1} onClick={() => setFilter(1)}>
-              1D
-            </FilterButton>
-            <FilterButton active={filter === 2} onClick={() => setFilter(2)}>
-              1W
-            </FilterButton>
-            <FilterButton active={filter === 3} onClick={() => setFilter(3)}>
-              1Y
-            </FilterButton>
-            <FilterButton active={filter === 4} onClick={() => setFilter(4)}>
-              ALL
-            </FilterButton>
-          </FilterWrapper>
-          <CustomLegendWrapper>
+          ))}
+        </FilterWrapper>
+        <CustomLegendWrapper>
+          {data.map((_, i) => (
             <CustomLegend
-              active={filterStatus[0]}
-              color={theme.colors.primary}
-              onClick={() => toggle(1)}
+              key={i}
+              active={filterStatus[i]}
+              color={colors[i]}
+              onClick={() => toggle(i)}
             >
               <div />
-              <span> SERIES 1 </span>
+              <Text>Series {i + 1}</Text>
             </CustomLegend>
-            <CustomLegend
-              active={filterStatus[1]}
-              color={theme.colors.secondary}
-              onClick={() => toggle(2)}
-            >
-              <div />
-              <span> SERIES 2 </span>
-            </CustomLegend>
-          </CustomLegendWrapper>
-        </div>
-      </ChartWrapper>
-    </>
+          ))}
+        </CustomLegendWrapper>
+      </div>
+    </ChartWrapper>
   )
 }
