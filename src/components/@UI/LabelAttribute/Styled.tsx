@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import colors from '../../../themes/UpshotUI/colors'
 import { fonts, fontWeights, fontSizes } from '../../../themes/UpshotUI/text'
 import sizes from '../../../themes/UpshotUI/sizes'
-import { Button } from '../Button'
+import Button from '../Button'
 
 interface AttributeLabelBaseProps {
   $transparent: boolean
@@ -42,8 +42,13 @@ export const CloseButton = styled(Button)`
   float: right;
   padding-right: ${ sizes[3] + 'px' };
   display: inline-block;
-  color: ${colors.blue};
   transform: rotateY(0deg) rotate(45deg);
   font-size: ${ fontSizes[6] };
-  margin-top: ${ '-' + sizes[2] + 'px'};
-`
+  margin-top: -5px;
+
+  &:not(:disabled):hover {
+    span {
+      text-decoration: none;
+    }
+  }
+  `

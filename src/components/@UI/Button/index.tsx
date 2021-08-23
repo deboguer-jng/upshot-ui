@@ -11,7 +11,7 @@ export interface ButtonProps {
    */
   size?: 'md' | 'lg'
 
-  icon: ReactNode
+  icon?: ReactNode
 
   width?: number
 
