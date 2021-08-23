@@ -1,22 +1,28 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { ChartArea } from './'
-import UpshotThemeProvider from '../../../themes'
+import Chart from './'
 
 export default {
   title: '@UI/Chart',
-  component: ChartArea,
-} as ComponentMeta<typeof ChartArea>
+  component: Chart,
+} as ComponentMeta<typeof Chart>
 
-const Template: ComponentStory<typeof ChartArea> = (args) => (
-  <UpshotThemeProvider>
-    <ChartArea {...args} />
-  </UpshotThemeProvider>
-)
+const Template: ComponentStory<typeof Chart> = (args) => <Chart {...args} />
 
 export const Main = Template.bind({})
-Main.args = {}
+Main.args = {
+  data: [
+    {
+      name: 'series1',
+      data: [31, 40, 28, 32, 51, 42, 109, 100],
+    },
+    {
+      name: 'series2',
+      data: [11, 32, 45, 32, 33, 34, 52, 41],
+    },
+  ],
+}
 
 export const ChartLoading = Template.bind({})
 ChartLoading.args = {

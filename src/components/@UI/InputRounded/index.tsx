@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { Input, InputProps } from 'theme-ui'
 
 export interface InputRoundedProps extends InputProps {
@@ -11,8 +11,13 @@ export interface InputRoundedProps extends InputProps {
 /**
  * Provides a rounded input.
  */
-export default function InputRounded({ dark, ...props }: InputRoundedProps) {
+export const InputRounded = (
+  { dark = false, ...props }: InputRoundedProps,
+  ref: React.RefObject<HTMLInputElement>
+) => {
   const variant = `forms.inputs.rounded${dark ? 'Dark' : ''}`
 
-  return <Input {...{ variant, ...props }} />
+  return <Input {...{ variant, ref, ...props }} />
 }
+
+export default forwardRef(InputRounded)
