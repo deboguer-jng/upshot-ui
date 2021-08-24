@@ -2,11 +2,11 @@ import React, { forwardRef } from 'react'
 import { Box, BoxProps } from 'theme-ui'
 
 /**
- * Provides a cell for a ListItem.
+ * Provides a cell for a TableItem.
  */
-const ListCell = (
+const TableCell = (
   props: BoxProps,
   ref: React.RefObject<HTMLTableCellElement>
 ) => <Box as="td" {...{ ref, ...props }} />
 
-export default forwardRef(ListCell)
+export default forwardRef(TableCell)

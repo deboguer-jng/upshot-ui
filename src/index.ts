@@ -35,11 +35,11 @@ export { default as Box } from './components/Layout/Box'
 export { default as Container } from './components/Layout/Container'
 export { default as Flex } from './components/Layout/Flex'
 export { default as Grid } from './components/Layout/Grid'
-export { default as List } from './components/Layout/List'
-export { default as ListBody } from './components/Layout/ListBody'
-export { default as ListCell } from './components/Layout/ListCell'
-export { default as ListHead } from './components/Layout/ListHead'
-export { default as ListItem } from './components/Layout/ListItem'
+export { default as Table } from './components/Layout/Table'
+export { default as TableBody } from './components/Layout/TableBody'
+export { default as TableCell } from './components/Layout/TableCell'
+export { default as TableHead } from './components/Layout/TableHead'
+export { default as TableItem } from './components/Layout/TableItem'
 
 /**
  * Theme

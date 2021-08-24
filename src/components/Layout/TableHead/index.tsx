@@ -2,11 +2,11 @@ import React, { forwardRef } from 'react'
 import { Box, BoxProps } from 'theme-ui'
 
 /**
- * Provides a body for a List.
+ * Provides a heading for a Table.
  */
-const ListBody = (
+const TableHead = (
   props: BoxProps,
   ref: React.RefObject<HTMLTableSectionElement>
-) => <Box as="tbody" {...{ ref, ...props }} />
+) => <Box as="thead" {...{ ref, ...props }} />
 
-export default forwardRef(ListBody)
+export default forwardRef(TableHead)

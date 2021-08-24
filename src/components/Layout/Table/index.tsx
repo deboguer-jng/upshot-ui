@@ -1,13 +1,13 @@
 import React, { forwardRef } from 'react'
 import { Box, BoxProps } from 'theme-ui'
 
-export interface ListProps extends BoxProps {}
+export interface TableProps extends BoxProps {}
 
 /**
- * Provides a full-width table for rendering ListItems.
+ * Provides a full-width table for rendering TableItems.
  */
-const List = (
-  { sx, ...props }: ListProps,
+const Table = (
+  { sx, ...props }: TableProps,
   ref: React.RefObject<HTMLTableElement>
 ) => (
   <Box
@@ -17,4 +17,4 @@ const List = (
   />
 )
 
-export default forwardRef(List)
+export default forwardRef(Table)
