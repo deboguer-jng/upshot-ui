@@ -4,7 +4,7 @@ import {
   RadioProps as ThemeUIRadioProps,
 } from 'theme-ui'
 
-interface RadioProps extends ThemeUIRadioProps {
+export interface RadioProps extends ThemeUIRadioProps {
   /**
    * Use the radio.error variant styling.
    */
