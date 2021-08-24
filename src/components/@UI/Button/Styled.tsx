@@ -19,15 +19,14 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
     ${({ theme, $type }) => theme.buttons.variants[$type].colors.border};
   font-size: ${({ theme, $size }) => theme.buttons.property[$size].fontSize}px;
   height: ${({ theme, $size }) => theme.buttons.property[$size].height}px;
-  border-radius: ${({ theme, $size }) =>
-    theme.buttons.property[$size].height / 2}px;
+  border-radius: ${({ theme }) => theme.radii.pill};
   width: ${({ width }) => width}px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 11px;
-  padding-right: 11px;
+  padding: 0 11px;
+  transition: ${({ theme }) => theme.transitions.default};
 
   & svg {
     margin-right: ${({ theme, $size, minimized }) =>
@@ -96,7 +95,7 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
 `
 
 export const PlainButton = styled.button<PlainButtonProps>`
-  font-size: 18px;
+  font-size: ${({ theme, $size }) => theme.buttons.property[$size].fontSize}px;
   border: none;
   background: transparent;
   outline: none;
@@ -118,7 +117,8 @@ export const PlainButton = styled.button<PlainButtonProps>`
   }
 
   & svg {
-    margin-left: 0.25rem;
+    margin-left: ${({ theme, $size }) =>
+      theme.buttons.property[$size].iconMargin}px;
     width: ${({ theme, $size }) => theme.buttons.property[$size].iconWidth}px;
 
     & * {
