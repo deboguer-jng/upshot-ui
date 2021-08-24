@@ -1,8 +1,7 @@
 import styled from '@emotion/styled'
-import CollectionButtons from '../../../themes/UpshotUI/buttons.collections'
-
+import colors from '../../../themes/UpshotUI/colors'
 interface CollectionButtonWrapperProps {
-  highlight?: keyof typeof CollectionButtons.highlight
+  $underglow?: keyof typeof colors
 }
 
 export const CollectionButtonWrapper = styled.div<CollectionButtonWrapperProps>`
@@ -14,10 +13,8 @@ export const CollectionButtonWrapper = styled.div<CollectionButtonWrapperProps>`
   height: ${({ theme }) => theme.buttons.collection.height}px;
   border-radius: ${({ theme }) => theme.buttons.collection.borderRadius}px;
   padding: 4px;
-  box-shadow: ${({ theme, highlight }) =>
-    highlight
-      ? `0px 4px 4px ${theme.buttons.collection.highlight[highlight]}`
-      : ''};
+  ${({ theme, $underglow }) =>
+    !!$underglow && `box-shadow: ${theme.shadows.underglow($underglow)};`}
 `
 
 export const CollectionButtonIcon = styled.div`
