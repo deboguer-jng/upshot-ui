@@ -7,6 +7,7 @@ import {
   CloseButton
 } from './Styled'
 import Icon from '../Icon'
+import { Text } from 'theme-ui'
 
 export interface AttributeLabelProps {
   /**
@@ -49,7 +50,7 @@ export default function AttributeLabel({
         variant === 'percentage' &&
           <RightAlignBlock>
             <Division>|</Division>
-            <LabelText>{percentage}%</LabelText>
+            <Text variant='body'>{percentage}%</Text>
           </RightAlignBlock>
       }
       {

@@ -12,7 +12,7 @@ export const AttributeLabelBase = styled.div<AttributeLabelBaseProps>`
   border-radius: ${({ theme }) => theme.radii.pill};
   color: ${colors.blue};
   border-color: ${colors.blue};
-  border: 1px solid;
+  border: 2px solid;
   border-width: 2;
   height: 32px;
   width: 282px;
@@ -31,6 +31,11 @@ export const RightAlignBlock = styled.div`
 
 export const LabelText = styled.div`
   padding-left: ${ sizes[3] + 'px' };
+  text-overflow: ellipsis;
+  width: 74%;
+  overflow: hidden;
+  height: 20px;
+  white-space: nowrap;
   display: inline-block;
 `
 
