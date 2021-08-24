@@ -18,6 +18,7 @@ export { default as Radio } from './components/@UI/Radio'
 export { default as Spinner } from './components/@UI/Spinner'
 export { default as Switch } from './components/@UI/Switch'
 export { default as Text } from './components/@UI/Text'
+export { default as MiniNftCard } from './components/@UI/MiniNftCard'
 
 /**
  * Components: App

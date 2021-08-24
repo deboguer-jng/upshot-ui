@@ -11,6 +11,7 @@ import spinners from './spinners'
 import styles from './styles'
 import scroll from './scroll'
 import sizes, { breakpoints, radii } from './sizes'
+import miniNftCard from './miniNftCard'
 import text, { fonts, fontSizes, fontWeights, lineHeights } from './text'
 import { useThemeUI, ThemeUIContextValue } from 'theme-ui'
 
@@ -37,6 +38,7 @@ const theme = {
   gradients,
   images,
   lineHeights,
+  miniNftCard,
   radii,
   rawColors: colors,
   scroll,
