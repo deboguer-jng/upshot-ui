@@ -1,13 +1,12 @@
 {
   "name": "@upshot-tech/upshot-ui",
   "description": "The official design system used in Upshot.",
-  "version": "0.1.0",
-  "main": "./dist/index.js",
+  "version": "0.1.4",
   "scripts": {
     "start": "start-storybook -p 6006 -s public",
     "lint": "prettier --write . && eslint . --fix",
     "build": "rollup -c",
-    "prepublishOnly": "yarn build",
+    "pub": "yarn build && cd ./dist && npm publish",
     "build-static": "yarn build-storybook -o ./static -s public"
   },
   "dependencies": {
