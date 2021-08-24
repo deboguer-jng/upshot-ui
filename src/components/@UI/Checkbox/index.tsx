@@ -4,7 +4,7 @@ import {
   CheckboxProps as ThemeUICheckboxProps,
 } from 'theme-ui'
 
-interface CheckboxProps extends ThemeUICheckboxProps {
+export interface CheckboxProps extends ThemeUICheckboxProps {
   /**
    * Use the checkbox.error variant styling.
    */
