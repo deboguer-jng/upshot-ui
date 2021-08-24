@@ -27,7 +27,7 @@ const Avatar = (
 ) => (
   <ThemeUIAvatar
     variant={`images.avatar.${size}`}
-    sx={{ borderColor }}
+    sx={{ borderColor, flexShrink: 0 }}
     {...{ ref, ...props }}
   ></ThemeUIAvatar>
 )

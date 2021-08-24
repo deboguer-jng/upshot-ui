@@ -1,6 +1,6 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Label, Paragraph } from 'theme-ui'
+import { Label, Flex } from 'theme-ui'
 
 import Radio from './'
 
@@ -10,14 +10,17 @@ export default {
 } as ComponentMeta<typeof Radio>
 
 const Template: ComponentStory<typeof Radio> = (args) => (
-  <div>
-    <Label>
+  <Flex sx={{ gap: 1, flexDirection: 'column' }}>
+    <Label sx={{ alignItems: 'center' }}>
       <Radio name="testradio" defaultChecked={true} {...args} />
+      Option 1
     </Label>
-    <Label>
+
+    <Label sx={{ alignItems: 'center' }}>
       <Radio name="testradio" {...args} />
+      Option 2
     </Label>
-  </div>
+  </Flex>
 )
 
 export const Default = Template.bind({})

@@ -20,13 +20,13 @@ const avatar = {
   },
   sm: {
     variant: 'images.avatar.default',
-    size: getSize(8) + 'px',
+    size: getSize(6) + 'px',
     borderWidth: sizes[1] / 2 + 'px',
     fontSize: 3,
   },
   md: {
     variant: 'images.avatar.default',
-    size: getSize(16) + 'px',
+    size: getSize(12) + 'px',
     borderWidth: sizes[1] / 2 + 'px',
     fontSize: 5,
   },

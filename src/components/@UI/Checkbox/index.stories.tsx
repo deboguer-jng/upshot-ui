@@ -10,8 +10,9 @@ export default {
 } as ComponentMeta<typeof Checkbox>
 
 const Template: ComponentStory<typeof Checkbox> = (args) => (
-  <Label>
+  <Label sx={{ alignItems: 'center' }}>
     <Checkbox {...args} />
+    Label
   </Label>
 )
 

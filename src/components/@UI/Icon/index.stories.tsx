@@ -124,6 +124,9 @@ Ellipsis.args = { icon: 'ellipsis', color: 'primary', size: 32 }
 export const Enter = Template.bind({})
 Enter.args = { icon: 'enter', color: 'primary', size: 32 }
 
+export const ErrorIcon = Template.bind({})
+ErrorIcon.args = { icon: 'error', color: 'primary' }
+
 export const EthBlock = Template.bind({})
 EthBlock.args = { icon: 'ethBlock', color: 'primary', size: 32 }
 
