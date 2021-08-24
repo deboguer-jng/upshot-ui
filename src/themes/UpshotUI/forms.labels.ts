@@ -14,8 +14,8 @@ const basicLabelBase = {
   borderColor: 'grey-300',
   borderWidth: 1,
   borderRadius: 'xs',
-  paddingLeft: '8px',
-  paddingRight: '9px',
+  paddingLeft: '6px',
+  paddingRight: '6px',
 }
 
 const currencySymbolBase = {
