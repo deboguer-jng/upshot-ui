@@ -2,7 +2,7 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import Table from './'
 import TableBody from '../TableBody'
-import TableItem from '../TableItem'
+import TableRow from '../TableRow'
 import TableCell from '../TableCell'
 
 export default {
@@ -24,11 +24,11 @@ Default.args = {
   bg: 'background',
   children: (
     <TableBody>
-      <TableItem>
+      <TableRow>
         {[...new Array(3)].map((_, i) => (
           <TableCell key={i}>Item {i + 1}</TableCell>
         ))}
-      </TableItem>
+      </TableRow>
     </TableBody>
   ),
 }

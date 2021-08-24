@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import { Box, BoxProps } from 'theme-ui'
 
 /**
- * Provides a cell for a TableItem.
+ * Provides a cell for a TableRow.
  */
 const TableCell = (
   props: BoxProps,

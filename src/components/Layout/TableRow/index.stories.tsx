@@ -2,24 +2,24 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import Table from '../Table'
 import TableBody from '../TableBody'
-import TableItem from './'
+import TableRow from './'
 import TableCell from '../TableCell'
 
 export default {
-  title: 'Layout/TableItem',
-  component: TableItem,
+  title: 'Layout/TableRow',
+  component: TableRow,
   argTypes: {
     children: {
       description: 'Slot for a TableCell.',
       control: { disable: true },
     },
   },
-} as ComponentMeta<typeof TableItem>
+} as ComponentMeta<typeof TableRow>
 
-const Template: ComponentStory<typeof TableItem> = (args) => (
+const Template: ComponentStory<typeof TableRow> = (args) => (
   <Table sx={{ p: 4, bg: 'background' }}>
     <TableBody>
-      <TableItem {...args} />
+      <TableRow {...args} />
     </TableBody>
   </Table>
 )

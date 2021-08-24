@@ -39,7 +39,7 @@ export { default as Table } from './components/Layout/Table'
 export { default as TableBody } from './components/Layout/TableBody'
 export { default as TableCell } from './components/Layout/TableCell'
 export { default as TableHead } from './components/Layout/TableHead'
-export { default as TableItem } from './components/Layout/TableItem'
+export { default as TableRow } from './components/Layout/TableRow'
 
 /**
  * Theme

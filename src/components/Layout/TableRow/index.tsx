@@ -4,9 +4,9 @@ import { Box, BoxProps } from 'theme-ui'
 /**
  * Provides a row for a TableHead or TableBody.
  */
-const TableItem = (
+const TableRow = (
   props: BoxProps,
   ref: React.RefObject<HTMLTableRowElement>
 ) => <Box as="tr" {...{ ref, ...props }} />
 
-export default forwardRef(TableItem)
+export default forwardRef(TableRow)

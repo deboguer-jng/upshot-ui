@@ -2,7 +2,7 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import TableBody from './'
 import Table from '../Table'
-import TableItem from '../TableItem'
+import TableRow from '../TableRow'
 import TableCell from '../TableCell'
 
 export default {
@@ -10,7 +10,7 @@ export default {
   component: TableBody,
   argTypes: {
     children: {
-      description: 'Slot for a TableItem.',
+      description: 'Slot for a TableRow.',
       control: { disable: true },
     },
   },
@@ -25,10 +25,10 @@ const Template: ComponentStory<typeof TableBody> = (args) => (
 export const Default = Template.bind({})
 Default.args = {
   children: (
-    <TableItem>
+    <TableRow>
       {[...new Array(3)].map((_, i) => (
         <TableCell key={i}>Item {i + 1}</TableCell>
       ))}
-    </TableItem>
+    </TableRow>
   ),
 }

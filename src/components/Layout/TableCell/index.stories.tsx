@@ -2,7 +2,7 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import Table from '../Table'
 import TableBody from '../TableBody'
-import TableItem from '../TableItem'
+import TableRow from '../TableRow'
 import TableCell from './'
 
 export default {
@@ -19,9 +19,9 @@ export default {
 const Template: ComponentStory<typeof TableCell> = (args) => (
   <Table sx={{ p: 4, bg: 'background' }}>
     <TableBody>
-      <TableItem>
+      <TableRow>
         <TableCell {...args} />
-      </TableItem>
+      </TableRow>
     </TableBody>
   </Table>
 )

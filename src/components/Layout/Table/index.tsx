@@ -4,7 +4,7 @@ import { Box, BoxProps } from 'theme-ui'
 export interface TableProps extends BoxProps {}
 
 /**
- * Provides a full-width table for rendering TableItems.
+ * Provides a full-width table for rendering TableRows.
  */
 const Table = (
   { sx, ...props }: TableProps,
