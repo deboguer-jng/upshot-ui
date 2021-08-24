@@ -1,4 +1,4 @@
-import { UpshotThemeProvider } from '../src'
+import { UpshotThemeProvider, theme } from '../src'
 import { ThemeProvider } from 'theme-ui'
 import { themes } from '@storybook/theming'
 
@@ -10,6 +10,12 @@ const storybookTheme = {
   styles: {
     root: {
       body: {
+        ...theme.styles.root.body,
+        /**
+         * Replace background color with native storybook
+         * palette to visualize components which fill with
+         * theme.colors.background.
+         */
         bg: null,
       },
     },

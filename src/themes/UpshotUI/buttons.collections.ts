@@ -1,4 +1,4 @@
-import colors from "./colors";
+import colors from './colors'
 
 const collectionButtons = {
   highlight: {
@@ -7,18 +7,17 @@ const collectionButtons = {
     red: colors.red,
     green: colors.green,
     yellow: colors.yellow,
-    grey: colors["grey-400"]
+    grey: colors['grey-400'],
   },
   height: 46,
   iconHeight: 38,
   borderRadius: 30,
   textSize: 16,
   subTextSize: 12,
-  color: colors["grey-300"],
+  color: colors['grey-300'],
   background: colors.black,
-  iconBackground: colors["grey-900"],
+  iconBackground: colors['grey-900'],
   gap: 16,
-
 }
 
 export default collectionButtons
