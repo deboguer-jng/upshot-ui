@@ -21,7 +21,10 @@ export interface ChartProps {
   noData?: boolean
   error?: boolean
   noSelected?: boolean
-  data?: ApexOptions['series']
+  data?: {
+    name: string
+    data: number[]
+  }[]
 }
 
 export default function Chart({
@@ -45,8 +48,18 @@ export default function Chart({
       type: 'area',
     },
     colors,
+    fill: {
+      type: 'gradient',
+      gradient: {
+        gradientToColors: [
+          ...new Array(data.length || theme.chart.defaultSeries.length),
+        ].map((_) => 'transparent'),
+        opacityFrom: 0.9,
+        opacityTo: 0.6,
+        stops: [0, 90, 100],
+      },
+    },
     markers: {
-      size: [4, 7],
       colors,
       strokeColors: colors,
     },
@@ -73,6 +86,12 @@ export default function Chart({
               transform: translateX(${offset}) translateY(-10px);
               overflow: visible;
             }
+            .apexcharts-xaxistooltip, .apexcharts-yaxistooltip {
+              background: black;
+              color: ${theme.rawColors.text};
+              border-radius: ${theme.radii.pill};
+              font-size: ${theme.fontSizes[0]};
+            }
           </style>
           <div style="
             position: relative;
@@ -80,7 +99,7 @@ export default function Chart({
             border-radius: 1rem;
             padding: 0.1rem 1rem;
             overflow: visible;
-            font-family: Arial;
+            font-family: ${theme.fonts.body};
             color: ${colors[seriesIndex]};
             border: 1px solid ${colors[seriesIndex]};
           " id="apexcharts-custom-tooltip"
@@ -187,8 +206,8 @@ export default function Chart({
     )
   }
 
-  const toggle = (idx: number) => {
-    ApexCharts.exec('myChart', 'toggleSeries', `series${idx + 1}`)
+  const toggle = (idx: number, seriesName: string) => {
+    ApexCharts.exec('myChart', 'toggleSeries', seriesName)
 
     const newStatus = [...filterStatus]
     newStatus[idx] = !newStatus[idx]
@@ -217,15 +236,15 @@ export default function Chart({
           ))}
         </FilterWrapper>
         <CustomLegendWrapper>
-          {data.map((_, i) => (
+          {[...new Array(data.length)].map((_, i) => (
             <CustomLegend
               key={i}
               active={filterStatus[i]}
               color={colors[i]}
-              onClick={() => toggle(i)}
+              onClick={() => toggle(i, data[i].name)}
             >
               <div />
-              <Text>Series {i + 1}</Text>
+              <Text>{data[i].name}</Text>
             </CustomLegend>
           ))}
         </CustomLegendWrapper>
