@@ -12,8 +12,10 @@ const basicLabelBase = {
   ...labelBase,
   border: 'solid',
   borderColor: 'grey-300',
-  borderWidth: 2,
+  borderWidth: 1,
   borderRadius: 'xs',
+  paddingLeft: '8px',
+  paddingRight: '9px',
 }
 
 const currencySymbolBase = {

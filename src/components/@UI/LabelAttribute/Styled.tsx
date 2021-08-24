@@ -35,13 +35,13 @@ export const LabelText = styled.div`
 `
 
 export const Division = styled.div`
-  padding-right: ${ sizes[3] + 'px' };
+  padding-right: ${ sizes[5] + 'px' };
   display: inline-block;
 `
 export const CloseButton = styled(Button)`
   float: right;
   padding-right: ${ sizes[3] + 'px' };
-  padding-bottom: 10px;
+  padding-bottom: 9px;
 
   &:not(:disabled):hover {
     span {
