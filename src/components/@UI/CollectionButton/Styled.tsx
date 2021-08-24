@@ -6,7 +6,9 @@ interface CollectionButtonWrapperProps {
 }
 
 export const CollectionButtonWrapper = styled.div<CollectionButtonWrapperProps>`
-  display: flex;
+  display: grid;
+  grid-template-columns: ${({ theme }) => theme.buttons.collection.iconHeight}px auto;
+  gap: ${({ theme }) => theme.buttons.collection.gap}px;
   align-items: center;
   background-color: ${({ theme }) => theme.buttons.collection.background};
   height: ${({ theme }) => theme.buttons.collection.height}px;
@@ -25,7 +27,6 @@ export const CollectionButtonIcon = styled.div`
   height: ${({ theme }) => theme.buttons.collection.iconHeight}px;
   width: ${({ theme }) => theme.buttons.collection.iconHeight}px;
   border-radius: ${({ theme }) => theme.buttons.collection.iconHeight / 2}px;
-  margin-right: ${({ theme }) => theme.buttons.collection.gap}px;
   background-color: ${({ theme }) => theme.colors['grey-900']};
 
   svg {
@@ -41,6 +42,7 @@ export const CollectionButtonIcon = styled.div`
 export const CollectionButtonTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 `
 
 export const CollectionButtonText = styled.span`
@@ -50,6 +52,9 @@ export const CollectionButtonText = styled.span`
   font-weight: 600;
   font-style: normal;
   text-transform: uppercase;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `
 
 export const CollectionButtonSubText = styled.span`
