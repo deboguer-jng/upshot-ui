@@ -1,4 +1,5 @@
 import iconButtons from './buttons.icons'
+import collectionButtons from './buttons.collections'
 import colors from './colors'
 import dropdownButtons from './buttons.dropdown'
 
@@ -104,6 +105,7 @@ const buttons = {
     },
   },
   icon: iconButtons,
+  collection: collectionButtons,
   dropdown: dropdownButtons,
 }
 

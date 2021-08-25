@@ -36,6 +36,7 @@ export const PaginationBase = styled.div`
 
     &.selected {
       background: ${({ theme }) => theme.colors.primary};
+      color: ${({ theme }) => theme.colors.black};
     }
 
     /* Unselected interactive buttons */

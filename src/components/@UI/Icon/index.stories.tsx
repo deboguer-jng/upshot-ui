@@ -124,6 +124,9 @@ Ellipsis.args = { icon: 'ellipsis', color: 'primary', size: 32 }
 export const Enter = Template.bind({})
 Enter.args = { icon: 'enter', color: 'primary', size: 32 }
 
+export const ErrorIcon = Template.bind({})
+ErrorIcon.args = { icon: 'error', color: 'primary' }
+
 export const EthBlock = Template.bind({})
 EthBlock.args = { icon: 'ethBlock', color: 'primary', size: 32 }
 
@@ -335,6 +338,9 @@ VerificationStatusPaused.args = {
 
 export const Wallet = Template.bind({})
 Wallet.args = { icon: 'wallet', color: 'primary', size: 32 }
+
+export const X = Template.bind({})
+X.args = { icon: 'x', color: 'primary', size: 32 }
 
 export const YoutubeBlock = Template.bind({})
 YoutubeBlock.args = { icon: 'youtubeBlock', color: 'primary', size: 32 }
