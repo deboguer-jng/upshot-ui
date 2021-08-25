@@ -13,7 +13,7 @@ export interface AttributeLabelProps {
   /**
    * The text to be displayed on the label.
    */
-  text?: string
+  children?: string
   /**
    * The percentage to display (when relevant).
    */
@@ -35,7 +35,7 @@ export interface AttributeLabelProps {
 }
 
 export default function AttributeLabel({
-  text,
+  children,
   variant = 'regular',
   transparent = true,
   percentage,
@@ -44,7 +44,7 @@ export default function AttributeLabel({
   return (
     <AttributeLabelBase $transparent={transparent}>
       <LabelText>
-        {text}
+        {children}
       </LabelText>
       {
         variant === 'percentage' &&

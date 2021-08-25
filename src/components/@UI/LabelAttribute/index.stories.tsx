@@ -8,22 +8,21 @@ export default {
   component: AttributeLabel,
 }
 
-const Template: ComponentStory<typeof AttributeLabel> = (args) => <AttributeLabel {...args} />
+const Template: ComponentStory<typeof AttributeLabel> = (args) => <AttributeLabel {...args}>3D Glasses</AttributeLabel>
 
 export const AttributeLabelRegularTransparent = Template.bind({})
-AttributeLabelRegularTransparent.args = { text: '3D Glasses' }
 
 export const AttributeLabelRegularBlue = Template.bind({})
-AttributeLabelRegularBlue.args = { text: '3D Glasses', transparent: false }
+AttributeLabelRegularBlue.args = { transparent: false }
 
 export const AttributeLabelPercentageTransparent = Template.bind({})
-AttributeLabelPercentageTransparent.args = { text: '3D Glasses', percentage: 69, variant: 'percentage' }
+AttributeLabelPercentageTransparent.args = { percentage: 69, variant: 'percentage' }
 
 export const AttributeLabelPercentageBlue = Template.bind({})
-AttributeLabelPercentageBlue.args = { text: '3D Glasses', percentage: 69, variant: 'percentage', transparent: false }
+AttributeLabelPercentageBlue.args = { percentage: 69, variant: 'percentage', transparent: false }
 
 export const AttributeLabelRemoveableTransparent = Template.bind({})
-AttributeLabelRemoveableTransparent.args = { text: '3D Glasses', variant: 'removeable' }
+AttributeLabelRemoveableTransparent.args = { variant: 'removeable' }
 
 export const AttributeLabelRemoveableBlue = Template.bind({})
-AttributeLabelRemoveableBlue.args = { text: '3D Glasses', variant: 'removeable', transparent: false }
+AttributeLabelRemoveableBlue.args = { variant: 'removeable', transparent: false }
