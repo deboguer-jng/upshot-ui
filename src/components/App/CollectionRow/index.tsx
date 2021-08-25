@@ -22,9 +22,12 @@ const CollectionRow = (
 ) => {
   return (
     <CollectionRowBase {...{ ref, ...props }}>
+      {/* Each row has a required avatar image circle. */}
       <TableCell>
         <Avatar {...{ src }} />
       </TableCell>
+
+      {/* Titles expand to fill all remaining space. */}
       <TableCell>
         <Text
           variant="large"
@@ -37,7 +40,9 @@ const CollectionRow = (
           {title}
         </Text>
       </TableCell>
-      <TableCell>{children}</TableCell>
+
+      {/* Additional columns (React.Fragment) */}
+      {children}
     </CollectionRowBase>
   )
 }

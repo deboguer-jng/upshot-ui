@@ -7,7 +7,8 @@ export interface TableCellProps extends Omit<BoxProps, 'ref'> {}
  * Provides a cell for a TableRow.
  */
 const TableCell = (
-  props: BoxProps & React.HTMLAttributes<HTMLTableCellElement>,
+  props: BoxProps &
+    React.HTMLAttributes<HTMLTableCellElement> & { colSpan?: number },
   ref: React.RefObject<HTMLTableCellElement>
 ) => <Box as="td" {...{ ref, ...props }} />
 

@@ -30,7 +30,7 @@ HighlightBlue.args = {
   text: 'name',
   subText: 'eth value',
   icon: <Icon icon="checkmark" />,
-  highlight: 'blue',
+  underglow: 'primary',
 }
 
 export const HighlightPink = Template.bind({})
@@ -38,7 +38,7 @@ HighlightPink.args = {
   text: 'name',
   subText: 'eth value',
   icon: <Icon icon="checkmark" />,
-  highlight: 'pink',
+  underglow: 'secondary',
 }
 
 export const HighlightRed = Template.bind({})
@@ -46,7 +46,7 @@ HighlightRed.args = {
   text: 'name',
   subText: 'eth value',
   icon: <Icon icon="checkmark" />,
-  highlight: 'red',
+  underglow: 'red',
 }
 
 export const HighlightYellow = Template.bind({})
@@ -54,7 +54,7 @@ HighlightYellow.args = {
   text: 'name',
   subText: 'eth value',
   icon: <Icon icon="checkmark" />,
-  highlight: 'yellow',
+  underglow: 'yellow',
 }
 
 export const HighlightGreen = Template.bind({})
@@ -62,7 +62,7 @@ HighlightGreen.args = {
   text: 'name',
   subText: 'eth value',
   icon: <Icon icon="checkmark" />,
-  highlight: 'green',
+  underglow: 'green',
 }
 
 export const HighlightGrey = Template.bind({})
@@ -70,5 +70,5 @@ HighlightGrey.args = {
   text: 'name',
   subText: 'eth value',
   icon: <Icon icon="checkmark" />,
-  highlight: 'grey',
+  underglow: 'grey-400',
 }

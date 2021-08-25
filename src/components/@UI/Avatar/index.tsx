@@ -22,7 +22,12 @@ export interface AvatarProps extends Omit<ThemeUIAvatarProps, 'size'> {
  * Provides a circular avatar.
  */
 const Avatar = (
-  { color: borderColor = 'transparent', size = 'md', ...props }: AvatarProps,
+  {
+    color: borderColor = 'transparent',
+    size = 'md',
+    sx,
+    ...props
+  }: AvatarProps,
   ref: React.RefObject<HTMLImageElement>
 ) => {
   const { theme } = useTheme()
@@ -32,10 +37,13 @@ const Avatar = (
       variant={`images.avatar.${size}`}
       size={theme.images.avatar[size].size}
       sx={{
-        borderColor,
-        /* Retain fixed size. */
-        minWidth: theme.images.avatar[size].size,
-        flexShrink: 0,
+        ...{
+          borderColor,
+          /* Retain fixed size. */
+          minWidth: theme.images.avatar[size].size,
+          flexShrink: 0,
+        },
+        ...(sx ?? {}),
       }}
       {...{ ref, ...props }}
     />

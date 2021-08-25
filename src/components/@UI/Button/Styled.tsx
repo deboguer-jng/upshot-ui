@@ -94,6 +94,7 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   }
 `
 
+// fixme: 'plain' should be a theme variant
 export const PlainButton = styled.button<PlainButtonProps>`
   font-size: ${({ theme, $size }) => theme.buttons.property[$size].fontSize}px;
   border: none;

@@ -1,14 +1,6 @@
 import colors from './colors'
 
 const collectionButtons = {
-  highlight: {
-    blue: colors.primary,
-    pink: colors.secondary,
-    red: colors.red,
-    green: colors.green,
-    yellow: colors.yellow,
-    grey: colors['grey-400'],
-  },
   height: 46,
   iconHeight: 38,
   borderRadius: 30,

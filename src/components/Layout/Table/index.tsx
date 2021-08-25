@@ -12,7 +12,7 @@ const Table = (
 ) => (
   <Box
     as="table"
-    sx={{ ...(sx ?? {}), ...{ width: '100%' } }}
+    sx={{ ...{ width: '100%' }, ...(sx ?? {}) }}
     {...{ ref, ...props }}
   />
 )

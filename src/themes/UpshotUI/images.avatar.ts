@@ -11,6 +11,8 @@ const avatar = {
     fontFamily: 'degular',
     fontWeight: 'bold',
     lineHeight: 1,
+    textTransform: 'uppercase',
+    userSelect: 'none',
   },
   xs: {
     variant: 'images.avatar.default',

@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import { AvatarInitialsBase, AvatarInitialsShadow } from './Styled'
-import { BoxProps } from 'theme-ui'
+import { Text, BoxProps } from 'theme-ui'
 import { AvatarSize } from '../Avatar'
 
 export interface AvatarInitialsProp extends BoxProps {
