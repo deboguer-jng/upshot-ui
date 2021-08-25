@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { transparentize } from '@theme-ui/color'
+import { transparentize } from 'polished'
 
 export const PaginationBase = styled.div`
   color: ${({ theme }) => theme.colors['grey-300']};
@@ -42,7 +42,7 @@ export const PaginationBase = styled.div`
     /* Unselected interactive buttons */
     &:not(.selected):not(.break):hover {
       background: ${({ theme }) =>
-        transparentize(theme.rawColors.primary, 0.5)};
+        transparentize(0.5, theme.rawColors.primary)};
     }
 
     /* Button contents */

@@ -1,5 +1,5 @@
 import colors from './colors'
-import { transparentize } from '@theme-ui/color'
+import { transparentize } from 'polished'
 import transitions from './transitions'
 import sizes from './sizes'
 
@@ -12,7 +12,7 @@ const iconButtons = {
   flexShrink: 0,
   cursor: 'pointer',
   '&:not(:disabled):hover': {
-    bg: transparentize(colors['grey-800'], 0.5),
+    bg: transparentize(0.5, colors['grey-800']),
   },
   '&:disabled': {
     color: 'grey-700',
