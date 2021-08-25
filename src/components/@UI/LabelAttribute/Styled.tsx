@@ -18,7 +18,10 @@ export const AttributeLabelBase = styled.div<AttributeLabelBaseProps>`
   height: 32px;
   width: 282px;
   display: inline-block;
-  background-color: ${({ theme, $transparent }) => $transparent ? 'transparent' : transparentize(theme.rawColors.primary, 0.8) };
+  background-color: ${({ theme, $transparent }) =>
+    $transparent
+      ? 'transparent'
+      : transparentize(theme.rawColors.primary, 0.8)(theme)};
   font-family: ${ fonts.body };
   font-weight: ${ fontWeights.body };
   font-size: ${ fontSizes[4] };
