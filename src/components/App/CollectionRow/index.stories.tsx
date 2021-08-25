@@ -8,6 +8,7 @@ import TableBody from '../../Layout/TableBody'
 import TableRow from '../../Layout/TableRow'
 import TableCell from '../../Layout/TableCell'
 import { useBreakpointIndex } from '@theme-ui/match-media'
+import { useTheme } from '../../../themes/UpshotUI'
 import { Flex } from 'theme-ui'
 
 type CollectionRecipe = {
@@ -20,6 +21,7 @@ export default {
 } as ComponentMeta<typeof CollectionRow>
 
 const Template = ({ items }: CollectionRecipe) => {
+  const { theme } = useTheme()
   const breakpointIndex = useBreakpointIndex()
   const isMobile = breakpointIndex <= 1
 
@@ -27,7 +29,7 @@ const Template = ({ items }: CollectionRecipe) => {
 
   return (
     <CollectionTable>
-      <TableHead>
+      <TableHead sx={{ color: theme.colors['grey-500'] }}>
         <TableRow>
           <TableCell colSpan={2}>Name</TableCell>
           {isMobile ? (
