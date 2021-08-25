@@ -5,7 +5,7 @@ export interface LabelProps {
   /**
    * The text to be displayed on the label.
    */
-  text?: string,
+  children?: string,
   /**
    * Defines the style of the label.
    * Defaults to basic.
@@ -29,7 +29,7 @@ export interface LabelProps {
  */
 const Label = (
   {
-    text,
+    children,
     style = 'basic',
     size = 'sm',
     currencySymbol = 'Ξ'
@@ -43,7 +43,7 @@ const Label = (
         }
         {/* Each combination of style and size is a unique variant of the theme */}
         <ThemeUILabel variant={style + size[0].toUpperCase() + size[1]}>
-          { text }
+          { children }
         </ThemeUILabel>
       </>
     )

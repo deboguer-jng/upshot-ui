@@ -8,22 +8,22 @@ export default {
   component: Label,
 }
 
-const Template: ComponentStory<typeof Label> = (args) => <Label {...args} />
+const Template: ComponentStory<typeof Label> = (args) => <Label {...args}>CryptoPunks</Label>
+const PercentageTemplate: ComponentStory<typeof Label> = (args) => <Label {...args}>420.69</Label>
 
 export const LabelBasicSmall = Template.bind({})
-LabelBasicSmall.args = { text: 'CryptoPunks' }
 
 export const LabelBasicMedium = Template.bind({})
-LabelBasicMedium.args = { text: 'CryptoPunks', size: 'md' }
+LabelBasicMedium.args = { size: 'md' }
 
-export const LabelCurrencyMini = Template.bind({})
-LabelCurrencyMini.args = { text: '420.69', style: 'currency', size: 'xs' }
+export const LabelCurrencyMini = PercentageTemplate.bind({})
+LabelCurrencyMini.args = { style: 'currency', size: 'xs' }
 
-export const LabelCurrencySmall = Template.bind({})
-LabelCurrencySmall.args = { text: '420.69', style: 'currency', currencySymbol: '$' }
+export const LabelCurrencySmall = PercentageTemplate.bind({})
+LabelCurrencySmall.args = { style: 'currency', currencySymbol: '$' }
 
-export const LabelCurrencyMedium = Template.bind({})
-LabelCurrencyMedium.args = { text: '420.69', style: 'currency', size: 'md' }
+export const LabelCurrencyMedium = PercentageTemplate.bind({})
+LabelCurrencyMedium.args = { style: 'currency', size: 'md' }
 
-export const LabelCurrencyLarge = Template.bind({})
-LabelCurrencyLarge.args = { text: '420.69', style: 'currency', size: 'lg', currencySymbol: '$' }
+export const LabelCurrencyLarge = PercentageTemplate.bind({})
+LabelCurrencyLarge.args = { style: 'currency', size: 'lg', currencySymbol: '$' }
