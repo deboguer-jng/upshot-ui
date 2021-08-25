@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { Label as ThemeUILabel } from '@theme-ui/components'
 
 export interface LabelProps {
@@ -27,22 +27,26 @@ export interface LabelProps {
  * 
  * Provides a basic label or a currency label of various sizes.
  */
-export default function Label({
-  text,
-  style = 'basic',
-  size = 'sm',
-  currencySymbol = 'Ξ'
-}: LabelProps) {
-  return (
-    <>
-      { 
-        style === 'currency' &&
-          <ThemeUILabel variant={`${size}CurrencySymbol`}>{currencySymbol}</ThemeUILabel>
-      }
-      {/* Each combination of style and size is a unique variant of the theme */}
-      <ThemeUILabel variant={style + size[0].toUpperCase() + size[1]}>
-        { text }
-      </ThemeUILabel>
-    </>
-  )
+const Label = (
+  {
+    text,
+    style = 'basic',
+    size = 'sm',
+    currencySymbol = 'Ξ'
+  }: LabelProps,
+  ref: React.RefObject<HTMLDivElement>) => {
+    return (
+      <>
+        { 
+          style === 'currency' &&
+            <ThemeUILabel variant={`${size}CurrencySymbol`}>{currencySymbol}</ThemeUILabel>
+        }
+        {/* Each combination of style and size is a unique variant of the theme */}
+        <ThemeUILabel variant={style + size[0].toUpperCase() + size[1]}>
+          { text }
+        </ThemeUILabel>
+      </>
+    )
 }
+
+export default forwardRef(Label)

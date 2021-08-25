@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import {
   AttributeLabelBase,
   LabelText,
@@ -34,32 +34,37 @@ export interface AttributeLabelProps {
   onRemove?: React.MouseEventHandler<HTMLButtonElement>
 }
 
-export default function AttributeLabel({
-  children,
-  variant = 'regular',
-  transparent = true,
-  percentage,
-  onRemove
-}: AttributeLabelProps) {
-  return (
-    <AttributeLabelBase $transparent={transparent}>
-      <LabelText>
-        {children}
-      </LabelText>
-      {
-        variant === 'percentage' &&
-          <RightAlignBlock>
-            <Division>|</Division>
-            <Text variant='body'>{percentage}%</Text>
-          </RightAlignBlock>
-      }
-      {
-        variant === 'removeable' &&
-          <CloseButton
-            onClick={onRemove}
-            type='plain'
-            icon={<Icon icon='x' size='12' />}
-          />
-      }
-    </AttributeLabelBase>
-  )}
+const AttributeLabel = (
+  {
+    children,
+    variant = 'regular',
+    transparent = true,
+    percentage,
+    onRemove
+  }: AttributeLabelProps,
+  ref: React.RefObject<HTMLDivElement>) => {
+    return (
+      <AttributeLabelBase $transparent={transparent}>
+        <LabelText>
+          {children}
+        </LabelText>
+        {
+          variant === 'percentage' &&
+            <RightAlignBlock>
+              <Division>|</Division>
+              <Text variant='body'>{percentage}%</Text>
+            </RightAlignBlock>
+        }
+        {
+          variant === 'removeable' &&
+            <CloseButton
+              onClick={onRemove}
+              type='plain'
+              icon={<Icon icon='x' size='12' />}
+            />
+        }
+      </AttributeLabelBase>
+    )
+}
+
+  export default forwardRef(AttributeLabel)
