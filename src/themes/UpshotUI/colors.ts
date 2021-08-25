@@ -5,7 +5,6 @@ const swatches = {
   yellow: '#FFC503',
   green: '#7B61FF',
   black: '#000',
-  transparentBlue: '#0091FF30',
   white: '#fff',
   'grey-200': '#F5F5F5',
   'grey-300': '#E4E4E4',

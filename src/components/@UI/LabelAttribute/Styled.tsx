@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { transparentize } from '@theme-ui/color'
 import colors from '../../../themes/UpshotUI/colors'
 import { fonts, fontWeights, fontSizes } from '../../../themes/UpshotUI/text'
 import sizes from '../../../themes/UpshotUI/sizes'
@@ -17,7 +18,7 @@ export const AttributeLabelBase = styled.div<AttributeLabelBaseProps>`
   height: 32px;
   width: 282px;
   display: inline-block;
-  background-color: ${({ $transparent }) => $transparent ? 'transparent' : colors.transparentBlue };
+  background-color: ${({ theme, $transparent }) => $transparent ? 'transparent' : transparentize(theme.rawColors.primary, 0.8) };
   font-family: ${ fonts.body };
   font-weight: ${ fontWeights.body };
   font-size: ${ fontSizes[4] };
