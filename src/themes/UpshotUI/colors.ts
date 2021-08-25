@@ -3,7 +3,7 @@ const swatches = {
   pink: '#EC5B94',
   red: '#FF562B',
   yellow: '#FFC503',
-  green: '#7B61FF',
+  green: '#1BB441',
   black: '#000',
   white: '#fff',
   'grey-200': '#F5F5F5',
