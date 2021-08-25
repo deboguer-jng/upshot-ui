@@ -1,13 +1,13 @@
 import React, { forwardRef } from 'react'
 import { Box, BoxProps } from 'theme-ui'
 
-export interface TableProps extends BoxProps {}
+export interface TableProps extends Omit<BoxProps, 'ref'> {}
 
 /**
  * Provides a full-width table for rendering TableRows.
  */
 const Table = (
-  { sx, ...props }: TableProps,
+  { sx, ...props }: TableProps & React.HTMLAttributes<HTMLTableElement>,
   ref: React.RefObject<HTMLTableElement>
 ) => (
   <Box
