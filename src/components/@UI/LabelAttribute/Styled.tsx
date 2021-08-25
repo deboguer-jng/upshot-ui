@@ -25,7 +25,7 @@ export const AttributeLabelBase = styled.div<AttributeLabelBaseProps>`
   font-family: ${ fonts.body };
   font-weight: ${ fontWeights.body };
   font-size: ${ fontSizes[4] };
-  padding-top: ${ sizes[1] + 'px' };
+  padding-top: 3px;
 `
 
 export const RightAlignBlock = styled.div`
