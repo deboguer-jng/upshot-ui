@@ -81,7 +81,8 @@ export const Default = Template.bind({})
 Default.args = {
   items: [
     {
-      title: 'CryptoPunk #1024',
+      title:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales quis ex nec sagittis.',
       imageSrc: '/img/defaultAvatar.png',
       columns: ['Value 1', 'Value 2', 'Value 3'],
     },

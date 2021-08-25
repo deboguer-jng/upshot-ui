@@ -28,7 +28,7 @@ const CollectionRow = (
       </TableCell>
 
       {/* Titles expand to fill all remaining space. */}
-      <TableCell>
+      <TableCell sx={{ maxWidth: 0 }}>
         <Text
           variant="large"
           sx={{

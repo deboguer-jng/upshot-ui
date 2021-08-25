@@ -29,6 +29,5 @@ export const CollectionTableBase = styled(Table)`
   }
   & td:last-of-type {
     border-bottom-right-radius: ${({ theme }) => theme.radii.sm};
-    text-align: right;
   }
 `
