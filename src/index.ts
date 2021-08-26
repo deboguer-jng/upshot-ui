@@ -26,6 +26,7 @@ export { default as Text } from './components/@UI/Text'
  * Shared app-level components.
  */
 export { default as AppBar } from './components/App/AppBar'
+export { default as CollectionLine } from './components/App/CollectionLine'
 
 /**
  * Components: Layout
