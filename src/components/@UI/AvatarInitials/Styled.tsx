@@ -12,5 +12,5 @@ export const AvatarInitialsBase = styled(Box)`
 export const AvatarInitialsShadow = styled.div<{ $size: AvatarSize }>`
   border-radius: ${({ theme }) => theme.radii.circle};
   margin: ${({ theme, $size }) => theme.images.avatar[$size].borderWidth};
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+  box-shadow: ${({ theme }) => theme.shadows.default};
 `

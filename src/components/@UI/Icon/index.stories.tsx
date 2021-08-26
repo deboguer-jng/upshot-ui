@@ -339,6 +339,9 @@ VerificationStatusPaused.args = {
 export const Wallet = Template.bind({})
 Wallet.args = { icon: 'wallet', color: 'primary', size: 32 }
 
+export const X = Template.bind({})
+X.args = { icon: 'x', color: 'primary', size: 32 }
+
 export const YoutubeBlock = Template.bind({})
 YoutubeBlock.args = { icon: 'youtubeBlock', color: 'primary', size: 32 }
 

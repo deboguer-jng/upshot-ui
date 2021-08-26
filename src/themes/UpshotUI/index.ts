@@ -8,6 +8,7 @@ import transitions from './transitions'
 import chart from './chart'
 import forms from './forms'
 import spinners from './spinners'
+import shadows from './shadows'
 import styles from './styles'
 import scroll from './scroll'
 import sizes, { breakpoints, radii } from './sizes'
@@ -42,6 +43,7 @@ const theme = {
   radii,
   rawColors: colors,
   scroll,
+  shadows,
   sizes,
   space: sizes,
   spinners,
