@@ -13,7 +13,8 @@ export const radii = {
   md: sizes[4] + 'px',
   lg: sizes[8] + 'px',
   pill: '9999px',
-  circle: '50%',
+  circle: '50vh',
+  oval: '50%',
 }
 
 export default sizes
