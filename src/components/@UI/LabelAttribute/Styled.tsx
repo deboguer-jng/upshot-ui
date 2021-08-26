@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { transparentize } from '@theme-ui/color'
+import { transparentize } from 'polished'
 import colors from '../../../themes/UpshotUI/colors'
 import { fonts, fontWeights, fontSizes } from '../../../themes/UpshotUI/text'
 import sizes from '../../../themes/UpshotUI/sizes'
@@ -21,20 +21,20 @@ export const AttributeLabelBase = styled.div<AttributeLabelBaseProps>`
   background-color: ${({ theme, $transparent }) =>
     $transparent
       ? 'transparent'
-      : transparentize(theme.rawColors.primary, 0.8)(theme)};
-  font-family: ${ fonts.body };
-  font-weight: ${ fontWeights.body };
-  font-size: ${ fontSizes[4] };
+      : transparentize(0.8, theme.rawColors.primary)};
+  font-family: ${fonts.body};
+  font-weight: ${fontWeights.body};
+  font-size: ${fontSizes[4]};
   padding-top: 3px;
 `
 
 export const RightAlignBlock = styled.div`
   float: right;
-  padding-right: ${ sizes[3] + 'px' };
+  padding-right: ${sizes[3] + 'px'};
 `
 
 export const LabelText = styled.div`
-  padding-left: ${ sizes[3] + 'px' };
+  padding-left: ${sizes[3] + 'px'};
   text-overflow: ellipsis;
   width: 74%;
   overflow: hidden;
@@ -44,12 +44,12 @@ export const LabelText = styled.div`
 `
 
 export const Division = styled.div`
-  padding-right: ${ sizes[5] + 'px' };
+  padding-right: ${sizes[5] + 'px'};
   display: inline-block;
 `
 export const CloseButton = styled(Button)`
   float: right;
-  padding-right: ${ sizes[3] + 'px' };
+  padding-right: ${sizes[3] + 'px'};
   padding-bottom: 9px;
 
   &:not(:disabled):hover {
@@ -57,4 +57,4 @@ export const CloseButton = styled(Button)`
       text-decoration: none;
     }
   }
-  `
+`
