@@ -8,8 +8,28 @@ interface MiniNftCardNameProps {
   error?: boolean
 }
 
+interface MiniNftCardMainContentWrapperProps {
+  type: 'default' | 'search'
+}
+
+interface AddressCircleProps {
+  variant: 'from' | 'to'
+}
+
 export const MiniNftCardWrapper = styled.div`
   position: relative;
+  width: fit-content;
+  transition: transform 0.5s ease;
+
+  & > div:last-child {
+    transform: translateX(0);
+  }
+
+  &:hover {
+    & > div:last-child {
+      transform: translateX(70%);
+    }
+  }
 `
 
 export const MiniNftCardMainBoard = styled.div`
@@ -41,12 +61,16 @@ export const MiniNftCardDetailsBoard = styled.div`
   width: ${({ theme }) => theme.miniNftCard.width}px;
   height: ${({ theme }) => theme.miniNftCard.height}px;
   padding: ${({ theme }) => theme.miniNftCard.padding}px;
-`
-
-export const MiniNftCardMainContentWrapper = styled.div`
+  padding-top: 18px;
+  padding-left: 50px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+`
+
+export const MiniNftCardMainContentWrapper = styled.div<MiniNftCardMainContentWrapperProps>`
+  display: flex;
+  flex-direction: column;
+  justify-content: ${({ type }) => (type === 'search' ? 'flex-end' : 'start')};
   height: 100%;
 `
 
@@ -76,4 +100,13 @@ export const MiniNftCardName = styled.div<MiniNftCardNameProps>`
   background: rgba(0, 0, 0, 0.2);
   width: -webkit-fill-available;
   text-align: center;
+`
+
+export const AddressCircle = styled.div<AddressCircleProps>`
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  margin-right: 6px;
+  background-color: ${({ theme, variant }) =>
+    variant === 'from' ? theme.colors.purple : theme.colors.yellow};
 `
