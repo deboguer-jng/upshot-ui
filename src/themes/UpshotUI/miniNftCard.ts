@@ -24,6 +24,8 @@ const miniNftCard = {
     error: colors.red,
     fontSize: 12,
     paddingTop: 4,
+    paddingLeft: 8,
+    lineHeight: 14,
     borderRadius: 20,
     blur: 30,
   }

@@ -44,3 +44,15 @@ Search.args = {
   rarity: 0,
   type: 'search',
 }
+
+export const SearchLongName = Template.bind({})
+SearchLongName.args = {
+  image:
+    'https://digitalax.mypinata.cloud/ipfs/QmYftLKLJn4T8GxjwThSJwGcZYop23mc5WkW17K7bi2Ua3',
+  name: 'Very long NFT name that take up all of the space.',
+  creator: 'Creator name',
+  price: 0,
+  date: '08/25/2021',
+  rarity: 0,
+  type: 'search',
+}

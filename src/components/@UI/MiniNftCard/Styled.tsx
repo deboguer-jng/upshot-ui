@@ -16,23 +16,28 @@ interface AddressCircleProps {
   variant: 'from' | 'to'
 }
 
+interface MiniNftCardMainBoardProps {
+  error?: boolean
+}
+
 export const MiniNftCardWrapper = styled.div`
   position: relative;
   width: fit-content;
-  transition: transform 0.5s ease;
 
   & > div:last-child {
+    transition: transform 0.5s ease;
     transform: translateX(0);
   }
 
   &:hover {
     & > div:last-child {
+      transition: transform 0.5s ease;
       transform: translateX(70%);
     }
   }
 `
 
-export const MiniNftCardMainBoard = styled.div`
+export const MiniNftCardMainBoard = styled.div<MiniNftCardMainBoardProps>`
   position: relative;
   background-color: ${({ theme }) => theme.miniNftCard.errorBackground};
   border-radius: ${({ theme }) => theme.miniNftCard.borderRadius}px;
@@ -46,7 +51,8 @@ export const MiniNftCardMainBoard = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
-    top: ${({ theme }) => theme.miniNftCard.errorImageTop}px;
+    top: ${({ theme, error }) =>
+      error ? theme.miniNftCard.errorImageTop : 0}px;
     left: 0;
     z-index: 0;
   }
@@ -96,6 +102,8 @@ export const MiniNftCardName = styled.div<MiniNftCardNameProps>`
   border-radius: ${({ theme }) => theme.miniNftCard.name.borderRadius}px;
   padding-top: ${({ theme }) => theme.miniNftCard.name.paddingTop}px;
   padding-bottom: ${({ theme }) => theme.miniNftCard.name.paddingTop}px;
+  padding-left: ${({ theme }) => theme.miniNftCard.name.paddingLeft}px;
+  padding-right: ${({ theme }) => theme.miniNftCard.name.paddingLeft}px;
   backdrop-filter: blur(${({ theme }) => theme.miniNftCard.name.blur}px);
   background: rgba(0, 0, 0, 0.2);
   width: -webkit-fill-available;

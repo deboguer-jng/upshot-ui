@@ -13,6 +13,7 @@ import {
 import { useTheme } from '@emotion/react'
 
 export interface MiniNftCardInterface {
+  creator?: string
   image?: string
   error?: boolean
   name?: string
@@ -27,6 +28,7 @@ export interface MiniNftCardInterface {
 export default function MiniNftCard({
   error = false,
   type = 'default',
+  creator,
   image,
   name,
   price,
@@ -39,7 +41,7 @@ export default function MiniNftCard({
   if (error) {
     return (
       <MiniNftCardWrapper>
-        <MiniNftCardMainBoard>
+        <MiniNftCardMainBoard error>
           <img src={ErrorSvg} />
           <MiniNftCardMainContentWrapper type={type}>
             {type === 'default' ? (
@@ -140,7 +142,7 @@ export default function MiniNftCard({
         <img src={image} />
         <MiniNftCardMainContentWrapper type={type}>
           {type === 'default' ? (
-            <MiniNftCardPrice> ${price} </MiniNftCardPrice>
+            <MiniNftCardPrice> ${price.toFixed(2)} </MiniNftCardPrice>
           ) : (
             <MiniNftCardName> {name} </MiniNftCardName>
           )}
@@ -149,7 +151,13 @@ export default function MiniNftCard({
       <MiniNftCardDetailsBoard>
         {type === 'default' ? (
           <>
-            <Text variant="small"> {name} </Text>
+            <Text
+              variant="small"
+              sx={{ lineHeight: theme.miniNftCard.name.lineHeight + 'px' }}
+            >
+              {' '}
+              {name}{' '}
+            </Text>
             <Text variant="xSmall"> {date} </Text>
             <Text variant="xSmall" sx={{ color: theme.colors['grey-500'] }}>
               {' '}
@@ -170,13 +178,23 @@ export default function MiniNftCard({
           </>
         ) : (
           <>
-            <Text variant="small"> {name} </Text>
+            <Text variant="xSmall" sx={{ color: theme.colors['grey-500'] }}>
+              {' '}
+              Creator:{' '}
+            </Text>
+            <Text
+              variant="small"
+              sx={{ lineHeight: theme.miniNftCard.name.lineHeight + 'px' }}
+            >
+              {' '}
+              {creator}{' '}
+            </Text>
             <Text variant="xSmall"> {date} </Text>
             <Text variant="xSmall" sx={{ color: theme.colors['grey-500'] }}>
               {' '}
               Rarity:{' '}
             </Text>
-            <Text variant="small"> {rarity}% </Text>
+            <Text variant="small"> {rarity.toFixed(2)}% </Text>
             <Text variant="xSmall" sx={{ color: theme.colors['grey-500'] }}>
               {' '}
               Price:{' '}
@@ -187,6 +205,4 @@ export default function MiniNftCard({
       </MiniNftCardDetailsBoard>
     </MiniNftCardWrapper>
   )
-
-  return <MiniNftCardWrapper></MiniNftCardWrapper>
 }
