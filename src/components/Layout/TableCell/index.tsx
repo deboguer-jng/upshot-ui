@@ -1,11 +1,14 @@
 import React, { forwardRef } from 'react'
 import { Box, BoxProps } from 'theme-ui'
 
+export interface TableCellProps extends Omit<BoxProps, 'ref'> {}
+
 /**
  * Provides a cell for a TableRow.
  */
 const TableCell = (
-  props: BoxProps,
+  props: BoxProps &
+    React.HTMLAttributes<HTMLTableCellElement> & { colSpan?: number },
   ref: React.RefObject<HTMLTableCellElement>
 ) => <Box as="td" {...{ ref, ...props }} />
 

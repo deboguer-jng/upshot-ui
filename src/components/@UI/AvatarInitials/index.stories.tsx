@@ -33,11 +33,11 @@ Medium.args = {
 export const Small = Template.bind({})
 Small.args = {
   size: 'sm',
-  children: 'up',
+  children: 'u',
 }
 
 export const ExtraSmall = Template.bind({})
 ExtraSmall.args = {
   size: 'xs',
-  children: 'up',
+  children: 'u',
 }

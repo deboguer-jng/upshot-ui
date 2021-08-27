@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import { AvatarInitialsBase, AvatarInitialsShadow } from './Styled'
-import { BoxProps, Text } from 'theme-ui'
+import { Text, BoxProps } from 'theme-ui'
 import { AvatarSize } from '../Avatar'
 
 export interface AvatarInitialsProp extends BoxProps {
@@ -17,12 +17,12 @@ const AvatarInitials = (
   { size = 'md', children, ...props }: AvatarInitialsProp,
   ref: React.RefObject<HTMLDivElement>
 ) => (
-  <AvatarInitialsBase {...{ ref, ...props }}>
-    <AvatarInitialsShadow $size={size}>
-      <Text variant={`images.avatar.${size}`} {...props}>
-        {children}
-      </Text>
-    </AvatarInitialsShadow>
+  <AvatarInitialsBase
+    $size={size}
+    variant={`images.avatar.${size}`}
+    {...{ ref, ...props }}
+  >
+    <AvatarInitialsShadow $size={size}>{children}</AvatarInitialsShadow>
   </AvatarInitialsBase>
 )
 
