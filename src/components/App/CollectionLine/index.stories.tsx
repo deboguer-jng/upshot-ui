@@ -1,7 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-
 import CollectionLine from './'
+import Icon from '../../@UI/Icon'
 
 export default {
   title: 'App/CollectionLine',
@@ -12,7 +12,18 @@ const Template: ComponentStory<typeof CollectionLine> = (args) => <CollectionLin
 
 export const Default = Template.bind({})
 Default.args = {
-  sx: { width: '100%', height: '62px' }
+  sx: { width: '100%', height: '62px' },
+  text1: 'Crypto punks',
+  text2: '1.5 hrs',
+  text3: '9999.99',
+  text4: '99999',
+  text5: '99999'
+}
+
+export const Collapsable = Template.bind({})
+Collapsable.args = {
+  sx: { width: '100%', height: '62px' },
+  icon: <Icon icon={'arrowStylizedRight'} color={'primary'} size={24} />,
 }
 
 export const UnderglowBlue = Template.bind({})

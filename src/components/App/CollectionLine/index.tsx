@@ -1,28 +1,38 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { FlexProps } from 'theme-ui'
 import theme from '../../../themes/UpshotUI'
 import Box from '../../Layout/Grid'
 import Icon from '../../@UI/Icon'
 import IconButton from '../../@UI/IconButton'
 import colors from '../../../themes/UpshotUI/colors'
-import { StyledCollectionLine, StyledBox } from './Styled'
+import { StyledCollectionLine, StyledBox, StyledIconButton } from './Styled'
 
-
-
-export interface CollectionLineProps extends FlexProps{
-    underglow?: keyof typeof colors
+export interface CollectionLineProps extends FlexProps {
+  underglow?: keyof typeof colors;
+  icon?: ReactNode;
+  text1: string
+  text2: string
+  text3: string
+  text4: string
+  text5: string
 }
 
 /** Provides a loading Skeleton */
-export default function CollectionLine({underglow, ...props }: CollectionLineProps) {
+export default function CollectionLine({
+  underglow,
+  icon,
+  text1='text1',
+  text2='text2',
+  text3='text3',
+  text4='text4',
+  text5='text5',
+  ...props
+}: CollectionLineProps) {
 
     return (
-      <StyledCollectionLine gap={2} columns={[6, '1fr 3fr 3fr 3fr 3fr 3fr']} $underglow={underglow} {...{ ...props }} >
+      <StyledCollectionLine gap={2} columns={[7, '1.2fr 3fr 3fr 3fr 3fr 3fr 0fr']} $underglow={underglow} { ...props } >
         <Box>
-          <IconButton
-            type="button"
-            sx={{ height: '48px', width: '48px', padding: 0 }}
-          >
+          <StyledIconButton type="button" >
             <Icon
               icon={'upshot'}
               color={'primary'}
@@ -30,28 +40,28 @@ export default function CollectionLine({underglow, ...props }: CollectionLinePro
               style={{ marginLeft: 0 }}
               aria-label={'Upshot logo'}
             />
-          </IconButton>
+          </StyledIconButton>
         </Box>
         <Box>
-          Cripto Punks
+          {text1}
         </Box>
         <StyledBox>
-         1.5hrs
+          {text2}
         </StyledBox>
-        <StyledBox
-          sx={{ color : theme.colors.red }}
-        >
-        $18928.38
+        <StyledBox sx={{ color : theme.colors.red }} >
+          {text3}
         </StyledBox>
         <StyledBox>
-         1,111,111
+          {text4}
         </StyledBox>
-        <StyledBox
-          sx={{ color : theme.colors.red }}
-        >
-        1467
+        <StyledBox sx={{ color : theme.colors.red }} >
+          {text5}
         </StyledBox>
-
+        <Box sx={{ marginRight : '40px' }}>
+          <IconButton>
+            {icon}
+          </IconButton>
+        </Box>
       </StyledCollectionLine>
     )
 }
