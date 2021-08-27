@@ -8,7 +8,7 @@ import { FlexProps } from 'theme-ui'
 /** Provides a loading Skeleton */
 export default function CollectionLineTemplate({ ...props }: FlexProps) {
     return (
-      <CollectionLine gap={2} columns={[6, '1fr 3fr 3fr 3fr 3fr 3fr']} {...props} >
+      <CollectionLine gap={2} columns={[7, '1.2fr 3fr 3fr 3fr 3fr 3fr 0fr']} { ...props } >
         <Box>
           <StyledSkeletonCircle  circle={true} />
         </Box>
