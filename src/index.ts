@@ -5,6 +5,8 @@
  */
 export { default as Avatar } from './components/@UI/Avatar'
 export { default as AvatarInitials } from './components/@UI/AvatarInitials'
+export { default as Button } from './components/@UI/Button'
+export { default as ButtonDropdown } from './components/@UI/ButtonDropdown'
 // export { default as Chart } from './components/@UI/Chart'
 export { default as Checkbox } from './components/@UI/Checkbox'
 export { default as CollectionButton } from './components/@UI/CollectionButton'
@@ -12,6 +14,8 @@ export { default as Icon } from './components/@UI/Icon'
 export { default as IconButton } from './components/@UI/IconButton'
 export { default as InputRounded } from './components/@UI/InputRounded'
 export { default as InputRoundedSearch } from './components/@UI/InputRoundedSearch'
+export { default as Label } from './components/@UI/Label'
+export { default as LabelAttribute } from './components/@UI/LabelAttribute'
 export { default as Pagination } from './components/@UI/Pagination'
 export { default as Panel } from './components/@UI/Panel'
 export { default as Radio } from './components/@UI/Radio'
@@ -26,6 +30,8 @@ export { default as Text } from './components/@UI/Text'
  * Shared app-level components.
  */
 export { default as AppBar } from './components/App/AppBar'
+export { default as CollectionRow } from './components/App/CollectionRow'
+export { default as CollectionTable } from './components/App/CollectionTable'
 
 /**
  * Components: Layout

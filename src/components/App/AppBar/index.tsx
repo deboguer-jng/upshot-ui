@@ -83,6 +83,7 @@ const AppBar = (
     <Grid
       columns="1fr auto"
       sx={{ height, alignItems: 'center' }}
+      as="nav"
       {...{ ref, ...props }}
     >
       {/* Left-aligned section. */}
