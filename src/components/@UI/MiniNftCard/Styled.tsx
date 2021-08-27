@@ -87,6 +87,8 @@ export const MiniNftCardMainContentWrapper = styled.div<MiniNftCardMainContentWr
   flex-direction: column;
   justify-content: ${({ type }) => (type === 'search' ? 'flex-end' : 'start')};
   height: 100%;
+  z-index: 1;
+  position: relative;
 `
 
 export const MiniNftCardPrice = styled.span<MiniNftCardPriceProps>`
