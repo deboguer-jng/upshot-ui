@@ -8,7 +8,17 @@ export const StyledBox = styled(Box)`
   justify-items: center;
 `
 
-export const StyledSkeleton = styled(Skeleton)`
+export const StyledSkeletonCircle = styled(Skeleton)`
+  height: 50px;
+  width: 50px;
+`
+
+export const StyledSkeletonBig = styled(Skeleton)`
+  height: 18px;
+  width: 90%;
+`
+
+export const StyledSkeletonSmall = styled(Skeleton)`
   height: 18px;
   width: 45%;
 `

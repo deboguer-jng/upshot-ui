@@ -1,5 +1,5 @@
 import React from 'react'
-import { CollectionLine, StyledBox, StyledSkeleton } from './Styled'
+import { CollectionLine, StyledBox, StyledSkeletonCircle, StyledSkeletonBig, StyledSkeletonSmall } from './Styled'
 import Skeleton from '../../@UI/Skeleton'
 import Box from '../../Layout/Grid'
 import { FlexProps } from 'theme-ui'
@@ -10,34 +10,22 @@ export default function CollectionLineTemplate({ ...props }: FlexProps) {
     return (
       <CollectionLine gap={2} columns={[6, '1fr 3fr 3fr 3fr 3fr 3fr']} {...props} >
         <Box>
-          <Skeleton
-            circle={true}
-            sx={{
-              height: '50px',
-              width: '50px'
-            }}
-          />
+          <StyledSkeletonCircle  circle={true} />
         </Box>
         <Box>
-          <Skeleton
-            circle={true}
-            sx={{
-              height: '18px',
-              width: '90%',
-            }}
-          />
+          <StyledSkeletonBig />
         </Box>
         <StyledBox>
-          <StyledSkeleton circle={true} />
+          <StyledSkeletonSmall />
         </StyledBox>
         <StyledBox>
-          <StyledSkeleton circle={true} />
+          <StyledSkeletonSmall />
         </StyledBox>
         <StyledBox>
-          <StyledSkeleton circle={true} />
+          <StyledSkeletonSmall />
         </StyledBox>
         <StyledBox>
-          <StyledSkeleton circle={true} />
+          <StyledSkeletonSmall />
         </StyledBox>
 
       </CollectionLine>
