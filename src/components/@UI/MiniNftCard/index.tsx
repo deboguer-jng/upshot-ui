@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { Text, Flex } from 'theme-ui'
 import ErrorSvg from '../../../assets/svg/icons/Error.svg'
 import {
@@ -9,8 +9,10 @@ import {
   MiniNftCardName,
   MiniNftCardMainContentWrapper,
   AddressCircle,
+  MiniNftCardDetailsName,
+  MiniNftCardDetailLabel,
+  MiniNftCardDetailValue,
 } from './Styled'
-import { useTheme } from '@emotion/react'
 
 export interface MiniNftCardInterface {
   creator?: string
@@ -37,171 +39,74 @@ export default function MiniNftCard({
   to,
   date,
 }: MiniNftCardInterface) {
-  const theme = useTheme()
-  if (error) {
-    return (
-      <MiniNftCardWrapper>
-        <MiniNftCardMainBoard error>
-          <img src={ErrorSvg} />
-          <MiniNftCardMainContentWrapper type={type}>
-            {type === 'default' ? (
-              <MiniNftCardPrice error>Error</MiniNftCardPrice>
-            ) : (
-              <MiniNftCardName error>Error</MiniNftCardName>
-            )}
-          </MiniNftCardMainContentWrapper>
-        </MiniNftCardMainBoard>
-        <MiniNftCardDetailsBoard>
-          {type === 'default' ? (
-            <>
-              <Text
-                variant="small"
-                sx={{ color: theme.colors.red, textTransform: 'uppercase' }}
-              >
-                {' '}
-                Error{' '}
-              </Text>
-              <Text
-                variant="xSmall"
-                sx={{ color: theme.colors.red, textTransform: 'uppercase' }}
-              >
-                {' '}
-                Error{' '}
-              </Text>
-              <Text variant="xSmall" sx={{ color: theme.colors['grey-500'] }}>
-                {' '}
-                From:{' '}
-              </Text>
-              <Text
-                variant="small"
-                sx={{ color: theme.colors.red, textTransform: 'uppercase' }}
-              >
-                {' '}
-                Error{' '}
-              </Text>
-              <Text variant="xSmall" sx={{ color: theme.colors['grey-500'] }}>
-                {' '}
-                To:{' '}
-              </Text>
-              <Text
-                variant="small"
-                sx={{ color: theme.colors.red, textTransform: 'uppercase' }}
-              >
-                {' '}
-                Error{' '}
-              </Text>
-            </>
-          ) : (
-            <>
-              <Text
-                variant="small"
-                sx={{ color: theme.colors.red, textTransform: 'uppercase' }}
-              >
-                {' '}
-                Error{' '}
-              </Text>
-              <Text
-                variant="xSmall"
-                sx={{ color: theme.colors.red, textTransform: 'uppercase' }}
-              >
-                {' '}
-                Error{' '}
-              </Text>
-              <Text variant="xSmall" sx={{ color: theme.colors['grey-500'] }}>
-                {' '}
-                Rarity:{' '}
-              </Text>
-              <Text
-                variant="xSmall"
-                sx={{ color: theme.colors.red, textTransform: 'uppercase' }}
-              >
-                {' '}
-                --%{' '}
-              </Text>
-              <Text variant="xSmall" sx={{ color: theme.colors['grey-500'] }}>
-                {' '}
-                Price:{' '}
-              </Text>
-              <Text
-                variant="xSmall"
-                sx={{ color: theme.colors.red, textTransform: 'uppercase' }}
-              >
-                {' '}
-                $--{' '}
-              </Text>
-            </>
-          )}
-        </MiniNftCardDetailsBoard>
-      </MiniNftCardWrapper>
-    )
-  }
-
   return (
     <MiniNftCardWrapper>
-      <MiniNftCardMainBoard>
-        <img src={image} />
+      <MiniNftCardMainBoard error={error}>
+        <img src={error ? ErrorSvg : image} />
         <MiniNftCardMainContentWrapper type={type}>
           {type === 'default' ? (
-            <MiniNftCardPrice> ${price.toFixed(2)} </MiniNftCardPrice>
+            <MiniNftCardPrice error={error}>
+              {error ? 'Error' : `$${price.toFixed(2)}`}
+            </MiniNftCardPrice>
           ) : (
-            <MiniNftCardName> {name} </MiniNftCardName>
+            <MiniNftCardName error={error}>
+              {error ? 'Error' : name}
+            </MiniNftCardName>
           )}
         </MiniNftCardMainContentWrapper>
       </MiniNftCardMainBoard>
       <MiniNftCardDetailsBoard>
+        {type === 'search' ? (
+          <MiniNftCardDetailLabel variant="xSmall">
+            Creator:
+          </MiniNftCardDetailLabel>
+        ) : null}
+        <MiniNftCardDetailsName variant="small" error={error}>
+          {error ? 'Error' : type === 'default' ? name : creator}
+        </MiniNftCardDetailsName>
         {type === 'default' ? (
-          <>
-            <Text
-              variant="small"
-              sx={{ lineHeight: theme.miniNftCard.name.lineHeight + 'px' }}
-            >
-              {' '}
-              {name}{' '}
-            </Text>
-            <Text variant="xSmall"> {date} </Text>
-            <Text variant="xSmall" sx={{ color: theme.colors['grey-500'] }}>
-              {' '}
-              From:{' '}
-            </Text>
+          <MiniNftCardDetailValue variant="xSmall" error={error}>
+            {error ? 'Error' : date}
+          </MiniNftCardDetailValue>
+        ) : null}
+        <MiniNftCardDetailLabel variant="xSmall">
+          {type === 'default' ? 'From :' : 'Rarity :'}
+        </MiniNftCardDetailLabel>
+        <MiniNftCardDetailValue variant="small" error={error}>
+          {error ? (
+            type === 'default' ? (
+              'Error'
+            ) : (
+              '--%'
+            )
+          ) : type === 'default' ? (
             <Flex sx={{ alignItems: 'center' }}>
               <AddressCircle variant="from" />
               <Text variant="small"> {from} </Text>
             </Flex>
-            <Text variant="xSmall" sx={{ color: theme.colors['grey-500'] }}>
-              {' '}
-              To:{' '}
-            </Text>
+          ) : (
+            `${rarity.toFixed(2)}%`
+          )}
+        </MiniNftCardDetailValue>
+        <MiniNftCardDetailLabel variant="xSmall">
+          {type === 'default' ? 'To :' : 'Price :'}
+        </MiniNftCardDetailLabel>
+        <MiniNftCardDetailValue variant="small" error={error}>
+          {error ? (
+            type === 'default' ? (
+              'Error'
+            ) : (
+              '$--'
+            )
+          ) : type === 'default' ? (
             <Flex sx={{ alignItems: 'center' }}>
               <AddressCircle variant="to" />
-              <Text variant="small">{to}</Text>
+              <Text variant="small"> {to} </Text>
             </Flex>
-          </>
-        ) : (
-          <>
-            <Text variant="xSmall" sx={{ color: theme.colors['grey-500'] }}>
-              {' '}
-              Creator:{' '}
-            </Text>
-            <Text
-              variant="small"
-              sx={{ lineHeight: theme.miniNftCard.name.lineHeight + 'px' }}
-            >
-              {' '}
-              {creator}{' '}
-            </Text>
-            <Text variant="xSmall"> {date} </Text>
-            <Text variant="xSmall" sx={{ color: theme.colors['grey-500'] }}>
-              {' '}
-              Rarity:{' '}
-            </Text>
-            <Text variant="small"> {rarity.toFixed(2)}% </Text>
-            <Text variant="xSmall" sx={{ color: theme.colors['grey-500'] }}>
-              {' '}
-              Price:{' '}
-            </Text>
-            <Text variant="small"> ${price} </Text>
-          </>
-        )}
+          ) : (
+            `$${price}`
+          )}
+        </MiniNftCardDetailValue>
       </MiniNftCardDetailsBoard>
     </MiniNftCardWrapper>
   )

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Text } from 'theme-ui'
 
 interface MiniNftCardPriceProps {
   error?: boolean
@@ -17,6 +18,14 @@ interface AddressCircleProps {
 }
 
 interface MiniNftCardMainBoardProps {
+  error?: boolean
+}
+
+interface MiniNftCardDetailsNameProps {
+  error?: boolean
+}
+
+interface MiniNftCardDetailValueProps {
   error?: boolean
 }
 
@@ -108,6 +117,10 @@ export const MiniNftCardName = styled.div<MiniNftCardNameProps>`
   background: rgba(0, 0, 0, 0.2);
   width: -webkit-fill-available;
   text-align: center;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 `
 
 export const AddressCircle = styled.div<AddressCircleProps>`
@@ -117,4 +130,24 @@ export const AddressCircle = styled.div<AddressCircleProps>`
   margin-right: 6px;
   background-color: ${({ theme, variant }) =>
     variant === 'from' ? theme.colors.purple : theme.colors.yellow};
+`
+
+export const MiniNftCardDetailsName = styled(Text)<MiniNftCardDetailsNameProps>`
+  color: ${({ theme, error }) =>
+    error ? theme.colors.red : theme.colors.white};
+  line-height: ${({ theme }) => theme.miniNftCard.name.lineHeight}px;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+`
+
+export const MiniNftCardDetailLabel = styled(Text)`
+  color: ${({ theme }) => theme.colors['grey-500']};
+`
+
+export const MiniNftCardDetailValue = styled(Text)<MiniNftCardDetailValueProps>`
+  text-transform: uppercase;
+  color: ${({ theme, error }) =>
+    error ? theme.colors.red : theme.colors.white};
 `
