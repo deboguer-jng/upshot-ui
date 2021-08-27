@@ -8,6 +8,7 @@ export const AvatarInitialsBase = styled(Box)<{ $size: AvatarSize }>`
   border-radius: ${({ theme }) => theme.radii.circle};
   background: ${({ theme }) => theme.gradients.primary};
   padding: ${({ theme, $size }) => theme.images.avatar[$size].borderWidth};
+  text-transform: uppercase;
 `
 
 export const AvatarInitialsShadow = styled.div<{ $size: AvatarSize }>`
@@ -15,8 +16,9 @@ export const AvatarInitialsShadow = styled.div<{ $size: AvatarSize }>`
   flex-grow: 1;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
+  font-family: ${({ theme }) => theme.fonts.body};
+  line-height: 1;
   border-radius: ${({ theme }) => theme.radii.circle};
-  box-shadow: ${({ theme }) => theme.shadows.default};
+  box-shadow: ${({ theme }) => theme.shadow.default};
+  user-select: none;
 `
