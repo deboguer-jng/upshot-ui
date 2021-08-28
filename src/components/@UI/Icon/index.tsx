@@ -21,22 +21,24 @@ interface IconProps extends Omit<SVGProps, 'src'> {
 /**
  * Icon component for SVG assets.
  */
-const Icon = (
-  { size = '100%', color, icon, ...props }: IconProps,
-  ref: React.RefObject<SVG>
-) => (
-  <SVG
-    src={icons[icon]}
-    /* Preprocess SVGs to use color prop. */
-    preProcessor={(svg) => svg.replace(/fill=".*?"/g, 'fill="currentColor"')}
-    /* If no color is provided, inherit color from the container. */
-    color={colors[color] ?? 'inherit'}
-    /* Fixed square size */
-    width={size}
-    height={size}
-    style={{ flexShrink: 0 }}
-    {...{ ref, ...props }}
-  />
+const Icon = forwardRef(
+  (
+    { size = '100%', color, icon, ...props }: IconProps,
+    ref: React.ForwardedRef<SVG>
+  ) => (
+    <SVG
+      src={icons[icon]}
+      /* Preprocess SVGs to use color prop. */
+      preProcessor={(svg) => svg.replace(/fill=".*?"/g, 'fill="currentColor"')}
+      /* If no color is provided, inherit color from the container. */
+      color={colors[color] ?? 'inherit'}
+      /* Fixed square size */
+      width={size}
+      height={size}
+      style={{ flexShrink: 0 }}
+      {...{ ref, ...props }}
+    />
+  )
 )
 
-export default forwardRef(Icon)
+export default Icon

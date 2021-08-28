@@ -21,15 +21,17 @@ export interface AvatarProps extends Omit<ThemeUIAvatarProps, 'size'> {
 /**
  * Provides a circular avatar.
  */
-const Avatar = (
-  { color: borderColor = 'transparent', size = 'md', ...props }: AvatarProps,
-  ref: React.RefObject<HTMLImageElement>
-) => (
-  <ThemeUIAvatar
-    variant={`images.avatar.${size}`}
-    sx={{ borderColor, flexShrink: 0 }}
-    {...{ ref, ...props }}
-  ></ThemeUIAvatar>
+const Avatar = forwardRef(
+  (
+    { color: borderColor = 'transparent', size = 'md', ...props }: AvatarProps,
+    ref: React.ForwardedRef<HTMLImageElement>
+  ) => (
+    <ThemeUIAvatar
+      variant={`images.avatar.${size}`}
+      sx={{ borderColor, flexShrink: 0 }}
+      {...{ ref, ...props }}
+    />
+  )
 )
 
-export default forwardRef(Avatar)
+export default Avatar

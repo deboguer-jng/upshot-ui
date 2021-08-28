@@ -14,14 +14,16 @@ export interface CheckboxProps extends ThemeUICheckboxProps {
 /**
  * Provides a checkbox
  */
-const Checkbox = (
-  { error = false, ...props }: CheckboxProps,
-  ref: React.RefObject<HTMLInputElement>
-) => (
-  <ThemeUICheckbox
-    variant={`checkbox.${error ? 'error' : 'primary'}`}
-    {...{ ref, ...props }}
-  />
+const Checkbox = forwardRef(
+  (
+    { error = false, ...props }: CheckboxProps,
+    ref: React.ForwardedRef<HTMLInputElement>
+  ) => (
+    <ThemeUICheckbox
+      variant={`checkbox.${error ? 'error' : 'primary'}`}
+      {...{ ref, ...props }}
+    />
+  )
 )
 
-export default forwardRef(Checkbox)
+export default Checkbox

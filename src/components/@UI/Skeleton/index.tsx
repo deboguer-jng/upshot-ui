@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { StyledSkeleton } from './Styled'
 import { BoxProps } from 'theme-ui'
 
@@ -8,8 +8,13 @@ export interface SkeletonProps extends BoxProps {
 }
 
 /** Provides a loading Skeleton */
-export default function Skeleton({ circle = false, ...props }: SkeletonProps) {
-  return (
-    <StyledSkeleton $circle={circle} {...props} />
-  )
-}
+const Skeleton = forwardRef(
+  (
+    { circle = false, ...props }: SkeletonProps,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
+    return <StyledSkeleton $circle={circle} {...{ ref, ...props }} />
+  }
+)
+
+export default Skeleton
