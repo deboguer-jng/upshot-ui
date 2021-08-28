@@ -21,40 +21,42 @@ export interface ButtonProps {
 /**
  * Primary UI component for user interaction
  */
-const Button = (
-  {
-    type = 'primary',
-    size = 'md',
-    icon,
-    width,
-    children,
-    ...props
-  }: ButtonProps & HTMLAttributes<HTMLButtonElement>,
-  ref: React.RefObject<HTMLButtonElement>
-) => {
-  if (type === 'plain') {
+const Button = forwardRef(
+  (
+    {
+      type = 'primary',
+      size = 'md',
+      icon,
+      width,
+      children,
+      ...props
+    }: ButtonProps & HTMLAttributes<HTMLButtonElement>,
+    ref: React.ForwardedRef<HTMLButtonElement>
+  ) => {
+    if (type === 'plain') {
+      return (
+        <PlainButton $size={size} {...{ ref, ...props }}>
+          <>
+            <span>{children}</span>
+            {icon}
+          </>
+        </PlainButton>
+      )
+    }
+
     return (
-      <PlainButton $size={size} {...{ ref, ...props }}>
-        <>
-          <span>{children}</span>
-          {icon}
-        </>
-      </PlainButton>
+      <PrimaryButton
+        $type={type}
+        $size={size}
+        width={width || undefined}
+        minimized={!children}
+        {...{ ref, ...props }}
+      >
+        {icon}
+        <span>{children}</span>
+      </PrimaryButton>
     )
   }
+)
 
-  return (
-    <PrimaryButton
-      $type={type}
-      $size={size}
-      width={width || undefined}
-      minimized={!children}
-      {...{ ref, ...props }}
-    >
-      {icon}
-      <span>{children}</span>
-    </PrimaryButton>
-  )
-}
-
-export default forwardRef(Button)
+export default Button

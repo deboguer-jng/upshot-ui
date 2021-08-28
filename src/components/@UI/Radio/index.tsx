@@ -14,14 +14,16 @@ export interface RadioProps extends ThemeUIRadioProps {
 /**
  * Provides a radio
  */
-const Radio = (
-  { error = false, ...props }: RadioProps,
-  ref: React.RefObject<HTMLInputElement>
-) => (
-  <ThemeUIRadio
-    variant={`radio.${error ? 'error' : 'primary'}`}
-    {...{ ref, ...props }}
-  />
+const Radio = forwardRef(
+  (
+    { error = false, ...props }: RadioProps,
+    ref: React.ForwardedRef<HTMLInputElement>
+  ) => (
+    <ThemeUIRadio
+      variant={`radio.${error ? 'error' : 'primary'}`}
+      {...{ ref, ...props }}
+    />
+  )
 )
 
-export default forwardRef(Radio)
+export default Radio

@@ -11,13 +11,15 @@ export interface InputRoundedProps extends InputProps {
 /**
  * Provides a rounded input.
  */
-export const InputRounded = (
-  { dark = false, ...props }: InputRoundedProps,
-  ref: React.RefObject<HTMLInputElement>
-) => {
-  const variant = `forms.inputs.rounded${dark ? 'Dark' : ''}`
+export const InputRounded = forwardRef(
+  (
+    { dark = false, ...props }: InputRoundedProps,
+    ref: React.ForwardedRef<HTMLInputElement>
+  ) => {
+    const variant = `forms.inputs.rounded${dark ? 'Dark' : ''}`
 
-  return <Input {...{ variant, ref, ...props }} />
-}
+    return <Input {...{ variant, ref, ...props }} />
+  }
+)
 
-export default forwardRef(InputRounded)
+export default InputRounded

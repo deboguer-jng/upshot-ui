@@ -16,35 +16,37 @@ export interface CollectionRowProps extends TableRowProps {
   title: string
 }
 
-const CollectionRow = (
-  { imageSrc: src, title, children, ...props }: CollectionRowProps,
-  ref: React.RefObject<HTMLTableRowElement>
-) => {
-  return (
-    <CollectionRowBase {...{ ref, ...props }}>
-      {/* Each row has a required avatar image circle. */}
-      <TableCell>
-        <Avatar {...{ src }} />
-      </TableCell>
+const CollectionRow = forwardRef(
+  (
+    { imageSrc: src, title, children, ...props }: CollectionRowProps,
+    ref: React.ForwardedRef<HTMLTableRowElement>
+  ) => {
+    return (
+      <CollectionRowBase {...{ ref, ...props }}>
+        {/* Each row has a required avatar image circle. */}
+        <TableCell>
+          <Avatar {...{ src }} />
+        </TableCell>
 
-      {/* Titles expand to fill all remaining space. */}
-      <TableCell sx={{ maxWidth: 0 }}>
-        <Text
-          variant="large"
-          sx={{
-            textOverflow: 'ellipsis',
-            overflow: 'hidden',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          {title}
-        </Text>
-      </TableCell>
+        {/* Titles expand to fill all remaining space. */}
+        <TableCell sx={{ maxWidth: 0 }}>
+          <Text
+            variant="large"
+            sx={{
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {title}
+          </Text>
+        </TableCell>
 
-      {/* Additional columns (React.Fragment) */}
-      {children}
-    </CollectionRowBase>
-  )
-}
+        {/* Additional columns (React.Fragment) */}
+        {children}
+      </CollectionRowBase>
+    )
+  }
+)
 
-export default forwardRef(CollectionRow)
+export default CollectionRow
