@@ -4,7 +4,7 @@ import {
   Avatar as ThemeUIAvatar,
   AvatarProps as ThemeUIAvatarProps,
 } from 'theme-ui'
-import { useTheme } from '../../../themes/UpshotUI'
+
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export interface AvatarProps extends Omit<ThemeUIAvatarProps, 'size'> {
@@ -21,33 +21,17 @@ export interface AvatarProps extends Omit<ThemeUIAvatarProps, 'size'> {
 /**
  * Provides a circular avatar.
  */
-const Avatar = (
-  {
-    color: borderColor = 'transparent',
-    size = 'md',
-    sx,
-    ...props
-  }: AvatarProps,
-  ref: React.RefObject<HTMLImageElement>
-) => {
-  const { theme } = useTheme()
-
-  return (
+const Avatar = forwardRef(
+  (
+    { color: borderColor = 'transparent', size = 'md', ...props }: AvatarProps,
+    ref: React.ForwardedRef<HTMLImageElement>
+  ) => (
     <ThemeUIAvatar
       variant={`images.avatar.${size}`}
-      size={theme.images.avatar[size].size}
-      sx={{
-        ...{
-          borderColor,
-          /* Retain fixed size. */
-          minWidth: theme.images.avatar[size].size,
-          flexShrink: 0,
-        },
-        ...(sx ?? {}),
-      }}
+      sx={{ borderColor, flexShrink: 0 }}
       {...{ ref, ...props }}
     />
   )
-}
+)
 
-export default forwardRef(Avatar)
+export default Avatar

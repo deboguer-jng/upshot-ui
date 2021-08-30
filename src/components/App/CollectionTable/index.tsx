@@ -7,16 +7,18 @@ export interface CollectionTableProps extends TableProps {}
 /**
  * Provides a table for a collection.
  */
-const CollectionTable = (
-  { children, ...props }: CollectionTableProps,
-  ref: React.RefObject<HTMLTableElement>
-) => (
-  <CollectionTableBase
-    sx={{ borderSpacing: '0 8px' }}
-    {...{ ref, children, ...props }}
-  >
-    {children}
-  </CollectionTableBase>
+const CollectionTable = forwardRef(
+  (
+    { children, ...props }: CollectionTableProps,
+    ref: React.ForwardedRef<HTMLTableElement>
+  ) => (
+    <CollectionTableBase
+      sx={{ borderSpacing: '0 8px' }}
+      {...{ ref, children, ...props }}
+    >
+      {children}
+    </CollectionTableBase>
+  )
 )
 
-export default forwardRef(CollectionTable)
+export default CollectionTable
