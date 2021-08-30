@@ -69,11 +69,12 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
     }
   }
 
-  &:focus {
+  &:not(:disabled):active {
     box-shadow: 0px 4px 4px rgba(0, 145, 255, 0.6);
+    transform: scale(0.95);
   }
 
-  &:not(:disabled):active {
+  &:not(:disabled):focus {
     background: ${({ theme, $type }) =>
       theme.buttons.variants[$type].colors.pressedBackground};
     border: 2px solid
@@ -90,7 +91,6 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
           theme.buttons.variants[$type].colors.pressedColor};
       }
     }
-    transform: scale(0.95);
   }
 `
 
