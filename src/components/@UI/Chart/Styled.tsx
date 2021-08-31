@@ -77,6 +77,8 @@ export const NoDataBoard = styled.div`
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
+  width: 100%;
+  height: 100%;
 
   p {
     color: ${({ theme }) => theme.colors.text};
