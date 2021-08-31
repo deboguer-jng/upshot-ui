@@ -49,8 +49,11 @@ const Chart = forwardRef(
     const options: ApexOptions = {
       ...(theme.chart.options as ApexOptions),
       chart: {
-        id: 'myChart',
+        id: 'upshotChart',
         type: 'area',
+        toolbar: {
+          show: false
+        }
       },
       colors,
       fill: {
