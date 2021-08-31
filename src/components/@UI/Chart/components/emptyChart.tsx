@@ -8,7 +8,6 @@ import { NoDataBoard } from '../Styled'
 
 const EmptyChart = ({
   loading,
-  noData,
   error,
   noSelected,
   data
@@ -16,6 +15,7 @@ const EmptyChart = ({
   const errorDisplayText = error
     ? 'Error loading data'
     : 'No data (yet)'
+  const noData = data.length === 0 && !noSelected
 
   return (
     <>

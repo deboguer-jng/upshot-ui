@@ -6,7 +6,6 @@ import PopulatedChart from './components/populatedChart'
 
 export interface ChartProps {
   loading?: boolean
-  noData?: boolean
   error?: boolean
   noSelected?: boolean
   data?: {
@@ -19,7 +18,6 @@ const Chart = forwardRef(
   (
     {
       loading = false,
-      noData = false,
       error = false,
       noSelected = false,
       data = [],
@@ -27,7 +25,7 @@ const Chart = forwardRef(
     }: ChartProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    const dataAvailable = !loading && !noData && !error && !noSelected
+    const dataAvailable = !loading && data.length !== 0 && !error && !noSelected
 
     return (
       <ChartWrapper {...{ ref, ...props }}>
@@ -38,7 +36,6 @@ const Chart = forwardRef(
               : <EmptyChart {...
                 {
                   loading,
-                  noData,
                   error,
                   noSelected,
                   data,
