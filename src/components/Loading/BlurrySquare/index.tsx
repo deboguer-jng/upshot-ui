@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { CenteredSpinner, BlurrySquare } from './Styled'
 import { FlexProps } from 'theme-ui'
 
 
 
 /** Provides a loading Skeleton */
-export default function BlurrySquareTemplate({ ...props }: FlexProps) {
+const BlurrySquareTemplate = forwardRef(
+  (
+    { ...props }: FlexProps,
+    ref: React.ForwardedRef<HTMLImageElement>
+  ) => (
+    <BlurrySquare {...{ ref, ...props }} >
+      <CenteredSpinner size={'md'} />
+    </BlurrySquare>
+  )
+)
 
-    return (
-      <BlurrySquare {...props} >
-        <CenteredSpinner size={'md'} />
-      </BlurrySquare>
-    )
-
-}
+export default BlurrySquareTemplate
