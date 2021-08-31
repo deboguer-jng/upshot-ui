@@ -10,6 +10,7 @@ export const CollectionButtonWrapper = styled.div<CollectionButtonWrapperProps>`
   gap: ${({ theme }) => theme.buttons.collection.gap}px;
   align-items: center;
   background-color: ${({ theme }) => theme.buttons.collection.background};
+  width: 100%;
   height: ${({ theme }) => theme.buttons.collection.height}px;
   border-radius: ${({ theme }) => theme.buttons.collection.borderRadius}px;
   padding: 4px;
