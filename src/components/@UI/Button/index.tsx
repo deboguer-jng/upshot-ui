@@ -1,11 +1,12 @@
 import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
+import Colors from '../../../themes/UpshotUI/colors'
 import { PrimaryButton, PlainButton } from './Styled'
 
 export interface ButtonProps {
   /**
    * Is this the principal call to action on the page?
    */
-  type?: 'primary' | 'secondary' | 'tertiary' | 'plain'
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'plain'
   /**
    * How large should the button be?
    */
@@ -16,6 +17,8 @@ export interface ButtonProps {
   width?: number
 
   children?: ReactNode
+
+  color?: keyof typeof Colors
 }
 
 /**
@@ -23,8 +26,9 @@ export interface ButtonProps {
  */
 const Button = (
   {
-    type = 'primary',
+    variant = 'primary',
     size = 'md',
+    color,
     icon,
     width,
     children,
@@ -32,7 +36,8 @@ const Button = (
   }: ButtonProps & HTMLAttributes<HTMLButtonElement>,
   ref: React.RefObject<HTMLButtonElement>
 ) => {
-  if (type === 'plain') {
+  console.log({ color })
+  if (variant === 'plain') {
     return (
       <PlainButton $size={size} {...{ ref, ...props }}>
         <>
@@ -45,8 +50,9 @@ const Button = (
 
   return (
     <PrimaryButton
-      $type={type}
+      $type={variant}
       $size={size}
+      $color={color}
       width={width || undefined}
       minimized={!children}
       {...{ ref, ...props }}
