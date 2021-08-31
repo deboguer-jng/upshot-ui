@@ -107,3 +107,10 @@ export function toggle(idx, seriesName, filterStatus, setFilterStatus) {
   newStatus[idx] = !newStatus[idx]
   setFilterStatus(newStatus)
 }
+
+export interface DataProps {
+  data?: {
+    name: string
+    data: number[],
+  }[]
+}
