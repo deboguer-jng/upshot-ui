@@ -1,3 +1,5 @@
+import React from 'react'
+
 /**
  * Components: @UI
  *
@@ -7,7 +9,7 @@ export { default as Avatar } from './components/@UI/Avatar'
 export { default as AvatarInitials } from './components/@UI/AvatarInitials'
 export { default as Button } from './components/@UI/Button'
 export { default as ButtonDropdown } from './components/@UI/ButtonDropdown'
-// export { default as Chart } from './components/@UI/Chart'
+export { default as Chart } from './components/@UI/Chart/ChartDynamic'
 export { default as Checkbox } from './components/@UI/Checkbox'
 export { default as CollectionButton } from './components/@UI/CollectionButton'
 export { default as Icon } from './components/@UI/Icon'
