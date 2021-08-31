@@ -2,7 +2,8 @@ import React, { useState, forwardRef } from 'react'
 import { useTheme } from '@emotion/react'
 import { default as ReactApexCharts } from 'react-apexcharts'
 import { Text } from 'theme-ui'
-import ApexCharts, { ApexOptions } from 'apexcharts'
+import { ApexOptions } from 'apexcharts'
+
 import {
   NoDataBoard,
   ChartWrapper,
@@ -15,6 +16,7 @@ import {
   ChartNoSelectedTextArea,
 } from './Styled'
 import Spinner from '../Spinner'
+import { getOptions, toggle } from './utils'
 
 export interface ChartProps {
   loading?: boolean
@@ -23,7 +25,7 @@ export interface ChartProps {
   noSelected?: boolean
   data?: {
     name: string
-    data: number[]
+    data: number[],
   }[]
 }
 
@@ -45,94 +47,7 @@ const Chart = forwardRef(
 
     const colors = [theme.rawColors.primary, theme.rawColors.secondary]
     const filterLabels = ['1H', '1D', '1W', '1Y', 'ALL']
-
-    const options: ApexOptions = {
-      ...(theme.chart.options as ApexOptions),
-      chart: {
-        id: 'upshotChart',
-        type: 'area',
-        toolbar: {
-          show: false
-        }
-      },
-      colors,
-      fill: {
-        type: 'gradient',
-        gradient: {
-          gradientToColors: [
-            ...new Array(data.length || theme.chart.defaultSeries.length),
-          ].map((_) => 'transparent'),
-          opacityFrom: 0.9,
-          opacityTo: 0.6,
-          stops: [0, 90, 100],
-        },
-      },
-      markers: {
-        colors,
-        strokeColors: colors,
-      },
-      tooltip: {
-        enabled: true,
-        shared: false,
-        custom: function ({
-          series,
-          seriesIndex,
-          dataPointIndex,
-          w: {
-            globals: { clientX: x, svgWidth: width },
-          },
-        }) {
-          const offset =
-            x <= width / 2 ? 'calc(-50% - 12px)' : 'calc(50% + 9.5px)'
-
-          return `
-          <style>
-            .apexcharts-tooltip {
-              background: transparent!important;
-              border: none!important;
-              box-shadow: none!important;
-              transform: translateX(${offset}) translateY(-10px);
-              overflow: visible;
-            }
-            .apexcharts-xaxistooltip, .apexcharts-yaxistooltip {
-              background: black;
-              color: ${theme.rawColors.text};
-              border-radius: ${theme.radii.pill};
-              font-size: ${theme.fontSizes[0]};
-            }
-          </style>
-          <div style="
-            position: relative;
-            background: black;
-            border-radius: 1rem;
-            padding: 0.1rem 1rem;
-            overflow: visible;
-            font-family: ${theme.fonts.body};
-            color: ${colors[seriesIndex]};
-            border: 1px solid ${colors[seriesIndex]};
-          " id="apexcharts-custom-tooltip"
-          >
-            $ ${series[seriesIndex][dataPointIndex]}
-            <div style="
-              position: absolute;
-              bottom: -6px;
-              left: 50%;
-              transform: translateX(-50%) rotate(-45deg);
-              width: 10px;
-              height: 10px;
-              background: black;
-              border-left: 1px solid ${colors[seriesIndex]};
-              border-bottom: 1px solid ${colors[seriesIndex]};
-            ">
-            </div>
-          </div>
-          `
-        },
-        x: {
-          format: 'dd/MM/yy HH:mm',
-        },
-      },
-    }
+    const options: ApexOptions = getOptions(theme, data)
 
     if (loading) {
       return (
@@ -214,14 +129,6 @@ const Chart = forwardRef(
       )
     }
 
-    const toggle = (idx: number, seriesName: string) => {
-      ApexCharts.exec('myChart', 'toggleSeries', seriesName)
-
-      const newStatus = [...filterStatus]
-      newStatus[idx] = !newStatus[idx]
-      setFilterStatus(newStatus)
-    }
-
     return (
       <ChartWrapper {...{ ref, ...props }}>
         <div>
@@ -249,7 +156,15 @@ const Chart = forwardRef(
                 key={i}
                 active={filterStatus[i]}
                 color={colors[i]}
-                onClick={() => toggle(i, data[i].name)}
+                onClick={
+                  () =>
+                    toggle(
+                      i,
+                      data[i].name,
+                      filterStatus,
+                      setFilterStatus
+                    )
+                  }
               >
                 <div />
                 <Text>{data[i].name}</Text>
