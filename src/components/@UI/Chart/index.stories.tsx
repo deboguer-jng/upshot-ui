@@ -43,10 +43,3 @@ export const ChartNoSelected = Template.bind({})
 ChartNoSelected.args = {
   noSelected: true,
 }
-
-// This doesn't do anything
-// export const ChartNoSelectedLarge = Template.bind({})
-// ChartNoSelectedLarge.args = {
-//   noSelected: true,
-//   size: 'large',
-// }
