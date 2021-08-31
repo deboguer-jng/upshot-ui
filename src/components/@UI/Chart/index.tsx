@@ -189,7 +189,7 @@ const Chart = forwardRef(
               <ReactApexCharts
                 series={theme.chart.defaultSeries}
                 type="area"
-                height="100%"
+                height="auto"
                 width="100%"
                 {...{ options }}
               />
@@ -225,7 +225,7 @@ const Chart = forwardRef(
           <ReactApexCharts
             series={data}
             type="area"
-            height="100%"
+            height="auto"
             width="100%"
             {...{ options }}
           />

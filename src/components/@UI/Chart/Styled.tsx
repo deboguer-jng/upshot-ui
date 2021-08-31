@@ -29,16 +29,12 @@ export const ChartWrapper = styled.div`
 
 export const ChartNoSelectedWrapper = styled.div`
   position: relative;
-  height: 100%;
-  width: 100%;
 `
 
 export const ChartNoSelectedTextArea = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,7 +59,7 @@ export const ChartNoSelectedTextArea = styled.div`
 export const ChartLoadingBoard = styled.div`
   position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
   border-radius: 0.5rem;
   background: ${({ theme }) => theme.colors['grey-900']};
   display: flex;
@@ -72,8 +68,6 @@ export const ChartLoadingBoard = styled.div`
 `
 
 export const NoDataBoard = styled.div`
-  width: 100%;
-  height: 100%;
   position: relative;
   border-left: 1px solid ${({ theme }) => theme.colors.text};
   border-bottom: 1px solid ${({ theme }) => theme.colors.text};
