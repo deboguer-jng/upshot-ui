@@ -1,4 +1,5 @@
 // @ts-nocheck
+import React from 'react'
 import { UpshotUIThemeType } from '../../..'
 
 export function getOptions(

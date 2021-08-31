@@ -49,129 +49,103 @@ const Chart = forwardRef(
     const filterLabels = ['1H', '1D', '1W', '1Y', 'ALL']
     const options: ApexOptions = getOptions(theme, data)
 
-    if (loading) {
-      return (
-        <ChartWrapper {...{ ref, ...props }}>
-          <div>
-            <ChartLoadingBoard>
-              <Spinner />
-            </ChartLoadingBoard>
-          </div>
-        </ChartWrapper>
-      )
-    }
+    const loadingBlock = (
+      <ChartLoadingBoard>
+        <Spinner />
+      </ChartLoadingBoard>
+    )
 
-    if (error) {
-      return (
-        <ChartWrapper {...{ ref, ...props }}>
+    const nothingSelectedBlock = (
+      <ChartNoSelectedWrapper>
+        <ReactApexCharts
+          series={theme.chart.defaultSeries}
+          type="area"
+          height="auto"
+          width="100%"
+          {...{ options }}
+        />
+        <ChartNoSelectedTextArea>
           <div>
-            <NoDataBoard>
-              <div>
-                <Text variant="largeWhite" sx={{ display: 'block' }}>
-                  Sorry
-                </Text>
-                <Text variant="h1PrimaryWhite" sx={{ lineHeight: 'heading' }}>
-                  Error loading data
-                </Text>
-              </div>
-            </NoDataBoard>
+            <Text variant="largeWhite" sx={{ display: 'block' }}>
+              Nothing selected.
+            </Text>
+            <Text variant="h1PrimaryWhite" sx={{ lineHeight: 'heading' }}>
+              Select a collection (or multiple)
+              <br />
+              from the container below.
+            </Text>
           </div>
-        </ChartWrapper>
-      )
-    }
+        </ChartNoSelectedTextArea>
+      </ChartNoSelectedWrapper>
+    )
 
-    if (noData) {
-      return (
-        <ChartWrapper {...{ ref, ...props }}>
-          <div>
-            <NoDataBoard>
-              <div>
-                <Text variant="largeWhite" sx={{ display: 'block' }}>
-                  Sorry:
-                </Text>
-                <Text variant="h1PrimaryWhite" sx={{ lineHeight: 'heading' }}>
-                  No data (yet)
-                </Text>
-              </div>
-            </NoDataBoard>
-          </div>
-        </ChartWrapper>
-      )
-    }
+    const errorDisplayText = error
+      ? 'Error loading data'
+      : 'No data (yet)'
 
-    if (noSelected) {
-      return (
-        <ChartWrapper {...{ ref, ...props }}>
-          <div>
-            <ChartNoSelectedWrapper>
-              <ReactApexCharts
-                series={theme.chart.defaultSeries}
-                type="area"
-                height="auto"
-                width="100%"
-                {...{ options }}
-              />
-              <ChartNoSelectedTextArea>
-                <div>
-                  <Text variant="largeWhite" sx={{ display: 'block' }}>
-                    Nothing selected.
-                  </Text>
-                  <Text variant="h1PrimaryWhite" sx={{ lineHeight: 'heading' }}>
-                    Select a collection (or multiple)
-                    <br />
-                    from the container below.
-                  </Text>
-                </div>
-              </ChartNoSelectedTextArea>
-            </ChartNoSelectedWrapper>
-          </div>
-        </ChartWrapper>
-      )
-    }
+    const noDataBlock = (
+      <NoDataBoard>
+        <div>
+          <Text variant="largeWhite" sx={{ display: 'block' }}>
+            Sorry:
+          </Text>
+          <Text variant="h1PrimaryWhite" sx={{ lineHeight: 'heading' }}>
+            {errorDisplayText}
+          </Text>
+        </div>
+      </NoDataBoard>
+    )
 
     return (
       <ChartWrapper {...{ ref, ...props }}>
         <div>
-          <ReactApexCharts
-            series={data}
-            type="area"
-            height="auto"
-            width="100%"
-            {...{ options }}
-          />
-          <FilterWrapper>
-            {[...new Array(5)].map((_, i) => (
-              <FilterButton
-                key={i}
-                active={filter === i}
-                onClick={() => setFilter(i)}
-              >
-                {filterLabels[i]}
-              </FilterButton>
-            ))}
-          </FilterWrapper>
-          <CustomLegendWrapper>
-            {[...new Array(data.length)].map((_, i) => (
-              <CustomLegend
-                key={i}
-                active={filterStatus[i]}
-                color={colors[i]}
-                onClick={
-                  () =>
-                    toggle(
-                      i,
-                      data[i].name,
-                      filterStatus,
-                      setFilterStatus
-                    )
-                  }
-              >
-                <div />
-                <Text>{data[i].name}</Text>
-              </CustomLegend>
-            ))}
-          </CustomLegendWrapper>
-        </div>
+          { loading && loadingBlock }
+          { noSelected && nothingSelectedBlock }
+          { (error || noData) && noDataBlock }
+          {
+            !error && !noData && !noSelected &&
+              <>
+                <ReactApexCharts
+                  series={data}
+                  type="area"
+                  height="auto"
+                  width="100%"
+                  {...{ options }}
+                />
+                <FilterWrapper>
+                  {[...new Array(5)].map((_, i) => (
+                    <FilterButton
+                      key={i}
+                      active={filter === i}
+                      onClick={() => setFilter(i)}
+                    >
+                      {filterLabels[i]}
+                    </FilterButton>
+                  ))}
+                </FilterWrapper>
+                <CustomLegendWrapper>
+                  {[...new Array(data.length)].map((_, i) => (
+                    <CustomLegend
+                      key={i}
+                      active={filterStatus[i]}
+                      color={colors[i]}
+                      onClick={
+                        () =>
+                          toggle(
+                            i,
+                            data[i].name,
+                            filterStatus,
+                            setFilterStatus
+                          )
+                        }
+                    >
+                      <Text>{data[i].name}</Text>
+                    </CustomLegend>
+                  ))}
+                </CustomLegendWrapper>
+              </>
+          }
+          </div>
       </ChartWrapper>
     )
   }
