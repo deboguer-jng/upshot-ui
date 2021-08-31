@@ -1,5 +1,3 @@
-import React from 'react'
-
 /**
  * Components: @UI
  *
@@ -14,6 +12,7 @@ export { default as Checkbox } from './components/@UI/Checkbox'
 export { default as CollectionButton } from './components/@UI/CollectionButton'
 export { default as Icon } from './components/@UI/Icon'
 export { default as IconButton } from './components/@UI/IconButton'
+export { default as Image } from './components/@UI/Image'
 export { default as InputRounded } from './components/@UI/InputRounded'
 export { default as InputRoundedSearch } from './components/@UI/InputRoundedSearch'
 export { default as Label } from './components/@UI/Label'

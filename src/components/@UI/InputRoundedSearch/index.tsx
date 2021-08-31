@@ -45,7 +45,6 @@ const InputRoundedSearch = forwardRef(
     return (
       <Flex>
         <InputRoundedSearchBase
-          dark
           placeholder="Search..."
           $hasButton={hasButton}
           {...{ ref, ...props }}
