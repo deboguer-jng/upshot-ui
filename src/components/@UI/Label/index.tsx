@@ -5,7 +5,7 @@ export interface LabelProps {
   /**
    * The text to be displayed on the label.
    */
-  children?: string,
+  children?: string
   /**
    * Defines the style of the label.
    * Defaults to basic.
@@ -24,29 +24,33 @@ export interface LabelProps {
 }
 
 /**
- * 
+ *
  * Provides a basic label or a currency label of various sizes.
  */
-const Label = (
-  {
-    children,
-    style = 'basic',
-    size = 'sm',
-    currencySymbol = 'Ξ'
-  }: LabelProps,
-  ref: React.RefObject<HTMLDivElement>) => {
+const Label = forwardRef(
+  (
+    {
+      children,
+      style = 'basic',
+      size = 'sm',
+      currencySymbol = 'Ξ',
+    }: LabelProps,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
     return (
       <>
-        { 
-          style === 'currency' &&
-            <ThemeUILabel variant={`${size}CurrencySymbol`}>{currencySymbol}</ThemeUILabel>
-        }
+        {style === 'currency' && (
+          <ThemeUILabel variant={`${size}CurrencySymbol`}>
+            {currencySymbol}
+          </ThemeUILabel>
+        )}
         {/* Each combination of style and size is a unique variant of the theme */}
         <ThemeUILabel variant={style + size[0].toUpperCase() + size[1]}>
-          { children }
+          {children}
         </ThemeUILabel>
       </>
     )
-}
+  }
+)
 
-export default forwardRef(Label)
+export default Label
