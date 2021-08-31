@@ -11,7 +11,7 @@ export const radii = {
   xs: sizes[1] + 'px',
   sm: sizes[2] + 'px',
   md: sizes[4] + 'px',
-  lg: sizes[8] + 'px',
+  lg: sizes[6] + 'px',
   pill: '9999px',
   circle: '50vh',
   oval: '50%',

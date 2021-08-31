@@ -1,6 +1,6 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-
+import { Image } from 'theme-ui'
 import CollectionButton from '.'
 import Icon from '../Icon'
 
@@ -18,6 +18,20 @@ Default.args = {
   text: 'name',
   subText: 'eth value',
   icon: <Icon icon="comment" />,
+}
+
+export const ImageIcon = Template.bind({})
+ImageIcon.args = {
+  text: 'name',
+  subText: 'eth value',
+  icon: (
+    <Image
+      src="/img/defaultAvatar.png"
+      height="100%"
+      width="100%"
+      sx={{ borderRadius: 'circle' }}
+    />
+  ),
 }
 
 export const Error = Template.bind({})
