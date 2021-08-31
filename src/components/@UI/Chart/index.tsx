@@ -48,6 +48,7 @@ const Chart = forwardRef(
     const colors = [theme.rawColors.primary, theme.rawColors.secondary]
     const filterLabels = ['1H', '1D', '1W', '1Y', 'ALL']
     const options: ApexOptions = getOptions(theme, data)
+    const dataAvailable = !loading && !noData && !error && !noSelected
 
     const loadingBlock = (
       <ChartLoadingBoard>
@@ -96,56 +97,66 @@ const Chart = forwardRef(
       </NoDataBoard>
     )
 
+    const populatedChart = (
+      <>
+        <ReactApexCharts
+          series={data}
+          type="area"
+          height="auto"
+          width="100%"
+          {...{ options }}
+        />
+        <FilterWrapper>
+          {[...new Array(5)].map((_, i) => (
+            <FilterButton
+              key={i}
+              active={filter === i}
+              onClick={() => setFilter(i)}
+            >
+              {filterLabels[i]}
+            </FilterButton>
+          ))}
+        </FilterWrapper>
+        <CustomLegendWrapper>
+          {[...new Array(data.length)].map((_, i) => (
+            <CustomLegend
+              key={i}
+              active={filterStatus[i]}
+              color={colors[i]}
+              onClick={
+                () =>
+                  toggle(
+                    i,
+                    data[i].name,
+                    filterStatus,
+                    setFilterStatus
+                  )
+                }
+            >
+              <Text>{data[i].name}</Text>
+            </CustomLegend>
+          ))}
+        </CustomLegendWrapper>
+      </>
+    )
+
+    const emptyChart = (
+      <>
+        { loading && loadingBlock }
+        { noSelected && nothingSelectedBlock }
+        { (error || noData) && noDataBlock }
+      </>
+    )
+
     return (
       <ChartWrapper {...{ ref, ...props }}>
         <div>
-          { loading && loadingBlock }
-          { noSelected && nothingSelectedBlock }
-          { (error || noData) && noDataBlock }
           {
-            !error && !noData && !noSelected &&
-              <>
-                <ReactApexCharts
-                  series={data}
-                  type="area"
-                  height="auto"
-                  width="100%"
-                  {...{ options }}
-                />
-                <FilterWrapper>
-                  {[...new Array(5)].map((_, i) => (
-                    <FilterButton
-                      key={i}
-                      active={filter === i}
-                      onClick={() => setFilter(i)}
-                    >
-                      {filterLabels[i]}
-                    </FilterButton>
-                  ))}
-                </FilterWrapper>
-                <CustomLegendWrapper>
-                  {[...new Array(data.length)].map((_, i) => (
-                    <CustomLegend
-                      key={i}
-                      active={filterStatus[i]}
-                      color={colors[i]}
-                      onClick={
-                        () =>
-                          toggle(
-                            i,
-                            data[i].name,
-                            filterStatus,
-                            setFilterStatus
-                          )
-                        }
-                    >
-                      <Text>{data[i].name}</Text>
-                    </CustomLegend>
-                  ))}
-                </CustomLegendWrapper>
-              </>
+            dataAvailable
+              ? populatedChart
+              : emptyChart
           }
-          </div>
+        </div>
       </ChartWrapper>
     )
   }
