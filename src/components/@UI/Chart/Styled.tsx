@@ -61,7 +61,7 @@ export const ChartNoSelectedTextArea = styled.div`
 export const ChartLoadingBoard = styled.div`
   position: relative;
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 0.5rem;
   background: ${({ theme }) => theme.colors['grey-900']};
   display: flex;
