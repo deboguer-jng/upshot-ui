@@ -39,6 +39,8 @@ export const ChartNoSelectedTextArea = styled.div`
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
+  width: 100%;
+  height: 100%;
 
   p,
   h1 {
