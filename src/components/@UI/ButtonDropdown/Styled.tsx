@@ -70,7 +70,7 @@ export const DropdownMenuArrow = styled.div<DropdownMenuArrowProps>`
 
 export const DropdownMenuItems = styled.div`
   overflow: auto;
-  height: -webkit-fill-available;
+  height: 100%;
   background: transparent;
 
   &::-webkit-scrollbar {
