@@ -11,7 +11,7 @@ export interface ChartProps {
   data?: {
     name: string
     data: number[],
-  }[]
+  }[],
 }
 
 const Chart = forwardRef(

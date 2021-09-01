@@ -21,7 +21,11 @@ const PopulatedChart = (data: DataProps) => {
   const [filter, setFilter] = useState(0)
   const [filterStatus, setFilterStatus] = useState(data.data.map((_) => true))
 
-  const colors = [theme.rawColors.primary, theme.rawColors.secondary]
+  const colors = [
+    theme.rawColors.primary,
+    theme.rawColors.secondary,
+    theme.rawColors.purple,
+  ]
   const filterLabels = ['1H', '1D', '1W', '1Y', 'ALL']
   const options: ApexOptions = getOptions(theme, data.data)
 

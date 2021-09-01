@@ -10,9 +10,10 @@ import {
 } from '../Styled'
 import { getOptions, DataProps } from '../utils'
 
-const SelectionPrompt = (data: DataProps) => {
+const SelectionPrompt = (chartData: DataProps) => {
   const theme = useTheme()
-  const options: ApexOptions = getOptions(theme, data.data)
+  const { data } = chartData
+  const options: ApexOptions = getOptions(theme, data)
 
   return (
     <ChartNoSelectedWrapper>
@@ -25,10 +26,14 @@ const SelectionPrompt = (data: DataProps) => {
       />
       <ChartNoSelectedTextArea>
         <div>
-          <Text variant="largeWhite" sx={{ display: 'block' }}>
-            Nothing selected.
+          <Text
+            variant="largeWhiteCharts"
+          >
+              Nothing selected.
           </Text>
-          <Text variant="h1PrimaryWhite" sx={{ lineHeight: 'heading' }}>
+          <Text
+            variant="h1PrimaryWhiteCharts"
+          >
             Select a collection (or multiple)
             <br />
             from the container below.

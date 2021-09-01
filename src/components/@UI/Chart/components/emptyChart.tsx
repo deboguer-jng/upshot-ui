@@ -24,14 +24,18 @@ const EmptyChart = ({
       { (error || noData) &&       
         <NoDataBoard>
           <div>
-            <Text variant="largeWhite" sx={{ display: 'block' }}>
-              Sorry:
-            </Text>
-            <Text variant="h1PrimaryWhite" sx={{ lineHeight: 'heading' }}>
-              {errorDisplayText}
-            </Text>
-          </div>
-        </NoDataBoard>
+          <Text
+            variant="largeWhiteCharts"
+          >
+            Sorry:
+          </Text>
+          <Text
+            variant="h1PrimaryWhiteCharts"
+          >
+            {errorDisplayText}
+          </Text>
+        </div>
+      </NoDataBoard>
       }
     </>
   )

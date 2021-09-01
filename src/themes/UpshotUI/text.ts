@@ -54,6 +54,17 @@ const text = {
     lineHeight: '3.25rem',
     color: colors.white,
   },
+  h1PrimaryWhiteCharts: {
+    fontFamily: 'body',
+    fontWeight: 'bold',
+    color: colors.white,
+    lineHeight: [
+      'initial',
+      'initial',
+      'heading',
+    ],
+    fontSize: [3, 5, 7],
+  },
   h1Secondary: {
     fontFamily: 'heading',
     fontWeight: 'bold',
@@ -108,6 +119,14 @@ const text = {
     fontSize: 3,
     lineHeight: '1.375rem',
     color: colors.white,
+  },
+  largeWhiteCharts: {
+    fontFamily: 'body',
+    fontWeight: 'bold',
+    lineHeight: '1.375rem',
+    color: colors.white,
+    display: 'block',
+    fontSize: [1, 1, 3],
   },
   small: {
     fontFamily: 'body',
