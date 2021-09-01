@@ -34,9 +34,9 @@ const SelectionPrompt = (chartData: DataProps) => {
           <Text
             variant="h1PrimaryWhiteCharts"
           >
-            Select a collection (or multiple)
+            Select one or more collections
             <br />
-            from the container below.
+            from the list below.
           </Text>
         </div>
       </ChartNoSelectedTextArea>

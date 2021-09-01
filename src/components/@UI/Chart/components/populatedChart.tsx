@@ -16,10 +16,11 @@ import {
   DataProps,
 } from '../utils'
 
-const PopulatedChart = (data: DataProps) => {
+const PopulatedChart = (chartData: DataProps) => {
   const theme = useTheme()
+  const { data } = chartData;
   const [filter, setFilter] = useState(0)
-  const [filterStatus, setFilterStatus] = useState(data.data.map((_) => true))
+  const [filterStatus, setFilterStatus] = useState(data.map((_) => true))
 
   const colors = [
     theme.rawColors.primary,
@@ -27,12 +28,12 @@ const PopulatedChart = (data: DataProps) => {
     theme.rawColors.purple,
   ]
   const filterLabels = ['1H', '1D', '1W', '1Y', 'ALL']
-  const options: ApexOptions = getOptions(theme, data.data)
+  const options: ApexOptions = getOptions(theme, data)
 
   return (
     <>
       <ReactApexCharts
-        series={data.data}
+        series={data}
         type="area"
         height="auto"
         width="100%"
@@ -50,7 +51,7 @@ const PopulatedChart = (data: DataProps) => {
         ))}
       </FilterWrapper>
       <CustomLegendWrapper>
-        {[...new Array(data.data.length)].map((_, i) => (
+        {[...new Array(data.length)].map((_, i) => (
           <CustomLegend
             key={i}
             active={filterStatus[i]}
@@ -59,13 +60,13 @@ const PopulatedChart = (data: DataProps) => {
               () =>
                 toggle(
                   i,
-                  data.data[i].name,
+                  data[i].name,
                   filterStatus,
                   setFilterStatus
                 )
               }
           >
-            <Text>{data.data[i].name}</Text>
+            <Text>{data[i].name}</Text>
           </CustomLegend>
         ))}
       </CustomLegendWrapper>

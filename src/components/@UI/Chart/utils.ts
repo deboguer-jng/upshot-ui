@@ -1,5 +1,4 @@
 // @ts-nocheck
-import React from 'react'
 import { UpshotUIThemeType } from '../../..'
 
 export function getOptions(
@@ -8,8 +7,13 @@ export function getOptions(
     name: string,
     data: number[],
     length?: number,
-  }>) {
-  const colors = [theme.rawColors.primary, theme.rawColors.secondary]
+  }>,
+  ){
+  const colors = [
+    theme.rawColors.primary,
+    theme.rawColors.secondary,
+    theme.rawColors.purple,
+  ]
 
   return {
     ...(theme.chart.options as ApexOptions),
@@ -17,8 +21,13 @@ export function getOptions(
       id: 'upshotChart',
       type: 'area',
       toolbar: {
-        show: false
-      }
+        show: false,
+      },
+      yaxis: {
+        labels: {
+          show: false,
+        },
+      },
     },
     colors,
     fill: {

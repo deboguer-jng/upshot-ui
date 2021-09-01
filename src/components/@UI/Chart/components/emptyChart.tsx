@@ -27,7 +27,7 @@ const EmptyChart = ({
           <Text
             variant="largeWhiteCharts"
           >
-            Sorry:
+            Sorry!
           </Text>
           <Text
             variant="h1PrimaryWhiteCharts"
