@@ -20,17 +20,17 @@ export interface CollectionLineProps extends FlexProps {
 /** Provides a loading Skeleton */
 const CollectionLine = forwardRef(
   ({
-  underglow,
-  icon,
-  text1='text1',
-  text2='text2',
-  text3='text3',
-  text4='text4',
-  text5='text5',
-  ...props
-}: CollectionLineProps,
-ref: React.ForwardedRef<HTMLDivElement>
-) => {
+    underglow,
+    icon,
+    text1='text1',
+    text2='text2',
+    text3='text3',
+    text4='text4',
+    text5='text5',
+    ...props
+  }: CollectionLineProps,
+  ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
     return (
       <StyledCollectionLine gap={2} columns={[7, '1.2fr 3fr 3fr 3fr 3fr 3fr 0fr']} $underglow={underglow} {...{ ref, ...props }}>
         <Box>

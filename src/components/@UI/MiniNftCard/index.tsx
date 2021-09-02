@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { Text, Flex } from 'theme-ui'
 import ErrorSvg from '../../../assets/svg/icons/Error.svg'
 import {
@@ -27,20 +27,24 @@ export interface MiniNftCardInterface {
   type: 'default' | 'search'
 }
 
-export default function MiniNftCard({
-  error = false,
-  type = 'default',
-  creator,
-  image,
-  name,
-  price,
-  rarity,
-  from,
-  to,
-  date,
-}: MiniNftCardInterface) {
+const MiniNftCard = forwardRef(
+  ({
+    error = false,
+    type = 'default',
+    creator,
+    image,
+    name,
+    price,
+    rarity,
+    from,
+    to,
+    date,
+    ...props
+  }: MiniNftCardInterface,
+  ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
   return (
-    <MiniNftCardWrapper>
+    <MiniNftCardWrapper {...{ ref, ...props }}>
       <MiniNftCardMainBoard error={error}>
         <img src={error ? ErrorSvg : image} />
         <MiniNftCardMainContentWrapper type={type}>
@@ -110,4 +114,6 @@ export default function MiniNftCard({
       </MiniNftCardDetailsBoard>
     </MiniNftCardWrapper>
   )
-}
+})
+
+export default MiniNftCard
