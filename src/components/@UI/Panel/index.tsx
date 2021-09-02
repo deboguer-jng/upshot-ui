@@ -13,9 +13,11 @@ export interface PanelProps extends BoxProps {
 /**
  * Provides a surface for UI elements.
  */
-const Panel = (
-  { inner = false, ...props }: PanelProps,
-  ref: React.RefObject<HTMLDivElement>
-) => <PanelBase $inner={inner} {...{ ref, ...props }} />
+const Panel = forwardRef(
+  (
+    { inner = false, ...props }: PanelProps,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => <PanelBase $inner={inner} {...{ ref, ...props }} />
+)
 
-export default forwardRef(Panel)
+export default Panel

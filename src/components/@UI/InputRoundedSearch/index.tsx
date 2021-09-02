@@ -22,54 +22,55 @@ export interface InputRoundedSearchProps
 /**
  * Provides a rounded search input.
  */
-const InputRoundedSearch = (
-  {
-    hasButton = false,
-    buttonProps: buttonPropsRaw,
-    ...props
-  }: InputRoundedSearchProps,
-  ref: React.RefObject<HTMLInputElement>
-) => {
-  const { theme } = useTheme()
+const InputRoundedSearch = forwardRef(
+  (
+    {
+      hasButton = false,
+      buttonProps: buttonPropsRaw,
+      ...props
+    }: InputRoundedSearchProps,
+    ref: React.ForwardedRef<HTMLInputElement>
+  ) => {
+    const { theme } = useTheme()
 
-  /* Size the button equal to the height of the field. */
-  const buttonSize = theme.forms.inputs.default.height
+    /* Size the button equal to the height of the field. */
+    const buttonSize = theme.forms.inputs.default.height
 
-  /* Padding used between button and container. */
-  const padding = theme.sizes[1] + 'px'
+    /* Padding used between button and container. */
+    const padding = theme.sizes[1] + 'px'
 
-  /* Apply button style & properties. */
-  const { sx: buttonSx, ...buttonProps } = buttonPropsRaw ?? {}
+    /* Apply button style & properties. */
+    const { sx: buttonSx, ...buttonProps } = buttonPropsRaw ?? {}
 
-  return (
-    <Flex>
-      <InputRoundedSearchBase
-        dark
-        placeholder="Search..."
-        $hasButton={hasButton}
-        {...{ ref, ...props }}
-      />
+    return (
+      <Flex>
+        <InputRoundedSearchBase
+          placeholder="Search..."
+          $hasButton={hasButton}
+          {...{ ref, ...props }}
+        />
 
-      <IconButton
-        color="primary"
-        sx={{
-          marginLeft: '-' + buttonSize /* Position inside input field. */,
-          height: buttonSize,
-          width: buttonSize,
-          padding,
-          /* Fade in / out. */
-          pointerEvents: hasButton ? 'auto' : 'none',
-          opacity: Number(hasButton),
-          transition: 'default',
-          transitionDuration: theme.durations.normal,
-          ...buttonSx,
-        }}
-        {...buttonProps}
-      >
-        <Icon icon="searchCircle" aria-label="Search icon" />
-      </IconButton>
-    </Flex>
-  )
-}
+        <IconButton
+          color="primary"
+          sx={{
+            marginLeft: '-' + buttonSize /* Position inside input field. */,
+            height: buttonSize,
+            width: buttonSize,
+            padding,
+            /* Fade in / out. */
+            pointerEvents: hasButton ? 'auto' : 'none',
+            opacity: Number(hasButton),
+            transition: 'default',
+            transitionDuration: theme.durations.normal,
+            ...buttonSx,
+          }}
+          {...buttonProps}
+        >
+          <Icon icon="searchCircle" aria-label="Search icon" />
+        </IconButton>
+      </Flex>
+    )
+  }
+)
 
-export default forwardRef(InputRoundedSearch)
+export default InputRoundedSearch

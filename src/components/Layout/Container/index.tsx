@@ -7,9 +7,10 @@ export interface ContainerProps extends FlexProps {}
 /**
  * Provides a centered layout container with mobile-first breakpoints.
  */
-const Container = (
-  { ...props }: ContainerProps,
-  ref: React.RefObject<HTMLDivElement>
-) => <ContainerBase {...{ ref, ...props }} />
+const Container = forwardRef(
+  ({ ...props }: ContainerProps, ref: React.ForwardedRef<HTMLDivElement>) => (
+    <ContainerBase {...{ ref, ...props }} />
+  )
+)
 
-export default forwardRef(Container)
+export default Container

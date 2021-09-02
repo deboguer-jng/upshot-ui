@@ -38,7 +38,10 @@ export default {
 
     /* Additional static assets included in bundle. */
     copy({
-      targets: [{ src: 'public/css', dest: 'dist' }],
+      targets: [
+        { src: 'public/css', dest: 'dist' },
+        { src: './package.json', dest: 'dist' }, // Publishes to npm from ./dist
+      ],
     }),
   ],
 }

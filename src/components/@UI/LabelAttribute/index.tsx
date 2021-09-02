@@ -1,70 +1,65 @@
 import React, { forwardRef } from 'react'
 import {
-  AttributeLabelBase,
+  LabelAttributeBase,
   LabelText,
   RightAlignBlock,
   Division,
-  CloseButton
+  CloseButton,
 } from './Styled'
 import Icon from '../Icon'
 import { Text } from 'theme-ui'
 
-export interface AttributeLabelProps {
-  /**
-   * The text to be displayed on the label.
-   */
-  children?: string
+export interface LabelAttributeProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The percentage to display (when relevant).
    */
   percentage?: string
-  /** 
+  /**
    * The type of attribute label to display.
-   * Defaults to regular.
    */
   variant?: 'regular' | 'percentage' | 'removeable'
   /**
    * Defines whether the label's background should be transparent.
-   * Defaults to true.
    */
   transparent?: boolean
-  /** 
+  /**
    * The removal callback for the removable variant.
    */
   onRemove?: React.MouseEventHandler<HTMLButtonElement>
 }
 
-const AttributeLabel = (
-  {
-    children,
-    variant = 'regular',
-    transparent = true,
-    percentage,
-    onRemove
-  }: AttributeLabelProps,
-  ref: React.RefObject<HTMLDivElement>) => {
+const LabelAttribute = forwardRef(
+  (
+    {
+      variant = 'regular',
+      transparent = true,
+      percentage,
+      onRemove,
+      children,
+      ...props
+    }: LabelAttributeProps,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
     return (
-      <AttributeLabelBase $transparent={transparent}>
-        <LabelText>
-          {children}
-        </LabelText>
-        {
-          variant === 'percentage' &&
-            <RightAlignBlock>
-              <Division>|</Division>
-              <Text variant='body'>{percentage}%</Text>
-            </RightAlignBlock>
-        }
-        {
-          variant === 'removeable' &&
-            <CloseButton
-              onClick={onRemove}
-              type='plain'
-              icon={<Icon icon='x' size='12' />}
-            />
-        }
-      </AttributeLabelBase>
+      <LabelAttributeBase $transparent={transparent} {...{ ref, props }}>
+        <LabelText>{children}</LabelText>
+        {variant === 'percentage' && (
+          <RightAlignBlock>
+            <Division>|</Division>
+            <Text variant="body">{percentage}%</Text>
+          </RightAlignBlock>
+        )}
+        {variant === 'removeable' && (
+          <CloseButton
+            onClick={onRemove}
+            type="plain"
+            icon={<Icon icon="x" size="12" />}
+          />
+        )}
+      </LabelAttributeBase>
     )
-}
+  }
+)
 
-  export default forwardRef(AttributeLabel)
+export default LabelAttribute

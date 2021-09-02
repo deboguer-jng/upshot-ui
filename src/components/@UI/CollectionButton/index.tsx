@@ -18,40 +18,44 @@ export interface CollectionButtonProps
   error?: boolean
 }
 
-const CollectionButton = (
-  {
-    text,
-    subText,
-    icon,
-    underglow,
-    error = false,
-    ...props
-  }: CollectionButtonProps,
-  ref: React.RefObject<HTMLDivElement>
-) => {
-  if (error) {
+const CollectionButton = forwardRef(
+  (
+    {
+      text,
+      subText,
+      icon,
+      underglow,
+      error = false,
+      ...props
+    }: CollectionButtonProps,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
+    if (error) {
+      return (
+        <CollectionButtonWrapper {...{ ref, ...props }}>
+          <CollectionButtonIcon>
+            <img src={ErrorSvg} />
+          </CollectionButtonIcon>
+          <CollectionButtonTextWrapper>
+            <CollectionButtonText>Error</CollectionButtonText>
+            <CollectionButtonSubText>
+              Error loading data
+            </CollectionButtonSubText>
+          </CollectionButtonTextWrapper>
+        </CollectionButtonWrapper>
+      )
+    }
+
     return (
-      <CollectionButtonWrapper {...{ ref, ...props }}>
-        <CollectionButtonIcon>
-          <img src={ErrorSvg} />
-        </CollectionButtonIcon>
+      <CollectionButtonWrapper $underglow={underglow} {...{ ref, ...props }}>
+        <CollectionButtonIcon>{icon}</CollectionButtonIcon>
         <CollectionButtonTextWrapper>
-          <CollectionButtonText>Error</CollectionButtonText>
-          <CollectionButtonSubText>Error loading data</CollectionButtonSubText>
+          <CollectionButtonText>{text}</CollectionButtonText>
+          <CollectionButtonSubText>{subText}</CollectionButtonSubText>
         </CollectionButtonTextWrapper>
       </CollectionButtonWrapper>
     )
   }
+)
 
-  return (
-    <CollectionButtonWrapper $underglow={underglow} {...{ ref, ...props }}>
-      <CollectionButtonIcon>{icon}</CollectionButtonIcon>
-      <CollectionButtonTextWrapper>
-        <CollectionButtonText>{text}</CollectionButtonText>
-        <CollectionButtonSubText>{subText}</CollectionButtonSubText>
-      </CollectionButtonTextWrapper>
-    </CollectionButtonWrapper>
-  )
-}
-
-export default forwardRef(CollectionButton)
+export default CollectionButton

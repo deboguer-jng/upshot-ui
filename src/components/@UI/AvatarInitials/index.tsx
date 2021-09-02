@@ -13,17 +13,19 @@ export interface AvatarInitialsProp extends BoxProps {
 /**
  * Provides a circular avatar gradient with user initials.
  */
-const AvatarInitials = (
-  { size = 'md', children, ...props }: AvatarInitialsProp,
-  ref: React.RefObject<HTMLDivElement>
-) => (
-  <AvatarInitialsBase {...{ ref, ...props }}>
-    <AvatarInitialsShadow $size={size}>
-      <Text variant={`images.avatar.${size}`} {...props}>
-        {children}
-      </Text>
-    </AvatarInitialsShadow>
-  </AvatarInitialsBase>
+const AvatarInitials = forwardRef(
+  (
+    { size = 'md', children, ...props }: AvatarInitialsProp,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => (
+    <AvatarInitialsBase $size={size} {...{ ref, ...props }}>
+      <AvatarInitialsShadow $size={size}>
+        <Text variant={`images.avatar.${size}`} {...props}>
+          {children}
+        </Text>
+      </AvatarInitialsShadow>
+    </AvatarInitialsBase>
+  )
 )
 
-export default forwardRef(AvatarInitials)
+export default AvatarInitials
