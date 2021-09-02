@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import {
-  AttributeLabelBase,
+  LabelAttributeBase,
   LabelText,
   RightAlignBlock,
   Division,
@@ -9,23 +9,18 @@ import {
 import Icon from '../Icon'
 import { Text } from 'theme-ui'
 
-export interface AttributeLabelProps {
-  /**
-   * The text to be displayed on the label.
-   */
-  children?: string
+export interface LabelAttributeProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The percentage to display (when relevant).
    */
   percentage?: string
   /**
    * The type of attribute label to display.
-   * Defaults to regular.
    */
   variant?: 'regular' | 'percentage' | 'removeable'
   /**
    * Defines whether the label's background should be transparent.
-   * Defaults to true.
    */
   transparent?: boolean
   /**
@@ -34,19 +29,20 @@ export interface AttributeLabelProps {
   onRemove?: React.MouseEventHandler<HTMLButtonElement>
 }
 
-const AttributeLabel = forwardRef(
+const LabelAttribute = forwardRef(
   (
     {
-      children,
       variant = 'regular',
       transparent = true,
       percentage,
       onRemove,
-    }: AttributeLabelProps,
+      children,
+      ...props
+    }: LabelAttributeProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
-      <AttributeLabelBase $transparent={transparent}>
+      <LabelAttributeBase $transparent={transparent} {...{ ref, props }}>
         <LabelText>{children}</LabelText>
         {variant === 'percentage' && (
           <RightAlignBlock>
@@ -61,9 +57,9 @@ const AttributeLabel = forwardRef(
             icon={<Icon icon="x" size="12" />}
           />
         )}
-      </AttributeLabelBase>
+      </LabelAttributeBase>
     )
   }
 )
 
-export default AttributeLabel
+export default LabelAttribute

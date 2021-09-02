@@ -5,11 +5,11 @@ import { fonts, fontWeights, fontSizes } from '../../../themes/UpshotUI/text'
 import sizes from '../../../themes/UpshotUI/sizes'
 import Button from '../Button'
 
-interface AttributeLabelBaseProps {
+interface LabelAttributeBaseProps {
   $transparent: boolean
 }
 
-export const AttributeLabelBase = styled.div<AttributeLabelBaseProps>`
+export const LabelAttributeBase = styled.div<LabelAttributeBaseProps>`
   border-radius: ${({ theme }) => theme.radii.pill};
   color: ${colors.blue};
   border-color: ${colors.blue};

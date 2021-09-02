@@ -1,24 +1,21 @@
 import React, { forwardRef } from 'react'
 import { Label as ThemeUILabel } from '@theme-ui/components'
 
-export interface LabelProps {
+export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The text to be displayed on the label.
    */
   children?: string
   /**
-   * Defines the style of the label.
-   * Defaults to basic.
+   * Defines the variant of the label.
    */
-  style?: 'basic' | 'currency'
+  variant?: 'basic' | 'currency'
   /**
    * Defines the size of the label.
-   * Defaults to small.
    */
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   /**
    * If the label is for a price, this symbol will be its prefix.
-   * Defaults to ether.
    */
   currencySymbol?: string
 }
@@ -30,25 +27,26 @@ export interface LabelProps {
 const Label = forwardRef(
   (
     {
-      children,
-      style = 'basic',
+      variant = 'basic',
       size = 'sm',
       currencySymbol = 'Ξ',
+      children,
+      ...props
     }: LabelProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
-      <>
-        {style === 'currency' && (
+      <div {...{ ref, ...props }}>
+        {variant === 'currency' && (
           <ThemeUILabel variant={`${size}CurrencySymbol`}>
             {currencySymbol}
           </ThemeUILabel>
         )}
         {/* Each combination of style and size is a unique variant of the theme */}
-        <ThemeUILabel variant={style + size[0].toUpperCase() + size[1]}>
+        <ThemeUILabel variant={variant + size[0].toUpperCase() + size[1]}>
           {children}
         </ThemeUILabel>
-      </>
+      </div>
     )
   }
 )
