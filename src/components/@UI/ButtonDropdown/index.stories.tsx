@@ -17,8 +17,8 @@ const Template: ComponentStory<typeof ButtonDropdown> = (args) => {
           ? value.filter((val) => val !== option)
           : [...value, option]
       )
-
-    setValue(option)
+    if (value === option) setValue('')
+    else setValue(option)
   }
 
   return <ButtonDropdown value={value} onChange={optionChanged} {...args} />

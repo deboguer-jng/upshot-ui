@@ -70,7 +70,7 @@ export const DropdownMenuArrow = styled.div<DropdownMenuArrowProps>`
 
 export const DropdownMenuItems = styled.div`
   overflow: auto;
-  height: -webkit-fill-available;
+  height: 100%;
   background: transparent;
 
   &::-webkit-scrollbar {
@@ -92,10 +92,10 @@ export const DropdownMenu = styled.div`
   position: absolute;
   z-index: 0;
   background: #151515;
-  padding-top: 35px;
+  padding-top: 40px;
   padding-left: 10px;
   padding-right: 10px;
-  padding-bottom: 30px;
+  padding-bottom: 16px;
   border-radius: 30px;
   height: 237px;
   width: 300px;
@@ -119,7 +119,7 @@ export const DropdownSelected = styled.div<DropdownSelectedProps>`
 export const DropdownMenuItem = styled.div<DropdownMenuItemProps>`
   display: flex;
   align-items: center;
-  padding: 8px 11px;
+  padding: 6px 11px;
   user-select: none;
   font-family: ${({ theme }) => theme.fonts.body};
   color: ${({ theme, unSelected, isMulti }) => {
