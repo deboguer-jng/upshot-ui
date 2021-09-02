@@ -17,6 +17,9 @@ const radio = {
       borderStyle: 'solid',
       borderColor: 'primary',
     },
+    'input:focus:checked ~ &': {
+      borderWidth: '0px',
+    },
   },
   error: {
     bg: 'black',
@@ -32,6 +35,9 @@ const radio = {
       borderWidth: '2px',
       borderStyle: 'solid',
       borderColor: 'red',
+    },
+    'input:focus:checked ~ &': {
+      borderWidth: '0px',
     },
   },
 }
