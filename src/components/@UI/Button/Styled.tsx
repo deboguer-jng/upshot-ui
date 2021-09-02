@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import { getColor } from '@theme-ui/color'
 import { darken } from 'polished'
 import Buttons from '../../../themes/UpshotUI/buttons'
 import colors from '../../../themes/UpshotUI/colors'
@@ -93,12 +92,12 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   &:not(:disabled):focus {
     background: ${({ theme, $type, $color }) =>
       $color
-        ? `${darken(0.1, getColor(theme, $color))}`
+        ? `${darken(0.1, theme.rawColors[$color])}`
         : theme.buttons.variants[$type].colors.pressedBackground};
     border: 2px solid
       ${({ theme, $type, $color }) =>
         $color
-          ? `${darken(0.1, getColor(theme, $color))}`
+          ? `${darken(0.1, theme.rawColors[$color])}`
           : theme.buttons.variants[$type].colors.pressedBorder};
     span {
       color: ${({ theme, $type }) =>
