@@ -18,7 +18,7 @@ export const StyledCollectionLine = styled(Grid)<CollectionButtonWrapperProps>`
   border-radius: ${({ theme }) => theme.radii.md};
   padding: 6px 18px;
   ${({ theme, $underglow }) =>
-    !!$underglow && `box-shadow: ${theme.shadows.underglow($underglow)};`}
+    !!$underglow && `box-shadow: ${theme.shadow.underglow($underglow)};`}
 `
 
 export const StyledIconButton = styled(IconButton)`
