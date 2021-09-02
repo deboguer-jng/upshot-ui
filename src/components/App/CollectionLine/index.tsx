@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { forwardRef, ReactNode } from 'react'
 import { FlexProps } from 'theme-ui'
 import theme from '../../../themes/UpshotUI'
 import Box from '../../Layout/Grid'
@@ -18,7 +18,8 @@ export interface CollectionLineProps extends FlexProps {
 }
 
 /** Provides a loading Skeleton */
-export default function CollectionLine({
+const CollectionLine = forwardRef(
+  ({
   underglow,
   icon,
   text1='text1',
@@ -27,10 +28,11 @@ export default function CollectionLine({
   text4='text4',
   text5='text5',
   ...props
-}: CollectionLineProps) {
-
+}: CollectionLineProps,
+ref: React.ForwardedRef<HTMLDivElement>
+) => {
     return (
-      <StyledCollectionLine gap={2} columns={[7, '1.2fr 3fr 3fr 3fr 3fr 3fr 0fr']} $underglow={underglow} { ...props } >
+      <StyledCollectionLine gap={2} columns={[7, '1.2fr 3fr 3fr 3fr 3fr 3fr 0fr']} $underglow={underglow} {...{ ref, ...props }}>
         <Box>
           <StyledIconButton type="button" >
             <Icon
@@ -64,4 +66,6 @@ export default function CollectionLine({
         </Box>
       </StyledCollectionLine>
     )
-}
+})
+
+export default CollectionLine
