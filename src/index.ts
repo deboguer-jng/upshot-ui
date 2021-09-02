@@ -32,6 +32,7 @@ export { default as MiniNftCard } from './components/@UI/MiniNftCard'
  * Shared app-level components.
  */
 export { default as AppBar } from './components/App/AppBar'
+export { default as CollectionLine } from './components/App/CollectionLine'
 export { default as CollectionRow } from './components/App/CollectionRow'
 export { default as CollectionTable } from './components/App/CollectionTable'
 
