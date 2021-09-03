@@ -1,6 +1,7 @@
 import React, { forwardRef, ReactNode, useState } from 'react'
 import { AccordionWrapper, AccordionHeader, AccordionBody } from './Styled'
 import Icon from '../Icon'
+import Text from '../Text'
 
 export interface AccordionProps {
   title: string
@@ -20,7 +21,9 @@ const Accordion = forwardRef(
           open={accodionOpen}
           onClick={() => setAccordionOpen(!accodionOpen)}
         >
-          <span>{title}</span>
+          <Text color="text" variant="large">
+            {title}
+          </Text>
           <Icon icon="arrowDropdown" />
         </AccordionHeader>
         <AccordionBody open={accodionOpen}>{children}</AccordionBody>

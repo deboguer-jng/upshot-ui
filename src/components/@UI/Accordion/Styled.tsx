@@ -27,15 +27,11 @@ export const AccordionHeader = styled.div<AccordionHeaderProps>`
   align-itmes: center;
   justify-content: space-between;
 
-  span {
-    font-size: ${({ theme }) => theme.accordion.header.fontSize}px;
-    font-weight: 600;
-    color: ${({ theme }) => theme.colors['grey-300']};
-  }
-
   svg {
     height: 16px;
     width: 16px;
+
+    transform: rotate(${({ open }) => (open ? '180deg' : '0deg')});
 
     path {
       fill: ${({ theme }) => theme.colors.primary};
