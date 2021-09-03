@@ -24,7 +24,7 @@ export const AccordionHeader = styled.div<AccordionHeaderProps>`
   background-color: ${({ theme }) => theme.colors['grey-800']};
   box-shadow: ${({ theme }) => theme.shadow.default};
   display: flex;
-  align-itmes: center;
+  align-items: center;
   justify-content: space-between;
 
   svg {
