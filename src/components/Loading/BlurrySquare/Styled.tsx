@@ -13,11 +13,11 @@ export const BackgroundBox = styled(Box)`
   background-color: black;
   top: 0px;
   left: 0px;
-  margin-top: 20px;
-  margin-left: 10px;
-  filter: blur(14px);
-  width: 70px; 
-  height: 40px;
+  margin-top: 14%;
+  margin-left: 8%;
+  filter: blur(15px);
+  width: 60%; 
+  height: 25%;
 `
 
 export const BlurrySquare = styled(Flex)`
@@ -32,5 +32,3 @@ export const BlurrySquare = styled(Flex)`
       radial-gradient(50% 100% ellipse at 50% 90%, #000 20%, #0000 60%);
   box-shadow: 8px 0px ${({ theme }) => theme.colors.black};
 `
-
-
