@@ -8,7 +8,6 @@ const scroll = {
     &::-webkit-scrollbar {
       height: ${sizes[2]}px;
       width: ${sizes[2]}px;
-      background-color: red !important;
     }
     &::-webkit-scrollbar-thumb {
       background-color: ${colors['grey-700']};
