@@ -53,7 +53,7 @@ const LabelAttribute = forwardRef(
         {variant === 'removeable' && (
           <CloseButton
             onClick={onRemove}
-            type="plain"
+            variant="plain"
             icon={<Icon icon="x" size="12" />}
           />
         )}
