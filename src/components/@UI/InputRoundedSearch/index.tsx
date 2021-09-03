@@ -7,8 +7,11 @@ import { InputRoundedSearchBase } from './Styled'
 import Icon from '../Icon'
 import { useTheme } from '../../../themes/UpshotUI'
 
-export interface InputRoundedSearchProps
-  extends Omit<InputRoundedProps, 'dark'> {
+export interface InputRoundedSearchProps extends InputRoundedProps {
+  /**
+   * Expand to the full-width of the container.
+   */
+  fullWidth?: boolean
   /**
    * Display the search icon button.
    */
@@ -25,6 +28,7 @@ export interface InputRoundedSearchProps
 const InputRoundedSearch = forwardRef(
   (
     {
+      fullWidth = false,
       hasButton = false,
       buttonProps: buttonPropsRaw,
       ...props
@@ -43,7 +47,7 @@ const InputRoundedSearch = forwardRef(
     const { sx: buttonSx, ...buttonProps } = buttonPropsRaw ?? {}
 
     return (
-      <Flex>
+      <Flex sx={{ width: fullWidth ? '100%' : 'auto' }}>
         <InputRoundedSearchBase
           placeholder="Search..."
           $hasButton={hasButton}
