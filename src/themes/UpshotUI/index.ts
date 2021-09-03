@@ -1,5 +1,6 @@
 import animations, { durations } from './animations'
 import alerts from './alerts'
+import accordion from './accordion'
 import images from './images'
 import buttons from './buttons'
 import colors from './colors'
@@ -26,6 +27,7 @@ interface ExactContextValue<T> extends Omit<ThemeUIContextValue, 'theme'> {
 
 const theme = {
   alerts,
+  accordion,
   animations,
   breakpoints,
   buttons,
