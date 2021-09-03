@@ -7,8 +7,7 @@ import { InputRoundedSearchBase } from './Styled'
 import Icon from '../Icon'
 import { useTheme } from '../../../themes/UpshotUI'
 
-export interface InputRoundedSearchProps
-  extends Omit<InputRoundedProps, 'dark'> {
+export interface InputRoundedSearchProps extends InputRoundedProps {
   /**
    * Display the search icon button.
    */
