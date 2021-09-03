@@ -52,10 +52,21 @@ export { default as TableHead } from './components/Layout/TableHead'
 export { default as TableRow } from './components/Layout/TableRow'
 
 /**
+ * Components: Skeletons
+ *
+ * Loading skeleton templates.
+ */
+
+export { default as BlurrySquareTemplate } from './components/Loading/BlurrySquare'
+export { default as CollectionButtonTemplate } from './components/Loading/CollectionButton'
+export { default as CollectionLineTemplate } from './components/Loading/CollectionLine'
+export { default as SpinnerBoxTemplate } from './components/Loading/SpinnerBox'
+
+/**
  * Theme
  *
  * Theme-UI compatible theme & global styles.
  */
-export { default as UpshotThemeProvider, globalStyles } from './themes'
+export { globalStyles,default as UpshotThemeProvider } from './themes'
 export { default as theme, useTheme } from './themes/UpshotUI'
 export { UpshotUIThemeType } from './themes/UpshotUI'
