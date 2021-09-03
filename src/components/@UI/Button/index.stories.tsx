@@ -22,7 +22,7 @@ const MinimizedTemplate: ComponentStory<typeof Button> = (args) => (
 
 export const Primary = Template.bind({})
 Primary.args = {
-  type: 'primary',
+  variant: 'primary',
 }
 
 export const PrimaryDisabled = Template.bind({})
@@ -59,63 +59,69 @@ PrimaryLarge.args = {
 
 export const Secondary = Template.bind({})
 Secondary.args = {
-  type: 'secondary',
+  variant: 'secondary',
+}
+
+export const SecondaryOutline = Template.bind({})
+SecondaryOutline.args = {
+  variant: 'secondary',
+  color: 'primary',
 }
 
 export const SecondaryDisabled = Template.bind({})
 SecondaryDisabled.args = {
-  type: 'secondary',
+  variant: 'secondary',
   disabled: true,
 }
 
 export const SecondaryFixedWidth = Template.bind({})
 SecondaryFixedWidth.args = {
-  type: 'secondary',
+  variant: 'secondary',
   width: 135,
 }
 
 export const SecondaryIcon = Template.bind({})
 SecondaryIcon.args = {
-  type: 'secondary',
+  variant: 'secondary',
   icon: <Icon icon="attention" />,
 }
 
 export const Tertiary = Template.bind({})
 Tertiary.args = {
-  type: 'tertiary',
+  variant: 'tertiary',
 }
 
 export const TertiaryDisabled = Template.bind({})
 TertiaryDisabled.args = {
-  type: 'tertiary',
+  variant: 'tertiary',
   disabled: true,
 }
 
 export const TertiaryFixedWidth = Template.bind({})
 TertiaryFixedWidth.args = {
-  type: 'tertiary',
+  variant: 'tertiary',
   width: 135,
 }
 
 export const TertiaryIcon = Template.bind({})
 TertiaryIcon.args = {
-  type: 'tertiary',
+  variant: 'tertiary',
   icon: <Icon icon="attention" />,
 }
 
 export const Plain = Template.bind({})
 Plain.args = {
-  type: 'plain',
+  variant: 'plain',
 }
 
 export const PlainIcon = Template.bind({})
 PlainIcon.args = {
-  type: 'plain',
+  variant: 'plain',
   icon: <Icon icon="arrowKeyRight" />,
 }
 
 export const PlainDisabled = Template.bind({})
 PlainDisabled.args = {
-  type: 'plain',
+  variant: 'plain',
   disabled: true,
 }
