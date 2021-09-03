@@ -72,20 +72,7 @@ export const DropdownMenuItems = styled.div`
   overflow: auto;
   height: 100%;
   background: transparent;
-
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  &::-webkit-scrollbar-track {
-    box-shadow: none;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => theme.scroll.color};
-    border-radius: 5px;
-    outline: none;
-  }
+  ${({ theme: { scroll } }) => scroll.thin}
 `
 
 export const DropdownMenu = styled.div`
