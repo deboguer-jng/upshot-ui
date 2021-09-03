@@ -85,7 +85,10 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   }
 
   &:not(:disabled):active {
-    box-shadow: 0px 4px 4px rgba(0, 145, 255, 0.6);
+    box-shadow: ${({ $type }) =>
+      $type === 'primary' || $type === 'secondary'
+        ? 'none'
+        : '0px 4px 4px rgba(0, 145, 255, 0.6)'};
     transform: scale(0.95);
   }
 
