@@ -22,6 +22,7 @@ export const PaginationBase = styled.div`
 
   & ul {
     padding: 0;
+    margin: 0;
   }
 
   /* Pagination buttons */
