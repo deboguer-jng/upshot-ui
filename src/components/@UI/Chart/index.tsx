@@ -10,8 +10,8 @@ export interface ChartProps {
   noSelected?: boolean
   data?: {
     name: string
-    data: number[],
-  }[],
+    data: number[]
+  }[]
 }
 
 const Chart = forwardRef(
@@ -30,18 +30,18 @@ const Chart = forwardRef(
     return (
       <ChartWrapper {...{ ref, ...props }}>
         <div>
-          {
-            dataAvailable
-              ? <PopulatedChart data={data} />
-              : <EmptyChart {...
-                {
-                  loading,
-                  error,
-                  noSelected,
-                  data,
-              }
-            }/>
-          }
+          {dataAvailable ? (
+            <PopulatedChart data={data} />
+          ) : (
+            <EmptyChart
+              {...{
+                loading,
+                error,
+                noSelected,
+                data,
+              }}
+            />
+          )}
         </div>
       </ChartWrapper>
     )
