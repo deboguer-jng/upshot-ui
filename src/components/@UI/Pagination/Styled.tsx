@@ -20,6 +20,10 @@ export const PaginationBase = styled.div`
     gap: ${({ theme }) => theme.space[1] + 'px'};
   }
 
+  & ul {
+    padding: 0;
+  }
+
   /* Pagination buttons */
   & li {
     border-radius: ${({ theme }) => theme.radii.xs};
