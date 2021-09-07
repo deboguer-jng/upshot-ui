@@ -8,17 +8,13 @@ import {
   FilterWrapper,
   FilterButton,
   CustomLegendWrapper,
-  CustomLegend
+  CustomLegend,
 } from '../Styled'
-import {
-  getOptions,
-  toggle,
-  DataProps,
-} from '../utils'
+import { getOptions, toggle, DataProps } from '../utils'
 
 const PopulatedChart = (chartData: DataProps) => {
   const theme = useTheme()
-  const { data } = chartData;
+  const { data } = chartData
   const [filter, setFilter] = useState(0)
   const [filterStatus, setFilterStatus] = useState(data.map((_) => true))
 
@@ -35,7 +31,7 @@ const PopulatedChart = (chartData: DataProps) => {
       <ReactApexCharts
         series={data}
         type="area"
-        height="auto"
+        height="100%"
         width="100%"
         {...{ options }}
       />
@@ -56,15 +52,9 @@ const PopulatedChart = (chartData: DataProps) => {
             key={i}
             active={filterStatus[i]}
             color={colors[i]}
-            onClick={
-              () =>
-                toggle(
-                  i,
-                  data[i].name,
-                  filterStatus,
-                  setFilterStatus
-                )
-              }
+            onClick={() =>
+              toggle(i, data[i].name, filterStatus, setFilterStatus)
+            }
           >
             <Text>{data[i].name}</Text>
           </CustomLegend>
