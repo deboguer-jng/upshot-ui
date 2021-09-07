@@ -49,7 +49,7 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
     flex-grow: 1;
     font-family: ${({ theme }) => theme.fonts.body};
     color: ${({ theme, $type, $color }) =>
-      $color
+      $type === 'secondary' && $color
         ? theme.colors[$color]
         : theme.buttons.variants[$type].colors.color};
   }
@@ -65,12 +65,12 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
 
   &:not(:disabled):hover {
     background: ${({ theme, $type, $color }) =>
-      $color
+      $type === 'secondary' && $color
         ? theme.colors[$color]
         : theme.buttons.variants[$type].colors.hoverBackground};
     border: 2px solid
       ${({ theme, $type, $color }) =>
-        $color
+        $type === 'secondary' && $color
           ? theme.colors[$color]
           : theme.buttons.variants[$type].colors.hoverBorder};
     span {
@@ -97,12 +97,12 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
 
   &:not(:disabled):focus {
     background: ${({ theme, $type, $color }) =>
-      $color
+      $type === 'secondary' && $color
         ? `${darken(0.1, theme.rawColors[$color])}`
         : theme.buttons.variants[$type].colors.pressedBackground};
     border: 2px solid
       ${({ theme, $type, $color }) =>
-        $color
+        $type === 'secondary' && $color
           ? `${darken(0.1, theme.rawColors[$color])}`
           : theme.buttons.variants[$type].colors.pressedBorder};
     span {
