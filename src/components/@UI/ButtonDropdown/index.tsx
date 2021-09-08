@@ -14,13 +14,14 @@ import Checkbox from '../Checkbox'
 import Radio from '../Radio'
 import Icon from '../Icon'
 
-export interface ButtonDropdownInterface {
-  options: Array<string>
+export interface ButtonDropdownInterface
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+  options: string[]
   name: string
-  isMulti: boolean
-  value: string | Array<string>
-  onChange: Function
-  disabled: boolean
+  value: string | string[]
+  onChange: (val: string) => void
+  isMulti?: boolean
+  disabled?: boolean
 }
 
 const ButtonDropdown = forwardRef(
