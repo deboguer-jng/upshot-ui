@@ -12,6 +12,9 @@ const Navbar = forwardRef(
           <NavbarItem>
             <Icon icon="upshot" />
           </NavbarItem>
+          <NavbarItem>
+            <Icon icon="notifications" />
+          </NavbarItem>
         </NavbarWrapper>
       </>
     )
