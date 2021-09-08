@@ -39,6 +39,7 @@ export const MiniNftCardWrapper = styled.div`
   }
 
   &:hover {
+    z-index: 100;
     & > div:last-child {
       transition: transform 0.5s ease;
       transform: translateX(70%);
