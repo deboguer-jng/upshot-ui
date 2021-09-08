@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { UpshotUIThemeType } from '../../..'
+import ApexCharts from 'apexcharts'
 
 export function getOptions(
   theme: UpshotUIThemeType,
@@ -110,7 +111,7 @@ export function getOptions(
 }
 
 export function toggle(idx, seriesName, filterStatus, setFilterStatus) {
-  ApexCharts.exec('myChart', 'toggleSeries', seriesName)
+  ApexCharts.exec('upshotChart', 'toggleSeries', seriesName)
 
   const newStatus = [...filterStatus]
   newStatus[idx] = !newStatus[idx]
