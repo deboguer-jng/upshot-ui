@@ -19,7 +19,7 @@ export interface ButtonDropdownInterface
   options: string[]
   name: string
   value: string | string[]
-  onChange: (val: string) => void
+  onChange?: (val: string) => void
   isMulti?: boolean
   disabled?: boolean
 }
