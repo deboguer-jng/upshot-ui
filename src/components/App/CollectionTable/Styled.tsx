@@ -12,8 +12,9 @@ export const CollectionTableBase = styled(Table)`
     font-size: ${({ theme }) => theme.fontSizes[2]};
   }
 
-  /* Expand second column (title) to fill remaining space. */
-  & td:nth-of-type(2) {
+  /* Expand first text-container column fill remaining space. */
+  & thead td:nth-of-type(1), /* First colSpan is 2 */
+  & tbody td:nth-of-type(2) {
     width: 100%;
   }
 

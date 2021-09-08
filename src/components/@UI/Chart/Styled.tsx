@@ -13,6 +13,7 @@ export const ChartWrapper = styled.div`
   width: 100%;
   padding-top: 35%;
   position: relative;
+  margin-bottom: 60px;
 
   & > div {
     position: absolute;
@@ -20,10 +21,10 @@ export const ChartWrapper = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-  }
 
-  & > div:first-of-type {
-    min-height: unset !important;
+    & > div:first-of-type {
+      min-height: unset !important;
+    }
   }
 `
 
