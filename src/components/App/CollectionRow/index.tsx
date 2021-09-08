@@ -14,15 +14,19 @@ export interface CollectionRowProps extends TableRowProps {
    * The main title of the item.
    */
   title: string
+  /**
+   * Use dark background.
+   */
+  dark?: boolean
 }
 
 const CollectionRow = forwardRef(
   (
-    { imageSrc: src, title, children, ...props }: CollectionRowProps,
+    { imageSrc: src, title, dark, children, ...props }: CollectionRowProps,
     ref: React.ForwardedRef<HTMLTableRowElement>
   ) => {
     return (
-      <CollectionRowBase {...{ ref, ...props }}>
+      <CollectionRowBase $dark={dark} {...{ ref, ...props }}>
         {/* Each row has a required avatar image circle. */}
         <TableCell>
           <Avatar {...{ src }} />
