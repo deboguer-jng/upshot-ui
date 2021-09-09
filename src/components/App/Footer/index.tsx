@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import { FooterLine, StyledBoxMiddleSeparate, StyledBox, StyledBoxLeft, StyledBoxRight, StyledBoxMiddle} from './Styled'
 import Flex from '../../Layout/Flex'
-import { FlexProps } from 'theme-ui'
+import { FlexProps, Link } from 'theme-ui'
 import Icon from '../../@UI/Icon'
 import IconButton from '../../@UI/IconButton'
 
@@ -35,48 +35,57 @@ const Footer = forwardRef(
         <StyledBoxRight>
         <Flex>
               <StyledBoxMiddle>
-              <IconButton>  
-                <Icon
-                  color="grey-700"
-                  icon="mediumBlock"
-                  size={24}
-                />
-              </IconButton>
+
+              <Link href="https://blog.upshot.io/" target="_blank">
+                <IconButton>  
+                  <Icon
+                    color="grey-700"
+                    icon="mediumBlock"
+                    size={24}
+                  />
+                </IconButton>
+              </Link>
                 
               </StyledBoxMiddle>
               <StyledBoxMiddle>
                 
-              <IconButton>  
-                <Icon
-                  color="grey-700"
-                  icon="twitterCircle"
-                  size={24}
-                />
-              </IconButton>
+              <Link href="https://twitter.com/upshothq" target="_blank">
+                <IconButton>  
+                  <Icon
+                    color="grey-700"
+                    icon="twitterCircle"
+                    size={24}
+                  />
+                </IconButton>
+              </Link>
                 
               </StyledBoxMiddle>
               <StyledBoxMiddle>
-                
-              <IconButton>  
-                <Icon
-                  color="grey-700"
-                  icon="instagramCircle"
-                  size={24}
-                />
-              </IconButton>
-                
-              </StyledBoxMiddle>
-              <StyledBoxMiddle>
-                
-              <IconButton>  
-                <Icon
-                  color="grey-700"
-                  icon="facebook"
-                  size={24}
-                />
-              </IconButton>
               
-            </StyledBoxMiddle>
+                <Link href="https://discord.gg/upshot" target="_blank">
+                  <IconButton>  
+                    <Icon
+                      color="grey-700"
+                      icon="discord"
+                      size={24}
+                    />
+                  </IconButton>
+                </Link>
+              
+              </StyledBoxMiddle>
+              <StyledBoxMiddle>
+                
+              <Link href="https://www.instagram.com/upshot.hq/" target="_blank">
+                <IconButton>  
+                  <Icon
+                    color="grey-700"
+                    icon="instagramCircle"
+                    size={24}
+                  />
+                </IconButton>
+              </Link>
+                
+              </StyledBoxMiddle>
           </Flex>
         </StyledBoxRight>
       </FooterLine>
