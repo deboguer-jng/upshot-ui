@@ -37,7 +37,7 @@ const Footer = forwardRef(
               <StyledBoxMiddle>
               <IconButton>  
                 <Icon
-                  color="primary"
+                  color="grey-700"
                   icon="mediumBlock"
                   size={24}
                 />
@@ -48,7 +48,7 @@ const Footer = forwardRef(
                 
               <IconButton>  
                 <Icon
-                  color="primary"
+                  color="grey-700"
                   icon="twitterCircle"
                   size={24}
                 />
@@ -59,7 +59,7 @@ const Footer = forwardRef(
                 
               <IconButton>  
                 <Icon
-                  color="primary"
+                  color="grey-700"
                   icon="instagramCircle"
                   size={24}
                 />
@@ -70,7 +70,7 @@ const Footer = forwardRef(
                 
               <IconButton>  
                 <Icon
-                  color="primary"
+                  color="grey-700"
                   icon="facebook"
                   size={24}
                 />
