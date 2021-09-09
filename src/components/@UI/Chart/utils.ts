@@ -25,9 +25,15 @@ export function getOptions(
         show: false,
       },
       yaxis: {
+        show: false,
         labels: {
           show: false,
         },
+      },
+    },
+    yaxis: {
+      labels: {
+        show: false,
       },
     },
     colors,
