@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { FooterLine, StyledBoxMiddleSeparate, StyledBox, StyledBoxLeft, StyledBoxRight, StyledBoxMiddle} from './Styled'
 import Flex from '../../Layout/Flex'
 import { FlexProps } from 'theme-ui'
@@ -6,8 +6,11 @@ import Icon from '../../@UI/Icon'
 import IconButton from '../../@UI/IconButton'
 
 
-/** Provides a Footer */
-export default function Footer({ ...props }: FlexProps) {
+/**
+ * Footer at the bottom of the application.
+ */
+const Footer = forwardRef(
+  ({ ...props }: FlexProps, ref: React.ForwardedRef<HTMLDivElement>) => {
     return (
       <FooterLine gap={2} columns={[3, '2fr,1fr,2fr']} { ...props } >
 
@@ -78,4 +81,7 @@ export default function Footer({ ...props }: FlexProps) {
         </StyledBoxRight>
       </FooterLine>
     ) 
-}
+  }
+)
+
+export default Footer
