@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { FooterLine, StyledBoxMiddleSeparate, StyledBox, StyledBoxLeft, StyledBoxRight, StyledBoxMiddle} from './Styled'
+import { FooterLine, StyledBoxMiddleSeparate, StyledBox, StyledBoxLeft, StyledBoxRight, StyledBoxMiddle } from './Styled'
 import Flex from '../../Layout/Flex'
 import { FlexProps, Link } from 'theme-ui'
 import Icon from '../../@UI/Icon'

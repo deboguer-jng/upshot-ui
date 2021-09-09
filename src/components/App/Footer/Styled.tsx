@@ -30,12 +30,4 @@ export const FooterLine = styled(Grid)`
   padding: 10px;
   font-size: 12px;
 `
-export const NavLine = styled(Grid)`
-  align-items: center;
-`
-
-export const IconNavLine = styled(Grid)`
-  align-items: center;
-`
-
 
