@@ -1,6 +1,16 @@
 import React, { forwardRef } from 'react'
-import { NavbarWrapper, NavbarItem } from './Styled'
+import {
+  NavbarWrapper,
+  NavbarItem,
+  NavbarItemIcon,
+  NavbarUPTBalance,
+  NavbarUPTBalanceText,
+  NavbarLogo,
+  NavbarProfile,
+  NavbarProfileDetails,
+} from './Styled'
 import Icon from '../Icon'
+import Text from '../Text'
 
 export interface NavbarInterface {}
 
@@ -10,10 +20,44 @@ const Navbar = forwardRef(
       <>
         <NavbarWrapper>
           <NavbarItem>
-            <Icon icon="upshot" />
+            <NavbarLogo>
+              <Icon icon="upshot" />
+            </NavbarLogo>
+          </NavbarItem>
+          <NavbarItem grow></NavbarItem>
+          <NavbarItem>
+            <NavbarItemIcon>
+              <Icon icon="notificationFilled" />
+            </NavbarItemIcon>
           </NavbarItem>
           <NavbarItem>
-            <Icon icon="notifications" />
+            <NavbarItemIcon>
+              <Icon icon="question" />
+            </NavbarItemIcon>
+          </NavbarItem>
+          <NavbarItem>
+            <NavbarUPTBalance>
+              <Icon icon="upshot" />
+              <NavbarUPTBalanceText>
+                <Text variant="large"> 50</Text>
+                <Text variant="large">UPT</Text>
+              </NavbarUPTBalanceText>
+            </NavbarUPTBalance>
+          </NavbarItem>
+          <NavbarItem>
+            <NavbarProfile>
+              <img src="https://digitalax.mypinata.cloud/ipfs/QmYftLKLJn4T8GxjwThSJwGcZYop23mc5WkW17K7bi2Ua3" />
+              <NavbarProfileDetails>
+                <Text variant="small"> emmons.eth </Text>
+                <Text variant="small"> 0x4df5...2d0f </Text>
+              </NavbarProfileDetails>
+              <Icon icon="arrowDropUserBubble" />
+            </NavbarProfile>
+          </NavbarItem>
+          <NavbarItem>
+            <NavbarItemIcon>
+              <Icon icon="items" />
+            </NavbarItemIcon>
           </NavbarItem>
         </NavbarWrapper>
       </>
