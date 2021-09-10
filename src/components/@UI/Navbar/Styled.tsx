@@ -30,6 +30,31 @@ export const NavbarLogo = styled.div`
   height: 45px;
   width: 45px;
   border-radius: 50%;
+
+  svg {
+    path {
+      fill: ${({ theme }) => theme.colors.primary};
+    }
+  }
+`
+
+export const SearchWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  height: 56px;
+  border-radius: 30px;
+  width: 300px;
+  padding: 12px;
+  border: 1px solid ${({ theme }) => theme.colors['grey-500']};
+
+  svg {
+    width: 40px;
+    height: 40px;
+
+    path {
+      fill: #753eeb;
+    }
+  }
 `
 
 export const NavbarItemIcon = styled.div`

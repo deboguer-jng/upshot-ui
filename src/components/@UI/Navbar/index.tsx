@@ -8,9 +8,11 @@ import {
   NavbarLogo,
   NavbarProfile,
   NavbarProfileDetails,
+  SearchWrapper,
 } from './Styled'
 import Icon from '../Icon'
 import Text from '../Text'
+import InputRounded from '../InputRounded'
 
 export interface NavbarInterface {}
 
@@ -24,8 +26,14 @@ const Navbar = forwardRef(
               <Icon icon="upshot" />
             </NavbarLogo>
           </NavbarItem>
-          <NavbarItem grow></NavbarItem>
-          <NavbarItem>
+          <NavbarItem grow>
+            <SearchWrapper>
+              <Icon icon="ethBlock" />
+              <InputRounded placeholder="Search..." dark />
+            </SearchWrapper>
+          </NavbarItem>
+          {/* comment for now */}
+          {/* <NavbarItem>
             <NavbarItemIcon>
               <Icon icon="notificationFilled" />
             </NavbarItemIcon>
@@ -58,7 +66,7 @@ const Navbar = forwardRef(
             <NavbarItemIcon>
               <Icon icon="items" />
             </NavbarItemIcon>
-          </NavbarItem>
+          </NavbarItem> */}
         </NavbarWrapper>
       </>
     )
