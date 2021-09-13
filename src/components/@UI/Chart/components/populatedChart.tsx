@@ -43,34 +43,37 @@ const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
         width="100%"
         {...{ options }}
       />
-      <FilterWrapper>
-        {[...new Array(5)].map((_, i) => (
-          <FilterButton
-            key={i}
-            active={filter === i}
-            onClick={() => setFilter(i)}
-          >
-            {filterLabels[i]}
-          </FilterButton>
-        ))}
-      </FilterWrapper>
-        {
-          !embedded &&
-            <CustomLegendWrapper>
-              {[...new Array(chartData.length)].map((_, i) => (
-                <CustomLegend
+      {
+        !embedded &&
+          <>
+            <FilterWrapper>
+              {[...new Array(5)].map((_, i) => (
+                <FilterButton
                   key={i}
-                  active={filterStatus[i]}
-                  color={colors[i]}
-                  onClick={() =>
-                    toggle(i, chartData[i].name, filterStatus, setFilterStatus)
-                  }
+                  active={filter === i}
+                  onClick={() => setFilter(i)}
                 >
-                  <Text>{chartData[i].name}</Text>
-                </CustomLegend>
-              ))}
-            </CustomLegendWrapper>
-        }
+                  {filterLabels[i]}
+                </FilterButton>
+              ))
+            }
+          </FilterWrapper>
+          <CustomLegendWrapper>
+            {[...new Array(chartData.length)].map((_, i) => (
+              <CustomLegend
+                key={i}
+                active={filterStatus[i]}
+                color={colors[i]}
+                onClick={() =>
+                  toggle(i, chartData[i].name, filterStatus, setFilterStatus)
+                }
+              >
+                <Text>{chartData[i].name}</Text>
+              </CustomLegend>
+            ))}
+          </CustomLegendWrapper>
+        </>
+      }
     </>
   )
 }

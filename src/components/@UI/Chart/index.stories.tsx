@@ -24,6 +24,21 @@ Main.args = {
   ],
 }
 
+export const Embedded = Template.bind({})
+Embedded.args = {
+  data: [
+    {
+      name: 'Series 1',
+      data: [31, 40, 28, 32, 51, 42, 109, 100],
+    },
+    {
+      name: 'Series 2',
+      data: [11, 32, 45, 32, 33, 34, 52, 41],
+    },
+  ],
+  embedded: true,
+}
+
 export const ChartLoading = Template.bind({})
 ChartLoading.args = {
   loading: true,
