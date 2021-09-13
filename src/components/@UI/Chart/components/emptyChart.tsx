@@ -10,33 +10,24 @@ const EmptyChart = ({
   loading,
   error,
   noSelected,
-  data
+  embedded,
+  data,
 }: ChartProps) => {
-  const errorDisplayText = error
-    ? 'Error loading data'
-    : 'No data (yet)'
+  const errorDisplayText = error ? 'Error loading data' : 'No data (yet)'
   const noData = data.length === 0 && !noSelected && !loading
 
   return (
     <>
-      { loading && <LoadingChart /> }
-      { noSelected && <SelectionPrompt data={data} /> }
-      { (error || noData) &&       
+      {loading && <LoadingChart />}
+      {noSelected && <SelectionPrompt {...{ data, embedded }} />}
+      {(error || noData) && (
         <NoDataBoard>
           <div>
-          <Text
-            variant="largeWhiteCharts"
-          >
-            Sorry!
-          </Text>
-          <Text
-            variant="h1PrimaryWhiteCharts"
-          >
-            {errorDisplayText}
-          </Text>
-        </div>
-      </NoDataBoard>
-      }
+            <Text variant="largeWhiteCharts">Sorry!</Text>
+            <Text variant="h1PrimaryWhiteCharts">{errorDisplayText}</Text>
+          </div>
+        </NoDataBoard>
+      )}
     </>
   )
 }
