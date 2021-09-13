@@ -11,7 +11,9 @@ export interface ChartProps {
   data?: {
     name: string
     data: number[]
-  }[]
+  }[],
+  search?: boolean,
+  embedded?: boolean,
 }
 
 const Chart = forwardRef(
@@ -21,6 +23,8 @@ const Chart = forwardRef(
       error = false,
       noSelected = false,
       data = [],
+      search = false,
+      embedded = false,
       ...props
     }: ChartProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -31,7 +35,7 @@ const Chart = forwardRef(
       <ChartWrapper {...{ ref, ...props }}>
         <div>
           {dataAvailable ? (
-            <PopulatedChart data={data} />
+            <PopulatedChart chartData={data} embedded={embedded} />
           ) : (
             <EmptyChart
               {...{

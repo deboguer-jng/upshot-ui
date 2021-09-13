@@ -1,3 +1,4 @@
+// fixme: this should all be moved to getOptions in Chart/utils
 const chart = {
   options: {
     stroke: {
@@ -20,11 +21,6 @@ const chart = {
       markers: {
         width: 16,
         height: 16,
-      },
-    },
-    xaxis: {
-      labels: {
-        show: false,
       },
     },
   },

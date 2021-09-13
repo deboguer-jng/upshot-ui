@@ -9,6 +9,7 @@ export function getOptions(
     data: number[],
     length?: number,
   }>,
+  embedded: boolean,
   ){
   const colors = [
     theme.rawColors.primary,
@@ -24,10 +25,24 @@ export function getOptions(
       toolbar: {
         show: false,
       },
-      yaxis: {
-        labels: {
-          show: false,
-        },
+    },
+    yaxis: {
+      axisBorder: {
+        show: !embedded,
+      },
+      labels: {
+        show: false,
+      },
+    },
+    xaxis: {
+      axisTicks: {
+        show:false,
+      },
+      axisBorder: {
+        show: !embedded,
+      },
+      labels: {
+        show: false,
       },
     },
     colors,
@@ -116,11 +131,4 @@ export function toggle(idx, seriesName, filterStatus, setFilterStatus) {
   const newStatus = [...filterStatus]
   newStatus[idx] = !newStatus[idx]
   setFilterStatus(newStatus)
-}
-
-export interface DataProps {
-  data?: {
-    name: string
-    data: number[],
-  }[]
 }
