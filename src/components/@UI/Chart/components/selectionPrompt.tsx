@@ -8,9 +8,16 @@ import {
   ChartNoSelectedWrapper,
   ChartNoSelectedTextArea,
 } from '../Styled'
-import { getOptions, DataProps } from '../utils'
+import { getOptions } from '../utils'
 
-const SelectionPrompt = (chartData: DataProps) => {
+interface SelectionPromptProps {
+  data?: {
+    name: string
+    data: number[],
+  }[]
+}
+
+const SelectionPrompt = (chartData: SelectionPromptProps) => {
   const theme = useTheme()
   const { data } = chartData
   const options: ApexOptions = getOptions(theme, data)

@@ -10,13 +10,21 @@ import {
   CustomLegendWrapper,
   CustomLegend,
 } from '../Styled'
-import { getOptions, toggle, DataProps } from '../utils'
+import { getOptions, toggle } from '../utils'
 
-const PopulatedChart = (chartData: DataProps) => {
+interface PopulatedChartProps {
+  chartData: {
+    name: string
+    data: number[],
+  }[],
+  embedded: boolean,
+}
+
+const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
+  console.log(chartData)
   const theme = useTheme()
-  const { data } = chartData
   const [filter, setFilter] = useState(0)
-  const [filterStatus, setFilterStatus] = useState(data.map((_) => true))
+  const [filterStatus, setFilterStatus] = useState(chartData.map((_) => true))
 
   const colors = [
     theme.rawColors.primary,
@@ -24,12 +32,12 @@ const PopulatedChart = (chartData: DataProps) => {
     theme.rawColors.purple,
   ]
   const filterLabels = ['1H', '1D', '1W', '1Y', 'ALL']
-  const options: ApexOptions = getOptions(theme, data)
+  const options: ApexOptions = getOptions(theme, chartData)
 
   return (
     <>
       <ReactApexCharts
-        series={data}
+        series={chartData}
         type="area"
         height="100%"
         width="100%"
@@ -46,20 +54,23 @@ const PopulatedChart = (chartData: DataProps) => {
           </FilterButton>
         ))}
       </FilterWrapper>
-      <CustomLegendWrapper>
-        {[...new Array(data.length)].map((_, i) => (
-          <CustomLegend
-            key={i}
-            active={filterStatus[i]}
-            color={colors[i]}
-            onClick={() =>
-              toggle(i, data[i].name, filterStatus, setFilterStatus)
-            }
-          >
-            <Text>{data[i].name}</Text>
-          </CustomLegend>
-        ))}
-      </CustomLegendWrapper>
+        {
+          !embedded &&
+            <CustomLegendWrapper>
+              {[...new Array(chartData.length)].map((_, i) => (
+                <CustomLegend
+                  key={i}
+                  active={filterStatus[i]}
+                  color={colors[i]}
+                  onClick={() =>
+                    toggle(i, chartData[i].name, filterStatus, setFilterStatus)
+                  }
+                >
+                  <Text>{chartData[i].name}</Text>
+                </CustomLegend>
+              ))}
+            </CustomLegendWrapper>
+        }
     </>
   )
 }

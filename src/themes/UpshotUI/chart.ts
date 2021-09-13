@@ -23,6 +23,7 @@ const chart = {
       },
     },
     xaxis: {
+      show: false,
       labels: {
         show: false,
       },

@@ -24,12 +24,6 @@ export function getOptions(
       toolbar: {
         show: false,
       },
-      yaxis: {
-        show: false,
-        labels: {
-          show: false,
-        },
-      },
     },
     yaxis: {
       labels: {
@@ -122,11 +116,4 @@ export function toggle(idx, seriesName, filterStatus, setFilterStatus) {
   const newStatus = [...filterStatus]
   newStatus[idx] = !newStatus[idx]
   setFilterStatus(newStatus)
-}
-
-export interface DataProps {
-  data?: {
-    name: string
-    data: number[],
-  }[]
 }
