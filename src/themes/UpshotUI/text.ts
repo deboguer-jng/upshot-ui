@@ -113,6 +113,12 @@ const text = {
     fontSize: 3,
     lineHeight: '1.375rem',
   },
+  largeHeading: {
+    fontFamily: 'body',
+    fontWeight: 'heading',
+    fontSize: 3,
+    lineHeight: '1.375rem'
+  },
   largeWhite: {
     fontFamily: 'body',
     fontWeight: 'bold',

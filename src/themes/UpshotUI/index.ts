@@ -13,6 +13,7 @@ import shadow from './shadow'
 import styles from './styles'
 import scroll from './scroll'
 import sizes, { breakpoints, radii } from './sizes'
+import transactionHistoryItem from './transactionHistoryItem'
 import miniNftCard from './miniNftCard'
 import text, { fonts, fontSizes, fontWeights, lineHeights } from './text'
 import { useThemeUI, ThemeUIContextValue } from 'theme-ui'
@@ -52,6 +53,7 @@ const theme = {
   styles,
   text,
   transitions,
+  transactionHistoryItem
 }
 
 export type UpshotUIThemeType = typeof theme
