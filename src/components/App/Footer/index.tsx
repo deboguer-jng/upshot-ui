@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react'
 import { FooterLine, StyledBoxMiddleSeparate, StyledBox, StyledBoxLeft, StyledBoxRight, StyledBoxMiddle } from './Styled'
-import Flex from '../../Layout/Flex'
+import Box from '../../Layout/Box'
+import Grid from '../../Layout/Grid'
 import { FlexProps, Link } from 'theme-ui'
 import Icon from '../../@UI/Icon'
 import IconButton from '../../@UI/IconButton'
@@ -12,28 +13,26 @@ import IconButton from '../../@UI/IconButton'
 const Footer = forwardRef(
   ({ ...props }: FlexProps, ref: React.ForwardedRef<HTMLDivElement>) => {
     return (
-      <FooterLine gap={2} columns={[3, '2fr,1fr,2fr']} { ...props } >
+      <FooterLine gap={2} columns={[3, '1fr,2fr,1fr']} { ...props } >
 
         <StyledBoxLeft>
           Upshot
         </StyledBoxLeft>
         <StyledBox>
-          <Flex>
-              <StyledBoxMiddle>              
-                  Whitepaper               
-              </StyledBoxMiddle>
-              <StyledBoxMiddleSeparate>|</StyledBoxMiddleSeparate>
-              <StyledBoxMiddle>               
-                  Privacy               
-              </StyledBoxMiddle>
-              <StyledBoxMiddleSeparate>|</StyledBoxMiddleSeparate>
-              <StyledBoxMiddle>          
-                  FAQ               
-              </StyledBoxMiddle>
-          </Flex>
+          <StyledBoxMiddle>              
+              Whitepaper               
+          </StyledBoxMiddle>
+          <StyledBoxMiddleSeparate>|</StyledBoxMiddleSeparate>
+          <StyledBoxMiddle>               
+              Privacy               
+          </StyledBoxMiddle>
+          <StyledBoxMiddleSeparate>|</StyledBoxMiddleSeparate>
+          <StyledBoxMiddle>          
+              FAQ               
+          </StyledBoxMiddle>
         </StyledBox>
         <StyledBoxRight>
-        <Flex>
+        <Box>
               <StyledBoxMiddle>
 
               <Link href="https://blog.upshot.io/" target="_blank">
@@ -86,7 +85,7 @@ const Footer = forwardRef(
               </Link>
                 
               </StyledBoxMiddle>
-          </Flex>
+          </Box>
         </StyledBoxRight>
       </FooterLine>
     ) 
