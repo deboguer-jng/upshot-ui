@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import Flex from '../../Layout/Flex'
 import Box from '../../Layout/Grid'
+import Text from '../../@UI/Text'
 import css from '@emotion/css'
 
 export const StyledBox = styled(Box)`
