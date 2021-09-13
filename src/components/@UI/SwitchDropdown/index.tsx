@@ -30,7 +30,7 @@ const SwitchDropdown = forwardRef(
       <>
         <SwitchDropdownWrapper {...{ ref, ...props }}>
           <SwitchDropdownHeader open={open}>
-            <Text variant="large" color="primary">
+            <Text variant="h1Secondary" color="primary">
               {value ? value : options[0]}
             </Text>
             <Icon icon="arrowDropdown" onClick={() => setOpen(!open)} />
@@ -44,7 +44,7 @@ const SwitchDropdown = forwardRef(
                     key={index}
                     onClick={() => handleClick(option)}
                   >
-                    <Text variant="large" color="primary">
+                    <Text variant="h1Secondary" color="primary">
                       {option}
                     </Text>
                   </SwitchDropdownOption>
