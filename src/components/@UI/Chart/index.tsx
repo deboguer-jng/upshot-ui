@@ -11,9 +11,9 @@ export interface ChartProps {
   data?: {
     name: string
     data: number[]
-  }[],
-  search?: boolean,
-  embedded?: boolean,
+  }[]
+  search?: boolean
+  embedded?: boolean
 }
 
 const Chart = forwardRef(
@@ -42,6 +42,7 @@ const Chart = forwardRef(
                 loading,
                 error,
                 noSelected,
+                embedded,
                 data,
               }}
             />

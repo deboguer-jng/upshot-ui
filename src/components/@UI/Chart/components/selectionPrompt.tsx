@@ -4,23 +4,20 @@ import { default as ReactApexCharts } from 'react-apexcharts'
 import { useTheme } from '@emotion/react'
 import { ApexOptions } from 'apexcharts'
 
-import {
-  ChartNoSelectedWrapper,
-  ChartNoSelectedTextArea,
-} from '../Styled'
+import { ChartNoSelectedWrapper, ChartNoSelectedTextArea } from '../Styled'
 import { getOptions } from '../utils'
 
 interface SelectionPromptProps {
+  embedded?: boolean
   data?: {
     name: string
-    data: number[],
+    data: number[]
   }[]
 }
 
-const SelectionPrompt = (chartData: SelectionPromptProps) => {
+const SelectionPrompt = ({ data, embedded }: SelectionPromptProps) => {
   const theme = useTheme()
-  const { data } = chartData
-  const options: ApexOptions = getOptions(theme, data)
+  const options: ApexOptions = getOptions(theme, data, embedded)
 
   return (
     <ChartNoSelectedWrapper>
@@ -33,14 +30,8 @@ const SelectionPrompt = (chartData: SelectionPromptProps) => {
       />
       <ChartNoSelectedTextArea>
         <div>
-          <Text
-            variant="largeWhiteCharts"
-          >
-              Nothing selected.
-          </Text>
-          <Text
-            variant="h1PrimaryWhiteCharts"
-          >
+          <Text variant="largeWhiteCharts">Nothing selected.</Text>
+          <Text variant="h1PrimaryWhiteCharts">
             Select one or more collections
             <br />
             from the list below.
