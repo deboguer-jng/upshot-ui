@@ -9,6 +9,7 @@ export function getOptions(
     data: number[],
     length?: number,
   }>,
+  embedded: boolean,
   ){
   const colors = [
     theme.rawColors.primary,
@@ -26,6 +27,20 @@ export function getOptions(
       },
     },
     yaxis: {
+      axisBorder: {
+        show: !embedded,
+      },
+      labels: {
+        show: false,
+      },
+    },
+    xaxis: {
+      axisTicks: {
+        show:false,
+      },
+      axisBorder: {
+        show: !embedded,
+      },
       labels: {
         show: false,
       },

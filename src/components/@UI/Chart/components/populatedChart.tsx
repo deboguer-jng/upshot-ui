@@ -21,7 +21,6 @@ interface PopulatedChartProps {
 }
 
 const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
-  console.log(chartData)
   const theme = useTheme()
   const [filter, setFilter] = useState(0)
   const [filterStatus, setFilterStatus] = useState(chartData.map((_) => true))
@@ -32,7 +31,7 @@ const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
     theme.rawColors.purple,
   ]
   const filterLabels = ['1H', '1D', '1W', '1Y', 'ALL']
-  const options: ApexOptions = getOptions(theme, chartData)
+  const options: ApexOptions = getOptions(theme, chartData, embedded)
 
   return (
     <>

@@ -31,8 +31,6 @@ const Chart = forwardRef(
   ) => {
     const dataAvailable = !loading && data.length !== 0 && !error && !noSelected
 
-    console.log('data:', data)
-
     return (
       <ChartWrapper {...{ ref, ...props }}>
         <div>
