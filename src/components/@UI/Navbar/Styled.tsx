@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import css from '@emotion/css'
 
 interface NavbarItemProps {
   grow?: boolean
@@ -15,8 +16,24 @@ export const NavbarWrapper = styled.div`
   );
   height: ${({ theme }) => theme.navbar.height}px;
   width: 100%;
-  padding: ${({ theme }) => theme.navbar.paddingTop}px
-    ${({ theme }) => theme.navbar.paddingLeft}px;
+  padding-top: ${({ theme }) => theme.navbar.paddingTop}px;
+  padding-bottom: ${({ theme }) => theme.navbar.paddingTop}px;
+  padding-left: ${({ theme }) => theme.navbar.mobile.paddingLeft}px;
+  padding-right: ${({ theme }) => theme.navbar.mobile.paddingLeft}px;
+
+  ${({ theme }) => css`
+    @media only screen and (min-width: ${theme.breakpoints[1]}) {
+      padding-left: ${theme.navbar.tablet.paddingLeft}px;
+      padding-right: ${theme.navbar.tablet.paddingLeft}px;
+    }
+  `}
+
+  ${({ theme }) => css`
+    @media only screen and (min-width: ${theme.breakpoints[2]}) {
+      padding-left: ${theme.navbar.default.paddingLeft}px;
+      padding-right: ${theme.navbar.default.paddingLeft}px;
+    }
+  `}
 `
 
 export const NavbarItem = styled.div<NavbarItemProps>`
@@ -43,9 +60,14 @@ export const SearchWrapper = styled.div`
   align-items: center;
   height: 56px;
   border-radius: 30px;
-  width: 300px;
   padding: 12px;
   border: 1px solid ${({ theme }) => theme.colors['grey-500']};
+
+  ${({ theme }) => css`
+    @media only screen and (min-width: ${theme.breakpoints[1]}) {
+      width: 300px;
+    }
+  `}
 
   svg {
     width: 40px;
