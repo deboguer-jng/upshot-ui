@@ -15,12 +15,12 @@ export const StyledBox = styled(Box)`
     }
   `}
 `
-export const StyledBoxMiddle = styled(Box)`
+export const StyledBoxMiddle = styled(Text)`
   margin: 5px;
   align-items: center;
   cursor: pointer;
 `
-export const StyledBoxMiddleSeparate = styled(Box)`
+export const StyledBoxMiddleSeparate = styled(Text)`
   margin: 5px;
   font-size: 16px;
 `
