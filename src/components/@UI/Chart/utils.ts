@@ -6,7 +6,7 @@ export function getOptions(
   theme: UpshotUIThemeType,
   data: Array<{
     name: string,
-    data: number[],
+    data: number[] | number[][],
     length?: number,
   }>,
   embedded: boolean,

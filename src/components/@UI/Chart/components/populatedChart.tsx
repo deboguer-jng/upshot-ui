@@ -5,8 +5,6 @@ import { ApexOptions } from 'apexcharts'
 import { Text } from 'theme-ui'
 
 import {
-  FilterWrapper,
-  FilterButton,
   CustomLegendWrapper,
   CustomLegend,
 } from '../Styled'
@@ -15,14 +13,13 @@ import { getOptions, toggle } from '../utils'
 interface PopulatedChartProps {
   chartData: {
     name: string
-    data: number[],
+    data: number[] | number[][],
   }[],
   embedded: boolean,
 }
 
 const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
   const theme = useTheme()
-  const [filter, setFilter] = useState(0)
   const [filterStatus, setFilterStatus] = useState(chartData.map((_) => true))
 
   const colors = [
@@ -43,7 +40,6 @@ const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
       />
       {
         !embedded &&
-          <>
           <CustomLegendWrapper>
             {[...new Array(chartData.length)].map((_, i) => (
               <CustomLegend
@@ -58,7 +54,6 @@ const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
               </CustomLegend>
             ))}
           </CustomLegendWrapper>
-        </>
       }
     </>
   )
