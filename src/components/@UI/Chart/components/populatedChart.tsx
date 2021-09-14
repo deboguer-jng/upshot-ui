@@ -30,7 +30,6 @@ const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
     theme.rawColors.secondary,
     theme.rawColors.purple,
   ]
-  const filterLabels = ['1H', '1D', '1W', '1Y', 'ALL']
   const options: ApexOptions = getOptions(theme, chartData, embedded)
 
   return (
@@ -45,18 +44,6 @@ const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
       {
         !embedded &&
           <>
-            <FilterWrapper>
-              {[...new Array(5)].map((_, i) => (
-                <FilterButton
-                  key={i}
-                  active={filter === i}
-                  onClick={() => setFilter(i)}
-                >
-                  {filterLabels[i]}
-                </FilterButton>
-              ))
-            }
-          </FilterWrapper>
           <CustomLegendWrapper>
             {[...new Array(chartData.length)].map((_, i) => (
               <CustomLegend
