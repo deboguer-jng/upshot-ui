@@ -15,12 +15,12 @@ import { getOptions, toggle } from '../utils'
 interface PopulatedChartProps {
   chartData: {
     name: string
-    data: number[],
-  }[],
-  embedded: boolean,
+    data: number[] | (Date | number)[][]
+  }[]
+  embedded: boolean
 }
 
-const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
+const PopulatedChart = ({ chartData, embedded }: PopulatedChartProps) => {
   const theme = useTheme()
   const [filter, setFilter] = useState(0)
   const [filterStatus, setFilterStatus] = useState(chartData.map((_) => true))
@@ -42,20 +42,18 @@ const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
         width="100%"
         {...{ options }}
       />
-      {
-        !embedded &&
-          <>
-            <FilterWrapper>
-              {[...new Array(5)].map((_, i) => (
-                <FilterButton
-                  key={i}
-                  active={filter === i}
-                  onClick={() => setFilter(i)}
-                >
-                  {filterLabels[i]}
-                </FilterButton>
-              ))
-            }
+      {!embedded && (
+        <>
+          <FilterWrapper>
+            {[...new Array(5)].map((_, i) => (
+              <FilterButton
+                key={i}
+                active={filter === i}
+                onClick={() => setFilter(i)}
+              >
+                {filterLabels[i]}
+              </FilterButton>
+            ))}
           </FilterWrapper>
           <CustomLegendWrapper>
             {[...new Array(chartData.length)].map((_, i) => (
@@ -72,7 +70,7 @@ const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
             ))}
           </CustomLegendWrapper>
         </>
-      }
+      )}
     </>
   )
 }
