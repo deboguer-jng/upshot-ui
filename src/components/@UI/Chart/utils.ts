@@ -44,6 +44,9 @@ export function getOptions(
       labels: {
         show: false,
       },
+      tooltip: {
+        enabled: false,
+      },
     },
     colors,
     fill: {
@@ -65,9 +68,6 @@ export function getOptions(
       enabled: true,
       shared: false,
       custom: function ({
-        series,
-        seriesIndex,
-        dataPointIndex,
         w: {
           globals: { clientX: x, svgWidth: width },
         },
