@@ -10,7 +10,7 @@ export interface ChartProps {
   noSelected?: boolean
   data?: {
     name: string
-    data: number[]
+    data: number[] | (Date | number)[][]
   }[]
   search?: boolean
   embedded?: boolean

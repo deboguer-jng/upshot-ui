@@ -5,12 +5,12 @@ import ApexCharts from 'apexcharts'
 export function getOptions(
   theme: UpshotUIThemeType,
   data: Array<{
-    name: string,
-    data: number[],
-    length?: number,
+    name: string
+    data: number[] | (Date | number)[][]
+    length?: number
   }>,
-  embedded: boolean,
-  ){
+  embedded: boolean
+) {
   const colors = [
     theme.rawColors.primary,
     theme.rawColors.secondary,
@@ -35,8 +35,9 @@ export function getOptions(
       },
     },
     xaxis: {
+      type: 'datetime',
       axisTicks: {
-        show:false,
+        show: false,
       },
       axisBorder: {
         show: !embedded,
