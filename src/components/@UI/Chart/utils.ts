@@ -25,6 +25,9 @@ export function getOptions(
       toolbar: {
         show: false,
       },
+      zoom: {
+        enabled: false,
+      },
     },
     yaxis: {
       axisBorder: {
@@ -36,7 +39,7 @@ export function getOptions(
     },
     xaxis: {
       axisTicks: {
-        show:false,
+        show: false,
       },
       axisBorder: {
         show: !embedded,
