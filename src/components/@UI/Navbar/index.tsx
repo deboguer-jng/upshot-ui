@@ -12,7 +12,7 @@ import {
 } from './Styled'
 import Icon from '../Icon'
 import Text from '../Text'
-import InputRounded from '../InputRounded'
+import InputRoundedSearch from '../InputRoundedSearch'
 
 export interface NavbarInterface {}
 
@@ -29,7 +29,12 @@ const Navbar = forwardRef(
           <NavbarItem grow>
             <SearchWrapper>
               <Icon icon="ethBlock" />
-              <InputRounded placeholder="Search..." dark />
+              <InputRoundedSearch
+                hasButton
+                fullWidth
+                placeholder="Search..."
+                dark
+              />
             </SearchWrapper>
           </NavbarItem>
           {/* comment for now */}

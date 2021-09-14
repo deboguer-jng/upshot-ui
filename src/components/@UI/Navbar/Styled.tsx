@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import css from '@emotion/css'
+import InputRoundedSearch from '../InputRoundedSearch'
 
 interface NavbarItemProps {
   grow?: boolean
