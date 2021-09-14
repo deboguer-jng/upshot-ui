@@ -35,6 +35,7 @@ export { default as AppBar } from './components/App/AppBar'
 export { default as CollectionLine } from './components/App/CollectionLine'
 export { default as CollectionRow } from './components/App/CollectionRow'
 export { default as CollectionTable } from './components/App/CollectionTable'
+export { default as Footer } from './components/App/Footer'
 
 /**
  * Components: Layout
