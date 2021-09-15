@@ -21,13 +21,14 @@ interface PopulatedChartProps {
 const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
   const theme = useTheme()
   const [filterStatus, setFilterStatus] = useState(chartData.map((_) => true))
+  const [selected, setSelected] = useState(true)
 
   const colors = [
     theme.rawColors.primary,
     theme.rawColors.secondary,
     theme.rawColors.purple,
   ]
-  const options: ApexOptions = getOptions(theme, chartData, embedded)
+  const options: ApexOptions = getOptions(theme, chartData, embedded, selected)
 
   return (
     <>

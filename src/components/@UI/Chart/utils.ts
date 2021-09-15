@@ -10,6 +10,7 @@ export function getOptions(
     length?: number,
   }>,
   embedded: boolean,
+  selected?: boolean = true,
   ){
   const colors = [
     theme.rawColors.primary,
@@ -28,6 +29,9 @@ export function getOptions(
       zoom: {
         enabled: false,
       },
+    },
+    stroke: {
+      width: selected ? 2.5 : 0.5,
     },
     yaxis: {
       axisBorder: {
@@ -58,8 +62,8 @@ export function getOptions(
         gradientToColors: [
           ...new Array(data.length || theme.chart.defaultSeries.length),
         ].map((_) => 'transparent'),
-        opacityFrom: 0.9,
-        opacityTo: 0.6,
+        opacityFrom: selected ? 0.9 : 0.5,
+        opacityTo: selected ? 0.6 : 0.2,
         stops: [0, 90, 100],
       },
     },
