@@ -11,7 +11,7 @@ export const CenteredSpinner = styled(Spinner)`
 export const CollectionFlex = styled(Flex)`
   align-items: center;
   background-color: ${({ theme }) => theme.colors.black};
-  border-radius: ${({ theme }) => theme.radii.circle};
+  border-radius: ${({ theme }) => theme.radii.pill};
   padding: 4px;
 `
 
