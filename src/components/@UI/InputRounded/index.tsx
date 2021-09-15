@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
-import { Input, InputProps } from 'theme-ui'
+import { InputProps } from 'theme-ui'
+import { WrappedInput } from './Styled'
 
 export interface InputRoundedProps extends InputProps {
   /**
@@ -18,7 +19,7 @@ export const InputRounded = forwardRef(
   ) => {
     const variant = `forms.inputs.rounded${dark ? 'Dark' : ''}`
 
-    return <Input {...{ variant, ref, ...props }} />
+    return <WrappedInput {...{ variant, ref, ...props }} />
   }
 )
 
