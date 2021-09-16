@@ -8,6 +8,7 @@ import gradients from './gradients'
 import transitions from './transitions'
 import chart from './chart'
 import forms from './forms'
+import navbar from './navbar'
 import spinners from './spinners'
 import shadow from './shadow'
 import styles from './styles'
@@ -43,6 +44,7 @@ const theme = {
   images,
   lineHeights,
   miniNftCard,
+  navbar,
   radii,
   rawColors: colors,
   scroll,

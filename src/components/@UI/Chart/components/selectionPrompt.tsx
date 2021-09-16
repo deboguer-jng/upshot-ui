@@ -11,7 +11,7 @@ interface SelectionPromptProps {
   embedded?: boolean
   data?: {
     name: string
-    data: number[] | number[][],
+    data: number[] | (Date | number)[][]
   }[]
 }
 

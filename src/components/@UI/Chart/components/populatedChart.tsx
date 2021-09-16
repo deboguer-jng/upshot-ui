@@ -13,12 +13,12 @@ import { getOptions, toggle } from '../utils'
 interface PopulatedChartProps {
   chartData: {
     name: string
-    data: number[] | number[][],
-  }[],
-  embedded: boolean,
+    data: number[] | (Date | number)[][]
+  }[]
+  embedded: boolean
 }
 
-const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
+const PopulatedChart = ({ chartData, embedded }: PopulatedChartProps) => {
   const theme = useTheme()
   const [filterStatus, setFilterStatus] = useState(chartData.map((_) => true))
   const [selected, setSelected] = useState(true)
@@ -40,8 +40,19 @@ const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
         width="100%"
         {...{ options }}
       />
-      {
-        !embedded &&
+      {!embedded && (
+        <>
+          <FilterWrapper>
+            {[...new Array(5)].map((_, i) => (
+              <FilterButton
+                key={i}
+                active={filter === i}
+                onClick={() => setFilter(i)}
+              >
+                {filterLabels[i]}
+              </FilterButton>
+            ))}
+          </FilterWrapper>
           <CustomLegendWrapper>
             {[...new Array(chartData.length)].map((_, i) => (
               <CustomLegend
@@ -56,7 +67,8 @@ const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
               </CustomLegend>
             ))}
           </CustomLegendWrapper>
-      }
+        </>
+      )}
     </>
   )
 }
