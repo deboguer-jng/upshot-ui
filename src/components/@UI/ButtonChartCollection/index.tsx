@@ -3,8 +3,6 @@ import colors from '../../../themes/UpshotUI/colors'
 import {
   ButtonChartCollectionWrapper,
   ButtonChartCollectionIcon,
-  ButtonChartCollectionCloseIcon,
-  ButtonChartCollectionContentWrapper,
 } from './Styled'
 import Text from '../Text'
 
@@ -26,28 +24,14 @@ const ButtonChartCollection = forwardRef(
     }: ButtonChartCollectionProps & HTMLAttributes<HTMLDivElement>,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    const [showClose, setShowClose] = useState(false)
-
     return (
       <>
-        <ButtonChartCollectionWrapper
-          ref={ref}
-          onMouseOver={() => setShowClose(true)}
-          onMouseOut={() => setShowClose(false)}
-        >
-          <ButtonChartCollectionContentWrapper {...props}>
-            <ButtonChartCollectionIcon selected={selected} $color={color} />
-            <Text variant="large" color={color}>
-              {' '}
-              {title}{' '}
-            </Text>
-          </ButtonChartCollectionContentWrapper>
-          <ButtonChartCollectionCloseIcon
-            onClick={() => onClose()}
-            show={showClose}
-            color={color}
-            icon="close"
-          />
+        <ButtonChartCollectionWrapper {...{ ref, ...props }}>
+          <ButtonChartCollectionIcon selected={selected} $color={color} />
+          <Text variant="large" color={color}>
+            {' '}
+            {title}{' '}
+          </Text>
         </ButtonChartCollectionWrapper>
       </>
     )
