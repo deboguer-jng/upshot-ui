@@ -42,7 +42,6 @@ export function getOptions(
       },
     },
     xaxis: {
-      type: 'datetime',
       axisTicks: {
         show: false,
       },
