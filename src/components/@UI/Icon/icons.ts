@@ -52,6 +52,7 @@ import SVGInformation from '../../../assets/svg/icons/Information.svg'
 import SVGInstagramBlock from '../../../assets/svg/icons/Instagram_BlockColor.svg'
 import SVGInstagram from '../../../assets/svg/icons/Instagram_NoCircle.svg'
 import SVGInstagramCircle from '../../../assets/svg/icons/Instagram_Circle.svg'
+import SVGItems from '../../../assets/svg/icons/Items.svg'
 import SVGKnownOriginBlock from '../../../assets/svg/icons/KnownOrigin_BlockColor.svg'
 import SVGKnownOrigin from '../../../assets/svg/icons/KnownOrigin.svg'
 import SVGLightBulb from '../../../assets/svg/icons/LightBulb .svg'
@@ -70,11 +71,13 @@ import SVGNavBarHome from '../../../assets/svg/icons/NavBar_Home_Unselected.svg'
 import SVGNavBarNotificationsInactive from '../../../assets/svg/icons/NavBar_Notifications_Inactive.svg'
 import SVGNotificationContainer from '../../../assets/svg/icons/Notification_Container.svg'
 import SVGNotifications from '../../../assets/svg/icons/Notifications.svg'
+import SVGNotificationFilled from '../../../assets/svg/icons/NotificationFilled.svg'
 import SVGOpenSeaBlock from '../../../assets/svg/icons/OpenSea_BlockColor.svg'
 import SVGPen from '../../../assets/svg/icons/Pen.svg'
 import SVGPhoto from '../../../assets/svg/icons/Photo.svg'
 import SVGQuoraBlock from '../../../assets/svg/icons/Quora_BlockColor.svg'
 import SVGQuora from '../../../assets/svg/icons/Quora.svg'
+import SVGQuestion from '../../../assets/svg/icons/QuestionMark.svg'
 import SVGRaribleBlock from '../../../assets/svg/icons/Rarible_BlockColor.svg'
 import SVGSearchCircle from '../../../assets/svg/icons/Search_Circle.svg'
 import SVGShare from '../../../assets/svg/icons/Share.svg'
@@ -157,6 +160,7 @@ const icons = {
   informationBlock: SVGInstagramBlock,
   instagram: SVGInstagram,
   instagramCircle: SVGInstagramCircle,
+  items: SVGItems,
   knownOriginBlock: SVGKnownOriginBlock,
   knownOrigin: SVGKnownOrigin,
   lightBulb: SVGLightBulb,
@@ -175,11 +179,13 @@ const icons = {
   navNotificationsInactive: SVGNavBarNotificationsInactive,
   navNotificationsContainer: SVGNotificationContainer,
   notifications: SVGNotifications,
+  notificationFilled: SVGNotificationFilled,
   openSeaBlock: SVGOpenSeaBlock,
   pen: SVGPen,
   photo: SVGPhoto,
   quoraBlock: SVGQuoraBlock,
   quora: SVGQuora,
+  question: SVGQuestion,
   raribleBlock: SVGRaribleBlock,
   searchCircle: SVGSearchCircle,
   share: SVGShare,

@@ -29,7 +29,11 @@ const Icon = forwardRef(
     <SVG
       src={icons[icon]}
       /* Preprocess SVGs to use color prop. */
-      preProcessor={(svg) => svg.replace(/fill=".*?"/g, 'fill="currentColor"')}
+      preProcessor={(svg) =>
+        svg
+          .replace(/fill=".*?"/g, 'fill="currentColor"')
+          .replace(/stroke=".*?"/g, 'stroke="currentColor"')
+      }
       /* If no color is provided, inherit color from the container. */
       color={colors[color] ?? 'inherit'}
       /* Fixed square size */

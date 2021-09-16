@@ -35,6 +35,8 @@ export { default as AppBar } from './components/App/AppBar'
 export { default as CollectionLine } from './components/App/CollectionLine'
 export { default as CollectionRow } from './components/App/CollectionRow'
 export { default as CollectionTable } from './components/App/CollectionTable'
+export { default as Footer } from './components/App/Footer'
+export { default as Navbar } from './components/App/Navbar'
 
 /**
  * Components: Layout
@@ -67,6 +69,6 @@ export { default as SpinnerBoxTemplate } from './components/Loading/SpinnerBox'
  *
  * Theme-UI compatible theme & global styles.
  */
-export { globalStyles,default as UpshotThemeProvider } from './themes'
+export { globalStyles, default as UpshotThemeProvider } from './themes'
 export { default as theme, useTheme } from './themes/UpshotUI'
 export { UpshotUIThemeType } from './themes/UpshotUI'
