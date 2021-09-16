@@ -22,6 +22,7 @@ const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
   const theme = useTheme()
   const [filterStatus, setFilterStatus] = useState(chartData.map((_) => true))
   const [selected, setSelected] = useState(true)
+  const [hoverValues, setHoverValues] = useState([])
 
   const colors = [
     theme.rawColors.primary,
