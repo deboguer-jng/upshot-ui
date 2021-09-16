@@ -51,7 +51,7 @@ export const Division = styled.div`
 export const CloseButton = styled(Button)`
   float: right;
   padding-right: ${sizes[3] + 'px'};
-  padding-bottom: 9px;
+  margin-top: -4px;
 
   &:not(:disabled):hover {
     span {
