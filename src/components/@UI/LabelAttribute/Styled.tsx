@@ -16,8 +16,8 @@ export const LabelAttributeBase = styled.div<LabelAttributeBaseProps>`
   border: 2px solid;
   border-width: 2;
   height: 32px;
-  width: 282px;
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
   background-color: ${({ theme, $transparent }) =>
     $transparent
       ? 'transparent'
@@ -29,6 +29,7 @@ export const LabelAttributeBase = styled.div<LabelAttributeBaseProps>`
 `
 
 export const RightAlignBlock = styled.div`
+  display: flex;
   float: right;
   padding-right: ${sizes[3] + 'px'};
 `
