@@ -32,6 +32,9 @@ interface MiniNftCardDetailValueProps {
 export const MiniNftCardWrapper = styled.div`
   position: relative;
   width: fit-content;
+  width: ${({ theme }) => theme.miniNftCard.width}px;
+  height: ${({ theme }) => theme.miniNftCard.height}px;
+  transition: width 0.5s ease;
 
   & > div:last-child {
     transition: transform 0.5s ease;
@@ -40,6 +43,9 @@ export const MiniNftCardWrapper = styled.div`
 
   &:hover {
     z-index: 100;
+    width: calc(${({ theme }) => theme.miniNftCard.width}px * 1.7 + 10px);
+    transition: width 0.5s ease;
+
     & > div:last-child {
       transition: transform 0.5s ease;
       transform: translateX(70%);
