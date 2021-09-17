@@ -46,24 +46,29 @@ const Label = forwardRef(
     }: LabelProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
+    if (type == 'alone') {
+      titleColor = 'white'
+    }
     return (
       <Flex {...{ ref, ...props }}>
-        {/* Each combination of style and size is a unique variant of the theme */}
-        <IconBox $color={titleColor}>
-          <StyledIconButton
-            type="button"
-            onClick={() => console.log('close click')}
-          >
-            <Icon
-              size={12}
-              color={titleColor}
-              icon='x'
-            />
-          </StyledIconButton> 
-        </IconBox>
+        {type === 'multi' && (
+          <IconBox $color={titleColor}>
+            <StyledIconButton
+              type="button"
+              onClick={() => console.log('close click')}
+            >
+              <Icon
+                size={12}
+                color={titleColor}
+                icon='x'
+              />
+            </StyledIconButton> 
+          </IconBox>
+        )}
         <Box>
           <StyledTitle $color={titleColor}>
-            {title}
+            { type == 'multi' ? title+' ' : '' }
+            price:
           </StyledTitle>
           <StyledH2 $type={type}>
             {price}
