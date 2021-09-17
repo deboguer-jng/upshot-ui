@@ -74,6 +74,9 @@ export function getOptions(
       enabled: true,
       shared: false,
       custom: function ({
+        series,
+        seriesIndex,
+        dataPointIndex,
         w: {
           globals: { clientX: x, svgWidth: width },
         },
@@ -97,6 +100,31 @@ export function getOptions(
             font-size: ${theme.fontSizes[0]};
           }
         </style>
+        <div style="
+          position: relative;
+          background: black;
+          border-radius: 1rem;
+          padding: 0.1rem 1rem;
+          overflow: visible;
+          font-family: ${theme.fonts.body};
+          color: ${colors[seriesIndex]};
+          border: 1px solid ${colors[seriesIndex]};
+        " id="apexcharts-custom-tooltip"
+        >
+          $ ${series[seriesIndex][dataPointIndex]}
+          <div style="
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-45deg);
+            width: 10px;
+            height: 10px;
+            background: black;
+            border-left: 1px solid ${colors[seriesIndex]};
+            border-bottom: 1px solid ${colors[seriesIndex]};
+          ">
+          </div>
+        </div>
         `
       },
       x: {
