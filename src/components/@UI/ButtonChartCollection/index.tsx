@@ -4,15 +4,16 @@ import {
   ButtonChartCollectionIcon,
 } from './Styled'
 import Text from '../Text'
+import colors from '../../../themes/UpshotUI/colors'
+
 
 export interface ButtonChartCollectionProps {
-  color: string
+  color: keyof typeof colors
   selected: Boolean
   title: string
 }
 
 // fixme: title should just be a child
-// fixme: typescript complaint
 const ButtonChartCollection = forwardRef(
   (
     {
