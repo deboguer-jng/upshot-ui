@@ -36,7 +36,7 @@ export const StyledTitle = styled('h3')<ColorProp>`
 `
 
 export const StyledH1 = styled('h1')<VariantProp>`
-    margin: 5px 0px;
+    margin: 0px;
     ${({ $variant }) => $variant == 'alone' ?  'display: inline-block;' : ''}
 `
 
