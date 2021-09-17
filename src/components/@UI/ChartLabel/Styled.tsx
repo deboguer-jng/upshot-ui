@@ -20,11 +20,12 @@ export const IconBox = styled(Box)<ColorProp>`
     height: 20px;
     text-align: center;
     margin-right: 12px;
+    margin-top: 5px;
 `
 export const StyledIconButton = styled(IconButton)`
     padding: 0;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
 `
 
 export const StyledTitle = styled('h3')<ColorProp>`
