@@ -3,6 +3,7 @@ import Colors from '../../../themes/UpshotUI/colors'
 import Box from '../../Layout/Box'
 import Flex from '../../Layout/Flex'
 import Icon from '../../@UI/Icon'
+import Label from '../../@UI/Label'
 import { Text } from 'theme-ui'
 import { IconBox, StyledIconButton, StyledTitle, StyledH2, StyledChangeDiv } from './Styled'
 import { padding } from 'polished'
@@ -11,7 +12,7 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * 
    */
-  type: 'alone' | 'multi'
+  variant: 'alone' | 'multi'
   /**
    * 
    */
@@ -34,24 +35,21 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
  *
  * Provides a basic label or a currency label of various sizes.
  */
-const Label = forwardRef(
+const ChartLabel = forwardRef(
   (
     {
-      type,
+      variant,
       title,
       price,
       change,
-      titleColor = 'primary',
+      titleColor = ( variant === 'multi' ? 'primary' : 'white' ),
       ...props
     }: LabelProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    if (type == 'alone') {
-      titleColor = 'white'
-    }
     return (
       <Flex {...{ ref, ...props }}>
-        {type === 'multi' && (
+        {variant === 'multi' && (
           <IconBox $color={titleColor}>
             <StyledIconButton
               type="button"
@@ -67,13 +65,15 @@ const Label = forwardRef(
         )}
         <Box>
           <StyledTitle $color={titleColor}>
-            { type == 'multi' ? title+' ' : '' }
+            { variant == 'multi' ? title+' ' : '' }
             price:
           </StyledTitle>
-          <StyledH2 $type={type}>
-            {price}
+          <StyledH2 $variant={variant}>
+            <Label variant='currency' currencySymbol='$' size="md">
+              {price}
+            </Label>
           </StyledH2>
-          <StyledChangeDiv $type={type}>
+          <StyledChangeDiv $variant={variant}>
             {change}
           </StyledChangeDiv>
 
@@ -83,4 +83,4 @@ const Label = forwardRef(
   }
 )
 
-export default Label
+export default ChartLabel

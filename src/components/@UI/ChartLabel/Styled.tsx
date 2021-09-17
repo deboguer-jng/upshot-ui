@@ -7,8 +7,8 @@ interface ColorProp {
     $color: keyof typeof Colors
 }
 
-interface TypeProp {
-    $type: 'alone' | 'multi'
+interface VariantProp {
+    $variant: 'alone' | 'multi'
 }
 
 export const IconBox = styled(Box)<ColorProp>`
@@ -31,14 +31,14 @@ export const StyledTitle = styled('div')<ColorProp>`
     font-weight: bold;
 `
 
-export const StyledH2 = styled('h1')<TypeProp>`
+export const StyledH2 = styled('h1')<VariantProp>`
     margin: 5px 0px;
-    ${({ $type }) => $type == 'alone' ?  'display: inline-block;' : ''}
+    ${({ $variant }) => $variant == 'alone' ?  'display: inline-block;' : ''}
     
 `
 
-export const StyledChangeDiv = styled('div')<TypeProp>`
+export const StyledChangeDiv = styled('div')<VariantProp>`
     margin-left: 10px;
     color: ${({ theme }) => theme.colors.primary};
-    ${({ $type }) => $type == 'alone' ?  'display: inline-block;' : ''}
+    ${({ $variant }) => $variant == 'alone' ?  'display: inline-block;' : ''}
 `

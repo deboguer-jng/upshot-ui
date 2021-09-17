@@ -16,10 +16,10 @@ const PercentageTemplate: ComponentStory<typeof Label> = (args) => (
 )
 
 export const Alone = Template.bind({})
-Alone.args = { type: 'alone', title: 'Item 1', price: '$0,000', change: '+20.31 (+16.47%)' }
+Alone.args = { variant: 'alone', title: 'Item 1', price: '0,000', change: '+20.31 (+16.47%)' }
 
 export const Multi = PercentageTemplate.bind({})
-Multi.args = { type: 'multi', title: 'Item 1', price: '$0,000', change: '+20.31 (+16.47%)' }
+Multi.args = { variant: 'multi', title: 'Item 1', price: '0,000', change: '+20.31 (+16.47%)' }
 
 export const LabelColored = PercentageTemplate.bind({})
-LabelColored.args = { type: 'multi', title: 'Title', price: 'price', change: 'change', titleColor: 'red' }
+LabelColored.args = { variant: 'multi', title: 'Item 1', price: '0,000', change: '+20.31 (+16.47%)', titleColor: 'red' }
