@@ -113,7 +113,7 @@ const ChartLabel = forwardRef(
             </Label>
           </StyledH1>
           <StyledChangeDiv $variant={variant}>
-            <InlineLabel variant='currency' currencySymbol={currency_2} size="sm">
+            <InlineLabel color='primary' variant='currency' currencySymbol={currency_2} size="sm">
               {price_2}
             </InlineLabel>
             ({change})
