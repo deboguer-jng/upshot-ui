@@ -23,7 +23,6 @@ const Template: ComponentStory<typeof ButtonChartCollection> = (args) => {
       onClick={() => {
         setSelected(!selected)
       }}
-      onClose={() => {}}
     >
       {' '}
       ButtonChartCollection{' '}

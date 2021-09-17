@@ -10,6 +10,7 @@ export const ButtonChartCollectionWrapper = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+  padding-left: ${({ theme }) => theme.sizes[5] + 'px'};
 `
 
 export const ButtonChartCollectionIcon = styled.div<ButtonChartCollectionIconProps>`
