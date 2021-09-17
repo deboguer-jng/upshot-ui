@@ -9,7 +9,6 @@ export function getOptions(
     data: number[] | (Date | number)[][]
     length?: number,
   }>,
-  embedded: boolean,
 ) {
   const colors = [
     theme.rawColors.primary,
@@ -28,24 +27,34 @@ export function getOptions(
       zoom: {
         enabled: false,
       },
+      sparkline: {
+        enabled: true,
+      }
     },
     stroke: {
       width: 2.5,
     },
+    grid: {
+      show: false,
+      padding: {
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+      }
+    },
     yaxis: {
-      axisBorder: {
-        show: !embedded,
-      },
+      show: false,
       labels: {
         show: false,
       },
     },
     xaxis: {
-      axisTicks: {
+      axisBorder: {
         show: false,
       },
-      axisBorder: {
-        show: !embedded,
+      axisTicks: {
+        show: false,
       },
       labels: {
         show: false,
@@ -90,7 +99,7 @@ export function getOptions(
             background: transparent!important;
             border: none!important;
             box-shadow: none!important;
-            transform: translateX(${offset}) translateY(-10px);
+            transform: translateX(${offset}) translateY(-45px);
             overflow: visible;
           }
           .apexcharts-xaxistooltip, .apexcharts-yaxistooltip {
