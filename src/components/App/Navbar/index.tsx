@@ -31,29 +31,28 @@ const Navbar = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
-      <>
-        <NavbarWrapper>
-          <NavbarItem>
-            <NavbarLogo>
-              <Icon icon="upshot" />
-            </NavbarLogo>
-          </NavbarItem>
-          <NavbarItem grow>
-            <SearchWrapper>
-              <Icon icon="ethBlock" />
-              <InputRoundedSearch
-                hasButton
-                fullWidth
-                placeholder="Search..."
-                dark
-                value={searchValue}
-                onChange={onSearchValueChange}
-                onIconClick={onSearch}
-              />
-            </SearchWrapper>
-          </NavbarItem>
-          {/* comment for now */}
-          {/* <NavbarItem>
+      <NavbarWrapper>
+        <NavbarItem>
+          <NavbarLogo>
+            <Icon icon="upshot" />
+          </NavbarLogo>
+        </NavbarItem>
+        <NavbarItem grow>
+          <SearchWrapper>
+            <Icon icon="ethBlock" />
+            <InputRoundedSearch
+              hasButton
+              fullWidth
+              placeholder="Search..."
+              dark
+              value={searchValue}
+              onChange={onSearchValueChange}
+              onIconClick={onSearch}
+            />
+          </SearchWrapper>
+        </NavbarItem>
+        {/* comment for now */}
+        {/* <NavbarItem>
             <NavbarItemIcon>
               <Icon icon="notificationFilled" />
             </NavbarItemIcon>
@@ -87,8 +86,7 @@ const Navbar = forwardRef(
               <Icon icon="items" />
             </NavbarItemIcon>
           </NavbarItem> */}
-        </NavbarWrapper>
-      </>
+      </NavbarWrapper>
     )
   }
 )
