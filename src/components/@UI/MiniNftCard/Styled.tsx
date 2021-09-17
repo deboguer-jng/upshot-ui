@@ -157,6 +157,12 @@ export const MiniNftCardDetailLabel = styled(Text)`
 
 export const MiniNftCardDetailValue = styled(Text)<MiniNftCardDetailValueProps>`
   text-transform: uppercase;
+  margin-bottom: 5px;
   color: ${({ theme, error }) =>
     error ? theme.colors.red : theme.colors.white};
+  -webkit-line-clamp: 2;
+  text-overfow: elipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 `
