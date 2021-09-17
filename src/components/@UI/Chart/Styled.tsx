@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import ReactApexChart from 'react-apexcharts'
 
 interface FilterButtonProps {
   active: boolean
@@ -7,6 +8,10 @@ interface FilterButtonProps {
 interface CustomLegendProps {
   active?: boolean
   color: string
+}
+
+interface ReactApexChartsWrapperProps {
+  embeded: boolean
 }
 
 export const ChartWrapper = styled.div`
@@ -127,4 +132,11 @@ export const CustomLegendWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-top: 1rem;
+`
+
+export const ReactApexChartsWrapper = styled(
+  ReactApexChart
+)<ReactApexChartsWrapperProps>`
+  border-left: ${({ embedded }) => (!embedded ? '1px solid white' : 0)};
+  border-bottom: ${({ embedded }) => (!embedded ? '1px solid white' : 0)};
 `
