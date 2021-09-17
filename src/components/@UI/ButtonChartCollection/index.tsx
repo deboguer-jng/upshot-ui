@@ -12,6 +12,7 @@ export interface ButtonChartCollectionProps {
 }
 
 // fixme: title should just be a child
+// fixme: typescript complaint
 const ButtonChartCollection = forwardRef(
   (
     {
