@@ -3,7 +3,7 @@ import SVG, { Props as SVGProps } from 'react-inlinesvg'
 import colors from '../../../themes/UpshotUI/colors'
 import icons from './icons'
 
-interface IconProps extends Omit<SVGProps, 'src'> {
+export interface IconProps extends Omit<SVGProps, 'src'> {
   /**
    * Defines the SVG icon to render.
    */
