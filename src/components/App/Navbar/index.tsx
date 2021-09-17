@@ -1,4 +1,9 @@
-import React, { forwardRef } from 'react'
+import React, {
+  forwardRef,
+  HTMLAttributes,
+  EventHandler,
+  ReactEventHandler,
+} from 'react'
 import {
   NavbarWrapper,
   NavbarItem,
@@ -12,12 +17,21 @@ import {
 } from './Styled'
 import Icon from '../../@UI/Icon'
 import Text from '../../@UI/Text'
-import InputRoundedSearch from '../../@UI/InputRoundedSearch'
+import InputRoundedSearch, {
+  InputRoundedSearchProps,
+} from '../../@UI/InputRoundedSearch'
 
-export interface NavbarInterface {}
+export interface NavbarInterface {
+  searchValue: string
+  onSearchValueChange: ReactEventHandler<HTMLInputElement>
+  onSearch: ReactEventHandler<HTMLButtonElement>
+}
 
 const Navbar = forwardRef(
-  ({ ...props }: NavbarInterface, ref: React.ForwardedRef<HTMLDivElement>) => {
+  (
+    { searchValue, onSearchValueChange, onSearch, ...props }: NavbarInterface,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
     return (
       <>
         <NavbarWrapper>
@@ -34,6 +48,9 @@ const Navbar = forwardRef(
                 fullWidth
                 placeholder="Search..."
                 dark
+                value={searchValue}
+                onChange={onSearchValueChange}
+                onClick={onSearch}
               />
             </SearchWrapper>
           </NavbarItem>
