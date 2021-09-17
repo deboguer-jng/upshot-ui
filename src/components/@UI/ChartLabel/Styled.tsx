@@ -2,6 +2,8 @@ import styled from '@emotion/styled'
 import Colors from '../../../themes/UpshotUI/colors'
 import Box from '../../Layout/Box'
 import IconButton from '../../@UI/IconButton'
+import Text from '../../@UI/Text'
+import Label from '../../@UI/Label'
 
 interface ColorProp {
     $color: keyof typeof Colors
@@ -25,20 +27,37 @@ export const StyledIconButton = styled(IconButton)`
     height: 20px;
 `
 
-export const StyledTitle = styled('div')<ColorProp>`
+export const StyledTitle = styled('h3')<ColorProp>`
     text-transform: uppercase;
     color: ${({ theme, $color }) => theme.colors[$color]};
     font-weight: bold;
+    margin: 5px 0px;
 `
 
-export const StyledH2 = styled('h1')<VariantProp>`
+export const StyledH1 = styled('h1')<VariantProp>`
     margin: 5px 0px;
     ${({ $variant }) => $variant == 'alone' ?  'display: inline-block;' : ''}
-    
+`
+
+export const StyledH2 = styled('h2')`
+    margin: 0px 0px;
 `
 
 export const StyledChangeDiv = styled('div')<VariantProp>`
     margin-left: 10px;
     color: ${({ theme }) => theme.colors.primary};
     ${({ $variant }) => $variant == 'alone' ?  'display: inline-block;' : ''}
+`
+
+export const StyledRed = styled(Text)`
+    color: ${({ theme }) => theme.colors.red};
+    margin-right: 6px;
+`
+
+export const StyledBlue = styled(Text)`
+    color: ${({ theme }) => theme.colors.primary};
+`
+
+export const InlineLabel = styled(Label)`
+    display: inline-block;
 `

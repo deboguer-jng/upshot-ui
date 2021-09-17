@@ -4,9 +4,17 @@ import Box from '../../Layout/Box'
 import Flex from '../../Layout/Flex'
 import Icon from '../../@UI/Icon'
 import Label from '../../@UI/Label'
-import { Text } from 'theme-ui'
-import { IconBox, StyledIconButton, StyledTitle, StyledH2, StyledChangeDiv } from './Styled'
-import { padding } from 'polished'
+import {
+  IconBox,
+  StyledIconButton,
+  StyledTitle,
+  StyledH1,
+  StyledH2,
+  StyledChangeDiv,
+  StyledRed,
+  StyledBlue,
+  InlineLabel,
+ } from './Styled'
 
 export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -99,15 +107,31 @@ const ChartLabel = forwardRef(
             { variant == 'multi' ? title+' ' : '' }
             price:
           </StyledTitle>
-          <StyledH2 $variant={variant}>
+          <StyledH1 $variant={variant}>
             <Label variant='currency' currencySymbol={currency_1} size="md">
               {price_1}
             </Label>
-          </StyledH2>
+          </StyledH1>
           <StyledChangeDiv $variant={variant}>
-            {change}
+            <InlineLabel variant='currency' currencySymbol={currency_2} size="sm">
+              {price_2}
+            </InlineLabel>
+            ({change})
           </StyledChangeDiv>
 
+          {variant === 'alone' && (
+            <StyledH2>
+              {date}
+            </StyledH2>
+          )}
+          <>
+            <StyledRed>
+              ATL: {atl}
+            </StyledRed>
+            <StyledBlue>
+              ATH: {ath}
+            </StyledBlue>
+          </>
         </Box>
       </Flex>
     )
