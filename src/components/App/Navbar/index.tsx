@@ -17,9 +17,7 @@ import {
 } from './Styled'
 import Icon from '../../@UI/Icon'
 import Text from '../../@UI/Text'
-import InputRoundedSearch, {
-  InputRoundedSearchProps,
-} from '../../@UI/InputRoundedSearch'
+import InputRoundedSearch from '../../@UI/InputRoundedSearch'
 
 export interface NavbarInterface {
   searchValue: string
@@ -50,7 +48,7 @@ const Navbar = forwardRef(
                 dark
                 value={searchValue}
                 onChange={onSearchValueChange}
-                onClick={onSearch}
+                onIconClick={onSearch}
               />
             </SearchWrapper>
           </NavbarItem>

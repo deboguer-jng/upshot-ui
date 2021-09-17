@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, ReactEventHandler } from 'react'
 import { Flex } from 'theme-ui'
 import { InputRoundedProps } from '../InputRounded'
 import IconButton from '../IconButton'
@@ -20,6 +20,8 @@ export interface InputRoundedSearchProps extends InputRoundedProps {
    * Properties for the button.
    */
   buttonProps?: IconButtonProps
+
+  onIconClick: ReactEventHandler<HTMLButtonElement>
 }
 
 /**
@@ -31,6 +33,7 @@ const InputRoundedSearch = forwardRef(
       fullWidth = false,
       hasButton = false,
       buttonProps: buttonPropsRaw,
+      onIconClick,
       ...props
     }: InputRoundedSearchProps,
     ref: React.ForwardedRef<HTMLInputElement>
@@ -56,6 +59,7 @@ const InputRoundedSearch = forwardRef(
 
         <IconButton
           color="primary"
+          onClick={onIconClick}
           sx={{
             marginLeft: '-' + buttonSize /* Position inside input field. */,
             height: buttonSize,
