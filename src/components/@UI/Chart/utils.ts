@@ -11,6 +11,8 @@ export function getOptions(
   }>,
   embedded: boolean,
   selected?: boolean = true,
+  hoverValues: {}, 
+  setHoverValues: (value: {}) => void,
 ) {
   const colors = [
     theme.rawColors.primary,
@@ -75,12 +77,21 @@ export function getOptions(
       enabled: true,
       shared: false,
       custom: function ({
+        series,
+        seriesIndex,
+        dataPointIndex,
         w: {
           globals: { clientX: x, svgWidth: width },
         },
       }) {
         const offset =
           x <= width / 2 ? 'calc(-50% - 12px)' : 'calc(50% + 9.5px)'
+        
+        const newValues = { ...hoverValues }
+        newValues[data[seriesIndex].name] = [
+          series[seriesIndex][dataPointIndex]
+        ].at(-1)
+        setHoverValues(newValues)
 
         return `
         <style>
@@ -108,7 +119,12 @@ export function getOptions(
   }
 }
 
-export function toggle(idx, seriesName, filterStatus, setFilterStatus) {
+export function toggle(
+  idx,
+  seriesName,
+  filterStatus,
+  setFilterStatus,
+) {
   ApexCharts.exec('upshotChart', 'toggleSeries', seriesName)
 
   const newStatus = [...filterStatus]

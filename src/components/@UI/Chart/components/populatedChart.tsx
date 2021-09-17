@@ -22,16 +22,26 @@ const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
   const theme = useTheme()
   const [filterStatus, setFilterStatus] = useState(chartData.map((_) => true))
   const [selected, setSelected] = useState(true)
+  const [hoverValues, setHoverValues] = useState({})
 
   const colors = [
     theme.rawColors.primary,
     theme.rawColors.secondary,
     theme.rawColors.purple,
   ]
-  const options: ApexOptions = getOptions(theme, chartData, embedded, selected)
+  const options: ApexOptions = getOptions(
+    theme,
+    chartData,
+    embedded,
+    selected,
+    hoverValues,
+    setHoverValues,
+  )
 
   return (
     <>
+      <Text>${'series1: ' + Object.values(hoverValues)[0]}</Text><br />
+      <Text>${'series2: ' + Object.values(hoverValues)[1]}</Text>
       <ReactApexCharts
         series={chartData}
         type="area"
@@ -48,7 +58,12 @@ const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
                 active={filterStatus[i]}
                 color={colors[i]}
                 onClick={() =>
-                  toggle(i, chartData[i].name, filterStatus, setFilterStatus)
+                  toggle(
+                    i,
+                    chartData[i].name,
+                    filterStatus,
+                    setFilterStatus,
+                  )
                 }
               >
                 <Text>{chartData[i].name}</Text>
