@@ -15,15 +15,45 @@ import {
 } from './Styled'
 
 export interface MiniNftCardInterface {
-  price: string
+  /**
+   * Price for the NFT in Eth.
+   */
+  price?: string
+  /**
+   * Rarity percentage.
+   */
   rarity: string
+  /**
+   * NFT creator information.
+   */
   creator?: string
+  /**
+   * Cover image.
+   */
   image?: string
+  /**
+   * Shown error variant.
+   */
   error?: boolean
+  /**
+   * NFT name
+   */
   name?: string
+  /**
+   * Last sale from address.
+   */
   from?: string
+  /**
+   * Last sale to address.
+   */
   to?: string
+  /**
+   * Last sale date
+   */
   date?: string
+  /**
+   * Variant type
+   */
   type?: 'default' | 'search'
 }
 
