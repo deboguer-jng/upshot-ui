@@ -5,11 +5,6 @@ interface FilterButtonProps {
   active: boolean
 }
 
-interface CustomLegendProps {
-  active?: boolean
-  color: string
-}
-
 interface ReactApexChartsWrapperProps {
   embedded: boolean
 }
@@ -31,10 +26,6 @@ export const ChartWrapper = styled.div`
       min-height: unset !important;
     }
   }
-`
-
-export const ChartNoSelectedWrapper = styled.div`
-  position: relative;
 `
 
 export const ChartNoSelectedTextArea = styled.div`
