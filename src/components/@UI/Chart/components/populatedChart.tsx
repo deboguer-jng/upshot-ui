@@ -18,7 +18,9 @@ const PopulatedChart = ({ chartData, embedded }: PopulatedChartProps) => {
   const theme = useTheme()
   const [filterStatus, setFilterStatus] = useState(chartData.map((_) => true))
 
-  const colors = Object.keys(theme.colors)
+  const colors = Object.keys(theme.colors) as [
+    index: keyof typeof theme['colors']
+  ]
   const options: ApexOptions = getOptions(theme, chartData)
 
   return (
