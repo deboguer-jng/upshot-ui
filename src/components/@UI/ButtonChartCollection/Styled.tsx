@@ -15,7 +15,7 @@ export const ButtonChartCollectionWrapper = styled.div`
 export const ButtonChartCollectionIcon = styled.div<ButtonChartCollectionIconProps>`
   width: 18px;
   height: 18px;
-  border-radius: 9px;
+  border-radius: ${({ theme }) => theme.sizes[2] + 'px'};
   margin-right: 10px;
   background: ${({ theme, selected, $color }) =>
     selected ? theme.colors[$color] : theme.colors.transparent};

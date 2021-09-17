@@ -25,15 +25,12 @@ const ButtonChartCollection = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
-      <>
-        <ButtonChartCollectionWrapper {...{ ref, ...props }}>
-          <ButtonChartCollectionIcon selected={selected} $color={color} />
-          <Text variant="large" color={color}>
-            {' '}
-            {title}{' '}
-          </Text>
-        </ButtonChartCollectionWrapper>
-      </>
+      <ButtonChartCollectionWrapper {...{ ref, ...props }}>
+        <ButtonChartCollectionIcon selected={selected} $color={color} />
+        <Text variant="large" color={color}>
+          {title}
+        </Text>
+      </ButtonChartCollectionWrapper>
     )
   }
 )
