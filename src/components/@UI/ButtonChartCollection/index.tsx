@@ -1,5 +1,4 @@
 import React, { forwardRef, HTMLAttributes, useState } from 'react'
-import colors from '../../../themes/UpshotUI/colors'
 import {
   ButtonChartCollectionWrapper,
   ButtonChartCollectionIcon,
@@ -7,19 +6,18 @@ import {
 import Text from '../Text'
 
 export interface ButtonChartCollectionProps {
-  color: keyof typeof colors
+  color: string
   selected: Boolean
   title: string
-  onClose: Function
 }
 
+// fixme: title should just be a child
 const ButtonChartCollection = forwardRef(
   (
     {
       color,
       title,
       selected,
-      onClose,
       ...props
     }: ButtonChartCollectionProps & HTMLAttributes<HTMLDivElement>,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -27,7 +25,7 @@ const ButtonChartCollection = forwardRef(
     return (
       <ButtonChartCollectionWrapper {...{ ref, ...props }}>
         <ButtonChartCollectionIcon selected={selected} $color={color} />
-        <Text variant="large" color={color}>
+        <Text variant="large" color={color} sx={{ textTransform: 'uppercase', fontWeight: 400 }}>
           {title}
         </Text>
       </ButtonChartCollectionWrapper>

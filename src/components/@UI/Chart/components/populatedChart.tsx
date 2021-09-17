@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import { default as ReactApexCharts } from 'react-apexcharts'
 import { useTheme } from '@emotion/react'
 import { ApexOptions } from 'apexcharts'
-import { Text } from 'theme-ui'
 
 import {
   CustomLegendWrapper,
-  CustomLegend,
 } from '../Styled'
 import { getOptions, toggle } from '../utils'
+import ButtonChartCollection from '../../ButtonChartCollection'
 
 interface PopulatedChartProps {
   chartData: {
@@ -21,27 +20,20 @@ interface PopulatedChartProps {
 const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
   const theme = useTheme()
   const [filterStatus, setFilterStatus] = useState(chartData.map((_) => true))
-  const [selected, setSelected] = useState(chartData.map((_) => true))
-  const [hoverValues, setHoverValues] = useState({})
 
   const colors = [
-    theme.rawColors.primary,
-    theme.rawColors.secondary,
-    theme.rawColors.purple,
+    'primary',
+    'secondary',
+    'purple',
   ]
   const options: ApexOptions = getOptions(
     theme,
     chartData,
     embedded,
-    selected,
-    hoverValues,
-    setHoverValues,
   )
 
   return (
     <>
-      <Text>${'series1: ' + Object.values(hoverValues)[0]}</Text><br />
-      <Text>${'series2: ' + Object.values(hoverValues)[1]}</Text>
       <ReactApexCharts
         series={chartData}
         type="area"
@@ -53,23 +45,23 @@ const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
         !embedded &&
           <CustomLegendWrapper>
             {[...new Array(chartData.length)].map((_, i) => (
-              <CustomLegend
+              <ButtonChartCollection
                 key={i}
                 color={colors[i]}
+                title={chartData[i].name}
+                selected={filterStatus[i]}
                 onClick={() =>
                   toggle(
                     i,
                     chartData[i].name,
-                    selected,
-                    setSelected,
+                    filterStatus,
+                    setFilterStatus,
                   )
-                }
-              >
-                <Text>{chartData[i].name}</Text>
-              </CustomLegend>
+                } 
+              />
             ))}
           </CustomLegendWrapper>
-      }
+        }
     </>
   )
 }

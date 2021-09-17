@@ -126,31 +126,5 @@ export const FilterButton = styled.button<FilterButtonProps>`
 export const CustomLegendWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 50px;
   margin-top: 1rem;
-`
-
-export const CustomLegend = styled.button<CustomLegendProps>`
-  display: flex;
-  align-items: center;
-  border: none;
-  background: none;
-  outline: none;
-  text-transform: uppercase;
-
-  div {
-    width: 18px;
-    height: 18px;
-    border-radius: 9px;
-    margin-right: 10px;
-    border: 2px solid ${({ color }) => color};
-    background: color;
-  }
-
-  span {
-    font-size: 14px;
-    line-height: 18px;
-    font-weight: 600;
-    color: ${({ color }) => color};
-  }
 `

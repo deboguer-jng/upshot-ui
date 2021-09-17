@@ -10,9 +10,6 @@ export function getOptions(
     length?: number,
   }>,
   embedded: boolean,
-  selected?: boolean[],
-  hoverValues: {}, 
-  setHoverValues: (value: {}) => void,
 ) {
   const colors = [
     theme.rawColors.primary,
@@ -31,18 +28,9 @@ export function getOptions(
       zoom: {
         enabled: false,
       },
-      events: {
-        mouseMove: function(event, chartContext, config) {
-          const newValues = { ...hoverValues }
-          try {
-            newValues[data[config.seriesIndex].name] = data[config.seriesIndex].data[config.dataPointIndex]
-            setHoverValues(newValues)
-          } catch (err) {}
-        }
-      },
     },
     stroke: {
-      width: selected ? 2.5 : 0.5,
+      width: 2.5,
     },
     yaxis: {
       axisBorder: {
@@ -73,8 +61,8 @@ export function getOptions(
         gradientToColors: [
           ...new Array(data.length || theme.chart.defaultSeries.length),
         ].map((_) => 'transparent'),
-        opacityFrom: selected ? 0.9 : 0.5,
-        opacityTo: selected ? 0.6 : 0.2,
+        opacityFrom: 0.9,
+        opacityTo: 0.6,
         stops: [0, 90, 100],
       },
     },
@@ -86,9 +74,6 @@ export function getOptions(
       enabled: true,
       shared: false,
       custom: function ({
-        series,
-        seriesIndex,
-        dataPointIndex,
         w: {
           globals: { clientX: x, svgWidth: width },
         },
