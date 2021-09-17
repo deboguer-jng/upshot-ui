@@ -11,7 +11,7 @@ interface CustomLegendProps {
 }
 
 interface ReactApexChartsWrapperProps {
-  embeded: boolean
+  embedded: boolean
 }
 
 export const ChartWrapper = styled.div`

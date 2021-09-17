@@ -17,7 +17,7 @@ interface SelectionPromptProps {
 
 const SelectionPrompt = ({ data, embedded }: SelectionPromptProps) => {
   const theme = useTheme()
-  const options: ApexOptions = getOptions(theme, data, embedded)
+  const options: ApexOptions = getOptions(theme, data)
 
   return (
     <ChartNoSelectedWrapper>
