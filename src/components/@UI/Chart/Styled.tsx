@@ -5,7 +5,7 @@ interface FilterButtonProps {
 }
 
 interface CustomLegendProps {
-  active: boolean
+  active?: boolean
   color: string
 }
 
@@ -114,13 +114,11 @@ export const FilterButton = styled.button<FilterButtonProps>`
   align-items: center;
   justify-content: center;
   border: none;
-  color: ${({ theme, active }) =>
-    active ? theme.colors.black : theme.colors.white};
+  color: theme.colors.black;
   font-size: 14px;
   height: 18px;
   width: 50px;
-  background: ${({ theme, active }) =>
-    active ? theme.colors.primary : theme.colors.transparent};
+  background: theme.colors.primary;
   outline: none;
   border-radius: 9px;
 `
@@ -146,8 +144,7 @@ export const CustomLegend = styled.button<CustomLegendProps>`
     border-radius: 9px;
     margin-right: 10px;
     border: 2px solid ${({ color }) => color};
-    background: ${({ theme, active, color }) =>
-      active ? color : theme.colors.transparent};
+    background: color;
   }
 
   span {

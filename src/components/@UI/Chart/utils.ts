@@ -10,7 +10,7 @@ export function getOptions(
     length?: number,
   }>,
   embedded: boolean,
-  selected?: boolean = true,
+  selected?: boolean[],
   hoverValues: {}, 
   setHoverValues: (value: {}) => void,
 ) {
@@ -30,6 +30,15 @@ export function getOptions(
       },
       zoom: {
         enabled: false,
+      },
+      events: {
+        mouseMove: function(event, chartContext, config) {
+          const newValues = { ...hoverValues }
+          try {
+            newValues[data[config.seriesIndex].name] = data[config.seriesIndex].data[config.dataPointIndex]
+            setHoverValues(newValues)
+          } catch (err) {}
+        }
       },
     },
     stroke: {
@@ -86,12 +95,6 @@ export function getOptions(
       }) {
         const offset =
           x <= width / 2 ? 'calc(-50% - 12px)' : 'calc(50% + 9.5px)'
-        
-        const newValues = { ...hoverValues }
-        newValues[data[seriesIndex].name] = [
-          series[seriesIndex][dataPointIndex]
-        ].at(-1)
-        setHoverValues(newValues)
 
         return `
         <style>

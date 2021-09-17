@@ -21,7 +21,7 @@ interface PopulatedChartProps {
 const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
   const theme = useTheme()
   const [filterStatus, setFilterStatus] = useState(chartData.map((_) => true))
-  const [selected, setSelected] = useState(true)
+  const [selected, setSelected] = useState(chartData.map((_) => true))
   const [hoverValues, setHoverValues] = useState({})
 
   const colors = [
@@ -55,14 +55,13 @@ const PopulatedChart = ({chartData, embedded}: PopulatedChartProps) => {
             {[...new Array(chartData.length)].map((_, i) => (
               <CustomLegend
                 key={i}
-                active={filterStatus[i]}
                 color={colors[i]}
                 onClick={() =>
                   toggle(
                     i,
                     chartData[i].name,
-                    filterStatus,
-                    setFilterStatus,
+                    selected,
+                    setSelected,
                   )
                 }
               >
