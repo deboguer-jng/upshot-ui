@@ -18,6 +18,10 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
    * If the label is for a price, this symbol will be its prefix.
    */
   currencySymbol?: string
+  /**
+   * Puts any additional info (eg. confidence score) into a basic label at the top-right of the element.
+   */
+  topRightLabel?: string
 }
 
 /**
@@ -30,6 +34,7 @@ const Label = forwardRef(
       variant = 'basic',
       size = 'sm',
       currencySymbol = 'Ξ',
+      topRightLabel,
       children,
       ...props
     }: LabelProps,
@@ -46,6 +51,16 @@ const Label = forwardRef(
         <ThemeUILabel variant={variant + size[0].toUpperCase() + size[1]}>
           {children}
         </ThemeUILabel>
+        
+        {topRightLabel && (
+          <Label
+            variant='basic'
+            size={ (size === 'xs' || size === 'sm' || size === 'md') ? 'sm' : 'md' } // If parent label is XS or SM then topRightLabel is sm. If it is larger, it becomes md.
+            style={{ display: 'inline-block', verticalAlign: 'top' }} // It crashes when you try to style in Styled.tsx. Recursion is funny.
+          >
+            {topRightLabel}
+          </Label>
+        )}
       </div>
     )
   }
