@@ -22,7 +22,7 @@ import InputRoundedSearch from '../../@UI/InputRoundedSearch'
 export interface NavbarInterface {
   searchValue: string
   onSearchValueChange: ReactEventHandler<HTMLInputElement>
-  onSearch: ReactEventHandler<HTMLButtonElement>
+  onSearch: (e: React.FormEvent | React.MouseEvent) => void
 }
 
 const Navbar = forwardRef(
@@ -38,17 +38,20 @@ const Navbar = forwardRef(
           </NavbarLogo>
         </NavbarItem>
         <SearchWrapper>
-          <InputRoundedSearch
-            hasButton
-            fullWidth
-            placeholder="Search..."
-            dark
-            value={searchValue}
-            onChange={onSearchValueChange}
-            buttonProps={{
-              onClick: onSearch,
-            }}
-          />
+          <form onSubmit={onSearch}>
+            <InputRoundedSearch
+              hasButton
+              fullWidth
+              placeholder="Search..."
+              dark
+              value={searchValue}
+              onChange={onSearchValueChange}
+              buttonProps={{
+                onClick: onSearch,
+                type: 'button',
+              }}
+            />
+          </form>
         </SearchWrapper>
         {/* comment for now */}
         {/* <NavbarItem>
