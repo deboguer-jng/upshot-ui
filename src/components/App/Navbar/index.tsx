@@ -31,28 +31,25 @@ const Navbar = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
-      <NavbarWrapper>
+      <NavbarWrapper {...{ ref, ...props }}>
         <NavbarItem>
           <NavbarLogo>
             <Icon icon="upshot" />
           </NavbarLogo>
         </NavbarItem>
-        <NavbarItem grow>
-          <SearchWrapper>
-            <Icon icon="ethBlock" />
-            <InputRoundedSearch
-              hasButton
-              fullWidth
-              placeholder="Search..."
-              dark
-              value={searchValue}
-              onChange={onSearchValueChange}
-              buttonProps={{
-                onClick: onSearch,
-              }}
-            />
-          </SearchWrapper>
-        </NavbarItem>
+        <SearchWrapper>
+          <InputRoundedSearch
+            hasButton
+            fullWidth
+            placeholder="Search..."
+            dark
+            value={searchValue}
+            onChange={onSearchValueChange}
+            buttonProps={{
+              onClick: onSearch,
+            }}
+          />
+        </SearchWrapper>
         {/* comment for now */}
         {/* <NavbarItem>
             <NavbarItemIcon>
