@@ -9,12 +9,8 @@ export function getOptions(
     data: number[] | (Date | number)[][]
     length?: number,
   }>,
+  colors: string[],
 ) {
-  const colors = [
-    theme.rawColors.primary,
-    theme.rawColors.secondary,
-    theme.rawColors.purple,
-  ]
 
   return {
     ...(theme.chart.options as ApexOptions),
