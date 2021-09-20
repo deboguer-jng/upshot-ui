@@ -9,6 +9,7 @@ interface ColorProp {
 export const StyledThemeUILabel = styled(ThemeUILabel)<ColorProp>`
   ${({ theme, $color }) =>
     `
+      border-color: ${theme.colors[$color]};
       color: ${theme.colors[$color]};
     `}
 `

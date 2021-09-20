@@ -63,6 +63,7 @@ const Label = forwardRef(
             variant='basic'
             size={ (size === 'xs' || size === 'sm' || size === 'md') ? 'sm' : 'md' } // If parent label is XS or SM then topRightLabel is sm. If it is larger, it becomes md.
             style={{ display: 'inline-block', verticalAlign: 'top' }} // It crashes when you try to style in Styled.tsx. Recursion is funny.
+            color={color}
           >
             {topRightLabel}
           </Label>
