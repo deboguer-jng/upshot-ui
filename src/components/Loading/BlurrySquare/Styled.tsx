@@ -21,6 +21,8 @@ export const BackgroundBox = styled(Box)`
 `
 
 export const BlurrySquare = styled(Flex)`
+  width: ${({ theme }) => theme.miniNftCard.width}px;
+  height: ${({ theme }) => theme.miniNftCard.height}px;
   position: relative;
   overflow: auto;
   display: flex;
