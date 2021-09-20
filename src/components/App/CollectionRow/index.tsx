@@ -18,28 +18,48 @@ export interface CollectionRowProps extends TableRowProps {
    * Use dark background.
    */
   dark?: boolean
+  /**
+   * OnClick handler.
+   */
+  onClick?: () => void
 }
 
 const CollectionRow = forwardRef(
   (
-    { imageSrc: src, title, dark, children, ...props }: CollectionRowProps,
+    {
+      imageSrc: src,
+      title,
+      dark,
+      children,
+      onClick,
+      ...props
+    }: CollectionRowProps,
     ref: React.ForwardedRef<HTMLTableRowElement>
   ) => {
     return (
       <CollectionRowBase $dark={dark} {...{ ref, ...props }}>
         {/* Each row has a required avatar image circle. */}
         <TableCell>
-          <Avatar {...{ src }} />
+          <Avatar
+            {...{ src, onClick }}
+            sx={{ cursor: onClick ? 'pointer' : 'auto' }}
+          />
         </TableCell>
 
         {/* Titles expand to fill all remaining space. */}
         <TableCell sx={{ maxWidth: 0 }}>
           <Text
             variant="large"
+            as={onClick ? 'a' : 'span'}
+            {...{ onClick }}
             sx={{
               textOverflow: 'ellipsis',
               overflow: 'hidden',
               whiteSpace: 'nowrap',
+              cursor: onClick ? 'pointer' : 'auto',
+              '&:hover': {
+                textDecoration: onClick ? 'underline' : undefined,
+              },
             }}
           >
             {title}
