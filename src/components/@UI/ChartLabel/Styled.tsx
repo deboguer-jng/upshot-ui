@@ -4,6 +4,7 @@ import Box from '../../Layout/Box'
 import IconButton from '../../@UI/IconButton'
 import Text from '../../@UI/Text'
 import Label from '../../@UI/Label'
+import Flex from '../../Layout/Flex'
 
 interface ColorProp {
     $color: keyof typeof Colors
@@ -40,9 +41,12 @@ export const StyledH1 = styled('h1')<VariantProp>`
     ${({ $variant }) => $variant == 'alone' ?  'display: inline-block;' : ''}
 `
 
-export const StyledDateTime = styled('h2')`
+export const StyledDateTime = styled('h2')<VariantProp>`
     margin: 0px 0px;
     text-transform: uppercase;
+    position: ${({ $variant }) => $variant == 'alone' ?  'absolute' : 'inherit'};
+    top: 0;
+    right: 0;
 `
 
 export const StyledChangeDiv = styled('div')<VariantProp>`
@@ -62,4 +66,12 @@ export const StyledBlue = styled(Text)`
 
 export const InlineLabel = styled(Label)`
     display: inline-block;
+`
+
+export const StyledBox = styled(Box)<VariantProp>`
+    width: ${({ $variant }) => $variant == 'alone' ?  '100%' : 'auto'};
+`
+
+export const RelativeFlex = styled(Flex)`
+    position: relative;
 `

@@ -1,9 +1,8 @@
 import React, { forwardRef } from 'react'
 import Colors from '../../../themes/UpshotUI/colors'
-import Box from '../../Layout/Box'
-import Flex from '../../Layout/Flex'
 import Icon from '../../@UI/Icon'
 import Label from '../../@UI/Label'
+import Box from '../../Layout/Box'
 import {
   IconBox,
   StyledIconButton,
@@ -14,7 +13,10 @@ import {
   StyledRed,
   StyledBlue,
   InlineLabel,
+  StyledBox,
+  RelativeFlex,
  } from './Styled'
+import { position } from 'polished'
 
 export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -92,7 +94,7 @@ const ChartLabel = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
-      <Flex {...{ ref, ...props }}>
+      <RelativeFlex {...{ ref, ...props }}>
         {variant === 'multi' && (
           <IconBox $color={titleColor}>
             <StyledIconButton
@@ -107,7 +109,7 @@ const ChartLabel = forwardRef(
             </StyledIconButton> 
           </IconBox>
         )}
-        <Box>
+        <StyledBox $variant={variant}>
           <StyledTitle $color={titleColor}>
             { variant == 'multi' ? title+' ' : '' }
             price:
@@ -124,21 +126,19 @@ const ChartLabel = forwardRef(
             ({change})
           </StyledChangeDiv>
 
-          {variant === 'alone' && (
-            <StyledDateTime>
-              {date}
-            </StyledDateTime>
-          )}
-          <>
+          <StyledDateTime $variant={variant}>
+            {date}
+          </StyledDateTime>
+          <Box>
             <StyledRed>
               ATL: {atl}
             </StyledRed>
             <StyledBlue>
               ATH: {ath}
             </StyledBlue>
-          </>
-        </Box>
-      </Flex>
+          </Box>
+        </StyledBox>
+      </RelativeFlex>
     )
   }
 )
