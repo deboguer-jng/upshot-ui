@@ -45,7 +45,7 @@ Default.args = {
   image:
     'https://digitalax.mypinata.cloud/ipfs/QmYftLKLJn4T8GxjwThSJwGcZYop23mc5WkW17K7bi2Ua3',
   name: 'nft name',
-  price: '--',
+  price: '$69',
   date: '08/25/2021',
   from: '234234234',
   to: '234534523',
@@ -56,7 +56,7 @@ DefaultLongName.args = {
   image:
     'https://digitalax.mypinata.cloud/ipfs/QmYftLKLJn4T8GxjwThSJwGcZYop23mc5WkW17K7bi2Ua3',
   name: 'Very long NFT name that take up all of the space.Very long NFT name that take up all of the space.',
-  price: '--',
+  price: '$420',
   date: '08/25/2021',
   from: '234234234',
   to: '234534523',
