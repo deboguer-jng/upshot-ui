@@ -10,9 +10,9 @@ import {
   NavbarProfileDetails,
   SearchWrapper,
 } from './Styled'
-import Icon from '../Icon'
-import Text from '../Text'
-import InputRoundedSearch from '../InputRoundedSearch'
+import Icon from '../../@UI/Icon'
+import Text from '../../@UI/Text'
+import InputRoundedSearch from '../../@UI/InputRoundedSearch'
 
 export interface NavbarInterface {}
 

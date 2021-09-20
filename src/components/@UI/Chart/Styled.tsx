@@ -1,12 +1,12 @@
 import styled from '@emotion/styled'
+import ReactApexChart from 'react-apexcharts'
 
 interface FilterButtonProps {
   active: boolean
 }
 
-interface CustomLegendProps {
-  active: boolean
-  color: string
+interface ReactApexChartsWrapperProps {
+  embedded: boolean
 }
 
 export const ChartWrapper = styled.div`
@@ -26,10 +26,6 @@ export const ChartWrapper = styled.div`
       min-height: unset !important;
     }
   }
-`
-
-export const ChartNoSelectedWrapper = styled.div`
-  position: relative;
 `
 
 export const ChartNoSelectedTextArea = styled.div`
@@ -114,13 +110,11 @@ export const FilterButton = styled.button<FilterButtonProps>`
   align-items: center;
   justify-content: center;
   border: none;
-  color: ${({ theme, active }) =>
-    active ? theme.colors.black : theme.colors.white};
+  color: theme.colors.black;
   font-size: 14px;
   height: 18px;
   width: 50px;
-  background: ${({ theme, active }) =>
-    active ? theme.colors.primary : theme.colors.transparent};
+  background: theme.colors.primary;
   outline: none;
   border-radius: 9px;
 `
@@ -128,32 +122,12 @@ export const FilterButton = styled.button<FilterButtonProps>`
 export const CustomLegendWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 50px;
   margin-top: 1rem;
 `
 
-export const CustomLegend = styled.button<CustomLegendProps>`
-  display: flex;
-  align-items: center;
-  border: none;
-  background: none;
-  outline: none;
-  text-transform: uppercase;
-
-  div {
-    width: 18px;
-    height: 18px;
-    border-radius: 9px;
-    margin-right: 10px;
-    border: 2px solid ${({ color }) => color};
-    background: ${({ theme, active, color }) =>
-      active ? color : theme.colors.transparent};
-  }
-
-  span {
-    font-size: 14px;
-    line-height: 18px;
-    font-weight: 600;
-    color: ${({ color }) => color};
-  }
+export const ReactApexChartsWrapper = styled(
+  ReactApexChart
+)<ReactApexChartsWrapperProps>`
+  border-left: ${({ embedded }) => (!embedded ? '1px solid white' : 0)};
+  border-bottom: ${({ embedded }) => (!embedded ? '1px solid white' : 0)};
 `

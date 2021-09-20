@@ -7,9 +7,8 @@ export function getOptions(
   data: Array<{
     name: string
     data: number[] | (Date | number)[][]
-    length?: number
+    length?: number,
   }>,
-  embedded: boolean
 ) {
   const colors = [
     theme.rawColors.primary,
@@ -25,25 +24,44 @@ export function getOptions(
       toolbar: {
         show: false,
       },
+      zoom: {
+        enabled: false,
+      },
+      sparkline: {
+        enabled: true,
+      }
+    },
+    stroke: {
+      width: 2.5,
+    },
+    grid: {
+      show: false,
+      padding: {
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+      }
     },
     yaxis: {
-      axisBorder: {
-        show: !embedded,
-      },
+      show: false,
       labels: {
         show: false,
       },
+      logarithmic: true,
     },
     xaxis: {
-      type: 'datetime',
+      axisBorder: {
+        show: false,
+      },
       axisTicks: {
         show: false,
       },
-      axisBorder: {
-        show: !embedded,
-      },
       labels: {
         show: false,
+      },
+      tooltip: {
+        enabled: false,
       },
     },
     colors,
@@ -82,7 +100,7 @@ export function getOptions(
             background: transparent!important;
             border: none!important;
             box-shadow: none!important;
-            transform: translateX(${offset}) translateY(-10px);
+            transform: translateX(${offset}) translateY(-45px);
             overflow: visible;
           }
           .apexcharts-xaxistooltip, .apexcharts-yaxistooltip {
@@ -120,13 +138,19 @@ export function getOptions(
         `
       },
       x: {
+        show: false,
         format: 'dd/MM/yy HH:mm',
       },
     },
   }
 }
 
-export function toggle(idx, seriesName, filterStatus, setFilterStatus) {
+export function toggle(
+  idx,
+  seriesName,
+  filterStatus,
+  setFilterStatus,
+) {
   ApexCharts.exec('upshotChart', 'toggleSeries', seriesName)
 
   const newStatus = [...filterStatus]
