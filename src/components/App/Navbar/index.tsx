@@ -47,7 +47,9 @@ const Navbar = forwardRef(
               dark
               value={searchValue}
               onChange={onSearchValueChange}
-              onIconClick={onSearch}
+              buttonProps={{
+                onClick: onSearch,
+              }}
             />
           </SearchWrapper>
         </NavbarItem>
