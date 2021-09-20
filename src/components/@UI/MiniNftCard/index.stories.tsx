@@ -2,11 +2,28 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import MiniNftCard from '.'
+import { Flex, Box } from 'theme-ui'
 
 export default {
   title: '@UI/MiniNftCard',
   component: MiniNftCard,
 } as ComponentMeta<typeof MiniNftCard>
+
+const Template1: ComponentStory<typeof MiniNftCard> = (args) => {
+  return (
+    <Flex>
+      <Box m={2}>
+        <MiniNftCard {...args} />
+      </Box>
+      <Box m={2}>
+        <MiniNftCard {...args} />
+      </Box>
+      <Box m={2}>
+        <MiniNftCard {...args} />
+      </Box>
+    </Flex>
+  )
+}
 
 const Template: ComponentStory<typeof MiniNftCard> = (args) => (
   <MiniNftCard {...args} />
@@ -23,7 +40,7 @@ ErrorSearch.args = {
   type: 'search',
 }
 
-export const Default = Template.bind({})
+export const Default = Template1.bind({})
 Default.args = {
   image:
     'https://digitalax.mypinata.cloud/ipfs/QmYftLKLJn4T8GxjwThSJwGcZYop23mc5WkW17K7bi2Ua3',

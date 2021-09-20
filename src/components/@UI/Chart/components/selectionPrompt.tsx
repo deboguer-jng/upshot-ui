@@ -1,10 +1,9 @@
 import React from 'react'
 import { Text } from 'theme-ui'
-import { default as ReactApexCharts } from 'react-apexcharts'
 import { useTheme } from '@emotion/react'
 import { ApexOptions } from 'apexcharts'
 
-import { ChartNoSelectedWrapper, ChartNoSelectedTextArea } from '../Styled'
+import { ChartNoSelectedTextArea, ReactApexChartsWrapper } from '../Styled'
 import { getOptions } from '../utils'
 
 interface SelectionPromptProps {
@@ -17,15 +16,16 @@ interface SelectionPromptProps {
 
 const SelectionPrompt = ({ data, embedded }: SelectionPromptProps) => {
   const theme = useTheme()
-  const options: ApexOptions = getOptions(theme, data, embedded)
+  const options: ApexOptions = getOptions(theme, data)
 
   return (
-    <ChartNoSelectedWrapper>
-      <ReactApexCharts
+    <>
+      <ReactApexChartsWrapper
         series={theme.chart.defaultSeries}
         type="area"
-        height="auto"
+        height="100%"
         width="100%"
+        embedded={embedded}
         {...{ options }}
       />
       <ChartNoSelectedTextArea>
@@ -38,7 +38,7 @@ const SelectionPrompt = ({ data, embedded }: SelectionPromptProps) => {
           </Text>
         </div>
       </ChartNoSelectedTextArea>
-    </ChartNoSelectedWrapper>
+    </>
   )
 }
 
