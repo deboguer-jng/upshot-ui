@@ -48,6 +48,7 @@ export function getOptions(
       labels: {
         show: false,
       },
+      logarithmic: true,
     },
     xaxis: {
       axisBorder: {
