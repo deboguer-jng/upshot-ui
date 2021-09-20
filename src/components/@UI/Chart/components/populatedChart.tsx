@@ -18,9 +18,7 @@ const PopulatedChart = ({ chartData, embedded }: PopulatedChartProps) => {
   const theme = useTheme()
   const [filterStatus, setFilterStatus] = useState(chartData.map((_) => true))
 
-  const colors = Object.keys(theme.colors) as [
-    index: keyof typeof theme['colors']
-  ]
+  const colors = ['blue', 'pink', 'purple', 'yellow', 'red', 'green']
   const options: ApexOptions = getOptions(theme, chartData)
 
   return (
@@ -38,7 +36,7 @@ const PopulatedChart = ({ chartData, embedded }: PopulatedChartProps) => {
           {[...new Array(chartData.length)].map((_, i) => (
             <ButtonChartCollection
               key={i}
-              color={colors[i]}
+              color={colors[i] as keyof typeof theme['colors']}
               title={chartData[i].name}
               selected={filterStatus[i]}
               onClick={() =>
