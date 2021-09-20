@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, HTMLAttributes } from 'react'
 import { Text, Flex } from 'theme-ui'
 import ErrorSvg from '../../../assets/svg/icons/Error.svg'
 import {
@@ -71,7 +71,7 @@ const MiniNftCard = forwardRef(
       to,
       date,
       ...props
-    }: MiniNftCardInterface,
+    }: MiniNftCardInterface & HTMLAttributes<HTMLDivElement>,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (

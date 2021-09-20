@@ -13,7 +13,7 @@ const Template1: ComponentStory<typeof MiniNftCard> = (args) => {
   return (
     <Flex>
       <Box m={2}>
-        <MiniNftCard {...args} />
+        <MiniNftCard {...args} onClick={() => {}} />
       </Box>
       <Box m={2}>
         <MiniNftCard {...args} />
