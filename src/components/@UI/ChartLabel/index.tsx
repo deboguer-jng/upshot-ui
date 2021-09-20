@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react'
 import Colors from '../../../themes/UpshotUI/colors'
 import Box from '../../Layout/Box'
-import Flex from '../../Layout/Flex'
 import Icon from '../../@UI/Icon'
 import Label from '../../@UI/Label'
 import {
@@ -14,6 +13,8 @@ import {
   StyledRed,
   StyledBlue,
   InlineLabel,
+  StyledBox,
+  StyledInlineBox,
  } from './Styled'
 
 export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -87,7 +88,7 @@ const ChartLabel = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
-      <Flex {...{ ref, ...props }}>
+      <StyledBox $variant={variant} {...{ ref, ...props }}>
         {variant === 'multi' && (
           <IconBox $color={titleColor}>
             <StyledIconButton
@@ -102,15 +103,15 @@ const ChartLabel = forwardRef(
             </StyledIconButton> 
           </IconBox>
         )}
-        <Box>
+        <StyledInlineBox>
           <StyledTitle $color={titleColor}>
             { variant == 'multi' ? title+' ' : '' }
             price:
           </StyledTitle>
           <StyledH1 $variant={variant}>
-            <Label variant='currency' currencySymbol={currency_1} size="lg">
+            <InlineLabel variant='currency' currencySymbol={currency_1} size="lg">
               {price_1}
-            </Label>
+            </InlineLabel>
           </StyledH1>
           <StyledChangeDiv $variant={variant}>
             <InlineLabel color='primary' variant='currency' currencySymbol={currency_2} size="sm">
@@ -119,21 +120,19 @@ const ChartLabel = forwardRef(
             ({change})
           </StyledChangeDiv>
 
-          {variant === 'alone' && (
-            <StyledDateTime>
-              {date}
-            </StyledDateTime>
-          )}
-          <>
+          <StyledDateTime $variant={variant}>
+            {date}
+          </StyledDateTime>
+          <Box>
             <StyledRed>
               ATL: {atl}
             </StyledRed>
             <StyledBlue>
               ATH: {ath}
             </StyledBlue>
-          </>
-        </Box>
-      </Flex>
+          </Box>
+        </StyledInlineBox>
+      </StyledBox>
     )
   }
 )
