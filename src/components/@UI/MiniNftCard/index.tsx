@@ -80,9 +80,13 @@ const MiniNftCard = forwardRef(
           <img src={error ? ErrorSvg : image} />
           <MiniNftCardMainContentWrapper type={type}>
             {type === 'default' ? (
-              <MiniNftCardPrice error={error}>
-                {error ? 'Error' : price}
-              </MiniNftCardPrice>
+              <>
+                {error ? (
+                  <MiniNftCardPrice error={error}>Error</MiniNftCardPrice>
+                ) : price?.length ? (
+                  <MiniNftCardPrice>{price}</MiniNftCardPrice>
+                ) : null}
+              </>
             ) : (
               <MiniNftCardName error={error}>
                 {error ? 'Error' : name}
