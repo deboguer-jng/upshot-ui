@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
-import { Label as ThemeUILabel } from '@theme-ui/components'
+import Colors from '../../../themes/UpshotUI/colors'
+import { StyledThemeUILabel } from './Styled'
 
 export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -18,6 +19,10 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
    * If the label is for a price, this symbol will be its prefix.
    */
   currencySymbol?: string
+  /**
+   * Color of the label
+   */
+  color?: keyof typeof Colors
 }
 
 /**
@@ -30,6 +35,7 @@ const Label = forwardRef(
       variant = 'basic',
       size = 'sm',
       currencySymbol = 'Ξ',
+      color = 'grey-300',
       children,
       ...props
     }: LabelProps,
@@ -38,14 +44,14 @@ const Label = forwardRef(
     return (
       <div {...{ ref, ...props }}>
         {variant === 'currency' && (
-          <ThemeUILabel variant={`${size}CurrencySymbol`}>
+          <StyledThemeUILabel variant={`${size}CurrencySymbol`} $color={color}>
             {currencySymbol}
-          </ThemeUILabel>
+          </StyledThemeUILabel>
         )}
         {/* Each combination of style and size is a unique variant of the theme */}
-        <ThemeUILabel variant={variant + size[0].toUpperCase() + size[1]}>
+        <StyledThemeUILabel variant={variant + size[0].toUpperCase() + size[1]} $color={color}>
           {children}
-        </ThemeUILabel>
+        </StyledThemeUILabel>
       </div>
     )
   }
