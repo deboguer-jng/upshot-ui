@@ -10,10 +10,14 @@ export function getOptions(
     length?: number,
   }>,
 ) {
+
   const colors = [
-    theme.rawColors.primary,
-    theme.rawColors.secondary,
+    theme.rawColors.blue,
+    theme.rawColors.pink,
     theme.rawColors.purple,
+    theme.rawColors.yellow,
+    theme.rawColors.red,
+    theme.rawColors.green,
   ]
 
   return {
@@ -121,7 +125,7 @@ export function getOptions(
           border: 1px solid ${colors[seriesIndex]};
         " id="apexcharts-custom-tooltip"
         >
-          $ ${series[seriesIndex][dataPointIndex]}
+          Ξ ${(series[seriesIndex][dataPointIndex]).toFixed(3)}
           <div style="
             position: absolute;
             bottom: -6px;
