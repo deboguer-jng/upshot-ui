@@ -4,8 +4,6 @@ import Box from '../../Layout/Box'
 import IconButton from '../../@UI/IconButton'
 import Text from '../../@UI/Text'
 import Label from '../../@UI/Label'
-import Flex from '../../Layout/Flex'
-import Grid from '../../Layout/Grid'
 
 interface ColorProp {
     $color: keyof typeof Colors
@@ -23,8 +21,6 @@ export const IconBox = styled(Box)<ColorProp>`
     text-align: center;
     margin-right: 12px;
     margin-top: 5px;
-    display: inline-block;
-    vertical-align: top;
 `
 export const StyledIconButton = styled(IconButton)`
     padding: 0;
@@ -44,17 +40,15 @@ export const StyledH1 = styled('h1')<VariantProp>`
     ${({ $variant }) => $variant == 'alone' ?  'display: inline-block;' : ''}
 `
 
-export const StyledDateTime = styled('h2')<VariantProp>`
+export const StyledDateTime = styled('h2')`
     margin: 0px 0px;
     text-transform: uppercase;
-    ${({ $variant }) => $variant == 'alone' ?  'float: right;' : ''};
 `
 
 export const StyledChangeDiv = styled('div')<VariantProp>`
     margin-left: ${({ $variant }) => $variant == 'alone' ?  '10px' : '0px'};
     color: ${({ theme }) => theme.colors.primary};
-    ${({ $variant }) => $variant == 'alone' ?  'display: inline-block;' : ''};
-    display: inline-block;
+    ${({ $variant }) => $variant == 'alone' ?  'display: inline-block;' : ''}
 `
 
 export const StyledRed = styled(Text)`
@@ -67,13 +61,5 @@ export const StyledBlue = styled(Text)`
 `
 
 export const InlineLabel = styled(Label)`
-    display: inline-block;
-`
-
-export const StyledBox = styled(Box)<VariantProp>`
-    ${({ $variant }) => $variant == 'alone' ?  'width: 100%;' : ''};
-`
-
-export const StyledInlineBox = styled(Box)`
     display: inline-block;
 `
