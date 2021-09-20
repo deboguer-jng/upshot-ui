@@ -117,7 +117,7 @@ export function getOptions(
           border: 1px solid ${colors[seriesIndex]};
         " id="apexcharts-custom-tooltip"
         >
-          $ ${series[seriesIndex][dataPointIndex]}
+          Ξ ${series[seriesIndex][dataPointIndex]}
           <div style="
             position: absolute;
             bottom: -6px;
