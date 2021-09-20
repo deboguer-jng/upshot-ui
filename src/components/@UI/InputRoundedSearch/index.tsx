@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, ReactEventHandler } from 'react'
 import { Flex } from 'theme-ui'
 import { InputRoundedProps } from '../InputRounded'
 import IconButton from '../IconButton'

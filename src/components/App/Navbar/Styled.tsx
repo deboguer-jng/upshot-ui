@@ -68,15 +68,6 @@ export const SearchWrapper = styled.div`
       width: 300px;
     }
   `}
-
-  svg {
-    width: 40px;
-    height: 40px;
-
-    path {
-      fill: #753eeb;
-    }
-  }
 `
 
 export const NavbarItemIcon = styled.div`

@@ -1,4 +1,9 @@
-import React, { forwardRef } from 'react'
+import React, {
+  forwardRef,
+  HTMLAttributes,
+  EventHandler,
+  ReactEventHandler,
+} from 'react'
 import {
   NavbarWrapper,
   NavbarItem,
@@ -14,31 +19,39 @@ import Icon from '../../@UI/Icon'
 import Text from '../../@UI/Text'
 import InputRoundedSearch from '../../@UI/InputRoundedSearch'
 
-export interface NavbarInterface {}
+export interface NavbarInterface {
+  searchValue: string
+  onSearchValueChange: ReactEventHandler<HTMLInputElement>
+  onSearch: ReactEventHandler<HTMLButtonElement>
+}
 
 const Navbar = forwardRef(
-  ({ ...props }: NavbarInterface, ref: React.ForwardedRef<HTMLDivElement>) => {
+  (
+    { searchValue, onSearchValueChange, onSearch, ...props }: NavbarInterface,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
     return (
-      <>
-        <NavbarWrapper>
-          <NavbarItem>
-            <NavbarLogo>
-              <Icon icon="upshot" />
-            </NavbarLogo>
-          </NavbarItem>
-          <NavbarItem grow>
-            <SearchWrapper>
-              <Icon icon="ethBlock" />
-              <InputRoundedSearch
-                hasButton
-                fullWidth
-                placeholder="Search..."
-                dark
-              />
-            </SearchWrapper>
-          </NavbarItem>
-          {/* comment for now */}
-          {/* <NavbarItem>
+      <NavbarWrapper {...{ ref, ...props }}>
+        <NavbarItem>
+          <NavbarLogo>
+            <Icon icon="upshot" />
+          </NavbarLogo>
+        </NavbarItem>
+        <SearchWrapper>
+          <InputRoundedSearch
+            hasButton
+            fullWidth
+            placeholder="Search..."
+            dark
+            value={searchValue}
+            onChange={onSearchValueChange}
+            buttonProps={{
+              onClick: onSearch,
+            }}
+          />
+        </SearchWrapper>
+        {/* comment for now */}
+        {/* <NavbarItem>
             <NavbarItemIcon>
               <Icon icon="notificationFilled" />
             </NavbarItemIcon>
@@ -72,8 +85,7 @@ const Navbar = forwardRef(
               <Icon icon="items" />
             </NavbarItemIcon>
           </NavbarItem> */}
-        </NavbarWrapper>
-      </>
+      </NavbarWrapper>
     )
   }
 )
