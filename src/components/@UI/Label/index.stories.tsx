@@ -36,10 +36,19 @@ LabelCurrencyLarge.args = {
   currencySymbol: '$',
 }
 
+export const LabelCurrencyLargeRed = PercentageTemplate.bind({})
+LabelCurrencyLargeRed.args = {
+  variant: 'currency',
+  size: 'lg',
+  currencySymbol: '$',
+  color: 'red',
+}
+
 export const LabelCurrencyConfidence = PercentageTemplate.bind({})
 LabelCurrencyConfidence.args = {
   variant: 'currency',
   size: 'lg',
   currencySymbol: '$',
   topRightLabel: '140%',
+  color: 'red',
 }
