@@ -11,6 +11,4 @@ export default {
 const Template: ComponentStory<typeof BlurrySquareTemplate> = (args) => <BlurrySquareTemplate {...args} />
 
 export const Default = Template.bind({})
-Default.args = {
-  sx: { width: '160px', height: '160px' }
-}
+Default.args = {}
