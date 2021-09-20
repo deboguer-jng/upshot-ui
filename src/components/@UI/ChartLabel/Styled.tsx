@@ -40,12 +40,13 @@ export const StyledH1 = styled('h1')<VariantProp>`
     ${({ $variant }) => $variant == 'alone' ?  'display: inline-block;' : ''}
 `
 
-export const StyledH2 = styled('h2')`
+export const StyledDateTime = styled('h2')`
     margin: 0px 0px;
+    text-transform: uppercase;
 `
 
 export const StyledChangeDiv = styled('div')<VariantProp>`
-    margin-left: 10px;
+    margin-left: ${({ $variant }) => $variant == 'alone' ?  '10px' : '0px'};
     color: ${({ theme }) => theme.colors.primary};
     ${({ $variant }) => $variant == 'alone' ?  'display: inline-block;' : ''}
 `

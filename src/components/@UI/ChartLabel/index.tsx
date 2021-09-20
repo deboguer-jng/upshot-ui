@@ -9,7 +9,7 @@ import {
   StyledIconButton,
   StyledTitle,
   StyledH1,
-  StyledH2,
+  StyledDateTime,
   StyledChangeDiv,
   StyledRed,
   StyledBlue,
@@ -108,7 +108,7 @@ const ChartLabel = forwardRef(
             price:
           </StyledTitle>
           <StyledH1 $variant={variant}>
-            <Label variant='currency' currencySymbol={currency_1} size="md">
+            <Label variant='currency' currencySymbol={currency_1} size="lg">
               {price_1}
             </Label>
           </StyledH1>
@@ -120,9 +120,9 @@ const ChartLabel = forwardRef(
           </StyledChangeDiv>
 
           {variant === 'alone' && (
-            <StyledH2>
+            <StyledDateTime>
               {date}
-            </StyledH2>
+            </StyledDateTime>
           )}
           <>
             <StyledRed>
