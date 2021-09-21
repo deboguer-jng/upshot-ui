@@ -68,6 +68,10 @@ export const SearchWrapper = styled.div`
       width: 300px;
     }
   `}
+
+  form {
+    width: 100%;
+  }
 `
 
 export const NavbarItemIcon = styled.div`
