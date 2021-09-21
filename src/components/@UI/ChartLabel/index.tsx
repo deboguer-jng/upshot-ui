@@ -94,7 +94,7 @@ const ChartLabel = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
-      <RelativeFlex {...{ ref, ...props }}>
+      <RelativeFlex {...{ ref, ...props }} $variant={variant}>
         {variant === 'multi' && (
           <IconBox $color={titleColor}>
             <StyledIconButton
