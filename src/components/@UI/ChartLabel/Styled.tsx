@@ -12,6 +12,7 @@ interface ColorProp {
 
 interface VariantProp {
     $variant: 'alone' | 'multi'
+    $isMobile?: number
 }
 
 export const IconBox = styled(Box)<ColorProp>`
@@ -22,11 +23,13 @@ export const IconBox = styled(Box)<ColorProp>`
     text-align: center;
     margin-right: 12px;
     margin-top: 5px;
+    min-width: 20px;
 `
 export const StyledIconButton = styled(IconButton)`
     padding: 0;
     width: 18px;
     height: 18px;
+    vertical-align: top;
 `
 
 export const StyledTitle = styled('h3')<ColorProp>`
@@ -38,13 +41,13 @@ export const StyledTitle = styled('h3')<ColorProp>`
 
 export const StyledH1 = styled('h1')<VariantProp>`
     margin: 0px;
-    ${({ $variant }) => $variant == 'alone' ?  'display: inline-block;' : ''}
+    ${({ $variant }) => $variant === 'alone' ?  'display: inline-block;' : ''}
 `
 
 export const StyledDateTime = styled('h2')<VariantProp>`
     margin: 0px 0px;
     text-transform: uppercase;
-    position: ${({ $variant }) => $variant == 'alone' ?  'absolute' : 'inherit'};
+    position: ${({ $variant }) => $variant === 'alone' ?  'absolute' : 'inherit'};
     top: 0;
     right: 0;
 `
@@ -52,7 +55,7 @@ export const StyledDateTime = styled('h2')<VariantProp>`
 export const StyledChangeDiv = styled('div')<VariantProp>`
     margin-left: ${({ $variant }) => $variant == 'alone' ?  '10px' : '0px'};
     color: ${({ theme }) => theme.colors.primary};
-    ${({ $variant }) => $variant == 'alone' ?  'display: inline-block;' : ''}
+    ${({ $variant }) => $variant === 'alone' ?  'display: inline-block;' : ''}
 `
 
 export const StyledRed = styled(Text)`
@@ -69,9 +72,11 @@ export const InlineLabel = styled(Label)`
 `
 
 export const StyledBox = styled(Box)<VariantProp>`
-    width: ${({ $variant }) => $variant == 'alone' ?  '100%' : 'auto'};
+    width: ${({ $variant }) => $variant === 'alone' ?  '100%' : 'auto'};
 `
 
-export const RelativeFlex = styled(Flex)`
+export const RelativeFlex = styled(Flex)<VariantProp>`
     position: relative;
+    ${({ $variant }) => $variant === 'multi' ?  'display: inline-flex;' : ''}
+    transform: ${({ $isMobile }) => $isMobile ? 'scale(0.75)' : 'none' };
 `
