@@ -12,6 +12,7 @@ interface ColorProp {
 
 interface VariantProp {
     $variant: 'alone' | 'multi'
+    $isMobile?: number
 }
 
 export const IconBox = styled(Box)<ColorProp>`
@@ -77,4 +78,5 @@ export const StyledBox = styled(Box)<VariantProp>`
 export const RelativeFlex = styled(Flex)<VariantProp>`
     position: relative;
     ${({ $variant }) => $variant === 'multi' ?  'display: inline-flex;' : ''}
+    transform: ${({ $isMobile }) => $isMobile ? 'scale(0.75)' : 'none' };
 `

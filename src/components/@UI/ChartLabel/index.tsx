@@ -15,8 +15,8 @@ import {
   InlineLabel,
   StyledBox,
   RelativeFlex,
- } from './Styled'
-import { position } from 'polished'
+} from './Styled'
+import { useBreakpointIndex } from '@theme-ui/match-media'
 
 export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -93,8 +93,10 @@ const ChartLabel = forwardRef(
     }: LabelProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
+    const isMobile = useBreakpointIndex() <= 1
+
     return (
-      <RelativeFlex {...{ ref, ...props }} $variant={variant}>
+      <RelativeFlex {...{ ref, ...props }} $variant={variant} $isMobile={+isMobile}>
         {variant === 'multi' && (
           <IconBox $color={titleColor}>
             <StyledIconButton
