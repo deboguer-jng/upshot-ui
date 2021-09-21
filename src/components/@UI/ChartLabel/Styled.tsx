@@ -22,6 +22,7 @@ export const IconBox = styled(Box)<ColorProp>`
     text-align: center;
     margin-right: 12px;
     margin-top: 5px;
+    min-width: 20px;
 `
 export const StyledIconButton = styled(IconButton)`
     padding: 0;
