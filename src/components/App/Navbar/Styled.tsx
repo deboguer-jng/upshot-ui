@@ -47,6 +47,7 @@ export const NavbarLogo = styled.div`
   height: 45px;
   width: 45px;
   border-radius: 50%;
+  cursor: pointer;
 
   svg {
     path {
