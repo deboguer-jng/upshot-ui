@@ -51,7 +51,7 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Historical price change (eg. +20.47%)
    */
-  change: string
+  change?: string
   /**
    * Date (shown only when varian == 'alone')
    */
@@ -125,7 +125,7 @@ const ChartLabel = forwardRef(
             <InlineLabel color='primary' variant='currency' currencySymbol={currency_2} size="sm">
               {price_2}
             </InlineLabel>
-            ({change})
+            {change && `(${change})`}
           </StyledChangeDiv>
 
           <StyledDateTime $variant={variant}>
