@@ -28,6 +28,7 @@ export const StyledIconButton = styled(IconButton)`
     padding: 0;
     width: 18px;
     height: 18px;
+    vertical-align: top;
 `
 
 export const StyledTitle = styled('h3')<ColorProp>`
