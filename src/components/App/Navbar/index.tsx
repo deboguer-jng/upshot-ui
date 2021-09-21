@@ -23,17 +23,18 @@ export interface NavbarInterface {
   searchValue: string
   onSearchValueChange: ReactEventHandler<HTMLInputElement>
   onSearch: (e: React.FormEvent | React.MouseEvent) => void
+  onLogoClick: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 const Navbar = forwardRef(
   (
-    { searchValue, onSearchValueChange, onSearch, ...props }: NavbarInterface,
+    { searchValue, onSearchValueChange, onSearch, onLogoClick, ...props }: NavbarInterface,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
       <NavbarWrapper {...{ ref, ...props }}>
         <NavbarItem>
-          <NavbarLogo>
+          <NavbarLogo onClick={onLogoClick}>
             <Icon icon="upshot" />
           </NavbarLogo>
         </NavbarItem>
