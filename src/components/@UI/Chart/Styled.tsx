@@ -9,11 +9,15 @@ interface ReactApexChartsWrapperProps {
   embedded: boolean
 }
 
-export const ChartWrapper = styled.div`
-  width: 100%;
+interface ChartWrapperProps {
+  embedded: boolean
+}
+
+export const ChartWrapper = styled.div<ChartWrapperProps>`
+  display: embedded ? none : flex;
   padding-top: 35%;
   position: relative;
-  margin-bottom: 60px;
+  margin-bottom: embedded ? 0 : 60px;
 
   & > div {
     position: absolute;

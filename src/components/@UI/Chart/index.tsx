@@ -54,7 +54,7 @@ const Chart = forwardRef(
     const dataAvailable = !loading && data.length !== 0 && !error && !noSelected
 
     return (
-      <ChartWrapper {...{ ref, ...props }}>
+      <ChartWrapper {...{ ref, embedded, ...props }}>
         <div>
           {dataAvailable ? (
             <PopulatedChart chartData={data} embedded={embedded} />
