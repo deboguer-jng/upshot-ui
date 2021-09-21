@@ -6,18 +6,18 @@ interface FilterButtonProps {
 }
 
 interface ReactApexChartsWrapperProps {
-  embedded: boolean
+  embedded: number
 }
 
 interface ChartWrapperProps {
-  embedded: boolean
+  $embedded: number
 }
 
 export const ChartWrapper = styled.div<ChartWrapperProps>`
-  display: embedded ? none : flex;
+  width: 100%;
   padding-top: 35%;
   position: relative;
-  margin-bottom: embedded ? 0 : 60px;
+  margin-bottom: ${({ $embedded }) => $embedded ? '0px' : '60px' };
 
   & > div {
     position: absolute;

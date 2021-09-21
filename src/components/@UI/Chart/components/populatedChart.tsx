@@ -28,7 +28,7 @@ const PopulatedChart = ({ chartData, embedded }: PopulatedChartProps) => {
         type="area"
         height="100%"
         width="100%"
-        embedded={embedded}
+        embedded={+embedded}
         {...{ options }}
       />
       {!embedded && (
