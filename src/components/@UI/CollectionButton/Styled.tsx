@@ -16,6 +16,7 @@ export const CollectionButtonWrapper = styled.div<CollectionButtonWrapperProps>`
   padding: 4px;
   ${({ theme, $underglow }) =>
     !!$underglow && `box-shadow: ${theme.shadow.underglow($underglow)};`}
+  cursor: pointer;
 `
 
 export const CollectionButtonIcon = styled.div`
