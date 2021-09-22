@@ -47,6 +47,7 @@ export const NavbarLogo = styled.div`
   height: 45px;
   width: 45px;
   border-radius: 50%;
+  cursor: pointer;
 
   svg {
     path {
@@ -68,6 +69,10 @@ export const SearchWrapper = styled.div`
       width: 300px;
     }
   `}
+
+  form {
+    width: 100%;
+  }
 `
 
 export const NavbarItemIcon = styled.div`

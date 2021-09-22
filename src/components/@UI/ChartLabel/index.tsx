@@ -15,8 +15,8 @@ import {
   InlineLabel,
   StyledBox,
   RelativeFlex,
- } from './Styled'
-import { position } from 'polished'
+} from './Styled'
+import { useBreakpointIndex } from '@theme-ui/match-media'
 
 export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -51,7 +51,7 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Historical price change (eg. +20.47%)
    */
-  change: string
+  change?: string
   /**
    * Date (shown only when varian == 'alone')
    */
@@ -93,8 +93,10 @@ const ChartLabel = forwardRef(
     }: LabelProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
+    const isMobile = useBreakpointIndex() <= 1
+
     return (
-      <RelativeFlex {...{ ref, ...props }}>
+      <RelativeFlex {...{ ref, ...props }} $variant={variant} $isMobile={+isMobile}>
         {variant === 'multi' && (
           <IconBox $color={titleColor}>
             <StyledIconButton
@@ -123,7 +125,7 @@ const ChartLabel = forwardRef(
             <InlineLabel color='primary' variant='currency' currencySymbol={currency_2} size="sm">
               {price_2}
             </InlineLabel>
-            ({change})
+            {change && `(${change})`}
           </StyledChangeDiv>
 
           <StyledDateTime $variant={variant}>

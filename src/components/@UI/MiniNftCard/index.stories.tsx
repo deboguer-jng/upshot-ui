@@ -46,8 +46,8 @@ Default.args = {
   name: 'nft name',
   price: '$69',
   date: '08/25/2021',
-  from: '234234234',
-  to: '234534523',
+  from: '0xce..ea4',
+  to: '0xdf...4a1',
 }
 
 export const DefaultLongName = Template.bind({})
@@ -56,8 +56,8 @@ DefaultLongName.args = {
   name: 'Very long NFT name that take up all of the space.Very long NFT name that take up all of the space.',
   price: '$420',
   date: '08/25/2021',
-  from: '234234234',
-  to: '234534523',
+  from: '0xce..ea4',
+  to: '0xdf...4a1',
 }
 
 export const Search = Template.bind({})

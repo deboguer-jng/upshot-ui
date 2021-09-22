@@ -77,7 +77,7 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
     border-color: ${({ theme }) => theme.colors['grey-700']};
   }
 
-  &:not(:disabled):hover {
+  &:not(:disabled):not(:focus):hover {
     background: ${({ theme, $type, $color, toggled }) =>
       toggled
         ? darken(
