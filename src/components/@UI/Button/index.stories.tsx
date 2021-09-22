@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import Button from './'
 import Icon from '../Icon'
+import { useState } from '@storybook/addons'
 
 export default {
   title: '@UI/Button',
@@ -16,6 +17,23 @@ const Template: ComponentStory<typeof Button> = (args) => (
   <Button {...args}> Button </Button>
 )
 
+const TemplateToggle: ComponentStory<typeof Button> = (args) => {
+  const [toggled, setToggled] = useState(false)
+
+  return (
+    <Button
+      {...args}
+      toggled={toggled}
+      onClick={() => {
+        setToggled(!toggled)
+      }}
+    >
+      {' '}
+      Button{' '}
+    </Button>
+  )
+}
+
 const MinimizedTemplate: ComponentStory<typeof Button> = (args) => (
   <Button {...args} />
 )
@@ -23,6 +41,16 @@ const MinimizedTemplate: ComponentStory<typeof Button> = (args) => (
 export const Primary = Template.bind({})
 Primary.args = {
   variant: 'primary',
+}
+
+export const PrimaryToggle = TemplateToggle.bind({})
+PrimaryToggle.args = {
+  variant: 'primary',
+}
+
+export const SecondaryToggle = TemplateToggle.bind({})
+SecondaryToggle.args = {
+  variant: 'secondary',
 }
 
 export const PrimaryDisabled = Template.bind({})
