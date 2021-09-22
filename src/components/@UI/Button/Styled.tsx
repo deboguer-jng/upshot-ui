@@ -1,14 +1,10 @@
 import styled from '@emotion/styled'
 import { darken } from 'polished'
 import Buttons from '../../../themes/UpshotUI/buttons'
-import colors from '../../../themes/UpshotUI/colors'
-import { toggle } from '../Chart/utils'
 
 interface PrimaryButtonProps {
   $type: keyof typeof Buttons.variants
   $size: keyof typeof Buttons.property
-  $color?: keyof typeof colors
-  toggle: boolean
   toggled: boolean
   width: number
   minimized: boolean
@@ -24,11 +20,9 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
       ? theme.buttons.variants[$type].colors.toggledBackground
       : theme.buttons.variants[$type].colors.background};
   border: 2px solid
-    ${({ theme, $type, $color, toggled }) =>
+    ${({ theme, $type, toggled }) =>
       toggled
         ? theme.buttons.variants[$type].colors.toggledBorder
-        : $color
-        ? theme.colors[$color]
         : theme.buttons.variants[$type].colors.border};
   font-size: ${({ theme, $size }) => theme.buttons.property[$size].fontSize}px;
   height: ${({ theme, $size }) => theme.buttons.property[$size].height}px;
@@ -49,22 +43,18 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   }
 
   & * {
-    fill: ${({ theme, $type, $color, toggled }) =>
+    fill: ${({ theme, $type, toggled }) =>
       toggled
         ? theme.buttons.variants[$type].colors.toggledColor
-        : $type === 'secondary' && $color
-        ? theme.colors[$color]
         : theme.buttons.variants[$type].colors.color};
   }
 
   span {
     flex-grow: 1;
     font-family: ${({ theme }) => theme.fonts.body};
-    color: ${({ theme, $type, $color, toggled }) =>
+    color: ${({ theme, $type, toggled }) =>
       toggled
         ? theme.buttons.variants[$type].colors.toggledColor
-        : $type === 'secondary' && $color
-        ? theme.colors[$color]
         : theme.buttons.variants[$type].colors.color};
   }
 
@@ -78,43 +68,59 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   }
 
   &:not(:disabled):not(:focus):hover {
-    background: ${({ theme, $type, $color, toggled }) =>
+    background: ${({ theme, $type, toggled }) =>
       toggled
-        ? darken(
+        ? `${darken(
             0.1,
             theme.buttons.variants[$type].colors.toggledHoverBackground
-          )
-        : $type === 'secondary' && $color
-        ? theme.colors[$color]
+          )}`
         : theme.buttons.variants[$type].colors.hoverBackground};
     border: 2px solid
-      ${({ theme, $type, $color, toggled }) =>
+      ${({ theme, $type, toggled }) =>
         toggled
-          ? darken(0.1, theme.buttons.variants[$type].colors.toggledHoverBorder)
-          : $type === 'secondary' && $color
-          ? theme.colors[$color]
+          ? `${darken(
+              0.1,
+              theme.buttons.variants[$type].colors.toggledHoverBorder
+            )}`
           : theme.buttons.variants[$type].colors.hoverBorder};
     span {
-      color: ${({ theme, $type, $color, toggled }) =>
+      color: ${({ theme, $type, toggled }) =>
         toggled
-          ? darken(0.1, theme.buttons.variants[$type].colors.toggledHoverColor)
-          : $type === 'secondary' && $color
-          ? theme.colors[$color]
+          ? `${darken(
+              0.1,
+              theme.buttons.variants[$type].colors.toggledHoverColor
+            )}`
           : theme.buttons.variants[$type].colors.hoverColor};
     }
 
     & * {
-      fill: ${({ theme, $type, $color, toggled }) =>
+      fill: ${({ theme, $type, toggled }) =>
         toggled
-          ? darken(0.1, theme.buttons.variants[$type].colors.toggledHoverColor)
-          : $type === 'secondary' && $color
-          ? theme.colors[$color]
+          ? `${darken(
+              0.1,
+              theme.buttons.variants[$type].colors.toggledHoverColor
+            )}`
           : theme.buttons.variants[$type].colors.hoverColor};
     }
   }
 
   &:not(:disabled):active {
     transform: scale(0.95);
+    ${({
+      theme,
+      $type,
+    }) => `background: ${theme.buttons.variants[$type].colors.pressedBackground};
+      border: 2px solid
+        ${theme.buttons.variants[$type].colors.pressedBorder};
+      span {
+        color: ${theme.buttons.variants[$type].colors.pressedColor};
+      }
+
+      svg {
+        path {
+          fill: ${theme.buttons.variants[$type].colors.pressedColor};
+        }
+      }`}
   }
 
   &:not(:disabled):focus {
@@ -125,26 +131,21 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   }
 
   &:not(:disabled):focus {
-    background: ${({ theme, $type, $color }) =>
-      $type === 'secondary' && $color
-        ? `${darken(0.1, theme.rawColors[$color])}`
-        : theme.buttons.variants[$type].colors.pressedBackground};
-    border: 2px solid
-      ${({ theme, $type, $color }) =>
-        $type === 'secondary' && $color
-          ? `${darken(0.1, theme.rawColors[$color])}`
-          : theme.buttons.variants[$type].colors.pressedBorder};
-    span {
-      color: ${({ theme, $type }) =>
-        theme.buttons.variants[$type].colors.pressedColor};
-    }
+    ${({ theme, $type, toggled }) =>
+      typeof toggled !== 'undefined'
+        ? ''
+        : `background: ${theme.buttons.variants[$type].colors.pressedBackground};
+          border: 2px solid
+            ${theme.buttons.variants[$type].colors.pressedBorder};
+          span {
+            color: ${theme.buttons.variants[$type].colors.pressedColor};
+          }
 
-    svg {
-      path {
-        fill: ${({ theme, $type }) =>
-          theme.buttons.variants[$type].colors.pressedColor};
-      }
-    }
+          svg {
+            path {
+              fill: ${theme.buttons.variants[$type].colors.pressedColor};
+            }
+          }`}
   }
 `
 

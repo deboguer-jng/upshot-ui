@@ -1,6 +1,7 @@
 import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
 import Colors from '../../../themes/UpshotUI/colors'
 import { PrimaryButton, PlainButton } from './Styled'
+import { useState } from '@storybook/addons'
 
 export interface ButtonProps {
   /**
@@ -18,7 +19,7 @@ export interface ButtonProps {
 
   children?: ReactNode
 
-  color?: keyof typeof Colors
+  toggled?: boolean
 }
 
 /**
@@ -29,9 +30,9 @@ const Button = forwardRef(
     {
       variant = 'primary',
       size = 'md',
-      color,
       icon,
       width,
+      toggled,
       children,
       ...props
     }: ButtonProps & HTMLAttributes<HTMLButtonElement>,
@@ -52,9 +53,9 @@ const Button = forwardRef(
       <PrimaryButton
         $type={variant}
         $size={size}
-        $color={color}
         width={width || undefined}
         minimized={!children}
+        toggled={toggled}
         {...{ ref, ...props }}
       >
         {icon}

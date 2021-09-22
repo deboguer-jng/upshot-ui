@@ -1,5 +1,6 @@
 import iconButtons from './buttons.icons'
 import collectionButtons from './buttons.collections'
+import theme from './index'
 import colors from './colors'
 import dropdownButtons from './buttons.dropdown'
 
@@ -15,7 +16,13 @@ const generateColors = (
   pressedColor: string,
   focusBackground: string,
   focusBorder: string,
-  focusColor: string
+  focusColor: string,
+  toggledBackground?: string,
+  toggledBorder?: string,
+  toggledColor?: string,
+  toggledHoverBackground?: string,
+  toggledHoverBorder?: string,
+  toggledHoverColor?: string,
 ) => ({
   background,
   border,
@@ -29,6 +36,12 @@ const generateColors = (
   focusBackground,
   focusBorder,
   focusColor,
+  toggledBackground,
+  toggledBorder,
+  toggledColor,
+  toggledHoverBackground,
+  toggledHoverBorder,
+  toggledHoverColor,
 })
 
 const buttons = {
@@ -38,6 +51,12 @@ const buttons = {
         colors.primary,
         colors.primary,
         colors.black,
+        colors.transparent,
+        colors.primary,
+        colors.primary,
+        colors.transparent,
+        colors.primary,
+        colors.primary,
         colors.transparent,
         colors.primary,
         colors.primary,
@@ -82,7 +101,13 @@ const buttons = {
         colors['grey-800'],
         colors['grey-300'],
         colors['grey-300'],
-        colors['grey-800']
+        colors['grey-800'],
+        colors['grey-300'],
+        colors['grey-300'],
+        colors['grey-800'],
+        colors['grey-300'],
+        colors['grey-300'],
+        colors['grey-800'],
       ),
       fontFamily: 'heading',
       fontWeight: 'heading',
