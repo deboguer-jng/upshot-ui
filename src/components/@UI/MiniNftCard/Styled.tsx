@@ -29,6 +29,10 @@ interface MiniNftCardDetailValueProps {
   error?: boolean
 }
 
+interface MiniNftCardImageWrapperProps {
+  pixelated?: boolean
+}
+
 export const MiniNftCardWrapper = styled.div`
   position: relative;
   width: fit-content;
@@ -51,6 +55,10 @@ export const MiniNftCardWrapper = styled.div`
       transform: translateX(70%);
     }
   }
+`
+
+export const MiniNftCardImageWrapper = styled.img<MiniNftCardImageWrapperProps>`
+  image-rendering: ${({pixelated}) => pixelated ? 'pixelated' : ''};
 `
 
 export const MiniNftCardMainBoard = styled.div<MiniNftCardMainBoardProps>`

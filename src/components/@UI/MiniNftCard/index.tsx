@@ -12,6 +12,7 @@ import {
   MiniNftCardDetailsName,
   MiniNftCardDetailLabel,
   MiniNftCardDetailValue,
+  MiniNftCardImageWrapper,
 } from './Styled'
 
 export interface MiniNftCardInterface {
@@ -55,6 +56,8 @@ export interface MiniNftCardInterface {
    * Variant type
    */
   type?: 'default' | 'search'
+
+  pixelated?: boolean
 }
 
 const MiniNftCard = forwardRef(
@@ -70,6 +73,7 @@ const MiniNftCard = forwardRef(
       from,
       to,
       date,
+      pixelated = false,
       ...props
     }: MiniNftCardInterface & HTMLAttributes<HTMLDivElement>,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -77,7 +81,10 @@ const MiniNftCard = forwardRef(
     return (
       <MiniNftCardWrapper {...{ ref, ...props }}>
         <MiniNftCardMainBoard error={error}>
-          <img src={error ? ErrorSvg : image} />
+          <MiniNftCardImageWrapper
+            src={error ? ErrorSvg : image}
+            pixelated={pixelated}
+          />
           <MiniNftCardMainContentWrapper type={type}>
             {type === 'default' ? (
               <>
