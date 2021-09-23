@@ -98,10 +98,11 @@ const ChartLabel = forwardRef(
     return (
       <RelativeFlex {...{ ref, ...props }} $variant={variant} $isMobile={+isMobile}>
         {variant === 'multi' && (
-          <IconBox $color={titleColor}>
+          <IconBox $color={titleColor} $isMobile={+isMobile}>
             <StyledIconButton
               type="button"
               onClick={onClose}
+              $isMobile={+isMobile}
             >
               <Icon
                 size={12}
@@ -117,12 +118,12 @@ const ChartLabel = forwardRef(
             price:
           </StyledTitle>
           <StyledH1 $variant={variant}>
-            <Label variant='currency' currencySymbol={currency_1} size="lg">
+            <Label variant='currency' currencySymbol={currency_1} size={ isMobile ? 'md' : 'lg' }>
               {price_1}
             </Label>
           </StyledH1>
           <StyledChangeDiv $variant={variant}>
-            <InlineLabel color='primary' variant='currency' currencySymbol={currency_2} size="sm">
+            <InlineLabel color='primary' variant='currency' currencySymbol={currency_2} size={ isMobile ? 'xs' : 'sm' }>
               {price_2}
             </InlineLabel>
             {change && `(${change})`}
