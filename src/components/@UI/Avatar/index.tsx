@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react'
 import colors from '../../../themes/UpshotUI/colors'
 import {
-  Avatar as ThemeUIAvatar,
   AvatarProps as ThemeUIAvatarProps,
 } from 'theme-ui'
+import { ThemeUIAvatarWrapper } from './Styled'
 
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
@@ -26,7 +26,7 @@ const Avatar = forwardRef(
     { color: borderColor = 'transparent', size = 'md', ...props }: AvatarProps,
     ref: React.ForwardedRef<HTMLImageElement>
   ) => (
-    <ThemeUIAvatar
+    <ThemeUIAvatarWrapper
       variant={`images.avatar.${size}`}
       sx={{ borderColor, flexShrink: 0 }}
       {...{ ref, ...props }}
