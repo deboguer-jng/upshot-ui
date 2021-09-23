@@ -25,7 +25,7 @@ const Footer = forwardRef(
           <LogoBox href="https://upshot.io/" target="_blank">Upshot</LogoBox>
           <StyledBox>
             <Flex>
-              <StyledMiddleLink  target="_blank">
+              <StyledMiddleLink href="https://upshot.io/whitepaper.pdf" target="_blank">
                 Whitepaper
               </StyledMiddleLink>
               <StyledBoxMiddleSeparate>|</StyledBoxMiddleSeparate>
