@@ -22,8 +22,9 @@ import InputRoundedSearch, {
 } from '../../@UI/InputRoundedSearch'
 
 export interface NavbarInterface {
-  searchValue: string
-  searchSuggestions: Array<InputSuggestion>
+  searchSuggestions?: InputSuggestion[]
+  searchValue?: string
+  searchDefaultValue?: string
   onSearchValueChange: ReactEventHandler<HTMLInputElement>
   onSearchSuggestionChange: (id: number) => void
   onSearch: (e: React.FormEvent | React.MouseEvent) => void
@@ -36,7 +37,8 @@ const Navbar = forwardRef(
   (
     {
       searchValue,
-      searchSuggestions,
+      searchSuggestions = [],
+      searchDefaultValue,
       onSearchValueChange,
       onSearchSuggestionChange,
       onSearchFocus,
@@ -64,6 +66,7 @@ const Navbar = forwardRef(
               placeholder="Search..."
               dark
               value={searchValue}
+              defaultValue={searchDefaultValue}
               onChange={onSearchValueChange}
               onFocus={onSearchFocus}
               onBlur={onSearchBlur}
