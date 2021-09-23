@@ -7,6 +7,7 @@ import {
   StyledBoxRight,
   StyledBoxMiddle,
   LogoBox,
+  StyledMiddleLink,
 } from './Styled'
 import Flex from '../../Layout/Flex'
 import { FlexProps, Link } from 'theme-ui'
@@ -21,14 +22,20 @@ const Footer = forwardRef(
     return (
       <FooterLine {...props}>
         <StyledBoxLeft>
-          <LogoBox>Upshot</LogoBox>
+          <LogoBox href="https://upshot.io/" target="_blank">Upshot</LogoBox>
           <StyledBox>
             <Flex>
-              <StyledBoxMiddle>Whitepaper</StyledBoxMiddle>
+              <StyledMiddleLink href="https://upshot.io/whitepaper.pdf" target="_blank">
+                Whitepaper
+              </StyledMiddleLink>
               <StyledBoxMiddleSeparate>|</StyledBoxMiddleSeparate>
-              <StyledBoxMiddle>Privacy</StyledBoxMiddle>
+              <StyledMiddleLink href="https://upshot.io/wp-content/uploads/2021/05/privacy.pdf" target="_blank">
+                Privacy
+              </StyledMiddleLink>
               <StyledBoxMiddleSeparate>|</StyledBoxMiddleSeparate>
-              <StyledBoxMiddle>FAQ</StyledBoxMiddle>
+              <StyledMiddleLink href="https://upshot.io/faq/" target="_blank">
+                FAQ
+              </StyledMiddleLink>
             </Flex>
           </StyledBox>
         </StyledBoxLeft>
