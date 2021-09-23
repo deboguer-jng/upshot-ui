@@ -3,6 +3,7 @@ import Flex from '../../Layout/Flex'
 import Box from '../../Layout/Grid'
 import Text from '../../@UI/Text'
 import css from '@emotion/css'
+import { Link } from 'theme-ui'
 
 export const StyledBox = styled(Box)`
   justify-content: center;
@@ -26,10 +27,14 @@ export const StyledBoxMiddleSeparate = styled(Text)`
   font-size: 16px;
 `
 
-export const LogoBox = styled(Box)`
+export const LogoBox = styled(Link)`
   font-size: 18px;
   font-weight: 600;
-  cursor: pointer;
+  color: ${({ theme }) => theme.colors.text};
+  text-decoration: none;
+  :hover {
+    text-decoration: none;
+  }
 `
 
 export const StyledBoxRight = styled(Box)`
@@ -69,4 +74,13 @@ export const StyledBoxLeft = styled(Flex)`
       width: 100%;
     }
   `}
+`
+export const StyledMiddleLink = styled(Link)`
+  margin: 5px;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.text};
+  text-decoration: none;
+  :hover {
+    text-decoration: none;
+  }
 `
