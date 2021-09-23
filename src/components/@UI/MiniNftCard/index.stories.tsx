@@ -50,6 +50,18 @@ Default.args = {
   to: '0xdf...4a1',
 }
 
+export const DefaultPixelated = Template1.bind({})
+DefaultPixelated.args = {
+  image:
+    'https://res.cloudinary.com/upshot-inc/image/upload/v1628115613/wmhbovutsfzp0wppi7qh.png',
+  name: 'nft name',
+  price: '$69',
+  date: '08/25/2021',
+  from: '0xce..ea4',
+  to: '0xdf...4a1',
+  pixelated: true,
+}
+
 export const DefaultLongName = Template.bind({})
 DefaultLongName.args = {
   image: 'https://www.stockvault.net/data/2012/09/24/135964/preview16.jpg',
