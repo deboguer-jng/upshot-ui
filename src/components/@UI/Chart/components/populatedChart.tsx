@@ -24,12 +24,9 @@ const PopulatedChart = ({
   const [filterStatus, setFilterStatus] = useState(chartData.map((_) => true))
 
   const colors = ['blue', 'pink', 'purple', 'yellow', 'red', 'green']
-  const options: ApexOptions = {
-    ...getOptions(theme, chartData),
-    chart: {
-      events: { mouseMove: dataPointMouseEnter },
-    },
-  }
+  const options: ApexOptions = getOptions(theme, chartData, {
+    mouseMove: dataPointMouseEnter,
+  })
 
   return (
     <>
