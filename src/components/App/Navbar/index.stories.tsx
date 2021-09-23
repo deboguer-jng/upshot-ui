@@ -15,6 +15,7 @@ const Template: ComponentStory<typeof Navbar> = (args) => {
     <Navbar
       searchValue={value}
       onSearchValueChange={(e) => setValue(e.target.value)}
+      onSearchSuggestionChange={(v) => setValue(v)}
       onSearch={(e) => {
         console.log({ value })
       }}
@@ -24,4 +25,14 @@ const Template: ComponentStory<typeof Navbar> = (args) => {
 }
 
 export const Default = Template.bind({})
-Default.args = {}
+Default.args = {
+  searchSuggestions: [
+    'item1',
+    'item2',
+    'item3',
+    'item4',
+    'item5',
+    'item6',
+    'item7',
+  ],
+}

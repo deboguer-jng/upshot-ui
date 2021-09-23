@@ -72,6 +72,10 @@ export const SearchWrapper = styled.div`
 
   form {
     width: 100%;
+
+    & > div {
+      width: unset;
+    }
   }
 `
 
