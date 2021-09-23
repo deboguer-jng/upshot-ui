@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useMemo } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import Chart from './'
@@ -10,8 +10,45 @@ export default {
 
 const Template: ComponentStory<typeof Chart> = (args) => <Chart {...args} />
 
+const HoverTemplate: ComponentStory<typeof Chart> = (args) => {
+  const [label, setLabel] = useState('')
+
+  const handleHover = (e: React.MouseEvent, ctx: any, data: any) => {
+    const { dataPointIndex } = data
+    const dataPoint = args?.data?.[0]?.data?.[dataPointIndex]
+
+    setLabel(dataPoint ? dataPoint.toString() : '')
+  }
+
+  const chart = useMemo(
+    () => <Chart dataPointMouseEnter={handleHover} {...args} />,
+    [args.data]
+  )
+
+  return (
+    <div>
+      Hover: {label}
+      {chart}
+    </div>
+  )
+}
+
 export const Main = Template.bind({})
 Main.args = {
+  data: [
+    {
+      name: 'Series 1',
+      data: [31, 40, 28, 32, 51, 42, 109, 100],
+    },
+    {
+      name: 'Series 2',
+      data: [11, 32, 45, 32, 33, 34, 52, 41],
+    },
+  ],
+}
+
+export const MainHover = HoverTemplate.bind({})
+MainHover.args = {
   data: [
     {
       name: 'Series 1',
