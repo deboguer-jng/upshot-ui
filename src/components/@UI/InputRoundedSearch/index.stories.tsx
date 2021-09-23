@@ -17,3 +17,10 @@ Default.args = { sx: { width: 300 } }
 
 export const SearchButton = Template.bind({})
 SearchButton.args = { hasButton: true, sx: { width: 300 } }
+
+export const SearchDropdown = Template.bind({})
+SearchDropdown.args = {
+  hasButton: true,
+  sx: { width: 300 },
+  suggestions: ['item1', 'item2', 'item3', 'item4', 'item5', 'item6', 'item7'],
+}

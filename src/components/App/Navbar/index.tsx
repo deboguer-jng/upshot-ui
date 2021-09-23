@@ -21,14 +21,24 @@ import InputRoundedSearch from '../../@UI/InputRoundedSearch'
 
 export interface NavbarInterface {
   searchValue: string
+  searchSuggestions: Array<string>
   onSearchValueChange: ReactEventHandler<HTMLInputElement>
+  onSearchSuggestionChange: (value: string) => void
   onSearch: (e: React.FormEvent | React.MouseEvent) => void
-  onLogoClick: (event: React.MouseEvent<HTMLElement>) => void;
+  onLogoClick: (event: React.MouseEvent<HTMLElement>) => void
 }
 
 const Navbar = forwardRef(
   (
-    { searchValue, onSearchValueChange, onSearch, onLogoClick, ...props }: NavbarInterface,
+    {
+      searchValue,
+      searchSuggestions,
+      onSearchValueChange,
+      onSearchSuggestionChange,
+      onSearch,
+      onLogoClick,
+      ...props
+    }: NavbarInterface,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
@@ -43,6 +53,8 @@ const Navbar = forwardRef(
             <InputRoundedSearch
               hasButton
               fullWidth
+              suggestions={searchSuggestions}
+              onSuggestionSelect={onSearchSuggestionChange}
               placeholder="Search..."
               dark
               value={searchValue}
