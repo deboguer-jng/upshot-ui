@@ -7,10 +7,10 @@ export function getOptions(
   data: Array<{
     name: string
     data: number[] | (Date | number)[][]
-    length?: number,
+    length?: number
   }>,
+  events?: any
 ) {
-
   const colors = [
     theme.rawColors.blue,
     theme.rawColors.pink,
@@ -33,7 +33,8 @@ export function getOptions(
       },
       sparkline: {
         enabled: true,
-      }
+      },
+      events,
     },
     stroke: {
       width: 2.5,
@@ -45,7 +46,7 @@ export function getOptions(
         right: 0,
         top: 0,
         bottom: 0,
-      }
+      },
     },
     yaxis: {
       show: false,
@@ -125,7 +126,7 @@ export function getOptions(
           border: 1px solid ${colors[seriesIndex]};
         " id="apexcharts-custom-tooltip"
         >
-          Ξ ${(series[seriesIndex][dataPointIndex]).toFixed(3)}
+          Ξ ${series[seriesIndex][dataPointIndex].toFixed(3)}
           <div style="
             position: absolute;
             bottom: -6px;
@@ -149,12 +150,7 @@ export function getOptions(
   }
 }
 
-export function toggle(
-  idx,
-  seriesName,
-  filterStatus,
-  setFilterStatus,
-) {
+export function toggle(idx, seriesName, filterStatus, setFilterStatus) {
   ApexCharts.exec('upshotChart', 'toggleSeries', seriesName)
 
   const newStatus = [...filterStatus]
