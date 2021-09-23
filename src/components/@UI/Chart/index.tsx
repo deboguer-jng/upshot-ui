@@ -36,6 +36,10 @@ export interface ChartProps {
    * Renders the narrow embedded variant.
    */
   embedded?: boolean
+  /**
+   * Mouse enter handler for data points.
+   */
+  dataPointMouseEnter?: (e: React.MouseEvent, ctx: any, config: any) => void
 }
 
 const Chart = forwardRef(
@@ -47,6 +51,7 @@ const Chart = forwardRef(
       data = [],
       search = false,
       embedded = false,
+      dataPointMouseEnter,
       ...props
     }: ChartProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -54,10 +59,14 @@ const Chart = forwardRef(
     const dataAvailable = !loading && data.length !== 0 && !error && !noSelected
 
     return (
-      <ChartWrapper $embedded={ +embedded } {...{ ref, ...props }}>
+      <ChartWrapper $embedded={+embedded} {...{ ref, ...props }}>
         <div>
           {dataAvailable ? (
-            <PopulatedChart chartData={data} embedded={embedded} />
+            <PopulatedChart
+              dataPointMouseEnter={dataPointMouseEnter}
+              chartData={data}
+              embedded={embedded}
+            />
           ) : (
             <EmptyChart
               {...{

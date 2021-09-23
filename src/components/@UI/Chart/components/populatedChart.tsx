@@ -12,14 +12,24 @@ interface PopulatedChartProps {
     data: number[] | (Date | number)[][]
   }[]
   embedded: boolean
+  dataPointMouseEnter?: (e: React.MouseEvent, ctx: any, config: any) => void
 }
 
-const PopulatedChart = ({ chartData, embedded }: PopulatedChartProps) => {
+const PopulatedChart = ({
+  chartData,
+  embedded,
+  dataPointMouseEnter,
+}: PopulatedChartProps) => {
   const theme = useTheme()
   const [filterStatus, setFilterStatus] = useState(chartData.map((_) => true))
 
   const colors = ['blue', 'pink', 'purple', 'yellow', 'red', 'green']
-  const options: ApexOptions = getOptions(theme, chartData)
+  const options: ApexOptions = {
+    ...getOptions(theme, chartData),
+    chart: {
+      events: { mouseMove: dataPointMouseEnter },
+    },
+  }
 
   return (
     <>
