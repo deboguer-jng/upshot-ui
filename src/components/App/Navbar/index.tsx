@@ -27,7 +27,9 @@ export interface NavbarInterface {
   onSearchValueChange: ReactEventHandler<HTMLInputElement>
   onSearchSuggestionChange: (id: number) => void
   onSearch: (e: React.FormEvent | React.MouseEvent) => void
-  onLogoClick: (event: React.MouseEvent<HTMLElement>) => void
+  onLogoClick: (e: React.MouseEvent<HTMLElement>) => void
+  onSearchFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
+  onSearchBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
 }
 
 const Navbar = forwardRef(
@@ -37,6 +39,8 @@ const Navbar = forwardRef(
       searchSuggestions,
       onSearchValueChange,
       onSearchSuggestionChange,
+      onSearchFocus,
+      onSearchBlur,
       onSearch,
       onLogoClick,
       ...props
@@ -61,6 +65,8 @@ const Navbar = forwardRef(
               dark
               value={searchValue}
               onChange={onSearchValueChange}
+              onFocus={onSearchFocus}
+              onBlur={onSearchBlur}
               buttonProps={{
                 onClick: onSearch,
                 type: 'button',
