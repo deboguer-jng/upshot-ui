@@ -83,7 +83,7 @@ Default.args = {
     {
       title:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales quis ex nec sagittis.',
-      imageSrc: 'http://res.cloudinary.com/upshot-inc/image/upload/v1631594132/f925l47yyhxbsmfwp44h.jpg',
+      imageSrc: 'https://res.cloudinary.com/upshot-inc/image/upload/v1631594132/f925l47yyhxbsmfwp44h.jpg',
       columns: ['Value 1', 'Value 2', 'Value 3'],
     },
     {
