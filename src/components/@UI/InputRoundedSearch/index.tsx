@@ -13,6 +13,11 @@ import {
 import Icon from '../Icon'
 import { useTheme } from '../../../themes/UpshotUI'
 
+export interface InputSuggestion {
+  id: number
+  label: string
+}
+
 export interface InputRoundedSearchProps extends InputRoundedProps {
   /**
    * Expand to the full-width of the container.
@@ -27,9 +32,9 @@ export interface InputRoundedSearchProps extends InputRoundedProps {
    */
   buttonProps?: IconButtonProps
 
-  suggestions?: Array<string>
+  suggestions?: Array<InputSuggestion>
 
-  onSuggestionSelect?: (value: string) => void
+  onSuggestionSelect?: (id: number) => void
 }
 
 /**
@@ -109,13 +114,13 @@ const InputRoundedSearch = forwardRef(
             <InputRounededSearchSuggestions>
               {suggestions.map((suggestion) => (
                 <InputRoundedSearchSuggestionItem
-                  key={suggestion}
+                  key={suggestion.id}
                   onClick={() => {
-                    onSuggestionSelect(suggestion)
+                    onSuggestionSelect(suggestion.id)
                     setOpen(false)
                   }}
                 >
-                  {suggestion}
+                  {suggestion.label}
                 </InputRoundedSearchSuggestionItem>
               ))}
             </InputRounededSearchSuggestions>

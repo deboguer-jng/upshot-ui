@@ -22,5 +22,34 @@ export const SearchDropdown = Template.bind({})
 SearchDropdown.args = {
   hasButton: true,
   sx: { width: 300 },
-  suggestions: ['item1', 'item2', 'item3', 'item4', 'item5', 'item6', 'item7'],
+  suggestions: [
+    {
+      id: 0,
+      label: 'item1',
+    },
+    {
+      id: 1,
+      label: 'item2',
+    },
+    {
+      id: 2,
+      label: 'item3',
+    },
+    {
+      id: 3,
+      label: 'item4',
+    },
+    {
+      id: 4,
+      label: 'item5',
+    },
+    {
+      id: 5,
+      label: 'item6',
+    },
+    {
+      id: 6,
+      label: 'item7',
+    },
+  ],
 }

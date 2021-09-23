@@ -8,14 +8,16 @@ export default {
   component: Navbar,
 } as ComponentMeta<typeof Navbar>
 
-const Template: ComponentStory<typeof Navbar> = (args) => {
+const Template: ComponentStory<typeof Navbar> = (args: any) => {
   const [value, setValue] = useState('')
 
   return (
     <Navbar
       searchValue={value}
       onSearchValueChange={(e) => setValue(e.target.value)}
-      onSearchSuggestionChange={(v) => setValue(v)}
+      onSearchSuggestionChange={(id) =>
+        setValue(args.searchSuggestions[id - 1].label)
+      }
       onSearch={(e) => {
         console.log({ value })
       }}
@@ -27,12 +29,33 @@ const Template: ComponentStory<typeof Navbar> = (args) => {
 export const Default = Template.bind({})
 Default.args = {
   searchSuggestions: [
-    'item1',
-    'item2',
-    'item3',
-    'item4',
-    'item5',
-    'item6',
-    'item7',
+    {
+      id: 0,
+      label: 'item1',
+    },
+    {
+      id: 1,
+      label: 'item2',
+    },
+    {
+      id: 2,
+      label: 'item3',
+    },
+    {
+      id: 3,
+      label: 'item4',
+    },
+    {
+      id: 4,
+      label: 'item5',
+    },
+    {
+      id: 5,
+      label: 'item6',
+    },
+    {
+      id: 6,
+      label: 'item7',
+    },
   ],
 }

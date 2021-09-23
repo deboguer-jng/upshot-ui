@@ -17,13 +17,15 @@ import {
 } from './Styled'
 import Icon from '../../@UI/Icon'
 import Text from '../../@UI/Text'
-import InputRoundedSearch from '../../@UI/InputRoundedSearch'
+import InputRoundedSearch, {
+  InputSuggestion,
+} from '../../@UI/InputRoundedSearch'
 
 export interface NavbarInterface {
   searchValue: string
-  searchSuggestions: Array<string>
+  searchSuggestions: Array<InputSuggestion>
   onSearchValueChange: ReactEventHandler<HTMLInputElement>
-  onSearchSuggestionChange: (value: string) => void
+  onSearchSuggestionChange: (id: number) => void
   onSearch: (e: React.FormEvent | React.MouseEvent) => void
   onLogoClick: (event: React.MouseEvent<HTMLElement>) => void
 }
