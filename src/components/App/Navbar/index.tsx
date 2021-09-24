@@ -25,11 +25,11 @@ export interface NavbarInterface {
   searchSuggestions?: InputSuggestion[]
   searchValue?: string
   searchDefaultValue?: string
-  onSearchValueChange: ReactEventHandler<HTMLInputElement>
-  onSearchSuggestionChange: (id: number) => void
+  onSearchValueChange?: ReactEventHandler<HTMLInputElement>
+  onSearchSuggestionChange?: (item: InputSuggestion) => void
+  onSearchKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void // @todo Refactor all these props and use rfs
   onSearch: (e: React.FormEvent | React.MouseEvent) => void
   onLogoClick: (e: React.MouseEvent<HTMLElement>) => void
-  onSearchFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
   onSearchBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
 }
 
@@ -39,9 +39,9 @@ const Navbar = forwardRef(
       searchValue,
       searchSuggestions = [],
       searchDefaultValue,
+      onSearchKeyUp,
       onSearchValueChange,
       onSearchSuggestionChange,
-      onSearchFocus,
       onSearchBlur,
       onSearch,
       onLogoClick,
@@ -68,8 +68,8 @@ const Navbar = forwardRef(
               value={searchValue}
               defaultValue={searchDefaultValue}
               onChange={onSearchValueChange}
-              onFocus={onSearchFocus}
               onBlur={onSearchBlur}
+              onKeyUp={onSearchKeyUp}
               buttonProps={{
                 onClick: onSearch,
                 type: 'button',

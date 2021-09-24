@@ -14,9 +14,11 @@ const Template: ComponentStory<typeof Navbar> = (args: any) => {
   return (
     <Navbar
       searchValue={value}
-      onSearchValueChange={(e) => setValue(e.target.value)}
-      onSearchSuggestionChange={(id) =>
-        setValue(args.searchSuggestions[id - 1].label)
+      onSearchValueChange={(e) =>
+        setValue((e.target as HTMLInputElement).value)
+      }
+      onSearchSuggestionChange={(item) =>
+        setValue(args.searchSuggestions[item.id - 1].label)
       }
       onSearch={(e) => {
         console.log({ value })
