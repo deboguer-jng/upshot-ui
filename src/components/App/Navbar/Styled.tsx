@@ -75,6 +75,18 @@ export const SearchWrapper = styled.div`
 
     & > div {
       width: unset;
+
+      & > div:first-child > input {
+        z-index: ${({ theme }) => theme.zIndex.nav + 2};
+      }
+
+      & > div:first-child > button {
+        z-index: ${({ theme }) => theme.zIndex.nav + 2};
+      }
+
+      & > div:last-child {
+        z-index: ${({ theme }) => theme.zIndex.nav + 1};
+      }
     }
   }
 `

@@ -46,7 +46,6 @@ export const MiniNftCardWrapper = styled.div`
   }
 
   &:hover {
-    z-index: 100;
     width: calc(${({ theme }) => theme.miniNftCard.width}px * 1.7 + 10px);
     transition: width 0.5s ease;
 
@@ -58,7 +57,7 @@ export const MiniNftCardWrapper = styled.div`
 `
 
 export const MiniNftCardImageWrapper = styled.img<MiniNftCardImageWrapperProps>`
-  image-rendering: ${({pixelated}) => pixelated ? 'pixelated' : ''};
+  image-rendering: ${({ pixelated }) => (pixelated ? 'pixelated' : '')};
 `
 
 export const MiniNftCardMainBoard = styled.div<MiniNftCardMainBoardProps>`
@@ -68,7 +67,7 @@ export const MiniNftCardMainBoard = styled.div<MiniNftCardMainBoardProps>`
   width: ${({ theme }) => theme.miniNftCard.width}px;
   height: ${({ theme }) => theme.miniNftCard.height}px;
   padding: ${({ theme }) => theme.miniNftCard.padding}px;
-  z-index: 1;
+  z-index: ${({ theme }) => theme.zIndex.default + 1};
   overflow: hidden;
 
   img {
@@ -79,7 +78,7 @@ export const MiniNftCardMainBoard = styled.div<MiniNftCardMainBoardProps>`
     top: ${({ theme, error }) =>
       error ? theme.miniNftCard.errorImageTop : 0}px;
     left: 0;
-    z-index: 0;
+    z-index: ${({ theme }) => theme.zIndex.default};
   }
 `
 
@@ -103,7 +102,7 @@ export const MiniNftCardMainContentWrapper = styled.div<MiniNftCardMainContentWr
   flex-direction: column;
   justify-content: ${({ type }) => (type === 'search' ? 'flex-end' : 'start')};
   height: 100%;
-  z-index: 1;
+  z-index: ${({ theme }) => theme.zIndex.default + 1};
   position: relative;
 `
 

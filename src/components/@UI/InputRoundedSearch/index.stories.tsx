@@ -25,31 +25,31 @@ SearchDropdown.args = {
   suggestions: [
     {
       id: 0,
-      label: 'item1',
+      name: 'item1',
     },
     {
       id: 1,
-      label: 'item2',
+      name: 'item2',
     },
     {
       id: 2,
-      label: 'item3',
+      name: 'item3',
     },
     {
       id: 3,
-      label: 'item4',
+      name: 'item4',
     },
     {
       id: 4,
-      label: 'item5',
+      name: 'item5',
     },
     {
       id: 5,
-      label: 'item6',
+      name: 'item6',
     },
     {
       id: 6,
-      label: 'item7',
+      name: 'item7',
     },
   ],
 }

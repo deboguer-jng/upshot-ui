@@ -14,7 +14,7 @@ export const InputRoundedSearchBase = styled(
     `
       padding-right: ${theme.forms.inputs.default.height};
     `}
-  z-index: 2;
+  z-index: ${({ theme }) => theme.zIndex.default + 2};
 `
 
 export const InputRoundedSearchWrapper = styled.div`
@@ -31,7 +31,7 @@ export const InputRoundedSearchSuggestionsWrapper = styled.div`
   padding-top: 52px;
   width: 100%;
   background-color: ${({ theme }) => theme.colors['grey-900']};
-  z-index: 1;
+  z-index: ${({ theme }) => theme.zIndex.default + 1};
 `
 
 export const InputRounededSearchSuggestions = styled.div`
