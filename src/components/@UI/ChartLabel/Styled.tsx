@@ -63,6 +63,7 @@ export const StyledRed = styled(Text)`
 
 export const StyledBlue = styled(Text)`
     color: ${({ theme }) => theme.colors.primary};
+    font-size: inherit; // this is important to make ChartLabel responsive
 `
 
 export const InlineLabel = styled(Label)`
