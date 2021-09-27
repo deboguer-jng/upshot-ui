@@ -16,6 +16,7 @@ import scroll from './scroll'
 import sizes, { breakpoints, radii } from './sizes'
 import transactionHistoryItem from './transactionHistoryItem'
 import miniNftCard from './miniNftCard'
+import zIndex from './zIndex'
 import text, { fonts, fontSizes, fontWeights, lineHeights } from './text'
 import { useThemeUI, ThemeUIContextValue } from 'theme-ui'
 
@@ -45,6 +46,7 @@ const theme = {
   lineHeights,
   miniNftCard,
   navbar,
+  zIndex,
   radii,
   rawColors: colors,
   scroll,

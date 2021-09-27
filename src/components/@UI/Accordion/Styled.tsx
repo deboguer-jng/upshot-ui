@@ -16,7 +16,7 @@ export const AccordionWrapper = styled.div`
 
 export const AccordionHeader = styled.div<AccordionHeaderProps>`
   position: relative;
-  z-index: 2;
+  z-index: ${({ theme }) => theme.zIndex.default + 2};
   border-radius: ${({ theme }) => theme.accordion.header.borderRadius}px;
   width: 100%;
   padding: ${({ theme }) =>
@@ -42,7 +42,7 @@ export const AccordionHeader = styled.div<AccordionHeaderProps>`
 export const AccordionBody = styled.div<AccordionBodyProps>`
   position: relative;
   width: 100%;
-  z-index: 1;
+  z-index: ${({ theme }) => theme.zIndex.default + 1};
   top: 0;
   left: 0;
   margin-top: -50px;

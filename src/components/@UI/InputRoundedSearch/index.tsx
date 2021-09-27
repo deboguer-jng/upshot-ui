@@ -105,7 +105,7 @@ const InputRoundedSearch = forwardRef(
               opacity: Number(hasButton),
               transition: 'default',
               transitionDuration: theme.durations.normal,
-              zIndex: 2,
+              zIndex: theme.zIndex.default + 2,
               ...buttonSx,
             }}
             {...buttonProps}
