@@ -77,5 +77,5 @@ export const StyledBox = styled(Box)<ChartLabelProps>`
 export const RelativeFlex = styled(Flex)<ChartLabelProps>`
     position: relative;
     ${({ $variant }) => $variant === 'multi' ?  'display: inline-flex;' : ''}
-    font-size: ${({ $isMobile }) => $isMobile ? '0.75em' : '1em' };
+    font-size: ${({ $isMobile }) => $isMobile ? '0.65em' : '1em' };
 `
