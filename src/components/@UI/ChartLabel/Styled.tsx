@@ -19,7 +19,7 @@ export const IconBox = styled(Box)<ChartLabelProps>`
     height: 20px;
     text-align: center;
     margin-right: ${({ $isMobile }) => $isMobile ? '5px' : '12px' };
-    margin-top: ${({ $isMobile }) => $isMobile ? '0px' : '5px' };
+    margin-top: ${({ $isMobile }) => $isMobile ? '2px' : '5px' };
 `
 export const StyledIconButton = styled(IconButton)<ChartLabelProps>`
     padding: 0;
