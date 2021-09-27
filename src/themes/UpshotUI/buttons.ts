@@ -118,7 +118,7 @@ const buttons = {
   property: {
     md: {
       fontSize: 18,
-      height: 30,
+      height: 35,
       iconMargin: 4,
       iconWidth: 16,
     },

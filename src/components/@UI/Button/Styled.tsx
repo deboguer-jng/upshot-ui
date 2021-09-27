@@ -19,7 +19,7 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
     toggled
       ? theme.buttons.variants[$type].colors.toggledBackground
       : theme.buttons.variants[$type].colors.background};
-  border: 2px solid
+  border: 1px solid
     ${({ theme, $type, toggled }) =>
       toggled
         ? theme.buttons.variants[$type].colors.toggledBorder
@@ -32,7 +32,7 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 11px;
+  padding: 0px 25px;
   transition: ${({ theme }) => theme.transitions.default};
   text-transform: uppercase;
 
@@ -75,7 +75,7 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
             theme.buttons.variants[$type].colors.toggledHoverBackground
           )}`
         : theme.buttons.variants[$type].colors.hoverBackground};
-    border: 2px solid
+    border: 1px solid
       ${({ theme, $type, toggled }) =>
         toggled
           ? `${darken(
@@ -110,7 +110,7 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
       theme,
       $type,
     }) => `background: ${theme.buttons.variants[$type].colors.pressedBackground};
-      border: 2px solid
+      border: 1px solid
         ${theme.buttons.variants[$type].colors.pressedBorder};
       span {
         color: ${theme.buttons.variants[$type].colors.pressedColor};
@@ -135,7 +135,7 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
       typeof toggled !== 'undefined'
         ? ''
         : `background: ${theme.buttons.variants[$type].colors.pressedBackground};
-          border: 2px solid
+          border: 1px solid
             ${theme.buttons.variants[$type].colors.pressedBorder};
           span {
             color: ${theme.buttons.variants[$type].colors.pressedColor};
