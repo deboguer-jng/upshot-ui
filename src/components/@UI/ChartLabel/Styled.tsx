@@ -15,18 +15,17 @@ interface ChartLabelProps {
 export const IconBox = styled(Box)<ChartLabelProps>`
     border: 1px ${({ theme, $color }) => theme.colors[$color]} solid;
     border-radius: ${({ theme }) => theme.radii.circle};
-    width: ${({ $isMobile }) => $isMobile ? '16px' : '20px' };
-    height: ${({ $isMobile }) => $isMobile ? '16px' : '20px' };
+    width: 20px;
+    height: 20px;
     text-align: center;
-    margin-right: ${({ $isMobile }) => $isMobile ? '8px' : '12px' };
-    margin-top: 5px;
+    margin-right: ${({ $isMobile }) => $isMobile ? '5px' : '12px' };
+    margin-top: ${({ $isMobile }) => $isMobile ? '0px' : '5px' };
 `
 export const StyledIconButton = styled(IconButton)<ChartLabelProps>`
     padding: 0;
-    width: ${({ $isMobile }) => $isMobile ? '12px' : '18px' };
-    height: ${({ $isMobile }) => $isMobile ? '12px' : '18px' };
+    width: 18px;
+    height: 18px;
     vertical-align: top;
-    margin-top: ${({ $isMobile }) => $isMobile ? '1px' : '0px' };
 `
 
 export const StyledTitle = styled('h3')<ChartLabelProps>`
