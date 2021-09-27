@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useTheme } from '@emotion/react'
 import { ApexOptions } from 'apexcharts'
+import ReactApexChart from 'react-apexcharts'
 
-import { CustomLegendWrapper, ReactApexChartsWrapper } from '../Styled'
+import { CustomLegendWrapper } from '../Styled'
 import { getOptions, toggle } from '../utils'
 import ButtonChartCollection from '../../ButtonChartCollection'
 
@@ -30,7 +31,7 @@ const PopulatedChart = ({
 
   return (
     <>
-      <ReactApexChartsWrapper
+      <ReactApexChart
         series={chartData}
         type="area"
         height="100%"
