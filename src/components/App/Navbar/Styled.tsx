@@ -8,6 +8,7 @@ interface NavbarItemProps {
 export const NavbarWrapper = styled.div`
   display: flex;
   align-items: center;
+  gap: ${({ theme }) => theme.space[3] + 'px'};
   background: linear-gradient(
     180deg,
     #000000 0%,
@@ -16,29 +17,9 @@ export const NavbarWrapper = styled.div`
   );
   height: ${({ theme }) => theme.navbar.height}px;
   width: 100%;
-  padding-top: ${({ theme }) => theme.navbar.paddingTop}px;
-  padding-bottom: ${({ theme }) => theme.navbar.paddingTop}px;
-  padding-left: ${({ theme }) => theme.navbar.mobile.paddingLeft}px;
-  padding-right: ${({ theme }) => theme.navbar.mobile.paddingLeft}px;
-
-  ${({ theme }) => css`
-    @media only screen and (min-width: ${theme.breakpoints[1]}) {
-      padding-left: ${theme.navbar.tablet.paddingLeft}px;
-      padding-right: ${theme.navbar.tablet.paddingLeft}px;
-    }
-  `}
-
-  ${({ theme }) => css`
-    @media only screen and (min-width: ${theme.breakpoints[2]}) {
-      padding-left: ${theme.navbar.default.paddingLeft}px;
-      padding-right: ${theme.navbar.default.paddingLeft}px;
-    }
-  `}
 `
 
 export const NavbarItem = styled.div<NavbarItemProps>`
-  margin-left: 7px;
-  margin-right: 7px;
   background: transparent;
   flex-grow: ${({ grow }) => (grow ? 1 : 0)};
 `
