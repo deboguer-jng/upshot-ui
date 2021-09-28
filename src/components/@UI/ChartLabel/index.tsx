@@ -43,7 +43,7 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Smaller price tag shown in another currency defined below
    */
-  price_2: string
+  price_2?: string
   /**
    * Currency symbol (default: $)
    */
@@ -82,7 +82,7 @@ const ChartLabel = forwardRef(
       titleColor = ( variant === 'multi' ? 'primary' : 'white' ),
       price_1,
       currency_1 = 'Ξ',
-      price_2,
+      price_2 = null,
       currency_2 = '$',
       change,
       date,
@@ -123,9 +123,11 @@ const ChartLabel = forwardRef(
             </Label>
           </StyledH1>
           <StyledChangeDiv $variant={variant}>
-            <InlineLabel color='primary' variant='currency' currencySymbol={currency_2} size={ isMobile ? 'xs' : 'sm' }>
-              {price_2}
-            </InlineLabel>
+            { price_2 !== null && (
+              <InlineLabel color='primary' variant='currency' currencySymbol={currency_2} size={ isMobile ? 'xs' : 'sm' }>
+                {price_2}
+              </InlineLabel>
+            )}
             {change && `(${change})`}
           </StyledChangeDiv>
 
