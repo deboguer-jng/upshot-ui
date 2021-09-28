@@ -28,7 +28,7 @@ const Template = ({ items }: CollectionRecipe) => {
   const COLUMNS = ['Column 1', 'Column 2', 'Column 3']
 
   return (
-    <CollectionTable>
+    <CollectionTable sx={{ tableLayout: 'fixed' }}>
       <TableHead sx={{ color: theme.colors['grey-500'] }}>
         <TableRow>
           <TableCell colSpan={2}>Name</TableCell>
