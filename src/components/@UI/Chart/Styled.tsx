@@ -14,9 +14,8 @@ interface ChartWrapperProps {
 
 export const ChartWrapper = styled.div<ChartWrapperProps>`
   width: 100%;
-  padding-top: 35%;
+  padding-top: 39%;
   position: relative;
-  margin-bottom: ${({ $embedded }) => ($embedded ? '0px' : '60px')};
 
   & > div {
     position: absolute;
@@ -125,4 +124,16 @@ export const CustomLegendWrapper = styled.div`
   align-items: center;
   margin-top: 1rem;
   flex-wrap: wrap;
+`
+
+export const PopulatedChartWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  & > div:first-child {
+    flex-grow: 1;
+    width: 100%;
+  }
 `
