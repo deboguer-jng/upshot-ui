@@ -18,7 +18,7 @@ interface SelectionPromptProps {
 const SelectionPrompt = ({ data, embedded }: SelectionPromptProps) => {
   const theme = useTheme()
   const options: ApexOptions = getOptions(theme, theme.chart.defaultSeries)
-  console.log('this si selection prompt')
+
   return (
     <>
       <ReactApexChart
