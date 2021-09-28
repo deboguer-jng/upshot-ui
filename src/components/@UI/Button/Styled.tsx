@@ -14,8 +14,6 @@ interface PlainButtonProps {
   $size: keyof typeof Buttons.property
 }
 
-// border: 1.5px solid
-
 export const PrimaryButton = styled.button<PrimaryButtonProps>`
   background: ${({ theme, $type, toggled }) =>
     toggled
