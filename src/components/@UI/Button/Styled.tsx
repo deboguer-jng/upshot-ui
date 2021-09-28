@@ -19,11 +19,12 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
     toggled
       ? theme.buttons.variants[$type].colors.toggledBackground
       : theme.buttons.variants[$type].colors.background};
-  border: 2px solid
-    ${({ theme, $type, toggled }) =>
+  border: none;
+  box-shadow: ${({ theme, $type, toggled }) =>
       toggled
         ? theme.buttons.variants[$type].colors.toggledBorder
-        : theme.buttons.variants[$type].colors.border};
+        : theme.buttons.variants[$type].colors.border}
+    0px 0px 0px 1.8px;
   font-size: ${({ theme, $size }) => theme.buttons.property[$size].fontSize}px;
   height: ${({ theme, $size }) => theme.buttons.property[$size].height}px;
   border-radius: ${({ theme }) => theme.radii.pill};
@@ -32,7 +33,7 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 11px;
+  padding: 0px 25px;
   transition: ${({ theme }) => theme.transitions.default};
   text-transform: uppercase;
 
@@ -64,6 +65,7 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
     span {
       color: ${({ theme }) => theme.colors.black};
     }
+    box-shadow: none;
     border-color: ${({ theme }) => theme.colors['grey-700']};
   }
 
@@ -75,14 +77,14 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
             theme.buttons.variants[$type].colors.toggledHoverBackground
           )}`
         : theme.buttons.variants[$type].colors.hoverBackground};
-    border: 2px solid
-      ${({ theme, $type, toggled }) =>
+    box-shadow: ${({ theme, $type, toggled }) =>
         toggled
           ? `${darken(
               0.1,
               theme.buttons.variants[$type].colors.toggledHoverBorder
             )}`
-          : theme.buttons.variants[$type].colors.hoverBorder};
+          : theme.buttons.variants[$type].colors.hoverBorder}
+      0px 0px 0px 1.8px;
     span {
       color: ${({ theme, $type, toggled }) =>
         toggled
@@ -110,8 +112,8 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
       theme,
       $type,
     }) => `background: ${theme.buttons.variants[$type].colors.pressedBackground};
-      border: 2px solid
-        ${theme.buttons.variants[$type].colors.pressedBorder};
+      box-shadow:
+        ${theme.buttons.variants[$type].colors.pressedBorder} 0px 0px 0px 1.8px;
       span {
         color: ${theme.buttons.variants[$type].colors.pressedColor};
       }
@@ -124,19 +126,12 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   }
 
   &:not(:disabled):focus {
-    box-shadow: ${({ $type }) =>
-      $type === 'primary' || $type === 'secondary'
-        ? 'none'
-        : '0px 4px 4px rgba(0, 145, 255, 0.6)'};
-  }
-
-  &:not(:disabled):focus {
     ${({ theme, $type, toggled }) =>
       typeof toggled !== 'undefined'
         ? ''
         : `background: ${theme.buttons.variants[$type].colors.pressedBackground};
-          border: 2px solid
-            ${theme.buttons.variants[$type].colors.pressedBorder};
+          box-shadow:
+            ${theme.buttons.variants[$type].colors.pressedBorder} 0px 0px 0px 1.8px;
           span {
             color: ${theme.buttons.variants[$type].colors.pressedColor};
           }
