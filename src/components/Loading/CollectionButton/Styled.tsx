@@ -13,6 +13,7 @@ export const CollectionFlex = styled(Flex)`
   background-color: ${({ theme }) => theme.colors.black};
   border-radius: ${({ theme }) => theme.radii.pill};
   padding: 4px;
+  width: 100%;
 `
 
 export const RightGrid = styled(Grid)`

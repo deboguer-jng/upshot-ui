@@ -14,5 +14,5 @@ const Template: ComponentStory<typeof CollectionButtonTemplate> = (args) => <Col
 export const Default = Template.bind({})
 Default.args = {
   type: 'CollectionFlex',
-  sx: { width: '100%', height: '46px' }
+  sx: { height: '46px' }
 }
