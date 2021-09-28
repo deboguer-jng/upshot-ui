@@ -44,7 +44,6 @@ export const SearchWrapper = styled.div`
   border-radius: 30px;
   padding: 12px;
   border: 1px solid ${({ theme }) => theme.colors['grey-500']};
-  width: calc(100% - 57px); // 45px (icon) + 12px (gap)
 
   ${({ theme }) => css`
     @media only screen and (min-width: ${theme.breakpoints[1]}) {
