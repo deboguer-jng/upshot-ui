@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Text } from 'theme-ui'
+import { Text, Link } from 'theme-ui'
 
 interface MiniNftCardPriceProps {
   error?: boolean
@@ -172,4 +172,12 @@ export const MiniNftCardDetailValue = styled(Text)<MiniNftCardDetailValueProps>`
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+`
+
+export const WrappedLink = styled(Link)`
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
 `
