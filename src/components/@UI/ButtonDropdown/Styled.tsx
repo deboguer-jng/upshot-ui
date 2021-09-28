@@ -31,7 +31,7 @@ export const DropdownWrapper = styled.div`
 
 export const Dropdown = styled.div<DropdownProps>`
   position: relative;
-  z-index: 1;
+  z-index: ${({ theme }) => theme.zIndex.dropdown + 1};
   border-radius: 30px;
   height: 35px;
   background: black;
@@ -77,7 +77,7 @@ export const DropdownMenuItems = styled.div`
 
 export const DropdownMenu = styled.div`
   position: absolute;
-  z-index: 0;
+  z-index: ${({ theme }) => theme.zIndex.dropdown};
   background: #151515;
   padding-top: 40px;
   padding-left: 10px;
