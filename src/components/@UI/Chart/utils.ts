@@ -112,9 +112,6 @@ export function getOptions(
             box-shadow: none!important;
           }
         </style>
-        <div>
-          ${time.toUTCString()}
-        </div>
         `
       },
       x: {

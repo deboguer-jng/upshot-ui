@@ -27,6 +27,12 @@ export interface ChartProps {
   data?: {
     name: string
     data: number[] | (Date | number)[][]
+    currentValue: {
+      timestamp: number
+      value: number
+    }
+    ath: number
+    atl: number
   }[]
   /**
    * Renders the search variant.

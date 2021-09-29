@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { useTheme } from '@emotion/react'
 import { ApexOptions } from 'apexcharts'
 import ReactApexChart from 'react-apexcharts'
@@ -6,31 +6,79 @@ import ReactApexChart from 'react-apexcharts'
 import { CustomLegendWrapper } from '../Styled'
 import { getOptions, toggle } from '../utils'
 import ButtonChartCollection from '../../ButtonChartCollection'
+import ChartLabel from '../../ChartLabel'
+import Grid from '../../../Layout/Grid'
 
 interface PopulatedChartProps {
   chartData: {
     name: string
     data: number[] | (Date | number)[][]
+    currentValue: {
+      timestamp: number
+      value: number
+    }
+    ath: number
+    atl: number
   }[]
   embedded: boolean
-  dataPointMouseEnter?: (e: React.MouseEvent, ctx: any, config: any) => void
 }
 
 const PopulatedChart = ({
   chartData,
   embedded,
-  dataPointMouseEnter,
 }: PopulatedChartProps) => {
   const theme = useTheme()
   const [filterStatus, setFilterStatus] = useState(chartData.map((_) => true))
+  const [hoverValues, setHoverValues] = useState(chartData.map(set => [set.currentValue.timestamp, set.currentValue.value]))
+  const [temporaryValue, setTemporaryValue] = useState([])
+
+  useMemo(() => {
+    let newHoverValues = hoverValues
+    newHoverValues[temporaryValue[0]] = [temporaryValue[1], temporaryValue[2]]
+    setHoverValues(newHoverValues)
+  }, [temporaryValue])
+
+  const handleHover = () => (e: React.MouseEvent, ctx: any, data: any) => {
+    const { dataPointIndex } = data
+    const dataPoint = chartData?.[data.seriesIndex]?.data?.[dataPointIndex]
+    setTemporaryValue([data.seriesIndex, ...dataPoint])
+  }
 
   const colors = ['blue', 'pink', 'purple', 'yellow', 'red', 'green']
   const options: ApexOptions = getOptions(theme, chartData, {
-    mouseMove: dataPointMouseEnter,
+    mouseMove: handleHover(),
   })
+
+  const chartLabels = () => {
+    return chartData.map((set, i) => {
+      return (
+        <ChartLabel
+          key={i}
+          variant={
+            chartData.length > 1
+              ? 'multi'
+              : 'alone'
+          }
+          title={set.name}
+          price_1={hoverValues[i][1].toString()}
+          date={new Date(hoverValues[i][0]).toUTCString()}
+          atl={set.atl.toString()}
+          ath={set.ath.toString()}
+          
+        />
+      )
+    })
+  }
 
   return (
     <>
+      {
+        !embedded && (
+          <Grid columns={[2, 2, 3, 5]}>
+            {chartLabels()}
+          </Grid>
+        )
+      }
       <ReactApexChart
         series={chartData}
         type="area"
