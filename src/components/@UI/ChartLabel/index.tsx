@@ -136,10 +136,10 @@ const ChartLabel = forwardRef(
           </StyledDateTime>
           <Box>
             <StyledRed>
-              ATL: {atl}
+              ATL: {'Ξ' + atl}
             </StyledRed>
             <StyledBlue>
-              ATH: {ath}
+              ATH: {'Ξ' + ath}
             </StyledBlue>
           </Box>
         </StyledBox>
