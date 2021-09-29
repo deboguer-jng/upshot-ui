@@ -37,7 +37,7 @@ export const RightAlignBlock = styled.div`
 export const LabelText = styled.div`
   padding-left: ${sizes[3] + 'px'};
   text-overflow: ellipsis;
-  width: 74%;
+  width: 57%;
   overflow: hidden;
   height: 20px;
   white-space: nowrap;
