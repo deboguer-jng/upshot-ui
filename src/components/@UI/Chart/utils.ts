@@ -35,7 +35,7 @@ export function getOptions(
         enabled: true,
       },
       events: {
-        ...(events || {})
+        ...(events || {}),
       },
     },
     stroke: {
@@ -55,7 +55,7 @@ export function getOptions(
       labels: {
         show: false,
       },
-      logarithmic: true,
+      forceNiceScale: true,
     },
     xaxis: {
       axisBorder: {
@@ -102,7 +102,7 @@ export function getOptions(
           globals: { labels },
         },
       }) {
-        const time = new Date(labels[dataPointIndex]);
+        const time = new Date(labels[dataPointIndex])
 
         return `
         <style>
