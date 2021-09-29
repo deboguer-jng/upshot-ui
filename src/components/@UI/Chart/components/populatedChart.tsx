@@ -3,7 +3,7 @@ import { useTheme } from '@emotion/react'
 import { ApexOptions } from 'apexcharts'
 import ReactApexChart from 'react-apexcharts'
 
-import { CustomLegendWrapper } from '../Styled'
+import { CustomLegendWrapper, ReactChartWrapper } from '../Styled'
 import { getOptions, toggle } from '../utils'
 import ButtonChartCollection from '../../ButtonChartCollection'
 
@@ -31,14 +31,18 @@ const PopulatedChart = ({
 
   return (
     <>
-      <ReactApexChart
-        series={chartData}
-        type="area"
-        height="100%"
-        width="100%"
-        embedded={+embedded}
-        {...{ options }}
-      />
+      <ReactChartWrapper>
+        <div>
+          <ReactApexChart
+            series={chartData}
+            type="area"
+            height="100%"
+            width="100%"
+            embedded={+embedded}
+            {...{ options }}
+          />
+        </div>
+      </ReactChartWrapper>
       {!embedded && (
         <CustomLegendWrapper>
           {[...new Array(chartData.length)].map((_, i) => (
