@@ -10,30 +10,6 @@ export default {
 
 const Template: ComponentStory<typeof Chart> = (args) => <Chart {...args} />
 
-// Leaving this for reference temporarily
-const HoverTemplate: ComponentStory<typeof Chart> = (args) => {
-  const [label, setLabel] = useState('')
-
-  const handleHover = (e: React.MouseEvent, ctx: any, data: any) => {
-    const { dataPointIndex } = data
-    const dataPoint = args?.data?.[0]?.data?.[dataPointIndex]
-
-    setLabel(dataPoint ? dataPoint.toString() : '')
-  }
-
-  const chart = useMemo(
-    () => <Chart dataPointMouseEnter={handleHover} {...args} />,
-    [args.data]
-  )
-
-  return (
-    <div>
-      Hover: {label}
-      {chart}
-    </div>
-  )
-}
-
 export const Main = Template.bind({})
 Main.args = {
   data: [
@@ -54,10 +30,6 @@ Main.args = {
       ],
       atl: 3.95,
       ath: 86.28,
-      currentValue: {
-        timestamp: 1328569200000,
-        value: 86.28
-      }
     },
     {
       name: 'Chromie Squiggles',
@@ -76,10 +48,6 @@ Main.args = {
       ],
       atl: 7.34,
       ath: 50.85,
-      currentValue: {
-        timestamp: 1328569200000,
-        value: 42.28
-      }
     },
   ],
 }
@@ -104,12 +72,8 @@ MainSingle.args = {
       ],
       atl: 7.34,
       ath: 50.85,
-      currentValue: {
-        timestamp: 1328569200000,
-        value: 42.28
-      }
-    }
-  ]
+    },
+  ],
 }
 
 export const Embedded = Template.bind({})
@@ -132,10 +96,6 @@ Embedded.args = {
       ],
       atl: 3.95,
       ath: 86.28,
-      currentValue: {
-        timestamp: 1328569200000,
-        value: 86.28
-      }
     },
     {
       name: 'Chromie Squiggles',
@@ -154,10 +114,6 @@ Embedded.args = {
       ],
       atl: 7.34,
       ath: 50.85,
-      currentValue: {
-        timestamp: 1328569200000,
-        value: 42.28
-      }
     },
   ],
   embedded: true,

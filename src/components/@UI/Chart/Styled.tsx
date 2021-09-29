@@ -5,11 +5,11 @@ interface FilterButtonProps {
 }
 
 interface ReactApexChartsWrapperProps {
-  embedded: number
+  embedded: boolean
 }
 
 interface ChartWrapperProps {
-  $embedded: number
+  $embedded: boolean
 }
 
 export const ChartWrapper = styled.div<ChartWrapperProps>`
