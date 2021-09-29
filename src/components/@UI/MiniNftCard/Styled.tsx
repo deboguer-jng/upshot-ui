@@ -131,7 +131,7 @@ export const MiniNftCardName = styled.div<MiniNftCardNameProps>`
   padding-left: ${({ theme }) => theme.miniNftCard.name.paddingLeft}px;
   padding-right: ${({ theme }) => theme.miniNftCard.name.paddingLeft}px;
   backdrop-filter: blur(${({ theme }) => theme.miniNftCard.name.blur}px);
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.5);
   width: -webkit-fill-available;
   text-align: center;
   display: -webkit-box;

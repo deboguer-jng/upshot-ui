@@ -34,7 +34,9 @@ export function getOptions(
       sparkline: {
         enabled: true,
       },
-      events,
+      events: {
+        ...(events || {})
+      },
     },
     stroke: {
       width: 2.5,
@@ -76,8 +78,8 @@ export function getOptions(
         gradientToColors: [
           ...new Array(data.length || theme.chart.defaultSeries.length),
         ].map((_) => 'transparent'),
-        opacityFrom: 0.9,
-        opacityTo: 0.6,
+        opacityFrom: 0.65,
+        opacityTo: 0.3,
         stops: [0, 90, 100],
       },
     },
@@ -88,16 +90,19 @@ export function getOptions(
     tooltip: {
       enabled: true,
       shared: false,
+      fixed: {
+        enabled: true,
+        position: 'topRight',
+        offsetX: 0,
+        offsetY: 0,
+      },
       custom: function ({
-        series,
-        seriesIndex,
         dataPointIndex,
         w: {
-          globals: { clientX: x, svgWidth: width },
+          globals: { labels },
         },
       }) {
-        const offset =
-          x <= width / 2 ? 'calc(-50% - 12px)' : 'calc(50% + 9.5px)'
+        const time = new Date(labels[dataPointIndex]);
 
         return `
         <style>
@@ -105,40 +110,10 @@ export function getOptions(
             background: transparent!important;
             border: none!important;
             box-shadow: none!important;
-            transform: translateX(${offset}) translateY(-45px);
-            overflow: visible;
-          }
-          .apexcharts-xaxistooltip, .apexcharts-yaxistooltip {
-            background: black;
-            color: ${theme.rawColors.text};
-            border-radius: ${theme.radii.pill};
-            font-size: ${theme.fontSizes[0]};
           }
         </style>
-        <div style="
-          position: relative;
-          background: black;
-          border-radius: 1rem;
-          padding: 0.1rem 1rem;
-          overflow: visible;
-          font-family: ${theme.fonts.body};
-          color: ${colors[seriesIndex]};
-          border: 1px solid ${colors[seriesIndex]};
-        " id="apexcharts-custom-tooltip"
-        >
-          Ξ ${series[seriesIndex][dataPointIndex].toFixed(3)}
-          <div style="
-            position: absolute;
-            bottom: -6px;
-            left: 50%;
-            transform: translateX(-50%) rotate(-45deg);
-            width: 10px;
-            height: 10px;
-            background: black;
-            border-left: 1px solid ${colors[seriesIndex]};
-            border-bottom: 1px solid ${colors[seriesIndex]};
-          ">
-          </div>
+        <div>
+          ${time.toUTCString()}
         </div>
         `
       },

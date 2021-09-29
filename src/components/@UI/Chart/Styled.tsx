@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import ReactApexChart from 'react-apexcharts'
 
 interface FilterButtonProps {
   active: boolean
@@ -15,21 +14,6 @@ interface ChartWrapperProps {
 
 export const ChartWrapper = styled.div<ChartWrapperProps>`
   width: 100%;
-  padding-top: 35%;
-  position: relative;
-  margin-bottom: ${({ $embedded }) => $embedded ? '0px' : '60px' };
-
-  & > div {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    & > div:first-of-type {
-      min-height: unset !important;
-    }
-  }
 `
 
 export const ChartNoSelectedTextArea = styled.div`
@@ -72,8 +56,6 @@ export const ChartLoadingBoard = styled.div`
 
 export const NoDataBoard = styled.div`
   position: relative;
-  border-left: 1px solid ${({ theme }) => theme.colors.text};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.body};
   display: flex;
   flex-direction: column;
@@ -130,9 +112,20 @@ export const CustomLegendWrapper = styled.div`
   flex-wrap: wrap;
 `
 
-export const ReactApexChartsWrapper = styled(
-  ReactApexChart
-)<ReactApexChartsWrapperProps>`
-  border-left: ${({ embedded }) => (!embedded ? '1px solid white' : 0)};
-  border-bottom: ${({ embedded }) => (!embedded ? '1px solid white' : 0)};
+export const ReactChartWrapper = styled.div`
+  width: 100%;
+  padding-top: 35%;
+  position: relative;
+
+  & > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    & > div:first-of-type {
+      min-height: unset !important;
+    }
+  }
 `
