@@ -14,20 +14,6 @@ interface ChartWrapperProps {
 
 export const ChartWrapper = styled.div<ChartWrapperProps>`
   width: 100%;
-  padding-top: 39%;
-  position: relative;
-
-  & > div {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    & > div:first-of-type {
-      min-height: unset !important;
-    }
-  }
 `
 
 export const ChartNoSelectedTextArea = styled.div`
@@ -126,14 +112,20 @@ export const CustomLegendWrapper = styled.div`
   flex-wrap: wrap;
 `
 
-export const PopulatedChartWrapper = styled.div`
+export const ReactChartWrapper = styled.div`
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+  padding-top: 35%;
+  position: relative;
 
-  & > div:first-child {
-    flex-grow: 1;
-    width: 100%;
+  & > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    & > div:first-of-type {
+      min-height: unset !important;
+    }
   }
 `

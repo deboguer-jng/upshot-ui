@@ -4,7 +4,7 @@ import { Text } from 'theme-ui'
 import LoadingChart from './loadingChart'
 import SelectionPrompt from './selectionPrompt'
 import { ChartProps } from '../'
-import { NoDataBoard } from '../Styled'
+import { NoDataBoard, ReactChartWrapper } from '../Styled'
 
 const EmptyChart = ({
   loading,
@@ -17,7 +17,7 @@ const EmptyChart = ({
   const noData = data.length === 0 && !noSelected && !loading
 
   return (
-    <>
+    <ReactChartWrapper>
       {loading && <LoadingChart />}
       {noSelected && <SelectionPrompt {...{ data, embedded }} />}
       {(error || noData) && (
@@ -28,7 +28,7 @@ const EmptyChart = ({
           </div>
         </NoDataBoard>
       )}
-    </>
+    </ReactChartWrapper>
   )
 }
 
