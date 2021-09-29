@@ -18,6 +18,11 @@ export const CollectionTableBase = styled(Table)`
     // width: 100%;
   }
 
+  & tbody td:nth-of-type(1) {
+    width: 0px;
+    background-color: red;
+  }
+
   /* Round table corners across the child cells. */
   & td:first-of-type {
     border-top-left-radius: ${({ theme }) => theme.radii.sm};
