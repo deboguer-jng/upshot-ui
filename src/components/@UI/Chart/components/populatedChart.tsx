@@ -29,7 +29,7 @@ const PopulatedChart = ({
 }: PopulatedChartProps) => {
   const theme = useTheme()
   const [filterStatus, setFilterStatus] = useState(chartData.map((_) => true))
-  const [hoverValues, setHoverValues] = useState(chartData.map(set => [set.currentValue.timestamp, set.currentValue.value]))
+  const [hoverValues, setHoverValues] = useState(chartData.map(set => [set.currentValue?.timestamp, set.currentValue?.value]))
   const [temporaryValue, setTemporaryValue] = useState([])
 
   useMemo(() => {
@@ -60,21 +60,27 @@ const PopulatedChart = ({
               : 'alone'
           }
           title={set.name}
-          price_1={hoverValues[i][1].toString()}
+          price_1={hoverValues[i][1]?.toString()}
           date={new Date(hoverValues[i][0]).toLocaleString()}
-          atl={set.atl.toString()}
-          ath={set.ath.toString()}
+          atl={set.atl?.toString()}
+          ath={set.ath?.toString()}
           
         />
       )
     })
   }
 
+  const columns = () => {
+    return chartData.length > 1
+      ? [2, 2, 3, 5]
+      : 1
+  }
+
   return (
     <>
       {
         !embedded && (
-          <Grid columns={[2, 2, 3, 5]}>
+          <Grid columns={columns()}>
             {chartLabels()}
           </Grid>
         )

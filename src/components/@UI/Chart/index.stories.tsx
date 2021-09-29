@@ -84,31 +84,9 @@ Main.args = {
   ],
 }
 
-export const MainHover = HoverTemplate.bind({})
-MainHover.args = {
+export const MainSingle = Template.bind({})
+MainSingle.args = {
   data: [
-    {
-      name: 'CryptoPunks',
-      data: [
-        [1327359600000, 3.95],
-        [1327446000000, 11.34],
-        [1327532400000, 8.18],
-        [1327618800000, 26.05],
-        [1327878000000, 60.0],
-        [1327964400000, 62.95],
-        [1328050800000, 55.24],
-        [1328137200000, 45.29],
-        [1328223600000, 80.85],
-        [1328482800000, 85.86],
-        [1328569200000, 86.28],
-      ],
-      atl: 3.95,
-      ath: 86.28,
-      currentValue: {
-        timestamp: 1328569200000,
-        value: 86.28
-      }
-    },
     {
       name: 'Chromie Squiggles',
       data: [
@@ -130,8 +108,8 @@ MainHover.args = {
         timestamp: 1328569200000,
         value: 42.28
       }
-    },
-  ],
+    }
+  ]
 }
 
 export const Embedded = Template.bind({})
