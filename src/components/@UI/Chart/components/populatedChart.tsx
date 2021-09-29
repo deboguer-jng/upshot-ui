@@ -3,7 +3,7 @@ import { useTheme } from '@emotion/react'
 import { ApexOptions } from 'apexcharts'
 import ReactApexChart from 'react-apexcharts'
 
-import { CustomLegendWrapper } from '../Styled'
+import { CustomLegendWrapper, ReactChartWrapper } from '../Styled'
 import { getOptions, toggle } from '../utils'
 import ButtonChartCollection from '../../ButtonChartCollection'
 import ChartLabel from '../../ChartLabel'
