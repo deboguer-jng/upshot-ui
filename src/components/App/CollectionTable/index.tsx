@@ -13,7 +13,7 @@ const CollectionTable = forwardRef(
     ref: React.ForwardedRef<HTMLTableElement>
   ) => (
     <CollectionTableBase
-      sx={{ borderSpacing: '0 8px' }}
+      sx={{ borderSpacing: '0 8px', tableLayout: 'fixed' }}
       {...{ ref, children, ...props }}
     >
       {children}
