@@ -18,9 +18,9 @@ export const CollectionTableBase = styled(Table)`
     // width: 100%;
   }
 
+  /* Make avatar cell smaller */
   & tbody td:nth-of-type(1) {
     width: 0px;
-    background-color: red;
   }
 
   /* Round table corners across the child cells. */

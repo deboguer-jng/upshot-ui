@@ -46,8 +46,7 @@ const CollectionRow = forwardRef(
           />
         </TableCell>
 
-        {/* Titles expand to fill all remaining space. */}
-        <TableCell sx={{ maxWidth: 0 }}>
+        <TableCell>
           <Text
             variant="large"
             as={onClick ? 'a' : 'span'}
