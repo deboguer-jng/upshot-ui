@@ -23,8 +23,8 @@ export const IconBox = styled(Box)<ChartLabelProps>`
 `
 export const StyledIconButton = styled(IconButton)<ChartLabelProps>`
     padding: 0;
-    width: 18px;
-    height: 18px;
+    width: 17px;
+    height: 17px;
     vertical-align: top;
 `
 
@@ -40,7 +40,7 @@ export const StyledH1 = styled('h1')<ChartLabelProps>`
     ${({ $variant }) => $variant === 'alone' ?  'display: inline-block;' : ''}
 `
 
-export const StyledDateTime = styled('h2')<ChartLabelProps>`
+export const StyledDateTime = styled('h3')<ChartLabelProps>`
     margin: 0px 0px;
     text-transform: uppercase;
     position: ${({ $variant }) => $variant === 'alone' ?  'absolute' : 'inherit'};
@@ -63,6 +63,7 @@ export const StyledRed = styled(Text)`
 export const StyledBlue = styled(Text)`
     color: ${({ theme }) => theme.colors.primary};
     font-size: inherit; // this is important to make ChartLabel responsive
+    padding-left: 5px;
 `
 
 export const InlineLabel = styled(Label)`

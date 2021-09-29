@@ -61,7 +61,7 @@ const PopulatedChart = ({
           }
           title={set.name}
           price_1={hoverValues[i][1].toString()}
-          date={new Date(hoverValues[i][0]).toUTCString()}
+          date={new Date(hoverValues[i][0]).toLocaleString()}
           atl={set.atl.toString()}
           ath={set.ath.toString()}
           

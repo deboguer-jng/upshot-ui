@@ -115,7 +115,6 @@ const ChartLabel = forwardRef(
         <StyledBox $variant={variant}>
           <StyledTitle $color={titleColor}>
             { variant == 'multi' ? title+' ' : '' }
-            price:
           </StyledTitle>
           <StyledH1 $variant={variant}>
             <Label variant='currency' currencySymbol={currency_1} size={ isMobile ? 'md' : 'lg' }>
@@ -136,10 +135,10 @@ const ChartLabel = forwardRef(
           </StyledDateTime>
           <Box>
             <StyledRed>
-              ATL: {'Ξ' + atl}
+              ATL:  {'Ξ' + atl}
             </StyledRed>
             <StyledBlue>
-              ATH: {'Ξ' + ath}
+              ATH:  {'Ξ' + ath}
             </StyledBlue>
           </Box>
         </StyledBox>
