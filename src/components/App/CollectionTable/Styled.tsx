@@ -10,6 +10,7 @@ export const CollectionTableBase = styled(Table)`
     overflow: hidden;
     white-space: nowrap;
     font-size: ${({ theme }) => theme.fontSizes[2]};
+    width: auto;
   }
 
   /* Expand first text-container column fill remaining space. */
@@ -19,8 +20,9 @@ export const CollectionTableBase = styled(Table)`
   }
 
   /* Make avatar cell smaller */
+  & thead td:nth-of-type(1),
   & tbody td:nth-of-type(1) {
-    width: 0px;
+    width: 88px; //  == 56 + (2*16)
   }
 
   /* Round table corners across the child cells. */

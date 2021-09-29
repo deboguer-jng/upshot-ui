@@ -28,10 +28,11 @@ const Template = ({ items }: CollectionRecipe) => {
   const COLUMNS = ['Column 1', 'Column 2', 'Column 3']
 
   return (
-    <CollectionTable>
+    <CollectionTable style={{ tableLayout: 'fixed' }}>
       <TableHead sx={{ color: theme.colors['grey-500'] }}>
         <TableRow>
-          <TableCell colSpan={2}>Name</TableCell>
+          <TableCell>Name</TableCell> {/* Avatar */}
+          <TableCell></TableCell> {/* Name */}
           {isMobile ? (
             // Mobile only shows the first and last columns
             <TableCell>{`${COLUMNS[0]} & ${COLUMNS.slice(-1)[0]}`}</TableCell>
