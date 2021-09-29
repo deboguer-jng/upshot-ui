@@ -13,6 +13,7 @@ import {
   MiniNftCardDetailLabel,
   MiniNftCardDetailValue,
   MiniNftCardImageWrapper,
+  WrappedLink,
 } from './Styled'
 
 export interface MiniNftCardInterface {
@@ -58,6 +59,8 @@ export interface MiniNftCardInterface {
   type?: 'default' | 'search'
 
   pixelated?: boolean
+
+  link?: string
 }
 
 const MiniNftCard = forwardRef(
@@ -73,6 +76,7 @@ const MiniNftCard = forwardRef(
       from,
       to,
       date,
+      link,
       pixelated = false,
       ...props
     }: MiniNftCardInterface & HTMLAttributes<HTMLDivElement>,
@@ -151,6 +155,21 @@ const MiniNftCard = forwardRef(
               </Flex>
             ) : (
               price
+            )}
+          </MiniNftCardDetailValue>
+          <MiniNftCardDetailValue>
+            {error ? (
+              <Text variant="small" color="grey-600">
+                View Collection
+              </Text>
+            ) : (
+              <WrappedLink href={link}>
+                {' '}
+                <Text variant="small" color="primary">
+                  {' '}
+                  View Collection{' '}
+                </Text>
+              </WrappedLink>
             )}
           </MiniNftCardDetailValue>
         </MiniNftCardDetailsBoard>

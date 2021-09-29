@@ -48,6 +48,7 @@ Default.args = {
   date: '08/25/2021',
   from: '0xce..ea4',
   to: '0xdf...4a1',
+  link: 'https://google.com',
 }
 
 export const DefaultPixelated = Template1.bind({})
@@ -60,6 +61,7 @@ DefaultPixelated.args = {
   from: '0xce..ea4',
   to: '0xdf...4a1',
   pixelated: true,
+  link: 'https://google.com',
 }
 
 export const DefaultLongName = Template.bind({})
@@ -70,6 +72,7 @@ DefaultLongName.args = {
   date: '08/25/2021',
   from: '0xce..ea4',
   to: '0xdf...4a1',
+  link: 'https://google.com',
 }
 
 export const Search = Template.bind({})
@@ -81,6 +84,7 @@ Search.args = {
   creator: 'creator',
   rarity: '45%',
   type: 'search',
+  link: 'https://google.com',
 }
 
 export const SearchLongName = Template.bind({})
@@ -93,4 +97,5 @@ SearchLongName.args = {
   date: '08/25/2021',
   rarity: '62.5%',
   type: 'search',
+  link: 'https://google.com',
 }
