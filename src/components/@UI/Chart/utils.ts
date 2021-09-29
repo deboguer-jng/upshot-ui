@@ -6,7 +6,7 @@ export function getOptions(
   theme: UpshotUIThemeType,
   data: Array<{
     name: string
-    data: number[] | (Date | number)[][]
+    data: number[] | number[][]
     length?: number
   }>,
   events?: any
@@ -35,7 +35,7 @@ export function getOptions(
         enabled: true,
       },
       events: {
-        ...(events || {})
+        ...(events || {}),
       },
     },
     stroke: {
@@ -102,7 +102,7 @@ export function getOptions(
           globals: { labels },
         },
       }) {
-        const time = new Date(labels[dataPointIndex]);
+        const time = new Date(labels[dataPointIndex])
 
         return `
         <style>
@@ -112,9 +112,6 @@ export function getOptions(
             box-shadow: none!important;
           }
         </style>
-        <div>
-          ${time.toUTCString()}
-        </div>
         `
       },
       x: {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { useTheme } from '@emotion/react'
 import { ApexOptions } from 'apexcharts'
 import ReactApexChart from 'react-apexcharts'
@@ -6,43 +6,106 @@ import ReactApexChart from 'react-apexcharts'
 import { CustomLegendWrapper, ReactChartWrapper } from '../Styled'
 import { getOptions, toggle } from '../utils'
 import ButtonChartCollection from '../../ButtonChartCollection'
+import ChartLabel from '../../ChartLabel'
+import Grid from '../../../Layout/Grid'
 
 interface PopulatedChartProps {
   chartData: {
     name: string
-    data: number[] | (Date | number)[][]
+    data: number[] | number[][] // Supports 1D line chart or 2D [timestamp, value] series
+    ath: number
+    atl: number
   }[]
   embedded: boolean
-  dataPointMouseEnter?: (e: React.MouseEvent, ctx: any, config: any) => void
 }
 
-const PopulatedChart = ({
-  chartData,
-  embedded,
-  dataPointMouseEnter,
-}: PopulatedChartProps) => {
+type HoverDataPoint = {
+  value: number | null
+  timestamp: number | null
+}
+
+const PopulatedChart = ({ chartData, embedded }: PopulatedChartProps) => {
   const theme = useTheme()
   const [filterStatus, setFilterStatus] = useState(chartData.map((_) => true))
 
+  /* Initialize the hover dataPoints for each series in the chartData array. */
+  const emptyHoverState = [...new Array(chartData.length)].map((_) => ({
+    value: null,
+    timestamp: null,
+  }))
+  const [hoverDataPoint, setHoverDataPoint] =
+    useState<HoverDataPoint[]>(emptyHoverState)
+
   const colors = ['blue', 'pink', 'purple', 'yellow', 'red', 'green']
   const options: ApexOptions = getOptions(theme, chartData, {
-    mouseMove: dataPointMouseEnter,
+    mouseLeave() {
+      /* Reset hover state on exit. */
+      setHoverDataPoint(emptyHoverState)
+    },
+    mouseMove(e: React.MouseEvent<SVGElement>, ctx: any, data: any) {
+      /* Grab the index for the data series under the cursor. */
+      const seriesIndex: number = data.seriesIndex
+      const dataPointIndex: number = data.dataPointIndex
+      const dataPoint = chartData[seriesIndex].data[dataPointIndex]
+
+      /* Clone the existing state. */
+      const updatedHoverDatapoint = [...hoverDataPoint]
+
+      /* Update the value under the cursor as 2D timeseries or 1D line chart. */
+      updatedHoverDatapoint[seriesIndex] = Array.isArray(dataPoint)
+        ? { timestamp: dataPoint[0], value: dataPoint[1] }
+        : { timestamp: null, value: dataPoint }
+
+      setHoverDataPoint(updatedHoverDatapoint)
+    },
   })
+
+  const chartLabels = chartData
+    .filter((_, i) => filterStatus[i]) // Toggle display by selected filter button
+    .map((set, i) => (
+      <ChartLabel
+        key={i}
+        variant={chartData.length > 1 ? 'multi' : 'alone'}
+        title={set.name}
+        price_1={
+          hoverDataPoint[i].value ??
+          (Array.isArray(set.data[set.data.length - 1]) // Default to last price
+            ? (set.data[set.data.length - 1] as number[])[1]
+            : (set.data[set.data.length - 1] as number))
+        }
+        timestamp={
+          hoverDataPoint[i].timestamp ??
+          (Array.isArray(set.data[set.data.length - 1]) // Default to last timestamp
+            ? (set.data[set.data.length - 1] as number[])[0]
+            : null)
+        }
+        atl={set.atl}
+        ath={set.ath}
+      />
+    ))
+
+  const columns = () => {
+    return chartData.length > 1 ? [2, 2, 3, 5] : 1
+  }
+
+  /* Memoize Apex to prevent side effects from mouseEvent listeners. */
+  const chart = useMemo(
+    () => (
+      <ReactApexChart
+        series={chartData}
+        type="area"
+        height="100%"
+        width="100%"
+        {...{ options, embedded }}
+      />
+    ),
+    [chartData]
+  )
 
   return (
     <>
-      <ReactChartWrapper>
-        <div>
-          <ReactApexChart
-            series={chartData}
-            type="area"
-            height="100%"
-            width="100%"
-            embedded={+embedded}
-            {...{ options }}
-          />
-        </div>
-      </ReactChartWrapper>
+      {!embedded && <Grid columns={columns()}>{chartLabels}</Grid>}
+      {chart}
       {!embedded && (
         <CustomLegendWrapper>
           {[...new Array(chartData.length)].map((_, i) => (
