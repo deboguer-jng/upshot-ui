@@ -50,9 +50,15 @@ const PopulatedChart = ({ chartData, embedded }: PopulatedChartProps) => {
       setHoverDataPoint(emptyHoverState)
     },
     mouseMove(e: React.MouseEvent<SVGElement>, ctx: any, data: any) {
-      /* Grab the index for the data series under the cursor. */
-      const seriesIndex: number = data.seriesIndex
-      const dataPointIndex: number = data.dataPointIndex
+      /**
+       * Grabs the dataPoint under the cursor.
+       *
+       * Using a workaround to grab the first datapoint where seriesIndex is negative.
+       * @notice If we increase dataPoint size above 0, we can use `dataPointMouseEnter`
+       */
+      const dataPointIndex: number =
+        data.seriesIndex < 0 ? 0 : data.dataPointIndex
+      const seriesIndex: number = Math.max(0, data.seriesIndex)
       const dataPoint = chartData[seriesIndex]?.data[dataPointIndex]
       if (!dataPoint) return
 
