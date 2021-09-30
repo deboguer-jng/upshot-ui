@@ -27,8 +27,8 @@ export interface ChartProps {
   data?: {
     name: string
     data: number[] | number[][]
-    ath: string
-    atl: string
+    ath?: string
+    atl?: string
   }[]
   /**
    * Renders the search variant.
