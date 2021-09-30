@@ -39,9 +39,7 @@ const Template = ({ items }: CollectionRecipe) => {
           ) : (
             <>
               {COLUMNS.map((col, key) => (
-                <TableCell sx={{ minWidth: 100 }} {...{ key }}>
-                  {col}
-                </TableCell>
+                <TableCell {...{ key }}>{col}</TableCell>
               ))}
             </>
           )}
@@ -84,7 +82,8 @@ Default.args = {
     {
       title:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales quis ex nec sagittis.',
-      imageSrc: 'https://res.cloudinary.com/upshot-inc/image/upload/v1631594132/f925l47yyhxbsmfwp44h.jpg',
+      imageSrc:
+        'https://res.cloudinary.com/upshot-inc/image/upload/v1631594132/f925l47yyhxbsmfwp44h.jpg',
       columns: ['Value 1', 'Value 2', 'Value 3'],
     },
     {
