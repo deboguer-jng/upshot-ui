@@ -13,16 +13,11 @@ export const CollectionTableBase = styled(Table)`
     width: auto;
   }
 
-  /* Expand first text-container column fill remaining space. */
-  & thead td:nth-of-type(1), /* First colSpan is 2 */
-  & tbody td:nth-of-type(2) {
-    // width: 100%;
-  }
-
   /* Make avatar cell smaller */
   & thead td:nth-of-type(1),
   & tbody td:nth-of-type(1) {
-    width: 120px; //  == 56 + (2*16)
+    box-sizing: content-box;
+    width: 48px;
   }
 
   /* Round table corners across the child cells. */
