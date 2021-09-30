@@ -14,6 +14,7 @@ export const CollectionButtonWrapper = styled.div<CollectionButtonWrapperProps>`
   height: ${({ theme }) => theme.buttons.collection.height}px;
   border-radius: ${({ theme }) => theme.buttons.collection.borderRadius}px;
   padding: 4px;
+  padding-right: 10px;
   ${({ theme, $underglow }) =>
     !!$underglow && `box-shadow: ${theme.shadow.underglow($underglow)};`}
   cursor: pointer;
