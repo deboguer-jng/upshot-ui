@@ -22,7 +22,7 @@ export const CollectionTableBase = styled(Table)`
   /* Make avatar cell smaller */
   & thead td:nth-of-type(1),
   & tbody td:nth-of-type(1) {
-    width: 88px; //  == 56 + (2*16)
+    width: 120px; //  == 56 + (2*16)
   }
 
   /* Round table corners across the child cells. */
