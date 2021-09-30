@@ -42,7 +42,7 @@ const CollectionRow = forwardRef(
         <TableCell>
           <Avatar
             {...{ src, onClick }}
-            sx={{ cursor: onClick ? 'pointer' : 'auto', marginLeft: 16 }}
+            sx={{ cursor: onClick ? 'pointer' : 'auto' }}
           />
         </TableCell>
 
