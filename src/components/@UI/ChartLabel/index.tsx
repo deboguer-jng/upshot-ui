@@ -116,14 +116,14 @@ const ChartLabel = forwardRef(
       <RelativeFlex
         {...{ ref, ...props }}
         $variant={variant}
-        $isMobile={+isMobile}
+        $isMobile={isMobile}
       >
         {variant === 'multi' && (
-          <IconBox $color={titleColor} $isMobile={+isMobile}>
+          <IconBox $color={titleColor} $isMobile={isMobile}>
             <StyledIconButton
               type="button"
               onClick={onClose}
-              $isMobile={+isMobile}
+              $isMobile={isMobile}
             >
               <Icon size={12} color={titleColor} icon="x" />
             </StyledIconButton>
