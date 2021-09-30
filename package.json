@@ -1,6 +1,7 @@
 {
   "name": "@upshot-tech/upshot-ui",
   "description": "The official design system used in Upshot.",
+  "version": "0.2.30",
   "version": "0.2.28",
   "main": "dist/index.js",
   "scripts": {

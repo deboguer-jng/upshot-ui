@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Text } from 'theme-ui'
+import { Text, Link } from 'theme-ui'
 
 interface MiniNftCardPriceProps {
   error?: boolean
@@ -153,7 +153,7 @@ export const MiniNftCardDetailsName = styled(Text)<MiniNftCardDetailsNameProps>`
   color: ${({ theme, error }) =>
     error ? theme.colors.red : theme.colors.white};
   line-height: ${({ theme }) => theme.miniNftCard.name.lineHeight}px;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 1;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -172,4 +172,12 @@ export const MiniNftCardDetailValue = styled(Text)<MiniNftCardDetailValueProps>`
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+`
+
+export const WrappedLink = styled(Link)`
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
 `
