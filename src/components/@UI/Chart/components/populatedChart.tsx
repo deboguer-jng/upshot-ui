@@ -13,8 +13,8 @@ interface PopulatedChartProps {
   chartData: {
     name: string
     data: number[] | number[][] // Supports 1D line chart or 2D [timestamp, value] series
-    ath: string
-    atl: string
+    ath?: string
+    atl?: string
   }[]
   embedded: boolean
 }
