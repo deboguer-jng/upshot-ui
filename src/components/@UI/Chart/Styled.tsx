@@ -4,10 +4,6 @@ interface FilterButtonProps {
   active: boolean
 }
 
-interface ReactApexChartsWrapperProps {
-  embedded: boolean
-}
-
 interface ChartWrapperProps {
   $embedded: boolean
 }
