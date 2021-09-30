@@ -25,6 +25,7 @@ export const LabelAttributeBase = styled.div<LabelAttributeBaseProps>`
   font-family: ${fonts.body};
   font-weight: ${fontWeights.body};
   font-size: ${fontSizes[4]};
+  text-transform: capitalize;
   padding-top: 3px;
 `
 
