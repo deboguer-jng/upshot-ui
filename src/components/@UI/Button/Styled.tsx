@@ -16,14 +16,18 @@ interface PlainButtonProps {
 
 export const PrimaryButton = styled.button<PrimaryButtonProps>`
   background: ${({ theme, $type, toggled }) =>
-    toggled
+    typeof toggled === 'undefined'
+      ? theme.buttons.variants[$type].colors.background
+      : toggled
       ? theme.buttons.variants[$type].colors.toggledBackground
-      : theme.buttons.variants[$type].colors.background};
+      : theme.buttons.variants[$type].colors.hoverBackground};
   border: none;
   box-shadow: ${({ theme, $type, toggled }) =>
-      toggled
+      typeof toggled === 'undefined'
+        ? theme.buttons.variants[$type].colors.border
+        : toggled
         ? theme.buttons.variants[$type].colors.toggledBorder
-        : theme.buttons.variants[$type].colors.border}
+        : theme.buttons.variants[$type].colors.hoverBorder}
     0px 0px 0px 1.8px;
   font-size: ${({ theme, $size }) => theme.buttons.property[$size].fontSize}px;
   height: ${({ theme, $size }) => theme.buttons.property[$size].height}px;
@@ -45,18 +49,22 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
 
   & * {
     fill: ${({ theme, $type, toggled }) =>
-      toggled
+      typeof toggled === 'undefined'
+        ? theme.buttons.variants[$type].colors.color
+        : toggled
         ? theme.buttons.variants[$type].colors.toggledColor
-        : theme.buttons.variants[$type].colors.color};
+        : theme.buttons.variants[$type].colors.hoverColor};
   }
 
   span {
     flex-grow: 1;
     font-family: ${({ theme }) => theme.fonts.body};
     color: ${({ theme, $type, toggled }) =>
-      toggled
+      typeof toggled === 'undefined'
+        ? theme.buttons.variants[$type].colors.color
+        : toggled
         ? theme.buttons.variants[$type].colors.toggledColor
-        : theme.buttons.variants[$type].colors.color};
+        : theme.buttons.variants[$type].colors.hoverColor};
   }
 
   &:disabled {
@@ -71,56 +79,73 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
 
   &:not(:disabled):not(:focus):hover {
     background: ${({ theme, $type, toggled }) =>
-      toggled
+      typeof toggled === 'undefined'
+        ? theme.buttons.variants[$type].colors.hoverBackground
+        : toggled
         ? `${darken(
             0.1,
             theme.buttons.variants[$type].colors.toggledHoverBackground
           )}`
-        : theme.buttons.variants[$type].colors.hoverBackground};
+        : theme.buttons.variants[$type].colors.background};
     box-shadow: ${({ theme, $type, toggled }) =>
-        toggled
+        typeof toggled === 'undefined'
+          ? theme.buttons.variants[$type].colors.hoverBorder
+          : toggled
           ? `${darken(
               0.1,
               theme.buttons.variants[$type].colors.toggledHoverBorder
             )}`
-          : theme.buttons.variants[$type].colors.hoverBorder}
+          : theme.buttons.variants[$type].colors.border}
       0px 0px 0px 1.8px;
     span {
       color: ${({ theme, $type, toggled }) =>
-        toggled
+        typeof toggled === 'undefined'
+          ? theme.buttons.variants[$type].colors.hoverColor
+          : toggled
           ? `${darken(
               0.1,
               theme.buttons.variants[$type].colors.toggledHoverColor
             )}`
-          : theme.buttons.variants[$type].colors.hoverColor};
+          : theme.buttons.variants[$type].colors.color};
     }
 
     & * {
       fill: ${({ theme, $type, toggled }) =>
-        toggled
+        typeof toggled === 'undefined'
+          ? theme.buttons.variants[$type].colors.hoverColor
+          : toggled
           ? `${darken(
               0.1,
               theme.buttons.variants[$type].colors.toggledHoverColor
             )}`
-          : theme.buttons.variants[$type].colors.hoverColor};
+          : theme.buttons.variants[$type].colors.color};
     }
   }
 
   &:not(:disabled):active {
     transform: scale(0.95);
-    ${({
-      theme,
-      $type,
-    }) => `background: ${theme.buttons.variants[$type].colors.pressedBackground};
+    ${({ theme, $type, toggled }) => `background: ${
+      typeof toggled === 'undefined'
+        ? theme.buttons.variants[$type].colors.pressedBackground
+        : theme.buttons.variants[$type].colors.background
+    };
       box-shadow:
         ${theme.buttons.variants[$type].colors.pressedBorder} 0px 0px 0px 1.8px;
       span {
-        color: ${theme.buttons.variants[$type].colors.pressedColor};
+        color: ${
+          typeof toggled === 'undefined'
+            ? theme.buttons.variants[$type].colors.pressedColor
+            : theme.buttons.variants[$type].colors.color
+        };
       }
 
       svg {
         path {
-          fill: ${theme.buttons.variants[$type].colors.pressedColor};
+          fill: ${
+            typeof toggled === 'undefined'
+              ? theme.buttons.variants[$type].colors.pressedColor
+              : theme.buttons.variants[$type].colors.color
+          };
         }
       }`}
   }
