@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import { useTheme } from '@emotion/react'
 import { ApexOptions } from 'apexcharts'
 import ReactApexChart from 'react-apexcharts'
@@ -7,14 +7,14 @@ import { CustomLegendWrapper, ReactChartWrapper } from '../Styled'
 import { getOptions, toggle } from '../utils'
 import ButtonChartCollection from '../../ButtonChartCollection'
 import ChartLabel from '../../ChartLabel'
-import Grid from '../../../Layout/Grid'
+import Flex from '../../../Layout/Flex'
 
 interface PopulatedChartProps {
   chartData: {
     name: string
     data: number[] | number[][] // Supports 1D line chart or 2D [timestamp, value] series
-    ath: number
-    atl: number
+    ath: string
+    atl: string
   }[]
   embedded: boolean
 }
@@ -26,7 +26,14 @@ type HoverDataPoint = {
 
 const PopulatedChart = ({ chartData, embedded }: PopulatedChartProps) => {
   const theme = useTheme()
-  const [filterStatus, setFilterStatus] = useState(chartData.map((_) => true))
+
+  const emptyFilters = chartData.map((_) => true)
+  const [filterStatus, setFilterStatus] = useState(emptyFilters)
+
+  /* Reset filters when data changes. */
+  useEffect(() => {
+    setFilterStatus(emptyFilters)
+  }, [chartData])
 
   /* Initialize the hover dataPoints for each series in the chartData array. */
   const emptyHoverState = [...new Array(chartData.length)].map((_) => ({
@@ -46,7 +53,8 @@ const PopulatedChart = ({ chartData, embedded }: PopulatedChartProps) => {
       /* Grab the index for the data series under the cursor. */
       const seriesIndex: number = data.seriesIndex
       const dataPointIndex: number = data.dataPointIndex
-      const dataPoint = chartData[seriesIndex].data[dataPointIndex]
+      const dataPoint = chartData[seriesIndex]?.data[dataPointIndex]
+      if (!dataPoint) return
 
       /* Clone the existing state. */
       const updatedHoverDatapoint = [...hoverDataPoint]
@@ -79,14 +87,14 @@ const PopulatedChart = ({ chartData, embedded }: PopulatedChartProps) => {
             ? (set.data[set.data.length - 1] as number[])[0]
             : null)
         }
-        atl={set.atl}
-        ath={set.ath}
+        onClose={() => {
+          const idx = chartData.findIndex(({ name }) => name === set.name)
+          toggle(idx, chartData[i].name, filterStatus, setFilterStatus)
+        }}
+        atl={set.atl ?? '-'}
+        ath={set.ath ?? '-'}
       />
     ))
-
-  const columns = () => {
-    return chartData.length > 1 ? [2, 2, 3, 5] : 1
-  }
 
   /* Memoize Apex to prevent side effects from mouseEvent listeners. */
   const chart = useMemo(
@@ -104,7 +112,7 @@ const PopulatedChart = ({ chartData, embedded }: PopulatedChartProps) => {
 
   return (
     <>
-      {!embedded && <Grid columns={columns()}>{chartLabels}</Grid>}
+      {!embedded && <Flex sx={{ gap: 4 }}>{chartLabels}</Flex>}
       {chart}
       {!embedded && (
         <CustomLegendWrapper>

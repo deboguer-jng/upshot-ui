@@ -59,11 +59,11 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * All time low price (eg. 4.34)
    */
-  atl?: number
+  atl?: string
   /**
    * All time high price (eg. 4.34)
    */
-  ath?: number
+  ath?: string
   /**
    * All time high price (eg. Ξ4.34)
    */
@@ -95,6 +95,23 @@ const ChartLabel = forwardRef(
   ) => {
     const isMobile = useBreakpointIndex() <= 1
 
+    function nFormatter(num: number, digits = 2) {
+      const lookup = [
+        { value: 1, symbol: '' },
+        { value: 1e3, symbol: 'k' },
+        { value: 1e6, symbol: 'M' },
+        { value: 1e9, symbol: 'B' },
+      ]
+      const rx = /\.0+$|(\.[0-9]*[1-9])0+$/
+      const item = lookup
+        .slice()
+        .reverse()
+        .find((item) => num >= item.value)
+      return item
+        ? (num / item.value).toFixed(digits).replace(rx, '$1') + item.symbol
+        : '0'
+    }
+
     return (
       <RelativeFlex
         {...{ ref, ...props }}
@@ -122,7 +139,7 @@ const ChartLabel = forwardRef(
               currencySymbol={currency_1}
               size={isMobile ? 'md' : 'lg'}
             >
-              {price_1.toString()}
+              {nFormatter(price_1)}
             </Label>
           </StyledH1>
           <StyledChangeDiv $variant={variant}>
@@ -133,7 +150,7 @@ const ChartLabel = forwardRef(
                 currencySymbol={currency_2}
                 size={isMobile ? 'xs' : 'sm'}
               >
-                {price_2.toString()}
+                {nFormatter(price_2)}
               </InlineLabel>
             )}
             {change && `(${change})`}
@@ -146,8 +163,8 @@ const ChartLabel = forwardRef(
           )}
 
           <Box>
-            <StyledRed>ATL: Ξ{atl}</StyledRed>
-            <StyledBlue>ATH: Ξ{ath}</StyledBlue>
+            <StyledRed>ATL: {atl}</StyledRed>
+            <StyledBlue>ATH: {ath}</StyledBlue>
           </Box>
         </StyledBox>
       </RelativeFlex>
