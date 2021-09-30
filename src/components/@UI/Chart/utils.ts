@@ -55,7 +55,7 @@ export function getOptions(
       labels: {
         show: false,
       },
-      logarithmic: true,
+      forceNiceScale: true,
     },
     xaxis: {
       axisBorder: {
