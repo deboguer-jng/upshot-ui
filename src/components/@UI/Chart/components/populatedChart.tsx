@@ -112,7 +112,18 @@ const PopulatedChart = ({ chartData, embedded }: PopulatedChartProps) => {
 
   return (
     <>
-      {!embedded && <Flex sx={{ gap: 4 }}>{chartLabels}</Flex>}
+      {!embedded && (
+        <Flex
+          sx={{
+            gap: 4,
+            flexDirection: ['column', 'column', 'row'],
+            alignItems: ['center', 'center', 'flex-start'],
+            textAlign: ['center', 'center', 'left'],
+          }}
+        >
+          {chartLabels}
+        </Flex>
+      )}
       {chart}
       {!embedded && (
         <CustomLegendWrapper>
