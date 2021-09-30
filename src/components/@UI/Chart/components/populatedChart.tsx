@@ -16,7 +16,7 @@ interface PopulatedChartProps {
     ath?: string
     atl?: string
   }[]
-  embedded: boolean
+  embedded?: boolean
 }
 
 type HoverDataPoint = {
@@ -24,7 +24,10 @@ type HoverDataPoint = {
   timestamp: number | null
 }
 
-const PopulatedChart = ({ chartData, embedded }: PopulatedChartProps) => {
+const PopulatedChart = ({
+  chartData,
+  embedded = false,
+}: PopulatedChartProps) => {
   const theme = useTheme()
 
   const emptyFilters = chartData.map((_) => true)
@@ -110,7 +113,7 @@ const PopulatedChart = ({ chartData, embedded }: PopulatedChartProps) => {
         type="area"
         height="100%"
         width="100%"
-        {...{ options, embedded }}
+        {...{ options }}
       />
     ),
     [chartData]

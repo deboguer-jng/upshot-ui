@@ -15,7 +15,7 @@ interface SelectionPromptProps {
   }[]
 }
 
-const SelectionPrompt = ({ data, embedded }: SelectionPromptProps) => {
+const SelectionPrompt = ({ embedded }: SelectionPromptProps) => {
   const theme = useTheme()
   const options: ApexOptions = getOptions(theme, theme.chart.defaultSeries)
 
@@ -26,8 +26,7 @@ const SelectionPrompt = ({ data, embedded }: SelectionPromptProps) => {
         type="area"
         height="100%"
         width="100%"
-        embedded={+embedded}
-        {...{ options }}
+        {...{ options, embedded }}
       />
       <ChartNoSelectedTextArea>
         <div>
