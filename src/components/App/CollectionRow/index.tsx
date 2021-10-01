@@ -22,6 +22,7 @@ export interface CollectionRowProps extends TableRowProps {
    * OnClick handler.
    */
   onClick?: () => void
+  pixelated?: boolean
 }
 
 const CollectionRow = forwardRef(
@@ -31,6 +32,7 @@ const CollectionRow = forwardRef(
       title,
       dark,
       children,
+      pixelated,
       onClick,
       ...props
     }: CollectionRowProps,
@@ -42,6 +44,7 @@ const CollectionRow = forwardRef(
         <TableCell>
           <Avatar
             {...{ src, onClick }}
+            pixelated={pixelated}
             sx={{ cursor: onClick ? 'pointer' : 'auto' }}
           />
         </TableCell>
