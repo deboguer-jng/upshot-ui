@@ -75,6 +75,7 @@ const PopulatedChart = ({ chartData, embedded }: PopulatedChartProps) => {
         key={i}
         variant={chartData.length > 1 ? 'multi' : 'alone'}
         title={set.name}
+        titleColor={colors[i] as keyof typeof theme['colors']}
         price_1={
           hoverDataPoint[i].value ??
           (Array.isArray(set.data[set.data.length - 1]) // Default to last price
