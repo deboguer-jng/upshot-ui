@@ -13,7 +13,6 @@ import {
   StyledRed,
   StyledBlue,
   InlineLabel,
-  StyledBox,
   RelativeFlex,
 } from './Styled'
 import { useBreakpointIndex } from '@theme-ui/match-media'
@@ -129,7 +128,7 @@ const ChartLabel = forwardRef(
             </StyledIconButton>
           </IconBox>
         )}
-        <StyledBox $variant={variant}>
+        <Box>
           <StyledTitle $color={titleColor}>
             {variant == 'multi' ? title + ' ' : ''}
           </StyledTitle>
@@ -166,7 +165,7 @@ const ChartLabel = forwardRef(
             <StyledRed>ATL: {atl}</StyledRed>
             <StyledBlue>ATH: {ath}</StyledBlue>
           </Box>
-        </StyledBox>
+        </Box>
       </RelativeFlex>
     )
   }
