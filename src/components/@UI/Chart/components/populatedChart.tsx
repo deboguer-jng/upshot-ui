@@ -85,13 +85,13 @@ const PopulatedChart = ({
         variant={chartData.length > 1 ? 'multi' : 'alone'}
         title={set.name}
         price_1={
-          hoverDataPoint[i].value ??
+          hoverDataPoint[i]?.value ??
           (Array.isArray(set.data[set.data.length - 1]) // Default to last price
             ? (set.data[set.data.length - 1] as number[])[1]
             : (set.data[set.data.length - 1] as number))
         }
         timestamp={
-          hoverDataPoint[i].timestamp ??
+          hoverDataPoint[i]?.timestamp ??
           (Array.isArray(set.data[set.data.length - 1]) // Default to last timestamp
             ? (set.data[set.data.length - 1] as number[])[0]
             : null)
