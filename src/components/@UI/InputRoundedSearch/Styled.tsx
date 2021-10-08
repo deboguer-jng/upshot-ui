@@ -42,6 +42,7 @@ export const InputRounededSearchSuggestions = styled.div`
 
 export const InputRoundedSearchSuggestionItem = styled.div`
   padding: 5px;
+  cursor: pointer;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors['grey-800']};
