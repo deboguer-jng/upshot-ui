@@ -1,10 +1,11 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useState, useRef } from 'react'
 import {
   LabelAttributeBase,
   LabelText,
   RightAlignBlock,
   Division,
   CloseButton,
+  LabelAttributeTooltip,
 } from './Styled'
 import Icon from '../Icon'
 import { Text } from 'theme-ui'
@@ -41,9 +42,39 @@ const LabelAttribute = forwardRef(
     }: LabelAttributeProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
+    const [showTooltip, setShowTooltip] = useState(false)
+    const labelRef = useRef()
+
+    const handleMouseOver = () => {
+      if (
+        (labelRef.current as HTMLElement).scrollWidth >
+        (labelRef.current as HTMLElement).clientWidth
+      ) {
+        setShowTooltip(true)
+      }
+    }
+
+    const handleMouseOut = () => {
+      if (showTooltip) setShowTooltip(false)
+    }
+
     return (
-      <LabelAttributeBase $transparent={transparent} {...{ ref, props }}>
-        <LabelText>{children}</LabelText>
+      <LabelAttributeBase
+        onMouseOver={handleMouseOver}
+        onMouseLeave={handleMouseOut}
+        $transparent={transparent}
+        {...{ ref, props }}
+      >
+        {showTooltip && (
+          <LabelAttributeTooltip>
+            <Text variant="small" color="grey-500">
+              {children}{' '}
+            </Text>
+          </LabelAttributeTooltip>
+        )}
+        <LabelText ref={labelRef} showTooltip={showTooltip}>
+          {children}
+        </LabelText>
         {variant === 'percentage' && (
           <RightAlignBlock>
             <Division>|</Division>
