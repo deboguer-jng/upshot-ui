@@ -71,12 +71,9 @@ export const InlineLabel = styled(Label)`
   display: inline-block;
 `
 
-export const StyledBox = styled(Box)<ChartLabelProps>`
-  width: ${({ $variant }) => ($variant === 'alone' ? '100%' : 'auto')};
-`
-
 export const RelativeFlex = styled(Flex)<ChartLabelProps>`
   position: relative;
   ${({ $variant }) => ($variant === 'multi' ? 'display: inline-flex;' : '')}
   font-size: ${({ $isMobile }) => ($isMobile ? '0.65em' : '1em')};
+  width: ${({ $variant }) => ($variant === 'alone' ? '100%' : 'auto')};
 `
