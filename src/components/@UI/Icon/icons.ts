@@ -3,6 +3,7 @@ import SVGAddLink from '../../../assets/svg/icons/AddLink.svg'
 import SVGAnalytics from '../../../assets/svg/icons/Analytics.svg'
 import SVGArrowDropdownUserBubbleNavBar from '../../../assets/svg/icons/Arrow_DropDown_UserBubble_NavBar.svg'
 import SVGArrowDropdown from '../../../assets/svg/icons/Arrow_Dropdown.svg'
+import SVGArrowUp from '../../../assets/svg/icons/Arrow_Up.svg'
 import SVGArrowKeyLeft from '../../../assets/svg/icons/Arrow_Key_Left.svg'
 import SVGArrowKeyRight from '../../../assets/svg/icons/Arrow_Key_Right.svg'
 import SVGArrowLargeLeft from '../../../assets/svg/icons/Arrow_Large_Left.svg'
@@ -111,6 +112,7 @@ const icons = {
   analytics: SVGAnalytics,
   arrowDropUserBubble: SVGArrowDropdownUserBubbleNavBar,
   arrowDropdown: SVGArrowDropdown,
+  arrowUp: SVGArrowUp,
   arrowKeyLeft: SVGArrowKeyLeft,
   arrowKeyRight: SVGArrowKeyRight,
   arrowLargeLeft: SVGArrowLargeLeft,
