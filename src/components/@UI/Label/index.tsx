@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react'
 import Colors from '../../../themes/UpshotUI/colors'
 import { StyledThemeUILabel } from './Styled'
+import { Box } from 'theme-ui'
 
 export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -47,29 +48,31 @@ const Label = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
-      <div {...{ ref, ...props }}>
+      <Box {...{ ref, ...props }} sx={{ flexShrink: 0 }}>
         {variant === 'currency' && (
           <StyledThemeUILabel variant={`${size}CurrencySymbol`} $color={color}>
             {currencySymbol}
           </StyledThemeUILabel>
         )}
         {/* Each combination of style and size is a unique variant of the theme */}
-        <StyledThemeUILabel variant={variant + size[0].toUpperCase() + size[1]} $color={color}>
+        <StyledThemeUILabel
+          variant={variant + size[0].toUpperCase() + size[1]}
+          $color={color}
+        >
           {children}
         </StyledThemeUILabel>
-        
+
         {topRightLabel && (
           <Label
-            variant='basic'
-            size={ (size === 'xs' || size === 'sm' || size === 'md') ? 'sm' : 'md' } // If parent label is XS or SM then topRightLabel is sm. If it is larger, it becomes md.
+            variant="basic"
+            size={size === 'xs' || size === 'sm' || size === 'md' ? 'sm' : 'md'} // If parent label is XS or SM then topRightLabel is sm. If it is larger, it becomes md.
             style={{ display: 'inline-block', verticalAlign: 'top' }} // It crashes when you try to style in Styled.tsx. Recursion is funny.
             color={color}
           >
             {topRightLabel}
           </Label>
         )}
-
-      </div>
+      </Box>
     )
   }
 )
