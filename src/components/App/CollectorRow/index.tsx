@@ -1,23 +1,32 @@
 import React, { forwardRef } from 'react'
-import { CollectorAccordionBase } from './Styled'
+import { CollectorRowBase } from './Styled'
 import { Flex, Text } from 'theme-ui'
 import TableCell from '../../Layout/TableCell'
 import Avatar from '../../@UI/Avatar'
 import Icon from '../../@UI/Icon'
 import IconButton from '../../@UI/IconButton'
 
-export interface CollectorAccordionProps
-  extends React.HTMLAttributes<HTMLTableRowElement> {}
+export interface CollectorRowProps
+  extends React.HTMLAttributes<HTMLTableRowElement> {
+  /**
+   * Title for the row.
+   */
+  title?: string
+  /**
+   * Subtitle for the row.
+   */
+  subtitle?: string
+}
 
 /**
  * Provides a surface for UI elements.
  */
-const CollectorAccordion = forwardRef(
+const CollectorRow = forwardRef(
   (
-    props: CollectorAccordionProps,
+    { title, subtitle, ...props }: CollectorRowProps,
     ref: React.ForwardedRef<HTMLTableRowElement>
   ) => (
-    <CollectorAccordionBase {...{ ref, ...props }}>
+    <CollectorRowBase {...{ ref, ...props }}>
       <TableCell>
         <Avatar size="md" src="/img/defaultAvatar.png" />
       </TableCell>
@@ -34,19 +43,20 @@ const CollectorAccordion = forwardRef(
               whiteSpace: 'nowrap',
             }}
           >
-            Robert Downey Jr.Robert Downey Jr.Robert Downey Jr.Robert Downey
-            Jr.Robert Downey Jr.Robert Downey Jr.
+            {title}
           </Text>
-          <Text
-            sx={{
-              fontWeight: 'heading',
-              fontSize: 2,
-              lineHeight: 1,
-              color: 'primary',
-            }}
-          >
-            Owns 149 NFTs
-          </Text>
+          {!!subtitle && (
+            <Text
+              sx={{
+                fontWeight: 'heading',
+                fontSize: 2,
+                lineHeight: 1,
+                color: 'primary',
+              }}
+            >
+              {subtitle}
+            </Text>
+          )}
         </Flex>
       </TableCell>
       <TableCell>
@@ -65,8 +75,8 @@ const CollectorAccordion = forwardRef(
           <Icon color="primary" icon="arrowDropdown" />
         </IconButton>
       </TableCell>
-    </CollectorAccordionBase>
+    </CollectorRowBase>
   )
 )
 
-export default CollectorAccordion
+export default CollectorRow
