@@ -11,7 +11,7 @@ import { useBreakpointIndex } from '@theme-ui/match-media'
 import { useTheme } from '../../../themes/UpshotUI'
 import { Flex } from 'theme-ui'
 
-type CollectionRecipe = {
+type CollectionItems = {
   items: (CollectionRowProps & { columns: string })[]
 }
 
@@ -20,7 +20,7 @@ export default {
   component: CollectionRow,
 } as ComponentMeta<typeof CollectionRow>
 
-const Template = ({ items }: CollectionRecipe) => {
+const Template = ({ items }: CollectionItems) => {
   const { theme } = useTheme()
   const breakpointIndex = useBreakpointIndex()
   const isMobile = breakpointIndex <= 1

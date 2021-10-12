@@ -10,7 +10,11 @@ const CollectorAccordion = forwardRef(
   (
     { children, ...props }: CollectorAccordionProps,
     ref: React.ForwardedRef<HTMLDivElement>
-  ) => <Flex {...{ ref, ...props }}>{children}</Flex>
+  ) => (
+    <Flex {...{ ref, ...props }} sx={{ flexDirection: 'column', gap: 4 }}>
+      {children}
+    </Flex>
+  )
 )
 
 export default CollectorAccordion
