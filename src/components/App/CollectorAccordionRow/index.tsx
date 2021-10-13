@@ -10,8 +10,6 @@ import Icon from '../../@UI/Icon'
 import Label from '../../@UI/Label'
 import IconButton from '../../@UI/IconButton'
 
-export type CollectorAccordionRowVariant = 'landing' | 'collection'
-
 export interface CollectorAccordionRowProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /**
