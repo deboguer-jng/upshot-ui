@@ -84,7 +84,7 @@ const CollectorRow = forwardRef(
     const [open, setOpen] = useState(false)
 
     return (
-      <CollectorRowBase $open={open} {...{ ref, ...props }}>
+      <CollectorRowBase {...{ ref, ...props }}>
         <CollectorRowContent>
           <Avatar size="md" src="/img/defaultAvatar.png" />
 
@@ -142,10 +142,7 @@ const CollectorRow = forwardRef(
           </Flex>
         </CollectorRowContent>
 
-        <CollectorRowExpansion
-          $open={open}
-          $variant={portfolioValue ? 'landing' : 'collection'}
-        >
+        <CollectorRowExpansion $open={open}>
           <Grid
             columns={['1fr', '1fr', portfolioValue ? '1fr' : '1fr 1fr']}
             sx={{ marginX: [0, 0, 46], columnGap: 72, p: 6 }}
