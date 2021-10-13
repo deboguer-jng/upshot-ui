@@ -38,6 +38,7 @@ export { default as CollectionRow } from './components/App/CollectionRow'
 export { default as CollectionTable } from './components/App/CollectionTable'
 export { default as Footer } from './components/App/Footer'
 export { default as Navbar } from './components/App/Navbar'
+export { default as LandingPanels } from './components/App/LandingPanels'
 
 /**
  * Components: Layout
