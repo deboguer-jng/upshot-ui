@@ -26,6 +26,7 @@ export { default as Skeleton } from './components/@UI/Skeleton'
 export { default as Spinner } from './components/@UI/Spinner'
 export { default as Switch } from './components/@UI/Switch'
 export { default as Text } from './components/@UI/Text'
+export { default as TreeMap } from './components/@UI/TreeMap/TreeMapDynamic'
 export { default as MiniNftCard } from './components/@UI/MiniNftCard'
 
 /**
@@ -37,6 +38,9 @@ export { default as AppBar } from './components/App/AppBar'
 export { default as CollectionLine } from './components/App/CollectionLine'
 export { default as CollectionRow } from './components/App/CollectionRow'
 export { default as CollectionTable } from './components/App/CollectionTable'
+export { default as CollectorAccordion } from './components/App/CollectorAccordion'
+export { default as CollectorAccordionHead } from './components/App/CollectorAccordionHead'
+export { default as CollectorAccordionRow } from './components/App/CollectorAccordionRow'
 export { default as Footer } from './components/App/Footer'
 export { default as Navbar } from './components/App/Navbar'
 

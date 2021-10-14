@@ -9,7 +9,10 @@ export function getOptions(
     value: number
   }>
 ) {
-  const max = data.reduce((pre, cur) => pre < cur.value ? cur.value : pre, data[0].value)
+  const max = data.reduce(
+    (pre, cur) => (pre < cur.value ? cur.value : pre),
+    data[0].value
+  )
 
   return {
     ...(theme.chart.options as ApexOptions),
@@ -89,7 +92,7 @@ export function getOptions(
       },
       formatter: function (text: string, op: { value: number }) {
         const v: string = op.value > 0 ? `+${op.value}` : `${op.value}`
-        return [text, v]
+        return [text, v] as any
       },
     },
     plotOptions: {
