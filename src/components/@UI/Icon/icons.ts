@@ -3,6 +3,7 @@ import SVGAddLink from '../../../assets/svg/icons/AddLink.svg'
 import SVGAnalytics from '../../../assets/svg/icons/Analytics.svg'
 import SVGArrowDropdownUserBubbleNavBar from '../../../assets/svg/icons/Arrow_DropDown_UserBubble_NavBar.svg'
 import SVGArrowDropdown from '../../../assets/svg/icons/Arrow_Dropdown.svg'
+import SVGArrowUp from '../../../assets/svg/icons/Arrow_Up.svg'
 import SVGArrowKeyLeft from '../../../assets/svg/icons/Arrow_Key_Left.svg'
 import SVGArrowKeyRight from '../../../assets/svg/icons/Arrow_Key_Right.svg'
 import SVGArrowLargeLeft from '../../../assets/svg/icons/Arrow_Large_Left.svg'
@@ -72,6 +73,7 @@ import SVGNavBarNotificationsInactive from '../../../assets/svg/icons/NavBar_Not
 import SVGNotificationContainer from '../../../assets/svg/icons/Notification_Container.svg'
 import SVGNotifications from '../../../assets/svg/icons/Notifications.svg'
 import SVGNotificationFilled from '../../../assets/svg/icons/NotificationFilled.svg'
+import SVGOpenLink from '../../../assets/svg/icons/OpenLink.svg'
 import SVGOpenSeaBlock from '../../../assets/svg/icons/OpenSea_BlockColor.svg'
 import SVGPen from '../../../assets/svg/icons/Pen.svg'
 import SVGPhoto from '../../../assets/svg/icons/Photo.svg'
@@ -111,6 +113,7 @@ const icons = {
   analytics: SVGAnalytics,
   arrowDropUserBubble: SVGArrowDropdownUserBubbleNavBar,
   arrowDropdown: SVGArrowDropdown,
+  arrowUp: SVGArrowUp,
   arrowKeyLeft: SVGArrowKeyLeft,
   arrowKeyRight: SVGArrowKeyRight,
   arrowLargeLeft: SVGArrowLargeLeft,
@@ -180,6 +183,7 @@ const icons = {
   navNotificationsContainer: SVGNotificationContainer,
   notifications: SVGNotifications,
   notificationFilled: SVGNotificationFilled,
+  openLink: SVGOpenLink,
   openSeaBlock: SVGOpenSeaBlock,
   pen: SVGPen,
   photo: SVGPhoto,

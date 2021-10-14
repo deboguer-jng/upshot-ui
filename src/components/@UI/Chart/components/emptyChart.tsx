@@ -11,7 +11,7 @@ const EmptyChart = ({
   error,
   noSelected,
   embedded,
-  data,
+  data = [],
 }: ChartProps) => {
   const errorDisplayText = error ? 'Error loading data' : 'No data (yet)'
   const noData = data.length === 0 && !noSelected && !loading

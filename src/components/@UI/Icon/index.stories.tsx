@@ -253,6 +253,9 @@ NavNotificationsContainer.args = {
 export const Notifications = Template.bind({})
 Notifications.args = { icon: 'notifications', color: 'primary', size: 32 }
 
+export const OpenLink = Template.bind({})
+OpenLink.args = { icon: 'openLink', color: 'primary', size: 32 }
+
 export const OpenSeaBlock = Template.bind({})
 OpenSeaBlock.args = { icon: 'openSeaBlock', color: 'primary', size: 32 }
 
