@@ -11,7 +11,7 @@ export function getOptions(
 ) {
   const max = data.reduce(
     (pre, cur) => (pre < cur.value ? cur.value : pre),
-    data[0].value
+    data?.[0]?.value ?? 0
   )
 
   return {
