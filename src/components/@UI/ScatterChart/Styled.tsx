@@ -1,8 +1,11 @@
 import styled from '@emotion/styled'
 
-export const CustomLegendWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 1rem;
-  flex-wrap: wrap;
+export const ScatterChartWrapper = styled.div`
+  width: 100%;
+  height: 300px;
+
+  & .apexcharts-tooltip,
+  & .apexcharts-tooltip-series-group.active {
+    background: ${({ theme }) => theme.colors.black};
+  }
 `
