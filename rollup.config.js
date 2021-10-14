@@ -16,6 +16,7 @@ export default {
     '@emotion/react',
     '@emotion/styled',
     '@theme-ui/match-media',
+    'date-fns',
     'polished',
     'react',
     'react-inlinesvg',
