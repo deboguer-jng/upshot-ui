@@ -73,6 +73,7 @@ import SVGNavBarNotificationsInactive from '../../../assets/svg/icons/NavBar_Not
 import SVGNotificationContainer from '../../../assets/svg/icons/Notification_Container.svg'
 import SVGNotifications from '../../../assets/svg/icons/Notifications.svg'
 import SVGNotificationFilled from '../../../assets/svg/icons/NotificationFilled.svg'
+import SVGOpenLink from '../../../assets/svg/icons/OpenLink.svg'
 import SVGOpenSeaBlock from '../../../assets/svg/icons/OpenSea_BlockColor.svg'
 import SVGPen from '../../../assets/svg/icons/Pen.svg'
 import SVGPhoto from '../../../assets/svg/icons/Photo.svg'
@@ -182,6 +183,7 @@ const icons = {
   navNotificationsContainer: SVGNotificationContainer,
   notifications: SVGNotifications,
   notificationFilled: SVGNotificationFilled,
+  openLink: SVGOpenLink,
   openSeaBlock: SVGOpenSeaBlock,
   pen: SVGPen,
   photo: SVGPhoto,
