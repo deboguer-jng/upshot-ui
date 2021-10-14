@@ -47,7 +47,6 @@ export const Default = Template.bind({})
 Default.args = {
   items: [...new Array(5)].map((_) => ({
     name: 'Robert Downey Jr.',
-    subtitle: 'Owns 152 NFTs',
     collectionName: 'Mad Dog Jones',
     count: '24',
     avgHoldTime: '173 days',
@@ -58,7 +57,7 @@ Default.args = {
       url: '#',
     })),
     otherCollectors: [...new Array(4)].map((_) => ({
-      name: '@Happy',
+      name: 'Happy',
       imageUrl: '/img/defaultAvatar.png',
       url: '#',
       count: 16,
@@ -70,7 +69,6 @@ export const Landing = LandingTemplate.bind({})
 Landing.args = {
   items: [...new Array(5)].map((_) => ({
     name: 'Robert Downey Jr.',
-    subtitle: 'Owns 152 NFTs',
     collectionName: 'Mad Dog Jones',
     portfolioValue: '12.34',
     nftCollection: [...new Array(3)].map((_, idx) => ({
