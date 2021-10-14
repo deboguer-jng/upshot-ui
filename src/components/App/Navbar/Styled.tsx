@@ -58,11 +58,11 @@ export const SearchWrapper = styled.div`
     & > div {
       width: unset;
 
-      & > div:first-child > input {
+      & > div:first-of-type > input {
         z-index: ${({ theme }) => theme.zIndex.nav + 2};
       }
 
-      & > div:first-child > button {
+      & > div:first-of-type > button {
         z-index: ${({ theme }) => theme.zIndex.nav + 2};
       }
 
