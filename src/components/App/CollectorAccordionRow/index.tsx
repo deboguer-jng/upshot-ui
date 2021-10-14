@@ -82,7 +82,7 @@ const CollectorRow = forwardRef(
     const [open, setOpen] = useState(false)
 
     return (
-      <CollectorRowBase {...{ ref, ...props }}>
+      <CollectorRowBase {...{ ref, ...props }} onClick={() => setOpen(!open)}>
         <CollectorRowContent>
           <Avatar size="md" src="/img/defaultAvatar.png" />
 

@@ -1,13 +1,12 @@
 import styled from '@emotion/styled'
-import css from '@emotion/css'
 import { Grid } from 'theme-ui'
-import { CollectorAccordionRowVariant } from './'
 
 export const CollectorRowBase = styled.div`
   width: 100%;
   border-radius: 20px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors['grey-900']};
+  cursor: pointer;
 `
 
 export const CollectorRowContent = styled(Grid)`
