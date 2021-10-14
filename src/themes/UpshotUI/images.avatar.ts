@@ -1,4 +1,4 @@
-import sizes, { getSize } from './sizes'
+import { getSize } from './sizes'
 
 const avatar = {
   default: {
@@ -23,29 +23,29 @@ const avatar = {
     variant: 'images.avatar.default',
     size: getSize(6) + 'px',
     minWidth: getSize(6) + 'px',
-    borderWidth: sizes[1] / 2 + 'px',
+    borderWidth: '2px',
     fontSize: 3,
   },
   md: {
     variant: 'images.avatar.default',
     size: getSize(12) + 'px',
     minWidth: getSize(12) + 'px',
-    borderWidth: sizes[1] / 2 + 'px',
+    borderWidth: '2px',
     fontSize: 5,
   },
   lg: {
     variant: 'images.avatar.default',
-    size: getSize(24) + 'px',
-    minWidth: getSize(24) + 'px',
-    borderWidth: sizes[2] / 2 + 'px',
-    fontSize: 7,
+    size: getSize(18) + 'px',
+    minWidth: getSize(18) + 'px',
+    borderWidth: '3px',
+    fontSize: 6,
   },
   xl: {
     variant: 'images.avatar.default',
-    size: getSize(48) + 'px',
-    minWidth: getSize(48) + 'px',
-    borderWidth: sizes[3] / 2 + 'px',
-    fontSize: 8,
+    size: getSize(24) + 'px',
+    minWidth: getSize(24) + 'px',
+    borderWidth: '4px',
+    fontSize: 7,
   },
 }
 
