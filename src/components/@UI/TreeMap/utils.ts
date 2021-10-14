@@ -4,8 +4,8 @@ import { ApexOptions } from 'apexcharts'
 export function getOptions(
   theme: UpshotUIThemeType,
   data: Array<{
-    x: string
-    y: number
+    name: string
+    value: number
   }>
 ) {
   return {
@@ -14,14 +14,19 @@ export function getOptions(
       show: false,
     },
     chart: {
-      height: 350,
-      type: 'treemap',
+      id: 'upshotTreeMapChart',
       toolbar: {
         show: false,
       },
+      zoom: {
+        enabled: false,
+      },
+      sparkline: {
+        enabled: false,
+      },
     },
     grid: {
-      show: false,
+      show: true,
       padding: {
         left: 0,
         right: 0,
@@ -29,12 +34,33 @@ export function getOptions(
         bottom: 0,
       },
     },
+    yaxis: {
+      show: false,
+      labels: {
+        show: false,
+      },
+      forceNiceScale: true,
+    },
+    xaxis: {
+      axisBorder: {
+        show: false,
+      },
+      axisTicks: {
+        show: false,
+      },
+      labels: {
+        show: false,
+      },
+      tooltip: {
+        enabled: false,
+      },
+    },
     tooltip: {
       enabled: true,
       shared: false,
       custom: function ({ dataPointIndex }: { dataPointIndex: number }) {
-        const name = data[dataPointIndex].x
-        const value = data[dataPointIndex].y
+        const name = data[dataPointIndex].name
+        const value = data[dataPointIndex].value
         return `
           <style>
             .apexcharts-tooltip {
@@ -59,9 +85,9 @@ export function getOptions(
         fontSize: '12px',
       },
       formatter: function (text: string, op: { value: number }) {
-        return [text, op.value > 0 ? `+${op.value}` : op.value]
+        const v: string = op.value > 0 ? `+${op.value}` : `${op.value}`
+        return [text, v]
       },
-      offsetY: -4,
     },
     plotOptions: {
       treemap: {

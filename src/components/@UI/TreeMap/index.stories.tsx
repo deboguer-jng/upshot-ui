@@ -13,57 +13,26 @@ const Template: ComponentStory<typeof TreeMap> = (args) => <TreeMap {...args} />
 export const Main = Template.bind({})
 Main.args = {
   data: [
-    {
-      x: 'INTC',
-      y: 10000.23,
-    },
-    {
-      x: 'GS',
-      y: 30235.4,
-    },
-    {
-      x: 'CVX',
-      y: -56363.32,
-    },
-    {
-      x: 'GE',
-      y: 77543,
-    },
-    {
-      x: 'CAT',
-      y: -28394.23,
-    },
-    {
-      x: 'RTX',
-      y: 12345,
-    },
-    {
-      x: 'CSCO',
-      y: -87654,
-    },
-    {
-      x: 'JNJ',
-      y: 8493,
-    },
-    {
-      x: 'PG',
-      y: -9090,
-    },
-    {
-      x: 'TRV',
-      y: 5555,
-    },
-    {
-      x: 'MMM',
-      y: -8787,
-    },
-    {
-      x: 'NKE',
-      y: 3434,
-    },
-    {
-      x: 'IYT',
-      y: 4141,
-    },
+    { name: 'token1', value: 13.95 },
+    { name: 'token2', value: 7.34 },
+    { name: 'token3', value: -9.18 },
+    { name: 'token4', value: 10.05 },
+    { name: 'token5', value: 21.0 },
+    { name: 'token6', value: -35.95 },
+    { name: 'token7', value: 26.24 },
+    { name: 'token8', value: -20.29 },
+    { name: 'token9', value: 50.85 },
+    { name: 'token10', value: 28.86 },
+    { name: 'token11', value: -42.28 },
   ],
+}
+
+export const Error = Template.bind({})
+Error.args = {
+  error: true,
+}
+
+export const Loading = Template.bind({})
+Loading.args = {
+  loading: true,
 }
