@@ -46,7 +46,7 @@ const LandingPanel = forwardRef(
       <StyledLink href={url}>
         <Box>
           <StyledAvatar src={image} />
-          <StyledIcon icon='arrowKeyRight' color='grey-700' size='20' />
+          <StyledIcon icon='openLink' color='grey-700' size='20' />
           <StyledText color='grey-600' variant='large'>{projectType}</StyledText>
           <StyledTitle variant='h3Primary' color='grey-300'>{title}</StyledTitle>
         </Box>
