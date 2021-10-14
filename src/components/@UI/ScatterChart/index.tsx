@@ -28,14 +28,6 @@ export interface ScatterChartProps {
     name: string
     data: number[] | number[][]
   }[]
-  /**
-   * Renders the search variant.
-   */
-  search?: boolean
-  /**
-   * Renders the narrow embedded variant.
-   */
-  embedded?: boolean
 }
 
 const Chart = forwardRef(
@@ -45,8 +37,6 @@ const Chart = forwardRef(
       error = false,
       noSelected = false,
       data = [],
-      search = false,
-      embedded = false,
       ...props
     }: ScatterChartProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -56,14 +46,13 @@ const Chart = forwardRef(
     return (
       <ScatterChartWrapper {...{ ref, ...props }}>
         {dataAvailable ? (
-          <PopulatedScatterChart chartData={data} {...{ embedded }} />
+          <PopulatedScatterChart chartData={data} />
         ) : (
           <EmptyChart
             {...{
               loading,
               error,
               noSelected,
-              embedded,
               data,
             }}
           />

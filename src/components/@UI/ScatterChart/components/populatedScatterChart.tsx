@@ -52,9 +52,15 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
           },
         },
         yaxis: {
-          show: false,
+          show: true,
           labels: {
-            show: false,
+            show: true,
+            style: {
+              colors: theme.rawColors['grey-200'],
+              fontSize: '.75rem',
+              fontFamily: 'proxima-nova, sans-serif',
+            },
+            formatter: (value: number) => 'Ξ' + value,
           },
           forceNiceScale: true,
         },
@@ -71,6 +77,7 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
             style: {
               colors: theme.rawColors['grey-200'],
               fontSize: '.75rem',
+              fontFamily: 'proxima-nova, sans-serif',
             },
             formatter: (value: string) => {
               if (!value) return null
