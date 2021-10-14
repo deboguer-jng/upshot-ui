@@ -1,4 +1,5 @@
 import { UpshotUIThemeType } from '../../..'
+import { darken } from 'polished'
 import { ApexOptions } from 'apexcharts'
 
 export function getOptions(
@@ -8,6 +9,8 @@ export function getOptions(
     value: number
   }>
 ) {
+  const max = data.reduce((pre, cur) => pre < cur.value ? cur.value : pre, data[0].value)
+
   return {
     ...(theme.chart.options as ApexOptions),
     legend: {
@@ -98,14 +101,14 @@ export function getOptions(
         colorScale: {
           ranges: [
             {
-              from: -1000000,
+              from: -max,
               to: 0,
               color: theme.rawColors.red,
             },
             {
               from: 0.001,
-              to: 1000000,
-              color: theme.rawColors.blue,
+              to: max,
+              color: darken(0.2, theme.rawColors.blue),
             },
           ],
         },
