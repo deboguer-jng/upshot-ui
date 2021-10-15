@@ -38,11 +38,3 @@ export const StyledDescription = styled(Text)<sizeProps>`
   ${({ $isBig }) => $isBig == true ? '' : 'white-space: nowrap; text-overflow: ellipsis; overflow: hidden;' }
   
 `
-
-/* 
-export const LandingPanelBase = styled(Box)<LandingPanelBaseProps>`
-  padding: ${({ theme }) => theme.space[5] + 'px'};
-  background-color: ${({ theme, $inner }) =>
-    theme.colors[$inner ? 'black' : 'grey-800']};
-  border-radius: ${({ theme, $inner }) => theme.radii[$inner ? 'md' : 'lg']};
-` */

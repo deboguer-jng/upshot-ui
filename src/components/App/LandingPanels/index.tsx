@@ -5,23 +5,23 @@ import { Box } from 'theme-ui'
 
 export interface LandingPanelProps extends PanelProps {
   /**
-   * 
+   * Project type - upper title
    */
   projectType?: string
   /**
-   * 
+   * Card title
    */
   title: string
   /**
-   * 
+   * Description
    */
   description: string
   /**
-   * 
+   * Card URL
    */
   url?: string
   /**
-   * 
+   * Card image
    */
   image?: string
 }
