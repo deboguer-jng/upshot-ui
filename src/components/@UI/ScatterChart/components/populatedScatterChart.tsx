@@ -17,7 +17,7 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
     <ReactApexChart
       series={chartData}
       type="scatter"
-      height="100%"
+      height={300}
       width="100%"
       options={{
         chart: {
@@ -29,6 +29,9 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
             enabled: false,
           },
           sparkline: {
+            enabled: false,
+          },
+          animations: {
             enabled: false,
           },
         },
@@ -72,7 +75,7 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
             show: false,
           },
           labels: {
-            show: true,
+            show: false,
             rotate: 0,
             style: {
               colors: theme.rawColors['grey-200'],
@@ -91,7 +94,7 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
         },
         colors: [theme.rawColors.primary],
         markers: {
-          size: 4,
+          size: 2,
           colors: [theme.rawColors.primary],
           strokeColors: [theme.rawColors.primary],
         },
