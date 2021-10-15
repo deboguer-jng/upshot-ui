@@ -26,6 +26,7 @@ export { default as ScatterChart } from './components/@UI/ScatterChart/ScatterCh
 export { default as Skeleton } from './components/@UI/Skeleton'
 export { default as Spinner } from './components/@UI/Spinner'
 export { default as Switch } from './components/@UI/Switch'
+export { default as SwitchDropdown } from './components/@UI/SwitchDropdown'
 export { default as Text } from './components/@UI/Text'
 export { default as TreeMap } from './components/@UI/TreeMap/TreeMapDynamic'
 export { default as MiniNftCard } from './components/@UI/MiniNftCard'
