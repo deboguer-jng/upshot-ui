@@ -27,3 +27,13 @@ Small.args = {
   url: 'https://www.google.com/search?q=recursion',
   image: 'https://cdn.coinranking.com/nft/0x60F80121C31A0d46B5279700f9DF786054aa5eE5/58567.png?size=autox430',
   sx: { width: '220px', height: '90px' } }
+
+  export const SmallNoLinkIcon = Template.bind({})
+  SmallNoLinkIcon.args = {
+    projectType: 'Protocol',
+    title: 'Rarible',
+    description: 'On-chain lending and borrowing with artwork-as-collateral',
+    url: 'https://www.google.com/search?q=recursion',
+    image: 'https://cdn.coinranking.com/nft/0x60F80121C31A0d46B5279700f9DF786054aa5eE5/58567.png?size=autox430',
+    showLinkIcon: false,
+    sx: { width: '220px', height: '90px' } }

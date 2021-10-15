@@ -24,6 +24,10 @@ export interface LandingPanelProps extends PanelProps {
    * Card image
    */
   image?: string
+  /**
+   * Show "openLink" icon (top-right)
+   */
+   showLinkIcon?: boolean
 }
 
 /**
@@ -37,6 +41,7 @@ const LandingPanel = forwardRef(
       description,
       url,
       image,
+      showLinkIcon = true,
       ...props
     }: LandingPanelProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -61,7 +66,9 @@ const LandingPanel = forwardRef(
         <StyledPanel ref={panelRef}>
           <StyledLink href={url}>
             <Box>
-              <StyledIcon icon='openLink' color='grey-700' size='20' />
+              { showLinkIcon && (
+                <StyledIcon icon='openLink' color='grey-700' size='20' />
+              )}
               { isBig && (
                 <>
                   <StyledAvatar src={image} />
