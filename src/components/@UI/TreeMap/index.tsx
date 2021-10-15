@@ -12,7 +12,8 @@ import EmptyChart from '../Chart/components/emptyChart'
 export interface TreeMapProps {
   data: Array<{
     name: string
-    value: number
+    delta: number
+    marketCap: number
   }>
   loading?: boolean
 
@@ -40,7 +41,7 @@ const TreeMap = forwardRef(
                   {
                     data: data.map((item: any) => ({
                       x: item.name,
-                      y: item.value,
+                      y: item.marketCap,
                     })),
                   },
                 ]}

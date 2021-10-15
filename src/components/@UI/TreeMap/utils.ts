@@ -1,15 +1,17 @@
 import { UpshotUIThemeType } from '../../..'
-import { darken } from 'polished'
+import { transparentize } from 'polished'
 import { ApexOptions } from 'apexcharts'
 
 export function getOptions(
   theme: UpshotUIThemeType,
   data: Array<{
     name: string
-    value: number
+    delta: number
+    marketCap: number
   }>
 ) {
-  const max = data.reduce((pre, cur) => pre < cur.value ? cur.value : pre, data[0].value)
+  const max = data.reduce((pre, cur) => pre < cur.delta ? cur.delta : pre, data[0].delta)
+  const min = data.reduce((pre, cur) => pre > cur.delta ? cur.delta : pre, data[0].delta)
 
   return {
     ...(theme.chart.options as ApexOptions),
@@ -33,7 +35,7 @@ export function getOptions(
       padding: {
         left: 0,
         right: 0,
-        top: 0,
+        top: -20,
         bottom: 0,
       },
     },
@@ -63,7 +65,7 @@ export function getOptions(
       shared: false,
       custom: function ({ dataPointIndex }: { dataPointIndex: number }) {
         const name = data[dataPointIndex].name
-        const value = data[dataPointIndex].value
+        const value = data[dataPointIndex].delta
         return `
           <style>
             .apexcharts-tooltip {
@@ -87,31 +89,22 @@ export function getOptions(
       style: {
         fontSize: '12px',
       },
-      formatter: function (text: string, op: { value: number }) {
-        const v: string = op.value > 0 ? `+${op.value}` : `${op.value}`
+      formatter: function (text: string, op: { value: number, dataPointIndex: number }) {
+        const v: string = data[op.dataPointIndex].delta > 0 ? `+${data[op.dataPointIndex].delta}` : `${data[op.dataPointIndex].delta}`
         return [text, v]
       },
     },
+    colors: data.map((item) => {
+      if (item.delta < 0) {
+        return transparentize((-item.delta / -min * 0.5), theme.rawColors.red)
+      } else {
+        return transparentize((item.delta / max * 0.5), theme.rawColors.blue)
+      }
+    }),
     plotOptions: {
       treemap: {
-        enableShades: true,
-        shadeIntensity: 0.5,
-        reverseNegativeShade: true,
-        useFillColorAsStroke: true,
-        colorScale: {
-          ranges: [
-            {
-              from: -max,
-              to: 0,
-              color: theme.rawColors.red,
-            },
-            {
-              from: 0.001,
-              to: max,
-              color: darken(0.2, theme.rawColors.blue),
-            },
-          ],
-        },
+        distributed: true,
+        enableShades: false,
       },
     },
   }
