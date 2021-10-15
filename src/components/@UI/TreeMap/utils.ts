@@ -11,8 +11,18 @@ export function getOptions(
   }>,
   dataAvailable: boolean
 ) {
-  const max = dataAvailable ? data.reduce((pre, cur) => pre < cur.delta ? cur.delta : pre, data[0].delta) : 0
-  const min = dataAvailable ? data.reduce((pre, cur) => pre > cur.delta ? cur.delta : pre, data[0].delta) : 0
+  const max = dataAvailable
+    ? data.reduce(
+        (pre, cur) => (pre < cur.delta ? cur.delta : pre),
+        data[0].delta
+      )
+    : 0
+  const min = dataAvailable
+    ? data.reduce(
+        (pre, cur) => (pre > cur.delta ? cur.delta : pre),
+        data[0].delta
+      )
+    : 0
 
   return {
     ...(theme.chart.options as ApexOptions),
@@ -90,16 +100,22 @@ export function getOptions(
       style: {
         fontSize: '12px',
       },
-      formatter: function (text: string, op: { value: number, dataPointIndex: number }) {
-        const v: string = data[op.dataPointIndex].delta > 0 ? `+${data[op.dataPointIndex].delta}` : `${data[op.dataPointIndex].delta}`
-        return [text, v]
+      formatter: function (
+        text: string,
+        op: { value: number; dataPointIndex: number }
+      ) {
+        const v: string =
+          data[op.dataPointIndex].delta > 0
+            ? `+${data[op.dataPointIndex].delta}`
+            : `${data[op.dataPointIndex].delta}`
+        return [text, v] as any
       },
     },
     colors: data.map((item) => {
       if (item.delta < 0) {
-        return transparentize((-item.delta / -min * 0.5), theme.rawColors.red)
+        return transparentize((-item.delta / -min) * 0.5, theme.rawColors.red)
       } else {
-        return transparentize((item.delta / max * 0.5), theme.rawColors.blue)
+        return transparentize((item.delta / max) * 0.5, theme.rawColors.blue)
       }
     }),
     plotOptions: {
