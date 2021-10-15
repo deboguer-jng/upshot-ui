@@ -57,7 +57,7 @@ const LandingPanel = forwardRef(
     }, [])
 
     return (
-      <div {...{ ref, ...props }}>
+      <Box {...{ ref, ...props }}>
         <StyledPanel ref={panelRef}>
           <StyledLink href={url}>
             <Box>
@@ -75,7 +75,7 @@ const LandingPanel = forwardRef(
             {description}
           </StyledDescription>
         </StyledPanel>
-      </div>
+      </Box>
     )
   }
 )
