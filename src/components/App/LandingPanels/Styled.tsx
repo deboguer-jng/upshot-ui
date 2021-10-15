@@ -3,9 +3,9 @@ import { Link } from 'theme-ui'
 import { Text, Avatar, Panel, Icon } from '../../../'
 
 
-/* interface LandingPanelBaseProps {
-  $inner: boolean
-} */
+interface sizeProps {
+  $isBig: boolean
+}
 
 export const StyledPanel = styled(Panel)`
   padding: 27px;
@@ -32,9 +32,11 @@ export const StyledIcon = styled(Icon)`
   float: right;
 `
 
-export const StyledDescription = styled(Text)`
+export const StyledDescription = styled(Text)<sizeProps>`
   display: block;
-  margin-top: 50px;
+  margin-top: ${({ $isBig }) => $isBig == true ? '50px' : '10px' };
+  ${({ $isBig }) => $isBig == true ? '' : 'white-space: nowrap; text-overflow: ellipsis; overflow: hidden;' }
+  
 `
 
 /* 
