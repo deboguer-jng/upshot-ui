@@ -1,5 +1,5 @@
 import Backdrop from '../Backdrop'
-import React, { useState, useEffect } from 'react'
+import React, { useState, forwardRef } from 'react'
 import ReactDOM from 'react-dom'
 
 import { BackdropProps } from '../Backdrop'
@@ -22,33 +22,39 @@ const Portal = ({ children }: { children: React.ReactNode }) =>
  * The Modal component is used to display a floating image
  * over a Backdrop using a React DOM portal.
  */
-export default function Modal({
-  open = false,
-  onClose,
-  children,
-  ...props
-}: ModalProps) {
-  /**
-   * Adds a small delay for the transition to complete.
-   */
-  const [isClosing, setIsClosing] = useState(false)
+const Modal = forwardRef(
+  (
+    { open = false, onClose, children, ...props }: ModalProps,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
+    /**
+     * Adds a small delay for the transition to complete.
+     */
+    const [isClosing, setIsClosing] = useState(false)
 
-  const handleClose = () => {
-    setIsClosing(true)
-    window.setTimeout(() => {
-      setIsClosing(false)
-      onClose?.()
-    }, 500)
+    const handleClose = () => {
+      setIsClosing(true)
+      window.setTimeout(() => {
+        setIsClosing(false)
+        onClose?.()
+      }, 500)
+    }
+
+    if (!open && !isClosing) return null
+
+    return (
+      <>
+        <Backdrop
+          open={open && !isClosing}
+          onClick={handleClose}
+          {...{ ref, ...props }}
+        />
+        <Portal>
+          <ModalWrapper $open={open && !isClosing}>{children}</ModalWrapper>
+        </Portal>
+      </>
+    )
   }
+)
 
-  if (!open && !isClosing) return null
-
-  return (
-    <>
-      <Backdrop open={open && !isClosing} onClick={handleClose} {...props} />
-      <Portal>
-        <ModalWrapper $open={open && !isClosing}>{children}</ModalWrapper>
-      </Portal>
-    </>
-  )
-}
+export default Modal
