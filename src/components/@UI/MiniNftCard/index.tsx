@@ -109,7 +109,7 @@ const MiniNftCard = forwardRef(
           </MiniNftCardMainContentWrapper>
         </MiniNftCardMainBoard>
         {
-          isMobile &&
+          !isMobile &&
             <MiniNftCardDetailsBoard>
               {type === 'search' ? (
                 <MiniNftCardDetailLabel variant="xSmall">
