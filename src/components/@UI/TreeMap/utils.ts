@@ -8,10 +8,11 @@ export function getOptions(
     name: string
     delta: number
     marketCap: number
-  }>
+  }>,
+  dataAvailable: boolean
 ) {
-  const max = data.reduce((pre, cur) => pre < cur.delta ? cur.delta : pre, data[0].delta)
-  const min = data.reduce((pre, cur) => pre > cur.delta ? cur.delta : pre, data[0].delta)
+  const max = dataAvailable ? data.reduce((pre, cur) => pre < cur.delta ? cur.delta : pre, data[0].delta) : 0
+  const min = dataAvailable ? data.reduce((pre, cur) => pre > cur.delta ? cur.delta : pre, data[0].delta) : 0
 
   return {
     ...(theme.chart.options as ApexOptions),

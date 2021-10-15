@@ -29,7 +29,7 @@ const TreeMap = forwardRef(
   ) => {
     const theme = useTheme()
     const dataAvailable = !loading && data.length !== 0 && !error && !noData
-    const options = getOptions(theme, data)
+    const options = getOptions(theme, data, dataAvailable)
 
     return (
       <TreeMapChartWrapper {...{ ref, ...props }}>
