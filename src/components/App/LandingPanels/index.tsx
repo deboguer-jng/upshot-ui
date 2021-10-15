@@ -68,7 +68,7 @@ const LandingPanel = forwardRef(
                   <StyledText color='grey-600' variant='large'>{projectType}</StyledText>
                 </>
               )}
-              <StyledTitle variant='h3Primary' color='grey-300'>{title} {width}</StyledTitle>
+              <StyledTitle variant='h3Primary' color='grey-300'>{title}</StyledTitle>
             </Box>
           </StyledLink>
           <StyledDescription $isBig={isBig} color='grey-500'>
