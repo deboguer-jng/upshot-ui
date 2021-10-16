@@ -7,8 +7,9 @@ interface sizeProps {
   $isBig: boolean
 }
 
-export const StyledPanel = styled(Panel)`
-  padding: 27px;
+export const StyledPanel = styled(Panel)<sizeProps>`
+  padding: ${({ $isBig }) => $isBig == true ? '27px' : '22px' };
+  height: 100%;
 `
 export const StyledAvatar = styled(Avatar)`
   float: left;

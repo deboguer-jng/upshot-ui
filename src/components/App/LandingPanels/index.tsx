@@ -27,7 +27,7 @@ export interface LandingPanelProps extends PanelProps {
   /**
    * Show "openLink" icon (top-right)
    */
-   showLinkIcon?: boolean
+  showLinkIcon?: boolean
 }
 
 /**
@@ -53,9 +53,11 @@ const LandingPanel = forwardRef(
 
     useEffect(() => {
       function handleResize() {
-        let width = (panelRef.current as HTMLElement).clientWidth
-        setWidth(width)
-        setIsBig(width > 300)
+        if (typeof panelRef.current !== null) {
+          let width = (panelRef.current as HTMLElement).clientWidth
+          setWidth(width)
+          setIsBig(width > 300)
+        }
       }
       handleResize()
       window.addEventListener("resize", handleResize);
@@ -63,7 +65,7 @@ const LandingPanel = forwardRef(
 
     return (
       <Box {...{ ref, ...props }}>
-        <StyledPanel ref={panelRef}>
+        <StyledPanel ref={panelRef} $isBig={isBig}>
           <StyledLink href={url}>
             <Box>
               { showLinkIcon && (
