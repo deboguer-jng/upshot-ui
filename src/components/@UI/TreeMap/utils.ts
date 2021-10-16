@@ -106,8 +106,8 @@ export function getOptions(
       ) {
         const v: string =
           data[op.dataPointIndex].delta > 0
-            ? `+${data[op.dataPointIndex].delta}`
-            : `${data[op.dataPointIndex].delta}`
+            ? `+${data[op.dataPointIndex].delta}%`
+            : `${data[op.dataPointIndex].delta}%`
         return [text, v] as any
       },
     },
