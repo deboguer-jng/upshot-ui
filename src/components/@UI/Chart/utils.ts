@@ -146,7 +146,7 @@ export function getOptions(
               border: 1px solid ${colors[seriesIndex]};
             " id="apexcharts-custom-tooltip"
             >
-              $ ${series[seriesIndex][dataPointIndex]} <br/>
+              Ξ${series[seriesIndex][dataPointIndex].toFixed(3)} <br/>
               ${time.toLocaleString()}
               <div style="
                 position: absolute;
