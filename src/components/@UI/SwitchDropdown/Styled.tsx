@@ -30,7 +30,6 @@ export const SwitchDropdownOptions = styled.div`
   flex-direction: column;
   width: fit-content;
   margin-top: ${({ theme }) => `-${theme.sizes[6]}px`};
-  z-index: ${({ theme }) => theme.zIndex.default + 2};
 `
 
 export const SwitchDropdownOption = styled.div`
