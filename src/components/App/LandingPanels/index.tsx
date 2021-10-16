@@ -27,7 +27,7 @@ export interface LandingPanelProps extends PanelProps {
   /**
    * Show "openLink" icon (top-right)
    */
-   showLinkIcon?: boolean
+  showLinkIcon?: boolean
 }
 
 /**
@@ -63,7 +63,7 @@ const LandingPanel = forwardRef(
 
     return (
       <Box {...{ ref, ...props }}>
-        <StyledPanel ref={panelRef}>
+        <StyledPanel ref={panelRef} $isBig={isBig}>
           <StyledLink href={url}>
             <Box>
               { showLinkIcon && (
