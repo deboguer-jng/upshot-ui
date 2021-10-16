@@ -7,7 +7,7 @@ import { CustomLegendWrapper, ReactChartWrapper } from '../Styled'
 import { getOptions, toggle } from '../utils'
 import ButtonChartCollection from '../../ButtonChartCollection'
 import ChartLabel from '../../ChartLabel'
-import Flex from '../../../Layout/Flex'
+import Box from '../../../Layout/Box'
 
 interface PopulatedChartProps {
   chartData: {
@@ -123,7 +123,7 @@ const PopulatedChart = ({
   return (
     <>
       {!embedded && (
-        <Flex
+        <Box
           sx={{
             gap: 4,
             flexDirection: ['column', 'row', 'row'],
@@ -132,7 +132,7 @@ const PopulatedChart = ({
           }}
         >
           {chartLabels}
-        </Flex>
+        </Box>
       )}
       {chart}
       {!embedded && (
