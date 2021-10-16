@@ -10,12 +10,12 @@ export const SwitchDropdownHeader = styled.div<SwitchDropdownHeaderProps>`
   display: flex;
   align-items: center;
   padding: 8px;
+  cursor: pointer;
 
   svg {
     width: 16px;
     height: 16px;
     margin-left: 8px;
-    cursor: pointer;
     transform: rotate(${({ open }) => (open ? '180' : '0')}deg);
 
     path {
@@ -30,6 +30,8 @@ export const SwitchDropdownOptions = styled.div`
   display: flex;
   flex-direction: column;
   width: fit-content;
+  margin-top: ${({ theme }) => `-${theme.sizes[6]}px`};
+  z-index: ${({ theme }) => theme.zIndex.default + 2};
 `
 
 export const SwitchDropdownOption = styled.div`
