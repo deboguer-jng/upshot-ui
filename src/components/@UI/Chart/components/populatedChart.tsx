@@ -126,9 +126,9 @@ const PopulatedChart = ({
         <Flex
           sx={{
             gap: 4,
-            flexDirection: ['column', 'column', 'row'],
-            alignItems: ['center', 'center', 'flex-start'],
-            textAlign: ['center', 'center', 'left'],
+            flexDirection: ['column', 'row', 'row'],
+            alignItems: ['center', 'flex-start', 'flex-start'],
+            textAlign: ['center', 'left', 'left'],
           }}
         >
           {chartLabels}
