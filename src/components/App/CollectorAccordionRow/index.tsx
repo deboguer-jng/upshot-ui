@@ -47,11 +47,11 @@ export interface CollectorAccordionRowProps
   /**
    * NFT collection
    */
-  nftCollection?: { imageUrl: string; url: string }[]
+  nftCollection?: { imageUrl: string; url: string; pixelated?: boolean }[]
   /**
-   * Other collectors
+   * Other collections
    */
-  otherCollectors?: {
+  extraCollections?: {
     name: string
     imageUrl: string
     url: string
@@ -74,7 +74,7 @@ const CollectorRow = forwardRef(
       firstAcquisition,
       totalNftValue,
       nftCollection,
-      otherCollectors,
+      extraCollections,
       ...props
     }: CollectorAccordionRowProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -148,7 +148,11 @@ const CollectorRow = forwardRef(
             <Flex sx={{ flexDirection: 'column', gap: 4 }}>
               {!!avgHoldTime && (
                 <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                  <Text sx={{ fontWeight: 'heading' }}>Avg. Hold Time:</Text>
+                  <Text
+                    sx={{ fontWeight: 'heading', textTransform: 'capitalize' }}
+                  >
+                    Avg. Hold Time:
+                  </Text>
                   <Text
                     variant="h3Primary"
                     sx={{
@@ -190,16 +194,18 @@ const CollectorRow = forwardRef(
                         'repeat(auto-fill, minmax(92px, 1fr) )',
                     }}
                   >
-                    {nftCollection.map(({ imageUrl, url }, idx) => (
+                    {nftCollection.map(({ imageUrl, url, pixelated }, idx) => (
                       <a href={url} key={idx}>
                         <Box
                           sx={{
                             backgroundImage: `url(${imageUrl})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat',
                             borderRadius: 'sm',
                             width: '100%',
                             paddingTop: '100%',
+                            imageRendering: pixelated ? 'pixelated' : 'auto',
                           }}
                         />
                       </a>
@@ -234,7 +240,7 @@ const CollectorRow = forwardRef(
                 </Flex>
               )}
 
-              {!!otherCollectors && (
+              {!!extraCollections && (
                 <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                   <Text sx={{ fontWeight: 'heading' }}>Also Collecting</Text>
                   <Flex
@@ -243,7 +249,7 @@ const CollectorRow = forwardRef(
                       flexWrap: 'wrap',
                     }}
                   >
-                    {otherCollectors?.map(
+                    {extraCollections?.map(
                       ({ name, url, imageUrl, count }, idx) => (
                         <Flex
                           sx={{

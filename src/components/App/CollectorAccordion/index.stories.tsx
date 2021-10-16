@@ -53,10 +53,11 @@ Default.args = {
     firstAcquisition: '09/12/21',
     totalNftValue: '12739.48',
     nftCollection: [...new Array(3)].map((_, idx) => ({
+      id: '0x0/1',
       imageUrl: `/img/sample_nft_${idx + 1}.jpg`,
       url: '#',
     })),
-    otherCollectors: [...new Array(4)].map((_) => ({
+    extraCollections: [...new Array(4)].map((_) => ({
       name: 'Happy',
       imageUrl: '/img/defaultAvatar.png',
       url: '#',
