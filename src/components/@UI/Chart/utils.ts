@@ -4,12 +4,12 @@ import ApexCharts from 'apexcharts'
 
 export function getOptions(
   theme: UpshotUIThemeType,
-  data: Array<{
+  data?: Array<{
     name: string
     data: number[] | number[][]
     length?: number
   }>,
-  embedded: boolean,
+  embedded?: boolean,
   events?: any
 ) {
   const colors = [
