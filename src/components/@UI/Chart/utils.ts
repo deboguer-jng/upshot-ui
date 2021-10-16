@@ -4,11 +4,12 @@ import ApexCharts from 'apexcharts'
 
 export function getOptions(
   theme: UpshotUIThemeType,
-  data: Array<{
+  data?: Array<{
     name: string
     data: number[] | number[][]
     length?: number
   }>,
+  embedded?: boolean,
   events?: any
 ) {
   const colors = [
@@ -90,29 +91,78 @@ export function getOptions(
     tooltip: {
       enabled: true,
       shared: false,
-      fixed: {
+      fixed: !embedded ? {
         enabled: true,
         position: 'topRight',
         offsetX: 0,
         offsetY: 0,
-      },
+      } : {},
       custom: function ({
+        series,
         dataPointIndex,
+        seriesIndex,
         w: {
-          globals: { labels },
+          globals: { labels, clientX: x, svgWidth: width },
         },
       }) {
         const time = new Date(labels[dataPointIndex])
-
-        return `
-        <style>
-          .apexcharts-tooltip {
-            background: transparent!important;
-            border: none!important;
-            box-shadow: none!important;
-          }
-        </style>
-        `
+        const offset =
+          x <= width / 2 ? 'calc(-50% - 12px)' : 'calc(50% + 9.5px)'
+        if (!embedded) {
+          return `
+            <style>
+              .apexcharts-tooltip {
+                background: transparent!important;
+                border: none!important;
+                box-shadow: none!important;
+              }
+            </style>
+          `
+        } else {
+          return `
+            <style>
+              .apexcharts-tooltip {
+                background: transparent!important;
+                border: none!important;
+                box-shadow: none!important;
+                transform: translateX(${offset}) translateY(-60px);
+                overflow: visible;
+              }
+              .apexcharts-xaxistooltip, .apexcharts-yaxistooltip {
+                background: black;
+                color: ${theme.rawColors.text};
+                border-radius: ${theme.radii.pill};
+                font-size: ${theme.fontSizes[0]};
+              }
+            </style>
+            <div style="
+              position: relative;
+              background: black;
+              border-radius: 1rem;
+              padding: 0.1rem 1rem;
+              overflow: visible;
+              font-family: ${theme.fonts.body};
+              color: ${colors[seriesIndex]};
+              border: 1px solid ${colors[seriesIndex]};
+            " id="apexcharts-custom-tooltip"
+            >
+              Ξ${series[seriesIndex][dataPointIndex].toFixed(3)} <br/>
+              ${time.toLocaleString()}
+              <div style="
+                position: absolute;
+                bottom: -6px;
+                left: 50%;
+                transform: translateX(-50%) rotate(-45deg);
+                width: 10px;
+                height: 10px;
+                background: black;
+                border-left: 1px solid ${colors[seriesIndex]};
+                border-bottom: 1px solid ${colors[seriesIndex]};
+              ">
+              </div>
+            </div>
+          `
+        }
       },
       x: {
         show: false,

@@ -47,7 +47,7 @@ const PopulatedChart = ({
     useState<HoverDataPoint[]>(emptyHoverState)
 
   const colors = ['blue', 'pink', 'purple', 'yellow', 'red', 'green']
-  const options: ApexOptions = getOptions(theme, chartData, {
+  const options: ApexOptions = getOptions(theme, chartData, embedded, {
     mouseLeave() {
       /* Reset hover state on exit. */
       setHoverDataPoint(emptyHoverState)
