@@ -9,7 +9,6 @@ export const SwitchDropdownWrapper = styled.div``
 export const SwitchDropdownHeader = styled.div<SwitchDropdownHeaderProps>`
   display: flex;
   align-items: center;
-  padding: 8px;
   cursor: pointer;
 
   svg {
