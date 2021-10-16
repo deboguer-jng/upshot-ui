@@ -29,11 +29,11 @@ const SwitchDropdown = forwardRef(
     return (
       <>
         <SwitchDropdownWrapper {...{ ref, ...props }}>
-          <SwitchDropdownHeader open={open}>
+          <SwitchDropdownHeader open={open} onClick={() => setOpen(!open)}>
             <Text variant="h1Secondary" color="primary">
               {value ? value : options[0]}
             </Text>
-            <Icon icon="arrowDropdown" onClick={() => setOpen(!open)} />
+            <Icon icon="arrowDropdown" />
           </SwitchDropdownHeader>
           {open ? (
             <SwitchDropdownOptions>
