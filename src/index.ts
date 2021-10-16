@@ -44,7 +44,7 @@ export { default as CollectorAccordionHead } from './components/App/CollectorAcc
 export { default as CollectorAccordionRow } from './components/App/CollectorAccordionRow'
 export { default as Footer } from './components/App/Footer'
 export { default as Navbar } from './components/App/Navbar'
-export { default as LandingPanels } from './components/App/LandingPanels'
+export { default as LandingPanel } from './components/App/LandingPanels'
 
 /**
  * Components: Layout
