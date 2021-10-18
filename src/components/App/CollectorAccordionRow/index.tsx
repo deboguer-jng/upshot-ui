@@ -170,7 +170,7 @@ const CollectorRow = forwardRef(
               {!!firstAcquisition && (
                 <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                   <Text sx={{ fontWeight: 'heading' }}>
-                    First Cryptopunks Acquisition
+                    First {collectionName} Acquisition
                   </Text>
                   <Text
                     variant="h3Primary"
