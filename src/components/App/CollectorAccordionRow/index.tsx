@@ -57,6 +57,7 @@ export interface CollectorAccordionRowProps
     url: string
     count: number
   }[]
+  children?: React.ReactNode
 }
 
 /**
@@ -75,6 +76,7 @@ const CollectorRow = forwardRef(
       totalNftValue,
       nftCollection,
       extraCollections,
+      children,
       ...props
     }: CollectorAccordionRowProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -298,6 +300,12 @@ const CollectorRow = forwardRef(
                   </Flex>
                 </Flex>
               )}
+              {
+                !!children &&
+                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                    {children}
+                  </Flex>
+              }
             </Flex>
           </Grid>
         </CollectorRowExpansion>
