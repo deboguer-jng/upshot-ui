@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import SwitchDropdown from './'
 import { useState } from '@storybook/addons'
+import { Box } from 'theme-ui'
 
 export default {
   title: '@UI/SwitchDropdown',
@@ -16,7 +17,12 @@ const Template: ComponentStory<typeof SwitchDropdown> = (args) => {
     setValue(option)
   }
 
-  return <SwitchDropdown value={value} onChange={handleChange} {...args} />
+  return (
+    <>
+      <SwitchDropdown value={value} onChange={handleChange} {...args} />
+      <Box> This is test box </Box>
+    </>
+  )
 }
 
 export const Default = Template.bind({})

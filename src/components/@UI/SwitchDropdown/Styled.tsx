@@ -4,7 +4,13 @@ interface SwitchDropdownHeaderProps {
   open: boolean
 }
 
-export const SwitchDropdownWrapper = styled.div``
+interface SwitchDropdownOptionsProps {
+  open: boolean
+}
+
+export const SwitchDropdownWrapper = styled.div`
+  position: relative;
+`
 
 export const SwitchDropdownHeader = styled.div<SwitchDropdownHeaderProps>`
   display: flex;
@@ -23,13 +29,16 @@ export const SwitchDropdownHeader = styled.div<SwitchDropdownHeaderProps>`
   }
 `
 
-export const SwitchDropdownOptions = styled.div`
+export const SwitchDropdownOptions = styled.div<SwitchDropdownOptionsProps>`
+  position: absolute;
   padding: 8px;
   background: rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   width: fit-content;
-  margin-top: ${({ theme }) => `-${theme.sizes[6]}px`};
+  z-index: ${({ theme }) => theme.zIndex.dropdown};
+  // transition: ${({ theme }) => theme.transitions.default};
+  transition: all 1s ease-in-out;
 `
 
 export const SwitchDropdownOption = styled.div`
