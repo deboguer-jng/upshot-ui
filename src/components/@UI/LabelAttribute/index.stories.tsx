@@ -66,3 +66,17 @@ LabelAttributeRemoveableBlue.args = {
   variant: 'removeable',
   transparent: false,
 }
+
+export const LabelAttributeRemoveableBlueHover = Template.bind({})
+LabelAttributeRemoveableBlueHover.args = {
+  variant: 'removeable',
+  transparent: false,
+  hasHover: true,
+}
+
+export const LabelAttributeRemoveableHover = Template.bind({})
+LabelAttributeRemoveableHover.args = {
+  variant: 'removeable',
+  transparent: true,
+  hasHover: true,
+}
