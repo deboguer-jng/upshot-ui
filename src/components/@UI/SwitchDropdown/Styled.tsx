@@ -34,7 +34,7 @@ export const SwitchDropdownOptions = styled.div<SwitchDropdownOptionsProps>`
   position: absolute;
   padding-left: 8px;
   padding-right: 8px;
-  background: rgba(0, 0, 0, 0.05);
+  background: ${({ theme }) => theme.colors.black};
   visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
   opacity: ${({ open }) => (open ? 1 : 0)};
   display: flex;
