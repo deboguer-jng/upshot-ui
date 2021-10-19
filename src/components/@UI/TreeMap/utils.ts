@@ -11,6 +11,9 @@ export function getOptions(
   }>,
   dataAvailable: boolean
 ) {
+  const truncate = (input: string, size: number) =>
+    input.length > size ? `${input.substring(0, size)}...` : input
+
   const max = dataAvailable
     ? data.reduce(
         (pre, cur) => (pre < cur.delta ? cur.delta : pre),
@@ -108,7 +111,8 @@ export function getOptions(
           data[op.dataPointIndex].delta > 0
             ? `+${data[op.dataPointIndex].delta}%`
             : `${data[op.dataPointIndex].delta}%`
-        return [text, v] as any
+
+        return [truncate(text, 8), v] as any
       },
     },
     colors: data.map((item) => {
