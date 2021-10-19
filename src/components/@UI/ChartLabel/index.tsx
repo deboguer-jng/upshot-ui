@@ -67,6 +67,7 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
    * All time high price (eg. Ξ4.34)
    */
   onClose?: React.MouseEventHandler<HTMLButtonElement>
+  index?: number
 }
 
 /**
@@ -88,6 +89,7 @@ const ChartLabel = forwardRef(
       atl,
       ath,
       onClose,
+      index,
       ...props
     }: LabelProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -116,6 +118,7 @@ const ChartLabel = forwardRef(
         {...{ ref, ...props }}
         $variant={variant}
         $isMobile={isMobile}
+        $index={index}
       >
         {variant === 'multi' && (
           <IconBox $color={titleColor} $isMobile={isMobile}>

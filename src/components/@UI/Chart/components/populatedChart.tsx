@@ -103,6 +103,7 @@ const PopulatedChart = ({
         }}
         atl={set.atl ?? '-'}
         ath={set.ath ?? '-'}
+        index={i}
       />
     ))
 

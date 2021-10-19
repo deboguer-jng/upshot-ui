@@ -10,6 +10,7 @@ interface ChartLabelProps {
   $variant?: 'alone' | 'multi'
   $color?: keyof typeof Colors
   $isMobile?: boolean
+  $index?: number
 }
 
 export const IconBox = styled(Box)<ChartLabelProps>`
@@ -76,4 +77,5 @@ export const RelativeFlex = styled(Flex)<ChartLabelProps>`
   ${({ $variant }) => ($variant === 'multi' ? 'display: inline-flex;' : '')}
   font-size: ${({ $isMobile }) => ($isMobile ? '0.65em' : '1em')};
   width: ${({ $variant }) => ($variant === 'alone' ? '100%' : 'auto')};
+  padding-left: ${({ $index, $isMobile }) => $index === 2 && !$isMobile ? '15px' : '0px' }
 `
