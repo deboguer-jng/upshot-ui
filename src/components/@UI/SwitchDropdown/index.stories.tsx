@@ -17,12 +17,7 @@ const Template: ComponentStory<typeof SwitchDropdown> = (args) => {
     setValue(option)
   }
 
-  return (
-    <>
-      <SwitchDropdown value={value} onChange={handleChange} {...args} />
-      <Box> This is test box </Box>
-    </>
-  )
+  return <SwitchDropdown value={value} onChange={handleChange} {...args} />
 }
 
 export const Default = Template.bind({})

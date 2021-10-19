@@ -22,6 +22,7 @@ export const SwitchDropdownHeader = styled.div<SwitchDropdownHeaderProps>`
     height: 16px;
     margin-left: 8px;
     transform: rotate(${({ open }) => (open ? '180' : '0')}deg);
+    transition: ${({ theme }) => theme.transitions.default};
 
     path {
       fill: ${({ theme }) => theme.colors.primary};
@@ -33,12 +34,13 @@ export const SwitchDropdownOptions = styled.div<SwitchDropdownOptionsProps>`
   position: absolute;
   padding: 8px;
   background: rgba(0, 0, 0, 0.05);
+  visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
+  opacity: ${({ open }) => (open ? 1 : 0)};
   display: flex;
   flex-direction: column;
   width: fit-content;
   z-index: ${({ theme }) => theme.zIndex.dropdown};
-  // transition: ${({ theme }) => theme.transitions.default};
-  transition: all 1s ease-in-out;
+  transition: ${({ theme }) => theme.transitions.default};
 `
 
 export const SwitchDropdownOption = styled.div`
