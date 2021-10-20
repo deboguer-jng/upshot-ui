@@ -103,6 +103,7 @@ export function getOptions(
       style: {
         fontSize: '12px',
       },
+      offsetY: -5,
       formatter: function (
         text: string,
         op: { value: number; dataPointIndex: number }
