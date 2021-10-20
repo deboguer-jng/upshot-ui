@@ -5,11 +5,13 @@ import { ApexOptions } from 'apexcharts'
 export function getOptions(
   theme: UpshotUIThemeType,
   data: Array<{
+    id: number
     name: string
     delta: number
     marketCap: number
   }>,
-  dataAvailable: boolean
+  dataAvailable: boolean,
+  onCollectionSelected?: (index: number) => void
 ) {
   const truncate = (input: string, size: number) =>
     input.length > size ? `${input.substring(0, size)}...` : input
@@ -42,6 +44,15 @@ export function getOptions(
       },
       sparkline: {
         enabled: false,
+      },
+      events: {
+        dataPointSelection: (
+          event,
+          chartContext,
+          config: { dataPointIndex: number }
+        ) => {
+          onCollectionSelected(config.dataPointIndex)
+        },
       },
     },
     grid: {
