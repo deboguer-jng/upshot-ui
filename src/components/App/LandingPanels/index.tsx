@@ -28,6 +28,10 @@ export interface LandingPanelProps extends PanelProps {
    * Show "openLink" icon (top-right)
    */
   showLinkIcon?: boolean
+  /**
+   * Link target attribute
+   */
+  target?: '_blank' | '_self' | '_parent' | '_top' | 'framename'
 }
 
 /**
@@ -42,6 +46,7 @@ const LandingPanel = forwardRef(
       url,
       image,
       showLinkIcon = true,
+      target = '_self',
       ...props
     }: LandingPanelProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -66,7 +71,7 @@ const LandingPanel = forwardRef(
     return (
       <Box {...{ ref, ...props }}>
         <StyledPanel ref={panelRef} $isBig={isBig}>
-          <StyledLink href={url}>
+          <StyledLink href={url} target={target}>
             <Box>
               { showLinkIcon && (
                 <StyledIcon icon='openLink' color='grey-700' size='20' />
