@@ -24,6 +24,8 @@ export interface LabelAttributeProps
    * Defines whether the label's background should be transparent.
    */
   transparent?: boolean
+
+  hasHover?: boolean
   /**
    * The removal callback for the removable variant.
    */
@@ -38,6 +40,7 @@ const LabelAttribute = forwardRef(
       percentage,
       onRemove,
       children,
+      hasHover,
       ...props
     }: LabelAttributeProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -63,6 +66,7 @@ const LabelAttribute = forwardRef(
         onMouseOver={handleMouseOver}
         onMouseLeave={handleMouseOut}
         $transparent={transparent}
+        hasHover={hasHover}
         {...{ ref, props }}
       >
         {showTooltip && (
