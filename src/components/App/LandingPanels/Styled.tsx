@@ -1,7 +1,9 @@
 import styled from '@emotion/styled'
 import { Link } from 'theme-ui'
-import { Text, Avatar, Panel, Icon } from '../../../'
-
+import Text from '../../@UI/Text'
+import Avatar from '../../@UI/Avatar'
+import Icon from '../../@UI/Icon'
+import Panel from '../../@UI/Panel'
 
 interface sizeProps {
   $isBig: boolean

@@ -65,8 +65,9 @@ const LandingPanel = forwardRef(
         }
       }
       handleResize()
-      window.addEventListener("resize", handleResize);
-    }, [])
+      window.addEventListener("resize", handleResize)
+      return () => window.removeEventListener("resize", handleResize)
+    }, [width])
 
     return (
       <Box {...{ ref, ...props }}>
