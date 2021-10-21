@@ -11,6 +11,7 @@ export const WrappedReactApexChart = styled(ReactApexChart)`
 
 export const TreeMapChartWrapper = styled.div`
   width: 100%;
+  min-width: 700px;
 `
 
 export const TreeMapWrapper = styled.div`
