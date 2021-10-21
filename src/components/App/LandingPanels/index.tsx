@@ -1,8 +1,9 @@
 import React, { forwardRef, useState, useEffect, useRef } from 'react'
 import { Box } from 'theme-ui'
 
+import Text from '../../@UI/Text'
 import { PanelProps } from '../../@UI/Panel'
-import { StyledAvatar, StyledText, StyledTitle, StyledLink, StyledDescription, StyledPanel, StyledIcon } from './Styled'
+import { StyledAvatar, StyledText, StyledDescription, StyledPanel, StyledIcon } from './Styled'
 import colors from '../../../themes/UpshotUI/colors'
 
 export interface LandingPanelProps extends PanelProps {
@@ -29,7 +30,7 @@ export interface LandingPanelProps extends PanelProps {
   /**
    * Underglow color on :hover
    */
-   hoverUnderglow?: keyof typeof colors
+  hoverUnderglow?: keyof typeof colors
 }
 
 /**
@@ -68,7 +69,7 @@ const LandingPanel = forwardRef(
 
     return (
       <Box {...{ ref, ...props }}>
-        <StyledPanel ref={panelRef} $isBig={isBig} $hoverUnderglow={hoverUnderglow}>
+        <StyledPanel ref={panelRef} $isBig={isBig} hoverUnderglow={hoverUnderglow}>
           <Box>
             { showLinkIcon && (
               <StyledIcon icon='openLink' color='grey-700' size='20' />
@@ -79,7 +80,7 @@ const LandingPanel = forwardRef(
                 <StyledText color='grey-600' variant='large'>{projectType}</StyledText>
               </>
             )}
-            <StyledTitle variant='h3Primary' color='grey-300'>{title}</StyledTitle>
+            <Text variant='h3Primary' color='grey-300'>{title}</Text>
           </Box>
           <StyledDescription $isBig={isBig} color='grey-500'>
             {description}
