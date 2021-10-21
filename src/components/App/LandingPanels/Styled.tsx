@@ -9,7 +9,6 @@ import Panel from '../../@UI/Panel'
 
 interface sizeProps {
   $isBig: boolean
-  $hoverUnderglow?: keyof typeof colors
 }
 
 export const StyledPanel = styled(Panel)<sizeProps>`
@@ -27,15 +26,6 @@ export const StyledAvatar = styled(Avatar)`
 export const StyledText = styled(Text)`
   display: block;
   margin-top: 2px;
-`
-export const StyledTitle = styled(Text)`
-`
-
-export const StyledLink = styled(Link)`
-  text-decoration: none;
-  &:hover {
-    text-decoration: none;
-  }
 `
 
 export const StyledIcon = styled(Icon)`
