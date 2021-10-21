@@ -47,8 +47,6 @@ export function getOptions(
       },
       events: {
         dataPointSelection: (
-          event,
-          chartContext,
           config: { dataPointIndex: number }
         ) => {
           onCollectionSelected(config.dataPointIndex)
