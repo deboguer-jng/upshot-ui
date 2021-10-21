@@ -1,7 +1,9 @@
 import React, { forwardRef, useState, useEffect, useRef } from 'react'
+import { Box } from 'theme-ui'
+
 import { PanelProps } from '../../@UI/Panel'
 import { StyledAvatar, StyledText, StyledTitle, StyledLink, StyledDescription, StyledPanel, StyledIcon } from './Styled'
-import { Box } from 'theme-ui'
+import colors from '../../../themes/UpshotUI/colors'
 
 export interface LandingPanelProps extends PanelProps {
   /**
@@ -19,19 +21,15 @@ export interface LandingPanelProps extends PanelProps {
   /**
    * Card URL
    */
-  url?: string
-  /**
-   * Card image
-   */
   image?: string
   /**
    * Show "openLink" icon (top-right)
    */
   showLinkIcon?: boolean
   /**
-   * Link target attribute
+   * Underglow color on :hover
    */
-  target?: '_blank' | '_self' | '_parent' | '_top' | 'framename'
+   hoverUnderglow?: keyof typeof colors
 }
 
 /**
@@ -43,10 +41,9 @@ const LandingPanel = forwardRef(
       projectType,
       title,
       description,
-      url,
       image,
       showLinkIcon = true,
-      target = '_self',
+      hoverUnderglow = 'blue',
       ...props
     }: LandingPanelProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -71,21 +68,19 @@ const LandingPanel = forwardRef(
 
     return (
       <Box {...{ ref, ...props }}>
-        <StyledPanel ref={panelRef} $isBig={isBig}>
-          <StyledLink href={url} target={target}>
-            <Box>
-              { showLinkIcon && (
-                <StyledIcon icon='openLink' color='grey-700' size='20' />
-              )}
-              { isBig && (
-                <>
-                  <StyledAvatar src={image} />
-                  <StyledText color='grey-600' variant='large'>{projectType}</StyledText>
-                </>
-              )}
-              <StyledTitle variant='h3Primary' color='grey-300'>{title}</StyledTitle>
-            </Box>
-          </StyledLink>
+        <StyledPanel ref={panelRef} $isBig={isBig} $hoverUnderglow={hoverUnderglow}>
+          <Box>
+            { showLinkIcon && (
+              <StyledIcon icon='openLink' color='grey-700' size='20' />
+            )}
+            { isBig && (
+              <>
+                <StyledAvatar src={image} />
+                <StyledText color='grey-600' variant='large'>{projectType}</StyledText>
+              </>
+            )}
+            <StyledTitle variant='h3Primary' color='grey-300'>{title}</StyledTitle>
+          </Box>
           <StyledDescription $isBig={isBig} color='grey-500'>
             {description}
           </StyledDescription>
