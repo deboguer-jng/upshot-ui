@@ -31,6 +31,10 @@ export interface LandingPanelProps extends PanelProps {
    * Underglow color on :hover
    */
   hoverUnderglow?: keyof typeof colors
+  /**
+   * Is card disabled?
+   */
+  disabled?: boolean
 }
 
 /**
@@ -45,6 +49,7 @@ const LandingPanel = forwardRef(
       image,
       showLinkIcon = true,
       hoverUnderglow = 'blue',
+      disabled = false,
       ...props
     }: LandingPanelProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -69,7 +74,7 @@ const LandingPanel = forwardRef(
 
     return (
       <Box {...{ ref, ...props }}>
-        <StyledPanel ref={panelRef} $isBig={isBig} hoverUnderglow={hoverUnderglow}>
+        <StyledPanel ref={panelRef} hoverUnderglow={hoverUnderglow} $isBig={isBig} >
           <Box>
             { showLinkIcon && (
               <StyledIcon icon='openLink' color='grey-700' size='20' />
@@ -80,9 +85,9 @@ const LandingPanel = forwardRef(
                 <StyledText color='grey-600' variant='large'>{projectType}</StyledText>
               </>
             )}
-            <Text variant='h3Primary' color='grey-300'>{title}</Text>
+            <Text variant='h3Primary' color={disabled ? 'grey-600' : 'grey-300'}>{title}</Text>
           </Box>
-          <StyledDescription $isBig={isBig} color='grey-500'>
+          <StyledDescription $isBig={isBig} color={disabled ? 'grey-600' : 'grey-500'}>
             {description}
           </StyledDescription>
         </StyledPanel>
