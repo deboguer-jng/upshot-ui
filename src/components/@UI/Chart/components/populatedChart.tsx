@@ -47,8 +47,8 @@ const PopulatedChart = ({
   }))
   const [hoverDataPoint, setHoverDataPoint] =
     useState<HoverDataPoint[]>(emptyHoverState)
-
-  const labelColors = ['blue', 'pink', 'purple', 'yellow', 'red', 'green']
+  
+  const labelColors: Array<keyof typeof colors> = ['blue', 'pink', 'purple', 'yellow', 'red', 'green']
   for (let i = 0; i < chartData.length; i++) {
     chartData[i].labelColor = labelColors[i]
   }
