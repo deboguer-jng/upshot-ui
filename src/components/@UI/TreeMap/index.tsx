@@ -8,6 +8,7 @@ import {
 } from './Styled'
 import { getOptions } from './utils'
 import EmptyChart from '../Chart/components/emptyChart'
+import { useBreakpointIndex } from '@theme-ui/match-media'
 
 export interface TreeMapProps {
   data: Array<{
@@ -28,13 +29,14 @@ const TreeMap = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const theme = useTheme()
+    const isMobile = useBreakpointIndex() <= 1
     const dataAvailable = !loading && data.length !== 0 && !error && !noData
     const options = getOptions(theme, data, dataAvailable)
 
     return (
       <TreeMapChartWrapper {...{ ref, ...props }}>
         {dataAvailable ? (
-          <TreeMapChartInnerWrapper>
+          <TreeMapChartInnerWrapper isMobile={isMobile}>
             <TreeMapWrapper>
               <WrappedReactApexChart
                 series={[
