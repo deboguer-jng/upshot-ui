@@ -16,6 +16,13 @@ export function getOptions(
   const truncate = (input: string, size: number) =>
     input.length > size ? `${input.substring(0, size)}...` : input
 
+  const maxMarketCap = dataAvailable
+    ? data.reduce(
+        (pre, cur) => (pre < cur.marketCap ? cur.marketCap : pre),
+        data[0].marketCap
+      )
+    : 0
+
   const max = dataAvailable
     ? data.reduce(
         (pre, cur) => (pre < cur.delta ? cur.delta : pre),
@@ -46,7 +53,9 @@ export function getOptions(
         enabled: false,
       },
       events: {
-        dataPointSelection: (event: MouseEvent, chartContext: any,
+        dataPointSelection: (
+          event: MouseEvent,
+          chartContext: any,
           config: { dataPointIndex: number }
         ) => {
           onCollectionSelected(config.dataPointIndex)
@@ -122,6 +131,7 @@ export function getOptions(
             ? `+${data[op.dataPointIndex].delta}%`
             : `${data[op.dataPointIndex].delta}%`
 
+        if (maxMarketCap / data[op.dataPointIndex].marketCap > 1000) return ''
         return [truncate(text, 8), v] as any
       },
     },
