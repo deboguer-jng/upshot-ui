@@ -34,12 +34,10 @@ export const SwitchDropdownOptions = styled.div<SwitchDropdownOptionsProps>`
   position: absolute;
   padding-left: 8px;
   padding-right: 8px;
-  background: ${({ theme }) => theme.colors.black};
+  width: 100%;
+  background:  linear-gradient(180deg, #231F20 60.42%, rgba(35, 31, 32, 0) 100%);;
   visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
   opacity: ${({ open }) => (open ? 1 : 0)};
-  display: flex;
-  flex-direction: column;
-  width: fit-content;
   z-index: ${({ theme }) => theme.zIndex.dropdown};
   transition: ${({ theme }) => theme.transitions.default};
 `
