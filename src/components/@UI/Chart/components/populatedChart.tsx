@@ -8,6 +8,7 @@ import { getOptions, toggle } from '../utils'
 import ButtonChartCollection from '../../ButtonChartCollection'
 import ChartLabel from '../../ChartLabel'
 import Box from '../../../Layout/Box'
+import colors from '../../../../themes/UpshotUI/colors'
 
 interface PopulatedChartProps {
   chartData: {
@@ -15,6 +16,7 @@ interface PopulatedChartProps {
     data: number[] | number[][] // Supports 1D line chart or 2D [timestamp, value] series
     ath?: string
     atl?: string
+    labelColor?: keyof typeof colors
   }[]
   embedded?: boolean
 }
@@ -45,8 +47,11 @@ const PopulatedChart = ({
   }))
   const [hoverDataPoint, setHoverDataPoint] =
     useState<HoverDataPoint[]>(emptyHoverState)
-
-  const colors = ['blue', 'pink', 'purple', 'yellow', 'red', 'green']
+  
+  const labelColors: Array<keyof typeof colors> = ['blue', 'pink', 'purple', 'yellow', 'red', 'green']
+  for (let i = 0; i < chartData.length; i++) {
+    chartData[i].labelColor = labelColors[i]
+  }
   const options: ApexOptions = getOptions(theme, chartData, embedded, {
     mouseLeave() {
       /* Reset hover state on exit. */
@@ -84,7 +89,7 @@ const PopulatedChart = ({
         key={i}
         variant={chartData.length > 1 ? 'multi' : 'alone'}
         title={set.name}
-        titleColor={colors[i] as keyof typeof theme['colors']}
+        titleColor={set.labelColor}
         price_1={
           hoverDataPoint[i]?.value ??
           (Array.isArray(set.data[set.data.length - 1]) // Default to last price
@@ -141,7 +146,7 @@ const PopulatedChart = ({
           {[...new Array(chartData.length)].map((_, i) => (
             <ButtonChartCollection
               key={i}
-              color={colors[i] as keyof typeof theme['colors']}
+              color={chartData[i].labelColor}
               title={chartData[i].name}
               selected={filterStatus[i]}
               onClick={() =>
