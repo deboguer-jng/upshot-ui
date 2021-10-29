@@ -5,14 +5,23 @@ import { ApexOptions } from 'apexcharts'
 export function getOptions(
   theme: UpshotUIThemeType,
   data: Array<{
+    id: number
     name: string
     delta: number
     marketCap: number
   }>,
-  dataAvailable: boolean
+  dataAvailable: boolean,
+  onCollectionSelected?: (index: number) => void
 ) {
   const truncate = (input: string, size: number) =>
     input.length > size ? `${input.substring(0, size)}...` : input
+
+  const maxMarketCap = dataAvailable
+    ? data.reduce(
+        (pre, cur) => (pre < cur.marketCap ? cur.marketCap : pre),
+        data[0].marketCap
+      )
+    : 0
 
   const max = dataAvailable
     ? data.reduce(
@@ -42,6 +51,15 @@ export function getOptions(
       },
       sparkline: {
         enabled: false,
+      },
+      events: {
+        dataPointSelection: (
+          event: MouseEvent,
+          chartContext: any,
+          config: { dataPointIndex: number }
+        ) => {
+          onCollectionSelected(config.dataPointIndex)
+        },
       },
     },
     grid: {
@@ -103,6 +121,7 @@ export function getOptions(
       style: {
         fontSize: '12px',
       },
+      offsetY: -5,
       formatter: function (
         text: string,
         op: { value: number; dataPointIndex: number }
@@ -112,6 +131,7 @@ export function getOptions(
             ? `+${data[op.dataPointIndex].delta}%`
             : `${data[op.dataPointIndex].delta}%`
 
+        if (maxMarketCap / data[op.dataPointIndex].marketCap > 1000) return ''
         return [truncate(text, 8), v] as any
       },
     },
