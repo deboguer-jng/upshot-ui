@@ -125,3 +125,17 @@ export const ReactChartWrapper = styled.div`
     }
   }
 `
+
+export const ReactApexChartWrapper = styled.div`
+  width: 100%;
+  padding-top: 35%;
+  position: relative;
+
+  & > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+`
