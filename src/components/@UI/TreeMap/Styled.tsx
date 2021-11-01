@@ -27,6 +27,6 @@ export const TreeMapWrapper = styled.div`
 
 export const TreeMapChartInnerWrapper = styled.div<TreeMapChartInnerWrapperProps>`
   position: relative;
-  padding-top: ${({ isMobile }) => (isMobile ? '60%' : '35%')};
+  padding-top: ${({ isMobile }) => (isMobile ? '100vh' : '35%')};
   width: 100%;
 `
