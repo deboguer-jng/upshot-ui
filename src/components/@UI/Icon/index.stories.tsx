@@ -289,6 +289,9 @@ Showroom.args = { icon: 'showroom', color: 'primary', size: 32 }
 export const Spacebar = Template.bind({})
 Spacebar.args = { icon: 'spacebar', color: 'primary', size: 32 }
 
+export const Subtract = Template.bind({})
+Subtract.args = { icon: 'subtract', color: 'primary', size: 32 }
+
 export const SuperRareBlock = Template.bind({})
 SuperRareBlock.args = { icon: 'superRareBlock', color: 'primary', size: 32 }
 

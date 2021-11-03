@@ -30,6 +30,7 @@ export { default as SwitchDropdown } from './components/@UI/SwitchDropdown'
 export { default as Text } from './components/@UI/Text'
 export { default as TreeMap } from './components/@UI/TreeMap/TreeMapDynamic'
 export { default as MiniNftCard } from './components/@UI/MiniNftCard'
+export { default as Scroll } from './components/@UI/Scroll'
 
 /**
  * Components: App

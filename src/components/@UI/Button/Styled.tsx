@@ -40,6 +40,7 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   padding: 0px 25px;
   transition: ${({ theme }) => theme.transitions.default};
   text-transform: uppercase;
+  white-space: nowrap;
 
   & svg {
     margin-right: ${({ theme, $size, minimized }) =>
@@ -181,6 +182,7 @@ export const PlainButton = styled.button<PlainButtonProps>`
   font-family: ${({ theme }) => theme.fonts.body};
   cursor: pointer;
   height: ${({ theme, $size }) => theme.buttons.property[$size].height}px;
+  white-space: nowrap;
 
   &:not(:disabled):hover {
     span {
