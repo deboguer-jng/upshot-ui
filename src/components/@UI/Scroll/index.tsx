@@ -34,7 +34,7 @@ const Scroll = forwardRef(
     }
 
     return (
-      <ScrollWrapper>
+      <ScrollWrapper {...{ ref, ...props }}>
         <div ref={childrenRef}>{children}</div>
         {bodyWidth >= 0 ? (
           <>
