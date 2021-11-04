@@ -14,6 +14,7 @@ import {
   StyledBlue,
   InlineLabel,
   RelativeFlex,
+  StyledLink,
 } from './Styled'
 import { useBreakpointIndex } from '@theme-ui/match-media'
 
@@ -29,6 +30,10 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string
   /**
    * Color of the title line
+   */
+  url: string
+  /**
+   * Title link
    */
   titleColor?: keyof typeof Colors
   /**
@@ -79,6 +84,7 @@ const ChartLabel = forwardRef(
     {
       variant = 'alone',
       title,
+      url,
       titleColor = variant === 'multi' ? 'primary' : 'white',
       price_1,
       currency_1 = 'Ξ',
@@ -132,9 +138,11 @@ const ChartLabel = forwardRef(
           </IconBox>
         )}
         <Box>
-          <StyledTitle $color={titleColor}>
-            {variant == 'multi' ? title + ' ' : ''}
-          </StyledTitle>
+          <StyledLink href={url}>
+            <StyledTitle $color={titleColor}>
+              {variant == 'multi' ? title + ' ' : ''}
+            </StyledTitle>
+          </StyledLink>
           <StyledH1 $variant={variant}>
             <Label
               variant="currency"
