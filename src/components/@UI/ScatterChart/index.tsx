@@ -26,6 +26,7 @@ export interface ScatterChartProps {
    */
   data?: {
     name: string
+    url: string
     data: number[] | number[][]
   }[]
 }
