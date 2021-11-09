@@ -43,6 +43,12 @@ Primary.args = {
   variant: 'primary',
 }
 
+export const PrimaryCapitalize = Template.bind({})
+PrimaryCapitalize.args = {
+  variant: 'primary',
+  capitalize: true,
+}
+
 export const PrimaryToggle = TemplateToggle.bind({})
 PrimaryToggle.args = {
   variant: 'primary',
