@@ -15,6 +15,7 @@ Main.args = {
   data: [
     {
       name: 'CryptoPunks',
+      url: 'https://upshot.io/',
       data: [
         [1327359600000, 3.95],
         [1327446000000, 11.34],
@@ -33,6 +34,7 @@ Main.args = {
     },
     {
       name: 'Chromie Squiggles',
+      url: 'https://upshot.io/',
       data: [
         [1327359600000, 13.95],
         [1327446000000, 7.34],
@@ -51,6 +53,7 @@ Main.args = {
     },
     {
       name: 'Miami DAO',
+      url: 'https://upshot.io/',
       data: [
         [1327359600000, 12.95],
         [1327446000000, 4.34],
@@ -75,6 +78,7 @@ MainSingle.args = {
   data: [
     {
       name: 'Chromie Squiggles',
+      url: 'https://upshot.io/',
       data: [
         [1327359600000, 13.95],
         [1327446000000, 7.34],
@@ -99,6 +103,7 @@ Embedded.args = {
   data: [
     {
       name: 'CryptoPunks',
+      url: 'https://upshot.io/',
       data: [
         [1327359600000, 3.95],
         [1327446000000, 11.34],
@@ -117,6 +122,7 @@ Embedded.args = {
     },
     {
       name: 'Chromie Squiggles',
+      url: 'https://upshot.io/',
       data: [
         [1327359600000, 13.95],
         [1327446000000, 7.34],
