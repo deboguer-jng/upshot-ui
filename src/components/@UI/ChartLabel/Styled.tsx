@@ -79,3 +79,12 @@ export const RelativeFlex = styled(Flex)<ChartLabelProps>`
   width: ${({ $variant }) => ($variant === 'alone' ? '100%' : 'auto')};
   padding-left: ${({ $index, $isMobile }) => $index === 2 && !$isMobile ? '15px' : '0px' }
 `
+export const StyledLink = styled.a`
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+`

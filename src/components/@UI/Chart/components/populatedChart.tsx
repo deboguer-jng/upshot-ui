@@ -13,6 +13,7 @@ import colors from '../../../../themes/UpshotUI/colors'
 interface PopulatedChartProps {
   chartData: {
     name: string
+    url: string
     data: number[] | number[][] // Supports 1D line chart or 2D [timestamp, value] series
     ath?: string
     atl?: string
@@ -109,6 +110,7 @@ const PopulatedChart = ({
         atl={set.atl ?? '-'}
         ath={set.ath ?? '-'}
         index={i}
+        url={set.url}
       />
     ))
 

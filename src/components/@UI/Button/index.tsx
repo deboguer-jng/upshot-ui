@@ -20,6 +20,8 @@ export interface ButtonProps {
   children?: ReactNode
 
   toggled?: boolean
+
+  capitalize?: boolean
 }
 
 /**
@@ -34,13 +36,14 @@ const Button = forwardRef(
       width,
       toggled,
       children,
+      capitalize = false,
       ...props
     }: ButtonProps & HTMLAttributes<HTMLButtonElement>,
     ref: React.ForwardedRef<HTMLButtonElement>
   ) => {
     if (variant === 'plain') {
       return (
-        <PlainButton $size={size} {...{ ref, ...props }}>
+        <PlainButton capitalize={capitalize} $size={size} {...{ ref, ...props }}>
           <>
             <span>{children}</span>
             {icon}
@@ -51,6 +54,7 @@ const Button = forwardRef(
 
     return (
       <PrimaryButton
+        capitalize={capitalize}
         $type={variant}
         $size={size}
         width={width || undefined}

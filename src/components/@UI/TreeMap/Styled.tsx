@@ -1,6 +1,10 @@
 import styled from '@emotion/styled'
 import ReactApexChart from 'react-apexcharts'
 
+interface TreeMapChartInnerWrapperProps {
+  isMobile: boolean
+}
+
 export const WrappedReactApexChart = styled(ReactApexChart)`
   margin-left: -2px;
   margin-right: -2px;
@@ -21,8 +25,8 @@ export const TreeMapWrapper = styled.div`
   bottom: 0;
 `
 
-export const TreeMapChartInnerWrapper = styled.div`
+export const TreeMapChartInnerWrapper = styled.div<TreeMapChartInnerWrapperProps>`
   position: relative;
-  padding-top: 35%;
+  padding-top: ${({ isMobile }) => (isMobile ? '100vh' : '35%')};
   width: 100%;
 `
