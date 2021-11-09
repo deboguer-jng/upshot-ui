@@ -6,7 +6,6 @@ import ReactApexChart from 'react-apexcharts'
 interface PopulatedScatterChartProps {
   chartData: {
     name: string
-    url: string
     data: number[] | number[][] // Supports 1D line chart or 2D [timestamp, value] series
   }[]
 }
