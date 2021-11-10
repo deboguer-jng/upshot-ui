@@ -25,6 +25,22 @@ const Pagination = forwardRef(
             <Icon icon="arrowSmallRight" />
           </>
         }
+        showFirstLabel
+        showLastLabel
+        firstLabel={
+          <>
+            First
+            <Icon icon="arrowSmallLeft" />
+            <Icon icon="arrowSmallLeft" />
+          </>
+        }
+        lastLabel={
+          <>
+            Last
+            <Icon icon="arrowSmallRight" />
+            <Icon icon="arrowSmallRight" />
+          </>
+        }
         {...props}
       />
     </PaginationBase>
