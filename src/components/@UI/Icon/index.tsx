@@ -28,11 +28,17 @@ const Icon = forwardRef(
   ) => (
     <SVG
       src={icons[icon]}
-      /* Preprocess SVGs to use color prop. */
+      /* Preprocess SVGs to use color prop.
+      It changes every fill="*" and stroke to fill="*"
+      except when the vaule is "none" */
       preProcessor={(svg) =>
         svg
+          .replace(/fill="none"/g, 'fill_temp="none"')
           .replace(/fill=".*?"/g, 'fill="currentColor"')
+          .replace(/fill_temp="none"/g, 'fill="none"')
+          .replace(/stroke="none"/g, 'stroke_temp="none"')
           .replace(/stroke=".*?"/g, 'stroke="currentColor"')
+          .replace(/stroke_temp="none"/g, 'stroke="none"')
       }
       /* If no color is provided, inherit color from the container. */
       color={colors[color] ?? 'inherit'}
