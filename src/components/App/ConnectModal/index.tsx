@@ -8,11 +8,16 @@ import {
 import { BoxProps, Image } from 'theme-ui'
 import Text from '../../@UI/Text'
 
+enum ConnectorNames {
+  Injected = 'Injected',
+  WalletConnect = 'WalletConnect',
+}
+
 export interface ConnectModalProps extends BoxProps {
   /**
    * Handler for the provider onClick event.
    */
-  onConnect?: (provider: string) => void
+  onConnect?: (provider: ConnectorNames) => void
 }
 
 /**
@@ -30,7 +35,10 @@ const ConnectModal = forwardRef(
       </Text>
 
       <ConnectProviders>
-        <Provider $color="orange" onClick={() => onConnect?.('metamask')}>
+        <Provider
+          $color="orange"
+          onClick={() => onConnect?.(ConnectorNames.Injected)}
+        >
           MetaMask
           <Image
             src="/img/wallets/branding/metamask-fox.svg"
@@ -39,7 +47,10 @@ const ConnectModal = forwardRef(
             height={40}
           />
         </Provider>
-        <Provider $color="blue" onClick={() => onConnect?.('walletconnect')}>
+        <Provider
+          $color="blue"
+          onClick={() => onConnect?.(ConnectorNames.WalletConnect)}
+        >
           WalletConnect
           <Image
             src="/img/wallets/branding/walletconnect-logo.svg"
