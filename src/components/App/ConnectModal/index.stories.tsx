@@ -6,7 +6,7 @@ import Button from '../../@UI/Button'
 import ConnectModal from './'
 
 export default {
-  title: '@UI/ConnectModal',
+  title: 'App/ConnectModal',
   component: ConnectModal,
 } as ComponentMeta<typeof ConnectModal>
 
