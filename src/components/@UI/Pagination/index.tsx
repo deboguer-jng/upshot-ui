@@ -30,15 +30,13 @@ const Pagination = forwardRef(
         firstLabel={
           <>
             First
-            <Icon icon="arrowSmallLeft" />
-            <Icon icon="arrowSmallLeft" />
+            <Icon icon="arrowDoubleLeft" />
           </>
         }
         lastLabel={
           <>
             Last
-            <Icon icon="arrowSmallRight" />
-            <Icon icon="arrowSmallRight" />
+            <Icon icon="arrowDoubleRight" />
           </>
         }
         {...props}
