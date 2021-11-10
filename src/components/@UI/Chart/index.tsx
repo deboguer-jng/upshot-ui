@@ -26,8 +26,8 @@ export interface ChartProps {
    */
   data?: {
     name: string
-    url: string
     data: number[] | number[][]
+    url?: string
     ath?: string
     atl?: string
   }[]
