@@ -2,7 +2,9 @@ import React, { forwardRef } from 'react'
 import Colors from '../../../themes/UpshotUI/colors'
 import Icon from '../../@UI/Icon'
 import Label from '../../@UI/Label'
+import Flex from '../../Layout/Flex'
 import Box from '../../Layout/Box'
+import Text from '../../@UI/Text'
 import {
   IconBox,
   StyledIconButton,
@@ -19,10 +21,6 @@ import {
 import { useBreakpointIndex } from '@theme-ui/match-media'
 
 export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * Optional parameter switch between 'alone' or 'multi' layout. Default: 'alone'.
-   */
-  variant?: 'alone' | 'multi'
   /**
    * Item name (shown only when variant === 'multi').
    * " price:" string automatically added to the end of the string.
@@ -82,10 +80,9 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
 const ChartLabel = forwardRef(
   (
     {
-      variant = 'alone',
       title,
       url,
-      titleColor = variant === 'multi' ? 'primary' : 'white',
+      titleColor = 'white',
       price_1,
       currency_1 = 'Ξ',
       price_2 = null,
@@ -120,39 +117,41 @@ const ChartLabel = forwardRef(
     }
 
     return (
-      <RelativeFlex
-        {...{ ref, ...props }}
-        $variant={variant}
-        $isMobile={isMobile}
-        $index={index}
-      >
-        {variant === 'multi' && (
-          <IconBox $color={titleColor} $isMobile={isMobile}>
-            <StyledIconButton
-              type="button"
-              onClick={onClose}
-              $isMobile={isMobile}
-            >
-              <Icon size={12} color={titleColor} icon="x" />
-            </StyledIconButton>
-          </IconBox>
-        )}
+      <RelativeFlex {...{ ref, ...props }} $isMobile={isMobile} $index={index}>
+        <IconBox $color={titleColor} $isMobile={isMobile}>
+          <StyledIconButton
+            type="button"
+            onClick={onClose}
+            $color={titleColor}
+            $isMobile={isMobile}
+          >
+            <Icon size={12} color={titleColor} icon="x" />
+          </StyledIconButton>
+        </IconBox>
         <Box>
           <StyledLink href={url}>
-            <StyledTitle $color={titleColor}>
-              {variant == 'multi' ? title + ' ' : ''}
-            </StyledTitle>
+            <StyledTitle $color={titleColor}>{title}</StyledTitle>
           </StyledLink>
-          <StyledH1 $variant={variant}>
-            <Label
-              variant="currency"
-              currencySymbol={currency_1}
-              size={isMobile ? 'md' : 'lg'}
+          <Flex>
+            <Text
+              variant="small"
+              color="grey-600"
+              style={{
+                lineHeight: 1,
+                marginRight: 1,
+              }}
+            >
+              {currency_1}
+            </Text>
+
+            <Text
+              variant="h1Primary"
+              style={{ fontWeight: 'normal', lineHeight: 1 }}
             >
               {nFormatter(price_1)}
-            </Label>
-          </StyledH1>
-          <StyledChangeDiv $variant={variant}>
+            </Text>
+          </Flex>
+          <StyledChangeDiv>
             {price_2 !== null && (
               <InlineLabel
                 color="primary"
@@ -165,12 +164,6 @@ const ChartLabel = forwardRef(
             )}
             {change && `(${change})`}
           </StyledChangeDiv>
-
-          {!!timestamp && (
-            <StyledDateTime $variant={variant}>
-              {new Date(timestamp).toLocaleString()}
-            </StyledDateTime>
-          )}
 
           <Box>
             <StyledRed>ATL: {atl}</StyledRed>
