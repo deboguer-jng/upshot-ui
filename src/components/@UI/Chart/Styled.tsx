@@ -138,4 +138,8 @@ export const ReactApexChartWrapper = styled.div`
     right: 0;
     bottom: 0;
   }
+
+  & .apexcharts-xcrosshairs.apexcharts-active {
+    display: none;
+  }
 `
