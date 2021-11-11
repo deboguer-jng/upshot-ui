@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react'
 import Colors from '../../../themes/UpshotUI/colors'
 import Icon from '../../@UI/Icon'
-import Label from '../../@UI/Label'
 import Flex from '../../Layout/Flex'
 import Box from '../../Layout/Box'
 import Text from '../../@UI/Text'
@@ -9,8 +8,6 @@ import {
   IconBox,
   StyledIconButton,
   StyledTitle,
-  StyledH1,
-  StyledDateTime,
   StyledChangeDiv,
   StyledRed,
   StyledBlue,
@@ -55,10 +52,6 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   change?: string
   /**
-   * Timestamp (shown only when varian == 'alone')
-   */
-  timestamp?: number
-  /**
    * All time low price (eg. 4.34)
    */
   atl?: string
@@ -88,7 +81,6 @@ const ChartLabel = forwardRef(
       price_2 = null,
       currency_2 = '$',
       change,
-      timestamp,
       atl,
       ath,
       onClose,
