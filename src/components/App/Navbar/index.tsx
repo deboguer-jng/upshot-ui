@@ -22,6 +22,7 @@ import Flex from '../../Layout/Flex'
 import InputRoundedSearch, {
   InputSuggestion,
 } from '../../@UI/InputRoundedSearch'
+import { useBreakpointIndex } from '@theme-ui/match-media'
 
 export interface NavbarInterface {
   /**
@@ -68,6 +69,8 @@ const Navbar = forwardRef(
     }: NavbarInterface,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
+    const isMobile = useBreakpointIndex() <= 1
+
     return (
       <NavbarWrapper {...{ ref, ...props }}>
         <Flex style={{ alignItems: 'center', gap: '16px' }}>
@@ -119,25 +122,30 @@ const Navbar = forwardRef(
             </NavbarUPTBalanceText>
           </NavbarUPTBalance>
         </NavbarItem> */}
-          {address ? (
-            <NavbarItem>
-              <NavbarProfile>
-                <img src={avatarImageUrl} />
-                <NavbarProfileDetails>
-                  {ensName && <Text variant="small">{ensName}</Text>}
-                  <Text variant="small">{address}</Text>
-                </NavbarProfileDetails>
-                {/* <Icon icon="arrowDropUserBubble" /> */}
-              </NavbarProfile>
-            </NavbarItem>
-          ) : (
-            <NavbarItem onClick={onConnectClick}>
-              <NavbarWallet>
-                <Icon icon="wallet" size={32} />
-                Connect Wallet
-              </NavbarWallet>
-            </NavbarItem>
+          {!isMobile && (
+            <>
+              {address ? (
+                <NavbarItem>
+                  <NavbarProfile>
+                    <img src={avatarImageUrl} />
+                    <NavbarProfileDetails>
+                      {ensName && <Text variant="small">{ensName}</Text>}
+                      <Text variant="small">{address}</Text>
+                    </NavbarProfileDetails>
+                    {/* <Icon icon="arrowDropUserBubble" /> */}
+                  </NavbarProfile>
+                </NavbarItem>
+              ) : (
+                <NavbarItem onClick={onConnectClick}>
+                  <NavbarWallet>
+                    <Icon icon="wallet" size={32} />
+                    Connect Wallet
+                  </NavbarWallet>
+                </NavbarItem>
+              )}
+            </>
           )}
+
           {/* <NavbarItem>
             <NavbarItemIcon>
               <Icon icon="items" />
