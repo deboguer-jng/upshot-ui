@@ -1,9 +1,22 @@
-import React, { forwardRef, useState, useRef, useEffect } from 'react'
+import React, {
+  forwardRef,
+  useState,
+  useRef,
+  useEffect,
+  ReactNode,
+} from 'react'
 import Icon from '../Icon'
 import { ScrollWrapper, Slider, SliderIconWrapper } from './Styled'
 
+export interface ScrollProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: ReactNode
+}
+
 const Scroll = forwardRef(
-  ({ children, ...props }, ref: React.ForwardedRef<HTMLDivElement>) => {
+  (
+    { children, ...props }: ScrollProps,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
     const [value, setValue] = useState(0)
     const [bodyWidth, setBodyWidth] = useState(0)
     const [sliderWidth, setSliderWidth] = useState(0)
