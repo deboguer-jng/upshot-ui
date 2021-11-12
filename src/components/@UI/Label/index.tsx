@@ -48,7 +48,7 @@ const Label = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
-      <Box {...{ ref, ...props }} sx={{ flexShrink: 0 }}>
+      <Box {...{ ref, ...props }} sx={{ flexShrink: 0, whiteSpace: 'nowrap' }}>
         {variant === 'currency' && (
           <StyledThemeUILabel variant={`${size}CurrencySymbol`} $color={color}>
             {currencySymbol}
