@@ -13,6 +13,7 @@ interface ChartLabelProps {
 }
 
 export const IconBox = styled(Box)<ChartLabelProps>`
+  flex-shrink: 0;
   border: 1px ${({ theme, $color }) => theme.colors[$color]} solid;
   border-radius: ${({ theme }) => theme.radii.circle};
   width: 20px;
@@ -20,6 +21,13 @@ export const IconBox = styled(Box)<ChartLabelProps>`
   text-align: center;
   margin-right: ${({ $isMobile }) => ($isMobile ? '5px' : '12px')};
   margin-top: ${({ $isMobile }) => ($isMobile ? '2px' : '5px')};
+
+  transition: ${({ theme }) => theme.transitions.default};
+  &:hover,
+  &:hover button {
+    background: ${({ theme, $color = 'primary' }) =>
+      theme.colors[$color]} !important;
+  }
 `
 export const StyledIconButton = styled(IconButton)<ChartLabelProps>`
   padding: 0;
@@ -28,13 +36,8 @@ export const StyledIconButton = styled(IconButton)<ChartLabelProps>`
   vertical-align: top;
   transition: ${({ theme }) => theme.transitions.default};
 
-  &:hover {
-    background: ${({ theme, $color = 'primary' }) =>
-      theme.colors[$color]} !important;
-
-    & svg path {
-      stroke: ${({ theme }) => theme.colors.black} !important;
-    }
+  &:hover svg path {
+    stroke: ${({ theme }) => theme.colors.black} !important;
   }
 `
 

@@ -98,13 +98,12 @@ const ChartLabel = forwardRef(
         { value: 1e6, symbol: 'M' },
         { value: 1e9, symbol: 'B' },
       ]
-      const rx = /\.0+$|(\.[0-9]*[1-9])0+$/
       const item = lookup
         .slice()
         .reverse()
         .find((item) => num >= item.value)
       return item
-        ? (num / item.value).toFixed(digits).replace(rx, '$1') + item.symbol
+        ? (num / item.value).toFixed(2) + item.symbol
         : Number(0).toFixed(digits)
     }
 

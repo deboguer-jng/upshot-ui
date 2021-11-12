@@ -149,18 +149,30 @@ const PopulatedChart = ({
   return (
     <>
       {!embedded && (
-        <Flex sx={{ justifyContent: 'space-between' }}>
-          <Box
+        <Flex
+          sx={{
+            justifyContent: 'space-between',
+            gap: [2, 2, 0],
+            flexDirection: ['column', 'column', 'row'],
+          }}
+        >
+          <Flex
             sx={{
-              gap: 4,
+              gap: 8,
               flexDirection: ['column', 'row', 'row'],
               alignItems: ['center', 'flex-start', 'flex-start'],
               textAlign: ['center', 'left', 'left'],
             }}
           >
             {chartLabels}
-          </Box>
-          <Text style={{ fontWeight: 'bold', textTransform: 'uppercase' }}>
+          </Flex>
+          <Text
+            style={{
+              fontWeight: 'bold',
+              textTransform: 'uppercase',
+              alignSelf: 'flex-end',
+            }}
+          >
             {timestamp ? format(timestamp, 'LLL dd yyyy hh:mm') : null}
           </Text>
         </Flex>
