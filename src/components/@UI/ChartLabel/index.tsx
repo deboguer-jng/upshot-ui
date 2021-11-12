@@ -105,7 +105,7 @@ const ChartLabel = forwardRef(
         .find((item) => num >= item.value)
       return item
         ? (num / item.value).toFixed(digits).replace(rx, '$1') + item.symbol
-        : '0'
+        : Number(0).toFixed(digits)
     }
 
     return (
