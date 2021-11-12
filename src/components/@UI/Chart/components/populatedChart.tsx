@@ -159,18 +159,19 @@ const PopulatedChart = ({
           <Flex
             sx={{
               gap: 8,
-              flexDirection: ['column', 'row', 'row'],
-              alignItems: ['center', 'flex-start', 'flex-start'],
-              textAlign: ['center', 'left', 'left'],
+              flexDirection: ['column', 'column', 'row'],
+              alignItems: ['center', 'center', 'flex-start'],
+              textAlign: ['center', 'center', 'left'],
             }}
           >
             {chartLabels}
           </Flex>
           <Text
-            style={{
+            sx={{
               fontWeight: 'bold',
               textTransform: 'uppercase',
-              alignSelf: 'flex-end',
+              alignSelf: ['flex-end', 'flex-end', 'flex-start'],
+              minHeight: '1.25rem',
             }}
           >
             {timestamp ? format(timestamp, 'LLL dd yyyy hh:mm') : null}
