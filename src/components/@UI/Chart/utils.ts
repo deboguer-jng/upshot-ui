@@ -91,12 +91,14 @@ export function getOptions(
     tooltip: {
       enabled: true,
       shared: false,
-      fixed: !embedded ? {
-        enabled: true,
-        position: 'topRight',
-        offsetX: 0,
-        offsetY: 0,
-      } : {},
+      fixed: !embedded
+        ? {
+            enabled: true,
+            position: 'topRight',
+            offsetX: 0,
+            offsetY: 0,
+          }
+        : {},
       custom: function ({
         series,
         dataPointIndex,

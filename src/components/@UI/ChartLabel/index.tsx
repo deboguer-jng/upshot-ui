@@ -1,27 +1,23 @@
 import React, { forwardRef } from 'react'
 import Colors from '../../../themes/UpshotUI/colors'
 import Icon from '../../@UI/Icon'
-import Label from '../../@UI/Label'
+import Flex from '../../Layout/Flex'
 import Box from '../../Layout/Box'
+import Text from '../../@UI/Text'
 import {
   IconBox,
   StyledIconButton,
   StyledTitle,
-  StyledH1,
-  StyledDateTime,
   StyledChangeDiv,
   StyledRed,
   StyledBlue,
   InlineLabel,
   RelativeFlex,
+  StyledLink,
 } from './Styled'
 import { useBreakpointIndex } from '@theme-ui/match-media'
 
 export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * Optional parameter switch between 'alone' or 'multi' layout. Default: 'alone'.
-   */
-  variant?: 'alone' | 'multi'
   /**
    * Item name (shown only when variant === 'multi').
    * " price:" string automatically added to the end of the string.
@@ -29,6 +25,10 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string
   /**
    * Color of the title line
+   */
+  url: string
+  /**
+   * Title link
    */
   titleColor?: keyof typeof Colors
   /**
@@ -52,10 +52,6 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   change?: string
   /**
-   * Timestamp (shown only when varian == 'alone')
-   */
-  timestamp?: number
-  /**
    * All time low price (eg. 4.34)
    */
   atl?: string
@@ -67,6 +63,7 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
    * All time high price (eg. Ξ4.34)
    */
   onClose?: React.MouseEventHandler<HTMLButtonElement>
+  index?: number
 }
 
 /**
@@ -76,18 +73,18 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
 const ChartLabel = forwardRef(
   (
     {
-      variant = 'alone',
       title,
-      titleColor = variant === 'multi' ? 'primary' : 'white',
+      url,
+      titleColor = 'white',
       price_1,
       currency_1 = 'Ξ',
       price_2 = null,
       currency_2 = '$',
       change,
-      timestamp,
       atl,
       ath,
       onClose,
+      index,
       ...props
     }: LabelProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -112,36 +109,40 @@ const ChartLabel = forwardRef(
     }
 
     return (
-      <RelativeFlex
-        {...{ ref, ...props }}
-        $variant={variant}
-        $isMobile={isMobile}
-      >
-        {variant === 'multi' && (
-          <IconBox $color={titleColor} $isMobile={isMobile}>
-            <StyledIconButton
-              type="button"
-              onClick={onClose}
-              $isMobile={isMobile}
-            >
-              <Icon size={12} color={titleColor} icon="x" />
-            </StyledIconButton>
-          </IconBox>
-        )}
+      <RelativeFlex {...{ ref, ...props }} $isMobile={isMobile} $index={index}>
+        <IconBox $color={titleColor} $isMobile={isMobile}>
+          <StyledIconButton
+            type="button"
+            onClick={onClose}
+            $color={titleColor}
+            $isMobile={isMobile}
+          >
+            <Icon size={12} color={titleColor} icon="x" />
+          </StyledIconButton>
+        </IconBox>
         <Box>
-          <StyledTitle $color={titleColor}>
-            {variant == 'multi' ? title + ' ' : ''}
-          </StyledTitle>
-          <StyledH1 $variant={variant}>
-            <Label
-              variant="currency"
-              currencySymbol={currency_1}
-              size={isMobile ? 'md' : 'lg'}
+          <StyledLink href={url}>
+            <StyledTitle $color={titleColor}>{title}</StyledTitle>
+          </StyledLink>
+          <Flex style={{ whiteSpace: 'nowrap' }}>
+            <Text
+              variant="small"
+              color="grey-600"
+              style={{
+                lineHeight: 1,
+                marginRight: 2,
+              }}
+            >
+              {currency_1}
+            </Text>
+            <Text
+              variant="h1Primary"
+              style={{ fontWeight: 'normal', lineHeight: 1 }}
             >
               {nFormatter(price_1)}
-            </Label>
-          </StyledH1>
-          <StyledChangeDiv $variant={variant}>
+            </Text>
+          </Flex>
+          <StyledChangeDiv>
             {price_2 !== null && (
               <InlineLabel
                 color="primary"
@@ -154,12 +155,6 @@ const ChartLabel = forwardRef(
             )}
             {change && `(${change})`}
           </StyledChangeDiv>
-
-          {!!timestamp && (
-            <StyledDateTime $variant={variant}>
-              {new Date(timestamp).toLocaleString()}
-            </StyledDateTime>
-          )}
 
           <Box>
             <StyledRed>ATL: {atl}</StyledRed>

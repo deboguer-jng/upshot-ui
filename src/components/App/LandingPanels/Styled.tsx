@@ -1,7 +1,11 @@
 import styled from '@emotion/styled'
 import { Link } from 'theme-ui'
-import { Text, Avatar, Panel, Icon } from '../../../'
 
+import colors from '../../../themes/UpshotUI/colors'
+import Text from '../../@UI/Text'
+import Avatar from '../../@UI/Avatar'
+import Icon from '../../@UI/Icon'
+import Panel from '../../@UI/Panel'
 
 interface sizeProps {
   $isBig: boolean
@@ -10,6 +14,9 @@ interface sizeProps {
 export const StyledPanel = styled(Panel)<sizeProps>`
   padding: ${({ $isBig }) => $isBig == true ? '27px' : '22px' };
   height: 100%;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['grey-900']} !important;
+  }
 `
 export const StyledAvatar = styled(Avatar)`
   float: left;
@@ -18,15 +25,6 @@ export const StyledAvatar = styled(Avatar)`
 export const StyledText = styled(Text)`
   display: block;
   margin-top: 2px;
-`
-export const StyledTitle = styled(Text)`
-`
-
-export const StyledLink = styled(Link)`
-  text-decoration: none;
-  &:hover {
-    text-decoration: none;
-  }
 `
 
 export const StyledIcon = styled(Icon)`

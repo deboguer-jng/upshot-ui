@@ -8,7 +8,7 @@ interface NavbarItemProps {
 export const NavbarWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: ${({ theme }) => theme.space[3] + 'px'};
+  justify-content: space-between;
   background: linear-gradient(
     180deg,
     #000000 0%,
@@ -133,4 +133,20 @@ export const NavbarProfileDetails = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 12px;
+`
+
+export const NavbarWallet = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.space[4] + 'px'};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  height: 56px;
+  border-radius: 30px;
+  padding: 12px 17px 12px 12px;
+  transition: ${({ theme }) => theme.transitions.default};
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['grey-800']};
+  }
 `

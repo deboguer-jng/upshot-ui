@@ -7,6 +7,7 @@ import Button from '../Button'
 
 interface LabelAttributeBaseProps {
   $transparent: boolean
+  hasHover?: boolean
 }
 
 interface LabelTextProps {
@@ -32,11 +33,25 @@ export const LabelAttributeBase = styled.div<LabelAttributeBaseProps>`
   text-transform: capitalize;
   position: relative;
   align-items: center;
+
+  &:hover {
+    ${({ theme, $transparent, hasHover }) =>
+      hasHover &&
+      `
+      background-color: ${
+        $transparent
+          ? transparentize(0.8, theme.rawColors.primary)
+          : 'transparent'
+      };
+    `}
+  }
 `
 
 export const RightAlignBlock = styled.div`
   display: flex;
   float: right;
+  width: 90px;
+  justify-content: space-between;
   padding-right: ${sizes[3] + 'px'};
 `
 
@@ -52,7 +67,6 @@ export const LabelText = styled.div<LabelTextProps>`
 `
 
 export const Division = styled.div`
-  padding-right: ${sizes[5] + 'px'};
   display: inline-block;
 `
 export const CloseButton = styled(Button)`

@@ -17,6 +17,10 @@ export interface CollectorAccordionRowProps
    */
   name?: string
   /**
+   * Avatar Image URL
+   */
+  avatarImageUrl?: string
+  /**
    * Small subheading text.
    */
   subtitle?: string
@@ -66,6 +70,7 @@ export interface CollectorAccordionRowProps
 const CollectorRow = forwardRef(
   (
     {
+      avatarImageUrl = '/img/defaultAvatar.png',
       name,
       subtitle,
       collectionName,
@@ -86,7 +91,7 @@ const CollectorRow = forwardRef(
     return (
       <CollectorRowBase {...{ ref, ...props }} onClick={() => setOpen(!open)}>
         <CollectorRowContent>
-          <Avatar size="md" src="/img/defaultAvatar.png" />
+          <Avatar size="md" src={avatarImageUrl} />
 
           <Flex
             sx={{ flexDirection: 'column', justifyContent: 'center', gap: 1 }}
@@ -300,12 +305,9 @@ const CollectorRow = forwardRef(
                   </Flex>
                 </Flex>
               )}
-              {
-                !!children &&
-                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                    {children}
-                  </Flex>
-              }
+              {!!children && (
+                <Flex sx={{ flexDirection: 'column', gap: 2 }}>{children}</Flex>
+              )}
             </Flex>
           </Grid>
         </CollectorRowExpansion>

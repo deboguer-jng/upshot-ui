@@ -3,18 +3,26 @@ import { useTheme } from '@emotion/react'
 import { ApexOptions } from 'apexcharts'
 import ReactApexChart from 'react-apexcharts'
 
-import { CustomLegendWrapper, ReactChartWrapper } from '../Styled'
+import { CustomLegendWrapper, ReactApexChartWrapper } from '../Styled'
 import { getOptions, toggle } from '../utils'
 import ButtonChartCollection from '../../ButtonChartCollection'
 import ChartLabel from '../../ChartLabel'
 import Box from '../../../Layout/Box'
+import Flex from '../../../Layout/Flex'
+import Text from '../../../@UI/Text'
+import { format } from 'date-fns'
+import colors from '../../../../themes/UpshotUI/colors'
 
 interface PopulatedChartProps {
   chartData: {
     name: string
     data: number[] | number[][] // Supports 1D line chart or 2D [timestamp, value] series
+    url?: string
     ath?: string
     atl?: string
+    priceUsd?: number
+    priceChange?: string
+    labelColor?: keyof typeof colors
   }[]
   embedded?: boolean
 }
@@ -43,10 +51,21 @@ const PopulatedChart = ({
     value: null,
     timestamp: null,
   }))
+  const [hoverIndex, setHoverIndex] = useState(0)
   const [hoverDataPoint, setHoverDataPoint] =
     useState<HoverDataPoint[]>(emptyHoverState)
 
-  const colors = ['blue', 'pink', 'purple', 'yellow', 'red', 'green']
+  const labelColors: Array<keyof typeof colors> = [
+    'blue',
+    'pink',
+    'purple',
+    'yellow',
+    'red',
+    'green',
+  ]
+  for (let i = 0; i < chartData.length; i++) {
+    chartData[i].labelColor = labelColors[i]
+  }
   const options: ApexOptions = getOptions(theme, chartData, embedded, {
     mouseLeave() {
       /* Reset hover state on exit. */
@@ -61,7 +80,11 @@ const PopulatedChart = ({
        */
       const dataPointIndex: number =
         data.seriesIndex < 0 ? 0 : data.dataPointIndex
+
+      /* Current series index under cursor. */
       const seriesIndex: number = Math.max(0, data.seriesIndex)
+      setHoverIndex(seriesIndex)
+
       const dataPoint = chartData[seriesIndex]?.data[dataPointIndex]
       if (!dataPoint) return
 
@@ -77,25 +100,20 @@ const PopulatedChart = ({
     },
   })
 
+  const timestamp = hoverDataPoint?.[hoverIndex]?.timestamp
+
   const chartLabels = chartData
     .filter((_, i) => filterStatus[i]) // Toggle display by selected filter button
     .map((set, i) => (
       <ChartLabel
         key={i}
-        variant={chartData.length > 1 ? 'multi' : 'alone'}
         title={set.name}
-        titleColor={colors[i] as keyof typeof theme['colors']}
+        titleColor={set.labelColor}
         price_1={
           hoverDataPoint[i]?.value ??
           (Array.isArray(set.data[set.data.length - 1]) // Default to last price
             ? (set.data[set.data.length - 1] as number[])[1]
             : (set.data[set.data.length - 1] as number))
-        }
-        timestamp={
-          hoverDataPoint[i]?.timestamp ??
-          (Array.isArray(set.data[set.data.length - 1]) // Default to last timestamp
-            ? (set.data[set.data.length - 1] as number[])[0]
-            : null)
         }
         onClose={() => {
           const idx = chartData.findIndex(({ name }) => name === set.name)
@@ -103,19 +121,27 @@ const PopulatedChart = ({
         }}
         atl={set.atl ?? '-'}
         ath={set.ath ?? '-'}
+        price_2={set.priceUsd}
+        change={set.priceChange}
+        index={i}
+        url={set.url}
       />
     ))
 
   /* Memoize Apex to prevent side effects from mouseEvent listeners. */
   const chart = useMemo(
     () => (
-      <ReactApexChart
-        series={chartData}
-        type="area"
-        height="100%"
-        width="100%"
-        {...{ options }}
-      />
+      <ReactApexChartWrapper>
+        <div>
+          <ReactApexChart
+            series={chartData}
+            type="area"
+            height="100%"
+            width="100%"
+            {...{ options }}
+          />
+        </div>
+      </ReactApexChartWrapper>
     ),
     [chartData]
   )
@@ -123,16 +149,21 @@ const PopulatedChart = ({
   return (
     <>
       {!embedded && (
-        <Box
-          sx={{
-            gap: 4,
-            flexDirection: ['column', 'row', 'row'],
-            alignItems: ['center', 'flex-start', 'flex-start'],
-            textAlign: ['center', 'left', 'left'],
-          }}
-        >
-          {chartLabels}
-        </Box>
+        <Flex sx={{ justifyContent: 'space-between' }}>
+          <Box
+            sx={{
+              gap: 4,
+              flexDirection: ['column', 'row', 'row'],
+              alignItems: ['center', 'flex-start', 'flex-start'],
+              textAlign: ['center', 'left', 'left'],
+            }}
+          >
+            {chartLabels}
+          </Box>
+          <Text style={{ fontWeight: 'bold', textTransform: 'uppercase' }}>
+            {timestamp ? format(timestamp, 'LLL dd yyyy hh:mm') : null}
+          </Text>
+        </Flex>
       )}
       {chart}
       {!embedded && (
@@ -140,7 +171,7 @@ const PopulatedChart = ({
           {[...new Array(chartData.length)].map((_, i) => (
             <ButtonChartCollection
               key={i}
-              color={colors[i] as keyof typeof theme['colors']}
+              color={chartData[i].labelColor}
               title={chartData[i].name}
               selected={filterStatus[i]}
               onClick={() =>

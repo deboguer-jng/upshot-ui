@@ -13,5 +13,8 @@ const Template: ComponentStory<typeof Panel> = (args) => <Panel {...args} />
 export const Default = Template.bind({})
 Default.args = { sx: { width: '300px', height: '225px' } }
 
+export const hoverUnderglow = Template.bind({})
+hoverUnderglow.args = { hoverUnderglow: 'red', sx: { width: '300px', height: '225px' } }
+
 export const Inner = Template.bind({})
 Inner.args = { inner: true, sx: { width: '300px', height: '225px' } }

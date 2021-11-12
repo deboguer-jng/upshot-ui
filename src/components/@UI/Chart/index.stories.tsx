@@ -15,6 +15,7 @@ Main.args = {
   data: [
     {
       name: 'CryptoPunks',
+      url: 'https://upshot.io/',
       data: [
         [1327359600000, 3.95],
         [1327446000000, 11.34],
@@ -30,9 +31,12 @@ Main.args = {
       ],
       atl: '3.95',
       ath: '86.28',
+      priceUsd: 5434565,
+      priceChange: '+16.47%',
     },
     {
       name: 'Chromie Squiggles',
+      url: 'https://upshot.io/',
       data: [
         [1327359600000, 13.95],
         [1327446000000, 7.34],
@@ -48,9 +52,12 @@ Main.args = {
       ],
       atl: '7.34',
       ath: '50.85',
+      priceUsd: 5434565,
+      priceChange: '+16.47%',
     },
     {
       name: 'Miami DAO',
+      url: 'https://upshot.io/',
       data: [
         [1327359600000, 12.95],
         [1327446000000, 4.34],
@@ -66,6 +73,8 @@ Main.args = {
       ],
       atl: '7.34',
       ath: '50.85',
+      priceUsd: 5434565,
+      priceChange: '+16.47%',
     },
   ],
 }
@@ -75,6 +84,7 @@ MainSingle.args = {
   data: [
     {
       name: 'Chromie Squiggles',
+      url: 'https://upshot.io/',
       data: [
         [1327359600000, 13.95],
         [1327446000000, 7.34],
@@ -90,6 +100,8 @@ MainSingle.args = {
       ],
       atl: 7.34,
       ath: 50.85,
+      priceUsd: 5434565,
+      priceChange: '+16.47%',
     },
   ],
 }
@@ -99,6 +111,7 @@ Embedded.args = {
   data: [
     {
       name: 'CryptoPunks',
+      url: 'https://upshot.io/',
       data: [
         [1327359600000, 3.95],
         [1327446000000, 11.34],
@@ -114,9 +127,12 @@ Embedded.args = {
       ],
       atl: 3.95,
       ath: 86.28,
+      priceUsd: 5434565,
+      priceChange: '+16.47%',
     },
     {
       name: 'Chromie Squiggles',
+      url: 'https://upshot.io/',
       data: [
         [1327359600000, 13.95],
         [1327446000000, 7.34],
@@ -132,6 +148,8 @@ Embedded.args = {
       ],
       atl: 7.34,
       ath: 50.85,
+      priceUsd: 5434565,
+      priceChange: '+16.47%',
     },
   ],
   embedded: true,

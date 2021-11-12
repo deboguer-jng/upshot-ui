@@ -1,7 +1,10 @@
 import React, { forwardRef, useState, useEffect, useRef } from 'react'
-import { PanelProps } from '../../@UI/Panel'
-import { StyledAvatar, StyledText, StyledTitle, StyledLink, StyledDescription, StyledPanel, StyledIcon } from './Styled'
 import { Box } from 'theme-ui'
+
+import Text from '../../@UI/Text'
+import { PanelProps } from '../../@UI/Panel'
+import { StyledAvatar, StyledText, StyledDescription, StyledPanel, StyledIcon } from './Styled'
+import colors from '../../../themes/UpshotUI/colors'
 
 export interface LandingPanelProps extends PanelProps {
   /**
@@ -19,15 +22,19 @@ export interface LandingPanelProps extends PanelProps {
   /**
    * Card URL
    */
-  url?: string
-  /**
-   * Card image
-   */
   image?: string
   /**
    * Show "openLink" icon (top-right)
    */
   showLinkIcon?: boolean
+  /**
+   * Underglow color on :hover
+   */
+  hoverUnderglow?: keyof typeof colors
+  /**
+   * Is card disabled?
+   */
+  disabled?: boolean
 }
 
 /**
@@ -39,9 +46,10 @@ const LandingPanel = forwardRef(
       projectType,
       title,
       description,
-      url,
       image,
       showLinkIcon = true,
+      hoverUnderglow = 'blue',
+      disabled = false,
       ...props
     }: LandingPanelProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -60,27 +68,26 @@ const LandingPanel = forwardRef(
         }
       }
       handleResize()
-      window.addEventListener("resize", handleResize);
-    }, [])
+      window.addEventListener("resize", handleResize)
+      return () => window.removeEventListener("resize", handleResize)
+    }, [width])
 
     return (
       <Box {...{ ref, ...props }}>
-        <StyledPanel ref={panelRef} $isBig={isBig}>
-          <StyledLink href={url}>
-            <Box>
-              { showLinkIcon && (
-                <StyledIcon icon='openLink' color='grey-700' size='20' />
-              )}
-              { isBig && (
-                <>
-                  <StyledAvatar src={image} />
-                  <StyledText color='grey-600' variant='large'>{projectType}</StyledText>
-                </>
-              )}
-              <StyledTitle variant='h3Primary' color='grey-300'>{title}</StyledTitle>
-            </Box>
-          </StyledLink>
-          <StyledDescription $isBig={isBig} color='grey-500'>
+        <StyledPanel ref={panelRef} hoverUnderglow={hoverUnderglow} $isBig={isBig} >
+          <Box>
+            { showLinkIcon && (
+              <StyledIcon icon='openLink' color='grey-700' size='20' />
+            )}
+            { isBig && (
+              <>
+                <StyledAvatar src={image} />
+                <StyledText color='grey-600' variant='large'>{projectType}</StyledText>
+              </>
+            )}
+            <Text variant='h3Primary' color={disabled ? 'grey-600' : 'grey-300'}>{title}</Text>
+          </Box>
+          <StyledDescription $isBig={isBig} color={disabled ? 'grey-600' : 'grey-500'}>
             {description}
           </StyledDescription>
         </StyledPanel>

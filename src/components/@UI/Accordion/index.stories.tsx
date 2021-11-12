@@ -54,3 +54,10 @@ export const Default = Template.bind({})
 Default.args = {
   title: 'Price History',
 }
+
+export const Dropdown = Template.bind({})
+
+Dropdown.args = {
+  title: 'Price History',
+  isDropdown: true,
+}

@@ -8,10 +8,12 @@ interface PrimaryButtonProps {
   toggled: boolean
   width: number
   minimized: boolean
+  capitalize?: boolean
 }
 
 interface PlainButtonProps {
   $size: keyof typeof Buttons.property
+  capitalize?: boolean
 }
 
 export const PrimaryButton = styled.button<PrimaryButtonProps>`
@@ -39,7 +41,8 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   justify-content: center;
   padding: 0px 25px;
   transition: ${({ theme }) => theme.transitions.default};
-  text-transform: uppercase;
+  white-space: nowrap;
+  text-transform: ${({ capitalize }) => capitalize ? 'capitalize' : 'uppercase'};
 
   & svg {
     margin-right: ${({ theme, $size, minimized }) =>
@@ -59,6 +62,7 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   span {
     flex-grow: 1;
     font-family: ${({ theme }) => theme.fonts.body};
+    text-transform: ${({ capitalize }) => capitalize ? 'capitalize' : 'uppercase'};
     color: ${({ theme, $type, toggled }) =>
       typeof toggled === 'undefined'
         ? theme.buttons.variants[$type].colors.color
@@ -181,6 +185,11 @@ export const PlainButton = styled.button<PlainButtonProps>`
   font-family: ${({ theme }) => theme.fonts.body};
   cursor: pointer;
   height: ${({ theme, $size }) => theme.buttons.property[$size].height}px;
+  white-space: nowrap;
+
+  span {
+    text-transform: ${({ capitalize }) => capitalize ? 'capitalize' : 'uppercase'};
+  }
 
   &:not(:disabled):hover {
     span {

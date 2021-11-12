@@ -1,6 +1,8 @@
 import SVGAddLinkBlock from '../../../assets/svg/icons/AddLink_BlockColor.svg'
 import SVGAddLink from '../../../assets/svg/icons/AddLink.svg'
 import SVGAnalytics from '../../../assets/svg/icons/Analytics.svg'
+import SVGArrowDoubleLeft from '../../../assets/svg/icons/Arrow_Double_Left.svg'
+import SVGArrowDoubleRight from '../../../assets/svg/icons/Arrow_Double_Right.svg'
 import SVGArrowDropdownUserBubbleNavBar from '../../../assets/svg/icons/Arrow_DropDown_UserBubble_NavBar.svg'
 import SVGArrowDropdown from '../../../assets/svg/icons/Arrow_Dropdown.svg'
 import SVGArrowUp from '../../../assets/svg/icons/Arrow_Up.svg'
@@ -86,6 +88,7 @@ import SVGShare from '../../../assets/svg/icons/Share.svg'
 import SVGShowroomBlock from '../../../assets/svg/icons/Showroom-BlockColor.svg'
 import SVGShowroom from '../../../assets/svg/icons/Showroom.svg'
 import SVGSpacebar from '../../../assets/svg/icons/Spacebar.svg'
+import SVGSubtract from '../../../assets/svg/icons/Subtract.svg'
 import SVGSuperRareBlock from '../../../assets/svg/icons/SuperRare_BlockColor.svg'
 import SVGSuperRare from '../../../assets/svg/icons/SuperRare.svg'
 import SVGToggleLists from '../../../assets/svg/icons/Toggle_Lists.svg'
@@ -111,6 +114,8 @@ const icons = {
   addLinkBlock: SVGAddLinkBlock,
   addLink: SVGAddLink,
   analytics: SVGAnalytics,
+  arrowDoubleLeft: SVGArrowDoubleLeft,
+  arrowDoubleRight: SVGArrowDoubleRight,
   arrowDropUserBubble: SVGArrowDropdownUserBubbleNavBar,
   arrowDropdown: SVGArrowDropdown,
   arrowUp: SVGArrowUp,
@@ -160,7 +165,7 @@ const icons = {
   home: SVGHome,
   influence: SVGInfluence,
   information: SVGInformation,
-  informationBlock: SVGInstagramBlock,
+  instagramBlock: SVGInstagramBlock,
   instagram: SVGInstagram,
   instagramCircle: SVGInstagramCircle,
   items: SVGItems,
@@ -196,6 +201,7 @@ const icons = {
   showroomBlock: SVGShowroomBlock,
   showroom: SVGShowroom,
   spacebar: SVGSpacebar,
+  subtract: SVGSubtract,
   superRareBlock: SVGSuperRareBlock,
   superRare: SVGSuperRare,
   toggleLists: SVGToggleLists,
