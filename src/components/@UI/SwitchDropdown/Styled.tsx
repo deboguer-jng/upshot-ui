@@ -31,11 +31,10 @@ export const SwitchDropdownHeader = styled.div<SwitchDropdownHeaderProps>`
 `
 
 export const SwitchDropdownOptions = styled.div<SwitchDropdownOptionsProps>`
-  position: absolute;
+  position: relative;
   padding-left: 8px;
   padding-right: 8px;
   width: 100%;
-  background:  linear-gradient(180deg, #231F20 60.42%, rgba(35, 31, 32, 0) 100%);;
   visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
   opacity: ${({ open }) => (open ? 1 : 0)};
   z-index: ${({ theme }) => theme.zIndex.dropdown};
