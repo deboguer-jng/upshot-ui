@@ -4,7 +4,13 @@ interface SwitchDropdownHeaderProps {
   open: boolean
 }
 
-export const SwitchDropdownWrapper = styled.div``
+interface SwitchDropdownOptionsProps {
+  open: boolean
+}
+
+export const SwitchDropdownWrapper = styled.div`
+  position: relative;
+`
 
 export const SwitchDropdownHeader = styled.div<SwitchDropdownHeaderProps>`
   display: flex;
@@ -16,6 +22,7 @@ export const SwitchDropdownHeader = styled.div<SwitchDropdownHeaderProps>`
     height: 16px;
     margin-left: 8px;
     transform: rotate(${({ open }) => (open ? '180' : '0')}deg);
+    transition: ${({ theme }) => theme.transitions.default};
 
     path {
       fill: ${({ theme }) => theme.colors.primary};
@@ -23,16 +30,17 @@ export const SwitchDropdownHeader = styled.div<SwitchDropdownHeaderProps>`
   }
 `
 
-export const SwitchDropdownOptions = styled.div`
-  padding: 8px;
-  background: rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  width: fit-content;
-  margin-top: ${({ theme }) => `-${theme.sizes[6]}px`};
+export const SwitchDropdownOptions = styled.div<SwitchDropdownOptionsProps>`
+  position: relative;
+  // padding-left: 8px;
+  // padding-right: 8px;
+  width: 100%;
+  visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
+  opacity: ${({ open }) => (open ? 1 : 0)};
+  z-index: ${({ theme }) => theme.zIndex.dropdown};
+  transition: ${({ theme }) => theme.transitions.default};
 `
 
 export const SwitchDropdownOption = styled.div`
   cursor: pointer;
-  padding: 5px 0;
 `

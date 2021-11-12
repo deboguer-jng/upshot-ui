@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import SwitchDropdown from './'
 import { useState } from '@storybook/addons'
+import { Box } from 'theme-ui'
 
 export default {
   title: '@UI/SwitchDropdown',
