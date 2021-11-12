@@ -8,7 +8,7 @@ import {
 import { BoxProps, Image } from 'theme-ui'
 import Text from '../../@UI/Text'
 
-enum ConnectorNames {
+enum ConnectorName {
   Injected = 'Injected',
   WalletConnect = 'WalletConnect',
 }
@@ -17,7 +17,7 @@ export interface ConnectModalProps extends BoxProps {
   /**
    * Handler for the provider onClick event.
    */
-  onConnect?: (provider: ConnectorNames) => void
+  onConnect?: (provider: ConnectorName) => void
 }
 
 /**
@@ -37,7 +37,7 @@ const ConnectModal = forwardRef(
       <ConnectProviders>
         <Provider
           $color="orange"
-          onClick={() => onConnect?.(ConnectorNames.Injected)}
+          onClick={() => onConnect?.(ConnectorName.Injected)}
         >
           MetaMask
           <Image
@@ -49,7 +49,7 @@ const ConnectModal = forwardRef(
         </Provider>
         <Provider
           $color="blue"
-          onClick={() => onConnect?.(ConnectorNames.WalletConnect)}
+          onClick={() => onConnect?.(ConnectorName.WalletConnect)}
         >
           WalletConnect
           <Image
