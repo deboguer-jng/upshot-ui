@@ -88,6 +88,7 @@ import SVGShare from '../../../assets/svg/icons/Share.svg'
 import SVGShowroomBlock from '../../../assets/svg/icons/Showroom-BlockColor.svg'
 import SVGShowroom from '../../../assets/svg/icons/Showroom.svg'
 import SVGSpacebar from '../../../assets/svg/icons/Spacebar.svg'
+import SVGSubtract from '../../../assets/svg/icons/Subtract.svg'
 import SVGSuperRareBlock from '../../../assets/svg/icons/SuperRare_BlockColor.svg'
 import SVGSuperRare from '../../../assets/svg/icons/SuperRare.svg'
 import SVGToggleLists from '../../../assets/svg/icons/Toggle_Lists.svg'
@@ -200,6 +201,7 @@ const icons = {
   showroomBlock: SVGShowroomBlock,
   showroom: SVGShowroom,
   spacebar: SVGSpacebar,
+  subtract: SVGSubtract,
   superRareBlock: SVGSuperRareBlock,
   superRare: SVGSuperRare,
   toggleLists: SVGToggleLists,

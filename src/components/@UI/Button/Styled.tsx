@@ -41,6 +41,7 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   justify-content: center;
   padding: 0px 25px;
   transition: ${({ theme }) => theme.transitions.default};
+  white-space: nowrap;
   text-transform: ${({ capitalize }) => capitalize ? 'capitalize' : 'uppercase'};
 
   & svg {
@@ -184,6 +185,7 @@ export const PlainButton = styled.button<PlainButtonProps>`
   font-family: ${({ theme }) => theme.fonts.body};
   cursor: pointer;
   height: ${({ theme, $size }) => theme.buttons.property[$size].height}px;
+  white-space: nowrap;
 
   span {
     text-transform: ${({ capitalize }) => capitalize ? 'capitalize' : 'uppercase'};
