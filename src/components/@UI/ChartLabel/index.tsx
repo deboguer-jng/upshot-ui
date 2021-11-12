@@ -124,18 +124,17 @@ const ChartLabel = forwardRef(
           <StyledLink href={url}>
             <StyledTitle $color={titleColor}>{title}</StyledTitle>
           </StyledLink>
-          <Flex>
+          <Flex style={{ whiteSpace: 'nowrap' }}>
             <Text
               variant="small"
               color="grey-600"
               style={{
                 lineHeight: 1,
-                marginRight: 1,
+                marginRight: 2,
               }}
             >
               {currency_1}
             </Text>
-
             <Text
               variant="h1Primary"
               style={{ fontWeight: 'normal', lineHeight: 1 }}
