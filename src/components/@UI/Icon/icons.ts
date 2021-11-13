@@ -83,6 +83,7 @@ import SVGQuoraBlock from '../../../assets/svg/icons/Quora_BlockColor.svg'
 import SVGQuora from '../../../assets/svg/icons/Quora.svg'
 import SVGQuestion from '../../../assets/svg/icons/QuestionMark.svg'
 import SVGRaribleBlock from '../../../assets/svg/icons/Rarible_BlockColor.svg'
+import SVGSearch from '../../../assets/svg/icons/Search.svg'
 import SVGSearchCircle from '../../../assets/svg/icons/Search_Circle.svg'
 import SVGShare from '../../../assets/svg/icons/Share.svg'
 import SVGShowroomBlock from '../../../assets/svg/icons/Showroom-BlockColor.svg'
@@ -196,6 +197,7 @@ const icons = {
   quora: SVGQuora,
   question: SVGQuestion,
   raribleBlock: SVGRaribleBlock,
+  search: SVGSearch,
   searchCircle: SVGSearchCircle,
   share: SVGShare,
   showroomBlock: SVGShowroomBlock,

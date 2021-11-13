@@ -24,9 +24,13 @@ export interface InputRoundedSearchProps extends InputRoundedProps {
    */
   fullWidth?: boolean
   /**
-   * Display the search icon button.
+   * Show the search button
    */
   hasButton?: boolean
+  /**
+   * Variant for the inner search button.
+   */
+  variant?: 'nav' | 'search' | 'default'
   /**
    * Properties for the button.
    */
@@ -49,6 +53,7 @@ const InputRoundedSearch = forwardRef(
     {
       fullWidth = false,
       hasButton = false,
+      variant = 'default',
       buttonProps: buttonPropsRaw,
       onSuggestionSelect,
       suggestions,
@@ -110,7 +115,11 @@ const InputRoundedSearch = forwardRef(
             }}
             {...buttonProps}
           >
-            <Icon icon="searchCircle" aria-label="Search icon" />
+            <Icon
+              icon={variant === 'nav' ? 'arrowStylizedRight' : 'searchCircle'}
+              size={variant === 'nav' ? 16 : '100%'}
+              aria-label="Search icon"
+            />
           </IconButton>
         </Flex>
         {!!suggestions?.length && open && (
