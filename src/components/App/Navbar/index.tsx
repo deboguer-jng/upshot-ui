@@ -3,6 +3,8 @@ import React, {
   HTMLAttributes,
   EventHandler,
   ReactEventHandler,
+  useState,
+  useEffect,
 } from 'react'
 import {
   NavbarWrapper,
@@ -15,10 +17,15 @@ import {
   NavbarProfile,
   NavbarProfileDetails,
   SearchWrapper,
+  Divider,
 } from './Styled'
 import Icon from '../../@UI/Icon'
+import IconButton from '../../@UI/IconButton'
 import Text from '../../@UI/Text'
+import { useTheme } from '@emotion/react'
 import Flex from '../../Layout/Flex'
+import Panel from '../../@UI/Panel'
+import { usePopper } from 'react-popper'
 import InputRoundedSearch, {
   InputSuggestion,
 } from '../../@UI/InputRoundedSearch'
@@ -47,6 +54,7 @@ export interface NavbarInterface {
   onLogoClick: (e: React.MouseEvent<HTMLElement>) => void
   onConnectClick?: (e: React.MouseEvent<HTMLElement>) => void
   onSearchBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
+  onDisconnectClick?: () => void
 }
 
 const Navbar = forwardRef(
@@ -65,55 +73,90 @@ const Navbar = forwardRef(
       onSearch,
       onLogoClick,
       onConnectClick,
+      onDisconnectClick,
       ...props
     }: NavbarInterface,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
+    const [showNavPopper, setShowNavPopper] = useState(false)
+    const [referenceElement, setReferenceElement] = useState(null)
+    const [popperElement, setPopperElement] = useState(null)
+    const [navProfileElement, setNavProfileElement] = useState(null)
+    const theme = useTheme()
+    const { styles, attributes, update } = usePopper(
+      referenceElement,
+      popperElement,
+      {
+        placement: 'auto-end',
+      }
+    )
     const isMobile = useBreakpointIndex() <= 1
 
-    return (
-      <NavbarWrapper {...{ ref, ...props }}>
-        <Flex style={{ alignItems: 'center', gap: '16px' }}>
-          <NavbarItem>
-            <NavbarLogo onClick={onLogoClick}>
-              <Icon icon="upshot" />
-            </NavbarLogo>
-          </NavbarItem>
+    const handleNavPopper = () => {
+      if (!showNavPopper) {
+        document.addEventListener(
+          'mousedown',
+          (e) => {
+            if ((e.target as HTMLDivElement).classList.contains('popperButton'))
+              return
+            setShowNavPopper(false)
+          },
+          {
+            once: true,
+          }
+        )
+      }
+      setShowNavPopper(!showNavPopper)
+    }
 
-          <SearchWrapper>
-            <form onSubmit={onSearch}>
-              <InputRoundedSearch
-                hasButton
-                fullWidth
-                suggestions={searchSuggestions}
-                onSuggestionSelect={onSearchSuggestionChange}
-                placeholder="Search..."
-                dark
-                value={searchValue}
-                defaultValue={searchDefaultValue}
-                onChange={onSearchValueChange}
-                onBlur={onSearchBlur}
-                onKeyUp={onSearchKeyUp}
-                buttonProps={{
-                  onClick: onSearch,
-                  type: 'button',
-                }}
-              />
-            </form>
-          </SearchWrapper>
-        </Flex>
-        <Flex style={{ alignItems: 'center', gap: '16px' }}>
-          {/* <NavbarItem>
+    useEffect(() => {
+      update?.()
+    }, [showNavPopper])
+
+    return (
+      <>
+        <NavbarWrapper {...{ ref, ...props }}>
+          <Flex style={{ alignItems: 'center', gap: '16px' }}>
+            <NavbarItem>
+              <NavbarLogo onClick={onLogoClick}>
+                <Icon icon="upshot" />
+              </NavbarLogo>
+            </NavbarItem>
+
+            <SearchWrapper>
+              <form onSubmit={onSearch}>
+                <InputRoundedSearch
+                  hasButton
+                  fullWidth
+                  suggestions={searchSuggestions}
+                  onSuggestionSelect={onSearchSuggestionChange}
+                  placeholder="Search..."
+                  dark
+                  value={searchValue}
+                  defaultValue={searchDefaultValue}
+                  onChange={onSearchValueChange}
+                  onBlur={onSearchBlur}
+                  onKeyUp={onSearchKeyUp}
+                  buttonProps={{
+                    onClick: onSearch,
+                    type: 'button',
+                  }}
+                />
+              </form>
+            </SearchWrapper>
+          </Flex>
+          <Flex style={{ alignItems: 'center', gap: '16px' }}>
+            {/* <NavbarItem>
           <NavbarItemIcon>
             <Icon icon="notificationFilled" />
           </NavbarItemIcon>
         </NavbarItem> */}
-          {/* <NavbarItem>
+            {/* <NavbarItem>
           <NavbarItemIcon>
             <Icon icon="question" />
           </NavbarItemIcon>
         </NavbarItem> */}
-          {/* <NavbarItem>
+            {/* <NavbarItem>
           <NavbarUPTBalance>
             <Icon icon="upshot" />
             <NavbarUPTBalanceText>
@@ -122,37 +165,96 @@ const Navbar = forwardRef(
             </NavbarUPTBalanceText>
           </NavbarUPTBalance>
         </NavbarItem> */}
-          {!isMobile && (
-            <>
-              {address ? (
-                <NavbarItem>
-                  <NavbarProfile>
-                    <img src={avatarImageUrl} />
-                    <NavbarProfileDetails>
-                      {ensName && <Text variant="small">{ensName}</Text>}
-                      <Text variant="small">{address}</Text>
-                    </NavbarProfileDetails>
-                    {/* <Icon icon="arrowDropUserBubble" /> */}
-                  </NavbarProfile>
-                </NavbarItem>
-              ) : (
-                <NavbarItem onClick={onConnectClick}>
-                  <NavbarWallet>
-                    <Icon icon="wallet" size={32} />
-                    Connect Wallet
-                  </NavbarWallet>
-                </NavbarItem>
-              )}
-            </>
-          )}
+            {!isMobile && (
+              <>
+                {address ? (
+                  <NavbarItem ref={setReferenceElement}>
+                    <NavbarProfile ref={setNavProfileElement}>
+                      <img src={avatarImageUrl} />
+                      <NavbarProfileDetails>
+                        {ensName && <Text variant="small">{ensName}</Text>}
+                        <Text variant="small">{address}</Text>
+                      </NavbarProfileDetails>
+                      <IconButton
+                        className="popperButton"
+                        onClick={handleNavPopper}
+                      >
+                        <Icon
+                          style={{ pointerEvents: 'none' }}
+                          icon="arrowDropUserBubble"
+                        />
+                      </IconButton>
+                    </NavbarProfile>
+                  </NavbarItem>
+                ) : (
+                  <NavbarItem onClick={onConnectClick}>
+                    <NavbarWallet>
+                      <Icon icon="wallet" size={32} />
+                      Connect Wallet
+                    </NavbarWallet>
+                  </NavbarItem>
+                )}
+              </>
+            )}
 
-          {/* <NavbarItem>
+            {/* <NavbarItem>
             <NavbarItemIcon>
               <Icon icon="items" />
             </NavbarItemIcon>
           </NavbarItem> */}
-        </Flex>
-      </NavbarWrapper>
+          </Flex>
+        </NavbarWrapper>
+        <div
+          ref={setPopperElement}
+          style={{
+            ...styles.popper,
+            ...{
+              minWidth: navProfileElement?.current?.style?.width ?? '192px',
+            },
+          }}
+          {...attributes.popper}
+        >
+          <Panel
+            sx={{
+              display: showNavPopper ? 'flex' : 'none',
+              flexDirection: 'column',
+              marginTop: 2,
+              gap: 4,
+            }}
+          >
+            <Flex
+              sx={{ alignItems: 'center', justifyContent: 'center', gap: 1 }}
+            >
+              <Icon icon="ethereum" size={16} />
+              <Text
+                color="white"
+                sx={{
+                  fontSize: 4,
+                  fontWeight: 'bold',
+                }}
+              >
+                Ethereum
+              </Text>
+            </Flex>
+
+            <Divider />
+
+            <Text
+              as="a"
+              color="grey-600"
+              sx={{
+                cursor: 'pointer',
+                transition: 'default',
+                '&:hover': { color: 'white' },
+                fontWeight: 'bold',
+              }}
+              onClick={onDisconnectClick}
+            >
+              Disconnect
+            </Text>
+          </Panel>
+        </div>
+      </>
     )
   }
 )

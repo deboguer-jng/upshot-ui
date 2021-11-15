@@ -150,3 +150,8 @@ export const NavbarWallet = styled.div`
     background-color: ${({ theme }) => theme.colors['grey-800']};
   }
 `
+
+export const Divider = styled.div`
+  border-bottom: 1px solid ${({ theme }) => theme.colors['grey-300']};
+  opacity: 5%;
+`
