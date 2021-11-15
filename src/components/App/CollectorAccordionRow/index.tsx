@@ -135,7 +135,7 @@ const CollectorRow = forwardRef(
                   lineHeight: 1,
                 }}
               >
-                {count ?? '-'}
+                {count ?? ''}
               </Text>
             )}
           </Flex>
