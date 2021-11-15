@@ -156,7 +156,7 @@ const ChartLabel = forwardRef(
           </StyledChangeDiv>
 
           {
-            ath && atl && (
+            ath !== '-' && atl !== '-' && (
               <Box>
                 <StyledRed>ATL: {atl}</StyledRed>
                 <StyledBlue>ATH: {ath}</StyledBlue>
