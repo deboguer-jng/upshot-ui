@@ -155,10 +155,14 @@ const ChartLabel = forwardRef(
             {change && `(${change})`}
           </StyledChangeDiv>
 
-          <Box>
-            <StyledRed>ATL: {atl}</StyledRed>
-            <StyledBlue>ATH: {ath}</StyledBlue>
-          </Box>
+          {
+            ath && atl && (
+              <Box>
+                <StyledRed>ATL: {atl}</StyledRed>
+                <StyledBlue>ATH: {ath}</StyledBlue>
+              </Box>
+            )
+          }
         </Box>
       </RelativeFlex>
     )
