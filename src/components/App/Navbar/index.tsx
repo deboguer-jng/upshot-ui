@@ -22,7 +22,6 @@ import {
 import Icon from '../../@UI/Icon'
 import IconButton from '../../@UI/IconButton'
 import Text from '../../@UI/Text'
-import { useTheme } from '@emotion/react'
 import Flex from '../../Layout/Flex'
 import Panel from '../../@UI/Panel'
 import { usePopper } from 'react-popper'
@@ -82,12 +81,11 @@ const Navbar = forwardRef(
     const [referenceElement, setReferenceElement] = useState(null)
     const [popperElement, setPopperElement] = useState(null)
     const [navProfileElement, setNavProfileElement] = useState(null)
-    const theme = useTheme()
-    const { styles, attributes, update } = usePopper(
+    const { styles, attributes, forceUpdate } = usePopper(
       referenceElement,
       popperElement,
       {
-        placement: 'auto-end',
+        placement: 'bottom-end',
       }
     )
     const isMobile = useBreakpointIndex() <= 1
@@ -95,7 +93,7 @@ const Navbar = forwardRef(
     const handleNavPopper = () => {
       if (!showNavPopper) {
         document.addEventListener(
-          'mousedown',
+          'mouseup',
           (e) => {
             if ((e.target as HTMLDivElement).classList.contains('popperButton'))
               return
@@ -110,7 +108,7 @@ const Navbar = forwardRef(
     }
 
     useEffect(() => {
-      update?.()
+      forceUpdate?.()
     }, [showNavPopper])
 
     return (
