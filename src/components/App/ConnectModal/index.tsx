@@ -18,6 +18,10 @@ export interface ConnectModalProps extends BoxProps {
    * Handler for the provider onClick event.
    */
   onConnect?: (provider: ConnectorName) => void
+  /**
+   * Hides the MetaMask web3 provider option if unavailable.
+   */
+  hideMetaMask?: boolean
 }
 
 /**
@@ -25,7 +29,7 @@ export interface ConnectModalProps extends BoxProps {
  */
 const ConnectModal = forwardRef(
   (
-    { onConnect, ...props }: ConnectModalProps,
+    { onConnect, hideMetaMask = true, ...props }: ConnectModalProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => (
     <ConnectModalBase {...{ ref, ...props }}>
@@ -35,18 +39,20 @@ const ConnectModal = forwardRef(
       </Text>
 
       <ConnectProviders>
-        <Provider
-          $color="orange"
-          onClick={() => onConnect?.(ConnectorName.Injected)}
-        >
-          MetaMask
-          <Image
-            src="/img/wallets/branding/metamask-fox.svg"
-            alt="MetaMask logo"
-            width={40}
-            height={40}
-          />
-        </Provider>
+        {!hideMetaMask && (
+          <Provider
+            $color="orange"
+            onClick={() => onConnect?.(ConnectorName.Injected)}
+          >
+            MetaMask
+            <Image
+              src="/img/wallets/branding/metamask-fox.svg"
+              alt="MetaMask logo"
+              width={40}
+              height={40}
+            />
+          </Provider>
+        )}
         <Provider
           $color="blue"
           onClick={() => onConnect?.(ConnectorName.WalletConnect)}
