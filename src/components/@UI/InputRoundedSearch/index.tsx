@@ -107,10 +107,13 @@ const InputRoundedSearch = forwardRef(
               padding,
               /* Fade in / out. */
               pointerEvents: hasButton ? 'auto' : 'none',
-              opacity: Number(hasButton),
+              opacity: hasButton && variant !== 'nav' ? 'initial' : 0,
               transition: 'default',
               transitionDuration: theme.durations.normal,
               zIndex: theme.zIndex.default + 2,
+              '&:hover': {
+                opacity: hasButton && variant === 'nav' ? 1 : 'initial',
+              },
               ...buttonSx,
             }}
             {...buttonProps}
