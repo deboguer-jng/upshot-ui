@@ -94,6 +94,9 @@ Bitcoin.args = { icon: 'bitcoin', color: 'primary', size: 32 }
 export const Boards = Template.bind({})
 Boards.args = { icon: 'boards', color: 'primary', size: 32 }
 
+export const Bubblegum = Template.bind({})
+Bubblegum.args = { icon: 'bubblegum', color: 'primary', size: 256 }
+
 export const Checkmark = Template.bind({})
 Checkmark.args = { icon: 'checkmark', color: 'primary', size: 32 }
 

@@ -65,6 +65,15 @@ MultiNoDelta.args = {
   ath: 'Ξ5434565',
 }
 
+export const MultiNoAthAtl = MultiTemplate.bind({})
+MultiNoAthAtl.args = {
+  variant: 'multi',
+  title: 'Item 1',
+  url: 'https://upshot.io',
+  price_1: 3241,
+  price_2: 5434565,
+}
+
 export const LabelColored = MultiTemplate.bind({})
 LabelColored.args = {
   variant: 'multi',
