@@ -67,7 +67,13 @@ const ConnectModal = forwardRef(
         </Provider>
       </ConnectProviders>
 
-      <StyledLink>Learn about wallets →</StyledLink>
+      <StyledLink
+        href="https://ethereum.org/en/wallets/"
+        target="_blank"
+        rel="noopener noreferrer nofollow"
+      >
+        Learn about wallets →
+      </StyledLink>
     </ConnectModalBase>
   )
 )
