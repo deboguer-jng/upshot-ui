@@ -24,9 +24,13 @@ export interface InputRoundedSearchProps extends InputRoundedProps {
    */
   fullWidth?: boolean
   /**
-   * Display the search icon button.
+   * Show the search button
    */
   hasButton?: boolean
+  /**
+   * Variant for the inner search button.
+   */
+  variant?: 'nav' | 'search' | 'default'
   /**
    * Properties for the button.
    */
@@ -49,6 +53,7 @@ const InputRoundedSearch = forwardRef(
     {
       fullWidth = false,
       hasButton = false,
+      variant = 'default',
       buttonProps: buttonPropsRaw,
       onSuggestionSelect,
       suggestions,
@@ -102,15 +107,22 @@ const InputRoundedSearch = forwardRef(
               padding,
               /* Fade in / out. */
               pointerEvents: hasButton ? 'auto' : 'none',
-              opacity: Number(hasButton),
+              opacity: hasButton && variant !== 'nav' ? 'initial' : 0,
               transition: 'default',
               transitionDuration: theme.durations.normal,
               zIndex: theme.zIndex.default + 2,
+              '&:hover': {
+                opacity: hasButton && variant === 'nav' ? 1 : 'initial',
+              },
               ...buttonSx,
             }}
             {...buttonProps}
           >
-            <Icon icon="searchCircle" aria-label="Search icon" />
+            <Icon
+              icon={variant === 'nav' ? 'arrowStylizedRight' : 'searchCircle'}
+              size={variant === 'nav' ? 16 : '100%'}
+              aria-label="Search icon"
+            />
           </IconButton>
         </Flex>
         {!!suggestions?.length && open && (

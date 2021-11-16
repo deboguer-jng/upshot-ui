@@ -124,8 +124,9 @@ const Navbar = forwardRef(
             <SearchWrapper>
               <form onSubmit={onSearch}>
                 <InputRoundedSearch
-                  hasButton
                   fullWidth
+                  hasButton
+                  variant="nav"
                   suggestions={searchSuggestions}
                   onSuggestionSelect={onSearchSuggestionChange}
                   placeholder="Search..."

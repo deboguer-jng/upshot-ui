@@ -15,12 +15,16 @@ const Template: ComponentStory<typeof InputRoundedSearch> = (args) => (
 export const Default = Template.bind({})
 Default.args = { sx: { width: 300 } }
 
+export const Nav = Template.bind({})
+Nav.args = { sx: { width: 300 }, hasButton: true, variant: 'nav' }
+
 export const SearchButton = Template.bind({})
-SearchButton.args = { hasButton: true, sx: { width: 300 } }
+SearchButton.args = { variant: 'search', hasButton: true, sx: { width: 300 } }
 
 export const SearchDropdown = Template.bind({})
 SearchDropdown.args = {
   hasButton: true,
+  variant: 'search',
   sx: { width: 300 },
   suggestions: [
     {
