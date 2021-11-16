@@ -23,6 +23,7 @@ import SVGBadgeHollow from '../../../assets/svg/icons/Badge_Hollow.svg'
 import SVGBitcoinBlock from '../../../assets/svg/icons/Bitcoin_BlockColor.svg'
 import SVGBitcoin from '../../../assets/svg/icons/Bitcoin.svg'
 import SVGBoards from '../../../assets/svg/icons/Boards.svg'
+import SVGBubbleGum from '../../../assets/svg/icons/Bubblegum.svg'
 import SVGCheckmark from '../../../assets/svg/icons/Checkmark.svg'
 import SVGCloseCircle from '../../../assets/svg/icons/Close_Circle.svg'
 import SVGClose from '../../../assets/svg/icons/Close_NoCircle.svg'
@@ -136,6 +137,7 @@ const icons = {
   bitcoinBlock: SVGBitcoinBlock,
   bitcoin: SVGBitcoin,
   boards: SVGBoards,
+  bubblegum: SVGBubbleGum,
   checkmark: SVGCheckmark,
   closeCircle: SVGCloseCircle,
   close: SVGClose,
