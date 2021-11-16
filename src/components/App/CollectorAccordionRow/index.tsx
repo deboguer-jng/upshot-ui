@@ -87,6 +87,7 @@ const CollectorRow = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const [open, setOpen] = useState(false)
+    const isFirstColumn = !!avgHoldTime || !!firstAcquisition || !!nftCollection
 
     return (
       <CollectorRowBase {...{ ref, ...props }} onClick={() => setOpen(!open)}>
@@ -149,78 +150,80 @@ const CollectorRow = forwardRef(
 
         <CollectorRowExpansion $open={open}>
           <Grid
-            columns={['1fr', '1fr', portfolioValue ? '1fr' : '1fr 1fr']}
+            columns={['1fr', '1fr', !isFirstColumn ? '1fr' : '1fr 1fr']}
             sx={{ marginX: [0, 0, 46], columnGap: 72, p: 6 }}
           >
-            <Flex sx={{ flexDirection: 'column', gap: 4 }}>
-              {!!avgHoldTime && (
-                <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                  <Text
-                    sx={{ fontWeight: 'heading', textTransform: 'capitalize' }}
-                  >
-                    Avg. Hold Time:
-                  </Text>
-                  <Text
-                    variant="h3Primary"
-                    sx={{
-                      color: 'primary',
-                      textAlign: 'right',
-                    }}
-                  >
-                    {avgHoldTime}
-                  </Text>
-                </Flex>
-              )}
+            { (isFirstColumn) && (
+              <Flex sx={{ flexDirection: 'column', gap: 4 }}>
+                {!!avgHoldTime && (
+                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                    <Text
+                      sx={{ fontWeight: 'heading', textTransform: 'capitalize' }}
+                    >
+                      Avg. Hold Time:
+                    </Text>
+                    <Text
+                      variant="h3Primary"
+                      sx={{
+                        color: 'primary',
+                        textAlign: 'right',
+                      }}
+                    >
+                      {avgHoldTime}
+                    </Text>
+                  </Flex>
+                )}
 
-              {!!firstAcquisition && (
-                <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                  <Text sx={{ fontWeight: 'heading' }}>
-                    First {collectionName} Acquisition
-                  </Text>
-                  <Text
-                    variant="h3Primary"
-                    sx={{
-                      color: 'primary',
-                      textAlign: 'right',
-                    }}
-                  >
-                    {firstAcquisition}
-                  </Text>
-                </Flex>
-              )}
+                {!!firstAcquisition && (
+                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                    <Text sx={{ fontWeight: 'heading' }}>
+                      First {collectionName} Acquisition
+                    </Text>
+                    <Text
+                      variant="h3Primary"
+                      sx={{
+                        color: 'primary',
+                        textAlign: 'right',
+                      }}
+                    >
+                      {firstAcquisition}
+                    </Text>
+                  </Flex>
+                )}
 
-              {!!nftCollection && (
-                <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                  <Text sx={{ fontWeight: 'heading' }}>
-                    {name}'s {collectionName} Collection
-                  </Text>
-                  <Grid
-                    sx={{
-                      gap: 2,
-                      gridTemplateColumns:
-                        'repeat(auto-fill, minmax(92px, 1fr) )',
-                    }}
-                  >
-                    {nftCollection.map(({ imageUrl, url, pixelated }, idx) => (
-                      <a href={url} key={idx}>
-                        <Box
-                          sx={{
-                            backgroundImage: `url(${imageUrl})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            backgroundRepeat: 'no-repeat',
-                            borderRadius: 'sm',
-                            width: '100%',
-                            paddingTop: '100%',
-                            imageRendering: pixelated ? 'pixelated' : 'auto',
-                          }}
-                        />
-                      </a>
-                    ))}
-                  </Grid>
-                </Flex>
-              )}
-            </Flex>
+                {!!nftCollection && (
+                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                    <Text sx={{ fontWeight: 'heading' }}>
+                      {name}'s {collectionName} Collection
+                    </Text>
+                    <Grid
+                      sx={{
+                        gap: 2,
+                        gridTemplateColumns:
+                          'repeat(auto-fill, minmax(92px, 1fr) )',
+                      }}
+                    >
+                      {nftCollection.map(({ imageUrl, url, pixelated }, idx) => (
+                        <a href={url} key={idx}>
+                          <Box
+                            sx={{
+                              backgroundImage: `url(${imageUrl})`,
+                              backgroundSize: 'cover',
+                              backgroundPosition: 'center',
+                              backgroundRepeat: 'no-repeat',
+                              borderRadius: 'sm',
+                              width: '100%',
+                              paddingTop: '100%',
+                              imageRendering: pixelated ? 'pixelated' : 'auto',
+                            }}
+                          />
+                        </a>
+                      ))}
+                    </Grid>
+                  </Flex>
+                )}
+              </Flex>
+            )}
 
             <Flex sx={{ flexDirection: 'column', gap: 4 }}>
               {!!totalNftValue && (
