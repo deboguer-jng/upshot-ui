@@ -191,7 +191,7 @@ const CollectorRow = forwardRef(
                   </Flex>
                 )}
 
-                {!!nftCollection && !!nftCollection.length && (
+                {!!nftCollection && !!nftCollection.length ? (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                     <Text sx={{ fontWeight: 'heading' }}>
                       {name}'s {collectionName} Collection
@@ -220,6 +220,12 @@ const CollectorRow = forwardRef(
                         </a>
                       ))}
                     </Grid>
+                  </Flex>
+                ) : (
+                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                    <Text sx={{ fontWeight: 'heading', lineHeight: 1.5 }}>
+                      {name} doesn't currently hold any {collectionName} NFTs
+                    </Text>
                   </Flex>
                 )}
               </Flex>
