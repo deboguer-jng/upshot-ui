@@ -171,8 +171,8 @@ const Navbar = forwardRef(
                     <NavbarProfile ref={setNavProfileElement}>
                       <img src={avatarImageUrl} />
                       <NavbarProfileDetails>
-                        {ensName && <Text variant="small">{ensName}</Text>}
-                        <Text variant="small">{address}</Text>
+                        {ensName && <Text variant="medium" sx={{ fontWeight: 'bold' }}>{ensName}</Text>}
+                        <Text variant="small" sx={{ color: '#A7A7A7' }}>{address}</Text>
                       </NavbarProfileDetails>
                       <IconButton
                         className="popperButton"
