@@ -171,8 +171,8 @@ const Navbar = forwardRef(
                     <NavbarProfile ref={setNavProfileElement}>
                       <img src={avatarImageUrl} />
                       <NavbarProfileDetails>
-                        {ensName && <Text variant="small">{ensName}</Text>}
-                        <Text variant="small">{address}</Text>
+                        {ensName && <Text variant="medium" sx={{ fontWeight: 'bold' }}>{ensName}</Text>}
+                        <Text variant="small" sx={{ color: '#A7A7A7' }}>{address}</Text>
                       </NavbarProfileDetails>
                       <IconButton
                         className="popperButton"
@@ -222,7 +222,7 @@ const Navbar = forwardRef(
             }}
           >
             <Flex
-              sx={{ alignItems: 'center', justifyContent: 'center', gap: 1 }}
+              sx={{ alignItems: 'center', justifyContent: 'flex-start', gap: 1 }}
             >
               <Icon icon="ethereum" size={16} />
               <Text
@@ -232,7 +232,7 @@ const Navbar = forwardRef(
                   fontWeight: 'bold',
                 }}
               >
-                Ethereum
+                Mainnet
               </Text>
             </Flex>
 

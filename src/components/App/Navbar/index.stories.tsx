@@ -76,7 +76,7 @@ const searchSuggestions = [
 
 export const Default = Template.bind({})
 Default.args = {
-  ensName: 'ens.eth',
+  ensName: 'emmons.eth',
   address: '0x1A2b...3c4D',
   searchSuggestions,
 }
