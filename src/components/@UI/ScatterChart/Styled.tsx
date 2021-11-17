@@ -7,4 +7,8 @@ export const ScatterChartWrapper = styled.div`
   & .apexcharts-tooltip-series-group.active {
     background: ${({ theme }) => theme.colors.black};
   }
+
+  & .apexcharts-xcrosshairs.apexcharts-active {
+    display: none;
+  }
 `
