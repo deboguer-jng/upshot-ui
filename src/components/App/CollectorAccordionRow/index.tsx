@@ -191,7 +191,7 @@ const CollectorRow = forwardRef(
                   </Flex>
                 )}
 
-                {!!nftCollection && (
+                {!!nftCollection && !!nftCollection.length && (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                     <Text sx={{ fontWeight: 'heading' }}>
                       {name}'s {collectionName} Collection
@@ -250,7 +250,7 @@ const CollectorRow = forwardRef(
                 </Flex>
               )}
 
-              {!!extraCollections && (
+              {!!extraCollections && !!extraCollections.length && (
                 <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                   <Text sx={{ fontWeight: 'heading' }}>Also Collecting</Text>
                   <Flex
