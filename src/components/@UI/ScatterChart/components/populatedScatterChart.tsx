@@ -6,7 +6,7 @@ import ReactApexChart from 'react-apexcharts'
 interface PopulatedScatterChartProps {
   chartData: {
     name: string
-    data: number[] | number[][] // Supports 1D line chart or 2D [timestamp, value] series
+    data: any
   }[]
 }
 
@@ -50,8 +50,32 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
         tooltip: {
           enabled: true,
           theme: 'dark',
-          y: {
-            formatter: (value: number) => 'Ξ' + value,
+
+          custom: function ({ dataPointIndex }: { dataPointIndex: number }) {
+            const name = chartData[0].name
+            const [timestamp, price, tokenId, buyer] = chartData[0].data[
+              dataPointIndex
+            ] as any
+
+            return `
+                <div style="background-color: ${
+                  theme.rawColors['grey-900']
+                }; border-radius: 5px; color: white; padding: 12px; font-weight: 600; font-size: 1rem;">
+                  <div style="color: ${
+                    theme.rawColors.blue
+                  }">${name} #${tokenId}</div>
+                  <div style="font-size: 0.9rem; color: ${
+                    theme.rawColors.white
+                  }">${format(timestamp, 'MM/dd/yyyy')} (Ξ${price})</div>
+            <div style="display: flex; align-items: center; font-weight: 400; font-size: 0.9rem; color: ${
+              theme.rawColors['grey-400']
+            };">
+            <div style="width:5px; height: 5px; border-radius: 50%; background-color: ${
+              theme.rawColors.purple
+            }; margin-right: 4px;"></div>
+            ${buyer}</div>
+              </div>
+            `
           },
         },
         yaxis: {

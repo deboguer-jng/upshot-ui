@@ -26,7 +26,7 @@ export interface ScatterChartProps {
    */
   data?: {
     name: string
-    data: number[] | number[][]
+    data: any
   }[]
 }
 
