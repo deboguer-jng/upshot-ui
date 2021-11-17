@@ -232,7 +232,7 @@ const Navbar = forwardRef(
                   fontWeight: 'bold',
                 }}
               >
-                Ethereum
+                Mainnet
               </Text>
             </Flex>
 
