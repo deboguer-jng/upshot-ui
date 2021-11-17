@@ -155,7 +155,7 @@ const CollectorRow = forwardRef(
           >
             { (isFirstColumn) && (
               <Flex sx={{ flexDirection: 'column', gap: 4 }}>
-                {!!avgHoldTime && (
+                {!!avgHoldTime && avgHoldTime !== 'less than a minute' && (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                     <Text
                       sx={{ fontWeight: 'heading', textTransform: 'capitalize' }}
@@ -174,7 +174,7 @@ const CollectorRow = forwardRef(
                   </Flex>
                 )}
 
-                {!!firstAcquisition && (
+                {!!firstAcquisition && firstAcquisition !== '12/31/1969' && (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                     <Text sx={{ fontWeight: 'heading' }}>
                       First {collectionName} Acquisition
@@ -191,7 +191,7 @@ const CollectorRow = forwardRef(
                   </Flex>
                 )}
 
-                {!!nftCollection && (
+                {!!nftCollection && !!nftCollection.length ? (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                     <Text sx={{ fontWeight: 'heading' }}>
                       {name}'s {collectionName} Collection
@@ -220,6 +220,12 @@ const CollectorRow = forwardRef(
                         </a>
                       ))}
                     </Grid>
+                  </Flex>
+                ) : (
+                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                    <Text sx={{ fontWeight: 'heading', lineHeight: 1.5 }}>
+                      {name} doesn't currently hold any {collectionName} NFTs
+                    </Text>
                   </Flex>
                 )}
               </Flex>
@@ -250,7 +256,7 @@ const CollectorRow = forwardRef(
                 </Flex>
               )}
 
-              {!!extraCollections && (
+              {!!extraCollections && !!extraCollections.length && (
                 <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                   <Text sx={{ fontWeight: 'heading' }}>Also Collecting</Text>
                   <Flex
