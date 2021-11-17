@@ -222,7 +222,7 @@ const Navbar = forwardRef(
             }}
           >
             <Flex
-              sx={{ alignItems: 'center', justifyContent: 'center', gap: 1 }}
+              sx={{ alignItems: 'center', justifyContent: 'flex-start', gap: 1 }}
             >
               <Icon icon="ethereum" size={16} />
               <Text
