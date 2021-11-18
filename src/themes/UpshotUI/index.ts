@@ -57,7 +57,7 @@ const theme = {
   styles,
   text,
   transitions,
-  transactionHistoryItem
+  transactionHistoryItem,
 }
 
 export type UpshotUIThemeType = typeof theme
