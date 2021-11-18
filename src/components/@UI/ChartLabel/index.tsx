@@ -15,7 +15,7 @@ import {
   RelativeFlex,
   StyledLink,
 } from './Styled'
-import { useBreakpointIndex } from '@theme-ui/match-media'
+import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 
 export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -155,14 +155,12 @@ const ChartLabel = forwardRef(
             {change && `(${change})`}
           </StyledChangeDiv>
 
-          {
-            ath !== '-' && atl !== '-' && (
-              <Box>
-                <StyledRed>ATL: {atl}</StyledRed>
-                <StyledBlue>ATH: {ath}</StyledBlue>
-              </Box>
-            )
-          }
+          {ath !== '-' && atl !== '-' && (
+            <Box>
+              <StyledRed>ATL: {atl}</StyledRed>
+              <StyledBlue>ATH: {ath}</StyledBlue>
+            </Box>
+          )}
         </Box>
       </RelativeFlex>
     )

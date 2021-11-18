@@ -28,7 +28,7 @@ import { usePopper } from 'react-popper'
 import InputRoundedSearch, {
   InputSuggestion,
 } from '../../@UI/InputRoundedSearch'
-import { useBreakpointIndex } from '@theme-ui/match-media'
+import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 
 export interface NavbarInterface {
   /**
@@ -171,8 +171,14 @@ const Navbar = forwardRef(
                     <NavbarProfile ref={setNavProfileElement}>
                       <img src={avatarImageUrl} />
                       <NavbarProfileDetails>
-                        {ensName && <Text variant="medium" sx={{ fontWeight: 'bold' }}>{ensName}</Text>}
-                        <Text variant="small" sx={{ color: '#A7A7A7' }}>{address}</Text>
+                        {ensName && (
+                          <Text variant="medium" sx={{ fontWeight: 'bold' }}>
+                            {ensName}
+                          </Text>
+                        )}
+                        <Text variant="small" sx={{ color: '#A7A7A7' }}>
+                          {address}
+                        </Text>
                       </NavbarProfileDetails>
                       <IconButton
                         className="popperButton"
@@ -222,7 +228,11 @@ const Navbar = forwardRef(
             }}
           >
             <Flex
-              sx={{ alignItems: 'center', justifyContent: 'flex-start', gap: 1 }}
+              sx={{
+                alignItems: 'center',
+                justifyContent: 'flex-start',
+                gap: 1,
+              }}
             >
               <Icon icon="ethereum" size={16} />
               <Text

@@ -8,7 +8,7 @@ import {
 } from './Styled'
 import { getOptions } from './utils'
 import EmptyChart from '../Chart/components/emptyChart'
-import { useBreakpointIndex } from '@theme-ui/match-media'
+import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 
 export interface TreeMapProps {
   data: Array<{
