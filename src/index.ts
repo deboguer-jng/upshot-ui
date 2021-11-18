@@ -84,3 +84,11 @@ export { default as SpinnerBoxTemplate } from './components/Loading/SpinnerBox'
 export { globalStyles, default as UpshotThemeProvider } from './themes'
 export { default as theme, useTheme } from './themes/UpshotUI'
 export { UpshotUIThemeType } from './themes/UpshotUI'
+
+/**
+ * Hooks
+ *
+ * Responsive breakpoint React hooks.
+ */
+
+export { useBreakpointIndex } from './hooks/useBreakpointIndex'
