@@ -46,11 +46,12 @@ const LandingTemplate = ({ items }: CollectorItems) => (
 export const Default = Template.bind({})
 Default.args = {
   items: [...new Array(5)].map((_) => ({
-    name: 'Robert Downey Jr.',
+    address: '0xd387a6e4e84a6c86bd90c158c6028a58cc8ac459',
+    username: 'Pranksy',
     collectionName: 'Mad Dog Jones',
     count: '24',
-    avgHoldTime: '173 days',
-    firstAcquisition: '09/12/21',
+    avgHoldTime: 10622266,
+    firstAcquisition: 1620184337,
     totalNftValue: '12739.48',
     nftCollection: [...new Array(3)].map((_, idx) => ({
       id: '0x0/1',
@@ -69,7 +70,8 @@ Default.args = {
 export const Landing = LandingTemplate.bind({})
 Landing.args = {
   items: [...new Array(5)].map((_) => ({
-    name: 'Robert Downey Jr.',
+    address: '0xd387a6e4e84a6c86bd90c158c6028a58cc8ac459',
+    username: 'Pranksy',
     collectionName: 'Mad Dog Jones',
     portfolioValue: '12.34',
     nftCollection: [...new Array(3)].map((_, idx) => ({

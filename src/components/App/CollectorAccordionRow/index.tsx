@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react'
+import React, { forwardRef, useState, useEffect } from 'react'
 import {
   CollectorRowBase,
   CollectorRowContent,
@@ -8,18 +8,26 @@ import { Grid, Flex, Text, Box } from 'theme-ui'
 import Avatar from '../../@UI/Avatar'
 import Icon from '../../@UI/Icon'
 import Label from '../../@UI/Label'
+import makeBlockie from 'ethereum-blockies-base64'
 import IconButton from '../../@UI/IconButton'
+import {
+  formatUsername,
+  shortenAddress,
+  fetchEns,
+} from '../../../utils/address'
+import { format, formatDistance } from 'date-fns'
+import { ethers } from 'ethers'
 
 export interface CollectorAccordionRowProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /**
-   * Collector's name
+   * Collector's address
    */
-  name?: string
+  address?: string
   /**
-   * Avatar Image URL
+   * Collector's username
    */
-  avatarImageUrl?: string
+  username?: string
   /**
    * Small subheading text.
    */
@@ -39,11 +47,11 @@ export interface CollectorAccordionRowProps
   /**
    * Average hold time
    */
-  avgHoldTime?: string
+  avgHoldTime?: number
   /**
    * First acquisition
    */
-  firstAcquisition?: string
+  firstAcquisition?: number
   /**
    * Total NFT value
    */
@@ -70,8 +78,8 @@ export interface CollectorAccordionRowProps
 const CollectorRow = forwardRef(
   (
     {
-      avatarImageUrl = '/img/defaultAvatar.png',
-      name,
+      address,
+      username,
       subtitle,
       collectionName,
       count,
@@ -88,11 +96,33 @@ const CollectorRow = forwardRef(
   ) => {
     const [open, setOpen] = useState(false)
     const isFirstColumn = !!avgHoldTime || !!firstAcquisition || !!nftCollection
+    const [avatarUrl, setAvatarUrl] = useState(
+      address ? makeBlockie(address) : null
+    )
+    const [name, setName] = useState(username ? formatUsername(username) : null)
+
+    useEffect(() => {
+      const updateEns = async (address?: string) => {
+        if (!address) return
+
+        const { name, avatar } = await fetchEns(
+          address,
+          ethers.getDefaultProvider()
+        )
+
+        if (name) setName(name)
+        if (avatar) setAvatarUrl(avatar)
+      }
+
+      updateEns(address)
+    }, [])
+
+    const displayName = name ?? (address ? shortenAddress(address) : 'Unknown')
 
     return (
       <CollectorRowBase {...{ ref, ...props }} onClick={() => setOpen(!open)}>
         <CollectorRowContent>
-          <Avatar size="md" src={avatarImageUrl} />
+          <Avatar size="md" src={avatarUrl} />
 
           <Flex
             sx={{ flexDirection: 'column', justifyContent: 'center', gap: 1 }}
@@ -107,7 +137,7 @@ const CollectorRow = forwardRef(
                 whiteSpace: 'nowrap',
               }}
             >
-              {name}
+              {displayName}
             </Text>
             {!!subtitle && (
               <Text
@@ -153,12 +183,15 @@ const CollectorRow = forwardRef(
             columns={['1fr', '1fr', !isFirstColumn ? '1fr' : '1fr 1fr']}
             sx={{ marginX: [0, 0, 46], columnGap: 72, p: 6 }}
           >
-            { (isFirstColumn) && (
+            {isFirstColumn && (
               <Flex sx={{ flexDirection: 'column', gap: 4 }}>
-                {!!avgHoldTime && avgHoldTime !== 'less than a minute' && (
+                {!!avgHoldTime && (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                     <Text
-                      sx={{ fontWeight: 'heading', textTransform: 'capitalize' }}
+                      sx={{
+                        fontWeight: 'heading',
+                        textTransform: 'capitalize',
+                      }}
                     >
                       Avg. Hold Time:
                     </Text>
@@ -169,12 +202,12 @@ const CollectorRow = forwardRef(
                         textAlign: 'right',
                       }}
                     >
-                      {avgHoldTime}
+                      {formatDistance(0, avgHoldTime * 1000)}
                     </Text>
                   </Flex>
                 )}
 
-                {!!firstAcquisition && firstAcquisition !== '12/31/1969' && (
+                {!!firstAcquisition && (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                     <Text sx={{ fontWeight: 'heading' }}>
                       First {collectionName} Acquisition
@@ -186,7 +219,7 @@ const CollectorRow = forwardRef(
                         textAlign: 'right',
                       }}
                     >
-                      {firstAcquisition}
+                      {format(firstAcquisition * 1000, 'MM/dd/yyyy')}
                     </Text>
                   </Flex>
                 )}
@@ -194,7 +227,7 @@ const CollectorRow = forwardRef(
                 {!!nftCollection && !!nftCollection.length ? (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                     <Text sx={{ fontWeight: 'heading' }}>
-                      {name}'s {collectionName} Collection
+                      {displayName}'s {collectionName} Collection
                     </Text>
                     <Grid
                       sx={{
@@ -203,28 +236,33 @@ const CollectorRow = forwardRef(
                           'repeat(auto-fill, minmax(92px, 1fr) )',
                       }}
                     >
-                      {nftCollection.map(({ imageUrl, url, pixelated }, idx) => (
-                        <a href={url} key={idx}>
-                          <Box
-                            sx={{
-                              backgroundImage: `url(${imageUrl})`,
-                              backgroundSize: 'cover',
-                              backgroundPosition: 'center',
-                              backgroundRepeat: 'no-repeat',
-                              borderRadius: 'sm',
-                              width: '100%',
-                              paddingTop: '100%',
-                              imageRendering: pixelated ? 'pixelated' : 'auto',
-                            }}
-                          />
-                        </a>
-                      ))}
+                      {nftCollection.map(
+                        ({ imageUrl, url, pixelated }, idx) => (
+                          <a href={url} key={idx}>
+                            <Box
+                              sx={{
+                                backgroundImage: `url(${imageUrl})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat',
+                                borderRadius: 'sm',
+                                width: '100%',
+                                paddingTop: '100%',
+                                imageRendering: pixelated
+                                  ? 'pixelated'
+                                  : 'auto',
+                              }}
+                            />
+                          </a>
+                        )
+                      )}
                     </Grid>
                   </Flex>
                 ) : (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                     <Text sx={{ fontWeight: 'heading', lineHeight: 1.5 }}>
-                      {name} doesn't currently hold any {collectionName} NFTs
+                      {displayName} doesn't currently hold any {collectionName}{' '}
+                      NFTs
                     </Text>
                   </Flex>
                 )}
