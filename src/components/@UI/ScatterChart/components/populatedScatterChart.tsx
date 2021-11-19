@@ -118,7 +118,7 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
         },
         colors: [theme.rawColors.primary],
         markers: {
-          size: 2,
+          size: 6,
           colors: [theme.rawColors.primary],
           strokeColors: [theme.rawColors.primary],
         },
