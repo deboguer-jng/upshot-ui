@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof RadarChart>
 
 const Template: ComponentStory<typeof RadarChart> = (args) => (
-  <Box sx={{ height: 500 }}>
+  <Box sx={{ width: 400 }}>
     <RadarChart {...args} />
   </Box>
 )
