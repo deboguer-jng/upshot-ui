@@ -28,3 +28,17 @@ Default.args = {
     />
   )),
 }
+
+export const SmallCollection = Template.bind({})
+SmallCollection.args = {
+  name: 'Bored Ape Yacht Club',
+  total: 2,
+  hasSeeAll: false,
+  children: [...new Array(2)].map((_, idx) => (
+    <Image
+      src={`/img/sample_nft_${(idx % 3) + 1}.jpg`}
+      key={idx}
+      sx={{ borderRadius: 'sm', width: '100%', height: '100%' }}
+    />
+  )),
+}
