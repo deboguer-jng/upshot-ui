@@ -1,5 +1,6 @@
 import React, { forwardRef, useState, useEffect } from 'react'
 import {
+  CollectorRowAvatarWrapper,
   CollectorRowBase,
   CollectorRowContent,
   CollectorRowExpansion,
@@ -64,11 +65,15 @@ export interface CollectorAccordionRowProps
    * Other collections
    */
   extraCollections?: {
+    id: number
     name: string
     imageUrl: string
     url: string
     count: number
   }[]
+
+  extraCollectionChanged: (id: number) => void
+
   children?: React.ReactNode
 }
 
@@ -90,6 +95,7 @@ const CollectorRow = forwardRef(
       nftCollection,
       extraCollections,
       children,
+      extraCollectionChanged,
       ...props
     }: CollectorAccordionRowProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -120,8 +126,8 @@ const CollectorRow = forwardRef(
     const displayName = name ?? (address ? shortenAddress(address) : 'Unknown')
 
     return (
-      <CollectorRowBase {...{ ref, ...props }} onClick={() => setOpen(!open)}>
-        <CollectorRowContent>
+      <CollectorRowBase {...{ ref, ...props }}>
+        <CollectorRowContent onClick={() => setOpen(!open)}>
           <Avatar size="md" src={avatarUrl} />
 
           <Flex
@@ -304,7 +310,7 @@ const CollectorRow = forwardRef(
                     }}
                   >
                     {extraCollections?.map(
-                      ({ name, url, imageUrl, count }, idx) => (
+                      ({ id, name, url, imageUrl, count }, idx) => (
                         <Flex
                           sx={{
                             flexDirection: 'column',
@@ -314,9 +320,9 @@ const CollectorRow = forwardRef(
                           }}
                           key={idx}
                         >
-                          <a href={url}>
+                          <CollectorRowAvatarWrapper onClick={() => extraCollectionChanged(id)}>
                             <Avatar size="lg" color="white" src={imageUrl} />
-                          </a>
+                          </CollectorRowAvatarWrapper>
                           <Flex
                             sx={{
                               flexDirection: 'column',

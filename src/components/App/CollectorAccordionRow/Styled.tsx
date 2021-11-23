@@ -22,3 +22,21 @@ export const CollectorRowExpansion = styled.div<{
   overflow: hidden;
   max-height: ${({ $open }) => ($open ? 'auto' : 0)};
 `
+
+export const CollectorRowAvatarWrapper = styled.button`
+  background: transparent;
+  outline: none;
+  border: none;
+
+  img {
+    border: 4px solid white;
+    border-radius: 50%;
+  }
+
+  &:hover {
+    img {
+      border: 4px solid ${({ theme }) => theme.colors.primary};
+      border-radius: 50%;
+    }
+  }
+`
