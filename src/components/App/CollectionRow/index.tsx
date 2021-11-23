@@ -5,6 +5,7 @@ import { CollectionRowBase } from './Styled'
 import TableCell from '../../Layout/TableCell'
 import { TableRowProps } from '../../Layout/TableRow'
 
+export type Variant = 'black' | 'dark' | 'normal'
 export interface CollectionRowProps extends TableRowProps {
   /**
    * The image source url for the avatar.
@@ -15,9 +16,9 @@ export interface CollectionRowProps extends TableRowProps {
    */
   title: string
   /**
-   * Use dark background.
+   * Background variant
    */
-  dark?: boolean
+  variant?: Variant
   /**
    * OnClick handler.
    */
@@ -28,9 +29,9 @@ export interface CollectionRowProps extends TableRowProps {
 const CollectionRow = forwardRef(
   (
     {
+      variant = 'normal',
       imageSrc: src,
       title,
-      dark,
       children,
       pixelated,
       onClick,
@@ -39,7 +40,7 @@ const CollectionRow = forwardRef(
     ref: React.ForwardedRef<HTMLTableRowElement>
   ) => {
     return (
-      <CollectionRowBase $dark={dark} {...{ ref, ...props }}>
+      <CollectionRowBase $variant={variant} {...{ ref, ...props }}>
         {/* Each row has a required avatar image circle. */}
         <TableCell>
           <Avatar

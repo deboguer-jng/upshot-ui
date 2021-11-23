@@ -49,17 +49,19 @@ const Chart = forwardRef(
 
     return (
       <RadarChartWrapper {...{ ref, ...props }}>
-        {dataAvailable ? (
-          <PopulatedRadarChart chartData={data} />
-        ) : (
-          <EmptyChart
-            {...{
-              loading,
-              error,
-              noSelected,
-            }}
-          />
-        )}
+        <div>
+          {dataAvailable ? (
+            <PopulatedRadarChart chartData={data} />
+          ) : (
+            <EmptyChart
+              {...{
+                loading,
+                error,
+                noSelected,
+              }}
+            />
+          )}
+        </div>
       </RadarChartWrapper>
     )
   }
