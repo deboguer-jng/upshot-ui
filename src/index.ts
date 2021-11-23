@@ -40,6 +40,7 @@ export { default as Scroll } from './components/@UI/Scroll'
  * Shared app-level components.
  */
 export { default as AppBar } from './components/App/AppBar'
+export { default as CollectionCard } from './components/App/CollectionCard'
 export { default as CollectionLine } from './components/App/CollectionLine'
 export { default as CollectionRow } from './components/App/CollectionRow'
 export { default as CollectionTable } from './components/App/CollectionTable'
