@@ -35,8 +35,8 @@ const SwitchDropdown = forwardRef(
             </Text>
             <Icon icon="arrowDropdown" />
           </SwitchDropdownHeader>
-          {open ? (
-            <SwitchDropdownOptions>
+          {open && (
+            <SwitchDropdownOptions open={open}>
               {options
                 .filter((option, index) => (value ? option !== value : index))
                 .map((option, index) => (
@@ -44,13 +44,13 @@ const SwitchDropdown = forwardRef(
                     key={index}
                     onClick={() => handleClick(option)}
                   >
-                    <Text variant="h1Secondary" color="primary">
+                    <Text variant="h2Secondary" color="primary">
                       {option}
                     </Text>
                   </SwitchDropdownOption>
                 ))}
             </SwitchDropdownOptions>
-          ) : null}
+          )}
         </SwitchDropdownWrapper>
       </>
     )

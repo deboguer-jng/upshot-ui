@@ -8,15 +8,20 @@ import { getOptions, toggle } from '../utils'
 import ButtonChartCollection from '../../ButtonChartCollection'
 import ChartLabel from '../../ChartLabel'
 import Box from '../../../Layout/Box'
+import Flex from '../../../Layout/Flex'
+import Text from '../../../@UI/Text'
+import { format } from 'date-fns'
 import colors from '../../../../themes/UpshotUI/colors'
 
 interface PopulatedChartProps {
   chartData: {
     name: string
-    url: string
     data: number[] | number[][] // Supports 1D line chart or 2D [timestamp, value] series
+    url?: string
     ath?: string
     atl?: string
+    priceUsd?: number
+    priceChange?: string
     labelColor?: keyof typeof colors
   }[]
   embedded?: boolean
@@ -46,10 +51,18 @@ const PopulatedChart = ({
     value: null,
     timestamp: null,
   }))
+  const [hoverIndex, setHoverIndex] = useState(0)
   const [hoverDataPoint, setHoverDataPoint] =
     useState<HoverDataPoint[]>(emptyHoverState)
-  
-  const labelColors: Array<keyof typeof colors> = ['blue', 'pink', 'purple', 'yellow', 'red', 'green']
+
+  const labelColors: Array<keyof typeof colors> = [
+    'blue',
+    'pink',
+    'purple',
+    'yellow',
+    'red',
+    'green',
+  ]
   for (let i = 0; i < chartData.length; i++) {
     chartData[i].labelColor = labelColors[i]
   }
@@ -67,7 +80,11 @@ const PopulatedChart = ({
        */
       const dataPointIndex: number =
         data.seriesIndex < 0 ? 0 : data.dataPointIndex
+
+      /* Current series index under cursor. */
       const seriesIndex: number = Math.max(0, data.seriesIndex)
+      setHoverIndex(seriesIndex)
+
       const dataPoint = chartData[seriesIndex]?.data[dataPointIndex]
       if (!dataPoint) return
 
@@ -83,12 +100,13 @@ const PopulatedChart = ({
     },
   })
 
+  const timestamp = hoverDataPoint?.[hoverIndex]?.timestamp
+
   const chartLabels = chartData
     .filter((_, i) => filterStatus[i]) // Toggle display by selected filter button
     .map((set, i) => (
       <ChartLabel
         key={i}
-        variant={chartData.length > 1 ? 'multi' : 'alone'}
         title={set.name}
         titleColor={set.labelColor}
         price_1={
@@ -97,18 +115,14 @@ const PopulatedChart = ({
             ? (set.data[set.data.length - 1] as number[])[1]
             : (set.data[set.data.length - 1] as number))
         }
-        timestamp={
-          hoverDataPoint[i]?.timestamp ??
-          (Array.isArray(set.data[set.data.length - 1]) // Default to last timestamp
-            ? (set.data[set.data.length - 1] as number[])[0]
-            : null)
-        }
         onClose={() => {
           const idx = chartData.findIndex(({ name }) => name === set.name)
           toggle(idx, chartData[i].name, filterStatus, setFilterStatus)
         }}
         atl={set.atl ?? '-'}
         ath={set.ath ?? '-'}
+        price_2={set.priceUsd}
+        change={set.priceChange}
         index={i}
         url={set.url}
       />
@@ -135,16 +149,34 @@ const PopulatedChart = ({
   return (
     <>
       {!embedded && (
-        <Box
+        <Flex
           sx={{
-            gap: 4,
-            flexDirection: ['column', 'row', 'row'],
-            alignItems: ['center', 'flex-start', 'flex-start'],
-            textAlign: ['center', 'left', 'left'],
+            justifyContent: 'space-between',
+            gap: [2, 2, 0],
+            flexDirection: ['column', 'column', 'row'],
           }}
         >
-          {chartLabels}
-        </Box>
+          <Flex
+            sx={{
+              gap: 8,
+              flexDirection: ['column', 'column', 'row'],
+              alignItems: ['center', 'center', 'flex-start'],
+              textAlign: ['center', 'center', 'left'],
+            }}
+          >
+            {chartLabels}
+          </Flex>
+          <Text
+            sx={{
+              fontWeight: 'bold',
+              textTransform: 'uppercase',
+              alignSelf: ['flex-end', 'flex-end', 'flex-start'],
+              minHeight: '1.25rem',
+            }}
+          >
+            {timestamp ? format(timestamp, 'LLL dd yyyy hh:mm') : null}
+          </Text>
+        </Flex>
       )}
       {chart}
       {!embedded && (

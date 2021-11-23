@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react'
+import React, { forwardRef, useState, useEffect } from 'react'
 import {
   CollectorRowBase,
   CollectorRowContent,
@@ -8,14 +8,26 @@ import { Grid, Flex, Text, Box } from 'theme-ui'
 import Avatar from '../../@UI/Avatar'
 import Icon from '../../@UI/Icon'
 import Label from '../../@UI/Label'
+import makeBlockie from 'ethereum-blockies-base64'
 import IconButton from '../../@UI/IconButton'
+import {
+  formatUsername,
+  shortenAddress,
+  fetchEns,
+} from '../../../utils/address'
+import { format, formatDistance } from 'date-fns'
+import { ethers } from 'ethers'
 
 export interface CollectorAccordionRowProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /**
-   * Collector's name
+   * Collector's address
    */
-  name?: string
+  address?: string
+  /**
+   * Collector's username
+   */
+  username?: string
   /**
    * Small subheading text.
    */
@@ -35,11 +47,11 @@ export interface CollectorAccordionRowProps
   /**
    * Average hold time
    */
-  avgHoldTime?: string
+  avgHoldTime?: number
   /**
    * First acquisition
    */
-  firstAcquisition?: string
+  firstAcquisition?: number
   /**
    * Total NFT value
    */
@@ -66,7 +78,8 @@ export interface CollectorAccordionRowProps
 const CollectorRow = forwardRef(
   (
     {
-      name,
+      address,
+      username,
       subtitle,
       collectionName,
       count,
@@ -82,11 +95,34 @@ const CollectorRow = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const [open, setOpen] = useState(false)
+    const isFirstColumn = !!avgHoldTime || !!firstAcquisition || !!nftCollection
+    const [avatarUrl, setAvatarUrl] = useState(
+      address ? makeBlockie(address) : null
+    )
+    const [name, setName] = useState(username ? formatUsername(username) : null)
+
+    useEffect(() => {
+      const updateEns = async (address?: string) => {
+        if (!address) return
+
+        const { name, avatar } = await fetchEns(
+          address,
+          ethers.getDefaultProvider()
+        )
+
+        if (name) setName(name)
+        if (avatar) setAvatarUrl(avatar)
+      }
+
+      updateEns(address)
+    }, [])
+
+    const displayName = name ?? (address ? shortenAddress(address) : 'Unknown')
 
     return (
       <CollectorRowBase {...{ ref, ...props }} onClick={() => setOpen(!open)}>
         <CollectorRowContent>
-          <Avatar size="md" src="/img/defaultAvatar.png" />
+          <Avatar size="md" src={avatarUrl} />
 
           <Flex
             sx={{ flexDirection: 'column', justifyContent: 'center', gap: 1 }}
@@ -101,7 +137,7 @@ const CollectorRow = forwardRef(
                 whiteSpace: 'nowrap',
               }}
             >
-              {name}
+              {displayName}
             </Text>
             {!!subtitle && (
               <Text
@@ -130,7 +166,7 @@ const CollectorRow = forwardRef(
                   lineHeight: 1,
                 }}
               >
-                {count ?? '-'}
+                {count ?? ''}
               </Text>
             )}
           </Flex>
@@ -144,78 +180,94 @@ const CollectorRow = forwardRef(
 
         <CollectorRowExpansion $open={open}>
           <Grid
-            columns={['1fr', '1fr', portfolioValue ? '1fr' : '1fr 1fr']}
+            columns={['1fr', '1fr', '1fr', !isFirstColumn ? '1fr' : '1fr 1fr']}
             sx={{ marginX: [0, 0, 46], columnGap: 72, p: 6 }}
           >
-            <Flex sx={{ flexDirection: 'column', gap: 4 }}>
-              {!!avgHoldTime && (
-                <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                  <Text
-                    sx={{ fontWeight: 'heading', textTransform: 'capitalize' }}
-                  >
-                    Avg. Hold Time:
-                  </Text>
-                  <Text
-                    variant="h3Primary"
-                    sx={{
-                      color: 'primary',
-                      textAlign: 'right',
-                    }}
-                  >
-                    {avgHoldTime}
-                  </Text>
-                </Flex>
-              )}
+            {isFirstColumn && (
+              <Flex sx={{ flexDirection: 'column', gap: 4 }}>
+                {!!avgHoldTime && (
+                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                    <Text
+                      sx={{
+                        fontWeight: 'heading',
+                        textTransform: 'capitalize',
+                      }}
+                    >
+                      Avg. Hold Time:
+                    </Text>
+                    <Text
+                      variant="h3Primary"
+                      sx={{
+                        color: 'primary',
+                        textAlign: 'right',
+                      }}
+                    >
+                      {formatDistance(0, avgHoldTime * 1000)}
+                    </Text>
+                  </Flex>
+                )}
 
-              {!!firstAcquisition && (
-                <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                  <Text sx={{ fontWeight: 'heading' }}>
-                    First {collectionName} Acquisition
-                  </Text>
-                  <Text
-                    variant="h3Primary"
-                    sx={{
-                      color: 'primary',
-                      textAlign: 'right',
-                    }}
-                  >
-                    {firstAcquisition}
-                  </Text>
-                </Flex>
-              )}
+                {!!firstAcquisition && (
+                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                    <Text sx={{ fontWeight: 'heading' }}>
+                      First {collectionName} Acquisition
+                    </Text>
+                    <Text
+                      variant="h3Primary"
+                      sx={{
+                        color: 'primary',
+                        textAlign: 'right',
+                      }}
+                    >
+                      {format(firstAcquisition * 1000, 'MM/dd/yyyy')}
+                    </Text>
+                  </Flex>
+                )}
 
-              {!!nftCollection && (
-                <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                  <Text sx={{ fontWeight: 'heading' }}>
-                    {name}'s {collectionName} Collection
-                  </Text>
-                  <Grid
-                    sx={{
-                      gap: 2,
-                      gridTemplateColumns:
-                        'repeat(auto-fill, minmax(92px, 1fr) )',
-                    }}
-                  >
-                    {nftCollection.map(({ imageUrl, url, pixelated }, idx) => (
-                      <a href={url} key={idx}>
-                        <Box
-                          sx={{
-                            backgroundImage: `url(${imageUrl})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            backgroundRepeat: 'no-repeat',
-                            borderRadius: 'sm',
-                            width: '100%',
-                            paddingTop: '100%',
-                            imageRendering: pixelated ? 'pixelated' : 'auto',
-                          }}
-                        />
-                      </a>
-                    ))}
-                  </Grid>
-                </Flex>
-              )}
-            </Flex>
+                {!!nftCollection && !!nftCollection.length ? (
+                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                    <Text sx={{ fontWeight: 'heading' }}>
+                      {displayName}'s {collectionName} Collection
+                    </Text>
+                    <Grid
+                      sx={{
+                        gap: 2,
+                        gridTemplateColumns:
+                          'repeat(auto-fill, minmax(92px, 1fr) )',
+                      }}
+                    >
+                      {nftCollection.map(
+                        ({ imageUrl, url, pixelated }, idx) => (
+                          <a href={url} key={idx}>
+                            <Box
+                              sx={{
+                                backgroundImage: `url(${imageUrl})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat',
+                                borderRadius: 'sm',
+                                width: '100%',
+                                paddingTop: '100%',
+                                imageRendering: pixelated
+                                  ? 'pixelated'
+                                  : 'auto',
+                              }}
+                            />
+                          </a>
+                        )
+                      )}
+                    </Grid>
+                  </Flex>
+                ) : (
+                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                    <Text sx={{ fontWeight: 'heading', lineHeight: 1.5 }}>
+                      {displayName} doesn't currently hold any {collectionName}{' '}
+                      NFTs
+                    </Text>
+                  </Flex>
+                )}
+              </Flex>
+            )}
 
             <Flex sx={{ flexDirection: 'column', gap: 4 }}>
               {!!totalNftValue && (
@@ -242,7 +294,7 @@ const CollectorRow = forwardRef(
                 </Flex>
               )}
 
-              {!!extraCollections && (
+              {!!extraCollections && !!extraCollections.length && (
                 <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                   <Text sx={{ fontWeight: 'heading' }}>Also Collecting</Text>
                   <Flex
@@ -300,12 +352,9 @@ const CollectorRow = forwardRef(
                   </Flex>
                 </Flex>
               )}
-              {
-                !!children &&
-                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                    {children}
-                  </Flex>
-              }
+              {!!children && (
+                <Flex sx={{ flexDirection: 'column', gap: 2 }}>{children}</Flex>
+              )}
             </Flex>
           </Grid>
         </CollectorRowExpansion>

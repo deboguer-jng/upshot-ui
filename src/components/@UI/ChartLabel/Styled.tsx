@@ -7,13 +7,13 @@ import Label from '../../@UI/Label'
 import Flex from '../../Layout/Flex'
 
 interface ChartLabelProps {
-  $variant?: 'alone' | 'multi'
   $color?: keyof typeof Colors
   $isMobile?: boolean
   $index?: number
 }
 
 export const IconBox = styled(Box)<ChartLabelProps>`
+  flex-shrink: 0;
   border: 1px ${({ theme, $color }) => theme.colors[$color]} solid;
   border-radius: ${({ theme }) => theme.radii.circle};
   width: 20px;
@@ -21,12 +21,24 @@ export const IconBox = styled(Box)<ChartLabelProps>`
   text-align: center;
   margin-right: ${({ $isMobile }) => ($isMobile ? '5px' : '12px')};
   margin-top: ${({ $isMobile }) => ($isMobile ? '2px' : '5px')};
+
+  transition: ${({ theme }) => theme.transitions.default};
+  &:hover,
+  &:hover button {
+    background: ${({ theme, $color = 'primary' }) =>
+      theme.colors[$color]} !important;
+  }
 `
 export const StyledIconButton = styled(IconButton)<ChartLabelProps>`
   padding: 0;
-  width: 17px;
-  height: 17px;
+  width: 100%;
+  height: 100%;
   vertical-align: top;
+  transition: ${({ theme }) => theme.transitions.default};
+
+  &:hover svg path {
+    stroke: ${({ theme }) => theme.colors.black} !important;
+  }
 `
 
 export const StyledTitle = styled('h3')<ChartLabelProps>`
@@ -38,22 +50,18 @@ export const StyledTitle = styled('h3')<ChartLabelProps>`
 
 export const StyledH1 = styled('h1')<ChartLabelProps>`
   margin: 0px;
-  ${({ $variant }) => ($variant === 'alone' ? 'display: inline-block;' : '')}
 `
 
 export const StyledDateTime = styled('h3')<ChartLabelProps>`
   margin: 0px 0px;
   text-transform: uppercase;
-  position: ${({ $variant }) =>
-    $variant === 'alone' ? 'absolute' : 'inherit'};
   top: 0;
   right: 0;
 `
 
 export const StyledChangeDiv = styled('div')<ChartLabelProps>`
-  margin-left: ${({ $variant }) => ($variant == 'alone' ? '10px' : '0px')};
+  margin-left: 0;
   color: ${({ theme }) => theme.colors.primary};
-  ${({ $variant }) => ($variant === 'alone' ? 'display: inline-block;' : '')}
 `
 
 export const StyledRed = styled(Text)`
@@ -74,10 +82,10 @@ export const InlineLabel = styled(Label)`
 
 export const RelativeFlex = styled(Flex)<ChartLabelProps>`
   position: relative;
-  ${({ $variant }) => ($variant === 'multi' ? 'display: inline-flex;' : '')}
+  display: inline-flex;
   font-size: ${({ $isMobile }) => ($isMobile ? '0.65em' : '1em')};
-  width: ${({ $variant }) => ($variant === 'alone' ? '100%' : 'auto')};
-  padding-left: ${({ $index, $isMobile }) => $index === 2 && !$isMobile ? '15px' : '0px' }
+  padding-left: ${({ $index, $isMobile }) =>
+    $index === 2 && !$isMobile ? '15px' : '0px'};
 `
 export const StyledLink = styled.a`
   color: inherit;

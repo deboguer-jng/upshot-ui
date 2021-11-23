@@ -19,8 +19,10 @@ export { default as InputRounded } from './components/@UI/InputRounded'
 export { default as InputRoundedSearch } from './components/@UI/InputRoundedSearch'
 export { default as Label } from './components/@UI/Label'
 export { default as LabelAttribute } from './components/@UI/LabelAttribute'
+export { default as Modal } from './components/@UI/Modal'
 export { default as Pagination } from './components/@UI/Pagination'
 export { default as Panel } from './components/@UI/Panel'
+export { default as RadarChart } from './components/@UI/RadarChart/RadarChartDynamic'
 export { default as Radio } from './components/@UI/Radio'
 export { default as ScatterChart } from './components/@UI/ScatterChart/ScatterChartDynamic'
 export { default as Skeleton } from './components/@UI/Skeleton'
@@ -30,6 +32,7 @@ export { default as SwitchDropdown } from './components/@UI/SwitchDropdown'
 export { default as Text } from './components/@UI/Text'
 export { default as TreeMap } from './components/@UI/TreeMap/TreeMapDynamic'
 export { default as MiniNftCard } from './components/@UI/MiniNftCard'
+export { default as Scroll } from './components/@UI/Scroll'
 
 /**
  * Components: App
@@ -43,6 +46,7 @@ export { default as CollectionTable } from './components/App/CollectionTable'
 export { default as CollectorAccordion } from './components/App/CollectorAccordion'
 export { default as CollectorAccordionHead } from './components/App/CollectorAccordionHead'
 export { default as CollectorAccordionRow } from './components/App/CollectorAccordionRow'
+export { default as ConnectModal } from './components/App/ConnectModal'
 export { default as Footer } from './components/App/Footer'
 export { default as Navbar } from './components/App/Navbar'
 export { default as LandingPanel } from './components/App/LandingPanels'
@@ -81,3 +85,11 @@ export { default as SpinnerBoxTemplate } from './components/Loading/SpinnerBox'
 export { globalStyles, default as UpshotThemeProvider } from './themes'
 export { default as theme, useTheme } from './themes/UpshotUI'
 export { UpshotUIThemeType } from './themes/UpshotUI'
+
+/**
+ * Hooks
+ *
+ * Responsive breakpoint React hooks.
+ */
+
+export { useBreakpointIndex } from './hooks/useBreakpointIndex'

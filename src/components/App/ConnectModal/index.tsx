@@ -8,11 +8,20 @@ import {
 import { BoxProps, Image } from 'theme-ui'
 import Text from '../../@UI/Text'
 
+enum ConnectorName {
+  Injected = 'Injected',
+  WalletConnect = 'WalletConnect',
+}
+
 export interface ConnectModalProps extends BoxProps {
   /**
    * Handler for the provider onClick event.
    */
-  onConnect?: (provider: string) => void
+  onConnect?: (provider: ConnectorName) => void
+  /**
+   * Hides the MetaMask web3 provider option if unavailable.
+   */
+  hideMetaMask?: boolean
 }
 
 /**
@@ -20,7 +29,7 @@ export interface ConnectModalProps extends BoxProps {
  */
 const ConnectModal = forwardRef(
   (
-    { onConnect, ...props }: ConnectModalProps,
+    { onConnect, hideMetaMask = true, ...props }: ConnectModalProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => (
     <ConnectModalBase {...{ ref, ...props }}>
@@ -30,16 +39,24 @@ const ConnectModal = forwardRef(
       </Text>
 
       <ConnectProviders>
-        <Provider $color="orange" onClick={() => onConnect?.('metamask')}>
-          MetaMask
-          <Image
-            src="/img/wallets/branding/metamask-fox.svg"
-            alt="MetaMask logo"
-            width={40}
-            height={40}
-          />
-        </Provider>
-        <Provider $color="blue" onClick={() => onConnect?.('walletconnect')}>
+        {!hideMetaMask && (
+          <Provider
+            $color="orange"
+            onClick={() => onConnect?.(ConnectorName.Injected)}
+          >
+            MetaMask
+            <Image
+              src="/img/wallets/branding/metamask-fox.svg"
+              alt="MetaMask logo"
+              width={40}
+              height={40}
+            />
+          </Provider>
+        )}
+        <Provider
+          $color="blue"
+          onClick={() => onConnect?.(ConnectorName.WalletConnect)}
+        >
           WalletConnect
           <Image
             src="/img/wallets/branding/walletconnect-logo.svg"
@@ -50,7 +67,13 @@ const ConnectModal = forwardRef(
         </Provider>
       </ConnectProviders>
 
-      <StyledLink>Learn about wallets →</StyledLink>
+      <StyledLink
+        href="https://ethereum.org/en/wallets/"
+        target="_blank"
+        rel="noopener noreferrer nofollow"
+      >
+        Learn about wallets →
+      </StyledLink>
     </ConnectModalBase>
   )
 )

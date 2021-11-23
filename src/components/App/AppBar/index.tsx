@@ -4,7 +4,7 @@ import IconButton from '../../@UI/IconButton'
 import { Text, Link, Grid, Flex, GridProps } from 'theme-ui'
 import InputRoundedSearch from '../../@UI/InputRoundedSearch'
 import { useTheme } from '../../../themes/UpshotUI'
-import { useBreakpointIndex } from '@theme-ui/match-media'
+import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 
 export interface AppBarProps extends GridProps {}
 

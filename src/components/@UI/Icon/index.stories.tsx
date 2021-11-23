@@ -19,6 +19,12 @@ AddLink.args = { icon: 'addLink', color: 'primary', size: 32 }
 export const Analytics = Template.bind({})
 Analytics.args = { icon: 'analytics', color: 'primary', size: 32 }
 
+export const ArrowDoubleLeft = Template.bind({})
+ArrowDoubleLeft.args = { icon: 'arrowDoubleLeft', color: 'primary', size: 32 }
+
+export const ArrowDoubleRight = Template.bind({})
+ArrowDoubleRight.args = { icon: 'arrowDoubleRight', color: 'primary', size: 32 }
+
 export const ArrowDropUserBubble = Template.bind({})
 ArrowDropUserBubble.args = {
   icon: 'arrowDropUserBubble',
@@ -87,6 +93,9 @@ Bitcoin.args = { icon: 'bitcoin', color: 'primary', size: 32 }
 
 export const Boards = Template.bind({})
 Boards.args = { icon: 'boards', color: 'primary', size: 32 }
+
+export const Bubblegum = Template.bind({})
+Bubblegum.args = { icon: 'bubblegum', color: 'primary', size: 256 }
 
 export const Checkmark = Template.bind({})
 Checkmark.args = { icon: 'checkmark', color: 'primary', size: 32 }
@@ -178,8 +187,8 @@ Influence.args = { icon: 'influence', color: 'primary', size: 32 }
 export const Information = Template.bind({})
 Information.args = { icon: 'information', color: 'primary', size: 32 }
 
-export const InformationBlock = Template.bind({})
-InformationBlock.args = { icon: 'informationBlock', color: 'primary', size: 32 }
+export const InstagramBlock = Template.bind({})
+InstagramBlock.args = { icon: 'instagramBlock', color: 'primary', size: 32 }
 
 export const Instagram = Template.bind({})
 Instagram.args = { icon: 'instagram', color: 'primary', size: 32 }
@@ -288,6 +297,9 @@ Showroom.args = { icon: 'showroom', color: 'primary', size: 32 }
 
 export const Spacebar = Template.bind({})
 Spacebar.args = { icon: 'spacebar', color: 'primary', size: 32 }
+
+export const Subtract = Template.bind({})
+Subtract.args = { icon: 'subtract', color: 'primary', size: 32 }
 
 export const SuperRareBlock = Template.bind({})
 SuperRareBlock.args = { icon: 'superRareBlock', color: 'primary', size: 32 }

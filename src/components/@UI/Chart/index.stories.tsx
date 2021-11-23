@@ -31,6 +31,8 @@ Main.args = {
       ],
       atl: '3.95',
       ath: '86.28',
+      priceUsd: 5434565,
+      priceChange: '+16.47%',
     },
     {
       name: 'Chromie Squiggles',
@@ -50,6 +52,8 @@ Main.args = {
       ],
       atl: '7.34',
       ath: '50.85',
+      priceUsd: 5434565,
+      priceChange: '+16.47%',
     },
     {
       name: 'Miami DAO',
@@ -69,6 +73,8 @@ Main.args = {
       ],
       atl: '7.34',
       ath: '50.85',
+      priceUsd: 5434565,
+      priceChange: '+16.47%',
     },
   ],
 }
@@ -94,6 +100,8 @@ MainSingle.args = {
       ],
       atl: 7.34,
       ath: 50.85,
+      priceUsd: 5434565,
+      priceChange: '+16.47%',
     },
   ],
 }
@@ -119,6 +127,8 @@ Embedded.args = {
       ],
       atl: 3.95,
       ath: 86.28,
+      priceUsd: 5434565,
+      priceChange: '+16.47%',
     },
     {
       name: 'Chromie Squiggles',
@@ -138,6 +148,8 @@ Embedded.args = {
       ],
       atl: 7.34,
       ath: 50.85,
+      priceUsd: 5434565,
+      priceChange: '+16.47%',
     },
   ],
   embedded: true,

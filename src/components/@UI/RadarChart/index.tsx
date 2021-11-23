@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react'
 
-import { ScatterChartWrapper } from './Styled'
+import { RadarChartWrapper } from './Styled'
 import EmptyChart from '../Chart/components/emptyChart'
-import PopulatedScatterChart from './components/populatedScatterChart'
+import PopulatedRadarChart from './components/populatedRadarChart'
 
-export interface ScatterChartProps {
+export interface RadarChartProps {
   /**
    * Displays a loading spinner.
    */
@@ -25,9 +25,12 @@ export interface ScatterChartProps {
    * Data series as an array of numbers or a list of (timestamp, value) tuples.
    */
   data?: {
-    name: string
-    data: any
-  }[]
+    series: {
+      name: string
+      data: number[]
+    }[]
+    labels: string[]
+  }
 }
 
 const Chart = forwardRef(
@@ -36,28 +39,28 @@ const Chart = forwardRef(
       loading = false,
       error = false,
       noSelected = false,
-      data = [],
+      data,
       ...props
-    }: ScatterChartProps,
+    }: RadarChartProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    const dataAvailable = !loading && data.length !== 0 && !error && !noSelected
+    const dataAvailable =
+      !loading && data?.series?.length && !error && !noSelected
 
     return (
-      <ScatterChartWrapper {...{ ref, ...props }}>
+      <RadarChartWrapper {...{ ref, ...props }}>
         {dataAvailable ? (
-          <PopulatedScatterChart chartData={data} />
+          <PopulatedRadarChart chartData={data} />
         ) : (
           <EmptyChart
             {...{
               loading,
               error,
               noSelected,
-              data,
             }}
           />
         )}
-      </ScatterChartWrapper>
+      </RadarChartWrapper>
     )
   }
 )

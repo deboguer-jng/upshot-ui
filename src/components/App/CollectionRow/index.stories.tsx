@@ -7,7 +7,7 @@ import TableHead from '../../Layout/TableHead'
 import TableBody from '../../Layout/TableBody'
 import TableRow from '../../Layout/TableRow'
 import TableCell from '../../Layout/TableCell'
-import { useBreakpointIndex } from '@theme-ui/match-media'
+import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import { useTheme } from '../../../themes/UpshotUI'
 import { Flex } from 'theme-ui'
 
