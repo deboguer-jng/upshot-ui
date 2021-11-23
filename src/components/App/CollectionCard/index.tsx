@@ -5,7 +5,6 @@ import Avatar from '../../@UI/Avatar'
 import Text from '../../@UI/Text'
 import Flex from '../../Layout/Flex'
 import Grid from '../../Layout/Grid'
-import { Image } from 'theme-ui'
 import { GridItemButton, CardContainer, CollectionCardBase } from './Styled'
 
 export interface CollectionCardProps extends BoxProps {
@@ -42,6 +41,7 @@ const CollectionCard = forwardRef(
       avatarImage = '/img/defaultAvatar.png',
       hasSeeAll = false,
       onSeeAllClick,
+      children,
       ...props
     }: CollectionCardProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -79,13 +79,7 @@ const CollectionCard = forwardRef(
             paddingTop: 0,
           }}
         >
-          {[...new Array(3)].map((_, idx) => (
-            <Image
-              src={`/img/sample_nft_${(idx % 3) + 1}.jpg`}
-              key={idx}
-              sx={{ borderRadius: 'sm', width: '100%', height: '100%' }}
-            />
-          ))}
+          {children}
           {hasSeeAll && (
             <GridItemButton onClick={onSeeAllClick}>+ See All</GridItemButton>
           )}
