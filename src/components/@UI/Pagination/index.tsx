@@ -29,8 +29,8 @@ const Pagination = forwardRef(
         showLastLabel
         firstLabel={
           <>
-            First
             <Icon icon="arrowDoubleLeft" />
+            First
           </>
         }
         lastLabel={

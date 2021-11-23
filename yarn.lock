@@ -9267,7 +9267,7 @@ react-lifecycles-compat@^3.0.4:
 
 "react-paginate@https://github.com/DaWe35/react-paginate.git#fix/pagesBreaking":
   version "9.0.0"
-  resolved "https://github.com/DaWe35/react-paginate.git#0c796806a54a208b555c9d677bed02667391c4ec"
+  resolved "https://github.com/DaWe35/react-paginate.git#ab3e3871d4444e9f924d075bf4afcd1f4037fe08"
   dependencies:
     prop-types "^15.6.1"
 
