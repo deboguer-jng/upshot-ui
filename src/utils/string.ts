@@ -1,10 +1,10 @@
 /**
  * Truncates a string to a maximum length. Adds an
- * ellipsis if the text is longer than the length.
+ * ellipsis if the text is longer than the max length.
  *
  * @param {string}
- * @param {number }length
+ * @param {number} maxLength
  * @returns {string} Truncated string with ellipsis.
  */
-export const truncateString = (str: string, length: number = 10) =>
-  str.length < length ? str : str.slice(0, length) + '...'
+export const truncateString = (str: string, maxLength: number = 10) =>
+  str.length < maxLength ? str : str.slice(0, maxLength) + '...'
