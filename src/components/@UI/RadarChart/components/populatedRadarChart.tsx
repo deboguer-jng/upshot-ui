@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTheme } from '@emotion/react'
-import { format } from 'date-fns'
+import { truncateString } from '../../../../utils/string'
 import ReactApexChart from 'react-apexcharts'
 
 interface PopulatedRadarChartProps {
@@ -21,8 +21,8 @@ const PopulatedRadarChart = ({ chartData }: PopulatedRadarChartProps) => {
       type="radar"
       series={chartData.series}
       labels={chartData.labels}
-      height={400}
       width="100%"
+      height="100%"
       options={{
         chart: {
           id: 'upshotChart',
@@ -80,7 +80,7 @@ const PopulatedRadarChart = ({ chartData }: PopulatedRadarChartProps) => {
           },
         },
         xaxis: {
-          categories: chartData.labels,
+          categories: chartData.labels.map((str) => truncateString(str, 10)),
           axisBorder: {
             show: false,
           },

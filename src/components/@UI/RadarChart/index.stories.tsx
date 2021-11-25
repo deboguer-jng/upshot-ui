@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof RadarChart>
 
 const Template: ComponentStory<typeof RadarChart> = (args) => (
-  <Box sx={{ height: 500 }}>
+  <Box sx={{ width: 400 }}>
     <RadarChart {...args} />
   </Box>
 )
@@ -24,7 +24,13 @@ Default.args = {
         data: [5, 10, 20, 30, 35],
       },
     ],
-    labels: ['CyberKongz', 'CryptoPunks', 'The Sandbox', 'Doodles', 'BAYC'],
+    labels: [
+      'CyberKongz',
+      'CryptoPunks',
+      'The Sandbox',
+      'Doodles',
+      'Bored Ape Yacht Club',
+    ],
   },
 }
 
