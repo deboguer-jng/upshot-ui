@@ -5,7 +5,7 @@ import Avatar from '../../@UI/Avatar'
 import Text from '../../@UI/Text'
 import Flex from '../../Layout/Flex'
 import Grid from '../../Layout/Grid'
-import { GridItemButton, CardContainer, CollectionCardBase } from './Styled'
+import { SeeAllButton, CardContainer, CollectionCardBase } from './Styled'
 
 export interface CollectionCardProps extends BoxProps {
   /**
@@ -80,9 +80,7 @@ const CollectionCard = forwardRef(
           }}
         >
           {children}
-          {hasSeeAll && (
-            <GridItemButton onClick={onSeeAllClick}>+ See All</GridItemButton>
-          )}
+          {hasSeeAll && <SeeAllButton onClick={onSeeAllClick} />}
         </Grid>
       </CardContainer>
     </CollectionCardBase>

@@ -21,10 +21,21 @@ Default.args = {
   total: 25,
   hasSeeAll: true,
   children: [...new Array(3)].map((_, idx) => (
-    <Image
-      src={`/img/sample_nft_${(idx % 3) + 1}.jpg`}
+    <Box
       key={idx}
-      sx={{ borderRadius: 'sm', width: '100%', height: '100%' }}
+      sx={{
+        width: '100%',
+        '&::after': {
+          content: "''",
+          display: 'block',
+          paddingTop: '100%',
+          backgroundImage: `url(/img/sample_nft_${(idx % 3) + 1}.jpg)`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          borderRadius: 'sm',
+        },
+      }}
     />
   )),
 }
