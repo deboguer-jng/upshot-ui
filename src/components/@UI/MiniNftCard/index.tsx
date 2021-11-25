@@ -25,7 +25,11 @@ export interface MiniNftCardInterface {
   /**
    * Rarity percentage.
    */
-  rarity: string
+  rarity?: string
+
+  sales?: string
+
+  floorPrice?: string
   /**
    * NFT creator information.
    */
@@ -57,7 +61,7 @@ export interface MiniNftCardInterface {
   /**
    * Variant type
    */
-  type?: 'default' | 'search'
+  type?: 'default' | 'search' | 'collection'
 
   pixelated?: boolean
 
@@ -74,6 +78,8 @@ const MiniNftCard = forwardRef(
       name,
       price,
       rarity,
+      sales,
+      floorPrice,
       from,
       to,
       date,
@@ -93,7 +99,7 @@ const MiniNftCard = forwardRef(
             pixelated={pixelated}
           />
           <MiniNftCardMainContentWrapper type={type}>
-            {type === 'default' ? (
+            {type === 'default' || type === 'collection' ? (
               <>
                 {error ? (
                   <MiniNftCardPrice error={error}>Error</MiniNftCardPrice>
@@ -116,7 +122,11 @@ const MiniNftCard = forwardRef(
               </MiniNftCardDetailLabel>
             ) : null}
             <MiniNftCardDetailsName variant="small" error={error}>
-              {error ? 'Error' : type === 'default' ? name : creator}
+              {error
+                ? 'Error'
+                : type === 'default' || type === 'collection'
+                ? name
+                : creator}
             </MiniNftCardDetailsName>
             {type === 'default' ? (
               <MiniNftCardDetailValue variant="xSmall" error={error}>
@@ -124,7 +134,11 @@ const MiniNftCard = forwardRef(
               </MiniNftCardDetailValue>
             ) : null}
             <MiniNftCardDetailLabel variant="xSmall">
-              {type === 'default' ? 'From :' : 'Rarity :'}
+              {type === 'default'
+                ? 'From :'
+                : type === 'collection'
+                ? '# of sales :'
+                : 'Rarity :'}
             </MiniNftCardDetailLabel>
             <MiniNftCardDetailValue variant="small" error={error}>
               {error ? (
@@ -138,12 +152,18 @@ const MiniNftCard = forwardRef(
                   <AddressCircle variant="from" />
                   <Text variant="small"> {from} </Text>
                 </Flex>
+              ) : type === 'collection' ? (
+                sales
               ) : (
                 rarity
               )}
             </MiniNftCardDetailValue>
             <MiniNftCardDetailLabel variant="xSmall">
-              {type === 'default' ? 'To :' : 'Price :'}
+              {type === 'default'
+                ? 'To :'
+                : type === 'collection'
+                ? 'floor price :'
+                : 'Price :'}
             </MiniNftCardDetailLabel>
             <MiniNftCardDetailValue variant="small" error={error}>
               {error ? (
@@ -157,6 +177,8 @@ const MiniNftCard = forwardRef(
                   <AddressCircle variant="to" />
                   <Text variant="small"> {to} </Text>
                 </Flex>
+              ) : type === 'collection' ? (
+                floorPrice
               ) : (
                 price
               )}

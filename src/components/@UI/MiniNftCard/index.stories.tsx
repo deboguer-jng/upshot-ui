@@ -75,6 +75,17 @@ DefaultLongName.args = {
   link: 'https://google.com',
 }
 
+export const DefaultCollectionType = Template.bind({})
+DefaultCollectionType.args = {
+  image: 'https://www.stockvault.net/data/2012/09/24/135964/preview16.jpg',
+  name: 'NFT name',
+  price: '$420',
+  sales: '130',
+  type: 'collection',
+  floorPrice: '120.00',
+  link: 'https://google.com',
+}
+
 export const Search = Template.bind({})
 Search.args = {
   image:

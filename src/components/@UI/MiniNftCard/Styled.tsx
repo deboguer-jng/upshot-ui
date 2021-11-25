@@ -10,7 +10,7 @@ interface MiniNftCardNameProps {
 }
 
 interface MiniNftCardMainContentWrapperProps {
-  type: 'default' | 'search'
+  type: 'default' | 'search' | 'collection'
 }
 
 interface AddressCircleProps {
@@ -42,20 +42,27 @@ export const MiniNftCardWrapper = styled.div<MiniNftCardWrapperProps>`
   width: fit-content;
   width: ${({ theme }) => theme.miniNftCard.width}px;
   height: ${({ theme }) => theme.miniNftCard.height}px;
-  transition: ${({ isMobile }) => isMobile ? 'none' : 'width 0.5s ease'};
+  transition: ${({ isMobile }) => (isMobile ? 'none' : 'width 0.5s ease')};
 
   & > div:last-child {
-    transition: ${({ isMobile }) => isMobile ? 'none': 'transform 0.5s ease'};
-    transform: ${({ isMobile }) => isMobile ? 'none' : 'translateX(0)'};
+    transition: ${({ isMobile }) =>
+      isMobile ? 'none' : 'transform 0.5s ease'};
+    transform: ${({ isMobile }) => (isMobile ? 'none' : 'translateX(0)')};
   }
 
   &:hover {
-    width: calc(${({ theme, isMobile }) => isMobile ? `${theme.miniNftCard.width}px` : theme.miniNftCard.width}px * 1.7 + 10px);
-    transition: ${({ isMobile }) => isMobile ? 'none' : 'width 0.5s ease'};
+    width: calc(
+      ${({ theme, isMobile }) =>
+          isMobile
+            ? `${theme.miniNftCard.width}px`
+            : theme.miniNftCard.width}px * 1.7 + 10px
+    );
+    transition: ${({ isMobile }) => (isMobile ? 'none' : 'width 0.5s ease')};
 
     & > div:last-child {
-      transition: ${({ isMobile }) => isMobile ? 'none' : 'transform 0.5s ease'};
-      transform: ${({ isMobile }) => isMobile ? 'none' : 'translateX(70%)'};
+      transition: ${({ isMobile }) =>
+        isMobile ? 'none' : 'transform 0.5s ease'};
+      transform: ${({ isMobile }) => (isMobile ? 'none' : 'translateX(70%)')};
     }
   }
 `
