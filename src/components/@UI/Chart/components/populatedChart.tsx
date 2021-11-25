@@ -23,7 +23,7 @@ interface PopulatedChartProps {
     priceUsd?: number
     priceChange?: string
     labelColor?: keyof typeof colors
-    volume?: string
+    volume?: number
   }[]
   embedded?: boolean
 }
@@ -102,18 +102,18 @@ const PopulatedChart = ({
   })
 
   const timestamp = hoverDataPoint?.[hoverIndex]?.timestamp
-  
+
   const chartLabels = chartData
-    .filter((_, i) => filterStatus[i]) // Toggle display by selected filter button
-    .map((set, i) => (
-      <ChartLabel
+  .filter((_, i) => filterStatus[i]) // Toggle display by selected filter button
+  .map((set, i) => (
+    <ChartLabel
         key={i}
         title={set.name}
         titleColor={set.labelColor}
         price_1={
           hoverDataPoint[i]?.value ??
-          (chartData.volume
-            ? chartData.volume
+          (!!Number(set.volume)
+            ? Number(set.volume)
             : (Array.isArray(set.data[set.data.length - 1])
               ? (set.data[set.data.length - 1] as number[])[1]
               : (set.data[set.data.length - 1] as number)))
