@@ -110,7 +110,7 @@ const ChartLabel = forwardRef(
 
     const leftPadding = (i: number) => {
       if ((!isMobileOrTablet && i !== 0) || (isMobileOrTablet && i % 2 === 1))
-        return '20px'
+        return '10px'
 
       return '0px'
     }
@@ -144,7 +144,7 @@ const ChartLabel = forwardRef(
             </Text>
             <Text
               variant="h1Primary"
-              style={{ fontWeight: 'normal', lineHeight: 1 }}
+              sx={{ fontWeight: 'normal', lineHeight: 1, fontSize: [6, 6, 7] }}
             >
               {nFormatter(price_1)}
             </Text>

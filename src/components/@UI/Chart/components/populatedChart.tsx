@@ -12,6 +12,7 @@ import Flex from '../../../Layout/Flex'
 import Text from '../../../@UI/Text'
 import { format } from 'date-fns'
 import colors from '../../../../themes/UpshotUI/colors'
+import { useBreakpointIndex } from '../../../../hooks/useBreakpointIndex'
 
 interface PopulatedChartProps {
   chartData: {
@@ -41,6 +42,7 @@ const PopulatedChart = ({
 
   const emptyFilters = chartData.map((_) => true)
   const [filterStatus, setFilterStatus] = useState(emptyFilters)
+  const isMobileOrTablet = useBreakpointIndex() <=2
 
   /* Reset filters when data changes. */
   useEffect(() => {
@@ -178,7 +180,10 @@ const PopulatedChart = ({
               minHeight: '1.25rem',
             }}
           >
-            {timestamp ? format(timestamp, 'LLL dd yyyy hh:mm') : null}
+            {
+              !isMobileOrTablet &&
+                timestamp ? format(timestamp, 'LLL dd yyyy hh:mm') : null
+            }
           </Text>
         </Flex>
       )}
@@ -198,6 +203,25 @@ const PopulatedChart = ({
           ))}
         </CustomLegendWrapper>
       )}
+
+        {
+          isMobileOrTablet && (
+            <Text
+              sx={{
+                fontWeight: 'bold',
+                textTransform: 'uppercase',
+                alignSelf: ['flex-end', 'flex-end', 'flex-start'],
+                minHeight: '1.25rem',
+                float: 'right',
+                fontSize: '18px',
+                marginBottom: '-10px',
+                paddingTop: '1px',
+              }}
+            >
+              { timestamp && format(timestamp, 'LLL dd yyyy hh:mm') } 
+            </Text>
+          )
+        }
     </>
   )
 }
