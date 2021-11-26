@@ -109,9 +109,10 @@ const ChartLabel = forwardRef(
     }
 
     const leftPadding = (i: number) => {
-      if ((!isMobileOrTablet && i !== 0) || (isMobileOrTablet && i % 2 === 1))
+      if (!isMobileOrTablet && i !== 0)
+        return '20px'
+      if (isMobileOrTablet && i % 2 === 1)
         return '10px'
-
       return '0px'
     }
 
