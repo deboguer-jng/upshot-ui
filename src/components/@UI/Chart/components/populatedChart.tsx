@@ -23,7 +23,7 @@ interface PopulatedChartProps {
     priceUsd?: number
     priceChange?: string
     labelColor?: keyof typeof colors
-    volume?: number
+    volume?: number | boolean
   }[]
   embedded?: boolean
 }
