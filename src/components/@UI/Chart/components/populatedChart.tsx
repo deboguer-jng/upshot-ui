@@ -205,7 +205,7 @@ const PopulatedChart = ({
       )}
 
         {
-          isMobileOrTablet && (
+          isMobileOrTablet && !embedded && (
             <Text
               sx={{
                 fontWeight: 'bold',
