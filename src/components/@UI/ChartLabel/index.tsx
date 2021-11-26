@@ -90,6 +90,7 @@ const ChartLabel = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const isMobile = useBreakpointIndex() <= 1
+    const isMobileOrTablet = useBreakpointIndex() <=2
 
     function nFormatter(num: number, digits = 2) {
       const lookup = [
@@ -107,8 +108,15 @@ const ChartLabel = forwardRef(
         : Number(0).toFixed(digits)
     }
 
+    const leftPadding = (i: number) => {
+      if ((!isMobileOrTablet && i !== 0) || (isMobileOrTablet && i % 2 === 1))
+        return '20px'
+
+      return '0px'
+    }
+
     return (
-      <RelativeFlex {...{ ref, ...props }} $isMobile={isMobile} $index={index}>
+      <RelativeFlex {...{ ref, ...props }} $isMobile={isMobile} $paddingLeft={leftPadding(index)} $index={index}>
         <IconBox $color={titleColor} $isMobile={isMobile}>
           <StyledIconButton
             type="button"
@@ -156,9 +164,9 @@ const ChartLabel = forwardRef(
           </StyledChangeDiv>
 
           {ath !== '-' && atl !== '-' && (
-            <Box>
-              <StyledRed>ATL: {atl}</StyledRed>
-              <StyledBlue>ATH: {ath}</StyledBlue>
+            <Box sx={{ display: ['grid', 'grid', 'block'] }}>
+              <StyledRed sx={{ paddingTop: ['3px', '3px', '0px'] }}>ATL: {atl}</StyledRed>
+              <StyledBlue sx={{ marginTop: ['-6px', '-6px', '0px'], paddingLeft: ['0px', '0px', '5px'] }}>ATH: {ath}</StyledBlue>
             </Box>
           )}
         </Box>
