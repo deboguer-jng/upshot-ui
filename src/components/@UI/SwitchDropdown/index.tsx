@@ -12,7 +12,7 @@ export interface SwitchDropdownProps {
   value: string
   options: Array<string>
   onChange: Function
-  onStatusChange: Function
+  onStatusChange?: Function
 }
 
 const SwitchDropdown = forwardRef(
@@ -25,6 +25,7 @@ const SwitchDropdown = forwardRef(
     const handleClick = (option: string) => {
       setOpen(!open)
       onChange(option)
+      onStatusChange && onStatusChange(!open)
     }
 
     return (
@@ -34,7 +35,7 @@ const SwitchDropdown = forwardRef(
             open={open}
             onClick={() => {
               setOpen(!open)
-              onStatusChange(!open)
+              onStatusChange && onStatusChange(!open)
             }}
           >
             <Text variant="h1Secondary" color="primary">

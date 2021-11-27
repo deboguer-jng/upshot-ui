@@ -15,6 +15,7 @@ import {
   MiniNftCardDetailValue,
   MiniNftCardImageWrapper,
   WrappedLink,
+  PriceTooltip,
 } from './Styled'
 
 export interface MiniNftCardInterface {
@@ -66,6 +67,8 @@ export interface MiniNftCardInterface {
   pixelated?: boolean
 
   link?: string
+
+  tooltip?: string
 }
 
 const MiniNftCard = forwardRef(
@@ -85,6 +88,7 @@ const MiniNftCard = forwardRef(
       date,
       link,
       pixelated = false,
+      tooltip,
       ...props
     }: MiniNftCardInterface & HTMLAttributes<HTMLDivElement>,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -104,7 +108,23 @@ const MiniNftCard = forwardRef(
                 {error ? (
                   <MiniNftCardPrice error={error}>Error</MiniNftCardPrice>
                 ) : price?.length ? (
-                  <MiniNftCardPrice>{price}</MiniNftCardPrice>
+                  <MiniNftCardPrice>
+                    {price}
+                    {!!tooltip && (
+                      <PriceTooltip>
+                        <Text
+                          sx={{
+                            fontSize: '12px',
+                            lineHeight: '14px',
+                            textTransform: 'none',
+                          }}
+                          color="grey-200"
+                        >
+                          {tooltip}
+                        </Text>
+                      </PriceTooltip>
+                    )}
+                  </MiniNftCardPrice>
                 ) : null}
               </>
             ) : (

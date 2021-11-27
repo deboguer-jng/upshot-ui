@@ -129,6 +129,12 @@ export const MiniNftCardPrice = styled.span<MiniNftCardPriceProps>`
     error ? theme.miniNftCard.price.error : theme.miniNftCard.price.default};
   padding: ${({ theme }) =>
     `${theme.miniNftCard.price.paddingTop}px ${theme.miniNftCard.price.paddingLeft}px`};
+
+  &:hover {
+    div {
+      display: block;
+    }
+  }
 `
 
 export const MiniNftCardName = styled.div<MiniNftCardNameProps>`
@@ -191,4 +197,17 @@ export const WrappedLink = styled(Link)`
   &:hover {
     text-decoration: none;
   }
+`
+
+export const PriceTooltip = styled.div`
+  position: absolute;
+  display: none;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  padding: 8px;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
 `

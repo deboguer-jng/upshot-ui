@@ -84,6 +84,7 @@ DefaultCollectionType.args = {
   type: 'collection',
   floorPrice: '120.00',
   link: 'https://google.com',
+  tooltip: 'volume / day',
 }
 
 export const Search = Template.bind({})
