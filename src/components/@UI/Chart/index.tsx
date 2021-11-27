@@ -30,7 +30,7 @@ export interface ChartProps {
     url?: string
     ath?: string
     atl?: string
-    volume?: number
+    volume?: number | boolean
   }[]
   /**
    * Renders the search variant.
