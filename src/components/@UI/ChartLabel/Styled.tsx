@@ -46,7 +46,9 @@ export const StyledTitle = styled('h3')<ChartLabelProps>`
   text-transform: uppercase;
   color: ${({ theme, $color }) => theme.colors[$color]};
   font-weight: bold;
-  margin: 5px 0px;
+  margin: 5px;
+  margin-right: 10px;
+  margin-bottom: 0px;
 `
 
 export const StyledH1 = styled('h1')<ChartLabelProps>`

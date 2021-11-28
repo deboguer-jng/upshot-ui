@@ -2,6 +2,7 @@ import React from 'react'
 import { ComponentStory } from '@storybook/react'
 
 import ChartLabel from '.'
+import Flex from '../../Layout/Flex'
 
 export default {
   title: '@UI/ChartLabel',
@@ -13,10 +14,11 @@ const Template: ComponentStory<typeof ChartLabel> = (args) => (
 )
 
 const MultiTemplate: ComponentStory<typeof ChartLabel> = (args) => (
-  <>
+  <Flex>
     <ChartLabel {...args} />
     <ChartLabel {...args} />
-  </>
+    <ChartLabel {...args} />
+  </Flex>
 )
 
 export const Alone = Template.bind({})
@@ -45,7 +47,7 @@ AloneNoDelta.args = {
 export const Multi = MultiTemplate.bind({})
 Multi.args = {
   variant: 'multi',
-  title: 'Item 1',
+  title: 'Chromie Miami DAO',
   url: 'https://upshot.io',
   price_1: 3241,
   price_2: 5434565,
