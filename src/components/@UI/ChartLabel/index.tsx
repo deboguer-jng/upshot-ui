@@ -63,7 +63,6 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
    * All time high price (eg. Ξ4.34)
    */
   onClose?: React.MouseEventHandler<HTMLButtonElement>
-  index?: number
 }
 
 /**
@@ -84,13 +83,11 @@ const ChartLabel = forwardRef(
       atl,
       ath,
       onClose,
-      index,
       ...props
     }: LabelProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const isMobile = useBreakpointIndex() <= 1
-    const isMobileOrTablet = useBreakpointIndex() <=2
 
     function nFormatter(num: number, digits = 2) {
       const lookup = [
@@ -108,16 +105,8 @@ const ChartLabel = forwardRef(
         : Number(0).toFixed(digits)
     }
 
-    const leftPadding = (i: number) => {
-      if (!isMobileOrTablet && i !== 0)
-        return '20px'
-      if (isMobileOrTablet && i % 2 === 1)
-        return '10px'
-      return '0px'
-    }
-
     return (
-      <RelativeFlex {...{ ref, ...props }} $isMobile={isMobile} $paddingLeft={leftPadding(index)} $index={index}>
+      <RelativeFlex {...{ ref, ...props }} $isMobile={isMobile}>
         <IconBox $color={titleColor} $isMobile={isMobile}>
           <StyledIconButton
             type="button"

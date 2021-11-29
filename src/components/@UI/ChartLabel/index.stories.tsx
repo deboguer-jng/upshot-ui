@@ -2,7 +2,7 @@ import React from 'react'
 import { ComponentStory } from '@storybook/react'
 
 import ChartLabel from '.'
-import Flex from '../../Layout/Flex'
+import Grid from '../../Layout/Grid'
 
 export default {
   title: '@UI/ChartLabel',
@@ -14,11 +14,11 @@ const Template: ComponentStory<typeof ChartLabel> = (args) => (
 )
 
 const MultiTemplate: ComponentStory<typeof ChartLabel> = (args) => (
-  <Flex>
+  <Grid gap={5} columns={3} sx={{ maxWidth: '800px' }}>
     <ChartLabel {...args} />
     <ChartLabel {...args} />
     <ChartLabel {...args} />
-  </Flex>
+  </Grid>
 )
 
 export const Alone = Template.bind({})
