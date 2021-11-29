@@ -7,7 +7,7 @@ import { CustomLegendWrapper, ReactApexChartWrapper } from '../Styled'
 import { getOptions, toggle } from '../utils'
 import ButtonChartCollection from '../../ButtonChartCollection'
 import ChartLabel from '../../ChartLabel'
-import Box from '../../../Layout/Box'
+import Grid from '../../../Layout/Grid'
 import Flex from '../../../Layout/Flex'
 import Text from '../../../@UI/Text'
 import { format } from 'date-fns'
@@ -42,7 +42,8 @@ const PopulatedChart = ({
 
   const emptyFilters = chartData.map((_) => true)
   const [filterStatus, setFilterStatus] = useState(emptyFilters)
-  const isMobileOrTablet = useBreakpointIndex() <=2
+  const isMobile = useBreakpointIndex() <= 1
+  const isMobileOrTablet = useBreakpointIndex() <= 2
 
   /* Reset filters when data changes. */
   useEffect(() => {
@@ -128,8 +129,8 @@ const PopulatedChart = ({
         ath={set.ath ?? '-'}
         price_2={set.priceUsd}
         change={set.priceChange}
-        index={i}
         url={set.url}
+        maxWidth={isMobile ? 140 : 200}
       />
     ))
 
@@ -151,6 +152,7 @@ const PopulatedChart = ({
     [chartData]
   )
 
+
   return (
     <>
       {!embedded && (
@@ -163,11 +165,12 @@ const PopulatedChart = ({
         >
           <Flex
             sx={{
-              gap: 0,
               flexDirection: 'row',
               alignItems: 'flex-start',
               textAlign: 'left',
+              display: 'inline-flex',
               flexWrap: 'wrap',
+              gap: '12px',
             }}
           >
             {chartLabels}

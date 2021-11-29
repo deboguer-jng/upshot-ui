@@ -14,6 +14,7 @@ import {
   InlineLabel,
   RelativeFlex,
   StyledLink,
+  StyledBox,
 } from './Styled'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 
@@ -63,6 +64,13 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
    * All time high price (eg. Ξ4.34)
    */
   onClose?: React.MouseEventHandler<HTMLButtonElement>
+  /**
+   * OnClose event (X button)
+   */
+  maxWidth?: number
+  /**
+   * Max Label width
+   */
 }
 
 /**
@@ -83,6 +91,7 @@ const ChartLabel = forwardRef(
       atl,
       ath,
       onClose,
+      maxWidth,
       ...props
     }: LabelProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -106,7 +115,7 @@ const ChartLabel = forwardRef(
     }
 
     return (
-      <RelativeFlex {...{ ref, ...props }} $isMobile={isMobile}>
+      <RelativeFlex {...{ ref, ...props }} $isMobile={isMobile} $maxWidth={maxWidth}>
         <IconBox $color={titleColor} $isMobile={isMobile}>
           <StyledIconButton
             type="button"
@@ -117,7 +126,7 @@ const ChartLabel = forwardRef(
             <Icon size={12} color={titleColor} icon="x" />
           </StyledIconButton>
         </IconBox>
-        <Box>
+        <StyledBox $maxWidth={maxWidth}>
           <StyledLink href={url}>
             <StyledTitle $color={titleColor}>{title}</StyledTitle>
           </StyledLink>
@@ -159,7 +168,7 @@ const ChartLabel = forwardRef(
               <StyledBlue sx={{ marginTop: ['-6px', '-6px', '0px'], paddingLeft: ['0px', '0px', '5px'] }}>ATH: {ath}</StyledBlue>
             </Box>
           )}
-        </Box>
+        </StyledBox>
       </RelativeFlex>
     )
   }
