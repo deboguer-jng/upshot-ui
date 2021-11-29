@@ -130,7 +130,7 @@ const PopulatedChart = ({
         price_2={set.priceUsd}
         change={set.priceChange}
         url={set.url}
-        maxWidth={isMobile ? 140 : 200}
+        maxWidth={isMobile ? 140 : 280}
       />
     ))
 
@@ -170,7 +170,7 @@ const PopulatedChart = ({
               textAlign: 'left',
               display: 'inline-flex',
               flexWrap: 'wrap',
-              gap: '12px',
+              gap: '18px',
             }}
           >
             {chartLabels}
