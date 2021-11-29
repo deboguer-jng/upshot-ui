@@ -74,7 +74,7 @@ const CollectionCard = forwardRef(
 
         <Grid
           sx={{
-            gridTemplateColumns: 'repeat(auto-fill, minmax(128px, 1fr) )',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr) )',
             padding: 2,
             paddingTop: 0,
           }}
