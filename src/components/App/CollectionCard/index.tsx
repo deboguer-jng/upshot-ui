@@ -1,3 +1,4 @@
+/** @jsxImportSource theme-ui */
 import { BoxProps } from 'theme-ui'
 import React, { forwardRef } from 'react'
 
@@ -12,6 +13,11 @@ export interface CollectionCardProps extends BoxProps {
    * Collection name
    */
   name: string
+
+  /**
+   * Collection link
+   */
+  link?: string
   /**
    * Total NFTs
    */
@@ -38,6 +44,7 @@ const CollectionCard = forwardRef(
     {
       name,
       total = 0,
+      link,
       avatarImage = '/img/defaultAvatar.png',
       hasSeeAll = false,
       onSeeAllClick,
@@ -56,18 +63,44 @@ const CollectionCard = forwardRef(
             sx={{ width: '54px', height: '54px', border: '2px solid black' }}
           />
           <Flex sx={{ justifyContent: 'center', flexDirection: 'column' }}>
-            <Text
-              sx={{
-                fontSize: 4,
-                fontWeight: 'bold',
-                textOverflow: 'ellipsis',
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-                lineHeight: 1.25,
-              }}
-            >
-              {name}
-            </Text>
+            {link ? (
+              <a
+                href={link}
+                sx={{
+                  color: 'white',
+                  textDecoration: 'none',
+                  '&:hover': {
+                    textDecoration: 'underline',
+                  },
+                }}
+              >
+                <Text
+                  sx={{
+                    fontSize: 4,
+                    fontWeight: 'bold',
+                    textOverflow: 'ellipsis',
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                    lineHeight: 1.25,
+                  }}
+                >
+                  {name}
+                </Text>
+              </a>
+            ) : (
+              <Text
+                sx={{
+                  fontSize: 4,
+                  fontWeight: 'bold',
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden',
+                  whiteSpace: 'nowrap',
+                  lineHeight: 1.25,
+                }}
+              >
+                {name}
+              </Text>
+            )}
             <Text color="grey-600">{total} NFTs</Text>
           </Flex>
         </Flex>
