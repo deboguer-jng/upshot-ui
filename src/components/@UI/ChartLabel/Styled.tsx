@@ -9,6 +9,7 @@ import Flex from '../../Layout/Flex'
 interface ChartLabelProps {
   $color?: keyof typeof Colors
   $isMobile?: boolean
+  $paddingLeft?: string
   $index?: number
 }
 
@@ -73,7 +74,6 @@ export const StyledRed = styled(Text)`
 export const StyledBlue = styled(Text)`
   color: ${({ theme }) => theme.colors.primary};
   font-size: inherit; // this is important to make ChartLabel responsive
-  padding-left: 5px;
 `
 
 export const InlineLabel = styled(Label)`
@@ -84,8 +84,9 @@ export const RelativeFlex = styled(Flex)<ChartLabelProps>`
   position: relative;
   display: inline-flex;
   font-size: ${({ $isMobile }) => ($isMobile ? '0.65em' : '1em')};
-  padding-left: ${({ $index, $isMobile }) =>
-    $index === 2 && !$isMobile ? '15px' : '0px'};
+  padding-left: ${({ $paddingLeft }) => $paddingLeft };
+  padding-top: ${({ $index, $isMobile }) => $isMobile && $index > 1 ? '10px' : '0px' };
+  flex-wrap: wrap;
 `
 export const StyledLink = styled.a`
   color: inherit;

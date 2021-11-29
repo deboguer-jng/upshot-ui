@@ -12,6 +12,7 @@ import Flex from '../../../Layout/Flex'
 import Text from '../../../@UI/Text'
 import { format } from 'date-fns'
 import colors from '../../../../themes/UpshotUI/colors'
+import { useBreakpointIndex } from '../../../../hooks/useBreakpointIndex'
 
 interface PopulatedChartProps {
   chartData: {
@@ -23,6 +24,7 @@ interface PopulatedChartProps {
     priceUsd?: number
     priceChange?: string
     labelColor?: keyof typeof colors
+    volume?: number | boolean
   }[]
   embedded?: boolean
 }
@@ -40,6 +42,7 @@ const PopulatedChart = ({
 
   const emptyFilters = chartData.map((_) => true)
   const [filterStatus, setFilterStatus] = useState(emptyFilters)
+  const isMobileOrTablet = useBreakpointIndex() <=2
 
   /* Reset filters when data changes. */
   useEffect(() => {
@@ -103,17 +106,19 @@ const PopulatedChart = ({
   const timestamp = hoverDataPoint?.[hoverIndex]?.timestamp
 
   const chartLabels = chartData
-    .filter((_, i) => filterStatus[i]) // Toggle display by selected filter button
-    .map((set, i) => (
-      <ChartLabel
+  .filter((_, i) => filterStatus[i]) // Toggle display by selected filter button
+  .map((set, i) => (
+    <ChartLabel
         key={i}
         title={set.name}
         titleColor={set.labelColor}
         price_1={
           hoverDataPoint[i]?.value ??
-          (Array.isArray(set.data[set.data.length - 1]) // Default to last price
-            ? (set.data[set.data.length - 1] as number[])[1]
-            : (set.data[set.data.length - 1] as number))
+          (!!Number(set.volume)
+            ? Number(set.volume)
+            : (Array.isArray(set.data[set.data.length - 1])
+              ? (set.data[set.data.length - 1] as number[])[1]
+              : (set.data[set.data.length - 1] as number)))
         }
         onClose={() => {
           const idx = chartData.findIndex(({ name }) => name === set.name)
@@ -158,10 +163,11 @@ const PopulatedChart = ({
         >
           <Flex
             sx={{
-              gap: 8,
-              flexDirection: ['column', 'column', 'row'],
-              alignItems: ['center', 'center', 'flex-start'],
-              textAlign: ['center', 'center', 'left'],
+              gap: 0,
+              flexDirection: 'row',
+              alignItems: 'flex-start',
+              textAlign: 'left',
+              flexWrap: 'wrap',
             }}
           >
             {chartLabels}
@@ -174,7 +180,10 @@ const PopulatedChart = ({
               minHeight: '1.25rem',
             }}
           >
-            {timestamp ? format(timestamp, 'LLL dd yyyy hh:mm') : null}
+            {
+              !isMobileOrTablet &&
+                timestamp ? format(timestamp, 'LLL dd yyyy hh:mm') : null
+            }
           </Text>
         </Flex>
       )}
@@ -194,6 +203,25 @@ const PopulatedChart = ({
           ))}
         </CustomLegendWrapper>
       )}
+
+        {
+          isMobileOrTablet && !embedded && (
+            <Text
+              sx={{
+                fontWeight: 'bold',
+                textTransform: 'uppercase',
+                alignSelf: ['flex-end', 'flex-end', 'flex-start'],
+                minHeight: '1.25rem',
+                float: 'right',
+                fontSize: '18px',
+                marginBottom: '-10px',
+                paddingTop: '1px',
+              }}
+            >
+              { timestamp && format(timestamp, 'LLL dd yyyy hh:mm') } 
+            </Text>
+          )
+        }
     </>
   )
 }
