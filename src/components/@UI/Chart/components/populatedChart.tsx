@@ -117,7 +117,7 @@ const PopulatedChart = ({
         }
         onClose={() => {
           const idx = chartData.findIndex(({ name }) => name === set.name)
-          toggle(idx, chartData[i].name, filterStatus, setFilterStatus)
+          toggle(idx, chartData[idx].name, filterStatus, setFilterStatus)
         }}
         atl={set.atl ?? '-'}
         ath={set.ath ?? '-'}
