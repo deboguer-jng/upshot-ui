@@ -3,17 +3,22 @@ import React, { forwardRef } from 'react'
 
 import colors from '../../../themes/UpshotUI/colors'
 import { PanelBase } from './Styled'
+import { theme } from '../../..'
 
 export interface PanelProps extends BoxProps {
   /**
-   * Inner variants use a darker color with a smaller
-   * border radius.
-   */
+    * Inner variants use a darker color with a smaller
+    * border radius.
+    */
   inner?: boolean
   /**
-   * Underglow color on :hover
-   */
-   hoverUnderglow?: keyof typeof colors
+    * Underglow color on :hover
+    */
+  hoverUnderglow?: keyof typeof colors
+  /**
+    * Border color on :hover
+    */
+  hoverBorder?: keyof typeof colors
 }
 
 /**
@@ -24,10 +29,17 @@ const Panel = forwardRef(
     {
       inner = false,
       hoverUnderglow = 'transparent',
+      hoverBorder = 'transparent',
       ...props
     }: PanelProps,
     ref: React.ForwardedRef<HTMLDivElement>
-  ) => <PanelBase $inner={inner} $hoverUnderglow={hoverUnderglow} {...{ ref, ...props }} />
+  ) => {
+
+  // generate shadow css string
+  const shadow = theme.shadow.underglow(hoverUnderglow) + ', ' + theme.shadow.border(hoverBorder)
+
+  return <PanelBase $inner={inner} $shadow={shadow} {...{ ref, ...props }} />
+  }
 )
 
 export default Panel
