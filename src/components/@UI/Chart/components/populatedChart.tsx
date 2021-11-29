@@ -104,29 +104,32 @@ const PopulatedChart = ({
 
   const chartLabels = chartData
     .filter((_, i) => filterStatus[i]) // Toggle display by selected filter button
-    .map((set, i) => (
-      <ChartLabel
-        key={i}
-        title={set.name}
-        titleColor={set.labelColor}
-        price_1={
-          hoverDataPoint[i]?.value ??
-          (Array.isArray(set.data[set.data.length - 1]) // Default to last price
-            ? (set.data[set.data.length - 1] as number[])[1]
-            : (set.data[set.data.length - 1] as number))
-        }
-        onClose={() => {
-          const idx = chartData.findIndex(({ name }) => name === set.name)
-          toggle(idx, chartData[idx].name, filterStatus, setFilterStatus)
-        }}
-        atl={set.atl ?? '-'}
-        ath={set.ath ?? '-'}
-        price_2={set.priceUsd}
-        change={set.priceChange}
-        index={i}
-        url={set.url}
-      />
-    ))
+    .map((set, i) => {
+      const index = chartData.findIndex(({ name }) => name === set.name)
+
+      return (
+        <ChartLabel
+          key={i}
+          title={set.name}
+          titleColor={set.labelColor}
+          price_1={
+            hoverDataPoint[index]?.value ??
+            (Array.isArray(set.data[set.data.length - 1]) // Default to last price
+              ? (set.data[set.data.length - 1] as number[])[1]
+              : (set.data[set.data.length - 1] as number))
+          }
+          onClose={() => {
+            toggle(index, chartData[index].name, filterStatus, setFilterStatus)
+          }}
+          atl={set.atl ?? '-'}
+          ath={set.ath ?? '-'}
+          price_2={set.priceUsd}
+          change={set.priceChange}
+          url={set.url}
+          {...{ index }}
+        />
+      )
+    })
 
   /* Memoize Apex to prevent side effects from mouseEvent listeners. */
   const chart = useMemo(
