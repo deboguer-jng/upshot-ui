@@ -62,6 +62,10 @@ const LandingPanel = forwardRef(
     const [width, setWidth] = useState(0)
     const [isBig, setIsBig] = useState(false)
     const panelRef = useRef<HTMLDivElement>()
+    if (disabled === true) {
+      hoverUnderglow = 'transparent'
+      hoverBorder = 'transparent'
+    }
 
 
     useEffect(() => {
@@ -79,7 +83,7 @@ const LandingPanel = forwardRef(
 
     return (
       <Box {...{ ref, ...props }}>
-        <StyledPanel ref={panelRef} hoverUnderglow={hoverUnderglow} hoverBorder={hoverBorder} $isBig={isBig} >
+        <StyledPanel ref={panelRef} hoverUnderglow={hoverUnderglow} hoverBorder={hoverBorder} $isBig={isBig} $disabled={disabled} >
           <Box>
             { showLinkIcon && (
               <StyledIcon icon='openLink' color='grey-700' size='20' />

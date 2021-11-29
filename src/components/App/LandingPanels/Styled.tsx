@@ -6,14 +6,15 @@ import Icon from '../../@UI/Icon'
 import Panel from '../../@UI/Panel'
 
 interface sizeProps {
-  $isBig: boolean
+  $isBig?: boolean
+  $disabled?: boolean
 }
 
 export const StyledPanel = styled(Panel)<sizeProps>`
   padding: ${({ $isBig }) => $isBig == true ? '27px' : '22px' };
   height: 100%;
   &:hover {
-    background-color: ${({ theme }) => theme.colors.black} !important;
+    background-color: ${({ theme, $disabled }) => $disabled === false ? theme.colors.black : ''} !important;
   }
 `
 export const StyledAvatar = styled(Avatar)`
