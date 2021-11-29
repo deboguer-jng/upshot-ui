@@ -13,7 +13,7 @@ export interface PanelProps extends BoxProps {
   /**
    * Underglow color on :hover
    */
-   hoverUnderglow?: keyof typeof colors
+  hoverUnderglow?: keyof typeof colors
 }
 
 /**
@@ -21,13 +21,15 @@ export interface PanelProps extends BoxProps {
  */
 const Panel = forwardRef(
   (
-    {
-      inner = false,
-      hoverUnderglow = 'transparent',
-      ...props
-    }: PanelProps,
+    { inner = false, hoverUnderglow = 'transparent', ...props }: PanelProps,
     ref: React.ForwardedRef<HTMLDivElement>
-  ) => <PanelBase $inner={inner} $hoverUnderglow={hoverUnderglow} {...{ ref, ...props }} />
+  ) => (
+    <PanelBase
+      $inner={inner}
+      $hoverUnderglow={hoverUnderglow}
+      {...{ ref, ...props }}
+    />
+  )
 )
 
 export default Panel
