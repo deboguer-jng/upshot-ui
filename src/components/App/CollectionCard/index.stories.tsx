@@ -21,6 +21,31 @@ Default.args = {
   total: 25,
   hasSeeAll: true,
   children: [...new Array(3)].map((_, idx) => (
+    <Box
+      key={idx}
+      sx={{
+        width: '100%',
+        '&::after': {
+          content: "''",
+          display: 'block',
+          paddingTop: '100%',
+          backgroundImage: `url(/img/sample_nft_${(idx % 3) + 1}.jpg)`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          borderRadius: 'sm',
+        },
+      }}
+    />
+  )),
+}
+
+export const SmallCollection = Template.bind({})
+SmallCollection.args = {
+  name: 'Bored Ape Yacht Club',
+  total: 2,
+  hasSeeAll: false,
+  children: [...new Array(2)].map((_, idx) => (
     <Image
       src={`/img/sample_nft_${(idx % 3) + 1}.jpg`}
       key={idx}

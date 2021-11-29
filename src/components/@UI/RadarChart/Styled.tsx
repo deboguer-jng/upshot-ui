@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 export const RadarChartWrapper = styled.div`
   width: 100%;
-  padding-top: 100%;
+  padding-top: 75%;
   position: relative;
 
   & > div {

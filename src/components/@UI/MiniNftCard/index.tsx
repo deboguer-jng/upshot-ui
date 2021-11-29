@@ -1,3 +1,4 @@
+/** @jsxImportSource theme-ui */
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import React, { forwardRef, HTMLAttributes } from 'react'
 import { Text, Flex } from 'theme-ui'
@@ -51,10 +52,14 @@ export interface MiniNftCardInterface {
    * Last sale from address.
    */
   from?: string
+
+  fromLink?: string
   /**
    * Last sale to address.
    */
   to?: string
+
+  toLink?: string
   /**
    * Last sale date
    */
@@ -84,7 +89,9 @@ const MiniNftCard = forwardRef(
       sales,
       floorPrice,
       from,
+      fromLink,
       to,
+      toLink,
       date,
       link,
       pixelated = false,
@@ -170,7 +177,18 @@ const MiniNftCard = forwardRef(
               ) : type === 'default' ? (
                 <Flex sx={{ alignItems: 'center' }}>
                   <AddressCircle variant="from" />
-                  <Text variant="small"> {from} </Text>
+                  <a
+                    href={fromLink}
+                    sx={{
+                      color: 'white',
+                      textDecoration: 'none',
+                      '&:hover': {
+                        textDecoration: 'underline',
+                      },
+                    }}
+                  >
+                    <Text variant="small"> {from} </Text>
+                  </a>
                 </Flex>
               ) : type === 'collection' ? (
                 sales
@@ -195,7 +213,18 @@ const MiniNftCard = forwardRef(
               ) : type === 'default' ? (
                 <Flex sx={{ alignItems: 'center' }}>
                   <AddressCircle variant="to" />
-                  <Text variant="small"> {to} </Text>
+                  <a
+                    href={toLink}
+                    sx={{
+                      color: 'white',
+                      textDecoration: 'none',
+                      '&:hover': {
+                        textDecoration: 'underline',
+                      },
+                    }}
+                  >
+                    <Text variant="small"> {to} </Text>
+                  </a>
                 </Flex>
               ) : type === 'collection' ? (
                 floorPrice
