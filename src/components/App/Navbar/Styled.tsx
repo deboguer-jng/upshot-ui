@@ -155,3 +155,12 @@ export const Divider = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors['grey-300']};
   opacity: 5%;
 `
+
+export const StyledLink = styled.a`
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`

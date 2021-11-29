@@ -17,6 +17,7 @@ import {
   NavbarProfile,
   NavbarProfileDetails,
   SearchWrapper,
+  StyledLink,
   Divider,
 } from './Styled'
 import Icon from '../../@UI/Icon'
@@ -29,6 +30,7 @@ import InputRoundedSearch, {
   InputSuggestion,
 } from '../../@UI/InputRoundedSearch'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
+import { shortenAddress } from '../../../utils/address'
 
 export interface NavbarInterface {
   /**
@@ -172,12 +174,26 @@ const Navbar = forwardRef(
                       <img src={avatarImageUrl} />
                       <NavbarProfileDetails>
                         {ensName && (
-                          <Text variant="medium" sx={{ fontWeight: 'bold' }}>
-                            {ensName}
+                          <Text
+                            variant="medium"
+                            sx={{
+                              fontWeight: 'bold',
+                              textDecoration: 'none',
+                              color: 'white',
+                            }}
+                          >
+                            <StyledLink href={`/analytics/user/${address}`}>
+                              {ensName}
+                            </StyledLink>
                           </Text>
                         )}
-                        <Text variant="small" sx={{ color: '#A7A7A7' }}>
-                          {address}
+                        <Text
+                          variant="small"
+                          sx={{ color: '#A7A7A7', textDecoration: 'none' }}
+                        >
+                          <StyledLink href={`/analytics/user/${address}`}>
+                            {shortenAddress(address)}
+                          </StyledLink>
                         </Text>
                       </NavbarProfileDetails>
                       <IconButton
@@ -247,6 +263,22 @@ const Navbar = forwardRef(
             </Flex>
 
             <Divider />
+
+            <Text
+              as="a"
+              // @ts-ignore
+              href={`/analytics/user/${address}`}
+              color="grey-600"
+              sx={{
+                cursor: 'pointer',
+                transition: 'default',
+                '&:hover': { color: 'white' },
+                fontWeight: 'bold',
+                textDecoration: 'none',
+              }}
+            >
+              View Profile
+            </Text>
 
             <Text
               as="a"
