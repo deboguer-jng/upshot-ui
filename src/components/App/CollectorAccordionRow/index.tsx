@@ -128,6 +128,9 @@ const CollectorRow = forwardRef(
             sx={{ flexDirection: 'column', justifyContent: 'center', gap: 1 }}
           >
             <Text
+              as="a"
+              // @ts-ignore
+              href={`/analytics/user/${address}`}
               sx={{
                 fontWeight: 'bold',
                 fontSize: 4,
@@ -135,6 +138,8 @@ const CollectorRow = forwardRef(
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',
+                textDecoration: 'none',
+                color: 'inherit',
               }}
             >
               {displayName}
