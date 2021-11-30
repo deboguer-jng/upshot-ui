@@ -9,8 +9,7 @@ import Flex from '../../Layout/Flex'
 interface ChartLabelProps {
   $color?: keyof typeof Colors
   $isMobile?: boolean
-  $paddingLeft?: string
-  $index?: number
+  $maxWidth?: number
 }
 
 export const IconBox = styled(Box)<ChartLabelProps>`
@@ -46,7 +45,12 @@ export const StyledTitle = styled('h3')<ChartLabelProps>`
   text-transform: uppercase;
   color: ${({ theme, $color }) => theme.colors[$color]};
   font-weight: bold;
-  margin: 5px 0px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+`
+
+export const StyledBox = styled(Box)<ChartLabelProps>`
+  max-width: ${({ $isMobile, $maxWidth }) => ($isMobile ? ($maxWidth-25) +'px' : ($maxWidth-32) + 'px')}
 `
 
 export const StyledH1 = styled('h1')<ChartLabelProps>`
@@ -84,9 +88,8 @@ export const RelativeFlex = styled(Flex)<ChartLabelProps>`
   position: relative;
   display: inline-flex;
   font-size: ${({ $isMobile }) => ($isMobile ? '0.65em' : '1em')};
-  padding-left: ${({ $paddingLeft }) => $paddingLeft };
-  padding-top: ${({ $index, $isMobile }) => $isMobile && $index > 1 ? '10px' : '0px' };
   flex-wrap: wrap;
+  max-width: ${({ $maxWidth }) => ($maxWidth + 'px')};
 `
 export const StyledLink = styled.a`
   color: inherit;
