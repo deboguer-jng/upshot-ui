@@ -61,7 +61,11 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   ath?: string
   /**
-   * All time high price (eg. Ξ4.34)
+   * Label dimming if hovering over a different data series.
+   */
+  isDim?: boolean
+  /**
+   * On close handler.
    */
   onClose?: React.MouseEventHandler<HTMLButtonElement>
   /**
@@ -87,6 +91,7 @@ const ChartLabel = forwardRef(
       currency_1 = 'Ξ',
       price_2 = null,
       currency_2 = '$',
+      isDim = false,
       change,
       atl,
       ath,
@@ -115,7 +120,15 @@ const ChartLabel = forwardRef(
     }
 
     return (
-      <RelativeFlex {...{ ref, ...props }} $isMobile={isMobile} $maxWidth={maxWidth}>
+      <RelativeFlex
+        {...{ ref, ...props }}
+        sx={{
+          transition: 'default',
+          opacity: isDim ? 0.5 : 1.0,
+        }}
+        $isMobile={isMobile}
+        $maxWidth={maxWidth}
+      >
         <IconBox $color={titleColor} $isMobile={isMobile}>
           <StyledIconButton
             type="button"
@@ -164,8 +177,17 @@ const ChartLabel = forwardRef(
 
           {ath !== '-' && atl !== '-' && (
             <Box sx={{ display: ['grid', 'grid', 'block'] }}>
-              <StyledRed sx={{ paddingTop: ['3px', '3px', '0px'] }}>ATL: {atl}</StyledRed>
-              <StyledBlue sx={{ marginTop: ['-6px', '-6px', '0px'], paddingLeft: ['0px', '0px', '5px'] }}>ATH: {ath}</StyledBlue>
+              <StyledRed sx={{ paddingTop: ['3px', '3px', '0px'] }}>
+                ATL: {atl}
+              </StyledRed>
+              <StyledBlue
+                sx={{
+                  marginTop: ['-6px', '-6px', '0px'],
+                  paddingLeft: ['0px', '0px', '5px'],
+                }}
+              >
+                ATH: {ath}
+              </StyledBlue>
             </Box>
           )}
         </StyledBox>
