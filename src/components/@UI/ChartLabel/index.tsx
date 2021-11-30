@@ -101,8 +101,8 @@ const ChartLabel = forwardRef(
     }: LabelProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    const isMobileOrTablet = useBreakpointIndex() <= 2
-  
+    const isMobile = useBreakpointIndex() <= 1
+
     function nFormatter(num: number, digits = 2) {
       const lookup = [
         { value: 1, symbol: '' },
@@ -120,10 +120,15 @@ const ChartLabel = forwardRef(
     }
 
     return (
-      <RelativeFlex {...{ ref, ...props }} sx={{
+      <RelativeFlex
+        {...{ ref, ...props }}
+        sx={{
           transition: 'default',
           opacity: isDim ? 0.5 : 1.0,
-        }} $isMobile={isMobile} $maxWidth={maxWidth}>
+        }}
+        $isMobile={isMobile}
+        $maxWidth={maxWidth}
+      >
         <IconBox $color={titleColor} $isMobile={isMobile}>
           <StyledIconButton
             type="button"

@@ -42,6 +42,7 @@ const PopulatedChart = ({
 
   const emptyFilters = chartData.map((_) => true)
   const [filterStatus, setFilterStatus] = useState(emptyFilters)
+  const isMobile = useBreakpointIndex() <= 1
   const isMobileOrTablet = useBreakpointIndex() <= 2
 
   /* Reset filters when data changes. */
@@ -163,7 +164,6 @@ const PopulatedChart = ({
     ),
     [chartData]
   )
-
 
   return (
     <>
