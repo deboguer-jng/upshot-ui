@@ -14,6 +14,7 @@ import {
   InlineLabel,
   RelativeFlex,
   StyledLink,
+  StyledBox,
 } from './Styled'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 
@@ -67,7 +68,13 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
    * On close handler.
    */
   onClose?: React.MouseEventHandler<HTMLButtonElement>
-  index?: number
+  /**
+   * OnClose event (X button)
+   */
+  maxWidth?: number
+  /**
+   * Max Label width
+   */
 }
 
 /**
@@ -89,14 +96,13 @@ const ChartLabel = forwardRef(
       atl,
       ath,
       onClose,
-      index,
+      maxWidth,
       ...props
     }: LabelProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    const isMobile = useBreakpointIndex() <= 1
     const isMobileOrTablet = useBreakpointIndex() <= 2
-
+  
     function nFormatter(num: number, digits = 2) {
       const lookup = [
         { value: 1, symbol: '' },
@@ -113,23 +119,11 @@ const ChartLabel = forwardRef(
         : Number(0).toFixed(digits)
     }
 
-    const leftPadding = (i: number) => {
-      if (!isMobileOrTablet && i !== 0) return '20px'
-      if (isMobileOrTablet && i % 2 === 1) return '10px'
-      return '0px'
-    }
-
     return (
-      <RelativeFlex
-        {...{ ref, ...props }}
-        sx={{
+      <RelativeFlex {...{ ref, ...props }} sx={{
           transition: 'default',
           opacity: isDim ? 0.5 : 1.0,
-        }}
-        $isMobile={isMobile}
-        $paddingLeft={leftPadding(index)}
-        $index={index}
-      >
+        }} $isMobile={isMobile} $maxWidth={maxWidth}>
         <IconBox $color={titleColor} $isMobile={isMobile}>
           <StyledIconButton
             type="button"
@@ -140,7 +134,7 @@ const ChartLabel = forwardRef(
             <Icon size={12} color={titleColor} icon="x" />
           </StyledIconButton>
         </IconBox>
-        <Box>
+        <StyledBox $maxWidth={maxWidth}>
           <StyledLink href={url}>
             <StyledTitle $color={titleColor}>{title}</StyledTitle>
           </StyledLink>
@@ -191,7 +185,7 @@ const ChartLabel = forwardRef(
               </StyledBlue>
             </Box>
           )}
-        </Box>
+        </StyledBox>
       </RelativeFlex>
     )
   }

@@ -14,7 +14,7 @@ export const Main = Template.bind({})
 Main.args = {
   data: [
     {
-      name: 'CryptoPunks',
+      name: 'Mutant Ape Yacht Club',
       url: 'https://upshot.io/',
       data: [
         [1327359600000, 3.95],
@@ -35,7 +35,7 @@ Main.args = {
       priceChange: '+16.47%',
     },
     {
-      name: 'Chromie Squiggles',
+      name: 'Bored Ape Yacht Club',
       url: 'https://upshot.io/',
       data: [
         [1327359600000, 13.95],

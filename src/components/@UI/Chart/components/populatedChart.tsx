@@ -7,7 +7,7 @@ import { CustomLegendWrapper, ReactApexChartWrapper } from '../Styled'
 import { getOptions, toggle } from '../utils'
 import ButtonChartCollection from '../../ButtonChartCollection'
 import ChartLabel from '../../ChartLabel'
-import Box from '../../../Layout/Box'
+import Grid from '../../../Layout/Grid'
 import Flex from '../../../Layout/Flex'
 import Text from '../../../@UI/Text'
 import { format } from 'date-fns'
@@ -138,6 +138,7 @@ const PopulatedChart = ({
               change={set.priceChange}
               url={set.url}
               isDim={hoverIndex !== null && hoverIndex !== index}
+              maxWidth={isMobile ? 140 : 280}
               {...{ index }}
             />
           )
@@ -163,6 +164,7 @@ const PopulatedChart = ({
     [chartData]
   )
 
+
   return (
     <>
       {!embedded && (
@@ -175,11 +177,12 @@ const PopulatedChart = ({
         >
           <Flex
             sx={{
-              gap: 0,
               flexDirection: 'row',
               alignItems: 'flex-start',
               textAlign: 'left',
+              display: 'inline-flex',
               flexWrap: 'wrap',
+              gap: '18px',
             }}
           >
             {chartLabels}
