@@ -17,7 +17,7 @@ const Template: ComponentStory<typeof CollectionCard> = (args) => (
 
 export const Default = Template.bind({})
 Default.args = {
-  name: 'Bored Ape Yacht Club And A Lot More Text',
+  name: 'Bored Ape Yacht Club',
   total: 25,
   hasSeeAll: true,
   children: [...new Array(3)].map((_, idx) => (
