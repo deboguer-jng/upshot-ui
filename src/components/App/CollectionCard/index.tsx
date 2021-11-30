@@ -64,29 +64,26 @@ const CollectionCard = forwardRef(
           />
           <Flex sx={{ justifyContent: 'center', flexDirection: 'column' }}>
             {link ? (
-              <a
+              <Text
+                as="a"
+                // @ts-ignore
                 href={link}
                 sx={{
-                  color: 'white',
+                  color: 'inherit',
+                  fontSize: 4,
+                  fontWeight: 'bold',
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden',
+                  whiteSpace: 'nowrap',
+                  lineHeight: 1.25,
                   textDecoration: 'none',
                   '&:hover': {
                     textDecoration: 'underline',
                   },
                 }}
               >
-                <Text
-                  sx={{
-                    fontSize: 4,
-                    fontWeight: 'bold',
-                    textOverflow: 'ellipsis',
-                    overflow: 'hidden',
-                    whiteSpace: 'nowrap',
-                    lineHeight: 1.25,
-                  }}
-                >
-                  {name}
-                </Text>
-              </a>
+                {name}
+              </Text>
             ) : (
               <Text
                 sx={{
