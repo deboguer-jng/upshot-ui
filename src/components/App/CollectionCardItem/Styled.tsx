@@ -10,6 +10,7 @@ export const CollectionCardItemBase = styled(Panel)<{ $expanded: boolean }>`
   cursor: pointer;
   overflow: hidden;
   border-radius: ${({ theme }) => theme.radii.md};
+  -webkit-transform: translateZ(0); /* Trim overflow with translated layer. */
 
   /* Hide details until hover unless expanded. */
   ${({ $expanded, theme }) =>
