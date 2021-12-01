@@ -41,7 +41,7 @@ const Panel = forwardRef(
     return (
       <PanelBase
         $inner={inner}
-        $hoverUnderglow={hoverUnderglow}
+        $shadow={shadow}
         {...{ ref, ...props }}
       />
     )
