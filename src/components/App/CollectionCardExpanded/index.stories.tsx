@@ -18,6 +18,7 @@ Default.args = {
   name: 'Bored Ape Yacht Club',
   total: 25,
   items: [...new Array(25)].map((_, idx) => ({
+    id: String(idx),
     avatarImage: '/img/defaultAvatar.png',
     imageSrc: `/img/sample_nft_${(idx % 3) + 1}.jpg`,
     name: 'Bored Ape Yacht Club',
@@ -33,6 +34,7 @@ Expanded.args = {
   name: 'Bored Ape Yacht Club',
   total: 25,
   items: [...new Array(25)].map((_, idx) => ({
+    id: String(idx),
     expanded: true,
     avatarImage: '/img/defaultAvatar.png',
     imageSrc: `/img/sample_nft_${(idx % 3) + 1}.jpg`,

@@ -81,6 +81,7 @@ const CollectionCardItem = forwardRef(
 
           <Text
             sx={{
+              color: 'grey-300',
               textOverflow: 'ellipsis',
               overflow: 'hidden',
               display: '-webkit-box',
