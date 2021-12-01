@@ -3,11 +3,22 @@ import Panel from '../../@UI/Panel'
 import { Box } from 'theme-ui'
 
 export const CollectionCardItemBase = styled(Panel)<{ $expanded: boolean }>`
+  display: flex;
   position: relative;
-  min-height: 320px;
+  min-height: 260px;
   padding: 0;
   cursor: pointer;
   overflow: hidden;
+  border-radius: ${({ theme }) => theme.radii.md};
+
+  /* Hide details until hover unless expanded. */
+  ${({ $expanded, theme }) =>
+    !$expanded &&
+    `
+  & > div:last-of-type {
+    transition: ${theme.transitions.default};
+    opacity: 0.0;
+  }`}
 
   &:hover {
     box-shadow: ${({ theme }) => theme.shadow.underglow('blue')};
@@ -16,6 +27,10 @@ export const CollectionCardItemBase = styled(Panel)<{ $expanded: boolean }>`
       transform: translateY(-82px);
       box-shadow: ${({ theme }) => theme.shadow.default};
     }
+
+    & > div:last-of-type {
+      opacity: 1;
+    }
   }
 
   ${({ $expanded, theme }) =>
@@ -23,7 +38,7 @@ export const CollectionCardItemBase = styled(Panel)<{ $expanded: boolean }>`
     `& > div:first-of-type {
       transform: translateY(-82px);
       box-shadow: ${theme.shadow.default}};
-    }`};
+    }`}
 `
 
 export const CollectionCardItemImage = styled(Box)<{ $src: string }>`
@@ -35,7 +50,6 @@ export const CollectionCardItemImage = styled(Box)<{ $src: string }>`
   background-position: center;
   background-repeat: no-repeat;
   outline: none;
-  border-radius: ${({ theme }) => theme.radii.md};
   transition: ${({ theme }) => theme.transitions.default};
   pointer-events: none;
   z-index: 1;

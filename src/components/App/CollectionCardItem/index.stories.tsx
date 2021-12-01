@@ -9,7 +9,7 @@ export default {
 } as ComponentMeta<typeof CollectionCardItem>
 
 const Template: ComponentStory<typeof CollectionCardItem> = (args) => (
-  <Box sx={{ maxWidth: 300, height: 400 }}>
+  <Box sx={{ maxWidth: 240 }}>
     <CollectionCardItem {...args} />
   </Box>
 )
