@@ -164,7 +164,7 @@ const CollectionCardExpanded = forwardRef(
               isScrolling,
               overscanBy: 6,
               render: MasonryRenderer,
-              onRender: maybeLoadMore,
+              onRender: onFetchMore ? maybeLoadMore : null,
             })}
           </MasonryContainer>
         </CardContainer>
