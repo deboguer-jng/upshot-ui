@@ -107,10 +107,12 @@ const CollectionCardExpanded = forwardRef(
         ) // Masonry tiling
 
         return (
-          <CollectionCardItem
-            {...data}
-            sx={{ height: isMobile ? 400 : dynamicHeight }}
-          />
+          <a href={`/analytics/nft/${data.id}`} target="_blank">
+            <CollectionCardItem
+              {...data}
+              sx={{ height: isMobile ? 400 : dynamicHeight }}
+            />
+          </a>
         )
       },
       [isMobile]
