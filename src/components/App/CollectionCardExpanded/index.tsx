@@ -1,5 +1,5 @@
 import { BoxProps } from 'theme-ui'
-import React, { forwardRef, useMemo, useEffect, useRef } from 'react'
+import React, { forwardRef, useMemo, useCallback, useRef } from 'react'
 
 import Avatar from '../../@UI/Avatar'
 import Text from '../../@UI/Text'
@@ -12,8 +12,15 @@ import {
   CollectionCardExpandedBase,
   MasonryContainer,
 } from './Styled'
-import { Masonry } from 'masonic'
+import {
+  usePositioner,
+  useResizeObserver,
+  useMasonry,
+  useInfiniteLoader,
+} from 'masonic'
+import { useSize, useScroller } from 'mini-virtual-list'
 import { CollectionCardItemProps } from '../CollectionCardItem'
+import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 
 export interface CollectionCardExpandedProps extends BoxProps {
   /**
@@ -46,8 +53,6 @@ export interface CollectionCardExpandedProps extends BoxProps {
   hasMore?: boolean
 }
 
-type MasonryRendererProps = { index: number; data: CollectionCardItemProps }
-
 /**
  * Temporary solution to add deterministic height variance
  * prior to a solution that provides the exact heights or
@@ -59,12 +64,6 @@ const prng = (seed: number) => {
   t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
 
   return ((t ^ (t >>> 14)) >>> 0) / 4294967296
-}
-
-const MasonryRenderer = ({ index, data }: MasonryRendererProps) => {
-  const height = useMemo(() => Math.round(prng(index)) * 60 + 260, [index]) // Masonry tiling
-
-  return <CollectionCardItem {...data} sx={{ height }} />
 }
 
 /**
@@ -84,28 +83,38 @@ const CollectionCardExpanded = forwardRef(
     }: CollectionCardExpandedProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    const scrollBoxRef = useRef(null)
+    const containerRef = useRef(null)
+    const { width, height } = useSize(containerRef)
+    const { scrollTop, isScrolling } = useScroller(containerRef)
+    const isMobile = useBreakpointIndex() <= 1
+    const positioner = usePositioner({
+      width: Math.max(0, width - 8), // Scrollbar padding
+      columnWidth: 240,
+      columnGutter: 16,
+      rowGutter: 16,
+    })
+    const resizeObserver = useResizeObserver(positioner)
 
-    useEffect(() => {
-      // Attach infinite scroll listener
+    const maybeLoadMore = useInfiniteLoader(onFetchMore, {
+      isItemLoaded: (index, items) => !!items[index],
+    })
 
-      const infiniteScrollListener = async () => {
-        const { scrollTop, clientHeight, scrollHeight } = scrollBoxRef.current
-        if (scrollTop + clientHeight < scrollHeight) return
+    const MasonryRenderer = useCallback(
+      ({ index, data }: { index: number; data: any }) => {
+        const dynamicHeight = useMemo(
+          () => Math.round(prng(index)) * 60 + 260,
+          [index]
+        ) // Masonry tiling
 
-        if (hasMore) onFetchMore?.()
-      }
-
-      scrollBoxRef.current.addEventListener('scroll', infiniteScrollListener, {
-        passive: true,
-      })
-
-      return () =>
-        scrollBoxRef.current.removeEventListener(
-          'scroll',
-          infiniteScrollListener
+        return (
+          <CollectionCardItem
+            {...data}
+            sx={{ height: isMobile ? 400 : dynamicHeight }}
+          />
         )
-    }, [])
+      },
+      [isMobile]
+    )
 
     return (
       <CollectionCardExpandedBase {...{ ref, ...props }}>
@@ -145,12 +154,18 @@ const CollectionCardExpanded = forwardRef(
             </Flex>
           </Flex>
 
-          <MasonryContainer ref={scrollBoxRef}>
-            <Masonry
-              columnGutter={24}
-              render={MasonryRenderer}
-              {...{ items }}
-            />
+          <MasonryContainer className="masonryContainer" ref={containerRef}>
+            {useMasonry({
+              positioner,
+              resizeObserver,
+              items,
+              height,
+              scrollTop,
+              isScrolling,
+              overscanBy: 6,
+              render: MasonryRenderer,
+              onRender: maybeLoadMore,
+            })}
           </MasonryContainer>
         </CardContainer>
       </CollectionCardExpandedBase>

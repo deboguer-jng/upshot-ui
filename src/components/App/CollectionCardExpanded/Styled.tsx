@@ -3,7 +3,8 @@ import { Box } from 'theme-ui'
 import Panel from '../../@UI/Panel'
 
 export const CollectionCardExpandedBase = styled(Panel)`
-  padding: 0 ${({ theme }) => theme.space[3] + 'px'};
+  padding: 0;
+  background-color: ${({ theme }) => theme.colors['grey-900']};
   background: ${({ theme }) => theme.colors['grey-800']};
   border-color: ${({ theme }) => theme.colors['grey-700']};
   border-width: 2px;
@@ -19,8 +20,10 @@ export const CardContainer = styled(Box)`
 
 export const MasonryContainer = styled(Box)`
   ${({ theme: { scroll } }) => scroll.thin}
-  padding: 0 ${({ theme }) => theme.space[3] + 'px'};
-  overflow-y: auto;
+  margin-left: ${({ theme }) => theme.space[5] + 'px'};
+  margin-right: ${({ theme }) => theme.space[2] + 'px'};
+  overflow-x: hidden;
+  overflow-y: scroll;
 `
 
 export const GridItemButton = styled(Box)`
