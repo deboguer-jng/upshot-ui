@@ -13,6 +13,7 @@ export const CollectionCardExpandedBase = styled(Panel)`
 export const CardContainer = styled(Box)`
   display: flex;
   flex-direction: column;
+  max-height: 95vh;
   gap: ${({ theme }) => theme.sizes[3] + 'px'};
 `
 

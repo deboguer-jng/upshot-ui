@@ -23,7 +23,7 @@ export interface CollectionCardExpandedProps extends BoxProps {
   /**
    * Total NFTs
    */
-  total?: number
+  total?: number | string
   /**
    * Collection Avatar
    */
@@ -62,7 +62,7 @@ const prng = (seed: number) => {
 }
 
 const MasonryRenderer = ({ index, data }: MasonryRendererProps) => {
-  const height = useMemo(() => Math.round(prng(index)) * 80 + 320, [index]) // Masonry tiling
+  const height = useMemo(() => Math.round(prng(index)) * 60 + 260, [index]) // Masonry tiling
 
   return <CollectionCardItem {...data} sx={{ height }} />
 }
@@ -145,7 +145,7 @@ const CollectionCardExpanded = forwardRef(
             </Flex>
           </Flex>
 
-          <MasonryContainer sx={{ maxHeight: 400 }} ref={scrollBoxRef}>
+          <MasonryContainer ref={scrollBoxRef}>
             <Masonry
               columnGutter={24}
               render={MasonryRenderer}
