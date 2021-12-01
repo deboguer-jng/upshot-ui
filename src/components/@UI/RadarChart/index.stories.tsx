@@ -24,7 +24,13 @@ Default.args = {
         data: [5, 10, 20, 30, 35],
       },
     ],
-    labels: ['CyberKongz', 'CryptoPunks', 'The Sandbox', 'Doodles', 'BAYC'],
+    labels: [
+      'CyberKongz',
+      'CryptoPunks',
+      'The Sandbox',
+      'Doodles',
+      'Bored Ape Yacht Club',
+    ],
   },
 }
 

@@ -1,3 +1,4 @@
+/** @jsxImportSource theme-ui */
 import { BoxProps } from 'theme-ui'
 import React, { forwardRef } from 'react'
 
@@ -5,13 +6,18 @@ import Avatar from '../../@UI/Avatar'
 import Text from '../../@UI/Text'
 import Flex from '../../Layout/Flex'
 import Grid from '../../Layout/Grid'
-import { GridItemButton, CardContainer, CollectionCardBase } from './Styled'
+import { SeeAllButton, CardContainer, CollectionCardBase } from './Styled'
 
 export interface CollectionCardProps extends BoxProps {
   /**
    * Collection name
    */
   name: string
+
+  /**
+   * Collection link
+   */
+  link?: string
   /**
    * Total NFTs
    */
@@ -38,6 +44,7 @@ const CollectionCard = forwardRef(
     {
       name,
       total = 0,
+      link,
       avatarImage = '/img/defaultAvatar.png',
       hasSeeAll = false,
       onSeeAllClick,
@@ -56,33 +63,54 @@ const CollectionCard = forwardRef(
             sx={{ width: '54px', height: '54px', border: '2px solid black' }}
           />
           <Flex sx={{ justifyContent: 'center', flexDirection: 'column' }}>
-            <Text
-              sx={{
-                fontSize: 4,
-                fontWeight: 'bold',
-                textOverflow: 'ellipsis',
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-                lineHeight: 1.25,
-              }}
-            >
-              {name}
-            </Text>
+            {link ? (
+              <Text
+                as="a"
+                // @ts-ignore
+                href={link}
+                sx={{
+                  color: 'inherit',
+                  fontSize: 4,
+                  fontWeight: 'bold',
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden',
+                  whiteSpace: 'nowrap',
+                  lineHeight: 1.25,
+                  textDecoration: 'none',
+                  '&:hover': {
+                    textDecoration: 'underline',
+                  },
+                }}
+              >
+                {name}
+              </Text>
+            ) : (
+              <Text
+                sx={{
+                  fontSize: 4,
+                  fontWeight: 'bold',
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden',
+                  whiteSpace: 'nowrap',
+                  lineHeight: 1.25,
+                }}
+              >
+                {name}
+              </Text>
+            )}
             <Text color="grey-600">{total} NFTs</Text>
           </Flex>
         </Flex>
 
         <Grid
           sx={{
-            gridTemplateColumns: 'repeat(auto-fill, minmax(128px, 1fr) )',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr) )',
             padding: 2,
             paddingTop: 0,
           }}
         >
           {children}
-          {hasSeeAll && (
-            <GridItemButton onClick={onSeeAllClick}>+ See All</GridItemButton>
-          )}
+          {hasSeeAll && <SeeAllButton onClick={onSeeAllClick} />}
         </Grid>
       </CardContainer>
     </CollectionCardBase>

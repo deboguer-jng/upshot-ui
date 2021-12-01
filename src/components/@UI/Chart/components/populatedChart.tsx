@@ -7,7 +7,7 @@ import { CustomLegendWrapper, ReactApexChartWrapper } from '../Styled'
 import { getOptions, toggle } from '../utils'
 import ButtonChartCollection from '../../ButtonChartCollection'
 import ChartLabel from '../../ChartLabel'
-import Box from '../../../Layout/Box'
+import Grid from '../../../Layout/Grid'
 import Flex from '../../../Layout/Flex'
 import Text from '../../../@UI/Text'
 import { format } from 'date-fns'
@@ -42,7 +42,8 @@ const PopulatedChart = ({
 
   const emptyFilters = chartData.map((_) => true)
   const [filterStatus, setFilterStatus] = useState(emptyFilters)
-  const isMobileOrTablet = useBreakpointIndex() <=2
+  const isMobile = useBreakpointIndex() <= 1
+  const isMobileOrTablet = useBreakpointIndex() <= 2
 
   /* Reset filters when data changes. */
   useEffect(() => {
@@ -54,7 +55,7 @@ const PopulatedChart = ({
     value: null,
     timestamp: null,
   }))
-  const [hoverIndex, setHoverIndex] = useState(0)
+  const [hoverIndex, setHoverIndex] = useState(null)
   const [hoverDataPoint, setHoverDataPoint] =
     useState<HoverDataPoint[]>(emptyHoverState)
 
@@ -73,6 +74,7 @@ const PopulatedChart = ({
     mouseLeave() {
       /* Reset hover state on exit. */
       setHoverDataPoint(emptyHoverState)
+      setHoverIndex(null)
     },
     mouseMove(e: React.MouseEvent<SVGElement>, ctx: any, data: any) {
       /**
@@ -105,33 +107,45 @@ const PopulatedChart = ({
 
   const timestamp = hoverDataPoint?.[hoverIndex]?.timestamp
 
-  const chartLabels = chartData
-  .filter((_, i) => filterStatus[i]) // Toggle display by selected filter button
-  .map((set, i) => (
-    <ChartLabel
-        key={i}
-        title={set.name}
-        titleColor={set.labelColor}
-        price_1={
-          hoverDataPoint[i]?.value ??
-          (!!Number(set.volume)
-            ? Number(set.volume)
-            : (Array.isArray(set.data[set.data.length - 1])
-              ? (set.data[set.data.length - 1] as number[])[1]
-              : (set.data[set.data.length - 1] as number)))
-        }
-        onClose={() => {
-          const idx = chartData.findIndex(({ name }) => name === set.name)
-          toggle(idx, chartData[i].name, filterStatus, setFilterStatus)
-        }}
-        atl={set.atl ?? '-'}
-        ath={set.ath ?? '-'}
-        price_2={set.priceUsd}
-        change={set.priceChange}
-        index={i}
-        url={set.url}
-      />
-    ))
+  const chartLabels = useMemo(
+    () =>
+      chartData
+        .filter((_, i) => filterStatus[i]) // Toggle display by selected filter button
+        .map((set, i) => {
+          const index = chartData.findIndex(({ name }) => name === set.name)
+
+          return (
+            <ChartLabel
+              key={i}
+              title={set.name}
+              titleColor={set.labelColor}
+              price_1={
+                hoverDataPoint[index]?.value ??
+                (Array.isArray(set.data[set.data.length - 1]) // Default to last price
+                  ? (set.data[set.data.length - 1] as number[])[1]
+                  : (set.data[set.data.length - 1] as number))
+              }
+              onClose={() => {
+                toggle(
+                  index,
+                  chartData[index].name,
+                  filterStatus,
+                  setFilterStatus
+                )
+              }}
+              atl={set.atl ?? '-'}
+              ath={set.ath ?? '-'}
+              price_2={set.priceUsd}
+              change={set.priceChange}
+              url={set.url}
+              isDim={hoverIndex !== null && hoverIndex !== index}
+              maxWidth={isMobile ? 140 : 280}
+              {...{ index }}
+            />
+          )
+        }),
+    [chartData, filterStatus, hoverDataPoint, hoverIndex]
+  )
 
   /* Memoize Apex to prevent side effects from mouseEvent listeners. */
   const chart = useMemo(
@@ -163,11 +177,12 @@ const PopulatedChart = ({
         >
           <Flex
             sx={{
-              gap: 0,
               flexDirection: 'row',
               alignItems: 'flex-start',
               textAlign: 'left',
+              display: 'inline-flex',
               flexWrap: 'wrap',
+              gap: '18px',
             }}
           >
             {chartLabels}
@@ -180,10 +195,9 @@ const PopulatedChart = ({
               minHeight: '1.25rem',
             }}
           >
-            {
-              !isMobileOrTablet &&
-                timestamp ? format(timestamp, 'LLL dd yyyy hh:mm') : null
-            }
+            {!isMobileOrTablet && timestamp
+              ? format(timestamp, 'LLL dd yyyy hh:mm')
+              : null}
           </Text>
         </Flex>
       )}
@@ -204,24 +218,22 @@ const PopulatedChart = ({
         </CustomLegendWrapper>
       )}
 
-        {
-          isMobileOrTablet && !embedded && (
-            <Text
-              sx={{
-                fontWeight: 'bold',
-                textTransform: 'uppercase',
-                alignSelf: ['flex-end', 'flex-end', 'flex-start'],
-                minHeight: '1.25rem',
-                float: 'right',
-                fontSize: '18px',
-                marginBottom: '-10px',
-                paddingTop: '1px',
-              }}
-            >
-              { timestamp && format(timestamp, 'LLL dd yyyy hh:mm') } 
-            </Text>
-          )
-        }
+      {isMobileOrTablet && !embedded && (
+        <Text
+          sx={{
+            fontWeight: 'bold',
+            textTransform: 'uppercase',
+            alignSelf: ['flex-end', 'flex-end', 'flex-start'],
+            minHeight: '1.25rem',
+            float: 'right',
+            fontSize: '18px',
+            marginBottom: '-10px',
+            paddingTop: '1px',
+          }}
+        >
+          {timestamp && format(timestamp, 'LLL dd yyyy hh:mm')}
+        </Text>
+      )}
     </>
   )
 }

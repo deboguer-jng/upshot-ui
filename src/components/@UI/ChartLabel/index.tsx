@@ -14,6 +14,7 @@ import {
   InlineLabel,
   RelativeFlex,
   StyledLink,
+  StyledBox,
 } from './Styled'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 
@@ -60,10 +61,20 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   ath?: string
   /**
-   * All time high price (eg. Ξ4.34)
+   * Label dimming if hovering over a different data series.
+   */
+  isDim?: boolean
+  /**
+   * On close handler.
    */
   onClose?: React.MouseEventHandler<HTMLButtonElement>
-  index?: number
+  /**
+   * OnClose event (X button)
+   */
+  maxWidth?: number
+  /**
+   * Max Label width
+   */
 }
 
 /**
@@ -80,17 +91,17 @@ const ChartLabel = forwardRef(
       currency_1 = 'Ξ',
       price_2 = null,
       currency_2 = '$',
+      isDim = false,
       change,
       atl,
       ath,
       onClose,
-      index,
+      maxWidth,
       ...props
     }: LabelProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const isMobile = useBreakpointIndex() <= 1
-    const isMobileOrTablet = useBreakpointIndex() <=2
 
     function nFormatter(num: number, digits = 2) {
       const lookup = [
@@ -108,16 +119,16 @@ const ChartLabel = forwardRef(
         : Number(0).toFixed(digits)
     }
 
-    const leftPadding = (i: number) => {
-      if (!isMobileOrTablet && i !== 0)
-        return '20px'
-      if (isMobileOrTablet && i % 2 === 1)
-        return '10px'
-      return '0px'
-    }
-
     return (
-      <RelativeFlex {...{ ref, ...props }} $isMobile={isMobile} $paddingLeft={leftPadding(index)} $index={index}>
+      <RelativeFlex
+        {...{ ref, ...props }}
+        sx={{
+          transition: 'default',
+          opacity: isDim ? 0.5 : 1.0,
+        }}
+        $isMobile={isMobile}
+        $maxWidth={maxWidth}
+      >
         <IconBox $color={titleColor} $isMobile={isMobile}>
           <StyledIconButton
             type="button"
@@ -128,7 +139,7 @@ const ChartLabel = forwardRef(
             <Icon size={12} color={titleColor} icon="x" />
           </StyledIconButton>
         </IconBox>
-        <Box>
+        <StyledBox $maxWidth={maxWidth}>
           <StyledLink href={url}>
             <StyledTitle $color={titleColor}>{title}</StyledTitle>
           </StyledLink>
@@ -166,11 +177,20 @@ const ChartLabel = forwardRef(
 
           {ath !== '-' && atl !== '-' && (
             <Box sx={{ display: ['grid', 'grid', 'block'] }}>
-              <StyledRed sx={{ paddingTop: ['3px', '3px', '0px'] }}>ATL: {atl}</StyledRed>
-              <StyledBlue sx={{ marginTop: ['-6px', '-6px', '0px'], paddingLeft: ['0px', '0px', '5px'] }}>ATH: {ath}</StyledBlue>
+              <StyledRed sx={{ paddingTop: ['3px', '3px', '0px'] }}>
+                ATL: {atl}
+              </StyledRed>
+              <StyledBlue
+                sx={{
+                  marginTop: ['-6px', '-6px', '0px'],
+                  paddingLeft: ['0px', '0px', '5px'],
+                }}
+              >
+                ATH: {ath}
+              </StyledBlue>
             </Box>
           )}
-        </Box>
+        </StyledBox>
       </RelativeFlex>
     )
   }

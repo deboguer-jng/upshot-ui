@@ -35,10 +35,16 @@ const Panel = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
 
-  // generate shadow css string
-  const shadow = theme.shadow.underglow(hoverUnderglow) + ', ' + theme.shadow.border(hoverBorder)
+    // generate shadow css string
+    const shadow = theme.shadow.underglow(hoverUnderglow) + ', ' + theme.shadow.border(hoverBorder)
 
-  return <PanelBase $inner={inner} $shadow={shadow} {...{ ref, ...props }} />
+    return (
+      <PanelBase
+        $inner={inner}
+        $hoverUnderglow={hoverUnderglow}
+        {...{ ref, ...props }}
+      />
+    )
   }
 )
 
