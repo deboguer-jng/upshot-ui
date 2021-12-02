@@ -48,7 +48,7 @@ const PopulatedChart = ({
   /* Reset filters when data changes. */
   useEffect(() => {
     setFilterStatus(emptyFilters)
-  }, [chartData])
+  }, [chartData, isMobile])
 
   /* Initialize the hover dataPoints for each series in the chartData array. */
   const emptyHoverState = [...new Array(chartData.length)].map((_) => ({
