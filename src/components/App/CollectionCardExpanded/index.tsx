@@ -1,5 +1,11 @@
 import { BoxProps } from 'theme-ui'
-import React, { forwardRef, useMemo, useCallback, useRef } from 'react'
+import React, {
+  forwardRef,
+  useEffect,
+  useCallback,
+  useRef,
+  useMemo,
+} from 'react'
 
 import Avatar from '../../@UI/Avatar'
 import Text from '../../@UI/Text'
@@ -12,12 +18,7 @@ import {
   CollectionCardExpandedBase,
   MasonryContainer,
 } from './Styled'
-import {
-  usePositioner,
-  useResizeObserver,
-  useMasonry,
-  useInfiniteLoader,
-} from 'masonic'
+import { usePositioner, useResizeObserver, useMasonry } from 'masonic'
 import { useSize, useScroller } from 'mini-virtual-list'
 import { CollectionCardItemProps } from '../CollectionCardItem'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
@@ -30,7 +31,7 @@ export interface CollectionCardExpandedProps extends BoxProps {
   /**
    * Total NFTs
    */
-  total?: number | string
+  total: number
   /**
    * Collection Avatar
    */
@@ -38,7 +39,7 @@ export interface CollectionCardExpandedProps extends BoxProps {
   /**
    * Items
    */
-  items: (CollectionCardItemProps & { index: number })[]
+  items: CollectionCardItemProps[]
   /**
    * Close handler
    */
@@ -46,11 +47,7 @@ export interface CollectionCardExpandedProps extends BoxProps {
   /**
    * Infinite scroll handler
    */
-  onFetchMore?: () => void
-  /**
-   * Has more items to fetch.
-   */
-  hasMore?: boolean
+  onFetchMore?: (offset: number) => void
 }
 
 /**
@@ -76,47 +73,70 @@ const CollectionCardExpanded = forwardRef(
       total = 0,
       avatarImage = '/img/defaultAvatar.png',
       items = [],
-      hasMore = true,
       onClose,
       onFetchMore,
       ...props
     }: CollectionCardExpandedProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    const containerRef = useRef(null)
-    const { width, height } = useSize(containerRef)
-    const { scrollTop, isScrolling } = useScroller(containerRef)
+    /* Masonry setup */
+    const scrollRef = useRef(null)
+    const { width, height } = useSize(scrollRef)
+    const { scrollTop, isScrolling } = useScroller(scrollRef)
     const isMobile = useBreakpointIndex() <= 1
-    const positioner = usePositioner(
-      {
-        width: Math.max(0, width - 8), // Scrollbar padding
-        columnWidth: 240,
-        columnGutter: 16,
-        rowGutter: 16,
-      },
-      [width, items.length]
-    )
+    const positioner = usePositioner({
+      width: Math.max(0, width - 8), // Scrollbar padding
+      columnWidth: 240,
+      columnGutter: 16,
+      rowGutter: 16,
+    })
     const resizeObserver = useResizeObserver(positioner)
 
-    const maybeLoadMore = useInfiniteLoader(onFetchMore, {
-      isItemLoaded: (index, items) => {
-        const indexes = items.map(({ index }) => index)
+    /* Check if the scroll position is at the bottom of the container. */
+    const isScrollBottom = useCallback(() => {
+      if (!scrollRef.current) return false
 
-        return indexes.includes(index)
+      const { scrollTop, clientHeight, scrollHeight } = scrollRef.current
+      if (scrollTop + clientHeight < scrollHeight) return false
+
+      return true
+    }, [scrollRef])
+
+    /* Fetch items if available and scrolled to bottom. */
+    useEffect(() => {
+      const infiniteScroll = async () => {
+        if (!isScrollBottom()) return
+        if (total > items.length) onFetchMore?.(items.length)
+      }
+
+      const el = scrollRef.current
+      el?.addEventListener('scroll', infiniteScroll)
+
+      return () => el?.removeEventListener('scroll', infiniteScroll)
+    }, [scrollRef, items.length])
+
+    /* Virtualized cell renderer by masonry index. */
+    const MasonryRenderer = useCallback(
+      ({ index, data }: { index: number; data: any }) => {
+        const dynamicHeight = Math.round(prng(index)) * 60 + 260
+
+        return (
+          <a href={`/analytics/nft/${data.id}`} target="_blank">
+            <CollectionCardItem
+              sx={{ height: isMobile ? 400 : dynamicHeight }}
+              {...data}
+            />
+          </a>
+        )
       },
-    })
+      [isMobile]
+    )
 
-    const MasonryRenderer = ({ index, data }: { index: number; data: any }) => {
-      const dynamicHeight = Math.round(prng(index)) * 60 + 260
+    /* Auto-fetch more items on masonry cell render if scrolled to the bottom. */
+    const handleOnRender = (_startIndex: number, endIndex: number) => {
+      if (!isScrollBottom() || endIndex === total - 1) return
 
-      return (
-        <a href={`/analytics/nft/${data.id}`} target="_blank" key={index}>
-          <CollectionCardItem
-            {...data}
-            sx={{ height: isMobile ? 400 : dynamicHeight }}
-          />
-        </a>
-      )
+      onFetchMore?.(endIndex + 1)
     }
 
     return (
@@ -148,7 +168,7 @@ const CollectionCardExpanded = forwardRef(
               >
                 {name}
               </Text>
-              <Text color="grey-600">{total} NFTs</Text>
+              <Text color="grey-600">{total ?? '-'} NFTs</Text>
             </Flex>
             <Flex>
               <IconButton onClick={onClose}>
@@ -157,7 +177,7 @@ const CollectionCardExpanded = forwardRef(
             </Flex>
           </Flex>
 
-          <MasonryContainer ref={containerRef}>
+          <MasonryContainer ref={scrollRef}>
             {useMasonry({
               positioner,
               resizeObserver,
@@ -165,9 +185,8 @@ const CollectionCardExpanded = forwardRef(
               height,
               scrollTop,
               isScrolling,
-              overscanBy: 6,
               render: MasonryRenderer,
-              onRender: onFetchMore ? maybeLoadMore : null,
+              onRender: handleOnRender,
             })}
           </MasonryContainer>
         </CardContainer>
