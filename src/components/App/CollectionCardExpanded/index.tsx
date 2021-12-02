@@ -38,7 +38,7 @@ export interface CollectionCardExpandedProps extends BoxProps {
   /**
    * Items
    */
-  items: CollectionCardItemProps[]
+  items: (CollectionCardItemProps & { index: number })[]
   /**
    * Close handler
    */
@@ -87,36 +87,37 @@ const CollectionCardExpanded = forwardRef(
     const { width, height } = useSize(containerRef)
     const { scrollTop, isScrolling } = useScroller(containerRef)
     const isMobile = useBreakpointIndex() <= 1
-    const positioner = usePositioner({
-      width: Math.max(0, width - 8), // Scrollbar padding
-      columnWidth: 240,
-      columnGutter: 16,
-      rowGutter: 16,
-    })
+    const positioner = usePositioner(
+      {
+        width: Math.max(0, width - 8), // Scrollbar padding
+        columnWidth: 240,
+        columnGutter: 16,
+        rowGutter: 16,
+      },
+      [width, items.length]
+    )
     const resizeObserver = useResizeObserver(positioner)
 
     const maybeLoadMore = useInfiniteLoader(onFetchMore, {
-      isItemLoaded: (index, items) => !!items[index],
+      isItemLoaded: (index, items) => {
+        const indexes = items.map(({ index }) => index)
+
+        return indexes.includes(index)
+      },
     })
 
-    const MasonryRenderer = useCallback(
-      ({ index, data }: { index: number; data: any }) => {
-        const dynamicHeight = useMemo(
-          () => Math.round(prng(index)) * 60 + 260,
-          [index]
-        ) // Masonry tiling
+    const MasonryRenderer = ({ index, data }: { index: number; data: any }) => {
+      const dynamicHeight = Math.round(prng(index)) * 60 + 260
 
-        return (
-          <a href={`/analytics/nft/${data.id}`} target="_blank">
-            <CollectionCardItem
-              {...data}
-              sx={{ height: isMobile ? 400 : dynamicHeight }}
-            />
-          </a>
-        )
-      },
-      [isMobile]
-    )
+      return (
+        <a href={`/analytics/nft/${data.id}`} target="_blank" key={index}>
+          <CollectionCardItem
+            {...data}
+            sx={{ height: isMobile ? 400 : dynamicHeight }}
+          />
+        </a>
+      )
+    }
 
     return (
       <CollectionCardExpandedBase {...{ ref, ...props }}>
@@ -156,7 +157,7 @@ const CollectionCardExpanded = forwardRef(
             </Flex>
           </Flex>
 
-          <MasonryContainer className="masonryContainer" ref={containerRef}>
+          <MasonryContainer ref={containerRef}>
             {useMasonry({
               positioner,
               resizeObserver,

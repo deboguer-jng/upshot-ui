@@ -5,7 +5,6 @@ import Panel from '../../@UI/Panel'
 export const CollectionCardExpandedBase = styled(Panel)`
   padding: 0;
   background-color: ${({ theme }) => theme.colors['grey-900']};
-  background: ${({ theme }) => theme.colors['grey-800']};
   border-color: ${({ theme }) => theme.colors['grey-700']};
   border-width: 2px;
   border-style: solid;
