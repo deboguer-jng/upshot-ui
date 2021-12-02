@@ -32,6 +32,10 @@ export interface LandingPanelProps extends PanelProps {
    */
   hoverUnderglow?: keyof typeof colors
   /**
+   * Border color on :hover
+   */
+  hoverBorder?: keyof typeof colors
+  /**
    * Is card disabled?
    */
   disabled?: boolean
@@ -48,7 +52,8 @@ const LandingPanel = forwardRef(
       description,
       image,
       showLinkIcon = true,
-      hoverUnderglow = 'blue',
+      hoverUnderglow = 'transparent',
+      hoverBorder = 'white',
       disabled = false,
       ...props
     }: LandingPanelProps,
@@ -57,6 +62,10 @@ const LandingPanel = forwardRef(
     const [width, setWidth] = useState(0)
     const [isBig, setIsBig] = useState(false)
     const panelRef = useRef<HTMLDivElement>()
+    if (disabled === true) {
+      hoverUnderglow = 'transparent'
+      hoverBorder = 'transparent'
+    }
 
 
     useEffect(() => {
@@ -74,7 +83,7 @@ const LandingPanel = forwardRef(
 
     return (
       <Box {...{ ref, ...props }}>
-        <StyledPanel ref={panelRef} hoverUnderglow={hoverUnderglow} $isBig={isBig} >
+        <StyledPanel ref={panelRef} hoverUnderglow={hoverUnderglow} hoverBorder={hoverBorder} $isBig={isBig} $disabled={disabled} >
           <Box>
             { showLinkIcon && (
               <StyledIcon icon='openLink' color='grey-700' size='20' />
