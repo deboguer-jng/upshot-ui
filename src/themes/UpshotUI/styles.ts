@@ -3,6 +3,7 @@ import { fonts } from './text'
 
 const styles = {
   root: {
+    colorScheme: 'dark',
     body: {
       margin: 0,
       bg: colors.black,
