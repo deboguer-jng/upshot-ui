@@ -98,10 +98,8 @@ const CollectionCardExpanded = forwardRef(
     const maybeLoadMore = useInfiniteLoader(onFetchMore, {
       isItemLoaded: (index, items) => {
         const indexes = items.map(({ index }) => index)
-        const isLoaded = indexes.includes(index)
 
-        console.log({ isLoaded })
-        return isLoaded
+        return indexes.includes(index)
       },
     })
 
