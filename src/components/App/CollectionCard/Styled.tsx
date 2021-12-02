@@ -7,6 +7,13 @@ export const CollectionCardBase = styled(Panel)`
   border-color: ${({ theme }) => theme.colors['grey-700']};
   border-width: 2px;
   border-style: solid;
+  transition: ${({ theme }) => theme.transitions.default};
+  cursor: pointer;
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors['grey-600']};
+    box-shadow ${({ theme }) => theme.shadow.default};
+  }
 `
 
 export const CardContainer = styled(Box)`
