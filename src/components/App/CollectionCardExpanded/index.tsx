@@ -38,7 +38,7 @@ export interface CollectionCardExpandedProps extends BoxProps {
   /**
    * Items
    */
-  items: CollectionCardItemProps[]
+  items: (CollectionCardItemProps & { index: number })[]
   /**
    * Close handler
    */
@@ -96,7 +96,13 @@ const CollectionCardExpanded = forwardRef(
     const resizeObserver = useResizeObserver(positioner)
 
     const maybeLoadMore = useInfiniteLoader(onFetchMore, {
-      isItemLoaded: (index, items) => !!items[index],
+      isItemLoaded: (index, items) => {
+        const indexes = items.map(({ index }) => index)
+        const isLoaded = indexes.includes(index)
+
+        console.log({ isLoaded })
+        return isLoaded
+      },
     })
 
     const MasonryRenderer = useCallback(
