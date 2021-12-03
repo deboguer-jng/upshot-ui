@@ -30,10 +30,6 @@ export interface CollectionCardProps extends BoxProps {
    * Display a See All button.
    */
   hasSeeAll?: boolean
-  /**
-   * See All handler.
-   */
-  onSeeAllClick?: (e: React.MouseEvent) => void
 }
 
 /**
@@ -47,13 +43,13 @@ const CollectionCard = forwardRef(
       link,
       avatarImage = '/img/defaultAvatar.png',
       hasSeeAll = false,
-      onSeeAllClick,
+      onClick,
       children,
       ...props
     }: CollectionCardProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => (
-    <CollectionCardBase {...{ ref, ...props }}>
+    <CollectionCardBase {...{ ref, onClick, ...props }}>
       <CardContainer>
         <Flex sx={{ gap: 2 }}>
           <Avatar
@@ -68,6 +64,7 @@ const CollectionCard = forwardRef(
                 as="a"
                 // @ts-ignore
                 href={link}
+                onClick={(e) => e.stopPropagation()}
                 sx={{
                   color: 'inherit',
                   fontSize: 4,
@@ -110,7 +107,7 @@ const CollectionCard = forwardRef(
           }}
         >
           {children}
-          {hasSeeAll && <SeeAllButton onClick={onSeeAllClick} />}
+          {hasSeeAll && <SeeAllButton {...{ onClick }} />}
         </Grid>
       </CardContainer>
     </CollectionCardBase>

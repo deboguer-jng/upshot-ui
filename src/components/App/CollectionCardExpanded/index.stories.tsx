@@ -1,8 +1,6 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Box } from 'theme-ui'
 import CollectionCardExpanded from './'
-import { Image } from 'theme-ui'
 
 export default {
   title: 'App/CollectionCardExpanded',
