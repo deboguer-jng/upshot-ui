@@ -4,6 +4,8 @@ import React, { forwardRef } from 'react'
 
 import Avatar from '../../@UI/Avatar'
 import Text from '../../@UI/Text'
+import Icon from '../../@UI/Icon'
+import IconButton from '../../@UI/IconButton'
 import Flex from '../../Layout/Flex'
 import Grid from '../../Layout/Grid'
 import { SeeAllButton, CardContainer, CollectionCardBase } from './Styled'
@@ -58,7 +60,13 @@ const CollectionCard = forwardRef(
             size="md"
             sx={{ width: '54px', height: '54px', border: '2px solid black' }}
           />
-          <Flex sx={{ justifyContent: 'center', flexDirection: 'column' }}>
+          <Flex
+            sx={{
+              justifyContent: 'center',
+              flexDirection: 'column',
+              flexGrow: 1,
+            }}
+          >
             {link ? (
               <Text
                 as="a"
@@ -67,7 +75,7 @@ const CollectionCard = forwardRef(
                 onClick={(e) => e.stopPropagation()}
                 sx={{
                   color: 'inherit',
-                  fontSize: 4,
+                  fontSize: 3,
                   fontWeight: 'bold',
                   textOverflow: 'ellipsis',
                   overflow: 'hidden',
@@ -84,7 +92,7 @@ const CollectionCard = forwardRef(
             ) : (
               <Text
                 sx={{
-                  fontSize: 4,
+                  fontSize: 3,
                   fontWeight: 'bold',
                   textOverflow: 'ellipsis',
                   overflow: 'hidden',
@@ -95,8 +103,28 @@ const CollectionCard = forwardRef(
                 {name}
               </Text>
             )}
-            <Text color="grey-600">{total} NFTs</Text>
+            <Text color="grey-600" sx={{ fontSize: 2 }}>
+              {total} NFTs
+            </Text>
           </Flex>
+          <IconButton
+            type="button"
+            sx={{
+              border: '1px solid',
+              borderColor: 'grey-600',
+              width: 21,
+              height: 21,
+              marginTop: '4px',
+              marginRight: '4px',
+              '&:hover, &:hover svg polygon': {
+                borderColor: 'grey-500',
+                fill: 'grey-500',
+              },
+            }}
+            {...{ onClick }}
+          >
+            <Icon size={9} icon="expand" />
+          </IconButton>
         </Flex>
 
         <Grid
