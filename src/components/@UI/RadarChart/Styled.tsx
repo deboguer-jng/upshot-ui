@@ -17,4 +17,7 @@ export const RadarChartWrapper = styled.div`
   & .apexcharts-radar-series polygon {
     stroke: rgba(255, 255, 255, 0.25);
   }
+  & svg g.apexcharts-plot-series polygon:first-of-type {
+    fill: rgba(0, 0, 0, 0.33);
+  }
 `
