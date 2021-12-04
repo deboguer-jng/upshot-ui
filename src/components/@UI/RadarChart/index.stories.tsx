@@ -21,7 +21,7 @@ Default.args = {
     series: [
       {
         name: 'Portfolio Distribution',
-        data: [5, 10, 20, 30, 35],
+        data: [5, 10, 20, 30, 30, 5],
       },
     ],
     labels: [
@@ -30,6 +30,7 @@ Default.args = {
       'The Sandbox',
       'Doodles',
       'Bored Ape Yacht Club',
+      'Cool Cats',
     ],
   },
 }
