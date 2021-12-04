@@ -20,6 +20,7 @@ Default.args = {
   name: 'Bored Ape Yacht Club',
   total: 25,
   hasSeeAll: true,
+  seeAllImageSrc: '/img/sample_nft_3.jpg',
   children: [...new Array(3)].map((_, idx) => (
     <Box
       key={idx}

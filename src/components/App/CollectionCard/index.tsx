@@ -9,13 +9,12 @@ import IconButton from '../../@UI/IconButton'
 import Flex from '../../Layout/Flex'
 import Grid from '../../Layout/Grid'
 import { SeeAllButton, CardContainer, CollectionCardBase } from './Styled'
-
+import { useTheme } from '../../../themes/UpshotUI'
 export interface CollectionCardProps extends BoxProps {
   /**
    * Collection name
    */
   name: string
-
   /**
    * Collection link
    */
@@ -29,9 +28,17 @@ export interface CollectionCardProps extends BoxProps {
    */
   avatarImage?: string
   /**
-   * Display a See All button.
+   * Display a "+ See All" button.
    */
   hasSeeAll?: boolean
+  /**
+   * Background image for "+ See All" button.
+   */
+  seeAllImageSrc?: string
+  /**
+   * Expand card to modal.
+   */
+  onExpand?: () => void
 }
 
 /**
@@ -45,101 +52,108 @@ const CollectionCard = forwardRef(
       link,
       avatarImage = '/img/defaultAvatar.png',
       hasSeeAll = false,
-      onClick,
+      seeAllImageSrc,
+      onExpand,
       children,
       ...props
     }: CollectionCardProps,
     ref: React.ForwardedRef<HTMLDivElement>
-  ) => (
-    <CollectionCardBase {...{ ref, onClick, ...props }}>
-      <CardContainer>
-        <Flex sx={{ gap: 2 }}>
-          <Avatar
-            color="black"
-            src={avatarImage}
-            size="md"
-            sx={{ width: '54px', height: '54px', border: '2px solid black' }}
-          />
-          <Flex
-            sx={{
-              justifyContent: 'center',
-              flexDirection: 'column',
-              flexGrow: 1,
-            }}
-          >
-            {link ? (
-              <Text
-                as="a"
-                // @ts-ignore
-                href={link}
-                onClick={(e) => e.stopPropagation()}
-                sx={{
-                  color: 'inherit',
-                  fontSize: 3,
-                  fontWeight: 'bold',
-                  textOverflow: 'ellipsis',
-                  overflow: 'hidden',
-                  whiteSpace: 'nowrap',
-                  lineHeight: 1.25,
-                  textDecoration: 'none',
-                  '&:hover': {
-                    textDecoration: 'underline',
-                  },
-                }}
-              >
-                {name}
-              </Text>
-            ) : (
-              <Text
-                sx={{
-                  fontSize: 3,
-                  fontWeight: 'bold',
-                  textOverflow: 'ellipsis',
-                  overflow: 'hidden',
-                  whiteSpace: 'nowrap',
-                  lineHeight: 1.25,
-                }}
-              >
-                {name}
-              </Text>
-            )}
-            <Text color="grey-600" sx={{ fontSize: 2 }}>
-              {total} NFTs
-            </Text>
-          </Flex>
-          <IconButton
-            type="button"
-            sx={{
-              border: '1px solid',
-              borderColor: 'grey-600',
-              width: 21,
-              height: 21,
-              marginTop: '4px',
-              marginRight: '4px',
-              '&:hover, &:hover svg polygon': {
-                borderColor: 'grey-500',
-                fill: 'grey-500',
-              },
-            }}
-            {...{ onClick }}
-          >
-            <Icon size={9} icon="expand" />
-          </IconButton>
-        </Flex>
+  ) => {
+    const { theme } = useTheme()
 
-        <Grid
-          sx={{
-            gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr) )',
-            padding: 2,
-            paddingTop: 0,
-          }}
-        >
-          {children}
-          {hasSeeAll && <SeeAllButton {...{ onClick }} />}
-        </Grid>
-      </CardContainer>
-    </CollectionCardBase>
-  )
+    return (
+      <CollectionCardBase onClick={onExpand} {...{ ref, ...props }}>
+        <CardContainer>
+          <Flex sx={{ gap: 2 }}>
+            <Avatar
+              color="black"
+              src={avatarImage}
+              size="md"
+              sx={{ width: '54px', height: '54px', border: '2px solid black' }}
+            />
+            <Flex
+              sx={{
+                justifyContent: 'center',
+                flexDirection: 'column',
+                flexGrow: 1,
+              }}
+            >
+              {link ? (
+                <Text
+                  as="a"
+                  // @ts-ignore
+                  href={link}
+                  onClick={(e) => e.stopPropagation()}
+                  sx={{
+                    color: 'inherit',
+                    fontSize: 3,
+                    fontWeight: 'bold',
+                    textOverflow: 'ellipsis',
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                    lineHeight: 1.25,
+                    textDecoration: 'none',
+                    '&:hover': {
+                      textDecoration: 'underline',
+                    },
+                  }}
+                >
+                  {name}
+                </Text>
+              ) : (
+                <Text
+                  sx={{
+                    fontSize: 3,
+                    fontWeight: 'bold',
+                    textOverflow: 'ellipsis',
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                    lineHeight: 1.25,
+                  }}
+                >
+                  {name}
+                </Text>
+              )}
+              <Text color="grey-600" sx={{ fontSize: 2 }}>
+                {total} NFTs
+              </Text>
+            </Flex>
+            <IconButton
+              type="button"
+              onClick={onExpand}
+              sx={{
+                border: '1px solid',
+                borderColor: theme.colors['grey-600'],
+                width: 21,
+                height: 21,
+                marginTop: '4px',
+                marginRight: '4px',
+                '&:hover, &:hover svg polygon': {
+                  borderColor: theme.colors['grey-500'],
+                  fill: theme.colors['grey-500'],
+                },
+              }}
+            >
+              <Icon size={9} icon="expand" />
+            </IconButton>
+          </Flex>
+
+          <Grid
+            sx={{
+              gridTemplateColumns: '1fr 1fr',
+              padding: 2,
+              paddingTop: 0,
+            }}
+          >
+            {children}
+            {hasSeeAll && (
+              <SeeAllButton onClick={onExpand} $imageSrc={seeAllImageSrc} />
+            )}
+          </Grid>
+        </CardContainer>
+      </CollectionCardBase>
+    )
+  }
 )
 
 export default CollectionCard
