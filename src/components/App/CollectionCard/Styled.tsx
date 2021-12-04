@@ -22,21 +22,38 @@ export const CardContainer = styled(Box)`
   gap: ${({ theme }) => theme.sizes[3] + 'px'};
 `
 
-export const SeeAllButton = styled(Box)`
+export const SeeAllButton = styled(Box)<{ $imageSrc: string }>`
   position: relative;
   width: 100%;
   padding-top: 100%;
-  border-color: ${({ theme }) => theme.colors['grey-700']};
-  border-width: 1px;
-  border-style: solid;
   border-radius: ${({ theme }) => theme.radii.sm};
-
+  background-image: ${({ $imageSrc }) => `url(${$imageSrc})`};
+  background-size: cover;
+  background-position: center;
+  color: ${({ theme }) => theme.colors['grey-400']};
+  overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
   transition: ${({ theme }) => theme.transitions.default};
   cursor: pointer;
 
   &:hover {
-    color: ${({ theme }) => theme.colors['grey-500']};
-    border-color: ${({ theme }) => theme.colors['grey-500']};
+    color: ${({ theme }) => theme.colors['white']} !important;
+
+    &::before {
+      background: rgba(0, 0, 0, 0.75);
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    background: rgba(0, 0, 0, 0.67);
+    display: block;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(12px);
+    transition: ${({ theme }) => theme.transitions.default};
   }
 
   &::after {
@@ -46,9 +63,8 @@ export const SeeAllButton = styled(Box)`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-weight: ${({ theme }) => theme.fontWeights.heading};
-    color: ${({ theme }) => theme.colors['grey-700']};
     width: 100%;
     height: 100%;
+    font-weight: ${({ theme }) => theme.fontWeights.heading};
   }
 `
