@@ -2,6 +2,11 @@ import styled from '@emotion/styled'
 import Panel from '../../@UI/Panel'
 import { Box } from 'theme-ui'
 
+type CollectionCardItemImageProps = {
+  $isPixelated: boolean
+  $src: string
+}
+
 export const CollectionCardItemBase = styled(Panel)<{ $expanded: boolean }>`
   display: flex;
   position: relative;
@@ -43,7 +48,9 @@ export const CollectionCardItemBase = styled(Panel)<{ $expanded: boolean }>`
     }`}
 `
 
-export const CollectionCardItemImage = styled(Box)<{ $src: string }>`
+export const CollectionCardItemImage = styled(
+  Box
+)<CollectionCardItemImageProps>`
   position: absolute;
   height: 100%;
   width: 100%;
@@ -53,6 +60,7 @@ export const CollectionCardItemImage = styled(Box)<{ $src: string }>`
   background-repeat: no-repeat;
   outline: none;
   transition: ${({ theme }) => theme.transitions.default};
+  image-rendering: ${({ $isPixelated }) => ($isPixelated ? 'pixelated' : '')};
   pointer-events: none;
   z-index: 1;
 `
