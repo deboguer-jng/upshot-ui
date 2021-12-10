@@ -69,7 +69,14 @@ export interface CollectorAccordionRowProps
     url: string
     count: number
   }[]
+  /**
+   * Children element
+   */
   children?: React.ReactNode
+  /**
+   * Is it opened by default?
+   */
+  defaultOpen?: boolean
 }
 
 /**
@@ -90,11 +97,12 @@ const CollectorRow = forwardRef(
       nftCollection,
       extraCollections,
       children,
+      defaultOpen = false,
       ...props
     }: CollectorAccordionRowProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(defaultOpen)
     const isFirstColumn = !!avgHoldTime || !!firstAcquisition || !!nftCollection
     const [avatarUrl, setAvatarUrl] = useState(
       address ? makeBlockie(address) : null
