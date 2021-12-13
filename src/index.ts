@@ -55,6 +55,7 @@ export { default as ConnectModal } from './components/App/ConnectModal'
 export { default as Footer } from './components/App/Footer'
 export { default as LandingPanel } from './components/App/LandingPanels'
 export { default as Navbar } from './components/App/Navbar'
+export { default as OpenseaPanel } from './components/App/OpenseaPanel'
 
 /**
  * Components: Layout
