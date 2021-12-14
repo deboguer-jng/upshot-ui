@@ -141,7 +141,7 @@ const Navbar = forwardRef(
           </form>
         </SearchWrapper>
       ),
-      []
+      [searchValue]
     )
 
     return (
