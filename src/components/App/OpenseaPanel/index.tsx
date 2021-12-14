@@ -16,15 +16,22 @@ export interface BuyButtonProps extends ButtonProps {
    * Button URL
    */
    url?: string
+   /**
+    * Button width
+    */
+    width?: string
 }
 
 const BuyButton = forwardRef(
   (
-    { url, ...props }: BuyButtonProps,
-    ref: React.ForwardedRef<HTMLDivElement>
+    {
+      url,
+      width = null,
+      ...props
+    }: BuyButtonProps,
   ) => (
     <Link href={url} target='_blank'>
-      <StyledButton variant="secondary" size="md" capitalize={true} {...{ ref, ...props }}>
+      <StyledButton variant="primary" size="md" capitalize={true} $width={width}>
         <StyledIcon
           icon="openSeaBlock"
           color="white"
@@ -140,7 +147,7 @@ const OpenseaPanel = forwardRef(
               Ξ{listPriceETH} {listPriceUSD > 0 && ('($' + listPriceUSD + ')')}
             </Text>
           </StyledBox>
-          {variant === 'popup' && (<BuyButton url={openseaUrl} sx={{ width: '100%' }} />)}
+          {variant === 'popup' && (<BuyButton url={openseaUrl} width='100%' />)}
         </Flex>
       </StyledPanel>
     )

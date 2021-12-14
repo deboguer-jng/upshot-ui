@@ -21,9 +21,14 @@ export const StyledPanel = styled(Panel)<panelProps>`
   ${({ $variant }) => $variant === 'popup' ? 'background-color: ' + transparentize(0.2, colors['grey-800']) + ';' : '' }
 `
 
-export const StyledButton = styled(Button)`
+interface buttonProps {
+  $width?: string
+}
+
+export const StyledButton = styled(Button)<buttonProps>`
   float: right;
   margin-top: 8px;
+  ${({ $width }) => $width !== null ? 'width: ' + $width + ';' : '' }
 `
 
 export const StyledText = styled(Text)`
