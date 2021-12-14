@@ -31,7 +31,7 @@ const BuyButton = forwardRef(
     }: BuyButtonProps,
   ) => (
     <Link href={url} target='_blank'>
-      <StyledButton variant="primary" size="md" capitalize={true} $width={width}>
+      <StyledButton variant="secondary" size="md" capitalize={true} $width={width}>
         <StyledIcon
           icon="openSeaBlock"
           color="white"
