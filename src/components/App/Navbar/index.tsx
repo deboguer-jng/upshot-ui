@@ -210,24 +210,22 @@ const Navbar = forwardRef(
                 )}
               </>
 
-              {!!address && (
-                <IconButton
-                  onClick={onMenuClick}
-                  sx={{
-                    backgroundColor: showSidebar ? 'grey-300' : 'grey-800',
-                    width: 45,
-                    height: 45,
-                    transition: 'default',
-                    '&:hover': {
-                      backgroundColor: showSidebar
-                        ? 'white !important'
-                        : 'grey-900 !important',
-                    },
-                  }}
-                >
-                  <Icon icon={showSidebar ? 'x' : 'items'} size={16} />
-                </IconButton>
-              )}
+              <IconButton
+                onClick={onMenuClick}
+                sx={{
+                  backgroundColor: showSidebar ? 'grey-300' : 'grey-800',
+                  width: 45,
+                  height: 45,
+                  transition: 'default',
+                  '&:hover': {
+                    backgroundColor: showSidebar
+                      ? 'white !important'
+                      : 'grey-900 !important',
+                  },
+                }}
+              >
+                <Icon icon={showSidebar ? 'x' : 'items'} size={16} />
+              </IconButton>
             </Flex>
             {children}
           </NavbarWrapper>
