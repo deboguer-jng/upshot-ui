@@ -33,3 +33,8 @@ export const StyledText = styled(Text)`
 export const StyledBox = styled(Box)`
   margin-top: 12px;
 `
+
+export const StyledIcon = styled(Icon)`
+  vertical-align: middle;
+  margin-right: 6px;
+`
