@@ -10,9 +10,9 @@ export const NavbarWrapper = styled.div`
   position: relative;
   align-items: center;
   justify-content: space-between;
-  height: ${({ theme }) => theme.navbar.height}px;
+  gap: 16px;
   width: 100%;
-  z-index: 2;
+  z-index: ${({ theme }) => theme.zIndex.nav + 1};
 `
 
 export const NavbarItem = styled.div<NavbarItemProps>`
@@ -35,12 +35,14 @@ export const NavbarLogo = styled.div`
 
 export const SearchWrapper = styled.div`
   display: flex;
+  position: relative;
   align-items: center;
   height: 56px;
   border-radius: 30px;
   padding: 12px;
   border: 1px solid ${({ theme }) => theme.colors['grey-500']};
-  width: calc(100% - 57px); // 45px (icon) + 12px (gap)
+  width: 100%;
+  z-index: ${({ theme }) => theme.zIndex.nav};
 
   ${({ theme }) => css`
     @media only screen and (min-width: ${theme.breakpoints[1]}) {
