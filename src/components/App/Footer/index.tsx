@@ -68,7 +68,7 @@ const Footer = forwardRef(
                     color={iconColor}
                     icon="mediumBlock"
                     size={24}
-                    style={{ transition: 'all 0.5s ease' }}
+                    style={{ transition: 'all 0.5s ease', flexShrink: 0 }}
                   />
                 </IconButton>
               </Link>
@@ -80,7 +80,7 @@ const Footer = forwardRef(
                     color={iconColor}
                     icon="twitterCircle"
                     size={24}
-                    style={{ transition: 'all 0.5s ease' }}
+                    style={{ transition: 'all 0.5s ease', flexShrink: 0 }}
                   />
                 </IconButton>
               </Link>
@@ -92,7 +92,7 @@ const Footer = forwardRef(
                     color={iconColor}
                     icon="discord"
                     size={24}
-                    style={{ transition: 'all 0.5s ease' }}
+                    style={{ transition: 'all 0.5s ease', flexShrink: 0 }}
                   />
                 </IconButton>
               </Link>
@@ -104,7 +104,7 @@ const Footer = forwardRef(
                     color={iconColor}
                     icon="instagramCircle"
                     size={24}
-                    style={{ transition: 'all 0.5s ease' }}
+                    style={{ transition: 'all 0.5s ease', flexShrink: 0 }}
                   />
                 </IconButton>
               </Link>

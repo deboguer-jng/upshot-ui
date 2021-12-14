@@ -1,17 +1,13 @@
 import React, {
   forwardRef,
-  HTMLAttributes,
-  EventHandler,
   ReactEventHandler,
   useState,
   useEffect,
+  useMemo,
 } from 'react'
 import {
   NavbarWrapper,
   NavbarItem,
-  NavbarItemIcon,
-  NavbarUPTBalance,
-  NavbarUPTBalanceText,
   NavbarWallet,
   NavbarLogo,
   NavbarProfile,
@@ -22,8 +18,6 @@ import {
 } from './Styled'
 import Icon from '../../@UI/Icon'
 import IconButton from '../../@UI/IconButton'
-import Text from '../../@UI/Text'
-import Flex from '../../Layout/Flex'
 import Panel from '../../@UI/Panel'
 import { usePopper } from 'react-popper'
 import InputRoundedSearch, {
@@ -32,7 +26,8 @@ import InputRoundedSearch, {
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import { shortenAddress } from '../../../utils/address'
 import zIndex from '../../../themes/UpshotUI/zIndex'
-export interface NavbarInterface extends React.HTMLAttributes<HTMLDivElement> {
+import { Text, Box, Flex, BoxProps } from 'theme-ui'
+export interface NavbarInterface extends BoxProps {
   /**
    * Avatar Image URL
    */
@@ -121,89 +116,79 @@ const Navbar = forwardRef(
       forceUpdate?.()
     }, [showNavPopper])
 
-    return (
-      <>
-        <NavbarWrapper {...{ ref, ...props }}>
-          <Flex style={{ alignItems: 'center', gap: '16px' }}>
-            <NavbarItem>
-              <NavbarLogo onClick={onLogoClick}>
-                <Icon icon="upshot" />
-              </NavbarLogo>
-            </NavbarItem>
+    const search = useMemo(
+      () => (
+        <SearchWrapper>
+          <form onSubmit={onSearch}>
+            <InputRoundedSearch
+              fullWidth
+              hasButton
+              variant="nav"
+              suggestions={searchSuggestions}
+              onSuggestionSelect={onSearchSuggestionChange}
+              placeholder="Search..."
+              dark
+              value={searchValue}
+              defaultValue={searchDefaultValue}
+              onChange={onSearchValueChange}
+              onBlur={onSearchBlur}
+              onKeyUp={onSearchKeyUp}
+              buttonProps={{
+                onClick: onSearch,
+                type: 'button',
+              }}
+            />
+          </form>
+        </SearchWrapper>
+      ),
+      []
+    )
 
-            <SearchWrapper>
-              <form onSubmit={onSearch}>
-                <InputRoundedSearch
-                  fullWidth
-                  hasButton
-                  variant="nav"
-                  suggestions={searchSuggestions}
-                  onSuggestionSelect={onSearchSuggestionChange}
-                  placeholder="Search..."
-                  dark
-                  value={searchValue}
-                  defaultValue={searchDefaultValue}
-                  onChange={onSearchValueChange}
-                  onBlur={onSearchBlur}
-                  onKeyUp={onSearchKeyUp}
-                  buttonProps={{
-                    onClick: onSearch,
-                    type: 'button',
-                  }}
-                />
-              </form>
-            </SearchWrapper>
-          </Flex>
-          <Flex style={{ alignItems: 'center', gap: '16px' }}>
-            {/* <NavbarItem>
-          <NavbarItemIcon>
-            <Icon icon="notificationFilled" />
-          </NavbarItemIcon>
-        </NavbarItem> */}
-            {/* <NavbarItem>
-          <NavbarItemIcon>
-            <Icon icon="question" />
-          </NavbarItemIcon>
-        </NavbarItem> */}
-            {/* <NavbarItem>
-          <NavbarUPTBalance>
-            <Icon icon="upshot" />
-            <NavbarUPTBalanceText>
-              <Text variant="large"> 50</Text>
-              <Text variant="large">UPT</Text>
-            </NavbarUPTBalanceText>
-          </NavbarUPTBalance>
-        </NavbarItem> */}
-            {!isMobile && (
+    return (
+      <Box {...{ ref, ...props }}>
+        <Flex sx={{ flexDirection: 'column', gap: 4 }}>
+          <NavbarWrapper>
+            <Flex style={{ alignItems: 'center', gap: '16px' }}>
+              <NavbarItem>
+                <NavbarLogo onClick={onLogoClick}>
+                  <Icon icon="upshot" />
+                </NavbarLogo>
+              </NavbarItem>
+
+              {!isMobile && search}
+            </Flex>
+            <Flex style={{ alignItems: 'center', gap: '16px' }}>
               <>
                 {address ? (
                   <NavbarItem ref={setReferenceElement}>
                     <NavbarProfile ref={setNavProfileElement}>
                       <img src={avatarImageUrl} />
-                      <NavbarProfileDetails>
-                        {ensName && (
+                      {!isMobile && (
+                        <NavbarProfileDetails>
+                          {ensName && (
+                            <Text
+                              variant="medium"
+                              sx={{
+                                fontWeight: 'bold',
+                                textDecoration: 'none',
+                                color: 'white',
+                              }}
+                            >
+                              <StyledLink href={`/analytics/user/${address}`}>
+                                {ensName}
+                              </StyledLink>
+                            </Text>
+                          )}
                           <Text
-                            variant="medium"
-                            sx={{
-                              fontWeight: 'bold',
-                              textDecoration: 'none',
-                              color: 'white',
-                            }}
+                            variant="small"
+                            sx={{ color: '#A7A7A7', textDecoration: 'none' }}
                           >
                             <StyledLink href={`/analytics/user/${address}`}>
-                              {ensName}
+                              {shortenAddress(address)}
                             </StyledLink>
                           </Text>
-                        )}
-                        <Text
-                          variant="small"
-                          sx={{ color: '#A7A7A7', textDecoration: 'none' }}
-                        >
-                          <StyledLink href={`/analytics/user/${address}`}>
-                            {shortenAddress(address)}
-                          </StyledLink>
-                        </Text>
-                      </NavbarProfileDetails>
+                        </NavbarProfileDetails>
+                      )}
                       <IconButton
                         className="popperButton"
                         onClick={handleNavPopper}
@@ -224,36 +209,37 @@ const Navbar = forwardRef(
                   </NavbarItem>
                 )}
               </>
-            )}
 
-            {!!address && (
-              <IconButton
-                onClick={onMenuClick}
-                sx={{
-                  backgroundColor: showSidebar ? 'grey-300' : 'grey-800',
-                  width: 45,
-                  height: 45,
-                  transition: 'default',
-                  '&:hover': {
-                    backgroundColor: showSidebar
-                      ? 'white !important'
-                      : 'grey-900 !important',
-                  },
-                }}
-              >
-                <Icon icon={showSidebar ? 'x' : 'items'} size={16} />
-              </IconButton>
-            )}
-          </Flex>
-          {children}
-        </NavbarWrapper>
+              {!!address && (
+                <IconButton
+                  onClick={onMenuClick}
+                  sx={{
+                    backgroundColor: showSidebar ? 'grey-300' : 'grey-800',
+                    width: 45,
+                    height: 45,
+                    transition: 'default',
+                    '&:hover': {
+                      backgroundColor: showSidebar
+                        ? 'white !important'
+                        : 'grey-900 !important',
+                    },
+                  }}
+                >
+                  <Icon icon={showSidebar ? 'x' : 'items'} size={16} />
+                </IconButton>
+              )}
+            </Flex>
+            {children}
+          </NavbarWrapper>
+          {isMobile && search}
+        </Flex>
         <div
           ref={setPopperElement}
           style={{
             ...styles.popper,
             ...{
               minWidth: navProfileElement?.current?.style?.width ?? '192px',
-              zIndex: zIndex.nav,
+              zIndex: zIndex.nav + 3,
             },
           }}
           {...attributes.popper}
@@ -318,7 +304,7 @@ const Navbar = forwardRef(
             </Text>
           </Panel>
         </div>
-      </>
+      </Box>
     )
   }
 )
