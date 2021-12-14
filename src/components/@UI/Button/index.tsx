@@ -1,9 +1,8 @@
 import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
-import Colors from '../../../themes/UpshotUI/colors'
 import { PrimaryButton, PlainButton } from './Styled'
-import { useState } from '@storybook/addons'
+import { ButtonProps as ThemeUIButtonProps } from 'theme-ui'
 
-export interface ButtonProps {
+export interface ButtonProps extends ThemeUIButtonProps {
   /**
    * Is this the principal call to action on the page?
    */
@@ -14,8 +13,6 @@ export interface ButtonProps {
   size?: 'md' | 'lg'
 
   icon?: ReactNode
-
-  width?: number
 
   children?: ReactNode
 
@@ -33,12 +30,11 @@ const Button = forwardRef(
       variant = 'primary',
       size = 'md',
       icon,
-      width,
       toggled,
       children,
       capitalize = false,
       ...props
-    }: ButtonProps & HTMLAttributes<HTMLButtonElement>,
+    }: ButtonProps,
     ref: React.ForwardedRef<HTMLButtonElement>
   ) => {
     if (variant === 'plain') {
@@ -57,7 +53,6 @@ const Button = forwardRef(
         capitalize={capitalize}
         $type={variant}
         $size={size}
-        width={width || undefined}
         minimized={!children}
         toggled={toggled}
         {...{ ref, ...props }}
