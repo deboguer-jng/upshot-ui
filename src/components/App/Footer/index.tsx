@@ -14,7 +14,7 @@ import { FlexProps, Link } from 'theme-ui'
 import Icon from '../../@UI/Icon'
 import IconButton from '../../@UI/IconButton'
 
-interface FooterProps extends FlexProps {
+export interface FooterProps extends FlexProps {
   /**
    * Sidebar is visible.
    */
@@ -29,8 +29,6 @@ const Footer = forwardRef(
     { sidebarVisible = false, ...props }: FooterProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    const iconColor = sidebarVisible ? 'white' : 'grey-700'
-
     return (
       <FooterLine {...{ ref, ...props }}>
         <StyledBoxLeft>
@@ -59,58 +57,43 @@ const Footer = forwardRef(
             </Flex>
           </StyledBox>
         </StyledBoxLeft>
-        <StyledBoxRight>
-          <Flex>
-            <StyledBoxMiddle>
-              <Link href="https://blog.upshot.io/" target="_blank">
-                <IconButton>
-                  <Icon
-                    color={iconColor}
-                    icon="mediumBlock"
-                    size={24}
-                    style={{ transition: 'all 0.5s ease', flexShrink: 0 }}
-                  />
-                </IconButton>
-              </Link>
-            </StyledBoxMiddle>
-            <StyledBoxMiddle>
-              <Link href="https://twitter.com/upshothq" target="_blank">
-                <IconButton>
-                  <Icon
-                    color={iconColor}
-                    icon="twitterCircle"
-                    size={24}
-                    style={{ transition: 'all 0.5s ease', flexShrink: 0 }}
-                  />
-                </IconButton>
-              </Link>
-            </StyledBoxMiddle>
-            <StyledBoxMiddle>
-              <Link href="https://discord.gg/upshot" target="_blank">
-                <IconButton>
-                  <Icon
-                    color={iconColor}
-                    icon="discord"
-                    size={24}
-                    style={{ transition: 'all 0.5s ease', flexShrink: 0 }}
-                  />
-                </IconButton>
-              </Link>
-            </StyledBoxMiddle>
-            <StyledBoxMiddle>
-              <Link href="https://www.instagram.com/upshot.hq/" target="_blank">
-                <IconButton>
-                  <Icon
-                    color={iconColor}
-                    icon="instagramCircle"
-                    size={24}
-                    style={{ transition: 'all 0.5s ease', flexShrink: 0 }}
-                  />
-                </IconButton>
-              </Link>
-            </StyledBoxMiddle>
-          </Flex>
-        </StyledBoxRight>
+        {!sidebarVisible && (
+          <StyledBoxRight>
+            <Flex>
+              <StyledBoxMiddle>
+                <Link href="https://blog.upshot.io/" target="_blank">
+                  <IconButton>
+                    <Icon color="grey-700" icon="mediumBlock" size={24} />
+                  </IconButton>
+                </Link>
+              </StyledBoxMiddle>
+              <StyledBoxMiddle>
+                <Link href="https://twitter.com/upshothq" target="_blank">
+                  <IconButton>
+                    <Icon color="grey-700" icon="twitterCircle" size={24} />
+                  </IconButton>
+                </Link>
+              </StyledBoxMiddle>
+              <StyledBoxMiddle>
+                <Link href="https://discord.gg/upshot" target="_blank">
+                  <IconButton>
+                    <Icon color="grey-700" icon="discord" size={24} />
+                  </IconButton>
+                </Link>
+              </StyledBoxMiddle>
+              <StyledBoxMiddle>
+                <Link
+                  href="https://www.instagram.com/upshot.hq/"
+                  target="_blank"
+                >
+                  <IconButton>
+                    <Icon color="grey-700" icon="instagramCircle" size={24} />
+                  </IconButton>
+                </Link>
+              </StyledBoxMiddle>
+            </Flex>
+          </StyledBoxRight>
+        )}
       </FooterLine>
     )
   }
