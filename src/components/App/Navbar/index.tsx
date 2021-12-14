@@ -31,8 +31,8 @@ import InputRoundedSearch, {
 } from '../../@UI/InputRoundedSearch'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import { shortenAddress } from '../../../utils/address'
-
-export interface NavbarInterface {
+import zIndex from '../../../themes/UpshotUI/zIndex'
+export interface NavbarInterface extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Avatar Image URL
    */
@@ -45,6 +45,10 @@ export interface NavbarInterface {
    * Wallet address
    */
   address?: string
+  /**
+   * Sidebar is visible
+   */
+  showSidebar?: boolean
   searchSuggestions?: InputSuggestion[]
   searchValue?: string
   searchDefaultValue?: string
@@ -53,6 +57,7 @@ export interface NavbarInterface {
   onSearchKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void // @todo Refactor all these props and use rfs
   onSearch: (e: React.FormEvent | React.MouseEvent) => void
   onLogoClick: (e: React.MouseEvent<HTMLElement>) => void
+  onMenuClick: (e: React.MouseEvent<HTMLElement>) => void
   onConnectClick?: (e: React.MouseEvent<HTMLElement>) => void
   onSearchBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
   onDisconnectClick?: () => void
@@ -62,6 +67,7 @@ const Navbar = forwardRef(
   (
     {
       avatarImageUrl = '/img/defaultAvatar.png',
+      showSidebar = false,
       ensName,
       address,
       searchValue,
@@ -75,6 +81,8 @@ const Navbar = forwardRef(
       onLogoClick,
       onConnectClick,
       onDisconnectClick,
+      onMenuClick,
+      children,
       ...props
     }: NavbarInterface,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -218,12 +226,26 @@ const Navbar = forwardRef(
               </>
             )}
 
-            {/* <NavbarItem>
-            <NavbarItemIcon>
-              <Icon icon="items" />
-            </NavbarItemIcon>
-          </NavbarItem> */}
+            {!!address && (
+              <IconButton
+                onClick={onMenuClick}
+                sx={{
+                  backgroundColor: showSidebar ? 'grey-300' : 'grey-800',
+                  width: 45,
+                  height: 45,
+                  transition: 'default',
+                  '&:hover': {
+                    backgroundColor: showSidebar
+                      ? 'white !important'
+                      : 'grey-900 !important',
+                  },
+                }}
+              >
+                <Icon icon={showSidebar ? 'x' : 'items'} size={16} />
+              </IconButton>
+            )}
           </Flex>
+          {children}
         </NavbarWrapper>
         <div
           ref={setPopperElement}
@@ -231,6 +253,7 @@ const Navbar = forwardRef(
             ...styles.popper,
             ...{
               minWidth: navProfileElement?.current?.style?.width ?? '192px',
+              zIndex: zIndex.nav,
             },
           }}
           {...attributes.popper}

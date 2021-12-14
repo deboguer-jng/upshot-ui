@@ -7,16 +7,12 @@ interface NavbarItemProps {
 
 export const NavbarWrapper = styled.div`
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(
-    180deg,
-    #000000 0%,
-    #000000 82.81%,
-    rgba(0, 0, 0, 0) 100%
-  );
   height: ${({ theme }) => theme.navbar.height}px;
   width: 100%;
+  z-index: 2;
 `
 
 export const NavbarItem = styled.div<NavbarItemProps>`

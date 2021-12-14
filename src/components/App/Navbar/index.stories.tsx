@@ -77,13 +77,13 @@ const searchSuggestions = [
 export const Default = Template.bind({})
 Default.args = {
   ensName: 'emmons.eth',
-  address: '0x1A2b...3c4D',
+  address: '0x123400000000000000000000000000000000abcd',
   searchSuggestions,
 }
 
 export const ENSUnavailable = Template.bind({})
 ENSUnavailable.args = {
-  address: '0x1A2b...3c4D',
+  address: '0x123400000000000000000000000000000000abcd',
   searchSuggestions,
 }
 
