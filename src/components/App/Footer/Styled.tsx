@@ -49,7 +49,6 @@ export const FooterLine = styled(Flex)`
   background-color: ${({ theme }) => theme.colors.black};
   padding: 10px;
   font-size: 12px;
-  z-index: 2;
 
   ${({ theme }) => css`
     @media only screen and (min-width: ${theme.breakpoints[1]}) {

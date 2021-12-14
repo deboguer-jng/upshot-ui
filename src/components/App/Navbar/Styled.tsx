@@ -42,7 +42,7 @@ export const SearchWrapper = styled.div`
   padding: 12px;
   border: 1px solid ${({ theme }) => theme.colors['grey-500']};
   width: 100%;
-  z-index: ${({ theme }) => theme.zIndex.nav};
+  z-index: ${({ theme }) => theme.zIndex.nav + 1};
 
   ${({ theme }) => css`
     @media only screen and (min-width: ${theme.breakpoints[1]}) {

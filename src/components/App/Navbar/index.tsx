@@ -231,7 +231,7 @@ const Navbar = forwardRef(
             </Flex>
             {children}
           </NavbarWrapper>
-          {isMobile && search}
+          {isMobile && showSidebar && search}
         </Flex>
         <div
           ref={setPopperElement}
