@@ -140,7 +140,7 @@ export const NavbarWallet = styled.div`
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   height: 56px;
   border-radius: 30px;
-  padding: 12px 17px 12px 12px;
+  padding: 12px;
   transition: ${({ theme }) => theme.transitions.default};
   cursor: pointer;
 

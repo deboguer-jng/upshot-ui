@@ -204,7 +204,9 @@ const Navbar = forwardRef(
                   <NavbarItem onClick={onConnectClick}>
                     <NavbarWallet>
                       <Icon icon="wallet" size={32} />
-                      Connect Wallet
+                      {!isMobile && (
+                        <Text sx={{ paddingRight: '4px' }}>Connect Wallet</Text>
+                      )}
                     </NavbarWallet>
                   </NavbarItem>
                 )}
