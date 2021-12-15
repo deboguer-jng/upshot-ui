@@ -3,7 +3,6 @@ import React, {
   ReactEventHandler,
   useState,
   useEffect,
-  useMemo,
 } from 'react'
 import {
   NavbarWrapper,
@@ -116,46 +115,46 @@ const Navbar = forwardRef(
       forceUpdate?.()
     }, [showNavPopper])
 
-    const search = useMemo(
-      () => (
-        <SearchWrapper>
-          <form onSubmit={onSearch}>
-            <InputRoundedSearch
-              fullWidth
-              hasButton
-              variant="nav"
-              suggestions={searchSuggestions}
-              onSuggestionSelect={onSearchSuggestionChange}
-              placeholder="Search..."
-              dark
-              value={searchValue}
-              defaultValue={searchDefaultValue}
-              onChange={onSearchValueChange}
-              onBlur={onSearchBlur}
-              onKeyUp={onSearchKeyUp}
-              buttonProps={{
-                onClick: onSearch,
-                type: 'button',
-              }}
-            />
-          </form>
-        </SearchWrapper>
-      ),
-      [searchValue]
-    )
-
     return (
       <Box {...{ ref, ...props }}>
-        <Flex sx={{ flexDirection: 'column', gap: 4 }}>
+        <Flex sx={{ flexDirection: 'column', gap: 4, position: 'relative' }}>
           <NavbarWrapper>
-            <Flex style={{ alignItems: 'center', gap: '16px' }}>
+            <Flex
+              style={{
+                alignItems: 'center',
+                gap: '16px',
+                position: 'relative',
+              }}
+            >
               <NavbarItem>
                 <NavbarLogo onClick={onLogoClick}>
                   <Icon icon="upshot" />
                 </NavbarLogo>
               </NavbarItem>
-
-              {!isMobile && search}
+              {!isMobile && (
+                <SearchWrapper style={{ marginLeft: '64px' }}>
+                  <form onSubmit={onSearch}>
+                    <InputRoundedSearch
+                      fullWidth
+                      hasButton
+                      variant="nav"
+                      suggestions={searchSuggestions}
+                      onSuggestionSelect={onSearchSuggestionChange}
+                      placeholder="Search..."
+                      dark
+                      value={searchValue}
+                      defaultValue={searchDefaultValue}
+                      onChange={onSearchValueChange}
+                      onBlur={onSearchBlur}
+                      onKeyUp={onSearchKeyUp}
+                      buttonProps={{
+                        onClick: onSearch,
+                        type: 'button',
+                      }}
+                    />
+                  </form>
+                </SearchWrapper>
+              )}
             </Flex>
             <Flex style={{ alignItems: 'center', gap: '16px' }}>
               <>
@@ -172,6 +171,12 @@ const Navbar = forwardRef(
                                 fontWeight: 'bold',
                                 textDecoration: 'none',
                                 color: 'white',
+                                textOverflow: 'ellipsis',
+                                overflow: 'hidden',
+                                maxWidth: '120px',
+                                whiteSpace: 'nowrap',
+                                display: 'inline-block',
+                                lineHeight: 1,
                               }}
                             >
                               <StyledLink href={`/analytics/user/${address}`}>
@@ -231,7 +236,30 @@ const Navbar = forwardRef(
             </Flex>
             {children}
           </NavbarWrapper>
-          {isMobile && showSidebar && search}
+          {isMobile && showSidebar && (
+            <SearchWrapper style={{ marginTop: '72px' }}>
+              <form onSubmit={onSearch}>
+                <InputRoundedSearch
+                  fullWidth
+                  hasButton
+                  variant="nav"
+                  suggestions={searchSuggestions}
+                  onSuggestionSelect={onSearchSuggestionChange}
+                  placeholder="Search..."
+                  dark
+                  value={searchValue}
+                  defaultValue={searchDefaultValue}
+                  onChange={onSearchValueChange}
+                  onBlur={onSearchBlur}
+                  onKeyUp={onSearchKeyUp}
+                  buttonProps={{
+                    onClick: onSearch,
+                    type: 'button',
+                  }}
+                />
+              </form>
+            </SearchWrapper>
+          )}
         </Flex>
         <div
           ref={setPopperElement}

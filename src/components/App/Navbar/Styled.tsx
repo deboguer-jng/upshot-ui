@@ -34,11 +34,12 @@ export const NavbarLogo = styled.div`
 `
 
 export const SearchWrapper = styled.div`
+  position: absolute;
   display: flex;
-  position: relative;
   align-items: center;
   height: 56px;
   border-radius: 30px;
+  background-color: ${({ theme }) => theme.colors.black};
   padding: 12px;
   border: 1px solid ${({ theme }) => theme.colors['grey-500']};
   width: 100%;
