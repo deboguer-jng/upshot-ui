@@ -1,11 +1,11 @@
 import React, { forwardRef } from 'react'
+import { ButtonProps, Link } from 'theme-ui'
 
-import Panel from '../../@UI/Panel'
 import { PanelProps } from '../../@UI/Panel'
 import Text from '../../@UI/Text'
 import Flex from '../../Layout/Flex'
 import Box from '../../Layout/Box'
-import { ButtonProps, Link } from 'theme-ui'
+import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import colors from '../../../themes/UpshotUI/colors'
 import { StyledPanel, StyledButton, StyledText, StyledBox, StyledIcon } from './Styled'
 
@@ -85,12 +85,20 @@ const OpenseaPanel = forwardRef(
     }: OpenseaPanelProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
+    const isMobile = useBreakpointIndex() <= 1
 
     let isUnderPriced
     if (listPriceETH <= appraisalPriceETH) {
       isUnderPriced = true
     } else {
       isUnderPriced = false
+    }
+
+    let buttonPosition
+    if (variant === 'wide' && isMobile === false) {
+      buttonPosition = 'right'
+    } else {
+      buttonPosition = 'bottom'
     }
 
     const textColor = isUnderPriced ? 'green' : 'red' as keyof typeof colors
@@ -100,7 +108,7 @@ const OpenseaPanel = forwardRef(
 
     return (
       <StyledPanel $variant={variant} {...props}>
-        {variant === 'wide' && (<BuyButton url={openseaUrl} />)}
+        {buttonPosition === 'right' && (<BuyButton url={openseaUrl} />)}
         
         <Flex
           sx={{
@@ -147,7 +155,7 @@ const OpenseaPanel = forwardRef(
               Ξ{listPriceETH} {listPriceUSD > 0 && ('($' + listPriceUSD + ')')}
             </Text>
           </StyledBox>
-          {variant === 'popup' && (<BuyButton url={openseaUrl} width='100%' />)}
+          {buttonPosition === 'bottom' && (<BuyButton url={openseaUrl} width='100%' />)}
         </Flex>
       </StyledPanel>
     )
