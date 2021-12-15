@@ -93,6 +93,7 @@ const Navbar = forwardRef(
       }
     )
     const isMobile = useBreakpointIndex() <= 1
+    const isMobileOrTablet = useBreakpointIndex() <= 2
 
     const handleNavPopper = () => {
       if (!showNavPopper) {
@@ -209,7 +210,7 @@ const Navbar = forwardRef(
                   <NavbarItem onClick={onConnectClick}>
                     <NavbarWallet>
                       <Icon icon="wallet" size={32} />
-                      {!isMobile && (
+                      {!isMobileOrTablet && (
                         <Text sx={{ paddingRight: '4px' }}>Connect Wallet</Text>
                       )}
                     </NavbarWallet>
