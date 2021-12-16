@@ -64,10 +64,12 @@ export interface CollectorAccordionRowProps
    * Other collections
    */
   extraCollections?: {
-    name: string
+    id: number
+    name?: string
     imageUrl: string
     url: string
-    count: number
+    pixelated: boolean
+    count?: number
   }[]
   /**
    * Children element
