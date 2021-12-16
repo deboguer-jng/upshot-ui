@@ -11,5 +11,5 @@ const Template: ComponentStory<typeof Footer> = (args) => <Footer {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  sx: { width: '100%', height: '100px' }
+  sx: { width: '100%', height: '100px' },
 }

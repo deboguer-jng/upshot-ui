@@ -43,6 +43,7 @@ export const StyledBoxRight = styled(Box)`
 `
 
 export const FooterLine = styled(Flex)`
+  position: relative;
   align-items: center;
   flex-direction: column-reverse;
   background-color: ${({ theme }) => theme.colors.black};
