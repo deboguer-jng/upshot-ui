@@ -29,6 +29,10 @@ export interface CollectionCardItemProps extends BoxProps {
    * Expanded description
    */
   expanded?: boolean
+  /**
+   * Is pixelated rendering
+   */
+  isPixelated?: boolean
 }
 
 /**
@@ -38,6 +42,7 @@ const CollectionCardItem = forwardRef(
   (
     {
       expanded = false,
+      isPixelated = false,
       avatarImage,
       name,
       imageSrc,
@@ -47,7 +52,7 @@ const CollectionCardItem = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => (
     <CollectionCardItemBase $expanded={expanded} {...{ ref, ...props }}>
-      <CollectionCardItemImage $src={imageSrc} />
+      <CollectionCardItemImage $isPixelated={isPixelated} $src={imageSrc} />
       <CollectionCardItemDetails>
         <Flex sx={{ padding: 3, gap: 1, flexDirection: 'column' }}>
           <Flex sx={{ gap: 2 }}>
