@@ -21,6 +21,10 @@ Default.args = {
   name: 'Bored Ape Yacht Club',
   description:
     'The Bored Ape Yacht Club is a collection of 10,000 unique Bored Ape NFTs— unique digital collectibles living on the Ethereum blockchain.',
+  listPriceEth: 3,
+  listPriceUSD: 300,
+  appraisalPriceETH: 4,
+  appraisalPriceUSD: 2000,
 }
 
 export const Expanded = Template.bind({})
@@ -31,4 +35,8 @@ Expanded.args = {
   name: 'Bored Ape Yacht Club',
   description:
     'The Bored Ape Yacht Club is a collection of 10,000 unique Bored Ape NFTs— unique digital collectibles living on the Ethereum blockchain.',
+  listPriceEth: 3,
+  listPriceUSD: 300,
+  appraisalPriceETH: 4,
+  appraisalPriceUSD: 2000,
 }

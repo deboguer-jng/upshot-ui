@@ -31,7 +31,7 @@ export const CollectionCardItemBase = styled(Panel)<{ $expanded: boolean }>`
     box-shadow: ${({ theme }) => theme.shadow.underglow('blue')};
 
     & > div:first-of-type {
-      transform: translateY(-82px);
+      transform: translateY(-120px);
       box-shadow: ${({ theme }) => theme.shadow.default};
     }
 
@@ -43,7 +43,7 @@ export const CollectionCardItemBase = styled(Panel)<{ $expanded: boolean }>`
   ${({ $expanded, theme }) =>
     $expanded &&
     `& > div:first-of-type {
-      transform: translateY(-82px);
+      transform: translateY(-120px);
       box-shadow: ${theme.shadow.default}};
     }`}
 `
@@ -68,5 +68,5 @@ export const CollectionCardItemImage = styled(
 export const CollectionCardItemDetails = styled(Box)`
   position: absolute;
   bottom: 0;
-  z-index: 0;
+  z-index: 1;
 `

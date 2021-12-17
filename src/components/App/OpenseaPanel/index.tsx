@@ -7,45 +7,40 @@ import Flex from '../../Layout/Flex'
 import Box from '../../Layout/Box'
 import { ButtonProps, Link } from 'theme-ui'
 import colors from '../../../themes/UpshotUI/colors'
-import { StyledPanel, StyledButton, StyledText, StyledBox, StyledIcon } from './Styled'
-
-
+import {
+  StyledPanel,
+  StyledButton,
+  StyledText,
+  StyledBox,
+  StyledIcon,
+} from './Styled'
 
 export interface BuyButtonProps extends ButtonProps {
   /**
    * Button URL
    */
-   url?: string
-   /**
-    * Button width
-    */
-    width?: string
+  url?: string
+  /**
+   * Button width
+   */
+  width?: string
 }
 
 const BuyButton = forwardRef(
-  (
-    {
-      url,
-      width = null,
-      ...props
-    }: BuyButtonProps,
-  ) => (
-    <Link href={url} target='_blank'>
-      <StyledButton variant="secondary" size="md" capitalize={true} $width={width}>
-        <StyledIcon
-          icon="openSeaBlock"
-          color="white"
-          size={16}
-        />
-        <StyledText color="white">
-          Buy on Opensea
-        </StyledText>
-        
+  ({ url, width = null, ...props }: BuyButtonProps) => (
+    <Link href={url} target="_blank">
+      <StyledButton
+        variant="secondary"
+        size="md"
+        capitalize={true}
+        $width={width}
+      >
+        <StyledIcon icon="openSeaBlock" color="white" size={16} />
+        <StyledText color="white">Buy on Opensea</StyledText>
       </StyledButton>
     </Link>
   )
 )
-
 
 export interface OpenseaPanelProps extends PanelProps {
   /**
@@ -59,7 +54,7 @@ export interface OpenseaPanelProps extends PanelProps {
   /**
    * List price in USD
    */
-   listPriceUSD?: number
+  listPriceUSD?: number
   /**
    * Appraisal price in ETH
    */
@@ -85,7 +80,6 @@ const OpenseaPanel = forwardRef(
     }: OpenseaPanelProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-
     let isUnderPriced
     if (listPriceETH <= appraisalPriceETH) {
       isUnderPriced = true
@@ -93,15 +87,15 @@ const OpenseaPanel = forwardRef(
       isUnderPriced = false
     }
 
-    const textColor = isUnderPriced ? 'green' : 'red' as keyof typeof colors
-    const title = isUnderPriced ? 'Underpriced' : 'Overpriced'
-    const belowOrAbove = isUnderPriced ? 'below' : 'above'
+    const textColor = 'green' as keyof typeof colors
+    const title = 'Underpriced'
+    const belowOrAbove = 'below'
     const percentage = (listPriceETH / appraisalPriceETH) * 100
 
     return (
       <StyledPanel $variant={variant} {...props}>
-        {variant === 'wide' && (<BuyButton url={openseaUrl} />)}
-        
+        {variant === 'wide' && <BuyButton url={openseaUrl} />}
+
         <Flex
           sx={{
             flexDirection: 'column',
@@ -109,45 +103,32 @@ const OpenseaPanel = forwardRef(
             gap: 4,
           }}
         >
-          <Box>
-            <StyledIcon
-              icon="upshot"
-              color={textColor}
-              size={16}
-            />
-            <StyledText color={textColor} variant="large">
-              {title}
-            </StyledText>
-          </Box>
-          
+          {isUnderPriced && (
+            <Box>
+              <StyledIcon icon="upshot" color={textColor} size={16} />
+              <StyledText color={textColor} variant="large">
+                {title}
+              </StyledText>
+            </Box>
+          )}
 
           <StyledBox>
             <Text color="grey-500">
-              { variant === 'wide' && (
-                'Listed'
-              )}
-              { variant === 'popup' && (
-                'This NFT is listed'
-              )}
+              {variant === 'wide' && 'Listed'}
+              {variant === 'popup' && 'This NFT is listed'}
             </Text>
-            &nbsp; { variant === 'popup' && (
-              <br />
-            )}
+            &nbsp; {variant === 'popup' && <br />}
             <Text color={textColor}>
               {percentage}% {belowOrAbove} appraisal price
             </Text>
-            &nbsp; { variant === 'popup' && (
-              <br />
-            )}
-            <Text color="grey-500">
-              at
-            </Text>
+            &nbsp; {variant === 'popup' && <br />}
+            <Text color="grey-500">at</Text>
             &nbsp;
             <Text color="grey-400">
-              Ξ{listPriceETH} {listPriceUSD > 0 && ('($' + listPriceUSD + ')')}
+              Ξ{listPriceETH} {listPriceUSD > 0 && '($' + listPriceUSD + ')'}
             </Text>
           </StyledBox>
-          {variant === 'popup' && (<BuyButton url={openseaUrl} width='100%' />)}
+          {variant === 'popup' && <BuyButton url={openseaUrl} width="100%" />}
         </Flex>
       </StyledPanel>
     )
