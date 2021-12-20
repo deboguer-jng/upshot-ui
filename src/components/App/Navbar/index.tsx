@@ -133,7 +133,10 @@ const Navbar = forwardRef(
                 </NavbarLogo>
               </NavbarItem>
               {!isMobile && (
-                <SearchWrapper style={{ marginLeft: '64px' }}>
+                <SearchWrapper
+                  $hasValue={!!searchValue}
+                  style={{ marginLeft: '64px' }}
+                >
                   <form onSubmit={onSearch}>
                     <InputRoundedSearch
                       fullWidth
@@ -152,6 +155,7 @@ const Navbar = forwardRef(
                         onClick: onSearch,
                         type: 'button',
                       }}
+                      sx={{ background: 'none' }}
                     />
                   </form>
                 </SearchWrapper>
@@ -257,6 +261,7 @@ const Navbar = forwardRef(
                     onClick: onSearch,
                     type: 'button',
                   }}
+                  sx={{ background: 'none' }}
                 />
               </form>
             </SearchWrapper>
