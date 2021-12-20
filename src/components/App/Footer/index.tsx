@@ -32,13 +32,13 @@ const Footer = forwardRef(
     return (
       <FooterLine {...{ ref, ...props }}>
         <StyledBoxLeft>
-          <LogoBox href="https://upshot.io/" target="_blank">
+          <LogoBox href="https://upshot.xyz/" target="_blank">
             Upshot
           </LogoBox>
           <StyledBox>
             <Flex>
               <StyledMiddleLink
-                href="https://upshot.io/whitepaper.pdf"
+                href="/whitepaper.pdf"
                 target="_blank"
               >
                 Whitepaper
@@ -61,7 +61,7 @@ const Footer = forwardRef(
           <StyledBoxRight>
             <Flex>
               <StyledBoxMiddle>
-                <Link href="https://blog.upshot.io/" target="_blank">
+                <Link href="https://mirror.xyz/0x82FE4757D134a56BFC7968A0f0d1635345053104" target="_blank">
                   <IconButton>
                     <Icon color="grey-700" icon="mediumBlock" size={24} />
                   </IconButton>
