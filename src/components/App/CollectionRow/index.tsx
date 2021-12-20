@@ -34,6 +34,8 @@ export interface CollectionRowProps extends TableRowProps {
   totalVolume?: string
 
   pixelated?: boolean
+
+  defaultOpen?: boolean
 }
 
 const CollectionRow = forwardRef(
@@ -45,6 +47,7 @@ const CollectionRow = forwardRef(
       children,
       pixelated,
       totalVolume,
+      defaultOpen = false,
       onClick,
       ...props
     }: CollectionRowProps,
@@ -52,7 +55,7 @@ const CollectionRow = forwardRef(
   ) => {
     const breakpointIndex = useBreakpointIndex()
     const isMobile = breakpointIndex <= 1
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(defaultOpen)
     return (
       <>
         {!isMobile ? (
