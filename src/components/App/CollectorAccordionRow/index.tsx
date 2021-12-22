@@ -197,9 +197,12 @@ const CollectorRow = forwardRef(
           >
             {isFirstColumn && (
               <Flex sx={{ flexDirection: 'column', gap: 4 }}>
-                <a href={`/analytics/user/${address}`} style={{ textDecoration: 'none' }}>
+                <a
+                  href={`/analytics/user/${address}`}
+                  style={{ textDecoration: 'none' }}
+                >
                   <Text
-                    variant='h3Primary'
+                    variant="h3Primary"
                     sx={{
                       color: 'primary',
                       paddingBottom: '12px',
