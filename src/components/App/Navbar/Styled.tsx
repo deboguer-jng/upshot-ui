@@ -33,17 +33,23 @@ export const NavbarLogo = styled.div`
   }
 `
 
-export const SearchWrapper = styled.div`
+export const SearchWrapper = styled.div<{ $hasValue?: boolean }>`
   position: absolute;
   display: flex;
   align-items: center;
   height: 56px;
   border-radius: 30px;
-  background-color: ${({ theme }) => theme.colors.black};
+  background-color: ${({ $hasValue }) =>
+    `rgba(0, 0, 0, ${$hasValue ? 0.6 : 0.3})`};
   padding: 12px;
   border: 1px solid ${({ theme }) => theme.colors['grey-500']};
   width: 100%;
   z-index: ${({ theme }) => theme.zIndex.nav + 1};
+  transition: all 0.75s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
 
   ${({ theme }) => css`
     @media only screen and (min-width: ${theme.breakpoints[1]}) {

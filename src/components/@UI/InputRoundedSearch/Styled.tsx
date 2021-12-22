@@ -27,10 +27,11 @@ export const InputRoundedSearchSuggestionsWrapper = styled.div`
   top: 0;
   left: 0;
   border-radius: 20px;
-  padding: 12px;
   padding-top: 52px;
   width: 100%;
-  background-color: ${({ theme }) => theme.colors['grey-900']};
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  overflow: hidden;
   z-index: ${({ theme }) => theme.zIndex.default + 1};
 `
 
@@ -41,10 +42,11 @@ export const InputRounededSearchSuggestions = styled.div`
 `
 
 export const InputRoundedSearchSuggestionItem = styled.div`
-  padding: 5px;
+  padding: 5px 16px;
   cursor: pointer;
+  transition: all 0.1s linear;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors['grey-800']};
+    background-color: rgba(0, 0, 0, 0.9);
   }
 `
