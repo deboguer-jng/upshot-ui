@@ -1,4 +1,5 @@
 import React, { forwardRef, useState } from 'react'
+import { BoxProps } from 'theme-ui'
 import {
   SwitchDropdownHeader,
   SwitchDropdownWrapper,
@@ -7,35 +8,36 @@ import {
 } from './Styled'
 import Text from '../Text'
 import Icon from '../Icon'
+import Box from '../../Layout/Box'
 
-export interface SwitchDropdownProps {
+export interface SwitchDropdownProps extends BoxProps {
   value: string
   options: Array<string>
-  onChange: Function
-  onStatusChange?: Function
+  onValueChange: (option: string) => void
+  onToggle?: (open: boolean) => void
 }
 
 const SwitchDropdown = forwardRef(
   (
-    { value, options, onChange, onStatusChange, ...props }: SwitchDropdownProps,
+    { value, options, onValueChange, onToggle, ...props }: SwitchDropdownProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const [open, setOpen] = useState(false)
 
     const handleClick = (option: string) => {
       setOpen(!open)
-      onChange(option)
-      onStatusChange && onStatusChange(!open)
+      onValueChange(option)
+      onToggle && onToggle(!open)
     }
 
     return (
-      <>
+      <Box>
         <SwitchDropdownWrapper {...{ ref, ...props }}>
           <SwitchDropdownHeader
             open={open}
             onClick={() => {
               setOpen(!open)
-              onStatusChange && onStatusChange(!open)
+              onToggle && onToggle(!open)
             }}
           >
             <Text variant="h1Secondary" color="primary">
@@ -60,7 +62,7 @@ const SwitchDropdown = forwardRef(
             </SwitchDropdownOptions>
           )}
         </SwitchDropdownWrapper>
-      </>
+      </Box>
     )
   }
 )
