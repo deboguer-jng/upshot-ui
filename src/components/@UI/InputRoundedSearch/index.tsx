@@ -12,6 +12,7 @@ import {
 } from './Styled'
 import Icon from '../Icon'
 import { useTheme } from '../../../themes/UpshotUI'
+import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 
 export interface InputSuggestion {
   id: number
@@ -64,6 +65,7 @@ const InputRoundedSearch = forwardRef(
     const { theme } = useTheme()
     const [open, setOpen] = useState(false)
     const wrapperRef = useRef<HTMLDivElement>()
+    const isMobile = useBreakpointIndex() <= 1
 
     useEffect(() => {
       const handleClickOutside = (e: MouseEvent) => {
@@ -89,7 +91,7 @@ const InputRoundedSearch = forwardRef(
     const { sx: buttonSx, ...buttonProps } = buttonPropsRaw ?? {}
 
     return (
-      <InputRoundedSearchWrapper ref={wrapperRef}>
+      <InputRoundedSearchWrapper ref={wrapperRef} $isMobile={isMobile}>
         <Flex sx={{ width: fullWidth ? '100%' : 'auto' }}>
           <InputRoundedSearchBase
             placeholder="Search..."
