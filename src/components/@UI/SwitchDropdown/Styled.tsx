@@ -1,5 +1,7 @@
 import styled from '@emotion/styled'
 
+import Box from '../../Layout/Box'
+
 interface SwitchDropdownHeaderProps {
   open: boolean
 }
@@ -8,7 +10,7 @@ interface SwitchDropdownOptionsProps {
   open: boolean
 }
 
-export const SwitchDropdownWrapper = styled.div`
+export const SwitchDropdownWrapper = styled(Box)`
   position: relative;
 `
 
