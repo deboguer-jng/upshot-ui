@@ -22,7 +22,7 @@ const generateColors = (
   toggledColor?: string,
   toggledHoverBackground?: string,
   toggledHoverBorder?: string,
-  toggledHoverColor?: string,
+  toggledHoverColor?: string
 ) => ({
   background,
   border,
@@ -107,7 +107,7 @@ const buttons = {
         colors['grey-300'],
         colors.transparent,
         colors['grey-300'],
-        colors['grey-300'],
+        colors['grey-300']
       ),
       fontFamily: 'heading',
       fontWeight: 'heading',

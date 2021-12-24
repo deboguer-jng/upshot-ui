@@ -4,14 +4,16 @@ export const getSize = (n: number) => n * SIZE_UNIT
 
 const sizes = [...new Array(16)].map((_, n) => getSize(n))
 
-export const breakpoints = [
-  '640px',
-  '768px',
-  '1024px',
-  '1280px',
-  '1536px',
-  '1678px',
-]
+export const breakpointsNamed = {
+  xs: '640px',
+  sm: '768px',
+  md: '1024px',
+  lg: '1280px',
+  xl: '1536px',
+  xxl: '1678px',
+}
+
+export const breakpoints = Object.values(breakpointsNamed)
 
 export const radii = {
   square: sizes[0] + 'px',

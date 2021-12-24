@@ -21,64 +21,64 @@ const basicLabelBase = {
 const currencySymbolBase = {
   ...labelBase,
   padding: 0,
-  verticalAlign: 'top'
+  verticalAlign: 'top',
 }
 
 export const labels = {
   basicSm: {
     ...basicLabelBase,
-    fontSize: 0
+    fontSize: 0,
   },
   basicMd: {
     ...basicLabelBase,
-    fontSize: 2
+    fontSize: 2,
   },
   currencyXs: {
     ...labelBase,
     fontWeight: 'heading',
-    fontSize: 2
+    fontSize: 2,
   },
   currencySm: {
     ...labelBase,
     fontWeight: 'heading',
-    fontSize: 4
+    fontSize: 4,
   },
   currencyMd: {
     ...labelBase,
     fontWeight: 'bold',
-    fontSize: 6
+    fontSize: 6,
   },
   currencyLg: {
     ...labelBase,
     fontWeight: 'bold',
-    fontSize: 8
+    fontSize: 8,
   },
   xsCurrencySymbol: {
     ...currencySymbolBase,
     fontWeight: 'heading',
     fontSize: 0,
     marginRight: '-2px',
-    paddingTop: '3px'
+    paddingTop: '3px',
   },
   smCurrencySymbol: {
     ...currencySymbolBase,
     fontWeight: 'heading',
     fontSize: 0,
     marginRight: '-2px',
-    paddingTop: '4px'
+    paddingTop: '4px',
   },
   mdCurrencySymbol: {
     ...currencySymbolBase,
     fontSize: 2,
     paddingTop: '5px',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   lgCurrencySymbol: {
     ...currencySymbolBase,
     fontSize: 3,
     paddingTop: '7px',
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+  },
 }
 
 export default labels

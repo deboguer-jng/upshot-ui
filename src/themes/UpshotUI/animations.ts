@@ -20,9 +20,9 @@ export const spin: Keyframes = keyframes({
 })
 
 export const pulse: Keyframes = keyframes({
-  '25%': {backgroundColor: colors['grey-700'] },
-  '50%': {backgroundColor: colors['grey-600'] },
-  '75%': {backgroundColor: colors['grey-700'] },
+  '25%': { backgroundColor: colors['grey-700'] },
+  '50%': { backgroundColor: colors['grey-600'] },
+  '75%': { backgroundColor: colors['grey-700'] },
 })
 
 const animations = {

@@ -25,6 +25,7 @@ import InputRoundedSearch, {
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import { shortenAddress } from '../../../utils/address'
 import zIndex from '../../../themes/UpshotUI/zIndex'
+import { breakpointsNamed } from '../../../themes/UpshotUI/sizes'
 import { Text, Box, Flex, BoxProps } from 'theme-ui'
 export interface NavbarInterface extends BoxProps {
   /**
@@ -117,8 +118,30 @@ const Navbar = forwardRef(
     }, [showNavPopper])
 
     return (
-      <Box {...{ ref, ...props }}>
-        <Flex sx={{ flexDirection: 'column', gap: 4, position: 'relative' }}>
+      <Box
+        sx={{
+          paddingY: 5,
+          paddingX: 3,
+          width: '100%',
+          maxWidth: [
+            breakpointsNamed.xs,
+            breakpointsNamed.sm,
+            breakpointsNamed.md,
+            breakpointsNamed.lg,
+            breakpointsNamed.xl,
+            breakpointsNamed.xxl,
+          ],
+        }}
+        {...{ ref, ...props }}
+      >
+        <Flex
+          sx={{
+            width: '100%',
+            flexDirection: 'column',
+            gap: 4,
+            position: 'relative',
+          }}
+        >
           <NavbarWrapper>
             <Flex
               style={{

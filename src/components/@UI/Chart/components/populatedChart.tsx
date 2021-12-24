@@ -171,8 +171,8 @@ const PopulatedChart = ({
         <Flex
           sx={{
             justifyContent: 'space-between',
-            gap: [2, 2, 0],
-            flexDirection: ['column', 'column', 'row'],
+            gap: [2, 0],
+            flexDirection: ['column', 'row'],
           }}
         >
           <Flex
@@ -191,7 +191,7 @@ const PopulatedChart = ({
             sx={{
               fontWeight: 'bold',
               textTransform: 'uppercase',
-              alignSelf: ['flex-end', 'flex-end', 'flex-start'],
+              alignSelf: ['flex-end', 'flex-start'],
               minHeight: '1.25rem',
             }}
           >
@@ -223,7 +223,7 @@ const PopulatedChart = ({
           sx={{
             fontWeight: 'bold',
             textTransform: 'uppercase',
-            alignSelf: ['flex-end', 'flex-end', 'flex-start'],
+            alignSelf: ['flex-end', 'flex-start'],
             minHeight: '1.25rem',
             float: 'right',
             fontSize: '18px',

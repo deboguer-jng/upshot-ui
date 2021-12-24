@@ -19,10 +19,10 @@ export const Slider = styled.input`
   margin-left: 0;
   margin-bottom: 16px;
   border-radius: 0px;
-  background: #231F20;
+  background: #231f20;
   outline: none;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
 
   &:hover {
     opacity: 1;

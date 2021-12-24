@@ -9,7 +9,7 @@ const forms = {
   inputs,
   radio,
   switch: switches,
-  ...labels
+  ...labels,
 }
 
 export default forms
