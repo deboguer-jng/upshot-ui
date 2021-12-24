@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react'
 
-import { ChartWrapper } from './Styled'
-import EmptyChart from './components/emptyChart'
-import PopulatedChart from './components/populatedChart'
+import { RadarChartWrapper } from './Styled'
+import EmptyChart from '../Chart/components/emptyChart'
+import PopulatedRadarChart from './components/populatedRadarChart'
 
-export interface ChartProps {
+export interface RadarChartProps {
   /**
    * Displays a loading spinner.
    */
@@ -25,21 +25,12 @@ export interface ChartProps {
    * Data series as an array of numbers or a list of (timestamp, value) tuples.
    */
   data?: {
-    name: string
-    data: number[] | number[][]
-    url?: string
-    ath?: string
-    atl?: string
-    volume?: number | boolean
-  }[]
-  /**
-   * Renders the search variant.
-   */
-  search?: boolean
-  /**
-   * Renders the narrow embedded variant.
-   */
-  embedded?: boolean
+    series: {
+      name: string
+      data: number[]
+    }[]
+    labels: string[]
+  }
 }
 
 const Chart = forwardRef(
@@ -48,33 +39,30 @@ const Chart = forwardRef(
       loading = false,
       error = false,
       noSelected = false,
-      data = [],
-      search = false,
-      embedded = false,
+      data,
       ...props
-    }: ChartProps,
+    }: RadarChartProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    const dataAvailable = !loading && data.length !== 0 && !error && !noSelected
+    const dataAvailable =
+      !loading && data?.series?.length && !error && !noSelected
 
     return (
-      <ChartWrapper $embedded={embedded} {...{ ref, ...props }}>
+      <RadarChartWrapper {...{ ref, ...props }}>
         <div>
           {dataAvailable ? (
-            <PopulatedChart chartData={data} {...{ embedded }} />
+            <PopulatedRadarChart chartData={data} />
           ) : (
             <EmptyChart
               {...{
                 loading,
                 error,
                 noSelected,
-                embedded,
-                data,
               }}
             />
           )}
         </div>
-      </ChartWrapper>
+      </RadarChartWrapper>
     )
   }
 )

@@ -64,12 +64,21 @@ export interface CollectorAccordionRowProps
    * Other collections
    */
   extraCollections?: {
-    name: string
+    id: number
+    name?: string
     imageUrl: string
     url: string
-    count: number
+    pixelated: boolean
+    count?: number
   }[]
+  /**
+   * Children element
+   */
   children?: React.ReactNode
+  /**
+   * Is it opened by default?
+   */
+  defaultOpen?: boolean
 }
 
 /**
@@ -90,11 +99,12 @@ const CollectorRow = forwardRef(
       nftCollection,
       extraCollections,
       children,
+      defaultOpen = false,
       ...props
     }: CollectorAccordionRowProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(defaultOpen)
     const isFirstColumn = !!avgHoldTime || !!firstAcquisition || !!nftCollection
     const [avatarUrl, setAvatarUrl] = useState(
       address ? makeBlockie(address) : null
@@ -135,6 +145,8 @@ const CollectorRow = forwardRef(
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',
+                textDecoration: 'none',
+                color: 'inherit',
               }}
             >
               {displayName}
@@ -180,11 +192,23 @@ const CollectorRow = forwardRef(
 
         <CollectorRowExpansion $open={open}>
           <Grid
-            columns={['1fr', '1fr', !isFirstColumn ? '1fr' : '1fr 1fr']}
+            columns={['1fr', '1fr', '1fr', !isFirstColumn ? '1fr' : '1fr 1fr']}
             sx={{ marginX: [0, 0, 46], columnGap: 72, p: 6 }}
           >
             {isFirstColumn && (
               <Flex sx={{ flexDirection: 'column', gap: 4 }}>
+                <a href={`/analytics/user/${address}`} style={{ textDecoration: 'none' }}>
+                  <Text
+                    variant='h3Primary'
+                    sx={{
+                      color: 'primary',
+                      paddingBottom: '12px',
+                      fontSize: 4,
+                    }}
+                  >
+                    View Portfolio
+                  </Text>
+                </a>
                 {!!avgHoldTime && (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                     <Text
@@ -193,7 +217,7 @@ const CollectorRow = forwardRef(
                         textTransform: 'capitalize',
                       }}
                     >
-                      Avg. Hold Time:
+                      Average Hold Time
                     </Text>
                     <Text
                       variant="h3Primary"

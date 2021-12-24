@@ -6,7 +6,7 @@ import React, {
   ReactNode,
 } from 'react'
 import Icon from '../Icon'
-import { ScrollWrapper, Slider, SliderIconWrapper } from './Styled'
+import { ScrollWrapper, Slider, SliderIconWrapper } from './StyledSliderIcon'
 
 export interface ScrollProps extends React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode

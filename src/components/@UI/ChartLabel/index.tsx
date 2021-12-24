@@ -14,6 +14,7 @@ import {
   InlineLabel,
   RelativeFlex,
   StyledLink,
+  StyledBox,
 } from './Styled'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 
@@ -60,10 +61,20 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   ath?: string
   /**
-   * All time high price (eg. Ξ4.34)
+   * Label dimming if hovering over a different data series.
+   */
+  isDim?: boolean
+  /**
+   * On close handler.
    */
   onClose?: React.MouseEventHandler<HTMLButtonElement>
-  index?: number
+  /**
+   * OnClose event (X button)
+   */
+  maxWidth?: number
+  /**
+   * Max Label width
+   */
 }
 
 /**
@@ -80,11 +91,12 @@ const ChartLabel = forwardRef(
       currency_1 = 'Ξ',
       price_2 = null,
       currency_2 = '$',
+      isDim = false,
       change,
       atl,
       ath,
       onClose,
-      index,
+      maxWidth,
       ...props
     }: LabelProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -108,7 +120,15 @@ const ChartLabel = forwardRef(
     }
 
     return (
-      <RelativeFlex {...{ ref, ...props }} $isMobile={isMobile} $index={index}>
+      <RelativeFlex
+        {...{ ref, ...props }}
+        sx={{
+          transition: 'default',
+          opacity: isDim ? 0.5 : 1.0,
+        }}
+        $isMobile={isMobile}
+        $maxWidth={maxWidth}
+      >
         <IconBox $color={titleColor} $isMobile={isMobile}>
           <StyledIconButton
             type="button"
@@ -119,7 +139,7 @@ const ChartLabel = forwardRef(
             <Icon size={12} color={titleColor} icon="x" />
           </StyledIconButton>
         </IconBox>
-        <Box>
+        <StyledBox $maxWidth={maxWidth}>
           <StyledLink href={url}>
             <StyledTitle $color={titleColor}>{title}</StyledTitle>
           </StyledLink>
@@ -136,7 +156,7 @@ const ChartLabel = forwardRef(
             </Text>
             <Text
               variant="h1Primary"
-              style={{ fontWeight: 'normal', lineHeight: 1 }}
+              sx={{ fontWeight: 'normal', lineHeight: 1, fontSize: [6, 6, 7] }}
             >
               {nFormatter(price_1)}
             </Text>
@@ -156,12 +176,21 @@ const ChartLabel = forwardRef(
           </StyledChangeDiv>
 
           {ath !== '-' && atl !== '-' && (
-            <Box>
-              <StyledRed>ATL: {atl}</StyledRed>
-              <StyledBlue>ATH: {ath}</StyledBlue>
+            <Box sx={{ display: ['grid', 'grid', 'block'] }}>
+              <StyledRed sx={{ paddingTop: ['3px', '3px', '0px'] }}>
+                ATL: {atl}
+              </StyledRed>
+              <StyledBlue
+                sx={{
+                  marginTop: ['-6px', '-6px', '0px'],
+                  paddingLeft: ['0px', '0px', '5px'],
+                }}
+              >
+                ATH: {ath}
+              </StyledBlue>
             </Box>
           )}
-        </Box>
+        </StyledBox>
       </RelativeFlex>
     )
   }

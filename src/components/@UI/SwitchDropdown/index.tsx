@@ -12,11 +12,12 @@ export interface SwitchDropdownProps {
   value: string
   options: Array<string>
   onChange: Function
+  onStatusChange?: Function
 }
 
 const SwitchDropdown = forwardRef(
   (
-    { value, options, onChange, ...props }: SwitchDropdownProps,
+    { value, options, onChange, onStatusChange, ...props }: SwitchDropdownProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const [open, setOpen] = useState(false)
@@ -24,12 +25,19 @@ const SwitchDropdown = forwardRef(
     const handleClick = (option: string) => {
       setOpen(!open)
       onChange(option)
+      onStatusChange && onStatusChange(!open)
     }
 
     return (
       <>
         <SwitchDropdownWrapper {...{ ref, ...props }}>
-          <SwitchDropdownHeader open={open} onClick={() => setOpen(!open)}>
+          <SwitchDropdownHeader
+            open={open}
+            onClick={() => {
+              setOpen(!open)
+              onStatusChange && onStatusChange(!open)
+            }}
+          >
             <Text variant="h1Secondary" color="primary">
               {value ? value : options[0]}
             </Text>

@@ -62,5 +62,8 @@ export const PaginationBase = styled.div`
         width: ${({ theme }) => theme.sizes[3] + 'px'};
       }
     }
+    &.break {
+      display: none;
+    }
   }
 `

@@ -1,24 +1,28 @@
 import React from 'react'
 import { useTheme } from '@emotion/react'
-import { format } from 'date-fns'
+import { truncateString } from '../../../../utils/string'
 import ReactApexChart from 'react-apexcharts'
 
-interface PopulatedScatterChartProps {
+interface PopulatedRadarChartProps {
   chartData: {
-    name: string
-    data: any
-  }[]
+    series: {
+      name: string
+      data: number[]
+    }[]
+    labels: string[]
+  }
 }
 
-const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
+const PopulatedRadarChart = ({ chartData }: PopulatedRadarChartProps) => {
   const theme = useTheme()
 
   return (
     <ReactApexChart
-      series={chartData}
-      type="scatter"
-      height={300}
+      type="radar"
+      series={chartData.series}
+      labels={chartData.labels}
       width="100%"
+      height="100%"
       options={{
         chart: {
           id: 'upshotChart',
@@ -52,34 +56,23 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
           theme: 'dark',
 
           custom: function ({ dataPointIndex }: { dataPointIndex: number }) {
-            const name = chartData[0].name
-            const [timestamp, price, tokenId, buyer] = chartData[0].data[
-              dataPointIndex
-            ] as any
+            const label = chartData.labels[dataPointIndex]
+            const value = chartData.series[0].data[dataPointIndex]
 
             return `
                 <div style="background-color: ${
                   theme.rawColors['grey-900']
                 }; border-radius: 5px; color: white; padding: 12px; font-weight: 600; font-size: 1rem;">
-                  <div style="color: ${
-                    theme.rawColors.blue
-                  }">${name} #${tokenId}</div>
+                  <div style="color: ${theme.rawColors.blue}">${label}</div>
                   <div style="font-size: 0.9rem; color: ${
                     theme.rawColors.white
-                  }">${format(timestamp, 'MM/dd/yyyy')} (Ξ${price})</div>
-            <div style="display: flex; align-items: center; font-weight: 400; font-size: 0.9rem; color: ${
-              theme.rawColors['grey-400']
-            };">
-            <div style="width:5px; height: 5px; border-radius: 50%; background-color: ${
-              theme.rawColors.purple
-            }; margin-right: 4px;"></div>
-            ${buyer}</div>
+                  }">Ξ${value.toFixed(4)}</div>
               </div>
             `
           },
         },
         yaxis: {
-          show: true,
+          show: false,
           labels: {
             show: true,
             style: {
@@ -87,11 +80,11 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
               fontSize: '.75rem',
               fontFamily: 'proxima-nova, sans-serif',
             },
-            formatter: (value: number) => 'Ξ' + value,
+            formatter: (value: number) => value + '%',
           },
-          forceNiceScale: true,
         },
         xaxis: {
+          categories: chartData.labels.map((str) => truncateString(str, 10)),
           axisBorder: {
             show: false,
           },
@@ -99,18 +92,7 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
             show: false,
           },
           labels: {
-            show: false,
-            rotate: 0,
-            style: {
-              colors: theme.rawColors['grey-200'],
-              fontSize: '.75rem',
-              fontFamily: 'proxima-nova, sans-serif',
-            },
-            formatter: (value: string) => {
-              if (!value) return null
-
-              return format(Number(value), 'MM/dd/yy')
-            },
+            show: true,
           },
           tooltip: {
             enabled: false,
@@ -118,7 +100,7 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
         },
         colors: [theme.rawColors.primary],
         markers: {
-          size: 6,
+          size: 2,
           colors: [theme.rawColors.primary],
           strokeColors: [theme.rawColors.primary],
         },
@@ -127,4 +109,4 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
   )
 }
 
-export default PopulatedScatterChart
+export default PopulatedRadarChart
