@@ -25,8 +25,10 @@ interface PopulatedChartProps {
     priceChange?: string
     labelColor?: keyof typeof colors
     volume?: number | boolean
+    currentFloor?: string
+    metric?: string,
   }[]
-  embedded?: boolean
+  embedded?: boolean,
 }
 
 type HoverDataPoint = {
@@ -107,6 +109,30 @@ const PopulatedChart = ({
 
   const timestamp = hoverDataPoint?.[hoverIndex]?.timestamp
 
+  const metricKeys = {
+    FLOOR: 'currentFloor',
+    AVERAGE: 'currentAvg',
+  }
+
+  const labelValue = (
+    index: number,
+    set: {
+      data: number[][] | number[],
+      currentFloor?: string,
+      currentAvg?: string,
+      metric?: string
+    }
+    ) => {
+    if (hoverDataPoint[index]?.value)
+      return hoverDataPoint[index]?.value
+
+    return parseFloat(
+      set[(
+        metricKeys[(set.metric as keyof typeof metricKeys)] as 'currentFloor' | 'currentAvg'
+      )]
+    )
+  }
+
   const chartLabels = useMemo(
     () =>
       chartData
@@ -119,12 +145,7 @@ const PopulatedChart = ({
               key={i}
               title={set.name}
               titleColor={set.labelColor}
-              price_1={
-                hoverDataPoint[index]?.value ??
-                (Array.isArray(set.data[set.data.length - 1]) // Default to last price
-                  ? (set.data[set.data.length - 1] as number[])[1]
-                  : (set.data[set.data.length - 1] as number))
-              }
+              price_1={labelValue(index, set)}
               onClose={() => {
                 toggle(
                   index,

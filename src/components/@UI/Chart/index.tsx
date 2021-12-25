@@ -31,6 +31,9 @@ export interface ChartProps {
     ath?: string
     atl?: string
     volume?: number | boolean
+    currentFloor?: string
+    currentAvg?: string
+    metric?: string
   }[]
   /**
    * Renders the search variant.
