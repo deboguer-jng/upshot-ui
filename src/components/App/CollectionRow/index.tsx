@@ -63,9 +63,12 @@ const CollectionRow = forwardRef(
             {/* Each row has a required avatar image circle. */}
             <TableCell>
               <Avatar
-                {...{ src, onClick }}
-                pixelated={pixelated}
-                sx={{ cursor: onClick ? 'pointer' : 'auto' }}
+                {...{ pixelated, src, onClick }}
+                sx={{
+                  cursor: onClick ? 'pointer' : 'auto',
+                  backgroundColor: 'grey-600',
+                  borderColor: 'black',
+                }}
               />
             </TableCell>
 
