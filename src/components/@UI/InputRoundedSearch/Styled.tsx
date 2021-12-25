@@ -5,6 +5,10 @@ interface InputRoundedSearchBaseProps {
   $hasButton: boolean
 }
 
+interface InputRoundedSearchWrapperProps {
+  $isMobile: boolean
+}
+
 export const InputRoundedSearchBase = styled(
   InputRounded
 )<InputRoundedSearchBaseProps>`
@@ -17,9 +21,9 @@ export const InputRoundedSearchBase = styled(
   z-index: ${({ theme }) => theme.zIndex.default + 2};
 `
 
-export const InputRoundedSearchWrapper = styled.div`
+export const InputRoundedSearchWrapper = styled.div<InputRoundedSearchWrapperProps>`
   position: relative;
-  width: fit-content;
+  width: ${({ $isMobile }) => $isMobile ? '100%' : 'fit-content' };
 `
 
 export const InputRoundedSearchSuggestionsWrapper = styled.div`
