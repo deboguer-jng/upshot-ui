@@ -112,6 +112,7 @@ const PopulatedChart = ({
   const metricKeys = {
     FLOOR: 'currentFloor',
     AVERAGE: 'currentAvg',
+    VOLUME: 'currentVolume',
   }
 
   const labelValue = (
@@ -120,6 +121,7 @@ const PopulatedChart = ({
       data: number[][] | number[],
       currentFloor?: string,
       currentAvg?: string,
+      currentVolume?: string,
       metric?: string
     }
     ) => {
@@ -128,7 +130,7 @@ const PopulatedChart = ({
 
     return parseFloat(
       set[(
-        metricKeys[(set.metric as keyof typeof metricKeys)] as 'currentFloor' | 'currentAvg'
+        metricKeys[(set.metric as keyof typeof metricKeys)] as 'currentFloor' | 'currentAvg' | 'currentVolume'
       )]
     )
   }

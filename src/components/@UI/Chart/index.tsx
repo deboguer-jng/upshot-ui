@@ -33,6 +33,7 @@ export interface ChartProps {
     volume?: number | boolean
     currentFloor?: string
     currentAvg?: string
+    currentVolume?: string
     metric?: string
   }[]
   /**
