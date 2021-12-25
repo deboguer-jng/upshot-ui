@@ -1,17 +1,23 @@
 import css from '@emotion/css'
 import styled from '@emotion/styled'
 import { Flex } from 'theme-ui'
-import { breakpoints } from '../../../themes/UpshotUI/sizes'
+import { breakpointsNamed, breakpoints } from '../../../themes/UpshotUI/sizes'
 
-export const ContainerBase = styled(Flex)<{ $constrain?: number }>`
+interface ContainerBaseProps {
+  $maxBkp?: keyof typeof breakpointsNamed
+}
+
+export const ContainerBase = styled(Flex)<ContainerBaseProps>`
   width: 100%;
   margin: 0 auto;
 
-  ${({ $constrain = 0 }) =>
+  ${({ $maxBkp }) =>
     breakpoints.map(
-      (bkp: string, idx: number) => css`
+      (bkp: string) => css`
         @media only screen and (min-width: ${bkp}) {
-          max-width: ${breakpoints[Math.max(0, idx - $constrain)]};
+          max-width: ${$maxBkp
+            ? `calc(min(${bkp}, ${breakpointsNamed[$maxBkp]}))`
+            : bkp};
         }
       `
     )}

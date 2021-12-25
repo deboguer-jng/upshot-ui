@@ -1,12 +1,12 @@
 import React, { forwardRef } from 'react'
 import { ContainerBase } from './Styled'
 import { FlexProps } from 'theme-ui'
-
+import { breakpointsNamed } from '../../../themes/UpshotUI/sizes'
 export interface ContainerProps extends FlexProps {
   /**
-   * Number of breakpoints to constrain from max width.
+   * Maximum breakpoint width.
    */
-  constrain?: number
+  maxBreakpoint?: keyof typeof breakpointsNamed
 }
 
 /**
@@ -14,9 +14,9 @@ export interface ContainerProps extends FlexProps {
  */
 const Container = forwardRef(
   (
-    { constrain, ...props }: ContainerProps,
+    { maxBreakpoint, ...props }: ContainerProps,
     ref: React.ForwardedRef<HTMLDivElement>
-  ) => <ContainerBase $constrain={constrain} {...{ ref, ...props }} />
+  ) => <ContainerBase $maxBkp={maxBreakpoint} {...{ ref, ...props }} />
 )
 
 export default Container
