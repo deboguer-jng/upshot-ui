@@ -14,7 +14,7 @@ export interface SwitchDropdownProps extends BoxProps {
   options: Array<string>
   onValueChange: (option: string) => void
   onToggle?: (open: boolean) => void
-  defaultOpen: boolean
+  defaultOpen?: boolean
 }
 
 const SwitchDropdown = forwardRef(
