@@ -1,14 +1,13 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Text } from 'theme-ui'
-import OptimizedImage from './'
+import Image from './'
 
 export default {
-  title: 'Layout/OptimizedImage',
-  component: OptimizedImage,
-} as ComponentMeta<typeof OptimizedImage>
+  title: '@UI/Image',
+  component: Image,
+} as ComponentMeta<typeof Image>
 
-const Template: ComponentStory<typeof OptimizedImage> = (args) => <OptimizedImage {...args} />
+const Template: ComponentStory<typeof Image> = (args) => <Image {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
