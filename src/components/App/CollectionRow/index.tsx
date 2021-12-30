@@ -58,6 +58,8 @@ const CollectionRow = forwardRef(
     const isMobile = breakpointIndex <= 1
     const [open, setOpen] = useState(defaultOpen)
     const optimizedSrc = imageOptimizer(imageSrc, {height: 48}) ?? imageSrc
+    const src = pixelated ? imageSrc : optimizedSrc
+
     return (
       <>
         {!isMobile ? (
@@ -65,7 +67,7 @@ const CollectionRow = forwardRef(
             {/* Each row has a required avatar image circle. */}
             <TableCell>
               <Avatar
-                {...{ pixelated, optimizedSrc, onClick }}
+                {...{ pixelated, src, onClick }}
                 sx={{
                   cursor: onClick ? 'pointer' : 'auto',
                   backgroundColor: 'grey-600',
@@ -103,7 +105,7 @@ const CollectionRow = forwardRef(
           >
             <CollectorRowContent>
               <Avatar
-                {...{ optimizedSrc, onClick }}
+                {...{ src, onClick }}
                 size="md"
                 pixelated={pixelated}
                 sx={{ cursor: onClick ? 'pointer' : 'auto' }}
