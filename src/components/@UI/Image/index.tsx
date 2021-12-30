@@ -5,7 +5,7 @@ export interface ImageProps extends ImageUIProps {
   /**
    * Image src
    */
-  src: string
+  src: string | undefined
   /**
    * Transforms image to the given width. Examples: "150" (in pixels) or "0.5" (in ratio)
    */
