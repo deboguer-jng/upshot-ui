@@ -291,7 +291,7 @@ const CollectorRow = forwardRef(
                             </a>
                           )
                         })
-                      )}
+                      }
                     </Grid>
                   </Flex>
                 ) : (
