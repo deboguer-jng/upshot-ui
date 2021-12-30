@@ -50,9 +50,9 @@ const Image = forwardRef(
       optimizations.push('ar_' + aspectRatio)
     }
 
-    const cloudinaryUrlSchemeStart = 'https://res.cloudinary.com/upshot-inc/image/upload/'
+    const cloudinaryUrlSchemeStart = '//res.cloudinary.com/upshot-inc/image/upload/'
     let optimizedSrc
-    if (optimizations.length > 0 && src.startsWith(cloudinaryUrlSchemeStart)) {
+    if (optimizations.length > 0 && src.includes(cloudinaryUrlSchemeStart)) {
       const optimiationString = optimizations.join(',')
       optimizedSrc = src.replace(cloudinaryUrlSchemeStart, cloudinaryUrlSchemeStart + optimiationString + '/')
     }
