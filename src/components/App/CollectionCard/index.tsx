@@ -6,6 +6,7 @@ import Avatar from '../../@UI/Avatar'
 import Text from '../../@UI/Text'
 import Icon from '../../@UI/Icon'
 import IconButton from '../../@UI/IconButton'
+import { imageOptimizer } from '../../../utils/imageOptimizer'
 import Flex from '../../Layout/Flex'
 import Grid from '../../Layout/Grid'
 import { SeeAllButton, CardContainer, CollectionCardBase } from './Styled'
@@ -67,7 +68,10 @@ const CollectionCard = forwardRef(
           <Flex sx={{ gap: 2 }}>
             <Avatar
               color="black"
-              src={avatarImage}
+              src={imageOptimizer(avatarImage, {
+                  width: parseInt(theme.images.avatar.md.size),
+                  height: parseInt(theme.images.avatar.md.size)
+                }) ?? avatarImage}
               size="md"
               sx={{ width: '54px', height: '54px', border: '2px solid black' }}
             />

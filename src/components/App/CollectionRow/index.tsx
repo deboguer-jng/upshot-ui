@@ -12,7 +12,7 @@ import { TableRowProps } from '../../Layout/TableRow'
 import { Icon, useBreakpointIndex } from '../../..'
 import { Flex, IconButton } from '@theme-ui/components'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
-
+import { useTheme } from '@emotion/react'
 export type Variant = 'black' | 'dark' | 'normal'
 export interface CollectionRowProps extends TableRowProps {
   /**
@@ -54,10 +54,15 @@ const CollectionRow = forwardRef(
     }: CollectionRowProps,
     ref: React.ForwardedRef<HTMLTableRowElement>
   ) => {
+    const theme = useTheme()
     const breakpointIndex = useBreakpointIndex()
     const isMobile = breakpointIndex <= 1
     const [open, setOpen] = useState(defaultOpen)
-    const optimizedSrc = imageOptimizer(imageSrc, {height: 48, width: 48}) ?? imageSrc
+
+    const optimizedSrc = imageOptimizer(imageSrc, {
+        width: parseInt(theme.images.avatar.md.size),
+        height: parseInt(theme.images.avatar.md.size)
+      }) ?? imageSrc
     const src = pixelated ? imageSrc : optimizedSrc
 
     return (
