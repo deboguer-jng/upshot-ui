@@ -18,6 +18,10 @@
    * Transforms image to the given aspect ratio. Examples: "16:9" or "1.33"
    */
   aspectRatio?: string
+  /**
+   * Cloudinary crop mode (default: lfill): https://cloudinary.com/documentation/resizing_and_cropping#resize_and_crop_modes
+   */
+   cropMode?: string
 }
 
 export const imageOptimizer = (
@@ -25,6 +29,10 @@ export const imageOptimizer = (
   opts: ImageProps = {},
 ) => {
   if (typeof src === 'undefined' /* || opts.length === 0 */) return src
+
+  if (!opts.cropMode) {
+    opts.cropMode = 'lfill' // make "lfill" default crop mode
+  }
 
   let optimizations = []
   if (opts.width) {
@@ -39,6 +47,7 @@ export const imageOptimizer = (
 
   const cloudinaryUrlSchemeStart = '//res.cloudinary.com/upshot-inc/image/upload/'
   if (optimizations.length > 0 && src.includes(cloudinaryUrlSchemeStart)) {
+    optimizations.push('c_' + opts.cropMode)
     const optimiationString = optimizations.join(',')
     return src.replace(cloudinaryUrlSchemeStart, cloudinaryUrlSchemeStart + optimiationString + '/')
   }

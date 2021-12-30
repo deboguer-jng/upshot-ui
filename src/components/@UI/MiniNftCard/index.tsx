@@ -106,7 +106,7 @@ const MiniNftCard = forwardRef(
   ) => {
     const isMobile = useBreakpointIndex() <= 1
 
-    const optimizedSrc = imageOptimizer(image, {height: theme.miniNftCard.height}) ?? image
+    const optimizedSrc = imageOptimizer(image, {height: theme.miniNftCard.height, width: theme.miniNftCard.width}) ?? image
     const imageSrc = pixelated ? image : optimizedSrc
 
     return (

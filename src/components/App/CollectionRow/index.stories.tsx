@@ -88,6 +88,13 @@ Default.args = {
       pixelated: true,
     },
     {
+      title:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales quis ex nec sagittis.',
+      imageSrc:
+        'https://res.cloudinary.com/upshot-inc/image/upload/v1631595287/e9pnaaeah4a1jw8kpmgd.jpg',
+      columns: ['Value 1', 'Value 2', 'Value 3'],
+    },
+    {
       title: 'CryptoPunk #1025',
       imageSrc: '/img/defaultAvatar.png',
       columns: ['Value 1', 'Value 2', 'Value 3'],

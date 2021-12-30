@@ -57,7 +57,7 @@ const CollectionRow = forwardRef(
     const breakpointIndex = useBreakpointIndex()
     const isMobile = breakpointIndex <= 1
     const [open, setOpen] = useState(defaultOpen)
-    const optimizedSrc = imageOptimizer(imageSrc, {height: 48}) ?? imageSrc
+    const optimizedSrc = imageOptimizer(imageSrc, {height: 48, width: 48}) ?? imageSrc
     const src = pixelated ? imageSrc : optimizedSrc
 
     return (
