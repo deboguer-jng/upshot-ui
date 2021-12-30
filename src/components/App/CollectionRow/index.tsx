@@ -11,6 +11,7 @@ import TableCell from '../../Layout/TableCell'
 import { TableRowProps } from '../../Layout/TableRow'
 import { Icon, useBreakpointIndex } from '../../..'
 import { Flex, IconButton } from '@theme-ui/components'
+import { imageOptimizer } from '../../../utils/imageOptimizer'
 
 export type Variant = 'black' | 'dark' | 'normal'
 export interface CollectionRowProps extends TableRowProps {
@@ -42,7 +43,7 @@ const CollectionRow = forwardRef(
   (
     {
       variant = 'normal',
-      imageSrc: src,
+      imageSrc,
       title,
       children,
       pixelated,
@@ -56,6 +57,7 @@ const CollectionRow = forwardRef(
     const breakpointIndex = useBreakpointIndex()
     const isMobile = breakpointIndex <= 1
     const [open, setOpen] = useState(defaultOpen)
+    const optimizedSrc = imageOptimizer(imageSrc, {height: 48}) ?? imageSrc
     return (
       <>
         {!isMobile ? (
@@ -63,7 +65,7 @@ const CollectionRow = forwardRef(
             {/* Each row has a required avatar image circle. */}
             <TableCell>
               <Avatar
-                {...{ pixelated, src, onClick }}
+                {...{ pixelated, optimizedSrc, onClick }}
                 sx={{
                   cursor: onClick ? 'pointer' : 'auto',
                   backgroundColor: 'grey-600',
@@ -101,7 +103,7 @@ const CollectionRow = forwardRef(
           >
             <CollectorRowContent>
               <Avatar
-                {...{ src, onClick }}
+                {...{ optimizedSrc, onClick }}
                 size="md"
                 pixelated={pixelated}
                 sx={{ cursor: onClick ? 'pointer' : 'auto' }}

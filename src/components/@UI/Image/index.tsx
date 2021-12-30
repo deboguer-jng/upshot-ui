@@ -40,9 +40,9 @@ const Image = forwardRef(
     }: ImageProps,
     ref: React.ForwardedRef<HTMLImageElement>
   ) => {
-    const optimizedSrc = imageOptimizer(src, width, height, aspectRatio)
+    const optimizedSrc = imageOptimizer(src, {width, height, aspectRatio})
     return (
-      <ImageUI src={optimizedSrc || src} ref={ref} {...props} />
+      <ImageUI src={optimizedSrc ?? src} ref={ref} {...props} />
     )
   }
 )
