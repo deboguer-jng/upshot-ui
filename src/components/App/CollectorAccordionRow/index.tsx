@@ -1,4 +1,8 @@
 import React, { forwardRef, useState, useEffect } from 'react'
+import { useTheme } from '@emotion/react'
+import { format, formatDistance } from 'date-fns'
+import { ethers } from 'ethers'
+
 import {
   CollectorRowBase,
   CollectorRowContent,
@@ -15,8 +19,7 @@ import {
   shortenAddress,
   fetchEns,
 } from '../../../utils/address'
-import { format, formatDistance } from 'date-fns'
-import { ethers } from 'ethers'
+import { imageOptimizer } from '../../../utils/imageOptimizer'
 
 export interface CollectorAccordionRowProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -104,6 +107,7 @@ const CollectorRow = forwardRef(
     }: CollectorAccordionRowProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
+    const theme = useTheme()
     const [open, setOpen] = useState(defaultOpen)
     const isFirstColumn = !!avgHoldTime || !!firstAcquisition || !!nftCollection
     const [avatarUrl, setAvatarUrl] = useState(
@@ -264,24 +268,29 @@ const CollectorRow = forwardRef(
                       }}
                     >
                       {nftCollection.map(
-                        ({ imageUrl, url, pixelated }, idx) => (
-                          <a href={url} key={idx}>
-                            <Box
-                              sx={{
-                                backgroundImage: `url(${imageUrl})`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                                backgroundRepeat: 'no-repeat',
-                                borderRadius: 'sm',
-                                width: '100%',
-                                paddingTop: '100%',
-                                imageRendering: pixelated
-                                  ? 'pixelated'
-                                  : 'auto',
-                              }}
-                            />
-                          </a>
-                        )
+                        ({ imageUrl, url, pixelated }, idx) => {
+                          const optimizedSrc = imageOptimizer(imageUrl, {height: 180, width: 180}) ?? imageUrl
+                          const imageSrc = pixelated ? imageUrl : optimizedSrc
+
+                          return (
+                            <a href={url} key={idx}>
+                              <Box
+                                sx={{
+                                  backgroundImage: `url(${imageSrc})`,
+                                  backgroundSize: 'cover',
+                                  backgroundPosition: 'center',
+                                  backgroundRepeat: 'no-repeat',
+                                  borderRadius: 'sm',
+                                  width: '100%',
+                                  paddingTop: '100%',
+                                  imageRendering: pixelated
+                                    ? 'pixelated'
+                                    : 'auto',
+                                }}
+                              />
+                            </a>
+                          )
+                        })
                       )}
                     </Grid>
                   </Flex>
@@ -342,7 +351,11 @@ const CollectorRow = forwardRef(
                           key={idx}
                         >
                           <a href={url}>
-                            <Avatar size="lg" color="white" src={imageUrl} />
+                            <Avatar size="lg" color="white" src={imageOptimizer(imageUrl, {
+                                height: parseInt(theme.images.avatar.lg.size),
+                                width: parseInt(theme.images.avatar.lg.size)
+                              }) ?? imageUrl}
+                            />
                           </a>
                           <Flex
                             sx={{
