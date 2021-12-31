@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import InputRounded from '../InputRounded'
+import type { InputRoundedSearchVariant } from './'
 
 interface InputRoundedSearchBaseProps {
   $hasButton: boolean
@@ -26,14 +27,17 @@ export const InputRoundedSearchWrapper = styled.div<InputRoundedSearchWrapperPro
   width: ${({ $isMobile }) => ($isMobile ? '100%' : 'fit-content')};
 `
 
-export const InputRoundedSearchSuggestionsWrapper = styled.div`
+export const InputRoundedSearchSuggestionsWrapper = styled.div<{
+  $variant?: InputRoundedSearchVariant
+}>`
   position: absolute;
   top: 0;
   left: 0;
   border-radius: 20px;
-  margin-top: 54px;
-  width: calc(100% + 24px);
-  margin-left: -12px;
+  margin-top: ${({ $variant }) => ($variant === 'nav' ? '54px' : '48px')};
+  margin-left: ${({ $variant }) => ($variant === 'nav' ? '-12px' : 0)};
+  width: ${({ $variant }) =>
+    $variant === 'nav' ? 'calc(100% + 24px)' : '100%'};
   background-color: rgba(0, 0, 0, 0.8);
   border: 1px solid ${({ theme }) => theme.colors['grey-500']};
   backdrop-filter: blur(4px);
