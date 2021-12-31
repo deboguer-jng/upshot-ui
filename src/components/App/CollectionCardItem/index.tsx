@@ -1,4 +1,4 @@
-import { BoxProps } from 'theme-ui'
+import { Text, Flex, BoxProps } from 'theme-ui'
 import React, { forwardRef } from 'react'
 import {
   CollectionCardItemBase,
@@ -6,7 +6,8 @@ import {
   CollectionCardItemDetails,
 } from './Styled'
 import Avatar from '../../@UI/Avatar'
-import { Text, Flex } from 'theme-ui'
+import { imageOptimizer } from '../../../utils/imageOptimizer'
+import { useTheme } from '../../../themes/UpshotUI'
 
 export interface CollectionCardItemProps extends BoxProps {
   /**
@@ -50,57 +51,66 @@ const CollectionCardItem = forwardRef(
       ...props
     }: CollectionCardItemProps,
     ref: React.ForwardedRef<HTMLDivElement>
-  ) => (
-    <CollectionCardItemBase $expanded={expanded} {...{ ref, ...props }}>
-      <CollectionCardItemImage $isPixelated={isPixelated} $src={imageSrc} />
-      <CollectionCardItemDetails>
-        <Flex sx={{ padding: 3, gap: 1, flexDirection: 'column' }}>
-          <Flex sx={{ gap: 2 }}>
-            <Avatar
-              color="black"
-              src={avatarImage}
-              size="sm"
-              sx={{ border: '2px solid black' }}
-            />
-            <Flex
-              sx={{
-                justifyContent: 'center',
-                flexDirection: 'column',
-                flexGrow: 1,
-              }}
-            >
-              <Text
+  ) => {
+    const { theme } = useTheme()
+    
+    const optimizedSrc = imageOptimizer(imageSrc, {width: 512}) ?? imageSrc
+    const finalImage = isPixelated ? imageSrc : optimizedSrc
+    return (
+      <CollectionCardItemBase $expanded={expanded} {...{ ref, ...props }}>
+        <CollectionCardItemImage $isPixelated={isPixelated} $src={finalImage} />
+        <CollectionCardItemDetails>
+          <Flex sx={{ padding: 3, gap: 1, flexDirection: 'column' }}>
+            <Flex sx={{ gap: 2 }}>
+              <Avatar
+                color="black"
+                src={imageOptimizer(avatarImage, {
+                  width: parseInt(theme.images.avatar.sm.size),
+                  height: parseInt(theme.images.avatar.sm.size)
+                }) ?? avatarImage}
+                size="sm"
+                sx={{ border: '2px solid black' }}
+              />
+              <Flex
                 sx={{
-                  fontSize: 2,
-                  color: 'grey-500',
-                  textOverflow: 'ellipsis',
-                  overflow: 'hidden',
-                  whiteSpace: 'nowrap',
-                  lineHeight: 1.25,
+                  justifyContent: 'center',
+                  flexDirection: 'column',
+                  flexGrow: 1,
                 }}
               >
-                {name}
-              </Text>
+                <Text
+                  sx={{
+                    fontSize: 2,
+                    color: 'grey-500',
+                    textOverflow: 'ellipsis',
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                    lineHeight: 1.25,
+                  }}
+                >
+                  {name}
+                </Text>
+              </Flex>
             </Flex>
-          </Flex>
 
-          <Text
-            sx={{
-              color: 'grey-300',
-              textOverflow: 'ellipsis',
-              overflow: 'hidden',
-              display: '-webkit-box',
-              WebkitBoxOrient: 'vertical',
-              WebkitLineClamp: 2,
-              fontSize: 2,
-            }}
-          >
-            {description}
-          </Text>
-        </Flex>
-      </CollectionCardItemDetails>
-    </CollectionCardItemBase>
-  )
+            <Text
+              sx={{
+                color: 'grey-300',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                display: '-webkit-box',
+                WebkitBoxOrient: 'vertical',
+                WebkitLineClamp: 2,
+                fontSize: 2,
+              }}
+            >
+              {description}
+            </Text>
+          </Flex>
+        </CollectionCardItemDetails>
+      </CollectionCardItemBase>
+    )
+  }
 )
 
 export default CollectionCardItem

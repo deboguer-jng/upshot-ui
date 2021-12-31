@@ -4,7 +4,6 @@ import React, {
   useEffect,
   useCallback,
   useRef,
-  useMemo,
 } from 'react'
 
 import Avatar from '../../@UI/Avatar'
@@ -22,6 +21,8 @@ import { usePositioner, useResizeObserver, useMasonry } from 'masonic'
 import { useSize, useScroller } from 'mini-virtual-list'
 import { CollectionCardItemProps } from '../CollectionCardItem'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
+import { useTheme } from '../../../themes/UpshotUI'
+import { imageOptimizer } from '../../../utils/imageOptimizer'
 
 export interface CollectionCardExpandedProps extends BoxProps {
   /**
@@ -81,6 +82,7 @@ const CollectionCardExpanded = forwardRef(
   ) => {
     /* Masonry setup */
     const scrollRef = useRef(null)
+    const { theme } = useTheme()
     const { width, height } = useSize(scrollRef)
     const { scrollTop, isScrolling } = useScroller(scrollRef)
     const isMobile = useBreakpointIndex() <= 1
@@ -145,7 +147,10 @@ const CollectionCardExpanded = forwardRef(
           <Flex sx={{ gap: 2, padding: 3, paddingBottom: 0 }}>
             <Avatar
               color="black"
-              src={avatarImage}
+              src={imageOptimizer(avatarImage, {
+                width: parseInt(theme.images.avatar.md.size),
+                height: parseInt(theme.images.avatar.md.size)
+              }) ?? avatarImage}
               size="md"
               sx={{ width: '54px', height: '54px', border: '2px solid black' }}
             />
