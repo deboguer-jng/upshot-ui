@@ -155,7 +155,9 @@ const Navbar = forwardRef(
                         onClick: onSearch,
                         type: 'button',
                       }}
-                      sx={{ background: 'none' }}
+                      sx={{
+                        background: 'none',
+                      }}
                     />
                   </form>
                 </SearchWrapper>
@@ -261,7 +263,11 @@ const Navbar = forwardRef(
                     onClick: onSearch,
                     type: 'button',
                   }}
-                  sx={{ background: 'none' }}
+                  sx={{
+                    background: 'none',
+                    width: 'calc(100% + 24px)',
+                    marginLeft: '-12px',
+                  }}
                 />
               </form>
             </SearchWrapper>
