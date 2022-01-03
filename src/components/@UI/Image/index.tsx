@@ -1,11 +1,13 @@
 import React, { forwardRef } from 'react'
 import { Image as ImageUI, ImageProps as ImageUIProps } from 'theme-ui'
 
+import { imageOptimizer } from '../../../utils/imageOptimizer'
+
 export interface ImageProps extends ImageUIProps {
   /**
    * Image src
    */
-  src: string
+  src: string | undefined
   /**
    * Transforms image to the given width. Examples: "150" (in pixels) or "0.5" (in ratio)
    */
@@ -38,27 +40,9 @@ const Image = forwardRef(
     }: ImageProps,
     ref: React.ForwardedRef<HTMLImageElement>
   ) => {
-
-    let optimizations = []
-    if (width !== null) {
-      optimizations.push('w_' + width.toString())
-    }
-    if (height !== null) {
-      optimizations.push('h_' + height.toString())
-    }
-    if (aspectRatio !== null) {
-      optimizations.push('ar_' + aspectRatio)
-    }
-
-    const cloudinaryUrlSchemeStart = 'https://res.cloudinary.com/upshot-inc/image/upload/'
-    let optimizedSrc
-    if (optimizations.length > 0 && src.startsWith(cloudinaryUrlSchemeStart)) {
-      const optimiationString = optimizations.join(',')
-      optimizedSrc = src.replace(cloudinaryUrlSchemeStart, cloudinaryUrlSchemeStart + optimiationString + '/')
-    }
-    
+    const optimizedSrc = imageOptimizer(src, {width, height, aspectRatio})
     return (
-      <ImageUI src={optimizedSrc || src} ref={ref} {...props} />
+      <ImageUI src={optimizedSrc ?? src} ref={ref} {...props} />
     )
   }
 )

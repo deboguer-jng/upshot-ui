@@ -1,8 +1,12 @@
 /** @jsxImportSource theme-ui */
-import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import React, { forwardRef, HTMLAttributes } from 'react'
 import { Text, Flex } from 'theme-ui'
+
+
 import ErrorSvg from '../../../assets/svg/icons/Error.svg'
+import { imageOptimizer } from '../../../utils/imageOptimizer'
+import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
+import theme from '../../../themes/UpshotUI'
 import {
   MiniNftCardWrapper,
   MiniNftCardMainBoard,
@@ -102,11 +106,14 @@ const MiniNftCard = forwardRef(
   ) => {
     const isMobile = useBreakpointIndex() <= 1
 
+    const optimizedSrc = imageOptimizer(image, {height: theme.miniNftCard.height, width: theme.miniNftCard.width}) ?? image
+    const imageSrc = pixelated ? image : optimizedSrc
+
     return (
       <MiniNftCardWrapper isMobile={isMobile} {...{ ref, ...props }}>
         <MiniNftCardMainBoard error={error}>
           <MiniNftCardImageWrapper
-            src={error ? ErrorSvg : image}
+            src={error ? ErrorSvg : imageSrc}
             pixelated={pixelated}
           />
           <MiniNftCardMainContentWrapper type={type}>
