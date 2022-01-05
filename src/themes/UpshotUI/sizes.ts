@@ -5,7 +5,6 @@ export const getSize = (n: number) => n * SIZE_UNIT
 const sizes = [...new Array(16)].map((_, n) => getSize(n))
 
 export const breakpointsNamed = {
-  xxs: '320px', // Custom lower-bound
   xs: '640px',
   sm: '768px',
   md: '1024px',
