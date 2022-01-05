@@ -104,7 +104,7 @@ export const FilterButton = styled.button<FilterButtonProps>`
 export const CustomLegendWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: 3rem;
   flex-wrap: wrap;
 `
 
