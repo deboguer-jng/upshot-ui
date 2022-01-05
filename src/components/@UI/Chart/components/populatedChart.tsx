@@ -26,9 +26,9 @@ interface PopulatedChartProps {
     labelColor?: keyof typeof colors
     volume?: number | boolean
     currentFloor?: string
-    metric?: string,
+    metric?: string
   }[]
-  embedded?: boolean,
+  embedded?: boolean
 }
 
 type HoverDataPoint = {
@@ -118,20 +118,22 @@ const PopulatedChart = ({
   const labelValue = (
     index: number,
     set: {
-      data: number[][] | number[],
-      currentFloor?: string,
-      currentAvg?: string,
-      currentVolume?: string,
+      data: number[][] | number[]
+      currentFloor?: string
+      currentAvg?: string
+      currentVolume?: string
       metric?: string
     }
-    ) => {
-    if (hoverDataPoint[index]?.value)
-      return hoverDataPoint[index]?.value
+  ) => {
+    if (hoverDataPoint[index]?.value) return hoverDataPoint[index]?.value
 
     return parseFloat(
-      set[(
-        metricKeys[(set.metric as keyof typeof metricKeys)] as 'currentFloor' | 'currentAvg' | 'currentVolume'
-      )]
+      set[
+        metricKeys[set.metric as keyof typeof metricKeys] as
+          | 'currentFloor'
+          | 'currentAvg'
+          | 'currentVolume'
+      ]
     )
   }
 
