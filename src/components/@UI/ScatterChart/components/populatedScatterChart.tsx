@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { useTheme } from '@emotion/react'
 import { format } from 'date-fns'
+import ApexCharts from 'apexcharts'
 import ReactApexChart from 'react-apexcharts'
 import { CustomLegendWrapper, TimeFilter, TimeFilterWrapper } from '../Styled'
 import ButtonChartCollection from '../../ButtonChartCollection'
 import { toggle } from '../../Chart/utils'
 import colors from '../../../../themes/UpshotUI/colors'
+import { useBreakpointIndex } from '../../../..'
 
 interface PopulatedScatterChartProps {
   chartData: {
@@ -17,14 +19,14 @@ interface PopulatedScatterChartProps {
 
 const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
   const theme = useTheme()
+  const breakpointIndex = useBreakpointIndex()
   const emptyFilters = chartData.map((_) => true)
   const [filterStatus, setFilterStatus] = useState(emptyFilters)
-  const [timeFilter, setTimeFilter] = useState(0)
-  const [previousTimeSlot, setPreviousTimeSlot] = useState(0)
+  const [timeFilter, setTimeFilter] = useState(4)
   const timeFilters = ['1H', '1D', '1W', '1M', 'ALL']
 
-  const getTimePeriod = () => {
-    switch (timeFilter) {
+  const getTimePeriod = (id: number) => {
+    switch (id) {
       case 0:
         return 3600000
       case 1:
@@ -49,6 +51,11 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
   for (let i = 0; i < chartData.length; i++) {
     chartData[i].labelColor = labelColors[i]
   }
+
+  let min = chartData[0].data[0][0]
+  chartData[0].data.forEach((info: any) => {
+    if (min > info[0]) min = info[0]
+  })
 
   return (
     <>
@@ -120,16 +127,20 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
             show: true,
             labels: {
               show: true,
+              align: 'left',
               style: {
                 colors: theme.rawColors['grey-200'],
                 fontSize: '.75rem',
                 fontFamily: 'proxima-nova, sans-serif',
               },
               formatter: (value: number) => 'Ξ' + value,
+              offsetX: -15,
             },
             forceNiceScale: true,
           },
           xaxis: {
+            type: 'datetime',
+            tickAmount: breakpointIndex <= 1 ? 3 : 8,
             axisBorder: {
               show: false,
             },
@@ -146,14 +157,7 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
               },
               formatter: (value: string) => {
                 if (!value) return null
-                if (
-                  getTimePeriod() &&
-                  (!previousTimeSlot ||
-                    Number(value) - previousTimeSlot >= getTimePeriod())
-                ) {
-                  setPreviousTimeSlot(Number(value))
-                  console.log({ value })
-                }
+
                 return format(Number(value), 'MM/dd/yy')
               },
             },
@@ -185,7 +189,20 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
       <TimeFilterWrapper>
         {timeFilters.map((filter, id) => (
           <TimeFilter
-            onClick={() => setTimeFilter(id)}
+            onClick={() => {
+              setTimeFilter(id)
+              const timePeriod = getTimePeriod(id)
+              if (timePeriod) {
+                ApexCharts.exec(
+                  'upshotChart',
+                  'zoomX',
+                  new Date(Date.now() - timePeriod).getTime(),
+                  Date.now()
+                )
+              } else {
+                ApexCharts.exec('upshotChart', 'zoomX', min, Date.now())
+              }
+            }}
             active={id === timeFilter}
           >
             {filter}
