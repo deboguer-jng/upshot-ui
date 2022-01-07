@@ -173,19 +173,6 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
           },
         }}
       />
-      <CustomLegendWrapper>
-        {[...new Array(chartData.length)].map((_, i) => (
-          <ButtonChartCollection
-            key={i}
-            color={chartData[i]?.labelColor}
-            title={chartData[i].name}
-            selected={filterStatus[i]}
-            onClick={() =>
-              toggle(i, chartData[i].name, filterStatus, setFilterStatus)
-            }
-          />
-        ))}
-      </CustomLegendWrapper>
       <TimeFilterWrapper>
         {timeFilters.map((filter, id) => (
           <TimeFilter
