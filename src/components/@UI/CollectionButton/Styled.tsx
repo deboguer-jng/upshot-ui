@@ -22,7 +22,8 @@ export const CollectionButtonWrapper = styled.div<CollectionButtonWrapperProps>`
   cursor: pointer;
 
   &:hover {
-    ${({ theme, $hoverUnderglow }) =>
+    ${({ theme, $underglow, $hoverUnderglow }) =>
+      !$underglow &&
       !!$hoverUnderglow &&
       `box-shadow: ${theme.shadow.underglow($hoverUnderglow)};`}
   }
