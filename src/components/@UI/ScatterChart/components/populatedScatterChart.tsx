@@ -22,8 +22,8 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
   const breakpointIndex = useBreakpointIndex()
   const emptyFilters = chartData.map((_) => true)
   const [filterStatus, setFilterStatus] = useState(emptyFilters)
-  const [timeFilter, setTimeFilter] = useState(4)
-  const timeFilters = ['1H', '1D', '1W', '1M', 'ALL']
+  const [timeFilter, setTimeFilter] = useState(3)
+  const timeFilters = ['1H', '1D', '1W', '1M']
 
   const getTimePeriod = (id: number) => {
     switch (id) {
@@ -35,8 +35,8 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
         return 604800000
       case 3:
         return 2592000000
-      case 4:
-        return 0
+      // case 4:
+      //   return 0
     }
   }
 
