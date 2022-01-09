@@ -31,23 +31,23 @@ export interface CollectionCardItemProps extends BoxProps {
   /**
    * Appraisal Price in ETH
    */
-  appraisalPriceETH?: number
+  appraisalPriceETH?: number | null
   /**
    * Appraisal confidence (0-100)
    */
-   appraisalConfidence?: number
+   appraisalConfidence?: number | null
   /**
    * Appraisal Price in USD
    */
-   appraisalPriceUSD?: number
+   appraisalPriceUSD?: number | null
   /**
    * Floor Price in USD
    */
-  floorPriceETH?: number
+  floorPriceETH?: number | null
   /**
    * Floor Price in USD
    */
-   floorPriceUSD?: number
+   floorPriceUSD?: number | null
   /**
    * Is card expanded by default
    */
@@ -68,11 +68,11 @@ const CollectionCardItem = forwardRef(
       imageSrc,
       collection,
       name,
-      appraisalPriceETH,
-      appraisalConfidence,
-      appraisalPriceUSD,
-      floorPriceETH,
-      floorPriceUSD,
+      appraisalPriceETH = null,
+      appraisalConfidence = null,
+      appraisalPriceUSD = null,
+      floorPriceETH = null,
+      floorPriceUSD = null,
       expanded = false,
       isPixelated = false,
       ...props
@@ -85,13 +85,11 @@ const CollectionCardItem = forwardRef(
     const finalImage = isPixelated ? imageSrc : optimizedSrc
     const hoverUnderglow = appraisalPriceETH ? 'blue' : 'grey-600'
 
-    // remove collection name from NFT name
-    const clearedName = name.replace(collection, '')
     return (
       <CollectionCardItemBase $expanded={expanded} $hoverUnderglow={hoverUnderglow} {...{ ref, ...props }}>
         <CollectionCardItemImage $isPixelated={isPixelated} $src={finalImage} />
-        <CollectionCardItemDetails sx={{ padding: 3, gap: 3 }}>
-          <Flex sx={{ flexDirection: 'column' }}>
+        <CollectionCardItemDetails sx={{ padding: 3, gap: 3, width: '100%' }}>
+          <Flex sx={{ flexDirection: 'column', minWidth: 'calc(100% - 120px)' }}>
             <Flex sx={{ gap: 2 }}>
               <Avatar
                 color="black"
@@ -133,10 +131,10 @@ const CollectionCardItem = forwardRef(
                 WebkitLineClamp: 2,
               }}
             >
-              {clearedName}
+              {name}
             </Text>
           </Flex>
-          { appraisalPriceETH && (// appraisal price
+          { appraisalPriceETH != null && (// appraisal price
             <Flex sx={{ flexDirection: 'column', minWidth: 'fit-content' }}>
               <Text color='grey-500' variant="xSmall">
                 Appraisal price
@@ -151,14 +149,14 @@ const CollectionCardItem = forwardRef(
               >
                 {'Ξ' + appraisalPriceETH.toLocaleString()}
               </Label>
-              { appraisalPriceUSD && (
+              { appraisalPriceUSD != null && (
                 <Text color='grey-300' variant="small" sx={{ opacity: 0.5 }}>
                   ${appraisalPriceUSD.toLocaleString()}
                 </Text>
               )}
             </Flex>
             )}
-            { floorPriceETH && ( // floor price
+            { floorPriceETH  != null && ( // floor price
               <Flex sx={{ flexDirection: 'column', minWidth: 'fit-content' }}>
                 <Text color='grey-500' variant="xSmall">
                   Floor price
@@ -172,7 +170,7 @@ const CollectionCardItem = forwardRef(
                 >
                   {'Ξ' + floorPriceETH.toLocaleString()}
                 </Label>
-                { floorPriceUSD && (
+                { floorPriceUSD != null && (
                   <Text color='grey-300' variant="small" sx={{ opacity: 0.5 }}>
                     ${floorPriceUSD.toLocaleString()}
                   </Text>
