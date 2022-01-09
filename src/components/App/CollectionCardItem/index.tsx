@@ -85,7 +85,8 @@ const CollectionCardItem = forwardRef(
     const finalImage = isPixelated ? imageSrc : optimizedSrc
     const hoverUnderglow = appraisalPriceETH ? 'blue' : 'grey-600'
 
-    // name = name.replace(collection, '')
+    // remove collection name from NFT name
+    const clearedName = name.replace(collection, '')
     return (
       <CollectionCardItemBase $expanded={expanded} $hoverUnderglow={hoverUnderglow} {...{ ref, ...props }}>
         <CollectionCardItemImage $isPixelated={isPixelated} $src={finalImage} />
@@ -132,7 +133,7 @@ const CollectionCardItem = forwardRef(
                 WebkitLineClamp: 2,
               }}
             >
-              {name}
+              {clearedName}
             </Text>
           </Flex>
           { appraisalPriceETH && (// appraisal price
