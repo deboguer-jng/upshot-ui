@@ -31,8 +31,12 @@ const Modal = forwardRef(
      * Adds a small delay for the transition to complete.
      */
     const [isClosing, setIsClosing] = useState(false)
+    if (open === true) {
+      document.body.style.overflow = "hidden"
+    }
 
     const handleClose = () => {
+      document.body.style.overflow = "visible"
       setIsClosing(true)
       window.setTimeout(() => {
         setIsClosing(false)
