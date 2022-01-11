@@ -15,6 +15,7 @@ import Icon from '../../@UI/Icon'
 import Label from '../../@UI/Label'
 import makeBlockie from 'ethereum-blockies-base64'
 import IconButton from '../../@UI/IconButton'
+import { useBreakpointIndex } from '../../..'
 import {
   formatUsername,
   shortenAddress,
@@ -113,6 +114,7 @@ const CollectorRow = forwardRef(
   ) => {
     const theme = useTheme()
     const [open, setOpen] = useState(defaultOpen)
+    const breakpointIndex = useBreakpointIndex()
     const isFirstColumn = !!avgHoldTime || !!firstAcquisition || !!nftCollection
     const [avatarUrl, setAvatarUrl] = useState(
       address ? makeBlockie(address) : null
@@ -139,7 +141,7 @@ const CollectorRow = forwardRef(
 
     return (
       <CollectorRowBase {...{ ref, ...props }} onClick={() => setOpen(!open)}>
-        <CollectorRowContent>
+        <CollectorRowContent isMobile={breakpointIndex <= 1}>
           <Box
             sx={{
               width: '100%',

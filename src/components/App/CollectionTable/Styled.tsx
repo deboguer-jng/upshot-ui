@@ -28,6 +28,7 @@ export const CollectionTableBase = styled(Table)`
   /* Round table corners across the child cells. */
   & td:first-of-type {
     border-top-left-radius: ${({ theme }) => theme.radii.md};
+    padding-left: 16px;
   }
   & td:last-of-type {
     border-top-right-radius: ${({ theme }) => theme.radii.md};
@@ -37,5 +38,6 @@ export const CollectionTableBase = styled(Table)`
   }
   & td:last-of-type {
     border-bottom-right-radius: ${({ theme }) => theme.radii.md};
+    padding-right: 16px;
   }
 `
