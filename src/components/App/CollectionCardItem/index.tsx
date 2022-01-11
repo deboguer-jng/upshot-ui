@@ -35,11 +35,11 @@ export interface CollectionCardItemProps extends BoxProps {
   /**
    * Appraisal confidence (0-100)
    */
-   appraisalConfidence?: number | null
+  appraisalConfidence?: number | null
   /**
    * Appraisal Price in USD
    */
-   appraisalPriceUSD?: number | null
+  appraisalPriceUSD?: number | null
   /**
    * Floor Price in USD
    */
@@ -47,7 +47,7 @@ export interface CollectionCardItemProps extends BoxProps {
   /**
    * Floor Price in USD
    */
-   floorPriceUSD?: number | null
+  floorPriceUSD?: number | null
   /**
    * Is card expanded by default
    */

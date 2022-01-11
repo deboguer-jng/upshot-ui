@@ -5,7 +5,7 @@
  * @returns An image URL with optimized size. This only works for cloudinary URLs
  */
 
- export interface ImageProps {
+export interface ImageProps {
   /**
    * Transforms image to the given width. Examples: "150" (in pixels) or "0.5" (in ratio)
    */
@@ -21,14 +21,14 @@
   /**
    * Cloudinary crop mode (default: lfill): https://cloudinary.com/documentation/resizing_and_cropping#resize_and_crop_modes
    */
-   cropMode?: string
+  cropMode?: string
 }
 
 export const imageOptimizer = (
   src: string | undefined,
   opts: ImageProps = {},
 ) => {
-  if (typeof src === 'undefined' /* || opts.length === 0 */) return src
+  if (!src /* || opts.length === 0 */) return src
 
   if (!opts.cropMode) {
     opts.cropMode = 'lfill' // make "lfill" default crop mode
