@@ -249,7 +249,7 @@ const CollectorRow = forwardRef(
         <CollectorRowExpansion $open={open}>
           <Grid
             columns={['1fr', '1fr', '1fr', !isFirstColumn ? '1fr' : '1fr 1fr']}
-            sx={{ marginX: [0, 0, 46], columnGap: 72, p: 6 }}
+            sx={{ marginX: [0, 0, 46], columnGap: 72, p: '24px' }}
           >
             {isFirstColumn && (
               <Flex sx={{ flexDirection: 'column', gap: 4 }}>
