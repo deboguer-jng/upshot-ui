@@ -19,7 +19,7 @@ export interface CollectionCardItemProps extends BoxProps {
   /**
    * Image source
    */
-  imageSrc: string
+  imageSrc?: string
   /**
    * Collection name
    */
