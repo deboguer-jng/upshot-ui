@@ -1,13 +1,19 @@
 import styled from '@emotion/styled'
 import Panel from '../../@UI/Panel'
-import { Box } from 'theme-ui'
+import colors from '../../../themes/UpshotUI/colors'
+import { Box, Flex } from 'theme-ui'
 
 type CollectionCardItemImageProps = {
   $isPixelated: boolean
   $src: string
 }
 
-export const CollectionCardItemBase = styled(Panel)<{ $expanded: boolean }>`
+type CollectionCardItemProps = {
+  $expanded: boolean
+  $hoverUnderglow: keyof typeof colors
+}
+
+export const CollectionCardItemBase = styled(Panel)<CollectionCardItemProps>`
   display: flex;
   position: relative;
   min-height: 260px;
@@ -16,7 +22,6 @@ export const CollectionCardItemBase = styled(Panel)<{ $expanded: boolean }>`
   overflow: hidden;
   border-radius: ${({ theme }) => theme.radii.md};
   -webkit-transform: translateZ(0); /* Trim overflow with translated layer. */
-  clip-path: content-box;
 
   /* Hide details until hover unless expanded. */
   ${({ $expanded, theme }) =>
@@ -27,11 +32,12 @@ export const CollectionCardItemBase = styled(Panel)<{ $expanded: boolean }>`
     opacity: 0.0;
   }`}
 
+
   &:hover {
-    box-shadow: ${({ theme }) => theme.shadow.underglow('blue')};
+    box-shadow: ${({ theme, $hoverUnderglow }) => theme.shadow.underglow($hoverUnderglow)};
 
     & > div:first-of-type {
-      transform: translateY(-82px);
+      transform: translateY(-72px);
       box-shadow: ${({ theme }) => theme.shadow.default};
     }
 
@@ -43,7 +49,7 @@ export const CollectionCardItemBase = styled(Panel)<{ $expanded: boolean }>`
   ${({ $expanded, theme }) =>
     $expanded &&
     `& > div:first-of-type {
-      transform: translateY(-82px);
+      transform: translateY(-72px);
       box-shadow: ${theme.shadow.default}};
     }`}
 `
@@ -63,9 +69,11 @@ export const CollectionCardItemImage = styled(
   image-rendering: ${({ $isPixelated }) => ($isPixelated ? 'pixelated' : '')};
   pointer-events: none;
   z-index: 1;
+  border-radius: ${({ theme }) => theme.radii.md};
+  bottom: 10px
 `
 
-export const CollectionCardItemDetails = styled(Box)`
+export const CollectionCardItemDetails = styled(Flex)`
   position: absolute;
   bottom: 0;
   z-index: 0;

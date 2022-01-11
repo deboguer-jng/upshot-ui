@@ -1,11 +1,13 @@
-import { Text, Flex, BoxProps } from 'theme-ui'
+import { Flex, BoxProps, Box } from 'theme-ui'
 import React, { forwardRef } from 'react'
 import {
   CollectionCardItemBase,
   CollectionCardItemImage,
   CollectionCardItemDetails,
 } from './Styled'
+import Text from '../../@UI/Text'
 import Avatar from '../../@UI/Avatar'
+import Label from '../../@UI/Label'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
 import { useTheme } from '../../../themes/UpshotUI'
 
@@ -17,17 +19,37 @@ export interface CollectionCardItemProps extends BoxProps {
   /**
    * Image source
    */
-  imageSrc: string
+  imageSrc?: string
+  /**
+   * Collection name
+   */
+  collection: string
   /**
    * Asset name
    */
   name: string
   /**
-   * Description metadata
+   * Appraisal Price in ETH
    */
-  description: string
+  appraisalPriceETH?: number | null
   /**
-   * Expanded description
+   * Appraisal confidence (0-100)
+   */
+  appraisalConfidence?: number | null
+  /**
+   * Appraisal Price in USD
+   */
+  appraisalPriceUSD?: number | null
+  /**
+   * Floor Price in USD
+   */
+  floorPriceETH?: number | null
+  /**
+   * Floor Price in USD
+   */
+  floorPriceUSD?: number | null
+  /**
+   * Is card expanded by default
    */
   expanded?: boolean
   /**
@@ -42,12 +64,17 @@ export interface CollectionCardItemProps extends BoxProps {
 const CollectionCardItem = forwardRef(
   (
     {
+      avatarImage,
+      imageSrc,
+      collection,
+      name,
+      appraisalPriceETH = null,
+      appraisalConfidence = null,
+      appraisalPriceUSD = null,
+      floorPriceETH = null,
+      floorPriceUSD = null,
       expanded = false,
       isPixelated = false,
-      avatarImage,
-      name,
-      imageSrc,
-      description,
       ...props
     }: CollectionCardItemProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -56,11 +83,13 @@ const CollectionCardItem = forwardRef(
     
     const optimizedSrc = imageOptimizer(imageSrc, {width: 512}) ?? imageSrc
     const finalImage = isPixelated ? imageSrc : optimizedSrc
+    const hoverUnderglow = appraisalPriceETH ? 'blue' : 'grey-600'
+
     return (
-      <CollectionCardItemBase $expanded={expanded} {...{ ref, ...props }}>
+      <CollectionCardItemBase $expanded={expanded} $hoverUnderglow={hoverUnderglow} {...{ ref, ...props }}>
         <CollectionCardItemImage $isPixelated={isPixelated} $src={finalImage} />
-        <CollectionCardItemDetails>
-          <Flex sx={{ padding: 3, gap: 1, flexDirection: 'column' }}>
+        <CollectionCardItemDetails sx={{ padding: 3, gap: 3, width: '100%' }}>
+          <Flex sx={{ flexDirection: 'column', minWidth: 'calc(100% - 120px)' }}>
             <Flex sx={{ gap: 2 }}>
               <Avatar
                 color="black"
@@ -68,7 +97,7 @@ const CollectionCardItem = forwardRef(
                   width: parseInt(theme.images.avatar.sm.size),
                   height: parseInt(theme.images.avatar.sm.size)
                 }) ?? avatarImage}
-                size="sm"
+                size="xs"
                 sx={{ border: '2px solid black' }}
               />
               <Flex
@@ -79,34 +108,75 @@ const CollectionCardItem = forwardRef(
                 }}
               >
                 <Text
+                  variant="xSmall"
+                  color="grey-500"
                   sx={{
-                    fontSize: 2,
-                    color: 'grey-500',
                     textOverflow: 'ellipsis',
                     overflow: 'hidden',
-                    whiteSpace: 'nowrap',
-                    lineHeight: 1.25,
                   }}
                 >
-                  {name}
+                  {collection}
                 </Text>
               </Flex>
             </Flex>
 
             <Text
+            variant="large"
+              color="grey-300"
               sx={{
-                color: 'grey-300',
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
                 display: '-webkit-box',
                 WebkitBoxOrient: 'vertical',
                 WebkitLineClamp: 2,
-                fontSize: 2,
               }}
             >
-              {description}
+              {name}
             </Text>
           </Flex>
+          { appraisalPriceETH != null && (// appraisal price
+            <Flex sx={{ flexDirection: 'column', minWidth: 'fit-content' }}>
+              <Text color='grey-500' variant="xSmall">
+                Appraisal price
+              </Text>
+              <Label
+                color="primary"
+                currencySymbol=""
+                size="sm"
+                topRightLabel={appraisalConfidence ? appraisalConfidence.toString() + '%' : ''}
+                variant="currency"
+                style={{ lineHeight: 1 }}
+              >
+                {'Ξ' + appraisalPriceETH.toLocaleString()}
+              </Label>
+              { appraisalPriceUSD != null && (
+                <Text color='grey-300' variant="small" sx={{ opacity: 0.5 }}>
+                  ${appraisalPriceUSD.toLocaleString()}
+                </Text>
+              )}
+            </Flex>
+            )}
+            { floorPriceETH  != null && ( // floor price
+              <Flex sx={{ flexDirection: 'column', minWidth: 'fit-content' }}>
+                <Text color='grey-500' variant="xSmall">
+                  Floor price
+                </Text>
+                <Label
+                  color="grey-500"
+                  currencySymbol=""
+                  size="sm"
+                  variant="currency"
+                  style={{ lineHeight: 1 }}
+                >
+                  {'Ξ' + floorPriceETH.toLocaleString()}
+                </Label>
+                { floorPriceUSD != null && (
+                  <Text color='grey-300' variant="small" sx={{ opacity: 0.5 }}>
+                    ${floorPriceUSD.toLocaleString()}
+                  </Text>
+                )}
+              </Flex>
+              )}
         </CollectionCardItemDetails>
       </CollectionCardItemBase>
     )
