@@ -51,7 +51,7 @@ const CollectionCard = forwardRef(
       name,
       total = 0,
       link,
-      avatarImage = '/img/defaultAvatar.png',
+      avatarImage,
       hasSeeAll = false,
       seeAllImageSrc,
       onExpand,
@@ -66,20 +66,29 @@ const CollectionCard = forwardRef(
       <CollectionCardBase onClick={onExpand} {...{ ref, ...props }}>
         <CardContainer>
           <Flex sx={{ gap: 2 }}>
-            <Avatar
-              color="black"
-              src={imageOptimizer(avatarImage, {
-                  width: parseInt(theme.images.avatar.md.size),
-                  height: parseInt(theme.images.avatar.md.size)
-                }) ?? avatarImage}
-              size="md"
-              sx={{ width: '54px', height: '54px', border: '2px solid black' }}
-            />
+            {!!avatarImage && (
+              <Avatar
+                color="black"
+                src={
+                  imageOptimizer(avatarImage, {
+                    width: parseInt(theme.images.avatar.md.size),
+                    height: parseInt(theme.images.avatar.md.size),
+                  }) ?? avatarImage
+                }
+                size="md"
+                sx={{
+                  width: '54px',
+                  height: '54px',
+                  border: '2px solid black',
+                }}
+              />
+            )}
             <Flex
               sx={{
                 justifyContent: 'center',
                 flexDirection: 'column',
                 flexGrow: 1,
+                marginLeft: avatarImage ? 0 : 2,
               }}
             >
               {link ? (

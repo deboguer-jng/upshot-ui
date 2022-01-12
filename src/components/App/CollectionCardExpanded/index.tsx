@@ -1,10 +1,5 @@
 import { BoxProps } from 'theme-ui'
-import React, {
-  forwardRef,
-  useEffect,
-  useCallback,
-  useRef,
-} from 'react'
+import React, { forwardRef, useEffect, useCallback, useRef } from 'react'
 
 import Avatar from '../../@UI/Avatar'
 import Text from '../../@UI/Text'
@@ -72,7 +67,7 @@ const CollectionCardExpanded = forwardRef(
     {
       name,
       total = 0,
-      avatarImage = '/img/defaultAvatar.png',
+      avatarImage,
       items = [],
       onClose,
       onFetchMore,
@@ -145,20 +140,29 @@ const CollectionCardExpanded = forwardRef(
       <CollectionCardExpandedBase {...{ ref, ...props }}>
         <CardContainer>
           <Flex sx={{ gap: 2, padding: 3, paddingBottom: 0 }}>
-            <Avatar
-              color="black"
-              src={imageOptimizer(avatarImage, {
-                width: parseInt(theme.images.avatar.md.size),
-                height: parseInt(theme.images.avatar.md.size)
-              }) ?? avatarImage}
-              size="md"
-              sx={{ width: '54px', height: '54px', border: '2px solid black' }}
-            />
+            {!!avatarImage && (
+              <Avatar
+                color="black"
+                src={
+                  imageOptimizer(avatarImage, {
+                    width: parseInt(theme.images.avatar.md.size),
+                    height: parseInt(theme.images.avatar.md.size),
+                  }) ?? avatarImage
+                }
+                size="md"
+                sx={{
+                  width: '54px',
+                  height: '54px',
+                  border: '2px solid black',
+                }}
+              />
+            )}
             <Flex
               sx={{
                 justifyContent: 'center',
                 flexDirection: 'column',
                 flexGrow: 1,
+                marginLeft: avatarImage ? 0 : 2,
               }}
             >
               <Text
