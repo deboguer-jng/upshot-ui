@@ -1,7 +1,12 @@
-import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
+/** @jsxImportSource theme-ui */
 import React, { forwardRef, HTMLAttributes } from 'react'
 import { Text, Flex } from 'theme-ui'
+
+
 import ErrorSvg from '../../../assets/svg/icons/Error.svg'
+import { imageOptimizer } from '../../../utils/imageOptimizer'
+import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
+import theme from '../../../themes/UpshotUI'
 import {
   MiniNftCardWrapper,
   MiniNftCardMainBoard,
@@ -15,6 +20,7 @@ import {
   MiniNftCardDetailValue,
   MiniNftCardImageWrapper,
   WrappedLink,
+  PriceTooltip,
 } from './Styled'
 
 export interface MiniNftCardInterface {
@@ -25,7 +31,11 @@ export interface MiniNftCardInterface {
   /**
    * Rarity percentage.
    */
-  rarity: string
+  rarity?: string
+
+  sales?: string
+
+  floorPrice?: string
   /**
    * NFT creator information.
    */
@@ -46,10 +56,14 @@ export interface MiniNftCardInterface {
    * Last sale from address.
    */
   from?: string
+
+  fromLink?: string
   /**
    * Last sale to address.
    */
   to?: string
+
+  toLink?: string
   /**
    * Last sale date
    */
@@ -57,11 +71,13 @@ export interface MiniNftCardInterface {
   /**
    * Variant type
    */
-  type?: 'default' | 'search'
+  type?: 'default' | 'search' | 'collection'
 
   pixelated?: boolean
 
   link?: string
+
+  tooltip?: string
 }
 
 const MiniNftCard = forwardRef(
@@ -74,31 +90,55 @@ const MiniNftCard = forwardRef(
       name,
       price,
       rarity,
+      sales,
+      floorPrice,
       from,
+      fromLink,
       to,
+      toLink,
       date,
       link,
       pixelated = false,
+      tooltip,
       ...props
     }: MiniNftCardInterface & HTMLAttributes<HTMLDivElement>,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const isMobile = useBreakpointIndex() <= 1
 
+    const optimizedSrc = imageOptimizer(image, {height: theme.miniNftCard.height, width: theme.miniNftCard.width}) ?? image
+    const imageSrc = pixelated ? image : optimizedSrc
+
     return (
       <MiniNftCardWrapper isMobile={isMobile} {...{ ref, ...props }}>
         <MiniNftCardMainBoard error={error}>
           <MiniNftCardImageWrapper
-            src={error ? ErrorSvg : image}
+            src={error ? ErrorSvg : imageSrc}
             pixelated={pixelated}
           />
           <MiniNftCardMainContentWrapper type={type}>
-            {type === 'default' ? (
+            {type === 'default' || type === 'collection' ? (
               <>
                 {error ? (
                   <MiniNftCardPrice error={error}>Error</MiniNftCardPrice>
                 ) : price?.length ? (
-                  <MiniNftCardPrice>{price}</MiniNftCardPrice>
+                  <MiniNftCardPrice>
+                    {price}
+                    {!!tooltip && (
+                      <PriceTooltip>
+                        <Text
+                          sx={{
+                            fontSize: '12px',
+                            lineHeight: '14px',
+                            textTransform: 'none',
+                          }}
+                          color="grey-200"
+                        >
+                          {tooltip}
+                        </Text>
+                      </PriceTooltip>
+                    )}
+                  </MiniNftCardPrice>
                 ) : null}
               </>
             ) : (
@@ -116,7 +156,11 @@ const MiniNftCard = forwardRef(
               </MiniNftCardDetailLabel>
             ) : null}
             <MiniNftCardDetailsName variant="small" error={error}>
-              {error ? 'Error' : type === 'default' ? name : creator}
+              {error
+                ? 'Error'
+                : type === 'default' || type === 'collection'
+                ? name
+                : creator}
             </MiniNftCardDetailsName>
             {type === 'default' ? (
               <MiniNftCardDetailValue variant="xSmall" error={error}>
@@ -124,7 +168,11 @@ const MiniNftCard = forwardRef(
               </MiniNftCardDetailValue>
             ) : null}
             <MiniNftCardDetailLabel variant="xSmall">
-              {type === 'default' ? 'From :' : 'Rarity :'}
+              {type === 'default'
+                ? 'From :'
+                : type === 'collection'
+                ? '# of sales :'
+                : 'Rarity :'}
             </MiniNftCardDetailLabel>
             <MiniNftCardDetailValue variant="small" error={error}>
               {error ? (
@@ -136,14 +184,31 @@ const MiniNftCard = forwardRef(
               ) : type === 'default' ? (
                 <Flex sx={{ alignItems: 'center' }}>
                   <AddressCircle variant="from" />
-                  <Text variant="small"> {from} </Text>
+                  <a
+                    href={fromLink}
+                    sx={{
+                      color: 'white',
+                      textDecoration: 'none',
+                      '&:hover': {
+                        textDecoration: 'underline',
+                      },
+                    }}
+                  >
+                    <Text variant="small"> {from} </Text>
+                  </a>
                 </Flex>
+              ) : type === 'collection' ? (
+                sales
               ) : (
                 rarity
               )}
             </MiniNftCardDetailValue>
             <MiniNftCardDetailLabel variant="xSmall">
-              {type === 'default' ? 'To :' : 'Price :'}
+              {type === 'default'
+                ? 'To :'
+                : type === 'collection'
+                ? 'floor price :'
+                : 'Price :'}
             </MiniNftCardDetailLabel>
             <MiniNftCardDetailValue variant="small" error={error}>
               {error ? (
@@ -155,8 +220,21 @@ const MiniNftCard = forwardRef(
               ) : type === 'default' ? (
                 <Flex sx={{ alignItems: 'center' }}>
                   <AddressCircle variant="to" />
-                  <Text variant="small"> {to} </Text>
+                  <a
+                    href={toLink}
+                    sx={{
+                      color: 'white',
+                      textDecoration: 'none',
+                      '&:hover': {
+                        textDecoration: 'underline',
+                      },
+                    }}
+                  >
+                    <Text variant="small"> {to} </Text>
+                  </a>
                 </Flex>
+              ) : type === 'collection' ? (
+                floorPrice
               ) : (
                 price
               )}

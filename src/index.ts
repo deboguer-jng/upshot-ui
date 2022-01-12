@@ -6,6 +6,7 @@
 export { default as Accordion } from './components/@UI/Accordion'
 export { default as Avatar } from './components/@UI/Avatar'
 export { default as AvatarInitials } from './components/@UI/AvatarInitials'
+export { default as Breadcrumb } from './components/@UI/Breadcrumb'
 export { default as Button } from './components/@UI/Button'
 export { default as ButtonDropdown } from './components/@UI/ButtonDropdown'
 export { default as Chart } from './components/@UI/Chart/ChartDynamic'
@@ -19,20 +20,21 @@ export { default as InputRounded } from './components/@UI/InputRounded'
 export { default as InputRoundedSearch } from './components/@UI/InputRoundedSearch'
 export { default as Label } from './components/@UI/Label'
 export { default as LabelAttribute } from './components/@UI/LabelAttribute'
+export { default as MiniNftCard } from './components/@UI/MiniNftCard'
 export { default as Modal } from './components/@UI/Modal'
 export { default as Pagination } from './components/@UI/Pagination'
 export { default as Panel } from './components/@UI/Panel'
 export { default as RadarChart } from './components/@UI/RadarChart/RadarChartDynamic'
 export { default as Radio } from './components/@UI/Radio'
 export { default as ScatterChart } from './components/@UI/ScatterChart/ScatterChartDynamic'
+export { default as SliderFade } from './components/@UI/Scroll/SliderFade'
+export { default as SliderIcon } from './components/@UI/Scroll/SliderIcon'
 export { default as Skeleton } from './components/@UI/Skeleton'
 export { default as Spinner } from './components/@UI/Spinner'
 export { default as Switch } from './components/@UI/Switch'
 export { default as SwitchDropdown } from './components/@UI/SwitchDropdown'
 export { default as Text } from './components/@UI/Text'
 export { default as TreeMap } from './components/@UI/TreeMap/TreeMapDynamic'
-export { default as MiniNftCard } from './components/@UI/MiniNftCard'
-export { default as Scroll } from './components/@UI/Scroll'
 
 /**
  * Components: App
@@ -40,6 +42,9 @@ export { default as Scroll } from './components/@UI/Scroll'
  * Shared app-level components.
  */
 export { default as AppBar } from './components/App/AppBar'
+export { default as CollectionCard } from './components/App/CollectionCard'
+export { default as CollectionCardExpanded } from './components/App/CollectionCardExpanded'
+export { default as CollectionCardItem } from './components/App/CollectionCardItem'
 export { default as CollectionLine } from './components/App/CollectionLine'
 export { default as CollectionRow } from './components/App/CollectionRow'
 export { default as CollectionTable } from './components/App/CollectionTable'
@@ -48,8 +53,8 @@ export { default as CollectorAccordionHead } from './components/App/CollectorAcc
 export { default as CollectorAccordionRow } from './components/App/CollectorAccordionRow'
 export { default as ConnectModal } from './components/App/ConnectModal'
 export { default as Footer } from './components/App/Footer'
-export { default as Navbar } from './components/App/Navbar'
 export { default as LandingPanel } from './components/App/LandingPanels'
+export { default as Navbar } from './components/App/Navbar'
 
 /**
  * Components: Layout
@@ -93,3 +98,10 @@ export { UpshotUIThemeType } from './themes/UpshotUI'
  */
 
 export { useBreakpointIndex } from './hooks/useBreakpointIndex'
+
+/**
+ * Utils
+ *
+ * Util functions
+ */
+ export { imageOptimizer } from './utils/imageOptimizer'

@@ -12,11 +12,14 @@ import {
 } from './Styled'
 import Icon from '../Icon'
 import { useTheme } from '../../../themes/UpshotUI'
+import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 
 export interface InputSuggestion {
   id: number
   name: string
 }
+
+export type InputRoundedSearchVariant = 'nav' | 'search' | 'default'
 
 export interface InputRoundedSearchProps extends InputRoundedProps {
   /**
@@ -30,7 +33,7 @@ export interface InputRoundedSearchProps extends InputRoundedProps {
   /**
    * Variant for the inner search button.
    */
-  variant?: 'nav' | 'search' | 'default'
+  variant?: InputRoundedSearchVariant
   /**
    * Properties for the button.
    */
@@ -64,6 +67,7 @@ const InputRoundedSearch = forwardRef(
     const { theme } = useTheme()
     const [open, setOpen] = useState(false)
     const wrapperRef = useRef<HTMLDivElement>()
+    const isMobile = useBreakpointIndex() <= 1
 
     useEffect(() => {
       const handleClickOutside = (e: MouseEvent) => {
@@ -89,7 +93,7 @@ const InputRoundedSearch = forwardRef(
     const { sx: buttonSx, ...buttonProps } = buttonPropsRaw ?? {}
 
     return (
-      <InputRoundedSearchWrapper ref={wrapperRef}>
+      <InputRoundedSearchWrapper ref={wrapperRef} $isMobile={isMobile}>
         <Flex sx={{ width: fullWidth ? '100%' : 'auto' }}>
           <InputRoundedSearchBase
             placeholder="Search..."
@@ -126,7 +130,7 @@ const InputRoundedSearch = forwardRef(
           </IconButton>
         </Flex>
         {!!suggestions?.length && open && (
-          <InputRoundedSearchSuggestionsWrapper>
+          <InputRoundedSearchSuggestionsWrapper $variant={variant}>
             <InputRounededSearchSuggestions>
               {suggestions.map((suggestion) => (
                 <InputRoundedSearchSuggestionItem

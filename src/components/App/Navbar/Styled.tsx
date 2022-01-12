@@ -7,16 +7,12 @@ interface NavbarItemProps {
 
 export const NavbarWrapper = styled.div`
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(
-    180deg,
-    #000000 0%,
-    #000000 82.81%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  height: ${({ theme }) => theme.navbar.height}px;
+  gap: 16px;
   width: 100%;
+  z-index: ${({ theme }) => theme.zIndex.nav + 1};
 `
 
 export const NavbarItem = styled.div<NavbarItemProps>`
@@ -37,14 +33,23 @@ export const NavbarLogo = styled.div`
   }
 `
 
-export const SearchWrapper = styled.div`
+export const SearchWrapper = styled.div<{ $hasValue?: boolean }>`
+  position: absolute;
   display: flex;
   align-items: center;
   height: 56px;
   border-radius: 30px;
+  background-color: ${({ $hasValue }) =>
+    `rgba(0, 0, 0, ${$hasValue ? 0.6 : 0.3})`};
   padding: 12px;
   border: 1px solid ${({ theme }) => theme.colors['grey-500']};
-  width: calc(100% - 57px); // 45px (icon) + 12px (gap)
+  width: 100%;
+  z-index: ${({ theme }) => theme.zIndex.nav + 1};
+  transition: all 0.75s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
 
   ${({ theme }) => css`
     @media only screen and (min-width: ${theme.breakpoints[1]}) {
@@ -142,7 +147,7 @@ export const NavbarWallet = styled.div`
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   height: 56px;
   border-radius: 30px;
-  padding: 12px 17px 12px 12px;
+  padding: 12px;
   transition: ${({ theme }) => theme.transitions.default};
   cursor: pointer;
 
@@ -154,4 +159,13 @@ export const NavbarWallet = styled.div`
 export const Divider = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors['grey-300']};
   opacity: 5%;
+`
+
+export const StyledLink = styled.a`
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `

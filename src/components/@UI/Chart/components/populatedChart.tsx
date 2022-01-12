@@ -7,11 +7,12 @@ import { CustomLegendWrapper, ReactApexChartWrapper } from '../Styled'
 import { getOptions, toggle } from '../utils'
 import ButtonChartCollection from '../../ButtonChartCollection'
 import ChartLabel from '../../ChartLabel'
-import Box from '../../../Layout/Box'
+import Grid from '../../../Layout/Grid'
 import Flex from '../../../Layout/Flex'
 import Text from '../../../@UI/Text'
 import { format } from 'date-fns'
 import colors from '../../../../themes/UpshotUI/colors'
+import { useBreakpointIndex } from '../../../../hooks/useBreakpointIndex'
 
 interface PopulatedChartProps {
   chartData: {
@@ -23,6 +24,9 @@ interface PopulatedChartProps {
     priceUsd?: number
     priceChange?: string
     labelColor?: keyof typeof colors
+    volume?: number | boolean
+    currentFloor?: string
+    metric?: string
   }[]
   embedded?: boolean
 }
@@ -40,18 +44,20 @@ const PopulatedChart = ({
 
   const emptyFilters = chartData.map((_) => true)
   const [filterStatus, setFilterStatus] = useState(emptyFilters)
+  const isMobile = useBreakpointIndex() <= 1
+  const isMobileOrTablet = useBreakpointIndex() <= 2
 
   /* Reset filters when data changes. */
   useEffect(() => {
     setFilterStatus(emptyFilters)
-  }, [chartData])
+  }, [chartData, isMobile])
 
   /* Initialize the hover dataPoints for each series in the chartData array. */
   const emptyHoverState = [...new Array(chartData.length)].map((_) => ({
     value: null,
     timestamp: null,
   }))
-  const [hoverIndex, setHoverIndex] = useState(0)
+  const [hoverIndex, setHoverIndex] = useState(null)
   const [hoverDataPoint, setHoverDataPoint] =
     useState<HoverDataPoint[]>(emptyHoverState)
 
@@ -70,6 +76,7 @@ const PopulatedChart = ({
     mouseLeave() {
       /* Reset hover state on exit. */
       setHoverDataPoint(emptyHoverState)
+      setHoverIndex(null)
     },
     mouseMove(e: React.MouseEvent<SVGElement>, ctx: any, data: any) {
       /**
@@ -102,31 +109,68 @@ const PopulatedChart = ({
 
   const timestamp = hoverDataPoint?.[hoverIndex]?.timestamp
 
-  const chartLabels = chartData
-    .filter((_, i) => filterStatus[i]) // Toggle display by selected filter button
-    .map((set, i) => (
-      <ChartLabel
-        key={i}
-        title={set.name}
-        titleColor={set.labelColor}
-        price_1={
-          hoverDataPoint[i]?.value ??
-          (Array.isArray(set.data[set.data.length - 1]) // Default to last price
-            ? (set.data[set.data.length - 1] as number[])[1]
-            : (set.data[set.data.length - 1] as number))
-        }
-        onClose={() => {
-          const idx = chartData.findIndex(({ name }) => name === set.name)
-          toggle(idx, chartData[i].name, filterStatus, setFilterStatus)
-        }}
-        atl={set.atl ?? '-'}
-        ath={set.ath ?? '-'}
-        price_2={set.priceUsd}
-        change={set.priceChange}
-        index={i}
-        url={set.url}
-      />
-    ))
+  const metricKeys = {
+    FLOOR: 'currentFloor',
+    AVERAGE: 'currentAvg',
+    VOLUME: 'currentVolume',
+  }
+
+  const labelValue = (
+    index: number,
+    set: {
+      data: number[][] | number[]
+      currentFloor?: string
+      currentAvg?: string
+      currentVolume?: string
+      metric?: string
+    }
+  ) => {
+    if (hoverDataPoint[index]?.value) return hoverDataPoint[index]?.value
+
+    return parseFloat(
+      set[
+        metricKeys[set.metric as keyof typeof metricKeys] as
+          | 'currentFloor'
+          | 'currentAvg'
+          | 'currentVolume'
+      ]
+    )
+  }
+
+  const chartLabels = useMemo(
+    () =>
+      chartData
+        .filter((_, i) => filterStatus[i]) // Toggle display by selected filter button
+        .map((set, i) => {
+          const index = chartData.findIndex(({ name }) => name === set.name)
+
+          return (
+            <ChartLabel
+              key={i}
+              title={set.name}
+              titleColor={set.labelColor}
+              price_1={labelValue(index, set)}
+              onClose={() => {
+                toggle(
+                  index,
+                  chartData[index].name,
+                  filterStatus,
+                  setFilterStatus
+                )
+              }}
+              atl={set.atl ?? '-'}
+              ath={set.ath ?? '-'}
+              price_2={set.priceUsd}
+              change={set.priceChange}
+              url={set.url}
+              isDim={hoverIndex !== null && hoverIndex !== index}
+              maxWidth={isMobile ? 140 : 280}
+              {...{ index }}
+            />
+          )
+        }),
+    [chartData, filterStatus, hoverDataPoint, hoverIndex]
+  )
 
   /* Memoize Apex to prevent side effects from mouseEvent listeners. */
   const chart = useMemo(
@@ -158,23 +202,27 @@ const PopulatedChart = ({
         >
           <Flex
             sx={{
-              gap: 8,
-              flexDirection: ['column', 'column', 'row'],
-              alignItems: ['center', 'center', 'flex-start'],
-              textAlign: ['center', 'center', 'left'],
+              flexDirection: 'row',
+              alignItems: 'flex-start',
+              textAlign: 'left',
+              display: 'inline-flex',
+              flexWrap: 'wrap',
+              gap: '18px',
             }}
           >
             {chartLabels}
           </Flex>
           <Text
+            variant="h3Primary"
             sx={{
-              fontWeight: 'bold',
               textTransform: 'uppercase',
               alignSelf: ['flex-end', 'flex-end', 'flex-start'],
               minHeight: '1.25rem',
             }}
           >
-            {timestamp ? format(timestamp, 'LLL dd yyyy hh:mm') : null}
+            {!isMobileOrTablet && timestamp
+              ? format(timestamp, 'LLL dd yyyy hh:mm')
+              : null}
           </Text>
         </Flex>
       )}
@@ -193,6 +241,22 @@ const PopulatedChart = ({
             />
           ))}
         </CustomLegendWrapper>
+      )}
+
+      {isMobileOrTablet && !embedded && (
+        <Text
+          variant="h3Primary"
+          sx={{
+            textTransform: 'uppercase',
+            alignSelf: ['flex-end', 'flex-end', 'flex-start'],
+            minHeight: '1.25rem',
+            float: 'right',
+            marginBottom: '-10px',
+            paddingTop: '1px',
+          }}
+        >
+          {timestamp && format(timestamp, 'LLL dd yyyy hh:mm')}
+        </Text>
       )}
     </>
   )

@@ -30,6 +30,11 @@ export interface ChartProps {
     url?: string
     ath?: string
     atl?: string
+    volume?: number | boolean
+    currentFloor?: string
+    currentAvg?: string
+    currentVolume?: string
+    metric?: string
   }[]
   /**
    * Renders the search variant.

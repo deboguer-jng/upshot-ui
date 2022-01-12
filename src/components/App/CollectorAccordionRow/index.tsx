@@ -1,4 +1,8 @@
 import React, { forwardRef, useState, useEffect } from 'react'
+import { useTheme } from '@emotion/react'
+import { format, formatDistance } from 'date-fns'
+import { ethers } from 'ethers'
+
 import {
   CollectorRowAvatarWrapper,
   CollectorRowBase,
@@ -16,8 +20,7 @@ import {
   shortenAddress,
   fetchEns,
 } from '../../../utils/address'
-import { format, formatDistance } from 'date-fns'
-import { ethers } from 'ethers'
+import { imageOptimizer } from '../../../utils/imageOptimizer'
 
 export interface CollectorAccordionRowProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -66,15 +69,23 @@ export interface CollectorAccordionRowProps
    */
   extraCollections?: {
     id: number
-    name: string
+    name?: string
     imageUrl: string
     url: string
-    count: number
+    pixelated: boolean
+    count?: number
   }[]
 
   extraCollectionChanged: (id: number) => void
 
+  /**
+   * Children element
+   */
   children?: React.ReactNode
+  /**
+   * Is it opened by default?
+   */
+  defaultOpen?: boolean
 }
 
 /**
@@ -96,11 +107,13 @@ const CollectorRow = forwardRef(
       extraCollections,
       children,
       extraCollectionChanged,
+      defaultOpen = false,
       ...props
     }: CollectorAccordionRowProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    const [open, setOpen] = useState(false)
+    const theme = useTheme()
+    const [open, setOpen] = useState(defaultOpen)
     const isFirstColumn = !!avgHoldTime || !!firstAcquisition || !!nftCollection
     const [avatarUrl, setAvatarUrl] = useState(
       address ? makeBlockie(address) : null
@@ -141,6 +154,8 @@ const CollectorRow = forwardRef(
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',
+                textDecoration: 'none',
+                color: 'inherit',
               }}
             >
               {displayName}
@@ -191,6 +206,21 @@ const CollectorRow = forwardRef(
           >
             {isFirstColumn && (
               <Flex sx={{ flexDirection: 'column', gap: 4 }}>
+                <a
+                  href={`/analytics/user/${address}`}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Text
+                    variant="h3Primary"
+                    sx={{
+                      color: 'primary',
+                      paddingBottom: '12px',
+                      fontSize: 4,
+                    }}
+                  >
+                    View Portfolio
+                  </Text>
+                </a>
                 {!!avgHoldTime && (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                     <Text
@@ -199,7 +229,7 @@ const CollectorRow = forwardRef(
                         textTransform: 'capitalize',
                       }}
                     >
-                      Avg. Hold Time:
+                      Average Hold Time
                     </Text>
                     <Text
                       variant="h3Primary"
@@ -243,25 +273,30 @@ const CollectorRow = forwardRef(
                       }}
                     >
                       {nftCollection.map(
-                        ({ imageUrl, url, pixelated }, idx) => (
-                          <a href={url} key={idx}>
-                            <Box
-                              sx={{
-                                backgroundImage: `url(${imageUrl})`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                                backgroundRepeat: 'no-repeat',
-                                borderRadius: 'sm',
-                                width: '100%',
-                                paddingTop: '100%',
-                                imageRendering: pixelated
-                                  ? 'pixelated'
-                                  : 'auto',
-                              }}
-                            />
-                          </a>
-                        )
-                      )}
+                        ({ imageUrl, url, pixelated }, idx) => {
+                          const optimizedSrc = imageOptimizer(imageUrl, {height: 180, width: 180}) ?? imageUrl
+                          const imageSrc = pixelated ? imageUrl : optimizedSrc
+
+                          return (
+                            <a href={url} key={idx}>
+                              <Box
+                                sx={{
+                                  backgroundImage: `url(${imageSrc})`,
+                                  backgroundSize: 'cover',
+                                  backgroundPosition: 'center',
+                                  backgroundRepeat: 'no-repeat',
+                                  borderRadius: 'sm',
+                                  width: '100%',
+                                  paddingTop: '100%',
+                                  imageRendering: pixelated
+                                    ? 'pixelated'
+                                    : 'auto',
+                                }}
+                              />
+                            </a>
+                          )
+                        })
+                      }
                     </Grid>
                   </Flex>
                 ) : (
@@ -321,7 +356,11 @@ const CollectorRow = forwardRef(
                           key={idx}
                         >
                           <CollectorRowAvatarWrapper onClick={() => extraCollectionChanged(id)}>
-                            <Avatar size="lg" color="white" src={imageUrl} />
+                            <Avatar size="lg" color="white" src={imageOptimizer(imageUrl, {
+                                height: parseInt(theme.images.avatar.lg.size),
+                                width: parseInt(theme.images.avatar.lg.size)
+                              }) ?? imageUrl}
+                            />
                           </CollectorRowAvatarWrapper>
                           <Flex
                             sx={{

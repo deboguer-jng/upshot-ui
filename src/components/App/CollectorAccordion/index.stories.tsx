@@ -1,9 +1,8 @@
 import React from 'react'
 import { ComponentMeta } from '@storybook/react'
 import CollectorAccordion from './'
-import CollectorAccordionRow from '../CollectorAccordionRow'
+import CollectorAccordionRow, { CollectorAccordionRowProps } from '../CollectorAccordionRow'
 import CollectorAccordionHead from '../CollectorAccordionHead'
-import { CollectorAccordionRowProps } from '../CollectorAccordionRow'
 import { Text } from 'theme-ui'
 
 type CollectorItems = {

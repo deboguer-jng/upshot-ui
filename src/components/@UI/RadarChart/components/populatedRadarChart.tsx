@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTheme } from '@emotion/react'
-import { format } from 'date-fns'
+import { truncateString } from '../../../../utils/string'
 import ReactApexChart from 'react-apexcharts'
 
 interface PopulatedRadarChartProps {
@@ -21,8 +21,8 @@ const PopulatedRadarChart = ({ chartData }: PopulatedRadarChartProps) => {
       type="radar"
       series={chartData.series}
       labels={chartData.labels}
-      height={400}
       width="100%"
+      height="100%"
       options={{
         chart: {
           id: 'upshotChart',
@@ -60,9 +60,13 @@ const PopulatedRadarChart = ({ chartData }: PopulatedRadarChartProps) => {
             const value = chartData.series[0].data[dataPointIndex]
 
             return `
-                <div style="background-color: ${theme.rawColors['grey-900']}; border-radius: 5px; color: white; padding: 12px; font-weight: 600; font-size: 1rem;">
+                <div style="background-color: ${
+                  theme.rawColors['grey-900']
+                }; border-radius: 5px; color: white; padding: 12px; font-weight: 600; font-size: 1rem;">
                   <div style="color: ${theme.rawColors.blue}">${label}</div>
-                  <div style="font-size: 0.9rem; color: ${theme.rawColors.white}">${value}%</div>
+                  <div style="font-size: 0.9rem; color: ${
+                    theme.rawColors.white
+                  }">Ξ${value.toFixed(4)}</div>
               </div>
             `
           },
@@ -80,7 +84,7 @@ const PopulatedRadarChart = ({ chartData }: PopulatedRadarChartProps) => {
           },
         },
         xaxis: {
-          categories: chartData.labels,
+          categories: chartData.labels.map((str) => truncateString(str, 10)),
           axisBorder: {
             show: false,
           },

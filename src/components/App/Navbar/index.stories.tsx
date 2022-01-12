@@ -12,6 +12,7 @@ export default {
 const Template: ComponentStory<typeof Navbar> = (args: any) => {
   const [value, setValue] = useState('')
   const [open, setOpen] = useState(false)
+  const [showSidebar, setShowSidebar] = useState(false)
   const modalRef = useRef(null)
   const toggleModal = () => setOpen(!open)
 
@@ -34,6 +35,8 @@ const Template: ComponentStory<typeof Navbar> = (args: any) => {
         onSearch={(e) => {
           console.log({ value })
         }}
+        onMenuClick={() => setShowSidebar(!showSidebar)}
+        showSidebar={showSidebar}
         {...args}
       />
       <Modal ref={modalRef} onClose={toggleModal} {...{ open }}>
@@ -77,13 +80,13 @@ const searchSuggestions = [
 export const Default = Template.bind({})
 Default.args = {
   ensName: 'emmons.eth',
-  address: '0x1A2b...3c4D',
+  address: '0x123400000000000000000000000000000000abcd',
   searchSuggestions,
 }
 
 export const ENSUnavailable = Template.bind({})
 ENSUnavailable.args = {
-  address: '0x1A2b...3c4D',
+  address: '0x123400000000000000000000000000000000abcd',
   searchSuggestions,
 }
 

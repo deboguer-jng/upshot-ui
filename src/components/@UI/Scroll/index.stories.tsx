@@ -1,17 +1,18 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import Scroll from './'
+import SliderIcon from './SliderIcon'
+import SliderFade from './SliderFade'
 import { Box, Flex } from 'theme-ui'
 
 export default {
   title: '@UI/Scroll',
-  component: Scroll,
-} as ComponentMeta<typeof Scroll>
+  component: SliderIcon,
+} as ComponentMeta<typeof SliderIcon>
 
-const Template: ComponentStory<typeof Scroll> = (args) => {
+const TemplateIcon: ComponentStory<typeof SliderIcon> = (args) => {
   return (
-    <Scroll {...args}>
+    <SliderIcon {...args}>
       <Flex sx={{width: 'fit-content'}}>
         <button> text1 </button>
         <button> text1 </button>
@@ -44,9 +45,51 @@ const Template: ComponentStory<typeof Scroll> = (args) => {
         <button> text1 </button>
         <button> text1 </button>
       </Flex>
-    </Scroll>
+    </SliderIcon>
   )
 }
 
-export const Default = Template.bind({})
-Default.args = { sx: { width: '300px', height: '225px' } }
+
+const TemplateFade: ComponentStory<typeof SliderFade> = (args) => {
+  return (
+    <SliderFade {...args}>
+      <Flex sx={{width: 'fit-content'}}>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+        <button> text1 </button>
+      </Flex>
+    </SliderFade>
+  )
+}
+export const IconSlider = TemplateIcon.bind({})
+IconSlider.args = { sx: { width: '300px', height: '225px' } }
+
+export const FadeSlider = TemplateFade.bind({})
+FadeSlider.args = { sx: { width: '300px', height: '225px' } }
