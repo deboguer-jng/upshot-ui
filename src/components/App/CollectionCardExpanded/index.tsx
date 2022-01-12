@@ -1,10 +1,5 @@
 import { BoxProps } from 'theme-ui'
-import React, {
-  forwardRef,
-  useEffect,
-  useCallback,
-  useRef,
-} from 'react'
+import React, { forwardRef, useEffect, useCallback, useRef } from 'react'
 
 import Avatar from '../../@UI/Avatar'
 import Text from '../../@UI/Text'
@@ -49,19 +44,6 @@ export interface CollectionCardExpandedProps extends BoxProps {
    * Infinite scroll handler
    */
   onFetchMore?: (offset: number) => void
-}
-
-/**
- * Temporary solution to add deterministic height variance
- * prior to a solution that provides the exact heights or
- * proportional sizes for assets received via graphQL.
- */
-const prng = (seed: number) => {
-  let t = (seed += 0x6d2b79f5)
-  t = Math.imul(t ^ (t >>> 15), t | 1)
-  t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
-
-  return ((t ^ (t >>> 14)) >>> 0) / 4294967296
 }
 
 /**
@@ -120,14 +102,9 @@ const CollectionCardExpanded = forwardRef(
     /* Virtualized cell renderer by masonry index. */
     const MasonryRenderer = useCallback(
       ({ index, data }: { index: number; data: any }) => {
-        const dynamicHeight = Math.round(prng(index)) * 60 + 260
-
         return (
           <a href={`/analytics/nft/${data.id}`} target="_blank">
-            <CollectionCardItem
-              sx={{ height: isMobile ? 400 : dynamicHeight }}
-              {...data}
-            />
+            <CollectionCardItem sx={{ height: 320 }} {...data} />
           </a>
         )
       },
@@ -147,10 +124,12 @@ const CollectionCardExpanded = forwardRef(
           <Flex sx={{ gap: 2, padding: 3, paddingBottom: 0 }}>
             <Avatar
               color="black"
-              src={imageOptimizer(avatarImage, {
-                width: parseInt(theme.images.avatar.md.size),
-                height: parseInt(theme.images.avatar.md.size)
-              }) ?? avatarImage}
+              src={
+                imageOptimizer(avatarImage, {
+                  width: parseInt(theme.images.avatar.md.size),
+                  height: parseInt(theme.images.avatar.md.size),
+                }) ?? avatarImage
+              }
               size="md"
               sx={{ width: '54px', height: '54px', border: '2px solid black' }}
             />
