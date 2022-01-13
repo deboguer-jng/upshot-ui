@@ -44,9 +44,8 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
     'blue',
     'pink',
     'purple',
-    'yellow',
-    'red',
     'green',
+    'orange',
   ]
   for (let i = 0; i < chartData.length; i++) {
     chartData[i].labelColor = labelColors[i]
