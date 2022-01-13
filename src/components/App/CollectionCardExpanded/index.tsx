@@ -163,6 +163,7 @@ const CollectionCardExpanded = forwardRef(
                 flexDirection: 'column',
                 flexGrow: 1,
                 marginLeft: avatarImage ? 0 : 2,
+                marginTop: avatarImage ? 0 : 1,
               }}
             >
               <Text
