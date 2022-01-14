@@ -1,6 +1,8 @@
+/** @jsxImportSource theme-ui */
 import React, { forwardRef, useState } from 'react'
 import Avatar from '../../@UI/Avatar'
 import Text from '../../@UI/Text'
+import { Box } from 'theme-ui'
 import { CollectionRowBase } from './Styled'
 import {
   CollectorRowBase,
@@ -11,7 +13,8 @@ import TableCell from '../../Layout/TableCell'
 import { TableRowProps } from '../../Layout/TableRow'
 import { Icon, useBreakpointIndex } from '../../..'
 import { Flex, IconButton } from '@theme-ui/components'
-
+import { imageOptimizer } from '../../../utils/imageOptimizer'
+import { useTheme } from '@emotion/react'
 export type Variant = 'black' | 'dark' | 'normal'
 export interface CollectionRowProps extends TableRowProps {
   /**
@@ -42,7 +45,7 @@ const CollectionRow = forwardRef(
   (
     {
       variant = 'normal',
-      imageSrc: src,
+      imageSrc,
       title,
       children,
       pixelated,
@@ -53,20 +56,65 @@ const CollectionRow = forwardRef(
     }: CollectionRowProps,
     ref: React.ForwardedRef<HTMLTableRowElement>
   ) => {
+    const theme = useTheme()
     const breakpointIndex = useBreakpointIndex()
     const isMobile = breakpointIndex <= 1
     const [open, setOpen] = useState(defaultOpen)
+
+    const optimizedSrc =
+      imageOptimizer(imageSrc, {
+        width: parseInt(theme.images.avatar.md.size),
+        height: parseInt(theme.images.avatar.md.size),
+      }) ?? imageSrc
+    const src = pixelated ? imageSrc : optimizedSrc
+
     return (
       <>
         {!isMobile ? (
           <CollectionRowBase $variant={variant} {...{ ref, ...props }}>
             {/* Each row has a required avatar image circle. */}
             <TableCell>
-              <Avatar
-                {...{ src, onClick }}
-                pixelated={pixelated}
-                sx={{ cursor: onClick ? 'pointer' : 'auto' }}
-              />
+              <Box
+                sx={{
+                  width: '100%',
+                  height: '48px',
+                  position: 'relative',
+                  '&:hover img': {
+                    display: 'none',
+                  },
+                  '&:hover svg': {
+                    display: 'block',
+                  },
+                  '&:hover': {
+                    backgroundColor: '#151515',
+                    borderRadius: '50%',
+                    border: '2px solid black',
+                  },
+                  cursor: onClick ? 'pointer' : 'auto',
+                }}
+                {...{ onClick }}
+              >
+                <Avatar
+                  {...{ pixelated, src }}
+                  sx={{
+                    backgroundColor: 'grey-600',
+                    borderColor: 'black',
+                  }}
+                />
+                <Icon
+                  icon="arrowStylizedRight"
+                  color="primary"
+                  sx={{
+                    display: 'none',
+                    position: 'absolute',
+                    top: '0',
+                    width: '40% !important',
+                    height: '40% !important',
+                    margin: '30%',
+                  }}
+                  size="40%"
+                ></Icon>
+              </Box>
             </TableCell>
 
             <TableCell>
@@ -114,7 +162,7 @@ const CollectionRow = forwardRef(
                 <Text
                   sx={{
                     fontWeight: 'bold',
-                    fontSize: 4,
+                    fontSize: breakpointIndex <= 1 ? 2 : 4,
                     lineHeight: 1,
                     textOverflow: 'ellipsis',
                     overflow: 'hidden',
@@ -131,7 +179,7 @@ const CollectionRow = forwardRef(
                 <Text
                   sx={{
                     fontWeight: 'bold',
-                    fontSize: 4,
+                    fontSize: breakpointIndex <= 1 ? 2 : 4,
                     lineHeight: 1,
                   }}
                 >

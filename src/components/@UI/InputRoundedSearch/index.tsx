@@ -19,6 +19,8 @@ export interface InputSuggestion {
   name: string
 }
 
+export type InputRoundedSearchVariant = 'nav' | 'search' | 'default'
+
 export interface InputRoundedSearchProps extends InputRoundedProps {
   /**
    * Expand to the full-width of the container.
@@ -31,7 +33,7 @@ export interface InputRoundedSearchProps extends InputRoundedProps {
   /**
    * Variant for the inner search button.
    */
-  variant?: 'nav' | 'search' | 'default'
+  variant?: InputRoundedSearchVariant
   /**
    * Properties for the button.
    */
@@ -128,7 +130,7 @@ const InputRoundedSearch = forwardRef(
           </IconButton>
         </Flex>
         {!!suggestions?.length && open && (
-          <InputRoundedSearchSuggestionsWrapper>
+          <InputRoundedSearchSuggestionsWrapper $variant={variant}>
             <InputRounededSearchSuggestions>
               {suggestions.map((suggestion) => (
                 <InputRoundedSearchSuggestionItem

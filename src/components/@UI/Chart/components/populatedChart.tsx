@@ -25,8 +25,11 @@ interface PopulatedChartProps {
     priceChange?: string
     labelColor?: keyof typeof colors
     volume?: number | boolean
+    currentFloor?: string
+    metric?: string
   }[]
   embedded?: boolean
+  onClose?: (index: number) => void
 }
 
 type HoverDataPoint = {
@@ -37,6 +40,7 @@ type HoverDataPoint = {
 const PopulatedChart = ({
   chartData,
   embedded = false,
+  onClose,
 }: PopulatedChartProps) => {
   const theme = useTheme()
 
@@ -107,6 +111,34 @@ const PopulatedChart = ({
 
   const timestamp = hoverDataPoint?.[hoverIndex]?.timestamp
 
+  const metricKeys = {
+    FLOOR: 'currentFloor',
+    AVERAGE: 'currentAvg',
+    VOLUME: 'currentVolume',
+  }
+
+  const labelValue = (
+    index: number,
+    set: {
+      data: number[][] | number[]
+      currentFloor?: string
+      currentAvg?: string
+      currentVolume?: string
+      metric?: string
+    }
+  ) => {
+    if (hoverDataPoint[index]?.value) return hoverDataPoint[index]?.value
+
+    return parseFloat(
+      set[
+        metricKeys[set.metric as keyof typeof metricKeys] as
+          | 'currentFloor'
+          | 'currentAvg'
+          | 'currentVolume'
+      ]
+    )
+  }
+
   const chartLabels = useMemo(
     () =>
       chartData
@@ -119,13 +151,9 @@ const PopulatedChart = ({
               key={i}
               title={set.name}
               titleColor={set.labelColor}
-              price_1={
-                hoverDataPoint[index]?.value ??
-                (Array.isArray(set.data[set.data.length - 1]) // Default to last price
-                  ? (set.data[set.data.length - 1] as number[])[1]
-                  : (set.data[set.data.length - 1] as number))
-              }
+              price_1={labelValue(index, set)}
               onClose={() => {
+                onClose?.(index)
                 toggle(
                   index,
                   chartData[index].name,
@@ -188,8 +216,8 @@ const PopulatedChart = ({
             {chartLabels}
           </Flex>
           <Text
+            variant="h3Primary"
             sx={{
-              fontWeight: 'bold',
               textTransform: 'uppercase',
               alignSelf: ['flex-end', 'flex-start'],
               minHeight: '1.25rem',
@@ -220,13 +248,12 @@ const PopulatedChart = ({
 
       {isMobileOrTablet && !embedded && (
         <Text
+          variant="h3Primary"
           sx={{
-            fontWeight: 'bold',
             textTransform: 'uppercase',
             alignSelf: ['flex-end', 'flex-start'],
             minHeight: '1.25rem',
             float: 'right',
-            fontSize: '18px',
             marginBottom: '-10px',
             paddingTop: '1px',
           }}

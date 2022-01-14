@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react'
+import React, { forwardRef, useState, useEffect } from 'react'
 import { BoxProps } from 'theme-ui'
 import {
   SwitchDropdownHeader,
@@ -14,14 +14,20 @@ export interface SwitchDropdownProps extends BoxProps {
   options: Array<string>
   onValueChange: (option: string) => void
   onToggle?: (open: boolean) => void
+  defaultOpen?: boolean
 }
 
 const SwitchDropdown = forwardRef(
   (
-    { value, options, onValueChange, onToggle, ...props }: SwitchDropdownProps,
+    { value, options, onValueChange, onToggle, defaultOpen = false, ...props }: SwitchDropdownProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(defaultOpen)
+
+    useEffect(() => {
+      setOpen(defaultOpen)
+    }, [defaultOpen])
+
 
     const handleClick = (option: string) => {
       setOpen(!open)
