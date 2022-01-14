@@ -14,6 +14,7 @@ import Avatar from '../../@UI/Avatar'
 import Icon from '../../@UI/Icon'
 import Label from '../../@UI/Label'
 import makeBlockie from 'ethereum-blockies-base64'
+import { Pagination } from '../../..'
 import IconButton from '../../@UI/IconButton'
 import {
   formatUsername,
@@ -60,6 +61,8 @@ export interface CollectorAccordionRowProps
    * Total NFT value
    */
   totalNftValue?: string
+  
+  extraCollectionChanged?: (id: number) => void
   /**
    * NFT collection
    */
@@ -76,7 +79,6 @@ export interface CollectorAccordionRowProps
     count?: number
   }[]
 
-  extraCollectionChanged: (id: number) => void
 
   /**
    * Children element
@@ -114,6 +116,8 @@ const CollectorRow = forwardRef(
   ) => {
     const theme = useTheme()
     const [open, setOpen] = useState(defaultOpen)
+    const [page, setPage] = useState(0)
+    const [selectedColletion, setSelectedCollection] = useState(0)
     const isFirstColumn = !!avgHoldTime || !!firstAcquisition || !!nftCollection
     const [avatarUrl, setAvatarUrl] = useState(
       address ? makeBlockie(address) : null
@@ -135,6 +139,10 @@ const CollectorRow = forwardRef(
 
       updateEns(address)
     }, [])
+
+    const handlePageChange = ({ selected }: {selected: number}) => {
+      setPage(selected)
+    }
 
     const displayName = name ?? (address ? shortenAddress(address) : 'Unknown')
 
@@ -272,7 +280,7 @@ const CollectorRow = forwardRef(
                           'repeat(auto-fill, minmax(92px, 1fr) )',
                       }}
                     >
-                      {nftCollection.map(
+                      {nftCollection.slice(page * 3, page * 3 + 3).map(
                         ({ imageUrl, url, pixelated }, idx) => {
                           const optimizedSrc = imageOptimizer(imageUrl, {height: 180, width: 180}) ?? imageUrl
                           const imageSrc = pixelated ? imageUrl : optimizedSrc
@@ -298,6 +306,13 @@ const CollectorRow = forwardRef(
                         })
                       }
                     </Grid>
+                    <Pagination
+                      forcePage={page}
+                      pageCount={Math.ceil(nftCollection.length / 3)}
+                      pageRangeDisplayed={0}
+                      marginPagesDisplayed={0}
+                      onPageChange={handlePageChange}
+                    />
                   </Flex>
                 ) : (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
@@ -355,7 +370,13 @@ const CollectorRow = forwardRef(
                           }}
                           key={idx}
                         >
-                          <CollectorRowAvatarWrapper onClick={() => extraCollectionChanged(id)}>
+                          <CollectorRowAvatarWrapper 
+                            selected={idx === selectedColletion}
+                            onClick={() => {
+                              extraCollectionChanged(id)
+                              setSelectedCollection(idx)
+                            }}
+                          >
                             <Avatar size="lg" color="white" src={imageOptimizer(imageUrl, {
                                 height: parseInt(theme.images.avatar.lg.size),
                                 width: parseInt(theme.images.avatar.lg.size)

@@ -1,6 +1,10 @@
 import styled from '@emotion/styled'
 import { Grid } from 'theme-ui'
 
+interface CollectorRowAvatarWrapperProps {
+  selected?: boolean
+}
+
 export const CollectorRowBase = styled.div`
   width: 100%;
   border-radius: 20px;
@@ -23,13 +27,13 @@ export const CollectorRowExpansion = styled.div<{
   max-height: ${({ $open }) => ($open ? 'auto' : 0)};
 `
 
-export const CollectorRowAvatarWrapper = styled.button`
+export const CollectorRowAvatarWrapper = styled.button<CollectorRowAvatarWrapperProps>`
   background: transparent;
   outline: none;
   border: none;
 
   img {
-    border: 4px solid white;
+    border: 4px solid ${({selected, theme}) => selected ? theme.colors.primary : 'white'};
     border-radius: 50%;
   }
 
