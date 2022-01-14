@@ -1,3 +1,4 @@
+/** @jsxImportSource theme-ui */
 import React, { forwardRef, useState, useEffect } from 'react'
 import { useTheme } from '@emotion/react'
 import { format, formatDistance } from 'date-fns'
@@ -14,6 +15,7 @@ import Icon from '../../@UI/Icon'
 import Label from '../../@UI/Label'
 import makeBlockie from 'ethereum-blockies-base64'
 import IconButton from '../../@UI/IconButton'
+import { useBreakpointIndex } from '../../..'
 import {
   formatUsername,
   shortenAddress,
@@ -82,6 +84,8 @@ export interface CollectorAccordionRowProps
    * Is it opened by default?
    */
   defaultOpen?: boolean
+
+  onClick?: () => void
 }
 
 /**
@@ -103,12 +107,14 @@ const CollectorRow = forwardRef(
       extraCollections,
       children,
       defaultOpen = false,
+      onClick,
       ...props
     }: CollectorAccordionRowProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const theme = useTheme()
     const [open, setOpen] = useState(defaultOpen)
+    const breakpointIndex = useBreakpointIndex()
     const isFirstColumn = !!avgHoldTime || !!firstAcquisition || !!nftCollection
     const [avatarUrl, setAvatarUrl] = useState(
       address ? makeBlockie(address) : null
@@ -135,13 +141,54 @@ const CollectorRow = forwardRef(
 
     return (
       <CollectorRowBase {...{ ref, ...props }} onClick={() => setOpen(!open)}>
-        <CollectorRowContent>
-          <Avatar size="md" src={avatarUrl} />
-
+        <CollectorRowContent isMobile={breakpointIndex <= 1}>
+          <Box
+            sx={{
+              width: '100%',
+              height: '48px',
+              position: 'relative',
+              '&:hover img': {
+                display: 'none',
+              },
+              '&:hover svg': {
+                display: 'block',
+              },
+              '&:hover': {
+                backgroundColor: '#151515',
+                borderRadius: '50%',
+                border: '2px solid black',
+              },
+              cursor: onClick ? 'pointer' : 'auto',
+            }}
+            onClick={(e) => {
+              e.stopPropagation()
+              onClick && onClick()
+            }}
+          >
+            <Avatar size="md" src={avatarUrl} />
+            <Icon
+              icon="arrowStylizedRight"
+              color="primary"
+              sx={{
+                display: 'none',
+                position: 'absolute',
+                top: '0',
+                width: '40% !important',
+                height: '40% !important',
+                margin: '30%',
+              }}
+              size="40%"
+            ></Icon>
+          </Box>
           <Flex
             sx={{ flexDirection: 'column', justifyContent: 'center', gap: 1 }}
           >
             <Text
+              as={onClick ? 'a' : 'span'}
+              onClick={(e) => {
+                e.stopPropagation()
+                onClick && onClick()
+              }}
               sx={{
                 fontWeight: 'bold',
                 fontSize: 4,
@@ -149,8 +196,13 @@ const CollectorRow = forwardRef(
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',
+                cursor: onClick ? 'pointer' : 'auto',
                 textDecoration: 'none',
+                width: 'fit-content',
                 color: 'inherit',
+                '&:hover': {
+                  textDecoration: onClick ? 'underline' : undefined,
+                },
               }}
             >
               {displayName}
@@ -197,7 +249,7 @@ const CollectorRow = forwardRef(
         <CollectorRowExpansion $open={open}>
           <Grid
             columns={['1fr', '1fr', '1fr', !isFirstColumn ? '1fr' : '1fr 1fr']}
-            sx={{ marginX: [0, 0, 46], columnGap: 72, p: 6 }}
+            sx={{ marginX: [0, 0, 46], columnGap: 72, p: '24px' }}
           >
             {isFirstColumn && (
               <Flex sx={{ flexDirection: 'column', gap: 4 }}>
@@ -269,7 +321,11 @@ const CollectorRow = forwardRef(
                     >
                       {nftCollection.map(
                         ({ imageUrl, url, pixelated }, idx) => {
-                          const optimizedSrc = imageOptimizer(imageUrl, {height: 180, width: 180}) ?? imageUrl
+                          const optimizedSrc =
+                            imageOptimizer(imageUrl, {
+                              height: 180,
+                              width: 180,
+                            }) ?? imageUrl
                           const imageSrc = pixelated ? imageUrl : optimizedSrc
 
                           return (
@@ -290,8 +346,8 @@ const CollectorRow = forwardRef(
                               />
                             </a>
                           )
-                        })
-                      }
+                        }
+                      )}
                     </Grid>
                   </Flex>
                 ) : (
@@ -351,10 +407,15 @@ const CollectorRow = forwardRef(
                           key={idx}
                         >
                           <a href={url}>
-                            <Avatar size="lg" color="white" src={imageOptimizer(imageUrl, {
-                                height: parseInt(theme.images.avatar.lg.size),
-                                width: parseInt(theme.images.avatar.lg.size)
-                              }) ?? imageUrl}
+                            <Avatar
+                              size="lg"
+                              color="white"
+                              src={
+                                imageOptimizer(imageUrl, {
+                                  height: parseInt(theme.images.avatar.lg.size),
+                                  width: parseInt(theme.images.avatar.lg.size),
+                                }) ?? imageUrl
+                              }
                             />
                           </a>
                           <Flex

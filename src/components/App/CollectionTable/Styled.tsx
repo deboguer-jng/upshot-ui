@@ -13,6 +13,11 @@ export const CollectionTableBase = styled(Table)`
     width: auto;
   }
 
+  & thead td {
+    padding-bottom: ${({ theme }) => theme.space[4]}px!important;
+    font-size: 16px !important;
+  }
+
   /* Make avatar cell smaller */
   & thead td:nth-of-type(1),
   & tbody td:nth-of-type(1) {
@@ -22,15 +27,17 @@ export const CollectionTableBase = styled(Table)`
 
   /* Round table corners across the child cells. */
   & td:first-of-type {
-    border-top-left-radius: ${({ theme }) => theme.radii.sm};
+    border-top-left-radius: ${({ theme }) => theme.radii.md};
+    padding-left: 16px;
   }
   & td:last-of-type {
-    border-top-right-radius: ${({ theme }) => theme.radii.sm};
+    border-top-right-radius: ${({ theme }) => theme.radii.md};
   }
   & td:first-of-type {
-    border-bottom-left-radius: ${({ theme }) => theme.radii.sm};
+    border-bottom-left-radius: ${({ theme }) => theme.radii.md};
   }
   & td:last-of-type {
-    border-bottom-right-radius: ${({ theme }) => theme.radii.sm};
+    border-bottom-right-radius: ${({ theme }) => theme.radii.md};
+    padding-right: 16px;
   }
 `
