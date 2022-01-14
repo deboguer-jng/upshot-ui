@@ -47,19 +47,6 @@ export interface CollectionCardExpandedProps extends BoxProps {
 }
 
 /**
- * Temporary solution to add deterministic height variance
- * prior to a solution that provides the exact heights or
- * proportional sizes for assets received via graphQL.
- */
-const prng = (seed: number) => {
-  let t = (seed += 0x6d2b79f5)
-  t = Math.imul(t ^ (t >>> 15), t | 1)
-  t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
-
-  return ((t ^ (t >>> 14)) >>> 0) / 4294967296
-}
-
-/**
  * Provides an expanded collection card.
  */
 const CollectionCardExpanded = forwardRef(
@@ -115,14 +102,9 @@ const CollectionCardExpanded = forwardRef(
     /* Virtualized cell renderer by masonry index. */
     const MasonryRenderer = useCallback(
       ({ index, data }: { index: number; data: any }) => {
-        const dynamicHeight = Math.round(prng(index)) * 60 + 260
-
         return (
           <a href={`/analytics/nft/${data.id}`} target="_blank">
-            <CollectionCardItem
-              sx={{ height: isMobile ? 400 : dynamicHeight }}
-              {...data}
-            />
+            <CollectionCardItem sx={{ height: 320 }} {...data} />
           </a>
         )
       },
