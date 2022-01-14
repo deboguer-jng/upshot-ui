@@ -39,6 +39,8 @@ export interface CollectionRowProps extends TableRowProps {
   pixelated?: boolean
 
   defaultOpen?: boolean
+
+  nftCount?: number
 }
 
 const CollectionRow = forwardRef(
@@ -51,6 +53,7 @@ const CollectionRow = forwardRef(
       pixelated,
       totalVolume,
       defaultOpen = false,
+      nftCount,
       onClick,
       ...props
     }: CollectionRowProps,
@@ -187,14 +190,28 @@ const CollectionRow = forwardRef(
                 </Text>
               </Flex>
 
-              <Flex sx={{ alignItems: 'center' }}>
+              {nftCount ? (
+                <>
+                <Flex sx={{ alignItems: 'center' }}>
+                <Text
+                  sx={{
+                    fontWeight: 'bold',
+                    fontSize: breakpointIndex <= 1 ? 2 : 4,
+                    lineHeight: 1,
+                  }}
+                >
+                  {nftCount}
+                </Text>
+              </Flex>
+                </>
+              ) : <Flex sx={{ alignItems: 'center' }}>
                 <IconButton onClick={() => setOpen(!open)}>
                   <Icon
                     color="primary"
                     icon={open ? 'arrowUp' : 'arrowDropdown'}
                   />
                 </IconButton>
-              </Flex>
+              </Flex>}
             </CollectorRowContent>
             <CollectorRowExpansion $open={open}>
               {children}
