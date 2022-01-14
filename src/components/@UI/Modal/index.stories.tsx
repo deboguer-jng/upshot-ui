@@ -14,10 +14,10 @@ const Template: ComponentStory<typeof Modal> = (args) => {
   const toggleModal = () => setOpen(!open)
 
   return (
-    <>
+    <div style={{ height: '200vh' }}>
       <Button onClick={toggleModal}>{open ? 'Hide' : 'Show'}</Button>
       <Modal onClose={toggleModal} {...{ open, ...args }} />
-    </>
+    </div>
   )
 }
 
