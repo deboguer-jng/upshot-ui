@@ -191,7 +191,7 @@ const CollectorRow = forwardRef(
               }}
               sx={{
                 fontWeight: 'bold',
-                fontSize: breakpointIndex <= 1 ? 2 : 4,
+                fontSize: breakpointIndex <= 1 ? 2 : 3,
                 lineHeight: 1,
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
