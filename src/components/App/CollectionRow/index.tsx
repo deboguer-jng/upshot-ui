@@ -1,6 +1,8 @@
+/** @jsxImportSource theme-ui */
 import React, { forwardRef, useState } from 'react'
 import Avatar from '../../@UI/Avatar'
 import Text from '../../@UI/Text'
+import { Box } from 'theme-ui'
 import { CollectionRowBase } from './Styled'
 import {
   CollectorRowBase,
@@ -59,9 +61,10 @@ const CollectionRow = forwardRef(
     const isMobile = breakpointIndex <= 1
     const [open, setOpen] = useState(defaultOpen)
 
-    const optimizedSrc = imageOptimizer(imageSrc, {
+    const optimizedSrc =
+      imageOptimizer(imageSrc, {
         width: parseInt(theme.images.avatar.md.size),
-        height: parseInt(theme.images.avatar.md.size)
+        height: parseInt(theme.images.avatar.md.size),
       }) ?? imageSrc
     const src = pixelated ? imageSrc : optimizedSrc
 
@@ -71,14 +74,47 @@ const CollectionRow = forwardRef(
           <CollectionRowBase $variant={variant} {...{ ref, ...props }}>
             {/* Each row has a required avatar image circle. */}
             <TableCell>
-              <Avatar
-                {...{ pixelated, src, onClick }}
+              <Box
                 sx={{
+                  width: '100%',
+                  height: '48px',
+                  position: 'relative',
+                  '&:hover img': {
+                    display: 'none',
+                  },
+                  '&:hover svg': {
+                    display: 'block',
+                  },
+                  '&:hover': {
+                    backgroundColor: '#151515',
+                    borderRadius: '50%',
+                    border: '2px solid black',
+                  },
                   cursor: onClick ? 'pointer' : 'auto',
-                  backgroundColor: 'grey-600',
-                  borderColor: 'black',
                 }}
-              />
+                {...{ onClick }}
+              >
+                <Avatar
+                  {...{ pixelated, src }}
+                  sx={{
+                    backgroundColor: 'grey-600',
+                    borderColor: 'black',
+                  }}
+                />
+                <Icon
+                  icon="arrowStylizedRight"
+                  color="primary"
+                  sx={{
+                    display: 'none',
+                    position: 'absolute',
+                    top: '0',
+                    width: '40% !important',
+                    height: '40% !important',
+                    margin: '30%',
+                  }}
+                  size="40%"
+                ></Icon>
+              </Box>
             </TableCell>
 
             <TableCell>
@@ -126,7 +162,7 @@ const CollectionRow = forwardRef(
                 <Text
                   sx={{
                     fontWeight: 'bold',
-                    fontSize: 4,
+                    fontSize: breakpointIndex <= 1 ? 2 : 4,
                     lineHeight: 1,
                     textOverflow: 'ellipsis',
                     overflow: 'hidden',
@@ -143,7 +179,7 @@ const CollectionRow = forwardRef(
                 <Text
                   sx={{
                     fontWeight: 'bold',
-                    fontSize: 4,
+                    fontSize: breakpointIndex <= 1 ? 2 : 4,
                     lineHeight: 1,
                   }}
                 >

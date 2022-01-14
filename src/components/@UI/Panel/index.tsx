@@ -4,6 +4,7 @@ import React, { forwardRef } from 'react'
 import colors from '../../../themes/UpshotUI/colors'
 import { PanelBase } from './Styled'
 import { theme } from '../../..'
+import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 
 export interface PanelProps extends BoxProps {
   /**
@@ -34,6 +35,7 @@ const Panel = forwardRef(
     }: PanelProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
+    const isMobile = useBreakpointIndex() <= 1
 
     // generate shadow css string
     const shadow = theme.shadow.underglow(hoverUnderglow) + ', ' + theme.shadow.border(hoverBorder)
@@ -42,6 +44,7 @@ const Panel = forwardRef(
       <PanelBase
         $inner={inner}
         $shadow={shadow}
+        $isMobile={isMobile}
         {...{ ref, ...props }}
       />
     )

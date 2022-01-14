@@ -44,6 +44,10 @@ export interface ChartProps {
    * Renders the narrow embedded variant.
    */
   embedded?: boolean
+  /**
+   * Handler for ChartLabel close event.
+   */
+  onClose?: (index: number) => void
 }
 
 const Chart = forwardRef(
@@ -55,6 +59,7 @@ const Chart = forwardRef(
       data = [],
       search = false,
       embedded = false,
+      onClose,
       ...props
     }: ChartProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -65,7 +70,7 @@ const Chart = forwardRef(
       <ChartWrapper $embedded={embedded} {...{ ref, ...props }}>
         <div>
           {dataAvailable ? (
-            <PopulatedChart chartData={data} {...{ embedded }} />
+            <PopulatedChart chartData={data} {...{ embedded, onClose }} />
           ) : (
             <EmptyChart
               {...{

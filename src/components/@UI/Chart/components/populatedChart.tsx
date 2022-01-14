@@ -29,6 +29,7 @@ interface PopulatedChartProps {
     metric?: string
   }[]
   embedded?: boolean
+  onClose?: (index: number) => void
 }
 
 type HoverDataPoint = {
@@ -39,6 +40,7 @@ type HoverDataPoint = {
 const PopulatedChart = ({
   chartData,
   embedded = false,
+  onClose,
 }: PopulatedChartProps) => {
   const theme = useTheme()
 
@@ -151,6 +153,7 @@ const PopulatedChart = ({
               titleColor={set.labelColor}
               price_1={labelValue(index, set)}
               onClose={() => {
+                onClose?.(index)
                 toggle(
                   index,
                   chartData[index].name,
