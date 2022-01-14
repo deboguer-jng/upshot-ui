@@ -162,7 +162,7 @@ const CollectionRow = forwardRef(
                 <Text
                   sx={{
                     fontWeight: 'bold',
-                    fontSize: 4,
+                    fontSize: breakpointIndex <= 1 ? 2 : 4,
                     lineHeight: 1,
                     textOverflow: 'ellipsis',
                     overflow: 'hidden',
@@ -179,7 +179,7 @@ const CollectionRow = forwardRef(
                 <Text
                   sx={{
                     fontWeight: 'bold',
-                    fontSize: 4,
+                    fontSize: breakpointIndex <= 1 ? 2 : 4,
                     lineHeight: 1,
                   }}
                 >
