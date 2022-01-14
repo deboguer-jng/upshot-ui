@@ -153,8 +153,8 @@ const CollectorRow = forwardRef(
     const displayName = name ?? (address ? shortenAddress(address) : 'Unknown')
 
     return (
-      <CollectorRowBase {...{ ref, ...props }} onClick={() => setOpen(!open)}>
-        <CollectorRowContent isMobile={breakpointIndex <= 1}>
+      <CollectorRowBase {...{ ref, ...props }}>
+        <CollectorRowContent isMobile={breakpointIndex <= 1} onClick={() => setOpen(!open)}>
           <Box
             sx={{
               width: '100%',
