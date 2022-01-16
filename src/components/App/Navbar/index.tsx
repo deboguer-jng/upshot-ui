@@ -167,7 +167,7 @@ const Navbar = forwardRef(
               <>
                 {address ? (
                   <NavbarItem ref={setReferenceElement}>
-                    <NavbarProfile ref={setNavProfileElement}>
+                    <NavbarProfile ref={setNavProfileElement} $showNavPopper={showNavPopper}>
                       <img src={avatarImageUrl} />
                       {!isMobile && (
                         <NavbarProfileDetails>
