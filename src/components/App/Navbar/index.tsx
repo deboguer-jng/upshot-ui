@@ -206,7 +206,7 @@ const Navbar = forwardRef(
                         onClick={handleNavPopper}
                       >
                         <Icon
-                          style={{ pointerEvents: 'none' }}
+                          style={{ pointerEvents: 'none', transform: 'scaleY(' + showNavPopper ? -1 : 1 + ')' }}
                           icon="arrowDropUserBubble"
                         />
                       </IconButton>
