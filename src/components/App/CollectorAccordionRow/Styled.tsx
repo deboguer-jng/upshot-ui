@@ -36,6 +36,7 @@ export const CollectorRowAvatarWrapper = styled.button<CollectorRowAvatarWrapper
   background: transparent;
   outline: none;
   border: none;
+  cursor: pointer;
 
   img {
     border: 4px solid ${({selected, theme}) => selected ? theme.colors.primary : 'white'};

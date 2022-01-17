@@ -347,13 +347,13 @@ const CollectorRow = forwardRef(
                         }
                       )}
                     </Grid>
-                    <Pagination
+                    {Math.ceil(nftCollection.length / 3) > 1 && <Pagination
                       forcePage={page}
                       pageCount={Math.ceil(nftCollection.length / 3)}
                       pageRangeDisplayed={0}
                       marginPagesDisplayed={0}
                       onPageChange={handlePageChange}
-                    />
+                    />}
                   </Flex>
                 ) : (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
@@ -414,7 +414,7 @@ const CollectorRow = forwardRef(
                           <CollectorRowAvatarWrapper 
                             selected={idx === selectedColletion}
                             onClick={() => {
-                              extraCollectionChanged(id)
+                              extraCollectionChanged?.(id)
                               setSelectedCollection(idx)
                             }}
                           >
