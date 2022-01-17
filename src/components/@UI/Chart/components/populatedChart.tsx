@@ -9,6 +9,7 @@ import ButtonChartCollection from '../../ButtonChartCollection'
 import ChartLabel from '../../ChartLabel'
 import Grid from '../../../Layout/Grid'
 import Flex from '../../../Layout/Flex'
+import Box from '../../../Layout/Box'
 import Text from '../../../@UI/Text'
 import { format } from 'date-fns'
 import colors from '../../../../themes/UpshotUI/colors'
@@ -199,18 +200,20 @@ const PopulatedChart = ({
             flexDirection: ['column', 'column', 'row'],
           }}
         >
-          <Flex
+          <Box
             sx={{
+              width: '100%',
               flexDirection: 'row',
               alignItems: 'flex-start',
               textAlign: 'left',
-              display: 'inline-flex',
+              display: ['inline-grid', 'inline-grid', 'inline-flex'],
+              gridTemplateColumns: ['1fr 1fr', '1fr 1fr', null],
               flexWrap: 'wrap',
               gap: '18px',
             }}
           >
             {chartLabels}
-          </Flex>
+          </Box>
           <Text
             variant="h3Primary"
             sx={{
