@@ -12,4 +12,3 @@ export const BigEmptyFlex = styled(Flex)`
   border-radius: ${({ theme }) => theme.radii.md};
   background-color: ${({ theme }) => theme.colors['grey-900']};
 `
-

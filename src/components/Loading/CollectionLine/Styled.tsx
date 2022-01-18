@@ -29,4 +29,3 @@ export const CollectionLine = styled(Grid)`
   border-radius: ${({ theme }) => theme.radii.md};
   padding: 6px 18px;
 `
-

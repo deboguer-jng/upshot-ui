@@ -8,17 +8,17 @@ import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 
 export interface PanelProps extends BoxProps {
   /**
-    * Inner variants use a darker color with a smaller
-    * border radius.
-    */
+   * Inner variants use a darker color with a smaller
+   * border radius.
+   */
   inner?: boolean
   /**
-    * Underglow color on :hover
-    */
+   * Underglow color on :hover
+   */
   hoverUnderglow?: keyof typeof colors
   /**
-    * Border color on :hover
-    */
+   * Border color on :hover
+   */
   hoverBorder?: keyof typeof colors
 }
 
@@ -38,7 +38,10 @@ const Panel = forwardRef(
     const isMobile = useBreakpointIndex() <= 1
 
     // generate shadow css string
-    const shadow = theme.shadow.underglow(hoverUnderglow) + ', ' + theme.shadow.border(hoverBorder)
+    const shadow =
+      theme.shadow.underglow(hoverUnderglow) +
+      ', ' +
+      theme.shadow.border(hoverBorder)
 
     return (
       <PanelBase

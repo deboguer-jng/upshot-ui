@@ -1,12 +1,12 @@
-import colors from "./colors";
+import colors from './colors'
 
 const transactionHistoryItem = {
   variant: {
     sender: {
-      background: colors.yellow
+      background: colors.yellow,
     },
     recipient: {
-      background: colors.purple
+      background: colors.purple,
     },
   },
   width: 16,

@@ -9,6 +9,7 @@ import ButtonChartCollection from '../../ButtonChartCollection'
 import ChartLabel from '../../ChartLabel'
 import Grid from '../../../Layout/Grid'
 import Flex from '../../../Layout/Flex'
+import Box from '../../../Layout/Box'
 import Text from '../../../@UI/Text'
 import { format } from 'date-fns'
 import colors from '../../../../themes/UpshotUI/colors'
@@ -67,9 +68,8 @@ const PopulatedChart = ({
     'blue',
     'pink',
     'purple',
-    'yellow',
-    'red',
     'green',
+    'orange',
   ]
   for (let i = 0; i < chartData.length; i++) {
     chartData[i].labelColor = labelColors[i]
@@ -199,27 +199,29 @@ const PopulatedChart = ({
         <Flex
           sx={{
             justifyContent: 'space-between',
-            gap: [2, 2, 0],
-            flexDirection: ['column', 'column', 'row'],
+            gap: [2, 0],
+            flexDirection: ['column', 'row'],
           }}
         >
-          <Flex
+          <Box
             sx={{
+              width: '100%',
               flexDirection: 'row',
               alignItems: 'flex-start',
               textAlign: 'left',
-              display: 'inline-flex',
+              display: ['inline-grid', 'inline-grid', 'inline-flex'],
+              gridTemplateColumns: ['1fr 1fr', '1fr 1fr', null],
               flexWrap: 'wrap',
               gap: '18px',
             }}
           >
             {chartLabels}
-          </Flex>
+          </Box>
           <Text
             variant="h3Primary"
             sx={{
               textTransform: 'uppercase',
-              alignSelf: ['flex-end', 'flex-end', 'flex-start'],
+              alignSelf: ['flex-end', 'flex-start'],
               minHeight: '1.25rem',
             }}
           >
@@ -251,7 +253,7 @@ const PopulatedChart = ({
           variant="h3Primary"
           sx={{
             textTransform: 'uppercase',
-            alignSelf: ['flex-end', 'flex-end', 'flex-start'],
+            alignSelf: ['flex-end', 'flex-start'],
             minHeight: '1.25rem',
             float: 'right',
             marginBottom: '-10px',

@@ -8,7 +8,9 @@ export default {
   component: CollectionLine,
 } as ComponentMeta<typeof CollectionLine>
 
-const Template: ComponentStory<typeof CollectionLine> = (args) => <CollectionLine {...args} />
+const Template: ComponentStory<typeof CollectionLine> = (args) => (
+  <CollectionLine {...args} />
+)
 
 export const Default = Template.bind({})
 Default.args = {
@@ -17,7 +19,7 @@ Default.args = {
   text2: '1.5 hrs',
   text3: '9999.99',
   text4: '99999',
-  text5: '99999'
+  text5: '99999',
 }
 
 export const Collapsable = Template.bind({})
@@ -29,58 +31,53 @@ Collapsable.args = {
 export const UnderglowBlue = Template.bind({})
 UnderglowBlue.args = {
   sx: { width: '100%', height: '62px' },
-  underglow: 'blue' 
+  underglow: 'blue',
 }
 
 export const UnderglowPink = Template.bind({})
 UnderglowPink.args = {
   sx: { width: '100%', height: '62px' },
-  underglow: 'pink' 
+  underglow: 'pink',
 }
 
 export const UnderglowRed = Template.bind({})
 UnderglowRed.args = {
   sx: { width: '100%', height: '62px' },
-  underglow: 'red' 
+  underglow: 'red',
 }
 
 export const UnderglowYellow = Template.bind({})
 UnderglowYellow.args = {
   sx: { width: '100%', height: '62px' },
-  underglow: 'yellow' 
+  underglow: 'yellow',
 }
 
 export const UnderglowGreen = Template.bind({})
 UnderglowGreen.args = {
   sx: { width: '100%', height: '62px' },
-  underglow: 'green' 
+  underglow: 'green',
 }
 
 export const UnderglowPurple = Template.bind({})
 UnderglowPurple.args = {
   sx: { width: '100%', height: '62px' },
-  underglow: 'purple' 
+  underglow: 'purple',
 }
 
 export const UnderglowBlack = Template.bind({})
 UnderglowBlack.args = {
   sx: { width: '100%', height: '62px' },
-  underglow: 'black' 
+  underglow: 'black',
 }
 
 export const UnderglowWhite = Template.bind({})
 UnderglowWhite.args = {
   sx: { width: '100%', height: '62px' },
-  underglow: 'white' 
+  underglow: 'white',
 }
 
 export const UnderglowGrey500 = Template.bind({})
 UnderglowGrey500.args = {
   sx: { width: '100%', height: '62px' },
-  underglow: 'grey-500' 
+  underglow: 'grey-500',
 }
-
-
-
-
-

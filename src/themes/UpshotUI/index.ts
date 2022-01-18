@@ -12,7 +12,7 @@ import spinners from './spinners'
 import shadow from './shadow'
 import styles from './styles'
 import scroll from './scroll'
-import sizes, { breakpoints, radii } from './sizes'
+import sizes, { breakpointsNamed, breakpoints, radii } from './sizes'
 import transactionHistoryItem from './transactionHistoryItem'
 import miniNftCard from './miniNftCard'
 import zIndex from './zIndex'
@@ -31,6 +31,7 @@ const theme = {
   alerts,
   accordion,
   animations,
+  breakpointsNamed,
   breakpoints,
   buttons,
   chart,

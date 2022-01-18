@@ -3,7 +3,13 @@ import { Box } from 'theme-ui'
 
 import Text from '../../@UI/Text'
 import { PanelProps } from '../../@UI/Panel'
-import { StyledAvatar, StyledText, StyledDescription, StyledPanel, StyledIcon } from './Styled'
+import {
+  StyledAvatar,
+  StyledText,
+  StyledDescription,
+  StyledPanel,
+  StyledIcon,
+} from './Styled'
 import colors from '../../../themes/UpshotUI/colors'
 
 export interface LandingPanelProps extends PanelProps {
@@ -67,7 +73,6 @@ const LandingPanel = forwardRef(
       hoverBorder = 'transparent'
     }
 
-
     useEffect(() => {
       function handleResize() {
         if (typeof panelRef.current !== null) {
@@ -77,26 +82,42 @@ const LandingPanel = forwardRef(
         }
       }
       handleResize()
-      window.addEventListener("resize", handleResize)
-      return () => window.removeEventListener("resize", handleResize)
+      window.addEventListener('resize', handleResize)
+      return () => window.removeEventListener('resize', handleResize)
     }, [width])
 
     return (
       <Box {...{ ref, ...props }}>
-        <StyledPanel ref={panelRef} hoverUnderglow={hoverUnderglow} hoverBorder={hoverBorder} $isBig={isBig} $disabled={disabled} >
+        <StyledPanel
+          ref={panelRef}
+          hoverUnderglow={hoverUnderglow}
+          hoverBorder={hoverBorder}
+          $isBig={isBig}
+          $disabled={disabled}
+        >
           <Box>
-            { showLinkIcon && (
-              <StyledIcon icon='openLink' color='grey-700' size='20' />
+            {showLinkIcon && (
+              <StyledIcon icon="openLink" color="grey-700" size="20" />
             )}
-            { isBig && (
+            {isBig && (
               <>
                 <StyledAvatar src={image} />
-                <StyledText color='grey-600' variant='large'>{projectType}</StyledText>
+                <StyledText color="grey-600" variant="large">
+                  {projectType}
+                </StyledText>
               </>
             )}
-            <Text variant='h3Primary' color={disabled ? 'grey-600' : 'grey-300'}>{title}</Text>
+            <Text
+              variant="h3Primary"
+              color={disabled ? 'grey-600' : 'grey-300'}
+            >
+              {title}
+            </Text>
           </Box>
-          <StyledDescription $isBig={isBig} color={disabled ? 'grey-600' : 'grey-500'}>
+          <StyledDescription
+            $isBig={isBig}
+            color={disabled ? 'grey-600' : 'grey-500'}
+          >
             {description}
           </StyledDescription>
         </StyledPanel>
