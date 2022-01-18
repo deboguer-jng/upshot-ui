@@ -50,7 +50,8 @@ export const StyledTitle = styled('h3')<ChartLabelProps>`
 `
 
 export const StyledBox = styled(Box)<ChartLabelProps>`
-  max-width: ${({ $isMobile, $maxWidth }) => ($isMobile ? ($maxWidth-25) +'px' : ($maxWidth-32) + 'px')}
+  max-width: ${({ $isMobile, $maxWidth }) =>
+    $isMobile ? $maxWidth - 25 + 'px' : $maxWidth - 32 + 'px'};
 `
 
 export const StyledH1 = styled('h1')<ChartLabelProps>`
@@ -89,7 +90,7 @@ export const RelativeFlex = styled(Flex)<ChartLabelProps>`
   display: inline-flex;
   font-size: ${({ $isMobile }) => ($isMobile ? '0.65em' : '1em')};
   flex-wrap: wrap;
-  max-width: ${({ $maxWidth }) => ($maxWidth + 'px')};
+  max-width: ${({ $maxWidth }) => $maxWidth + 'px'};
 `
 export const StyledLink = styled.a`
   color: inherit;

@@ -156,7 +156,7 @@ const ChartLabel = forwardRef(
             </Text>
             <Text
               variant="h1Primary"
-              sx={{ fontWeight: 'normal', lineHeight: 1, fontSize: [6, 6, 7] }}
+              sx={{ fontWeight: 'normal', lineHeight: 1, fontSize: [6, 7] }}
             >
               {nFormatter(price_1)}
             </Text>
@@ -176,14 +176,14 @@ const ChartLabel = forwardRef(
           </StyledChangeDiv>
 
           {ath !== '-' && atl !== '-' && (
-            <Box sx={{ display: ['grid', 'grid', 'block'] }}>
-              <StyledRed sx={{ paddingTop: ['3px', '3px', '0px'] }}>
+            <Box sx={{ display: ['grid', 'block'] }}>
+              <StyledRed sx={{ paddingTop: ['3px', '0px'] }}>
                 ATL: {atl}
               </StyledRed>
               <StyledBlue
                 sx={{
-                  marginTop: ['-6px', '-6px', '0px'],
-                  paddingLeft: ['0px', '0px', '5px'],
+                  marginTop: ['-6px', '0px'],
+                  paddingLeft: ['0px', '5px'],
                 }}
               >
                 ATH: {ath}

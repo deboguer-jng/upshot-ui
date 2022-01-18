@@ -13,7 +13,7 @@ export default {
 const TemplateIcon: ComponentStory<typeof SliderIcon> = (args) => {
   return (
     <SliderIcon {...args}>
-      <Flex sx={{width: 'fit-content'}}>
+      <Flex sx={{ width: 'fit-content' }}>
         <button> text1 </button>
         <button> text1 </button>
         <button> text1 </button>
@@ -49,11 +49,10 @@ const TemplateIcon: ComponentStory<typeof SliderIcon> = (args) => {
   )
 }
 
-
 const TemplateFade: ComponentStory<typeof SliderFade> = (args) => {
   return (
     <SliderFade {...args}>
-      <Flex sx={{width: 'fit-content'}}>
+      <Flex sx={{ width: 'fit-content' }}>
         <button> text1 </button>
         <button> text1 </button>
         <button> text1 </button>

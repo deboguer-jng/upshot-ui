@@ -11,10 +11,11 @@ interface sizeProps {
 }
 
 export const StyledPanel = styled(Panel)<sizeProps>`
-  padding: ${({ $isBig }) => $isBig == true ? '27px' : '22px' };
+  padding: ${({ $isBig }) => ($isBig == true ? '27px' : '22px')};
   height: 100%;
   &:hover {
-    background-color: ${({ theme, $disabled }) => $disabled === false ? theme.colors.black : ''} !important;
+    background-color: ${({ theme, $disabled }) =>
+      $disabled === false ? theme.colors.black : ''} !important;
   }
 `
 export const StyledAvatar = styled(Avatar)`
@@ -32,7 +33,9 @@ export const StyledIcon = styled(Icon)`
 
 export const StyledDescription = styled(Text)<sizeProps>`
   display: block;
-  margin-top: ${({ $isBig }) => $isBig == true ? '50px' : '10px' };
-  ${({ $isBig }) => $isBig == true ? '' : 'white-space: nowrap; text-overflow: ellipsis; overflow: hidden;' }
-  
+  margin-top: ${({ $isBig }) => ($isBig == true ? '50px' : '10px')};
+  ${({ $isBig }) =>
+    $isBig == true
+      ? ''
+      : 'white-space: nowrap; text-overflow: ellipsis; overflow: hidden;'}
 `

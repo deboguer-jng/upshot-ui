@@ -15,6 +15,7 @@ import {
   StyledLink,
   Divider,
 } from './Styled'
+import Container from '../../Layout/Container'
 import Icon from '../../@UI/Icon'
 import IconButton from '../../@UI/IconButton'
 import Panel from '../../@UI/Panel'
@@ -25,7 +26,7 @@ import InputRoundedSearch, {
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import { shortenAddress } from '../../../utils/address'
 import zIndex from '../../../themes/UpshotUI/zIndex'
-import { Text, Box, Flex, BoxProps } from 'theme-ui'
+import { Text, Flex, BoxProps } from 'theme-ui'
 export interface NavbarInterface extends BoxProps {
   /**
    * Avatar Image URL
@@ -117,8 +118,15 @@ const Navbar = forwardRef(
     }, [showNavPopper])
 
     return (
-      <Box {...{ ref, ...props }}>
-        <Flex sx={{ flexDirection: 'column', gap: 4, position: 'relative' }}>
+      <Container sx={{ paddingY: 5, paddingX: 3 }} {...{ ref, ...props }}>
+        <Flex
+          sx={{
+            width: '100%',
+            flexDirection: 'column',
+            gap: 4,
+            position: 'relative',
+          }}
+        >
           <NavbarWrapper>
             <Flex
               style={{
@@ -155,7 +163,9 @@ const Navbar = forwardRef(
                         onClick: onSearch,
                         type: 'button',
                       }}
-                      sx={{ background: 'none' }}
+                      sx={{
+                        background: 'none',
+                      }}
                     />
                   </form>
                 </SearchWrapper>
@@ -261,7 +271,11 @@ const Navbar = forwardRef(
                     onClick: onSearch,
                     type: 'button',
                   }}
-                  sx={{ background: 'none' }}
+                  sx={{
+                    background: 'none',
+                    width: 'calc(100% + 24px)',
+                    marginLeft: '-12px',
+                  }}
                 />
               </form>
             </SearchWrapper>
@@ -338,7 +352,7 @@ const Navbar = forwardRef(
             </Text>
           </Panel>
         </div>
-      </Box>
+      </Container>
     )
   }
 )

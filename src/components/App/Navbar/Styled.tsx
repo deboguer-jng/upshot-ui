@@ -1,9 +1,24 @@
 import styled from '@emotion/styled'
 import css from '@emotion/css'
+import { breakpoints } from '../../../themes/UpshotUI/sizes'
 
 interface NavbarItemProps {
   grow?: boolean
 }
+
+export const NavbarBase = styled.div`
+  padding: ${({ theme }) => `${theme.sizes[5]}px ${theme.sizes[3]}px`};
+  width: 100%;
+  margin: 0 auto;
+
+  ${breakpoints.map(
+    (bkp: string) => css`
+      @media only screen and (min-width: ${bkp}) {
+        max-width: ${bkp};
+      }
+    `
+  )}
+`
 
 export const NavbarWrapper = styled.div`
   display: flex;

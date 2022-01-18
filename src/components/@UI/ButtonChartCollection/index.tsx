@@ -6,7 +6,6 @@ import {
 import Text from '../Text'
 import colors from '../../../themes/UpshotUI/colors'
 
-
 export interface ButtonChartCollectionProps {
   color: keyof typeof colors
   selected: Boolean
@@ -27,7 +26,11 @@ const ButtonChartCollection = forwardRef(
     return (
       <ButtonChartCollectionWrapper {...{ ref, ...props }}>
         <ButtonChartCollectionIcon selected={selected} $color={color} />
-        <Text variant="large" color={color} sx={{ textTransform: 'uppercase', fontWeight: 400 }}>
+        <Text
+          variant="large"
+          color={color}
+          sx={{ textTransform: 'uppercase', fontWeight: 400 }}
+        >
           {title}
         </Text>
       </ButtonChartCollectionWrapper>

@@ -98,3 +98,10 @@ export { UpshotUIThemeType } from './themes/UpshotUI'
  */
 
 export { useBreakpointIndex } from './hooks/useBreakpointIndex'
+
+/**
+ * Utils
+ *
+ * Util functions
+ */
+ export { imageOptimizer } from './utils/imageOptimizer'

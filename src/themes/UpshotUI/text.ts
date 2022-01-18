@@ -58,11 +58,7 @@ const text = {
     fontFamily: 'body',
     fontWeight: 'bold',
     color: colors.white,
-    lineHeight: [
-      'initial',
-      'initial',
-      'heading',
-    ],
+    lineHeight: ['initial', 'heading'],
     fontSize: [3, 5, 7],
   },
   h1Secondary: {
@@ -117,7 +113,7 @@ const text = {
     fontFamily: 'body',
     fontWeight: 'heading',
     fontSize: 3,
-    lineHeight: '1.375rem'
+    lineHeight: '1.375rem',
   },
   largeWhite: {
     fontFamily: 'body',
@@ -132,7 +128,7 @@ const text = {
     lineHeight: '1.375rem',
     color: colors.white,
     display: 'block',
-    fontSize: [1, 1, 3],
+    fontSize: [1, 3],
   },
   small: {
     fontFamily: 'body',
