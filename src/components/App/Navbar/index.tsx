@@ -25,6 +25,7 @@ import InputRoundedSearch, {
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import { shortenAddress } from '../../../utils/address'
 import zIndex from '../../../themes/UpshotUI/zIndex'
+import Modal from '../../@UI/Modal'
 import { Text, Box, Flex, BoxProps } from 'theme-ui'
 export interface NavbarInterface extends BoxProps {
   /**
@@ -81,7 +82,7 @@ const Navbar = forwardRef(
     }: NavbarInterface,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    const [showNavPopper, setShowNavPopper] = useState(false)
+    const [showWalletPopper, setShowWalletPopper] = useState(false)
     const [referenceElement, setReferenceElement] = useState(null)
     const [popperElement, setPopperElement] = useState(null)
     const [navProfileElement, setNavProfileElement] = useState(null)
@@ -96,7 +97,7 @@ const Navbar = forwardRef(
     const isMobileOrTablet = useBreakpointIndex() <= 2
 
     const handleNavPopper = () => {
-      if (!showNavPopper) {
+      if (!showWalletPopper) {
         document.addEventListener(
           'mouseup',
           (e) => {
@@ -109,12 +110,12 @@ const Navbar = forwardRef(
           }
         )
       }
-      setShowNavPopper(!showNavPopper)
+      setShowWalletPopper(!showWalletPopper)
     }
 
     useEffect(() => {
       forceUpdate?.()
-    }, [showNavPopper])
+    }, [showWalletPopper])
 
     return (
       <Box {...{ ref, ...props }}>
@@ -167,7 +168,7 @@ const Navbar = forwardRef(
               <>
                 {address ? (
                   <NavbarItem ref={setReferenceElement}>
-                    <NavbarProfile ref={setNavProfileElement} $showNavPopper={showNavPopper}>
+                    <NavbarProfile ref={setNavProfileElement} $showWalletPopper={showWalletPopper}>
                       <img src={avatarImageUrl} />
                       {!isMobile && (
                         <NavbarProfileDetails>
@@ -206,11 +207,19 @@ const Navbar = forwardRef(
                         onClick={handleNavPopper}
                       >
                         <Icon
-                          style={{ pointerEvents: 'none', transform: 'scaleY(' + (showNavPopper ? '-1' : '1') + ')' }}
+                          style={{ pointerEvents: 'none', transform: 'scaleY(' + (showWalletPopper ? '-1' : '1') + ')' }}
                           icon="arrowDropUserBubble"
                         />
                       </IconButton>
                     </NavbarProfile>
+                    <Modal
+                      onClose={handleNavPopper}
+                      {...{ open: showWalletPopper }}
+                      style={{
+                        background: 'linear-gradient(180deg, #000000 17.57%, rgba(0, 0, 0, 0) 100%)',
+                        zIndex: zIndex.nav - 1
+                      }}
+                    />
                   </NavbarItem>
                 ) : (
                   <NavbarItem onClick={onConnectClick}>
@@ -286,7 +295,7 @@ const Navbar = forwardRef(
         >
           <Panel
             sx={{
-              display: showNavPopper ? 'flex' : 'none',
+              display: showWalletPopper ? 'flex' : 'none',
               flexDirection: 'column',
               marginTop: 2,
               gap: 4,

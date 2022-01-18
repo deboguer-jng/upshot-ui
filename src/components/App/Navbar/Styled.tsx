@@ -6,7 +6,7 @@ interface NavbarItemProps {
 }
 
 interface PopperProps {
-  $showNavPopper?: boolean
+  $showWalletPopper?: boolean
 }
 
 export const NavbarWrapper = styled.div`
@@ -125,7 +125,7 @@ export const NavbarProfile = styled.div<PopperProps>`
   border-radius: 30px;
   padding: 12px 17px 12px 12px;
   transition: all 0.75s ease;
-  background-color: ${({ theme, $showNavPopper }) => $showNavPopper ? theme.colors['black'] : theme.colors['grey-800']};
+  background-color: ${({ theme, $showWalletPopper }) => $showWalletPopper ? theme.colors['black'] : theme.colors['grey-800']};
 
   img {
     width: 32px;
