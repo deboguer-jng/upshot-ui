@@ -86,3 +86,11 @@ HighlightGrey.args = {
   icon: <Icon icon="checkmark" />,
   underglow: 'grey-400',
 }
+
+export const HoverBlue = Template.bind({})
+HoverBlue.args = {
+  text: 'name',
+  subText: 'eth value',
+  icon: <Icon icon="checkmark" />,
+  hoverUnderglow: 'primary',
+}

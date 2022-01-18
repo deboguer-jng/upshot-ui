@@ -16,9 +16,8 @@ export function getOptions(
     theme.rawColors.blue,
     theme.rawColors.pink,
     theme.rawColors.purple,
-    theme.rawColors.yellow,
-    theme.rawColors.red,
     theme.rawColors.green,
+    theme.rawColors.orange,
   ]
 
   return {

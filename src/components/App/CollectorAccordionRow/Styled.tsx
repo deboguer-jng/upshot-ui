@@ -1,6 +1,9 @@
 import styled from '@emotion/styled'
 import { Grid } from 'theme-ui'
 
+interface CollectorRowAvatarWrapperProps {
+  selected?: boolean
+}
 interface CollectorRowContentProps {
   isMobile?: boolean
 }
@@ -27,4 +30,23 @@ export const CollectorRowExpansion = styled.div<{
 }>`
   overflow: hidden;
   max-height: ${({ $open }) => ($open ? 'auto' : 0)};
+`
+
+export const CollectorRowAvatarWrapper = styled.button<CollectorRowAvatarWrapperProps>`
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+  img {
+    border: 4px solid ${({selected, theme}) => selected ? theme.colors.primary : 'white'};
+    border-radius: 50%;
+  }
+
+  &:hover {
+    img {
+      border: 4px solid ${({ theme }) => theme.colors.primary};
+      border-radius: 50%;
+    }
+  }
 `
