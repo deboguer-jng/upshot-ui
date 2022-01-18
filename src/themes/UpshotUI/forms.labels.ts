@@ -46,12 +46,12 @@ export const labels = {
   currencyMd: {
     ...labelBase,
     fontWeight: 'bold',
-    fontSize: 6,
+    fontSize: 5,
   },
   currencyLg: {
     ...labelBase,
     fontWeight: 'bold',
-    fontSize: 8,
+    fontSize: 7,
   },
   xsCurrencySymbol: {
     ...currencySymbolBase,
