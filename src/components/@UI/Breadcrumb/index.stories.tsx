@@ -14,5 +14,5 @@ const Template: ComponentStory<typeof Breadcrumb> = (args) => (
 
 export const Default = Template.bind({})
 Default.args = {
-  text: "Analytics Home",
+  text: 'Analytics Home',
 }

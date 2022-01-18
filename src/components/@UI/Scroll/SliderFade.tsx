@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  useState,
-  useRef,
-  ReactNode,
-} from 'react'
+import React, { forwardRef, useState, useRef, ReactNode } from 'react'
 import { Relative, ScrollWrapper, FadeEffect } from './StyledSliderFade'
 import { BoxProps } from '@theme-ui/components'
 
@@ -29,7 +24,10 @@ const SliderFade = forwardRef(
     return (
       <Relative>
         <FadeEffect $isScrolledRight={isScrolledRight} />
-        <ScrollWrapper onScroll={handleScroll.bind(this)} {...{ ref, ...props }}>
+        <ScrollWrapper
+          onScroll={handleScroll.bind(this)}
+          {...{ ref, ...props }}
+        >
           <div ref={childrenRef}>{children}</div>
         </ScrollWrapper>
       </Relative>

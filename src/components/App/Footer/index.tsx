@@ -37,10 +37,7 @@ const Footer = forwardRef(
           </LogoBox>
           <StyledBox>
             <Flex>
-              <StyledMiddleLink
-                href="/whitepaper.pdf"
-                target="_blank"
-              >
+              <StyledMiddleLink href="/whitepaper.pdf" target="_blank">
                 Whitepaper
               </StyledMiddleLink>
               <StyledBoxMiddleSeparate>|</StyledBoxMiddleSeparate>
@@ -61,7 +58,10 @@ const Footer = forwardRef(
           <StyledBoxRight>
             <Flex>
               <StyledBoxMiddle>
-                <Link href="https://mirror.xyz/0x82FE4757D134a56BFC7968A0f0d1635345053104" target="_blank">
+                <Link
+                  href="https://mirror.xyz/0x82FE4757D134a56BFC7968A0f0d1635345053104"
+                  target="_blank"
+                >
                   <IconButton>
                     <Icon color="grey-700" icon="mediumBlock" size={24} />
                   </IconButton>

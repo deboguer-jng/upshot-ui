@@ -4,7 +4,7 @@ const zIndex = {
   nav: 30,
   dropdown: 20,
   coverImage: 10,
-  default: 0
+  default: 0,
 }
 
 export default zIndex
