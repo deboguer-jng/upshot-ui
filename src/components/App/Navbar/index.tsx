@@ -105,7 +105,7 @@ const Navbar = forwardRef(
           (e) => {
             if ((e.target as HTMLDivElement).classList.contains('popperButton'))
               return
-            setShowNavPopper(false)
+            setShowWalletPopper(false)
           },
           {
             once: true,
