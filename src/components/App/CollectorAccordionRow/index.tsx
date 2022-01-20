@@ -268,7 +268,7 @@ const CollectorRow = forwardRef(
               '1fr',
               !isFirstColumn || !extraCollections.length ? '1fr' : '1fr 1fr',
             ]}
-            sx={{ marginX: [0, 46], columnGap: 72, p: 6 }}
+            sx={{ marginX: [0, 46], columnGap: 72, p: 4 }}
           >
             {isFirstColumn && (
               <Flex sx={{ flexDirection: 'column', gap: 4 }}>
