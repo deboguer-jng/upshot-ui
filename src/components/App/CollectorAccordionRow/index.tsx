@@ -63,7 +63,7 @@ export interface CollectorAccordionRowProps
    * Total NFT value
    */
   totalNftValue?: string
-  
+
   extraCollectionChanged?: (id: number) => void
   /**
    * NFT collection
@@ -80,7 +80,6 @@ export interface CollectorAccordionRowProps
     pixelated: boolean
     count?: number
   }[]
-
 
   /**
    * Children element
@@ -146,7 +145,7 @@ const CollectorRow = forwardRef(
       updateEns(address)
     }, [])
 
-    const handlePageChange = ({ selected }: {selected: number}) => {
+    const handlePageChange = ({ selected }: { selected: number }) => {
       setPage(selected)
     }
 
@@ -154,7 +153,10 @@ const CollectorRow = forwardRef(
 
     return (
       <CollectorRowBase {...{ ref, ...props }}>
-        <CollectorRowContent isMobile={breakpointIndex <= 1} onClick={() => setOpen(!open)}>
+        <CollectorRowContent
+          isMobile={breakpointIndex <= 1}
+          onClick={() => setOpen(!open)}
+        >
           <Box
             sx={{
               width: '100%',
@@ -261,7 +263,11 @@ const CollectorRow = forwardRef(
 
         <CollectorRowExpansion $open={open}>
           <Grid
-            columns={['1fr', '1fr', !isFirstColumn ? '1fr' : '1fr 1fr']}
+            columns={[
+              '1fr',
+              '1fr',
+              !isFirstColumn || !extraCollections.length ? '1fr' : '1fr 1fr',
+            ]}
             sx={{ marginX: [0, 46], columnGap: 72, p: 4 }}
           >
             {isFirstColumn && (
@@ -317,8 +323,9 @@ const CollectorRow = forwardRef(
                           'repeat(auto-fill, minmax(92px, 1fr) )',
                       }}
                     >
-                      {nftCollection.slice(page * 6, page * 6 + 6).map(
-                        ({ imageUrl, url, pixelated }, idx) => {
+                      {nftCollection
+                        .slice(page * 6, page * 6 + 6)
+                        .map(({ imageUrl, url, pixelated }, idx) => {
                           const optimizedSrc =
                             imageOptimizer(imageUrl, {
                               height: 180,
@@ -344,16 +351,17 @@ const CollectorRow = forwardRef(
                               />
                             </a>
                           )
-                        }
-                      )}
+                        })}
                     </Grid>
-                    {Math.ceil(nftCollection.length / 6) > 1 && <Pagination
-                      forcePage={page}
-                      pageCount={Math.ceil(nftCollection.length / 6)}
-                      pageRangeDisplayed={0}
-                      marginPagesDisplayed={0}
-                      onPageChange={handlePageChange}
-                    />}
+                    {Math.ceil(nftCollection.length / 6) > 1 && (
+                      <Pagination
+                        forcePage={page}
+                        pageCount={Math.ceil(nftCollection.length / 6)}
+                        pageRangeDisplayed={0}
+                        marginPagesDisplayed={0}
+                        onPageChange={handlePageChange}
+                      />
+                    )}
                   </Flex>
                 ) : (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
@@ -411,17 +419,22 @@ const CollectorRow = forwardRef(
                           }}
                           key={idx}
                         >
-                          <CollectorRowAvatarWrapper 
+                          <CollectorRowAvatarWrapper
                             selected={idx === selectedColletion}
                             onClick={() => {
                               extraCollectionChanged?.(id)
                               setSelectedCollection(idx)
                             }}
                           >
-                            <Avatar size="lg" color="white" src={imageOptimizer(imageUrl, {
-                                height: parseInt(theme.images.avatar.lg.size),
-                                width: parseInt(theme.images.avatar.lg.size)
-                              }) ?? imageUrl}
+                            <Avatar
+                              size="lg"
+                              color="white"
+                              src={
+                                imageOptimizer(imageUrl, {
+                                  height: parseInt(theme.images.avatar.lg.size),
+                                  width: parseInt(theme.images.avatar.lg.size),
+                                }) ?? imageUrl
+                              }
                             />
                           </CollectorRowAvatarWrapper>
                           <Flex
