@@ -6,6 +6,10 @@ interface NavbarItemProps {
   grow?: boolean
 }
 
+interface PopperProps {
+  $showWalletPopper?: boolean
+}
+        
 export const NavbarBase = styled.div`
   padding: ${({ theme }) => `${theme.sizes[5]}px ${theme.sizes[3]}px`};
   width: 100%;
@@ -129,13 +133,14 @@ export const NavbarUPTBalanceText = styled.div`
   align-items: flex-end;
 `
 
-export const NavbarProfile = styled.div`
+export const NavbarProfile = styled.div<PopperProps>`
   display: flex;
   align-items: center;
   height: 56px;
   border-radius: 30px;
   padding: 12px 17px 12px 12px;
-  background-color: ${({ theme }) => theme.colors['grey-800']};
+  transition: all 0.75s ease;
+  background-color: ${({ theme, $showWalletPopper }) => $showWalletPopper ? theme.colors['black'] : theme.colors['grey-800']};
 
   img {
     width: 32px;
