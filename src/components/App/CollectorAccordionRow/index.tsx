@@ -109,7 +109,7 @@ const CollectorRow = forwardRef(
       firstAcquisition,
       totalNftValue,
       nftCollection,
-      extraCollections,
+      extraCollections = [],
       children,
       extraCollectionChanged,
       defaultOpen = false,
