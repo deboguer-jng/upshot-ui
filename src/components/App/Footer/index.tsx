@@ -60,7 +60,7 @@ const Footer = forwardRef(
                   target="_blank"
                 >
                   <IconButton>
-                    <Icon color="grey-700" icon="mediumBlock" size={24} />
+                    <Icon color="grey-700" icon="mirror" size={24} />
                   </IconButton>
                 </Link>
               </StyledBoxMiddle>
