@@ -69,6 +69,7 @@ import SVGMarketPlace from '../../../assets/svg/icons/MarketPlace.svg'
 import SVGMediumBlock from '../../../assets/svg/icons/Medium_BlockColor.svg'
 import SVGMedium from '../../../assets/svg/icons/Medium_NoCircle.svg'
 import SVGMediumCircle from '../../../assets/svg/icons/MediumCircle.svg'
+import SVGMirror from '../../../assets/svg/icons/Mirror.svg'
 import SVGNavBarAnalyticsSelected from '../../../assets/svg/icons/NavBar_Analytics_Selected.svg'
 import SVGNavBarAnswer from '../../../assets/svg/icons/NavBar_Answer_Unselected.svg'
 import SVGNavBarHome from '../../../assets/svg/icons/NavBar_Home_Unselected.svg'
@@ -184,6 +185,7 @@ const icons = {
   mediumBlock: SVGMediumBlock,
   medium: SVGMedium,
   mediumCircle: SVGMediumCircle,
+  mirror: SVGMirror,
   navAnalyticsSelected: SVGNavBarAnalyticsSelected,
   navAnswer: SVGNavBarAnswer,
   navHome: SVGNavBarHome,

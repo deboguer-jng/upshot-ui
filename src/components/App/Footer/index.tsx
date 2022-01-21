@@ -41,15 +41,12 @@ const Footer = forwardRef(
                 Whitepaper
               </StyledMiddleLink>
               <StyledBoxMiddleSeparate>|</StyledBoxMiddleSeparate>
-              <StyledMiddleLink
-                href="https://upshot.io/wp-content/uploads/2021/05/privacy.pdf"
-                target="_blank"
-              >
+              <StyledMiddleLink href="/privacy.pdf" target="_blank">
                 Privacy
               </StyledMiddleLink>
               <StyledBoxMiddleSeparate>|</StyledBoxMiddleSeparate>
-              <StyledMiddleLink href="https://upshot.io/faq/" target="_blank">
-                FAQ
+              <StyledMiddleLink href="/terms.pdf" target="_blank">
+                Terms
               </StyledMiddleLink>
             </Flex>
           </StyledBox>
@@ -63,7 +60,7 @@ const Footer = forwardRef(
                   target="_blank"
                 >
                   <IconButton>
-                    <Icon color="grey-700" icon="mediumBlock" size={24} />
+                    <Icon color="grey-700" icon="mirror" size={24} />
                   </IconButton>
                 </Link>
               </StyledBoxMiddle>
