@@ -41,15 +41,12 @@ const Footer = forwardRef(
                 Whitepaper
               </StyledMiddleLink>
               <StyledBoxMiddleSeparate>|</StyledBoxMiddleSeparate>
-              <StyledMiddleLink
-                href="https://upshot.io/wp-content/uploads/2021/05/privacy.pdf"
-                target="_blank"
-              >
+              <StyledMiddleLink href="/privacy.pdf" target="_blank">
                 Privacy
               </StyledMiddleLink>
               <StyledBoxMiddleSeparate>|</StyledBoxMiddleSeparate>
-              <StyledMiddleLink href="https://upshot.io/faq/" target="_blank">
-                FAQ
+              <StyledMiddleLink href="/terms.pdf" target="_blank">
+                Terms
               </StyledMiddleLink>
             </Flex>
           </StyledBox>
