@@ -52,7 +52,7 @@ export { default as CollectorAccordion } from './components/App/CollectorAccordi
 export { default as CollectorAccordionHead } from './components/App/CollectorAccordionHead'
 export { default as CollectorAccordionRow } from './components/App/CollectorAccordionRow'
 export { default as ConnectModal } from './components/App/ConnectModal'
-export { default as Footer } from './components/App/Footer'
+export { default as Footer, FooterProps } from './components/App/Footer'
 export { default as LandingPanel } from './components/App/LandingPanels'
 export { default as Navbar } from './components/App/Navbar'
 
