@@ -121,7 +121,8 @@ const CollectorRow = forwardRef(
     const theme = useTheme()
     const [open, setOpen] = useState(defaultOpen)
     const [page, setPage] = useState(0)
-    const [selectedColletion, setSelectedCollection] = useState(0)
+    const [selectedCollection, setSelectedCollection] = useState(0)
+    const [selectedCollectionName, setSelectedCollectionName] = useState(collectionName)
     const breakpointIndex = useBreakpointIndex()
     const isFirstColumn = !!avgHoldTime || !!firstAcquisition || !!nftCollection
     const [avatarUrl, setAvatarUrl] = useState(
@@ -314,7 +315,7 @@ const CollectorRow = forwardRef(
                 {!!nftCollection && !!nftCollection.length ? (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                     <Text sx={{ fontWeight: 'heading' }}>
-                      {displayName}'s {collectionName} Collection
+                      {displayName}'s {selectedCollectionName} Collection
                     </Text>
                     <Grid
                       sx={{
@@ -420,10 +421,11 @@ const CollectorRow = forwardRef(
                           key={idx}
                         >
                           <CollectorRowAvatarWrapper
-                            selected={idx === selectedColletion}
+                            selected={idx === selectedCollection}
                             onClick={() => {
                               extraCollectionChanged?.(id)
                               setSelectedCollection(idx)
+                              setSelectedCollectionName(name)
                             }}
                           >
                             <Avatar
