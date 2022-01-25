@@ -129,13 +129,12 @@ const ChartLabel = forwardRef(
         $maxWidth={maxWidth}
       >
         <StyledBox $maxWidth={maxWidth}>
-          <Box sx={{ minHeight: '48px' }}>
+          <Flex sx={{ minHeight: '48px' }}>
             <IconButton
               type="button"
               onClick={onClose}
               color={titleColor}
               sx={{
-                float: 'left',
                 borderStyle: 'solid',
                 borderWidth: 1,
                 borderColor: titleColor,
@@ -149,7 +148,7 @@ const ChartLabel = forwardRef(
             <StyledLink href={url}>
               <StyledTitle $color={titleColor}>{title}</StyledTitle>
             </StyledLink>
-          </Box>
+          </Flex>
           <Flex style={{ whiteSpace: 'nowrap' }}>
             <Text
               variant="small"
