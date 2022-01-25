@@ -1,7 +1,7 @@
 {
   "name": "@upshot-tech/upshot-ui",
   "description": "The official design system used in Upshot.",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "main": "dist/index.js",
   "scripts": {
     "start": "start-storybook -p 6006 -s public",
