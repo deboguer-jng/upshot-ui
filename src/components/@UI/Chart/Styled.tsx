@@ -108,9 +108,9 @@ export const CustomLegendWrapper = styled.div`
   flex-wrap: wrap;
 `
 
-export const ReactChartWrapper = styled.div`
+export const ReactChartWrapper = styled.div<{ $isEmpty?: boolean }>`
   width: 100%;
-  padding-top: 35%;
+  padding-top: ${({ $isEmpty }) => ($isEmpty ? 'calc(35% + 160px)' : '35%')};
   position: relative;
 
   & > div {

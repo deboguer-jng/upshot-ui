@@ -4,9 +4,8 @@ import Icon from '../../@UI/Icon'
 import Flex from '../../Layout/Flex'
 import Box from '../../Layout/Box'
 import Text from '../../@UI/Text'
+import IconButton from '../../@UI/IconButton'
 import {
-  IconBox,
-  StyledIconButton,
   StyledTitle,
   StyledChangeDiv,
   StyledRed,
@@ -124,25 +123,32 @@ const ChartLabel = forwardRef(
         {...{ ref, ...props }}
         sx={{
           transition: 'default',
-          opacity: isDim ? 0.5 : 1.0,
+          opacity: Number(!isDim),
         }}
         $isMobile={isMobile}
         $maxWidth={maxWidth}
       >
-        <IconBox $color={titleColor} $isMobile={isMobile}>
-          <StyledIconButton
-            type="button"
-            onClick={onClose}
-            $color={titleColor}
-            $isMobile={isMobile}
-          >
-            <Icon size={12} color={titleColor} icon="x" />
-          </StyledIconButton>
-        </IconBox>
         <StyledBox $maxWidth={maxWidth}>
-          <StyledLink href={url}>
-            <StyledTitle $color={titleColor}>{title}</StyledTitle>
-          </StyledLink>
+          <Flex sx={{ minHeight: '48px' }}>
+            <IconButton
+              type="button"
+              onClick={onClose}
+              color={titleColor}
+              sx={{
+                borderStyle: 'solid',
+                borderWidth: 1,
+                borderColor: titleColor,
+                width: '12px',
+                height: '12px',
+                marginRight: '4px',
+              }}
+            >
+              <Icon size={8} color={titleColor} icon="x" />
+            </IconButton>
+            <StyledLink href={url}>
+              <StyledTitle $color={titleColor}>{title}</StyledTitle>
+            </StyledLink>
+          </Flex>
           <Flex style={{ whiteSpace: 'nowrap' }}>
             <Text
               variant="small"
@@ -174,8 +180,7 @@ const ChartLabel = forwardRef(
             )}
             {change && `(${change})`}
           </StyledChangeDiv>
-
-          {ath !== '-' && atl !== '-' && (
+          {/* {ath !== '-' && atl !== '-' && (
             <Box sx={{ display: ['grid', 'block'] }}>
               <StyledRed sx={{ paddingTop: ['3px', '0px'] }}>
                 ATL: {atl}
@@ -189,7 +194,7 @@ const ChartLabel = forwardRef(
                 ATH: {ath}
               </StyledBlue>
             </Box>
-          )}
+          )} */}
         </StyledBox>
       </RelativeFlex>
     )

@@ -34,6 +34,7 @@ export const StyledIconButton = styled(IconButton)<ChartLabelProps>`
   width: 100%;
   height: 100%;
   vertical-align: top;
+  display: inline-block;
   transition: ${({ theme }) => theme.transitions.default};
 
   &:hover svg path {
@@ -46,7 +47,12 @@ export const StyledTitle = styled('h3')<ChartLabelProps>`
   color: ${({ theme, $color }) => theme.colors[$color]};
   font-weight: bold;
   margin-bottom: 5px;
-  margin-top: 5px;
+  margin-top: 0;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 `
 
 export const StyledBox = styled(Box)<ChartLabelProps>`
