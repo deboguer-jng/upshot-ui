@@ -110,7 +110,7 @@ export const CustomLegendWrapper = styled.div`
 
 export const ReactChartWrapper = styled.div<{ $isEmpty?: boolean }>`
   width: 100%;
-  padding-top: ${({ $isEmpty }) => ($isEmpty ? 'calc(35% + 200px)' : '35%')};
+  padding-top: ${({ $isEmpty }) => ($isEmpty ? 'calc(35% + 180px)' : '35%')};
   position: relative;
 
   & > div {
