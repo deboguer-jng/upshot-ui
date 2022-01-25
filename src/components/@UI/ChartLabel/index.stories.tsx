@@ -47,7 +47,7 @@ AloneNoDelta.args = {
 export const Multi = MultiTemplate.bind({})
 Multi.args = {
   variant: 'multi',
-  title: 'Chromie Miami DAO',
+  title: 'Very Long Title Overflow With WebKit Line Clamping',
   url: 'https://upshot.io',
   price_1: 3241,
   price_2: 5434565,

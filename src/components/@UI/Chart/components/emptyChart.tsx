@@ -17,7 +17,9 @@ const EmptyChart = ({
   const noData = data.length === 0 && !noSelected && !loading
 
   return (
-    <ReactChartWrapper>
+    <ReactChartWrapper
+      $isEmpty={[loading, noSelected, error, noData].some(Boolean)}
+    >
       {loading && <LoadingChart />}
       {noSelected && <SelectionPrompt {...{ data, embedded }} />}
       {(error || noData) && (

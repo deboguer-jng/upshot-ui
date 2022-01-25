@@ -7,13 +7,13 @@ import { CustomLegendWrapper, ReactApexChartWrapper } from '../Styled'
 import { getOptions, toggle } from '../utils'
 import ButtonChartCollection from '../../ButtonChartCollection'
 import ChartLabel from '../../ChartLabel'
-import Grid from '../../../Layout/Grid'
 import Flex from '../../../Layout/Flex'
 import Box from '../../../Layout/Box'
 import Text from '../../../@UI/Text'
 import { format } from 'date-fns'
 import colors from '../../../../themes/UpshotUI/colors'
 import { useBreakpointIndex } from '../../../../hooks/useBreakpointIndex'
+import { truncateString } from '../../../../utils/string'
 
 interface PopulatedChartProps {
   chartData: {
@@ -172,7 +172,7 @@ const PopulatedChart = ({
             />
           )
         }),
-    [chartData, filterStatus, hoverDataPoint, hoverIndex]
+    [chartData, filterStatus, hoverDataPoint, hoverIndex, isMobile]
   )
 
   /* Memoize Apex to prevent side effects from mouseEvent listeners. */
@@ -217,28 +217,31 @@ const PopulatedChart = ({
           >
             {chartLabels}
           </Box>
-          <Text
-            variant="h3Primary"
-            sx={{
-              textTransform: 'uppercase',
-              alignSelf: ['flex-end', 'flex-start'],
-              minHeight: '1.25rem',
-            }}
-          >
-            {!isMobileOrTablet && timestamp
-              ? format(timestamp, 'LLL dd yyyy hh:mm')
-              : null}
-          </Text>
         </Flex>
       )}
       {chart}
+      {!embedded && timestamp && (
+        <Text
+          variant="h3Primary"
+          sx={{
+            position: 'absolute',
+            textTransform: 'uppercase',
+            left: '50%',
+            paddingTop: '8px',
+            transform: 'translateX(-50%)',
+          }}
+        >
+          {format(timestamp, 'LLL dd yyyy hh:mm')}
+        </Text>
+      )}
+
       {!embedded && (
         <CustomLegendWrapper>
           {[...new Array(chartData.length)].map((_, i) => (
             <ButtonChartCollection
               key={i}
               color={chartData[i].labelColor}
-              title={chartData[i].name}
+              title={truncateString(chartData[i].name, 16)}
               selected={filterStatus[i]}
               onClick={() =>
                 toggle(i, chartData[i].name, filterStatus, setFilterStatus)
@@ -246,22 +249,6 @@ const PopulatedChart = ({
             />
           ))}
         </CustomLegendWrapper>
-      )}
-
-      {isMobileOrTablet && !embedded && (
-        <Text
-          variant="h3Primary"
-          sx={{
-            textTransform: 'uppercase',
-            alignSelf: ['flex-end', 'flex-start'],
-            minHeight: '1.25rem',
-            float: 'right',
-            marginBottom: '-10px',
-            paddingTop: '1px',
-          }}
-        >
-          {timestamp && format(timestamp, 'LLL dd yyyy hh:mm')}
-        </Text>
       )}
     </>
   )
