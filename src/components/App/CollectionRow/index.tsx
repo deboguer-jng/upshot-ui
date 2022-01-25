@@ -74,7 +74,19 @@ const CollectionRow = forwardRef(
     return (
       <>
         {!isMobile ? (
-          <CollectionRowBase $variant={variant} {...{ ref, ...props }}>
+          <CollectionRowBase
+            $variant={variant}
+            {...{ ref, ...props }}
+            sx={{
+              '&:hover': {
+                'td:last-child': {
+                  svg: {
+                    display: 'block',
+                  },
+                },
+              },
+            }}
+          >
             {/* Each row has a required avatar image circle. */}
             <TableCell>
               <Box
@@ -82,17 +94,6 @@ const CollectionRow = forwardRef(
                   width: '100%',
                   height: '48px',
                   position: 'relative',
-                  '&:hover img': {
-                    display: 'none',
-                  },
-                  '&:hover svg': {
-                    display: 'block',
-                  },
-                  '&:hover': {
-                    backgroundColor: '#151515',
-                    borderRadius: '50%',
-                    border: '2px solid black',
-                  },
                   cursor: onClick ? 'pointer' : 'auto',
                 }}
                 {...{ onClick }}
@@ -104,19 +105,6 @@ const CollectionRow = forwardRef(
                     borderColor: 'black',
                   }}
                 />
-                <Icon
-                  icon="arrowStylizedRight"
-                  color="primary"
-                  sx={{
-                    display: 'none',
-                    position: 'absolute',
-                    top: '0',
-                    width: '40% !important',
-                    height: '40% !important',
-                    margin: '30%',
-                  }}
-                  size="40%"
-                ></Icon>
               </Box>
             </TableCell>
 
@@ -141,6 +129,17 @@ const CollectionRow = forwardRef(
 
             {/* Additional columns (React.Fragment) */}
             {children}
+            <TableCell>
+              <Icon
+                icon="arrowStylizedRight"
+                color="primary"
+                sx={{
+                  display: 'none',
+                  width: '20px',
+                  height: '20px',
+                }}
+              ></Icon>
+            </TableCell>
           </CollectionRowBase>
         ) : (
           <CollectorRowBase
@@ -192,26 +191,28 @@ const CollectionRow = forwardRef(
 
               {nftCount ? (
                 <>
-                <Flex sx={{ alignItems: 'center' }}>
-                <Text
-                  sx={{
-                    fontWeight: 'bold',
-                    fontSize: breakpointIndex <= 1 ? 2 : 4,
-                    lineHeight: 1,
-                  }}
-                >
-                  {nftCount}
-                </Text>
-              </Flex>
+                  <Flex sx={{ alignItems: 'center' }}>
+                    <Text
+                      sx={{
+                        fontWeight: 'bold',
+                        fontSize: breakpointIndex <= 1 ? 2 : 4,
+                        lineHeight: 1,
+                      }}
+                    >
+                      {nftCount}
+                    </Text>
+                  </Flex>
                 </>
-              ) : <Flex sx={{ alignItems: 'center' }}>
-                <IconButton onClick={() => setOpen(!open)}>
-                  <Icon
-                    color="primary"
-                    icon={open ? 'arrowUp' : 'arrowDropdown'}
-                  />
-                </IconButton>
-              </Flex>}
+              ) : (
+                <Flex sx={{ alignItems: 'center' }}>
+                  <IconButton onClick={() => setOpen(!open)}>
+                    <Icon
+                      color="primary"
+                      icon={open ? 'arrowUp' : 'arrowDropdown'}
+                    />
+                  </IconButton>
+                </Flex>
+              )}
             </CollectorRowContent>
             <CollectorRowExpansion $open={open}>
               {children}
