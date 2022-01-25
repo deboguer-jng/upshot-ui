@@ -181,7 +181,7 @@ const ChartLabel = forwardRef(
             )}
             {change && `(${change})`}
           </StyledChangeDiv>
-          {ath !== '-' && atl !== '-' && (
+          {/* {ath !== '-' && atl !== '-' && (
             <Box sx={{ display: ['grid', 'block'] }}>
               <StyledRed sx={{ paddingTop: ['3px', '0px'] }}>
                 ATL: {atl}
@@ -195,7 +195,7 @@ const ChartLabel = forwardRef(
                 ATH: {ath}
               </StyledBlue>
             </Box>
-          )}
+          )} */}
         </StyledBox>
       </RelativeFlex>
     )
