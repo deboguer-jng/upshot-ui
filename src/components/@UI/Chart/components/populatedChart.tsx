@@ -67,9 +67,9 @@ const PopulatedChart = ({
   const labelColors: Array<keyof typeof colors> = [
     'blue',
     'pink',
-    'purple',
-    'green',
     'orange',
+    'green',
+    'yellow',
   ]
   for (let i = 0; i < chartData.length; i++) {
     chartData[i].labelColor = labelColors[i]
