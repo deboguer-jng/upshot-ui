@@ -129,7 +129,7 @@ const ChartLabel = forwardRef(
         $maxWidth={maxWidth}
       >
         <StyledBox $maxWidth={maxWidth}>
-          <Flex sx={{ minHeight: '48px' }}>
+          <Flex sx={{ minHeight: ['32px', '32px', '48px'] }}>
             <IconButton
               type="button"
               onClick={onClose}
