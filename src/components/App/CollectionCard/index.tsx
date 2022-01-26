@@ -37,6 +37,18 @@ export interface CollectionCardProps extends BoxProps {
    */
   seeAllImageSrc?: string
   /**
+   * Runder unsupported collection variant.
+   */
+  isUnsupported?: boolean
+  /**
+   * Appraisal price
+   */
+  appraisalPrice?: string
+  /**
+   * Floor price
+   */
+  floorPrice?: string
+  /**
    * Expand card to modal.
    */
   onExpand?: () => void
@@ -54,6 +66,9 @@ const CollectionCard = forwardRef(
       avatarImage,
       hasSeeAll = false,
       seeAllImageSrc,
+      isUnsupported,
+      appraisalPrice,
+      floorPrice,
       onExpand,
       children,
       ...props
@@ -128,9 +143,21 @@ const CollectionCard = forwardRef(
                   {name}
                 </Text>
               )}
-              <Text color="grey-600" sx={{ fontSize: 2 }}>
-                {total} NFTs
-              </Text>
+              <Flex sx={{ gap: 2, alignItems: 'flex-end' }}>
+                <Text color="grey-600" sx={{ fontSize: 2 }}>
+                  {total} NFTs
+                </Text>
+                {!!floorPrice && (
+                  <Text color="pink" sx={{ fontSize: 2 }}>
+                    Ξ{floorPrice} Floor Price
+                  </Text>
+                )}
+                {!!appraisalPrice && (
+                  <Text color="blue" sx={{ fontSize: 2 }}>
+                    Ξ{appraisalPrice} Appraisal
+                  </Text>
+                )}
+              </Flex>
             </Flex>
             <IconButton
               type="button"
@@ -154,7 +181,7 @@ const CollectionCard = forwardRef(
 
           <Grid
             sx={{
-              gridTemplateColumns: '1fr 1fr',
+              gridTemplateColumns: isUnsupported ? '1fr' : '1fr 1fr',
               padding: 2,
               paddingTop: 0,
             }}
