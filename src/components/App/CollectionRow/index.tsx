@@ -76,15 +76,17 @@ const CollectionRow = forwardRef(
         {!isMobile ? (
           <CollectionRowBase
             $variant={variant}
-            {...{ ref, ...props }}
+            {...{ ref, ...props, onClick }}
             sx={{
               '&:hover': {
+                boxShadow: theme.shadow.underglow("primary"),
                 'td:last-child': {
                   svg: {
                     display: 'block',
                   },
                 },
               },
+              borderRadius: theme.radii.md,
             }}
           >
             {/* Each row has a required avatar image circle. */}
@@ -94,9 +96,7 @@ const CollectionRow = forwardRef(
                   width: '100%',
                   height: '48px',
                   position: 'relative',
-                  cursor: onClick ? 'pointer' : 'auto',
                 }}
-                {...{ onClick }}
               >
                 <Avatar
                   {...{ pixelated, src }}
@@ -111,16 +111,11 @@ const CollectionRow = forwardRef(
             <TableCell>
               <Text
                 variant="large"
-                as={onClick ? 'a' : 'span'}
                 {...{ onClick }}
                 sx={{
                   textOverflow: 'ellipsis',
                   overflow: 'hidden',
                   whiteSpace: 'nowrap',
-                  cursor: onClick ? 'pointer' : 'auto',
-                  '&:hover': {
-                    textDecoration: onClick ? 'underline' : undefined,
-                  },
                 }}
               >
                 {title}
