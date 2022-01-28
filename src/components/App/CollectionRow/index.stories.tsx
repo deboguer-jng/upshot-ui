@@ -41,6 +41,7 @@ const Template = ({ items }: CollectionItems) => {
               {COLUMNS.map((col, key) => (
                 <TableCell {...{ key }}>{col}</TableCell>
               ))}
+              <TableCell></TableCell>
             </>
           )}
         </TableRow>

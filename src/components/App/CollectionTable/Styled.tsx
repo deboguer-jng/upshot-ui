@@ -40,4 +40,7 @@ export const CollectionTableBase = styled(Table)`
     border-bottom-right-radius: ${({ theme }) => theme.radii.md};
     padding-right: 16px;
   }
+  & td:last-child {
+    width: 50px!important; 
+  }
 `
