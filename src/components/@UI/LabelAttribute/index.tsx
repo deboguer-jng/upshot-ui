@@ -87,13 +87,17 @@ const LabelAttribute = forwardRef(
         {showTooltip && (
           <LabelAttributeTooltip>
             {expanded && expandedText && (
+              <div>
               <Text variant="small" color="grey-500">
                 {expandedText}
               </Text>
+              </div>
             )}
+            <div>
             <Text variant="small" color="grey-500" sx={{ fontWeight: 'bold' }}>
               {children}{' '}
             </Text>
+            </div>
           </LabelAttributeTooltip>
         )}
         {expanded && expandedText ? (
@@ -112,7 +116,9 @@ const LabelAttribute = forwardRef(
         )}
         {variant === 'percentage' && (
           <RightAlignBlock>
-            <Division>|</Division>
+            {!expanded && (
+              <Division>|</Division>
+            )}
             <Text variant="body">{percentage}%</Text>
           </RightAlignBlock>
         )}

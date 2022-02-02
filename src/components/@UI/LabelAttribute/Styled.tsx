@@ -60,7 +60,7 @@ export const RightAlignBlock = styled.div`
 export const LabelText = styled.div<LabelTextProps>`
   padding-left: ${sizes[3] + 'px'};
   text-overflow: ellipsis;
-  width: 57%;
+  width: 75%;
   overflow: hidden;
   height: 20px;
   white-space: nowrap;
@@ -70,12 +70,12 @@ export const LabelText = styled.div<LabelTextProps>`
 
 export const ExpandedLabelAttributeTitleText = styled(LabelText)`
   font-weight: ${fontWeights.body};
-  font-size: ${fontSizes[3]};
+  font-size: ${fontSizes[2]};
 `
 
 export const ExpandedLabelAttributeText = styled(LabelText)`
   font-weight: ${fontWeights.bold};
-  font-size: ${fontSizes[4]};
+  font-size: ${fontSizes[3]};
 `
 
 export const Division = styled.div`
@@ -106,4 +106,5 @@ export const LabelAttributeTooltip = styled.div`
 
 export const LabelAttributeExpandedTextContainer = styled(Box)`
   margin: 11px 0px 10px 5px;
+  width: 95%;
 `
