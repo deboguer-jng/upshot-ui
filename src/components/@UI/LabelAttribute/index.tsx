@@ -6,8 +6,12 @@ import {
   Division,
   CloseButton,
   LabelAttributeTooltip,
+  LabelAttributeExpandedTextContainer,
+  ExpandedLabelAttributeTitleText,
+  ExpandedLabelAttributeText,
 } from './Styled'
 import Icon from '../Icon'
+import Box from '../../Layout/Box'
 import { Text } from 'theme-ui'
 
 export interface LabelAttributeProps
@@ -24,6 +28,14 @@ export interface LabelAttributeProps
    * Defines whether the label's background should be transparent.
    */
   transparent?: boolean
+  /**
+   * Whether or not to show the trait type along with trait name
+   */
+  expanded?: boolean
+  /**
+   * The text for the expanded label
+   */
+  expandedText?: string
 
   hasHover?: boolean
   /**
@@ -38,6 +50,8 @@ const LabelAttribute = forwardRef(
       variant = 'regular',
       transparent = true,
       percentage,
+      expanded,
+      expandedText = 'Trait',
       onRemove,
       children,
       hasHover,
@@ -67,18 +81,35 @@ const LabelAttribute = forwardRef(
         onMouseLeave={handleMouseOut}
         $transparent={transparent}
         hasHover={hasHover}
+        expanded={expanded}
         {...{ ref, props }}
       >
         {showTooltip && (
           <LabelAttributeTooltip>
-            <Text variant="small" color="grey-500">
+            {expanded && expandedText && (
+              <Text variant="small" color="grey-500">
+                {expandedText}
+              </Text>
+            )}
+            <Text variant="small" color="grey-500" sx={{ fontWeight: 'bold' }}>
               {children}{' '}
             </Text>
           </LabelAttributeTooltip>
         )}
-        <LabelText ref={labelRef} showTooltip={showTooltip}>
-          {children}
-        </LabelText>
+        {expanded && expandedText ? (
+          <LabelAttributeExpandedTextContainer>
+            <ExpandedLabelAttributeTitleText ref={labelRef} showTooltip={showTooltip}>
+              {expandedText}
+            </ExpandedLabelAttributeTitleText>
+            <ExpandedLabelAttributeText ref={labelRef} showTooltip={showTooltip}>
+              {children}
+            </ExpandedLabelAttributeText>
+          </LabelAttributeExpandedTextContainer>
+        ) : (
+          <LabelText ref={labelRef} showTooltip={showTooltip}>
+            {children}
+          </LabelText>
+        )}
         {variant === 'percentage' && (
           <RightAlignBlock>
             <Division>|</Division>
