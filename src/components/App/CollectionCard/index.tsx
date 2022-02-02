@@ -112,6 +112,7 @@ const CollectionCard = forwardRef(
                   as="a"
                   // @ts-ignore
                   href={link}
+                  target={link.startsWith('http') ? '_blank' : '_self'}
                   onClick={(e) => e.stopPropagation()}
                   sx={{
                     color: 'inherit',
