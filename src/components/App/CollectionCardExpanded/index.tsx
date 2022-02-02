@@ -103,7 +103,7 @@ const CollectionCardExpanded = forwardRef(
     const MasonryRenderer = useCallback(
       ({ index, data }: { index: number; data: any }) => {
         return (
-          <a href={`/analytics/nft/${data.id}`} target="_blank">
+          <a href={data.url} target="_blank">
             <CollectionCardItem sx={{ height: 320 }} {...data} />
           </a>
         )
