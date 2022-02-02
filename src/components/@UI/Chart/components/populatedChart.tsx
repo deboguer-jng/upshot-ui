@@ -222,7 +222,7 @@ const PopulatedChart = ({
       {chart}
       {!embedded && timestamp && (
         <Text
-          variant="xLarge"
+          variant="large"
           sx={{
             position: 'absolute',
             textTransform: 'uppercase',
