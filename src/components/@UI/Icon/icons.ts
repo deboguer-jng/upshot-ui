@@ -107,6 +107,7 @@ import SVGUSDC from '../../../assets/svg/icons/USDC.svg'
 import SVGVerificationStatusActive from '../../../assets/svg/icons/Verification_Status_Active.svg'
 import SVGVerificationStatusPaused from '../../../assets/svg/icons/Verification_Status_Paused.svg'
 import SVGWallet from '../../../assets/svg/icons/Wallet.svg'
+import SVGWarning from '../../../assets/svg/icons/Warning.svg'
 import SVGX from '../../../assets/svg/icons/X.svg'
 import SVGYoutubeBlock from '../../../assets/svg/icons/Youtube_BlockColor.svg'
 import SVGYoutube from '../../../assets/svg/icons/Youtube.svg'
@@ -223,6 +224,7 @@ const icons = {
   verificationStatusActive: SVGVerificationStatusActive,
   verificationStatusPaused: SVGVerificationStatusPaused,
   wallet: SVGWallet,
+  warning: SVGWarning,
   x: SVGX,
   youtubeBlock: SVGYoutubeBlock,
   youtube: SVGYoutube,
