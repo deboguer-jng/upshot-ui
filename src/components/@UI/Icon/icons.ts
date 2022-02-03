@@ -94,6 +94,7 @@ import SVGSpacebar from '../../../assets/svg/icons/Spacebar.svg'
 import SVGSubtract from '../../../assets/svg/icons/Subtract.svg'
 import SVGSuperRareBlock from '../../../assets/svg/icons/SuperRare_BlockColor.svg'
 import SVGSuperRare from '../../../assets/svg/icons/SuperRare.svg'
+import SVGTableSort from '../../../assets/svg/icons/TableSort.svg'
 import SVGToggleLists from '../../../assets/svg/icons/Toggle_Lists.svg'
 import SVGTrophy from '../../../assets/svg/icons/Trophy.svg'
 import SVGTruthfulness from '../../../assets/svg/icons/Truthfulness.svg'
@@ -211,6 +212,7 @@ const icons = {
   subtract: SVGSubtract,
   superRareBlock: SVGSuperRareBlock,
   superRare: SVGSuperRare,
+  tableSort: SVGTableSort,
   toggleLists: SVGToggleLists,
   trophy: SVGTrophy,
   truthfulness: SVGTruthfulness,
