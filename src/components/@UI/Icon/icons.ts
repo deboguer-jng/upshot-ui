@@ -94,6 +94,7 @@ import SVGSpacebar from '../../../assets/svg/icons/Spacebar.svg'
 import SVGSubtract from '../../../assets/svg/icons/Subtract.svg'
 import SVGSuperRareBlock from '../../../assets/svg/icons/SuperRare_BlockColor.svg'
 import SVGSuperRare from '../../../assets/svg/icons/SuperRare.svg'
+import SVGTableSort from '../../../assets/svg/icons/TableSort.svg'
 import SVGToggleLists from '../../../assets/svg/icons/Toggle_Lists.svg'
 import SVGTrophy from '../../../assets/svg/icons/Trophy.svg'
 import SVGTruthfulness from '../../../assets/svg/icons/Truthfulness.svg'
@@ -107,6 +108,7 @@ import SVGUSDC from '../../../assets/svg/icons/USDC.svg'
 import SVGVerificationStatusActive from '../../../assets/svg/icons/Verification_Status_Active.svg'
 import SVGVerificationStatusPaused from '../../../assets/svg/icons/Verification_Status_Paused.svg'
 import SVGWallet from '../../../assets/svg/icons/Wallet.svg'
+import SVGWarning from '../../../assets/svg/icons/Warning.svg'
 import SVGX from '../../../assets/svg/icons/X.svg'
 import SVGYoutubeBlock from '../../../assets/svg/icons/Youtube_BlockColor.svg'
 import SVGYoutube from '../../../assets/svg/icons/Youtube.svg'
@@ -210,6 +212,7 @@ const icons = {
   subtract: SVGSubtract,
   superRareBlock: SVGSuperRareBlock,
   superRare: SVGSuperRare,
+  tableSort: SVGTableSort,
   toggleLists: SVGToggleLists,
   trophy: SVGTrophy,
   truthfulness: SVGTruthfulness,
@@ -223,6 +226,7 @@ const icons = {
   verificationStatusActive: SVGVerificationStatusActive,
   verificationStatusPaused: SVGVerificationStatusPaused,
   wallet: SVGWallet,
+  warning: SVGWarning,
   x: SVGX,
   youtubeBlock: SVGYoutubeBlock,
   youtube: SVGYoutube,

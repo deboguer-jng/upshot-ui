@@ -27,6 +27,13 @@ const TooltipTemplate: ComponentStory<typeof LabelAttribute> = (args) => (
   </LabelAttribute>
 )
 
+const ExpandedTooltipTemplate: ComponentStory<typeof LabelAttribute> = (args) => (
+  <LabelAttribute {...args} style={{ marginTop: 100 }}>
+    This is a long text This is a long text This is a long text This is a long
+    text This is a long text This is a long text This is a long text
+  </LabelAttribute>
+)
+
 export const LabelAttributeRegularTransparent = Template.bind({})
 
 export const LabelAttributeRegularBlue = Template.bind({})
@@ -34,6 +41,9 @@ LabelAttributeRegularBlue.args = { transparent: false }
 
 export const LabelAttributeTooltipRegularBlue = TooltipTemplate.bind({})
 LabelAttributeTooltipRegularBlue.args = { transparent: false }
+
+export const LabelAttributeExpandedTooltipRegularBlue = ExpandedTooltipTemplate.bind({})
+LabelAttributeExpandedTooltipRegularBlue.args = { transparent: false, expanded: true, expandedText: 'Trait Type' }
 
 export const LabelAttributePercentageTransparent = MultiTemplate.bind({})
 LabelAttributePercentageTransparent.args = {
@@ -54,6 +64,37 @@ LabelAttributePercentageTransparent.args = {
 export const LabelAttributePercentageBlue = Template.bind({})
 LabelAttributePercentageBlue.args = {
   percentage: 69,
+  variant: 'percentage',
+  transparent: false,
+}
+
+export const LabelAttributeExpandedPercentageTransparent = MultiTemplate.bind({})
+LabelAttributeExpandedPercentageTransparent.args = {
+  first: {
+    percentage: 69,
+    expanded: true,
+    expandedText: 'Trait Type',
+    variant: 'percentage',
+  },
+  second: {
+    percentage: 69.99,
+    expanded: true,
+    expandedText: 'Trait Type',
+    variant: 'percentage',
+  },
+  third: {
+    percentage: 100.0,
+    expanded: true,
+    expandedText: 'Trait Type',
+    variant: 'percentage',
+  },
+}
+
+export const LabelAttributeExpandedPercentageBlue = Template.bind({})
+LabelAttributePercentageBlue.args = {
+  percentage: 69,
+  expanded: true,
+  expandedText: 'Trait Type',
   variant: 'percentage',
   transparent: false,
 }
