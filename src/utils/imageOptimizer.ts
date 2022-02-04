@@ -52,7 +52,7 @@ export const imageOptimizer = (
     if (src.includes(cloudinaryUrlSchemeStart)) {
       return src.replace(cloudinaryUrlSchemeStart, cloudinaryUrlSchemeStart + optimiationString + '/')
     } else {
-      return '//res.cloudinary.com/dcc0adga4/image/fetch/' + optimiationString + '/' + encodeURI(src)
+      return '//res.cloudinary.com/upshot-inc/image/fetch/' + optimiationString + '/' + encodeURI(src)
     }
   }
   return src
