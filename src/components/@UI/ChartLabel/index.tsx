@@ -175,15 +175,20 @@ const ChartLabel = forwardRef(
             )}
             {change && `(${change})`}
           </StyledChangeDiv>
-          {!!timestamp && (
-            <Text
-              color="blue"
-              variant="small"
-              sx={{ position: 'absolute', marginTop: '-2px' }}
-            >
-              {timestamp}
-            </Text>
-          )}
+          <Box sx={{ minHeight: '1rem' }}>
+            {!!timestamp && (
+              <Text
+                color="blue"
+                variant="small"
+                sx={{
+                  display: 'block',
+                  marginTop: '-2px',
+                }}
+              >
+                {timestamp}
+              </Text>
+            )}
+          </Box>
           {/* {ath !== '-' && atl !== '-' && (
             <Box sx={{ display: ['grid', 'block'] }}>
               <StyledRed sx={{ paddingTop: ['3px', '0px'] }}>
