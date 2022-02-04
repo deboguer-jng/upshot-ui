@@ -175,7 +175,7 @@ const ChartLabel = forwardRef(
             )}
             {change && `(${change})`}
           </StyledChangeDiv>
-          <Box sx={{ minHeight: '1rem' }}>
+          <Box sx={{ minHeight: '1.5rem' }}>
             {!!timestamp && (
               <Text
                 color="blue"
