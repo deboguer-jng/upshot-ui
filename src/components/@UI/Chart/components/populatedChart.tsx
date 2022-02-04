@@ -167,6 +167,14 @@ const PopulatedChart = ({
               change={set.priceChange}
               url={set.url}
               isDim={hoverIndex !== null && hoverIndex !== index}
+              timestamp={
+                hoverDataPoint[index]?.timestamp
+                  ? format(
+                      hoverDataPoint[index]?.timestamp,
+                      'LLL dd yyyy hh:mm'
+                    )
+                  : null
+              }
               maxWidth={isMobile ? 140 : 280}
               {...{ index }}
             />
@@ -220,21 +228,6 @@ const PopulatedChart = ({
         </Flex>
       )}
       {chart}
-      {!embedded && timestamp && (
-        <Text
-          variant={isMobile ? "large" : "h3Primary"}
-          sx={{
-            position: 'absolute',
-            textTransform: 'uppercase',
-            left: '50%',
-            paddingTop: '8px',
-            transform: 'translateX(-50%)',
-          }}
-        >
-          {format(timestamp, 'LLL dd yyyy hh:mm')}
-        </Text>
-      )}
-
       {!embedded && (
         <CustomLegendWrapper>
           {[...new Array(chartData.length)].map((_, i) => (
