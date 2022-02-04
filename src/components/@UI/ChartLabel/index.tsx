@@ -48,6 +48,10 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   currency_2?: string
   /**
+   * Timestamp
+   */
+  timestamp?: string
+  /**
    * Historical price change (eg. +20.47%)
    */
   change?: string
@@ -83,14 +87,15 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
 const ChartLabel = forwardRef(
   (
     {
-      title,
-      url,
       titleColor = 'white',
-      price_1,
       currency_1 = 'Ξ',
       price_2 = null,
       currency_2 = '$',
       isDim = false,
+      title,
+      url,
+      price_1,
+      timestamp,
       change,
       atl,
       ath,
@@ -128,42 +133,31 @@ const ChartLabel = forwardRef(
         $isMobile={isMobile}
         $maxWidth={maxWidth}
       >
+        <IconButton
+          type="button"
+          onClick={onClose}
+          color={titleColor}
+          sx={{
+            borderStyle: 'solid',
+            borderWidth: 1,
+            borderColor: titleColor,
+            width: '12px',
+            height: '12px',
+            marginRight: '4px',
+          }}
+        >
+          <Icon size={8} color={titleColor} icon="x" />
+        </IconButton>
         <StyledBox $maxWidth={maxWidth}>
-          <Flex sx={{ minHeight: ['32px', '32px', '48px'] }}>
-            <IconButton
-              type="button"
-              onClick={onClose}
-              color={titleColor}
-              sx={{
-                borderStyle: 'solid',
-                borderWidth: 1,
-                borderColor: titleColor,
-                width: '12px',
-                height: '12px',
-                marginRight: '4px',
-              }}
-            >
-              <Icon size={8} color={titleColor} icon="x" />
-            </IconButton>
-            <StyledLink href={url}>
-              <StyledTitle $color={titleColor}>{title}</StyledTitle>
-            </StyledLink>
-          </Flex>
+          <StyledLink href={url}>
+            <StyledTitle $color={titleColor}>{title}</StyledTitle>
+          </StyledLink>
           <Flex style={{ whiteSpace: 'nowrap' }}>
             <Text
-              variant="small"
-              color="grey-600"
-              style={{
-                lineHeight: 1,
-                marginRight: 2,
-              }}
+              variant="h1Primary"
+              sx={{ fontWeight: 'normal', lineHeight: 1.1, fontSize: [6, 7] }}
             >
               {currency_1}
-            </Text>
-            <Text
-              variant="h1Primary"
-              sx={{ fontWeight: 'normal', lineHeight: 1, fontSize: [6, 7] }}
-            >
               {nFormatter(price_1)}
             </Text>
           </Flex>
@@ -174,12 +168,22 @@ const ChartLabel = forwardRef(
                 variant="currency"
                 currencySymbol={currency_2}
                 size={isMobile ? 'xs' : 'sm'}
+                sx={{ '& label': { padding: 0 } }}
               >
                 {nFormatter(price_2)}
               </InlineLabel>
             )}
             {change && `(${change})`}
           </StyledChangeDiv>
+          {!!timestamp && (
+            <Text
+              color="blue"
+              variant="small"
+              sx={{ position: 'absolute', marginTop: '-2px' }}
+            >
+              {timestamp}
+            </Text>
+          )}
           {/* {ath !== '-' && atl !== '-' && (
             <Box sx={{ display: ['grid', 'block'] }}>
               <StyledRed sx={{ paddingTop: ['3px', '0px'] }}>
