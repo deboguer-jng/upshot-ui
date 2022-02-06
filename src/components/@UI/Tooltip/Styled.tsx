@@ -15,7 +15,7 @@ export const IconMiddle = styled(Icon)`
   vertical-align: middle;
 `
 export const StyledPanel = styled(Panel)`
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: ${({ theme }) => theme.radii.md};
 `
