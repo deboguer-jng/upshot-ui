@@ -1,6 +1,6 @@
 import { BoxProps } from 'theme-ui'
 import React, { forwardRef } from 'react'
-import { usePopperTooltip } from 'react-popper-tooltip';
+import { usePopperTooltip } from 'react-popper-tooltip'
 
 import theme from '../../../themes/UpshotUI'
 import { BaseBox, ChildContainer, IconMiddle, StyledPanel } from './Styled'
@@ -10,7 +10,7 @@ import Text from '../Text'
 export interface TooltipProps extends BoxProps {
   /**
    * Optional child element what will trigger the tooltip on hover
-   * 
+   *
    */
   children?: React.ReactNode
   /**
@@ -38,24 +38,17 @@ const Tooltip = forwardRef(
       setTriggerRef,
       visible,
     } = usePopperTooltip({
-      interactive: true, 
-      delayHide: 100,
+      interactive: true,
+      delayHide: 250,
     })
-  
+
     return (
       <BaseBox {...{ ref, ...props }}>
-        <ChildContainer ref={setTriggerRef}>
-          {children}
-        </ChildContainer>
+        <ChildContainer ref={setTriggerRef}>{children}</ChildContainer>
         {visible && (
-          <div
-            ref={setTooltipRef}
-            {...getTooltipProps()}
-          >
+          <div ref={setTooltipRef} {...getTooltipProps()}>
             <div {...getArrowProps()} />
-            <StyledPanel>
-              {tooltip}
-            </StyledPanel>
+            <StyledPanel>{tooltip}</StyledPanel>
           </div>
         )}
       </BaseBox>
