@@ -34,6 +34,7 @@ export { default as Spinner } from './components/@UI/Spinner'
 export { default as Switch } from './components/@UI/Switch'
 export { default as SwitchDropdown } from './components/@UI/SwitchDropdown'
 export { default as Text } from './components/@UI/Text'
+export { default as Tooltip } from './components/@UI/Tooltip'
 export { default as TreeMap } from './components/@UI/TreeMap/TreeMapDynamic'
 
 /**
