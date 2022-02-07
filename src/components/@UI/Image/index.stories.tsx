@@ -52,8 +52,3 @@ ArtblockUrl.args = {
   width: 100,
   height: 100,
 }
-
-export const _404 = Template.bind({})
-_404.args = {
-  src: 'https://asd.asd/asd',
-}
