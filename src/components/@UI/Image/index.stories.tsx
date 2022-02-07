@@ -46,14 +46,9 @@ W100AR16_9.args = {
   aspectRatio: '16:9',
 }
 
-export const NonCloudinaryExpectFail = Template.bind({})
-NonCloudinaryExpectFail.args = {
-  src: 'https://picsum.photos/200/300',
-  width: 100, // expected to fail
-  height: 100, // expected to fail
-}
-
-export const _404 = Template.bind({})
-_404.args = {
-  src: 'https://asd.asd/asd',
+export const ArtblockUrl = Template.bind({})
+ArtblockUrl.args = {
+  src: 'https://media.artblocks.io/204000000.png',
+  width: 100,
+  height: 100,
 }

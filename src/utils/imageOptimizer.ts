@@ -28,7 +28,7 @@ export const imageOptimizer = (
   src: string | undefined,
   opts: ImageProps = {},
 ) => {
-  if (!src /* || opts.length === 0 */) return src
+  if (!src) return src
 
   if (!opts.cropMode) {
     opts.cropMode = 'lfill' // make "lfill" default crop mode
@@ -46,10 +46,14 @@ export const imageOptimizer = (
   }
 
   const cloudinaryUrlSchemeStart = '//res.cloudinary.com/upshot-inc/image/upload/'
-  if (optimizations.length > 0 && src.includes(cloudinaryUrlSchemeStart)) {
+  if (optimizations.length > 0) {
     optimizations.push('c_' + opts.cropMode)
     const optimiationString = optimizations.join(',')
-    return src.replace(cloudinaryUrlSchemeStart, cloudinaryUrlSchemeStart + optimiationString + '/')
+    if (src.includes(cloudinaryUrlSchemeStart)) {
+      return src.replace(cloudinaryUrlSchemeStart, cloudinaryUrlSchemeStart + optimiationString + '/')
+    } else {
+      return '//res.cloudinary.com/upshot-inc/image/fetch/' + optimiationString + '/' + encodeURI(src)
+    }
   }
-  return null
+  return src
 }
