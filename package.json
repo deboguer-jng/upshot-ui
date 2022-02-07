@@ -7,7 +7,6 @@
     "start": "start-storybook -p 6006 -s public",
     "lint": "prettier --write . && eslint . --fix",
     "build": "rollup -c",
-    "pub": "yarn build && cd ./dist && npm publish",
     "build-static": "yarn build-storybook -o ./static -s public"
   },
   "dependencies": {
