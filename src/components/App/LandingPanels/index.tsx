@@ -117,6 +117,7 @@ const LandingPanel = forwardRef(
           <StyledDescription
             $isBig={isBig}
             color={disabled ? 'grey-600' : 'grey-500'}
+            title={isBig ? '' : description}
           >
             {description}
           </StyledDescription>
