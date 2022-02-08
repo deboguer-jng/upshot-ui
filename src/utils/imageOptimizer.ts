@@ -49,9 +49,12 @@ export const imageOptimizer = (
   if (optimizations.length > 0) {
     optimizations.push('c_' + opts.cropMode)
     const optimiationString = optimizations.join(',')
+
+    // If src is already a Cloudinary URL
     if (src.includes(cloudinaryUrlSchemeStart)) {
       return src.replace(cloudinaryUrlSchemeStart, cloudinaryUrlSchemeStart + optimiationString + '/')
-    } else {
+    // if image is an absolute URL
+    } else if (src.startsWith('//') || src.startsWith('http://') || src.startsWith('https://')) {
       return '//res.cloudinary.com/upshot-inc/image/fetch/' + optimiationString + '/' + encodeURI(src)
     }
   }

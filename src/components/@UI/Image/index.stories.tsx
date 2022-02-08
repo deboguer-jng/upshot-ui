@@ -52,3 +52,11 @@ ArtblockUrl.args = {
   width: 100,
   height: 100,
 }
+
+export const RelativeUrl = Template.bind({})
+RelativeUrl.args = {
+  src: '/img/defaultAvatar.png',
+  width: 100,
+  height: 100,
+}
+
