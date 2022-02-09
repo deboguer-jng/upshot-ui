@@ -34,7 +34,7 @@ export interface CollectionRowProps extends TableRowProps {
    */
   onClick?: () => void
 
-  totalVolume?: string
+  volume?: string
 
   pixelated?: boolean
 
@@ -51,7 +51,7 @@ const CollectionRow = forwardRef(
       title,
       children,
       pixelated,
-      totalVolume,
+      volume,
       defaultOpen = false,
       nftCount,
       onClick,
@@ -80,7 +80,7 @@ const CollectionRow = forwardRef(
             sx={{
               cursor: 'pointer',
               '&:hover': {
-                boxShadow: theme.shadow.underglow("primary"),
+                boxShadow: theme.shadow.underglow('primary'),
                 'td:last-child': {
                   svg: {
                     display: 'block',
@@ -181,7 +181,7 @@ const CollectionRow = forwardRef(
                     lineHeight: 1,
                   }}
                 >
-                  {totalVolume ?? ''}
+                  {volume ?? ''}
                 </Text>
               </Flex>
 
