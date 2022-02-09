@@ -14,7 +14,6 @@ export const CollectionTableBase = styled(Table)`
   }
 
   & thead td {
-    padding-bottom: ${({ theme }) => theme.space[4]}px!important;
     font-size: 16px !important;
   }
 
@@ -39,8 +38,5 @@ export const CollectionTableBase = styled(Table)`
   & td:last-of-type {
     border-bottom-right-radius: ${({ theme }) => theme.radii.md};
     padding-right: 16px;
-  }
-  & td:last-child {
-    width: 50px!important; 
   }
 `
