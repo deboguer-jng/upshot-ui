@@ -126,15 +126,17 @@ const CollectionRow = forwardRef(
             {/* Additional columns (React.Fragment) */}
             {children}
             <TableCell>
-              <Icon
-                icon="arrowStylizedRight"
-                color="primary"
-                sx={{
-                  display: 'none',
-                  width: '20px',
-                  height: '20px',
-                }}
-              ></Icon>
+              <Flex sx={{ justifyContent: 'flex-end', alignItems: 'center' }}>
+                <Icon
+                  icon="arrowStylizedRight"
+                  color="primary"
+                  sx={{
+                    display: 'none',
+                    width: '20px',
+                    height: '20px',
+                  }}
+                ></Icon>
+              </Flex>
             </TableCell>
           </CollectionRowBase>
         ) : (
