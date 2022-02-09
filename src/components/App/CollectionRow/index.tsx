@@ -109,7 +109,7 @@ const CollectionRow = forwardRef(
               </Box>
             </TableCell>
 
-            <TableCell>
+            <TableCell sx={{ width: '100% !important' }}>
               <Text
                 variant="large"
                 {...{ onClick }}
