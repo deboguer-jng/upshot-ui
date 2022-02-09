@@ -80,7 +80,7 @@ const CollectionRow = forwardRef(
             sx={{
               cursor: 'pointer',
               '&:hover': {
-                boxShadow: theme.shadow.underglow("primary"),
+                boxShadow: theme.shadow.underglow('primary'),
                 'td:last-child': {
                   svg: {
                     display: 'block',
@@ -126,15 +126,17 @@ const CollectionRow = forwardRef(
             {/* Additional columns (React.Fragment) */}
             {children}
             <TableCell>
-              <Icon
-                icon="arrowStylizedRight"
-                color="primary"
-                sx={{
-                  display: 'none',
-                  width: '20px',
-                  height: '20px',
-                }}
-              ></Icon>
+              <Flex sx={{ justifyContent: 'flex-end', alignItems: 'center' }}>
+                <Icon
+                  icon="arrowStylizedRight"
+                  color="primary"
+                  sx={{
+                    display: 'none',
+                    width: '20px',
+                    height: '20px',
+                  }}
+                ></Icon>
+              </Flex>
             </TableCell>
           </CollectionRowBase>
         ) : (
