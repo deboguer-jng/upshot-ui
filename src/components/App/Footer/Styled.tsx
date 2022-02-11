@@ -1,9 +1,10 @@
 import styled from '@emotion/styled'
+import css from '@emotion/css'
+import { Link } from 'theme-ui'
+
 import Flex from '../../Layout/Flex'
 import Box from '../../Layout/Grid'
 import Text from '../../@UI/Text'
-import css from '@emotion/css'
-import { Link } from 'theme-ui'
 
 export const StyledBox = styled(Box)`
   justify-content: center;
