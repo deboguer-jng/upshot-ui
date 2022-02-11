@@ -8,21 +8,12 @@ import {
   StyledBoxMiddle,
   LogoBox,
   StyledMiddleLink,
-  InvestorImage,
 } from './Styled'
 import Flex from '../../Layout/Flex'
 import { FlexProps, Link } from 'theme-ui'
 import Icon from '../../@UI/Icon'
 import IconButton from '../../@UI/IconButton'
 import Box from '../../Layout/Box'
-
-import polychainImg from '../../../assets/svg/investors/1_polychain.svg'
-import frameworkImg from '../../../assets/svg/investors/2_framework.svg'
-import blockchainSapitalImg from '../../../assets/svg/investors/3_bc.svg'
-import coinfundImg from '../../../assets/svg/investors/4_coinfund.svg'
-import slowImg from '../../../assets/svg/investors/5_slow.svg'
-import mechanismImg from '../../../assets/svg/investors/6_mechanism.svg'
-import delphiImg from '../../../assets/svg/investors/7_delphi.svg'
 
 export interface FooterProps extends FlexProps {
   /**
@@ -41,15 +32,6 @@ const Footer = forwardRef(
   ) => {
     return (
       <Box>
-        <Box sx={{ backgroundColor: 'grey-900', padding: '25px', textAlign: 'center' }} >
-          <InvestorImage src={polychainImg} />
-          <InvestorImage src={frameworkImg} />
-          <InvestorImage src={blockchainSapitalImg} />
-          <InvestorImage src={coinfundImg} />
-          <InvestorImage src={slowImg} />
-          <InvestorImage src={mechanismImg} />
-          <InvestorImage src={delphiImg} />
-        </Box>
         <FooterLine {...{ ref, ...props }}>
           <StyledBoxLeft>
             <LogoBox href="https://upshot.xyz/" target="_blank">

@@ -89,7 +89,3 @@ export const StyledMiddleLink = styled(Link)`
     text-decoration: none;
   }
 `
-export const InvestorImage = styled(SVG)`
-  margin: 25px;
-  width: 100px;
-`
