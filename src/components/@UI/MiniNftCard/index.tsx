@@ -1,7 +1,5 @@
-/** @jsxImportSource theme-ui */
 import React, { forwardRef, HTMLAttributes } from 'react'
-import { Text, Flex } from 'theme-ui'
-
+import { Text, Flex, Link } from 'theme-ui'
 
 import ErrorSvg from '../../../assets/svg/icons/Error.svg'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
@@ -106,7 +104,11 @@ const MiniNftCard = forwardRef(
   ) => {
     const isMobile = useBreakpointIndex() <= 1
 
-    const optimizedSrc = imageOptimizer(image, {height: theme.miniNftCard.height, width: theme.miniNftCard.width}) ?? image
+    const optimizedSrc =
+      imageOptimizer(image, {
+        height: theme.miniNftCard.height,
+        width: theme.miniNftCard.width,
+      }) ?? image
     const imageSrc = pixelated ? image : optimizedSrc
 
     return (
@@ -184,7 +186,7 @@ const MiniNftCard = forwardRef(
               ) : type === 'default' ? (
                 <Flex sx={{ alignItems: 'center' }}>
                   <AddressCircle variant="from" />
-                  <a
+                  <Link
                     href={fromLink}
                     sx={{
                       color: 'white',
@@ -195,7 +197,7 @@ const MiniNftCard = forwardRef(
                     }}
                   >
                     <Text variant="small"> {from} </Text>
-                  </a>
+                  </Link>
                 </Flex>
               ) : type === 'collection' ? (
                 sales
@@ -220,7 +222,7 @@ const MiniNftCard = forwardRef(
               ) : type === 'default' ? (
                 <Flex sx={{ alignItems: 'center' }}>
                   <AddressCircle variant="to" />
-                  <a
+                  <Link
                     href={toLink}
                     sx={{
                       color: 'white',
@@ -231,7 +233,7 @@ const MiniNftCard = forwardRef(
                     }}
                   >
                     <Text variant="small"> {to} </Text>
-                  </a>
+                  </Link>
                 </Flex>
               ) : type === 'collection' ? (
                 floorPrice

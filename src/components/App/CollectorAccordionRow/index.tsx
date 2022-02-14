@@ -1,4 +1,3 @@
-/** @jsxImportSource theme-ui */
 import React, { forwardRef, useState, useEffect } from 'react'
 import { useTheme } from '@emotion/react'
 import { format, formatDistance } from 'date-fns'
@@ -186,7 +185,7 @@ const CollectorRow = forwardRef(
             <Icon
               icon="arrowStylizedRight"
               color="primary"
-              sx={{
+              style={{
                 display: 'none',
                 position: 'absolute',
                 top: '0',
@@ -195,7 +194,7 @@ const CollectorRow = forwardRef(
                 margin: '30%',
               }}
               size="40%"
-            ></Icon>
+            />
           </Box>
           <Flex
             sx={{ flexDirection: 'column', justifyContent: 'center', gap: 1 }}
