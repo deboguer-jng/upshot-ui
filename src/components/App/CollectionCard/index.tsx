@@ -1,4 +1,3 @@
-/** @jsxImportSource theme-ui */
 import { BoxProps } from 'theme-ui'
 import React, { forwardRef } from 'react'
 

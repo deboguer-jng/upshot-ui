@@ -1,4 +1,3 @@
-/** @jsxImportSource theme-ui */
 import React, { forwardRef, useState } from 'react'
 import Avatar from '../../@UI/Avatar'
 import Text from '../../@UI/Text'
@@ -130,12 +129,12 @@ const CollectionRow = forwardRef(
                 <Icon
                   icon="arrowStylizedRight"
                   color="primary"
-                  sx={{
+                  style={{
                     display: 'none',
                     width: '20px',
                     height: '20px',
                   }}
-                ></Icon>
+                />
               </Flex>
             </TableCell>
           </CollectionRowBase>
