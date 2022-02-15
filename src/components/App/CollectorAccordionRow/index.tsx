@@ -120,7 +120,7 @@ const CollectorRow = forwardRef(
     const theme = useTheme()
     const [open, setOpen] = useState(defaultOpen)
     const [page, setPage] = useState(0)
-    const [selectedCollection, setSelectedCollection] = useState(0)
+    const [selectedCollection, setSelectedCollection] = useState<number | undefined>()
     const [selectedCollectionName, setSelectedCollectionName] =
       useState(collectionName)
     const breakpointIndex = useBreakpointIndex()
