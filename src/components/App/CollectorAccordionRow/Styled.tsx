@@ -13,7 +13,6 @@ export const CollectorRowBase = styled.div`
   border-radius: 20px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors['grey-900']};
-  cursor: pointer;
 `
 
 export const CollectorRowContent = styled(Grid)<CollectorRowContentProps>`
