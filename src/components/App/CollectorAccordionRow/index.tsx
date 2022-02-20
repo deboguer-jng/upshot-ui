@@ -129,8 +129,8 @@ const CollectorRow = forwardRef(
       address ? makeBlockie(address) : null
     )
     const [name, setName] = useState(username ? formatUsername(username) : null)
-    const [expansionHeight, setExpansionHeight] = useState(0);
-    const expansionContentRef = useRef(null);
+    const [expansionHeight, setExpansionHeight] = useState(0)
+    const expansionContentRef = useRef(null)
 
     useEffect(() => {
       const updateEns = async (address?: string) => {
@@ -147,7 +147,7 @@ const CollectorRow = forwardRef(
 
       updateEns(address)
 
-      setExpansionHeight(expansionContentRef.current.clientHeight);
+      setExpansionHeight(expansionContentRef.current.clientHeight)
     }, [])
 
     const handlePageChange = ({ selected }: { selected: number }) => {

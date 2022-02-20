@@ -26,12 +26,12 @@ export const CollectorRowContent = styled(Grid)<CollectorRowContentProps>`
 `
 
 export const CollectorRowExpansion = styled.div<{
-  $open: boolean,
-  $contentHeight: number,
+  $open: boolean
+  $contentHeight?: number
 }>`
   overflow: hidden;
-  max-height: ${({ $open, $contentHeight }) => ($open ? $contentHeight + 'px' : '0px')};
-  transition: 0.5s ease-in-out;
+  transition: 0.2s ease-in-out;
+  max-height: ${({ $open, $contentHeight }) => ($open ? ($contentHeight ? $contentHeight + 'px' : 'auto') : '0px')};
 `
 
 export const CollectorRowAvatarWrapper = styled.button<CollectorRowAvatarWrapperProps>`
