@@ -22,6 +22,7 @@ export const CollectorRowContent = styled(Grid)<CollectorRowContentProps>`
   padding-right: ${({ theme, isMobile }) => isMobile ? theme.space[2] + 'px' : '16px'};
   background: ${({ theme }) => theme.colors.black};
   border-radius: 20px;
+  cursor: pointer;
 `
 
 export const CollectorRowExpansion = styled.div<{
