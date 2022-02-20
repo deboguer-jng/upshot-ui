@@ -171,7 +171,7 @@ const CollectorRow = forwardRef(
                 display: 'none',
               },
               '&:hover svg': {
-                display: 'block',
+                display: 'block !important',
               },
               '&:hover': {
                 backgroundColor: '#151515',
@@ -190,6 +190,7 @@ const CollectorRow = forwardRef(
               icon="arrowStylizedRight"
               color="primary"
               style={{
+                display: 'none',
                 position: 'absolute',
                 top: '0',
                 width: '40% !important',
