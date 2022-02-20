@@ -190,7 +190,6 @@ const CollectorRow = forwardRef(
               icon="arrowStylizedRight"
               color="primary"
               style={{
-                display: 'none',
                 position: 'absolute',
                 top: '0',
                 width: '40% !important',
