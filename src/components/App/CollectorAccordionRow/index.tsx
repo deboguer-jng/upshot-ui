@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useEffect } from 'react'
+import React, { forwardRef, useState, useEffect, useRef } from 'react'
 import { useTheme } from '@emotion/react'
 import { format, formatDistance } from 'date-fns'
 import { ethers } from 'ethers'
@@ -129,6 +129,8 @@ const CollectorRow = forwardRef(
       address ? makeBlockie(address) : null
     )
     const [name, setName] = useState(username ? formatUsername(username) : null)
+    const [expansionHeight, setExpansionHeight] = useState(0);
+    const expansionContentRef = useRef(null);
 
     useEffect(() => {
       const updateEns = async (address?: string) => {
@@ -144,6 +146,8 @@ const CollectorRow = forwardRef(
       }
 
       updateEns(address)
+
+      setExpansionHeight(expansionContentRef.current.clientHeight);
     }, [])
 
     const handlePageChange = ({ selected }: { selected: number }) => {
@@ -262,7 +266,7 @@ const CollectorRow = forwardRef(
           </Flex>
         </CollectorRowContent>
 
-        <CollectorRowExpansion $open={open}>
+        <CollectorRowExpansion $open={open} $contentHeight={expansionHeight}>
           <Grid
             columns={[
               '1fr',
@@ -270,6 +274,7 @@ const CollectorRow = forwardRef(
               !isFirstColumn || !extraCollections.length ? '1fr' : '1fr 1fr',
             ]}
             sx={{ marginX: [0, 46], columnGap: 72, p: 4 }}
+            ref={expansionContentRef}
           >
             {isFirstColumn && (
               <Flex sx={{ flexDirection: 'column', gap: 4 }}>
