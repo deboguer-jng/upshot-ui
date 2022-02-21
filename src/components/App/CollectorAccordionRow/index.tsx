@@ -317,169 +317,171 @@ const CollectorRow = forwardRef(
                   </Flex>
                 )}
 
-                {!!nftCollection && !!nftCollection.length ? (
+                
+                {!!totalNftValue && (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                    <Text sx={{ fontWeight: 'heading' }}>
-                      {displayName}'s {selectedCollectionName} Collection
-                    </Text>
-                    <Grid
+                    <Text sx={{ fontWeight: 'heading' }}>Total NFT Value</Text>
+                    <Flex
                       sx={{
-                        gap: 2,
-                        gridTemplateColumns:
-                          'repeat(auto-fill, minmax(92px, 1fr) )',
+                        justifyContent: 'flex-end',
+                        gap: 1,
                       }}
                     >
-                      {nftCollection
-                        .slice(page * 6, page * 6 + 6)
-                        .map(({ imageUrl, url, pixelated }, idx) => {
-                          const optimizedSrc =
-                            imageOptimizer(imageUrl, {
-                              height: 180,
-                              width: 180,
-                            }) ?? imageUrl
-                          const imageSrc = pixelated ? imageUrl : optimizedSrc
-
-                          return (
-                            <a href={url} key={idx}>
-                              <Box
-                                sx={{
-                                  backgroundImage: `url(${imageSrc})`,
-                                  backgroundSize: 'cover',
-                                  backgroundPosition: 'center',
-                                  backgroundRepeat: 'no-repeat',
-                                  borderRadius: 'sm',
-                                  width: '100%',
-                                  paddingTop: '100%',
-                                  imageRendering: pixelated
-                                    ? 'pixelated'
-                                    : 'auto',
-                                }}
-                              />
-                            </a>
-                          )
-                        })}
-                    </Grid>
-                    {Math.ceil(nftCollection.length / 6) > 1 && (
-                      <Pagination
-                        forcePage={page}
-                        pageCount={Math.ceil(nftCollection.length / 6)}
-                        pageRangeDisplayed={0}
-                        marginPagesDisplayed={0}
-                        onPageChange={handlePageChange}
-                      />
-                    )}
+                      <Text variant="small" color="primary">
+                        Ξ
+                      </Text>
+                      <Text
+                        variant="h3Primary"
+                        sx={{
+                          color: 'primary',
+                        }}
+                      >
+                        {totalNftValue}
+                      </Text>
+                    </Flex>
                   </Flex>
-                ) : (
+                )}
+
+                {!!extraCollections && !!extraCollections.length && (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                    <Text sx={{ fontWeight: 'heading', lineHeight: 1.5 }}>
-                      {displayName} doesn't currently hold any {collectionName}{' '}
-                      NFTs
-                    </Text>
+                    <Text sx={{ fontWeight: 'heading' }}>Also Collecting</Text>
+                    <Flex
+                      sx={{
+                        gap: 4,
+                        flexWrap: 'wrap',
+                      }}
+                    >
+                      {extraCollections?.map(
+                        ({ id, name, url, imageUrl, count }, idx) => (
+                          <Flex
+                            sx={{
+                              flexDirection: 'column',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              gap: 2,
+                            }}
+                            key={idx}
+                          >
+                            <CollectorRowAvatarWrapper
+                              selected={idx === selectedCollection}
+                              onClick={() => {
+                                extraCollectionChanged?.(id)
+                                setSelectedCollection(idx)
+                                setSelectedCollectionName(name)
+                                setPage(0)
+                              }}
+                            >
+                              <Avatar
+                                size="lg"
+                                color="white"
+                                src={
+                                  imageOptimizer(imageUrl, {
+                                    height: parseInt(theme.images.avatar.lg.size),
+                                    width: parseInt(theme.images.avatar.lg.size),
+                                  }) ?? imageUrl
+                                }
+                              />
+                            </CollectorRowAvatarWrapper>
+                            <Flex
+                              sx={{
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                gap: 1,
+                              }}
+                            >
+                              <Text
+                                variant="small"
+                                color="white"
+                                sx={{
+                                  whiteSpace: 'nowrap',
+                                  width: '72px',
+                                  overflow: 'hidden',
+                                  textOverflow: 'ellipsis',
+                                  textAlign: 'center',
+                                  lineHeight: 1,
+                                }}
+                              >
+                                {name}
+                              </Text>
+                              <Text
+                                variant="small"
+                                color="blue"
+                                sx={{ lineHeight: 1 }}
+                              >
+                                {count} NFTs
+                              </Text>
+                            </Flex>
+                          </Flex>
+                        )
+                      )}
+                    </Flex>
                   </Flex>
                 )}
               </Flex>
             )}
 
             <Flex sx={{ flexDirection: 'column', gap: 4 }}>
-              {!!totalNftValue && (
+              {!!nftCollection && !!nftCollection.length ? (
                 <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                  <Text sx={{ fontWeight: 'heading' }}>Total NFT Value</Text>
-                  <Flex
+                  <Text sx={{ fontWeight: 'heading' }}>
+                    {displayName}'s {selectedCollectionName} Collection
+                  </Text>
+                  <Grid
                     sx={{
-                      justifyContent: 'flex-end',
-                      gap: 1,
+                      gap: 2,
+                      gridTemplateColumns:
+                        'repeat(auto-fill, minmax(92px, 1fr) )',
                     }}
                   >
-                    <Text variant="small" color="primary">
-                      Ξ
-                    </Text>
-                    <Text
-                      variant="h3Primary"
-                      sx={{
-                        color: 'primary',
-                      }}
-                    >
-                      {totalNftValue}
-                    </Text>
-                  </Flex>
+                    {nftCollection
+                      .slice(page * 6, page * 6 + 6)
+                      .map(({ imageUrl, url, pixelated }, idx) => {
+                        const optimizedSrc =
+                          imageOptimizer(imageUrl, {
+                            height: 180,
+                            width: 180,
+                          }) ?? imageUrl
+                        const imageSrc = pixelated ? imageUrl : optimizedSrc
+
+                        return (
+                          <a href={url} key={idx}>
+                            <Box
+                              sx={{
+                                backgroundImage: `url(${imageSrc})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat',
+                                borderRadius: 'sm',
+                                width: '100%',
+                                paddingTop: '100%',
+                                imageRendering: pixelated
+                                  ? 'pixelated'
+                                  : 'auto',
+                              }}
+                            />
+                          </a>
+                        )
+                      })}
+                  </Grid>
+                  {Math.ceil(nftCollection.length / 6) > 1 && (
+                    <Pagination
+                      forcePage={page}
+                      pageCount={Math.ceil(nftCollection.length / 6)}
+                      pageRangeDisplayed={0}
+                      marginPagesDisplayed={0}
+                      onPageChange={handlePageChange}
+                    />
+                  )}
+                </Flex>
+              ) : (
+                <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                  <Text sx={{ fontWeight: 'heading', lineHeight: 1.5 }}>
+                    {displayName} doesn't currently hold any {collectionName}{' '}
+                    NFTs
+                  </Text>
                 </Flex>
               )}
 
-              {!!extraCollections && !!extraCollections.length && (
-                <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                  <Text sx={{ fontWeight: 'heading' }}>Also Collecting</Text>
-                  <Flex
-                    sx={{
-                      gap: 4,
-                      flexWrap: 'wrap',
-                    }}
-                  >
-                    {extraCollections?.map(
-                      ({ id, name, url, imageUrl, count }, idx) => (
-                        <Flex
-                          sx={{
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            gap: 2,
-                          }}
-                          key={idx}
-                        >
-                          <CollectorRowAvatarWrapper
-                            selected={idx === selectedCollection}
-                            onClick={() => {
-                              extraCollectionChanged?.(id)
-                              setSelectedCollection(idx)
-                              setSelectedCollectionName(name)
-                              setPage(0)
-                            }}
-                          >
-                            <Avatar
-                              size="lg"
-                              color="white"
-                              src={
-                                imageOptimizer(imageUrl, {
-                                  height: parseInt(theme.images.avatar.lg.size),
-                                  width: parseInt(theme.images.avatar.lg.size),
-                                }) ?? imageUrl
-                              }
-                            />
-                          </CollectorRowAvatarWrapper>
-                          <Flex
-                            sx={{
-                              flexDirection: 'column',
-                              alignItems: 'center',
-                              gap: 1,
-                            }}
-                          >
-                            <Text
-                              variant="small"
-                              color="white"
-                              sx={{
-                                whiteSpace: 'nowrap',
-                                width: '72px',
-                                overflow: 'hidden',
-                                textOverflow: 'ellipsis',
-                                textAlign: 'center',
-                                lineHeight: 1,
-                              }}
-                            >
-                              {name}
-                            </Text>
-                            <Text
-                              variant="small"
-                              color="blue"
-                              sx={{ lineHeight: 1 }}
-                            >
-                              {count} NFTs
-                            </Text>
-                          </Flex>
-                        </Flex>
-                      )
-                    )}
-                  </Flex>
-                </Flex>
-              )}
               {!!children && (
                 <Flex sx={{ flexDirection: 'column', gap: 2 }}>{children}</Flex>
               )}
