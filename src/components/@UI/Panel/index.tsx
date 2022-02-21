@@ -20,6 +20,10 @@ export interface PanelProps extends BoxProps {
    * Border color on :hover
    */
   hoverBorder?: keyof typeof colors
+  /**
+   * Background color
+   */
+   background?: keyof typeof colors
 }
 
 /**
@@ -31,6 +35,7 @@ const Panel = forwardRef(
       inner = false,
       hoverUnderglow = 'transparent',
       hoverBorder = 'transparent',
+      backgroundColor,
       ...props
     }: PanelProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -48,6 +53,7 @@ const Panel = forwardRef(
         $inner={inner}
         $shadow={shadow}
         $isMobile={isMobile}
+        $backgroundColor={backgroundColor}
         {...{ ref, ...props }}
       />
     )
