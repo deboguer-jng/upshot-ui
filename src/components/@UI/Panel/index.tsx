@@ -23,7 +23,7 @@ export interface PanelProps extends BoxProps {
   /**
    * Background color
    */
-   background?: keyof typeof colors
+   backgroundColor?: keyof typeof colors
 }
 
 /**
