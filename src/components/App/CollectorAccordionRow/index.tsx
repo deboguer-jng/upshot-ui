@@ -424,72 +424,74 @@ const CollectorRow = forwardRef(
               </Flex>
             )}
 
-            <Flex sx={{ flexDirection: 'column', gap: 4 }}>
-              {!!nftCollection && !!nftCollection.length ? (
-                <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                  <Text sx={{ fontWeight: 'heading' }}>
-                    {displayName}'s {selectedCollectionName} Collection
-                  </Text>
-                  <Grid
-                    sx={{
-                      gap: 2,
-                      gridTemplateColumns:
-                        'repeat(auto-fill, minmax(92px, 1fr) )',
-                    }}
-                  >
-                    {nftCollection
-                      .slice(page * 6, page * 6 + 6)
-                      .map(({ imageUrl, url, pixelated }, idx) => {
-                        const optimizedSrc =
-                          imageOptimizer(imageUrl, {
-                            height: 180,
-                            width: 180,
-                          }) ?? imageUrl
-                        const imageSrc = pixelated ? imageUrl : optimizedSrc
+            <Panel backgroundColor='transparent' sx={{ border: colors['grey-700'] + ' solid 1px' }}>
+              <Flex sx={{ flexDirection: 'column', gap: 4 }}>
+                {!!nftCollection && !!nftCollection.length ? (
+                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                    <Text sx={{ fontWeight: 'heading' }}>
+                      {displayName}'s {selectedCollectionName} Collection
+                    </Text>
+                    <Grid
+                      sx={{
+                        gap: 2,
+                        gridTemplateColumns:
+                          'repeat(auto-fill, minmax(92px, 1fr) )',
+                      }}
+                    >
+                      {nftCollection
+                        .slice(page * 6, page * 6 + 6)
+                        .map(({ imageUrl, url, pixelated }, idx) => {
+                          const optimizedSrc =
+                            imageOptimizer(imageUrl, {
+                              height: 180,
+                              width: 180,
+                            }) ?? imageUrl
+                          const imageSrc = pixelated ? imageUrl : optimizedSrc
 
-                        return (
-                          <a href={url} key={idx}>
-                            <Box
-                              sx={{
-                                backgroundImage: `url(${imageSrc})`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                                backgroundRepeat: 'no-repeat',
-                                borderRadius: 'sm',
-                                width: '100%',
-                                paddingTop: '100%',
-                                imageRendering: pixelated
-                                  ? 'pixelated'
-                                  : 'auto',
-                              }}
-                            />
-                          </a>
-                        )
-                      })}
-                  </Grid>
-                  {Math.ceil(nftCollection.length / 6) > 1 && (
-                    <Pagination
-                      forcePage={page}
-                      pageCount={Math.ceil(nftCollection.length / 6)}
-                      pageRangeDisplayed={0}
-                      marginPagesDisplayed={0}
-                      onPageChange={handlePageChange}
-                    />
-                  )}
-                </Flex>
-              ) : (
-                <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                  <Text sx={{ fontWeight: 'heading', lineHeight: 1.5 }}>
-                    {displayName} doesn't currently hold any {collectionName}{' '}
-                    NFTs
-                  </Text>
-                </Flex>
-              )}
+                          return (
+                            <a href={url} key={idx}>
+                              <Box
+                                sx={{
+                                  backgroundImage: `url(${imageSrc})`,
+                                  backgroundSize: 'cover',
+                                  backgroundPosition: 'center',
+                                  backgroundRepeat: 'no-repeat',
+                                  borderRadius: 'sm',
+                                  width: '100%',
+                                  paddingTop: '100%',
+                                  imageRendering: pixelated
+                                    ? 'pixelated'
+                                    : 'auto',
+                                }}
+                              />
+                            </a>
+                          )
+                        })}
+                    </Grid>
+                    {Math.ceil(nftCollection.length / 6) > 1 && (
+                      <Pagination
+                        forcePage={page}
+                        pageCount={Math.ceil(nftCollection.length / 6)}
+                        pageRangeDisplayed={0}
+                        marginPagesDisplayed={0}
+                        onPageChange={handlePageChange}
+                      />
+                    )}
+                  </Flex>
+                ) : (
+                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                    <Text sx={{ fontWeight: 'heading', lineHeight: 1.5 }}>
+                      {displayName} doesn't currently hold any {collectionName}{' '}
+                      NFTs
+                    </Text>
+                  </Flex>
+                )}
 
-              {!!children && (
-                <Flex sx={{ flexDirection: 'column', gap: 2 }}>{children}</Flex>
-              )}
-            </Flex>
+                {!!children && (
+                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>{children}</Flex>
+                )}
+              </Flex>
+            </Panel>
           </Grid>
         </CollectorRowExpansion>
       </CollectorRowBase>
