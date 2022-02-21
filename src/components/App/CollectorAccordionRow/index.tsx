@@ -13,6 +13,7 @@ import { Grid, Flex, Text, Box } from 'theme-ui'
 import Avatar from '../../@UI/Avatar'
 import Icon from '../../@UI/Icon'
 import Label from '../../@UI/Label'
+import Panel from '../../@UI/Panel'
 import makeBlockie from 'ethereum-blockies-base64'
 import { Pagination } from '../../..'
 import IconButton from '../../@UI/IconButton'
@@ -23,6 +24,7 @@ import {
   fetchEns,
 } from '../../../utils/address'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
+import colors from '../../../themes/UpshotUI/colors'
 
 export interface CollectorAccordionRowProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -343,79 +345,81 @@ const CollectorRow = forwardRef(
                 )}
 
                 {!!extraCollections && !!extraCollections.length && (
-                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                    <Text sx={{ fontWeight: 'heading' }}>Also Collecting</Text>
-                    <Flex
-                      sx={{
-                        gap: 4,
-                        flexWrap: 'wrap',
-                      }}
-                    >
-                      {extraCollections?.map(
-                        ({ id, name, url, imageUrl, count }, idx) => (
-                          <Flex
-                            sx={{
-                              flexDirection: 'column',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              gap: 2,
-                            }}
-                            key={idx}
-                          >
-                            <CollectorRowAvatarWrapper
-                              selected={idx === selectedCollection}
-                              onClick={() => {
-                                extraCollectionChanged?.(id)
-                                setSelectedCollection(idx)
-                                setSelectedCollectionName(name)
-                                setPage(0)
-                              }}
-                            >
-                              <Avatar
-                                size="lg"
-                                color="white"
-                                src={
-                                  imageOptimizer(imageUrl, {
-                                    height: parseInt(theme.images.avatar.lg.size),
-                                    width: parseInt(theme.images.avatar.lg.size),
-                                  }) ?? imageUrl
-                                }
-                              />
-                            </CollectorRowAvatarWrapper>
+                  <Panel backgroundColor='transparent' sx={{ border: colors['grey-700'] + ' solid 1px' }}>
+                    <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                      <Text sx={{ fontWeight: 'heading' }}>Also Collecting</Text>
+                      <Flex
+                        sx={{
+                          gap: 4,
+                          flexWrap: 'wrap',
+                        }}
+                      >
+                        {extraCollections?.map(
+                          ({ id, name, url, imageUrl, count }, idx) => (
                             <Flex
                               sx={{
                                 flexDirection: 'column',
                                 alignItems: 'center',
-                                gap: 1,
+                                justifyContent: 'center',
+                                gap: 2,
                               }}
+                              key={idx}
                             >
-                              <Text
-                                variant="small"
-                                color="white"
-                                sx={{
-                                  whiteSpace: 'nowrap',
-                                  width: '72px',
-                                  overflow: 'hidden',
-                                  textOverflow: 'ellipsis',
-                                  textAlign: 'center',
-                                  lineHeight: 1,
+                              <CollectorRowAvatarWrapper
+                                selected={idx === selectedCollection}
+                                onClick={() => {
+                                  extraCollectionChanged?.(id)
+                                  setSelectedCollection(idx)
+                                  setSelectedCollectionName(name)
+                                  setPage(0)
                                 }}
                               >
-                                {name}
-                              </Text>
-                              <Text
-                                variant="small"
-                                color="blue"
-                                sx={{ lineHeight: 1 }}
+                                <Avatar
+                                  size="lg"
+                                  color="white"
+                                  src={
+                                    imageOptimizer(imageUrl, {
+                                      height: parseInt(theme.images.avatar.lg.size),
+                                      width: parseInt(theme.images.avatar.lg.size),
+                                    }) ?? imageUrl
+                                  }
+                                />
+                              </CollectorRowAvatarWrapper>
+                              <Flex
+                                sx={{
+                                  flexDirection: 'column',
+                                  alignItems: 'center',
+                                  gap: 1,
+                                }}
                               >
-                                {count} NFTs
-                              </Text>
+                                <Text
+                                  variant="small"
+                                  color="white"
+                                  sx={{
+                                    whiteSpace: 'nowrap',
+                                    width: '72px',
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis',
+                                    textAlign: 'center',
+                                    lineHeight: 1,
+                                  }}
+                                >
+                                  {name}
+                                </Text>
+                                <Text
+                                  variant="small"
+                                  color="blue"
+                                  sx={{ lineHeight: 1 }}
+                                >
+                                  {count} NFTs
+                                </Text>
+                              </Flex>
                             </Flex>
-                          </Flex>
-                        )
-                      )}
+                          )
+                        )}
+                      </Flex>
                     </Flex>
-                  </Flex>
+                  </Panel>
                 )}
               </Flex>
             )}
