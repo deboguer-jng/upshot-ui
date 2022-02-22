@@ -13,7 +13,6 @@ export const CollectorRowBase = styled.div`
   border-radius: 20px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors['grey-900']};
-  cursor: pointer;
 `
 
 export const CollectorRowContent = styled(Grid)<CollectorRowContentProps>`
@@ -23,13 +22,16 @@ export const CollectorRowContent = styled(Grid)<CollectorRowContentProps>`
   padding-right: ${({ theme, isMobile }) => isMobile ? theme.space[2] + 'px' : '16px'};
   background: ${({ theme }) => theme.colors.black};
   border-radius: 20px;
+  cursor: pointer;
 `
 
 export const CollectorRowExpansion = styled.div<{
   $open: boolean
+  $contentHeight?: number
 }>`
   overflow: hidden;
-  max-height: ${({ $open }) => ($open ? 'auto' : 0)};
+  transition: 0.2s ease-in-out;
+  max-height: ${({ $open, $contentHeight }) => ($open ? ($contentHeight ? $contentHeight + 'px' : 'auto') : '0px')};
 `
 
 export const CollectorRowAvatarWrapper = styled.button<CollectorRowAvatarWrapperProps>`
