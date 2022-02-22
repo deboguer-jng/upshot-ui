@@ -209,8 +209,8 @@ const MiniNftCard = forwardRef(
               {type === 'default'
                 ? 'To :'
                 : type === 'collection'
-                ? 'floor price :'
-                : 'Price :'}
+                ? 'Floor Price :'
+                : 'Last Sale :'}
             </MiniNftCardDetailLabel>
             <MiniNftCardDetailValue variant="small" error={error}>
               {error ? (
