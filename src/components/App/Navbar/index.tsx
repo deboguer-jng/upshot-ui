@@ -154,7 +154,7 @@ const Navbar = forwardRef(
                       variant="nav"
                       suggestions={searchSuggestions}
                       onSuggestionSelect={onSearchSuggestionChange}
-                      placeholder="Search..."
+                      placeholder="Try searching for Collections"
                       dark
                       value={searchValue}
                       defaultValue={searchDefaultValue}
@@ -177,7 +177,10 @@ const Navbar = forwardRef(
               <>
                 {address ? (
                   <NavbarItem ref={setReferenceElement}>
-                    <NavbarProfile ref={setNavProfileElement} $showWalletPopper={showWalletPopper}>
+                    <NavbarProfile
+                      ref={setNavProfileElement}
+                      $showWalletPopper={showWalletPopper}
+                    >
                       <img src={avatarImageUrl} />
                       {!isMobile && (
                         <NavbarProfileDetails>
@@ -216,7 +219,11 @@ const Navbar = forwardRef(
                         onClick={handleNavPopper}
                       >
                         <Icon
-                          style={{ pointerEvents: 'none', transform: 'scaleY(' + (showWalletPopper ? '-1' : '1') + ')' }}
+                          style={{
+                            pointerEvents: 'none',
+                            transform:
+                              'scaleY(' + (showWalletPopper ? '-1' : '1') + ')',
+                          }}
                           icon="arrowDropUserBubble"
                         />
                       </IconButton>
@@ -225,8 +232,9 @@ const Navbar = forwardRef(
                       onClose={handleNavPopper}
                       {...{ open: showWalletPopper }}
                       style={{
-                        background: 'linear-gradient(180deg, #000000 17.57%, rgba(0, 0, 0, 0) 100%)',
-                        zIndex: zIndex.nav - 1
+                        background:
+                          'linear-gradient(180deg, #000000 17.57%, rgba(0, 0, 0, 0) 100%)',
+                        zIndex: zIndex.nav - 1,
                       }}
                     />
                   </NavbarItem>
@@ -270,7 +278,7 @@ const Navbar = forwardRef(
                   variant="nav"
                   suggestions={searchSuggestions}
                   onSuggestionSelect={onSearchSuggestionChange}
-                  placeholder="Search..."
+                  placeholder="Try searching for Collections"
                   dark
                   value={searchValue}
                   defaultValue={searchDefaultValue}
