@@ -14,7 +14,6 @@ const Investors = forwardRef(
         flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'center',
-        bg: 'grey-900',
       }}
       {...{ ref, ...props }}
     >
