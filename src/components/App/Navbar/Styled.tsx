@@ -9,7 +9,7 @@ interface NavbarItemProps {
 interface PopperProps {
   $showWalletPopper?: boolean
 }
-        
+
 export const NavbarBase = styled.div`
   padding: ${({ theme }) => `${theme.sizes[5]}px ${theme.sizes[3]}px`};
   width: 100%;
@@ -72,7 +72,7 @@ export const SearchWrapper = styled.div<{ $hasValue?: boolean }>`
 
   ${({ theme }) => css`
     @media only screen and (min-width: ${theme.breakpoints[1]}) {
-      width: 300px;
+      width: 320px;
     }
   `}
 
@@ -140,7 +140,8 @@ export const NavbarProfile = styled.div<PopperProps>`
   border-radius: 30px;
   padding: 12px 17px 12px 12px;
   transition: all 0.75s ease;
-  background-color: ${({ theme, $showWalletPopper }) => $showWalletPopper ? theme.colors['black'] : theme.colors['grey-800']};
+  background-color: ${({ theme, $showWalletPopper }) =>
+    $showWalletPopper ? theme.colors['black'] : theme.colors['grey-800']};
 
   img {
     width: 32px;
