@@ -282,7 +282,7 @@ const CollectorRow = forwardRef(
               '1fr',
               !isFirstColumn || !extraCollections.length ? '1fr' : '1fr 1fr',
             ]}
-            sx={{ marginX: [0, 46], paddingBottom: '46px !important', columnGap: 72, p: 4 }}
+            sx={{ marginX: [0, 46], paddingBottom: '46px !important', columnGap: 6, p: 4 }}
             ref={expansionContentRef}
           >
             {isFirstColumn && (
@@ -382,7 +382,7 @@ const CollectorRow = forwardRef(
                 {!!extraCollections && !!extraCollections.length && (
                   <StyledPanel>
                     <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                      <Text sx={{ fontWeight: 'heading' }}>Also Collecting</Text>
+                      <Text sx={{ fontWeight: 'heading' }}>Also Collecting:</Text>
                       <Flex
                         sx={{
                           gap: 4,
