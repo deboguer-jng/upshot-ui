@@ -22,7 +22,7 @@ const Template = ({ items }: CollectorItems) => (
     </CollectorAccordionHead>
     <CollectorAccordion>
       {items.map((args, idx) => (
-        <CollectorAccordionRow {...args} key={idx} />
+        <CollectorAccordionRow {...args} key={idx} defaultOpen={idx === 0} />
       ))}
     </CollectorAccordion>
   </>
@@ -36,7 +36,7 @@ const LandingTemplate = ({ items }: CollectorItems) => (
     </CollectorAccordionHead>
     <CollectorAccordion>
       {items.map((args, idx) => (
-        <CollectorAccordionRow {...args} key={idx} />
+        <CollectorAccordionRow {...args} key={idx} defaultOpen={idx === 0} />
       ))}
     </CollectorAccordion>
   </>
@@ -51,6 +51,7 @@ Default.args = {
     count: '24',
     avgHoldTime: 10622266,
     firstAcquisition: 1620184337,
+    ageOfCollection: 1620184337,
     totalNftValue: '12739.48',
     nftCollection: [...new Array(3)].map((_, idx) => ({
       id: '0x0/1',

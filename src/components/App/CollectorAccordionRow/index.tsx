@@ -8,12 +8,12 @@ import {
   CollectorRowBase,
   CollectorRowContent,
   CollectorRowExpansion,
+  StyledPanel,
 } from './Styled'
 import { Grid, Flex, Text, Box } from 'theme-ui'
 import Avatar from '../../@UI/Avatar'
 import Icon from '../../@UI/Icon'
 import Label from '../../@UI/Label'
-import Panel from '../../@UI/Panel'
 import makeBlockie from 'ethereum-blockies-base64'
 import { Pagination } from '../../..'
 import IconButton from '../../@UI/IconButton'
@@ -60,6 +60,10 @@ export interface CollectorAccordionRowProps
    * First acquisition
    */
   firstAcquisition?: number
+  /**
+   * Age of entire collection
+   */
+   ageOfCollection?: number
   /**
    * Total NFT value
    */
@@ -108,6 +112,7 @@ const CollectorRow = forwardRef(
       portfolioValue,
       avgHoldTime,
       firstAcquisition,
+      ageOfCollection,
       totalNftValue,
       nftCollection,
       extraCollections = [],
@@ -282,72 +287,100 @@ const CollectorRow = forwardRef(
           >
             {isFirstColumn && (
               <Flex sx={{ flexDirection: 'column', gap: 4 }}>
-                {!!avgHoldTime && (
-                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                    <Text
-                      sx={{
-                        fontWeight: 'heading',
-                        textTransform: 'capitalize',
-                      }}
-                    >
-                      Average Hold Time
-                    </Text>
-                    <Text
-                      variant="h3Primary"
-                      sx={{
-                        color: 'primary',
-                        textAlign: 'right',
-                      }}
-                    >
-                      {formatDistance(0, avgHoldTime * 1000)}
-                    </Text>
-                  </Flex>
-                )}
+                <Grid columns={breakpointIndex <= 2 ? 1 : 2}>
+                  {!!avgHoldTime && (
+                    <StyledPanel>
+                      <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                        <Text
+                          sx={{
+                            fontWeight: 'heading',
+                            textTransform: 'capitalize',
+                          }}
+                        >
+                          Average Hold Time:
+                        </Text>
+                        <Text
+                          variant="h3Primary"
+                          sx={{
+                            color: 'primary',
+                          }}
+                        >
+                          {formatDistance(0, avgHoldTime * 1000)}
+                        </Text>
+                      </Flex>
+                    </StyledPanel>
+                  )}
 
-                {!!firstAcquisition && (
-                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                    <Text sx={{ fontWeight: 'heading' }}>
-                      First {collectionName} Acquisition
-                    </Text>
-                    <Text
-                      variant="h3Primary"
-                      sx={{
-                        color: 'primary',
-                        textAlign: 'right',
-                      }}
-                    >
-                      {format(firstAcquisition * 1000, 'MM/dd/yyyy')}
-                    </Text>
-                  </Flex>
-                )}
+                  {!!firstAcquisition && (
+                    <StyledPanel>
+                      <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                        <Text sx={{ fontWeight: 'heading' }}>
+                          First {collectionName} Acquisition:
+                        </Text>
+                        <Text
+                          variant="h3Primary"
+                          sx={{
+                            color: 'primary',
+                          }}
+                        >
+                          {format(firstAcquisition * 1000, 'MM/dd/yyyy')}
+                        </Text>
+                      </Flex>
+                    </StyledPanel>
+                  )}
 
-                
-                {!!totalNftValue && (
-                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                    <Text sx={{ fontWeight: 'heading' }}>Total NFT Value</Text>
-                    <Flex
-                      sx={{
-                        justifyContent: 'flex-end',
-                        gap: 1,
-                      }}
-                    >
-                      <Text variant="small" color="primary">
-                        Ξ
-                      </Text>
-                      <Text
-                        variant="h3Primary"
-                        sx={{
-                          color: 'primary',
-                        }}
-                      >
-                        {totalNftValue}
-                      </Text>
-                    </Flex>
-                  </Flex>
-                )}
+                  
+                  {!!ageOfCollection && (
+                    <StyledPanel>
+                      <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                        <Text sx={{ fontWeight: 'heading' }}>Age of entire collection:</Text>
+                        <Flex
+                          sx={{
+                            gap: 1,
+                          }}
+                        >
+                          <Text
+                            variant="h3Primary"
+                            sx={{
+                              color: 'primary',
+                            }}
+                          >
+                            {format(ageOfCollection * 1000, 'MM/dd/yyyy')}
+                          </Text>
+                        </Flex>
+                      </Flex>
+                    </StyledPanel>
+                  )}
+
+                  
+                  {!!totalNftValue && (
+                    <StyledPanel>
+                      <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                        <Text sx={{ fontWeight: 'heading' }}>Appraised value of collection:</Text>
+                        <Flex
+                          sx={{
+                            gap: 1,
+                          }}
+                        >
+                          <Text variant="small" color="primary">
+                            Ξ
+                          </Text>
+                          <Text
+                            variant="h3Primary"
+                            sx={{
+                              color: 'primary',
+                            }}
+                          >
+                            {totalNftValue}
+                          </Text>
+                        </Flex>
+                      </Flex>
+                    </StyledPanel>
+                  )}
+                </Grid>
 
                 {!!extraCollections && !!extraCollections.length && (
-                  <Panel backgroundColor='transparent' sx={{ border: colors['grey-700'] + ' solid 1px' }}>
+                  <StyledPanel>
                     <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                       <Text sx={{ fontWeight: 'heading' }}>Also Collecting</Text>
                       <Flex
@@ -421,12 +454,12 @@ const CollectorRow = forwardRef(
                         )}
                       </Flex>
                     </Flex>
-                  </Panel>
+                  </StyledPanel>
                 )}
               </Flex>
             )}
 
-            <Panel backgroundColor='transparent' sx={{ border: colors['grey-700'] + ' solid 1px' }}>
+            <StyledPanel>
               <Flex sx={{ flexDirection: 'column', gap: 4 }}>
                 {!!nftCollection && !!nftCollection.length ? (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
@@ -493,7 +526,7 @@ const CollectorRow = forwardRef(
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>{children}</Flex>
                 )}
               </Flex>
-            </Panel>
+            </StyledPanel>
           </Grid>
         </CollectorRowExpansion>
       </CollectorRowBase>
