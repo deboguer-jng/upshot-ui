@@ -54,9 +54,11 @@ export const CollectorRowAvatarWrapper = styled.button<CollectorRowAvatarWrapper
   }
 `
 
-export const StyledPanel = styled(Panel)`
-  padding: 16px !important;
-  border: ${({ theme }) => theme.colors['grey-700']} solid 1px;
+export const StyledPanel = styled(Panel)<{
+  $hideBorder?: boolean
+}>`
+  padding: ${({ $hideBorder }) => $hideBorder === true ? '0px' : '16px'} !important;
+  border: ${({ theme, $hideBorder }) => $hideBorder === true ? 'none' : theme.colors['grey-700']} solid 1px;
   background: ${({ theme }) => theme.colors.transparent};
   border-radius: ${({ theme }) => theme.radii.md};
 `

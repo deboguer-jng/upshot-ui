@@ -131,7 +131,7 @@ const CollectorRow = forwardRef(
     const [selectedCollectionName, setSelectedCollectionName] =
       useState(collectionName)
     const breakpointIndex = useBreakpointIndex()
-    const isFirstColumn = !!avgHoldTime || !!firstAcquisition || !!nftCollection
+    const isFirstColumn = !!avgHoldTime || !!firstAcquisition || !!ageOfCollection || !!totalNftValue
     const [avatarUrl, setAvatarUrl] = useState(
       address ? makeBlockie(address) : null
     )
@@ -285,6 +285,7 @@ const CollectorRow = forwardRef(
             sx={{ marginX: [0, 46], paddingBottom: '46px !important', columnGap: 6, p: 4 }}
             ref={expansionContentRef}
           >
+            
             {isFirstColumn && (
               <Flex sx={{ flexDirection: 'column', gap: 4 }}>
                 <Grid columns={breakpointIndex <= 2 ? 1 : 2}>
@@ -459,7 +460,7 @@ const CollectorRow = forwardRef(
               </Flex>
             )}
 
-            <StyledPanel>
+            <StyledPanel $hideBorder={!isFirstColumn}>
               <Flex sx={{ flexDirection: 'column', gap: 4 }}>
                 {!!nftCollection && !!nftCollection.length ? (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
