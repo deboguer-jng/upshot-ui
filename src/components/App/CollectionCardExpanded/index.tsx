@@ -18,8 +18,9 @@ import { CollectionCardItemProps } from '../CollectionCardItem'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import { useTheme } from '../../../themes/UpshotUI'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
+import { PanelProps } from '../../@UI/Panel'
 
-export interface CollectionCardExpandedProps extends BoxProps {
+export interface CollectionCardExpandedProps extends PanelProps {
   /**
    * Collection name
    */
