@@ -475,7 +475,7 @@ const CollectorRow = forwardRef(
                       }}
                     >
                       {nftCollection
-                        .slice(page * 6, page * 6 + 6)
+                        .slice(page * 9, page * 9 + 9)
                         .map(({ imageUrl, url, pixelated }, idx) => {
                           const optimizedSrc =
                             imageOptimizer(imageUrl, {
@@ -504,10 +504,10 @@ const CollectorRow = forwardRef(
                           )
                         })}
                     </Grid>
-                    {Math.ceil(nftCollection.length / 6) > 1 && (
+                    {Math.ceil(nftCollection.length / 9) > 1 && (
                       <Pagination
                         forcePage={page}
-                        pageCount={Math.ceil(nftCollection.length / 6)}
+                        pageCount={Math.ceil(nftCollection.length / 9)}
                         pageRangeDisplayed={0}
                         marginPagesDisplayed={0}
                         onPageChange={handlePageChange}
