@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
 import { Flex, FlexProps } from 'theme-ui'
+import colors from '../../../themes/UpshotUI/colors'
 import investorLogos from './investorLogos.json'
 
 /**
@@ -14,6 +15,7 @@ const Investors = forwardRef(
         flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: colors['grey-900']
       }}
       {...{ ref, ...props }}
     >
