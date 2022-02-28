@@ -47,7 +47,7 @@ export const FooterLine = styled(Flex)`
   position: relative;
   align-items: center;
   flex-direction: column-reverse;
-  background-color: ${({ theme }) => theme.colors['grey-900']};
+  width: 100%;
   padding: 10px;
   font-size: 12px;
 
