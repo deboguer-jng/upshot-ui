@@ -137,6 +137,7 @@ const CollectorRow = forwardRef(
     )
     const [name, setName] = useState(username ? formatUsername(username) : null)
     const [expansionHeight, setExpansionHeight] = useState(0)
+    const [expansionWidth, setExpansionWidth] = useState(0)
     const expansionContentRef = useRef(null)
 
     useEffect(() => {
@@ -157,6 +158,7 @@ const CollectorRow = forwardRef(
 
     useEffect(() => {
       setExpansionHeight(expansionContentRef.current.clientHeight)
+      setExpansionWidth(expansionContentRef.current.clientWidth)
     })
 
     const handlePageChange = ({ selected }: { selected: number }) => {
@@ -168,7 +170,6 @@ const CollectorRow = forwardRef(
     return (
       <CollectorRowBase {...{ ref, ...props }}>
         <CollectorRowContent
-          isMobile={breakpointIndex <= 1}
           onClick={() => setOpen(!open)}
         >
           <Box
@@ -277,11 +278,11 @@ const CollectorRow = forwardRef(
 
         <CollectorRowExpansion $open={open} $contentHeight={expansionHeight}>
           <Grid
-            columns={[
-              '1fr',
-              '1fr',
-              !isFirstColumn || !extraCollections.length ? '1fr' : '1fr 1fr',
-            ]}
+            columns={
+              expansionWidth < parseInt(theme.breakpointsNamed.xs) && isFirstColumn && extraCollections.length ?
+              '1fr' :
+              '1fr 1fr'
+            }
             sx={{ marginX: [0, 46], paddingBottom: '46px !important', columnGap: 6, p: 4 }}
             ref={expansionContentRef}
           >
