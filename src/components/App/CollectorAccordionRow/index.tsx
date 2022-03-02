@@ -279,7 +279,7 @@ const CollectorRow = forwardRef(
         <CollectorRowExpansion $open={open} $contentHeight={expansionHeight}>
           <Grid
             columns={
-              expansionWidth < parseInt(theme.breakpointsNamed.xs) && isFirstColumn && extraCollections.length ?
+              expansionWidth < parseInt(theme.breakpointsNamed.xs) ?
               '1fr' :
               '1fr 1fr'
             }
