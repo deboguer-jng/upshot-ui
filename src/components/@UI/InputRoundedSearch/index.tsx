@@ -93,7 +93,11 @@ const InputRoundedSearch = forwardRef(
     const { sx: buttonSx, ...buttonProps } = buttonPropsRaw ?? {}
 
     return (
-      <InputRoundedSearchWrapper ref={wrapperRef} $isMobile={isMobile}>
+      <InputRoundedSearchWrapper
+        ref={wrapperRef}
+        $isMobile={isMobile}
+        $isFullWidth={fullWidth}
+      >
         <Flex sx={{ width: fullWidth ? '100%' : 'auto' }}>
           <InputRoundedSearchBase
             placeholder="Search..."

@@ -8,6 +8,7 @@ interface InputRoundedSearchBaseProps {
 
 interface InputRoundedSearchWrapperProps {
   $isMobile: boolean
+  $isFullWidth: boolean
 }
 
 export const InputRoundedSearchBase = styled(
@@ -24,7 +25,8 @@ export const InputRoundedSearchBase = styled(
 
 export const InputRoundedSearchWrapper = styled.div<InputRoundedSearchWrapperProps>`
   position: relative;
-  width: ${({ $isMobile }) => ($isMobile ? '100%' : 'fit-content')};
+  width: ${({ $isMobile, $isFullWidth }) =>
+    $isMobile || $isFullWidth ? '100%' : 'fit-content'};
 `
 
 export const InputRoundedSearchSuggestionsWrapper = styled.div<{
