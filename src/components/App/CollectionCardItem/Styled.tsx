@@ -76,5 +76,5 @@ export const CollectionCardItemImage = styled(
 export const CollectionCardItemDetails = styled(Flex)`
   position: absolute;
   bottom: 0;
-  z-index: 0;
+  z-index: 1;
 `

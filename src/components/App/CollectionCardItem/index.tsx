@@ -1,12 +1,14 @@
-import { Flex, BoxProps, Box } from 'theme-ui'
-import React, { forwardRef } from 'react'
+import { Flex, BoxProps, Box} from 'theme-ui'
+import React, { forwardRef, useState } from 'react'
 import {
   CollectionCardItemBase,
   CollectionCardItemImage,
   CollectionCardItemDetails,
 } from './Styled'
-import Text from '../../@UI/Text'
 import Avatar from '../../@UI/Avatar'
+import Text from '../../@UI/Text'
+import { Icon } from '../../..'
+import OpenseaPanel from '../OpenseaPanel'
 import Label from '../../@UI/Label'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
 import { useTheme } from '../../../themes/UpshotUI'
@@ -28,6 +30,10 @@ export interface CollectionCardItemProps extends BoxProps {
    * Asset name
    */
   name: string
+  /**
+   * Description metadata
+   */
+  description: string
   /**
    * Appraisal Price in ETH
    */
@@ -56,6 +62,10 @@ export interface CollectionCardItemProps extends BoxProps {
    * Is pixelated rendering
    */
   isPixelated?: boolean
+
+  listPriceEth: number
+
+  listPriceUSD: number
 }
 
 /**
@@ -68,6 +78,9 @@ const CollectionCardItem = forwardRef(
       imageSrc,
       collection,
       name,
+      description,
+      listPriceEth = null,
+      listPriceUSD = null,
       appraisalPriceETH = null,
       appraisalConfidence = null,
       appraisalPriceUSD = null,
@@ -79,8 +92,8 @@ const CollectionCardItem = forwardRef(
     }: CollectionCardItemProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
+    const [showPopup, setShowPopup] = useState(false)
     const { theme } = useTheme()
-    
     const optimizedSrc = imageOptimizer(imageSrc, {width: 512}) ?? imageSrc
     const finalImage = isPixelated ? imageSrc : optimizedSrc
     const hoverUnderglow = appraisalPriceETH ? 'blue' : 'grey-600'
@@ -88,8 +101,20 @@ const CollectionCardItem = forwardRef(
     return (
       <CollectionCardItemBase $expanded={expanded} $hoverUnderglow={hoverUnderglow} {...{ ref, ...props }}>
         <CollectionCardItemImage $isPixelated={isPixelated} $src={finalImage} />
-        <CollectionCardItemDetails sx={{ padding: 3, gap: 3, width: '100%' }}>
-          <Flex sx={{ flexDirection: 'column', minWidth: 'calc(100% - 120px)' }}>
+        <CollectionCardItemDetails
+          sx={{
+            padding: 3,
+            gap: 3,
+            width: '100%'
+          }}
+          onMouseLeave={() => setShowPopup(false)}   
+        >
+          <Flex
+            sx={{
+              flexDirection: 'column',
+              minWidth: 'calc(100% - 120px)'
+            }} 
+          >
             <Flex sx={{ gap: 2 }}>
               <Avatar
                 color="black"
@@ -106,6 +131,8 @@ const CollectionCardItem = forwardRef(
                   flexDirection: 'column',
                   flexGrow: 1,
                 }}
+                onMouseOver={() => setShowPopup(true)}
+                onMouseLeave={() => setShowPopup(false)}
               >
                 <Text
                   variant="xSmall"
@@ -134,8 +161,33 @@ const CollectionCardItem = forwardRef(
               {name}
             </Text>
           </Flex>
+          {showPopup && listPriceEth && listPriceUSD && (
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '-210px',
+                right: 0,
+                zIndex: 2,
+              }}
+            >
+              <OpenseaPanel
+                variant="popup"
+                listPriceETH={listPriceEth}
+                sx={{ width: '100%' }}
+                listPriceUSD={listPriceUSD}
+                appraisalPriceETH={appraisalPriceETH}
+                openseaUrl="https://upshot.io/"
+              />
+            </Box>
+          )}
           { appraisalPriceETH != null && (// appraisal price
-            <Flex sx={{ flexDirection: 'column', minWidth: 'fit-content' }}>
+            <Flex
+              sx={{
+                flexDirection: 'column',
+                minWidth: 'fit-content'
+              }}
+              onMouseOver={() => setShowPopup(true)}
+            >
               <Text color='grey-500' variant="xSmall">
                 Appraisal price
               </Text>
