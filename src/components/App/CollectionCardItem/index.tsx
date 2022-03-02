@@ -79,8 +79,8 @@ const CollectionCardItem = forwardRef(
       collection,
       name,
       description,
-      listPriceEth,
-      listPriceUSD,
+      listPriceEth = null,
+      listPriceUSD = null,
       appraisalPriceETH = null,
       appraisalConfidence = null,
       appraisalPriceUSD = null,
@@ -101,8 +101,20 @@ const CollectionCardItem = forwardRef(
     return (
       <CollectionCardItemBase $expanded={expanded} $hoverUnderglow={hoverUnderglow} {...{ ref, ...props }}>
         <CollectionCardItemImage $isPixelated={isPixelated} $src={finalImage} />
-        <CollectionCardItemDetails sx={{ padding: 3, gap: 3, width: '100%' }}>
-          <Flex sx={{ flexDirection: 'column', minWidth: 'calc(100% - 120px)' }}>
+        <CollectionCardItemDetails
+          sx={{
+            padding: 3,
+            gap: 3,
+            width: '100%'
+          }}
+          onMouseLeave={() => setShowPopup(false)}   
+        >
+          <Flex
+            sx={{
+              flexDirection: 'column',
+              minWidth: 'calc(100% - 120px)'
+            }} 
+          >
             <Flex sx={{ gap: 2 }}>
               <Avatar
                 color="black"
@@ -149,7 +161,7 @@ const CollectionCardItem = forwardRef(
               {name}
             </Text>
           </Flex>
-          {showPopup && (
+          {showPopup && listPriceEth && listPriceUSD && (
             <Box
               sx={{
                 position: 'absolute',
@@ -169,7 +181,13 @@ const CollectionCardItem = forwardRef(
             </Box>
           )}
           { appraisalPriceETH != null && (// appraisal price
-            <Flex sx={{ flexDirection: 'column', minWidth: 'fit-content' }}>
+            <Flex
+              sx={{
+                flexDirection: 'column',
+                minWidth: 'fit-content'
+              }}
+              onMouseOver={() => setShowPopup(true)}
+            >
               <Text color='grey-500' variant="xSmall">
                 Appraisal price
               </Text>
