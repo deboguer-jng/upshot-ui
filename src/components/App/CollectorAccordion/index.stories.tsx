@@ -15,7 +15,7 @@ export default {
 } as ComponentMeta<typeof CollectorAccordion>
 
 const Template = ({ items }: CollectorItems) => (
-  <div style={{ width: '50%' }} >
+  <>
     <CollectorAccordionHead>
       <Text>Collector</Text>
       <Text sx={{ whiteSpace: 'nowrap' }}>NFT Counts</Text>
@@ -25,7 +25,7 @@ const Template = ({ items }: CollectorItems) => (
         <CollectorAccordionRow {...args} key={idx} defaultOpen={idx === 0} />
       ))}
     </CollectorAccordion>
-  </div>
+  </>
 )
 
 /* for testing css
