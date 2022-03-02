@@ -4,10 +4,12 @@ import colors from '../../../themes/UpshotUI/colors'
 import { fonts, fontWeights, fontSizes } from '../../../themes/UpshotUI/text'
 import sizes from '../../../themes/UpshotUI/sizes'
 import Button from '../Button'
+import Box from '../../Layout/Box'
 
 interface LabelAttributeBaseProps {
   $transparent: boolean
   hasHover?: boolean
+  expanded?: boolean
 }
 
 interface LabelTextProps {
@@ -15,12 +17,12 @@ interface LabelTextProps {
 }
 
 export const LabelAttributeBase = styled.div<LabelAttributeBaseProps>`
-  border-radius: ${({ theme }) => theme.radii.pill};
+  border-radius: ${({ theme, expanded }) => expanded ? theme.radii.lg : theme.radii.pill};
   color: ${colors.blue};
   border-color: ${colors.blue};
   border: 2px solid;
   border-width: 2;
-  height: 32px;
+  min-height: 32px;
   display: flex;
   justify-content: space-between;
   background-color: ${({ theme, $transparent }) =>
@@ -58,12 +60,22 @@ export const RightAlignBlock = styled.div`
 export const LabelText = styled.div<LabelTextProps>`
   padding-left: ${sizes[3] + 'px'};
   text-overflow: ellipsis;
-  width: 57%;
+  width: 75%;
   overflow: hidden;
   height: 20px;
   white-space: nowrap;
   display: inline-block;
   opacity: ${({ showTooltip }) => (showTooltip ? 0.7 : 1)};
+`
+
+export const ExpandedLabelAttributeTitleText = styled(LabelText)`
+  font-weight: ${fontWeights.body};
+  font-size: ${fontSizes[2]};
+`
+
+export const ExpandedLabelAttributeText = styled(LabelText)`
+  font-weight: ${fontWeights.bold};
+  font-size: ${fontSizes[3]};
 `
 
 export const Division = styled.div`
@@ -90,4 +102,9 @@ export const LabelAttributeTooltip = styled.div`
   border-radius: 10px;
   background: black;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.7);
+`
+
+export const LabelAttributeExpandedTextContainer = styled(Box)`
+  margin: 11px 0px 10px 5px;
+  width: 95%;
 `

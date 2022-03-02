@@ -8,12 +8,11 @@ import gradients from './gradients'
 import transitions from './transitions'
 import chart from './chart'
 import forms from './forms'
-import navbar from './navbar'
 import spinners from './spinners'
 import shadow from './shadow'
 import styles from './styles'
 import scroll from './scroll'
-import sizes, { breakpoints, radii } from './sizes'
+import sizes, { breakpointsNamed, breakpoints, radii } from './sizes'
 import transactionHistoryItem from './transactionHistoryItem'
 import miniNftCard from './miniNftCard'
 import zIndex from './zIndex'
@@ -32,6 +31,7 @@ const theme = {
   alerts,
   accordion,
   animations,
+  breakpointsNamed,
   breakpoints,
   buttons,
   chart,
@@ -45,7 +45,6 @@ const theme = {
   images,
   lineHeights,
   miniNftCard,
-  navbar,
   zIndex,
   radii,
   rawColors: colors,
@@ -57,7 +56,7 @@ const theme = {
   styles,
   text,
   transitions,
-  transactionHistoryItem
+  transactionHistoryItem,
 }
 
 export type UpshotUIThemeType = typeof theme

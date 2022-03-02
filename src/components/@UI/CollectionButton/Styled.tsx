@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import colors from '../../../themes/UpshotUI/colors'
 interface CollectionButtonWrapperProps {
   $underglow?: keyof typeof colors
+  $hoverUnderglow?: keyof typeof colors
 }
 
 export const CollectionButtonWrapper = styled.div<CollectionButtonWrapperProps>`
@@ -15,9 +16,17 @@ export const CollectionButtonWrapper = styled.div<CollectionButtonWrapperProps>`
   border-radius: ${({ theme }) => theme.buttons.collection.borderRadius}px;
   padding: 4px;
   padding-right: 10px;
+  transition: ${({ theme }) => theme.transitions.default};
   ${({ theme, $underglow }) =>
     !!$underglow && `box-shadow: ${theme.shadow.underglow($underglow)};`}
   cursor: pointer;
+
+  &:hover {
+    ${({ theme, $underglow, $hoverUnderglow }) =>
+      !$underglow &&
+      !!$hoverUnderglow &&
+      `box-shadow: ${theme.shadow.underglow($hoverUnderglow)};`}
+  }
 `
 
 export const CollectionButtonIcon = styled.div`

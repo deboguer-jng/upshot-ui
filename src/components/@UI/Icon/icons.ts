@@ -69,6 +69,7 @@ import SVGMarketPlace from '../../../assets/svg/icons/MarketPlace.svg'
 import SVGMediumBlock from '../../../assets/svg/icons/Medium_BlockColor.svg'
 import SVGMedium from '../../../assets/svg/icons/Medium_NoCircle.svg'
 import SVGMediumCircle from '../../../assets/svg/icons/MediumCircle.svg'
+import SVGMirror from '../../../assets/svg/icons/Mirror.svg'
 import SVGNavBarAnalyticsSelected from '../../../assets/svg/icons/NavBar_Analytics_Selected.svg'
 import SVGNavBarAnswer from '../../../assets/svg/icons/NavBar_Answer_Unselected.svg'
 import SVGNavBarHome from '../../../assets/svg/icons/NavBar_Home_Unselected.svg'
@@ -93,6 +94,7 @@ import SVGSpacebar from '../../../assets/svg/icons/Spacebar.svg'
 import SVGSubtract from '../../../assets/svg/icons/Subtract.svg'
 import SVGSuperRareBlock from '../../../assets/svg/icons/SuperRare_BlockColor.svg'
 import SVGSuperRare from '../../../assets/svg/icons/SuperRare.svg'
+import SVGTableSort from '../../../assets/svg/icons/TableSort.svg'
 import SVGToggleLists from '../../../assets/svg/icons/Toggle_Lists.svg'
 import SVGTrophy from '../../../assets/svg/icons/Trophy.svg'
 import SVGTruthfulness from '../../../assets/svg/icons/Truthfulness.svg'
@@ -106,6 +108,7 @@ import SVGUSDC from '../../../assets/svg/icons/USDC.svg'
 import SVGVerificationStatusActive from '../../../assets/svg/icons/Verification_Status_Active.svg'
 import SVGVerificationStatusPaused from '../../../assets/svg/icons/Verification_Status_Paused.svg'
 import SVGWallet from '../../../assets/svg/icons/Wallet.svg'
+import SVGWarning from '../../../assets/svg/icons/Warning.svg'
 import SVGX from '../../../assets/svg/icons/X.svg'
 import SVGYoutubeBlock from '../../../assets/svg/icons/Youtube_BlockColor.svg'
 import SVGYoutube from '../../../assets/svg/icons/Youtube.svg'
@@ -184,6 +187,7 @@ const icons = {
   mediumBlock: SVGMediumBlock,
   medium: SVGMedium,
   mediumCircle: SVGMediumCircle,
+  mirror: SVGMirror,
   navAnalyticsSelected: SVGNavBarAnalyticsSelected,
   navAnswer: SVGNavBarAnswer,
   navHome: SVGNavBarHome,
@@ -208,6 +212,7 @@ const icons = {
   subtract: SVGSubtract,
   superRareBlock: SVGSuperRareBlock,
   superRare: SVGSuperRare,
+  tableSort: SVGTableSort,
   toggleLists: SVGToggleLists,
   trophy: SVGTrophy,
   truthfulness: SVGTruthfulness,
@@ -221,6 +226,7 @@ const icons = {
   verificationStatusActive: SVGVerificationStatusActive,
   verificationStatusPaused: SVGVerificationStatusPaused,
   wallet: SVGWallet,
+  warning: SVGWarning,
   x: SVGX,
   youtubeBlock: SVGYoutubeBlock,
   youtube: SVGYoutube,

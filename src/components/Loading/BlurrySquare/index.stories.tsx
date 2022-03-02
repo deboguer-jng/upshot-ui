@@ -8,7 +8,9 @@ export default {
   component: BlurrySquareTemplate,
 } as ComponentMeta<typeof BlurrySquareTemplate>
 
-const Template: ComponentStory<typeof BlurrySquareTemplate> = (args) => <BlurrySquareTemplate {...args} />
+const Template: ComponentStory<typeof BlurrySquareTemplate> = (args) => (
+  <BlurrySquareTemplate {...args} />
+)
 
 export const Default = Template.bind({})
 Default.args = {}

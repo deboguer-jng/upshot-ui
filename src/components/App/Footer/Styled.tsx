@@ -1,9 +1,10 @@
 import styled from '@emotion/styled'
+import css from '@emotion/css'
+import { Link } from 'theme-ui'
+
 import Flex from '../../Layout/Flex'
 import Box from '../../Layout/Grid'
 import Text from '../../@UI/Text'
-import css from '@emotion/css'
-import { Link } from 'theme-ui'
 
 export const StyledBox = styled(Box)`
   justify-content: center;
@@ -43,9 +44,10 @@ export const StyledBoxRight = styled(Box)`
 `
 
 export const FooterLine = styled(Flex)`
+  position: relative;
   align-items: center;
   flex-direction: column-reverse;
-  background-color: ${({ theme }) => theme.colors.black};
+  width: 100%;
   padding: 10px;
   font-size: 12px;
 

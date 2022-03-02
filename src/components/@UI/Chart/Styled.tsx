@@ -104,13 +104,13 @@ export const FilterButton = styled.button<FilterButtonProps>`
 export const CustomLegendWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: 3rem;
   flex-wrap: wrap;
 `
 
-export const ReactChartWrapper = styled.div`
+export const ReactChartWrapper = styled.div<{ $isEmpty?: boolean }>`
   width: 100%;
-  padding-top: 35%;
+  padding-top: ${({ $isEmpty }) => ($isEmpty ? 'calc(25% + 160px)' : '25%')};
   position: relative;
 
   & > div {
@@ -128,7 +128,7 @@ export const ReactChartWrapper = styled.div`
 
 export const ReactApexChartWrapper = styled.div`
   width: 100%;
-  padding-top: 35%;
+  padding-top: 25%;
   position: relative;
 
   & > div {

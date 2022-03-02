@@ -1,5 +1,10 @@
-import React, { forwardRef, useState, useEffect } from 'react'
+import React, { forwardRef, useState, useEffect, useRef } from 'react'
+import { useTheme } from '@emotion/react'
+import { format, formatDistance } from 'date-fns'
+import { ethers } from 'ethers'
+
 import {
+  CollectorRowAvatarWrapper,
   CollectorRowBase,
   CollectorRowContent,
   CollectorRowExpansion,
@@ -9,14 +14,15 @@ import Avatar from '../../@UI/Avatar'
 import Icon from '../../@UI/Icon'
 import Label from '../../@UI/Label'
 import makeBlockie from 'ethereum-blockies-base64'
+import { Pagination } from '../../..'
 import IconButton from '../../@UI/IconButton'
+import { useBreakpointIndex } from '../../..'
 import {
   formatUsername,
   shortenAddress,
   fetchEns,
 } from '../../../utils/address'
-import { format, formatDistance } from 'date-fns'
-import { ethers } from 'ethers'
+import { imageOptimizer } from '../../../utils/imageOptimizer'
 
 export interface CollectorAccordionRowProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -56,6 +62,8 @@ export interface CollectorAccordionRowProps
    * Total NFT value
    */
   totalNftValue?: string
+
+  extraCollectionChanged?: (id: number) => void
   /**
    * NFT collection
    */
@@ -64,11 +72,14 @@ export interface CollectorAccordionRowProps
    * Other collections
    */
   extraCollections?: {
-    name: string
+    id: number
+    name?: string
     imageUrl: string
     url: string
-    count: number
+    pixelated: boolean
+    count?: number
   }[]
+
   /**
    * Children element
    */
@@ -77,6 +88,8 @@ export interface CollectorAccordionRowProps
    * Is it opened by default?
    */
   defaultOpen?: boolean
+
+  onClick?: () => void
 }
 
 /**
@@ -95,19 +108,29 @@ const CollectorRow = forwardRef(
       firstAcquisition,
       totalNftValue,
       nftCollection,
-      extraCollections,
+      extraCollections = [],
       children,
+      extraCollectionChanged,
       defaultOpen = false,
+      onClick,
       ...props
     }: CollectorAccordionRowProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
+    const theme = useTheme()
     const [open, setOpen] = useState(defaultOpen)
+    const [page, setPage] = useState(0)
+    const [selectedCollection, setSelectedCollection] = useState<number | undefined>()
+    const [selectedCollectionName, setSelectedCollectionName] =
+      useState(collectionName)
+    const breakpointIndex = useBreakpointIndex()
     const isFirstColumn = !!avgHoldTime || !!firstAcquisition || !!nftCollection
     const [avatarUrl, setAvatarUrl] = useState(
       address ? makeBlockie(address) : null
     )
     const [name, setName] = useState(username ? formatUsername(username) : null)
+    const [expansionHeight, setExpansionHeight] = useState(0)
+    const expansionContentRef = useRef(null)
 
     useEffect(() => {
       const updateEns = async (address?: string) => {
@@ -123,28 +146,83 @@ const CollectorRow = forwardRef(
       }
 
       updateEns(address)
+
+      setExpansionHeight(expansionContentRef.current.clientHeight)
     }, [])
+
+    const handlePageChange = ({ selected }: { selected: number }) => {
+      setPage(selected)
+    }
 
     const displayName = name ?? (address ? shortenAddress(address) : 'Unknown')
 
     return (
-      <CollectorRowBase {...{ ref, ...props }} onClick={() => setOpen(!open)}>
-        <CollectorRowContent>
-          <Avatar size="md" src={avatarUrl} />
-
+      <CollectorRowBase {...{ ref, ...props }}>
+        <CollectorRowContent
+          isMobile={breakpointIndex <= 1}
+          onClick={() => setOpen(!open)}
+        >
+          <Box
+            sx={{
+              width: '100%',
+              height: '48px',
+              position: 'relative',
+              '&:hover img': {
+                display: 'none',
+              },
+              '&:hover svg': {
+                display: 'block !important',
+              },
+              '&:hover': {
+                backgroundColor: '#151515',
+                borderRadius: '50%',
+                border: '2px solid black',
+              },
+              cursor: onClick ? 'pointer' : 'auto',
+            }}
+            onClick={(e) => {
+              e.stopPropagation()
+              onClick && onClick()
+            }}
+          >
+            <Avatar size="md" src={avatarUrl} />
+            <Icon
+              icon="arrowStylizedRight"
+              color="primary"
+              style={{
+                display: 'none',
+                position: 'absolute',
+                top: '0',
+                width: '40% !important',
+                height: '40% !important',
+                margin: '30%',
+              }}
+              size="40%"
+            />
+          </Box>
           <Flex
             sx={{ flexDirection: 'column', justifyContent: 'center', gap: 1 }}
           >
             <Text
+              as={onClick ? 'a' : 'span'}
+              onClick={(e) => {
+                e.stopPropagation()
+                onClick && onClick()
+              }}
               sx={{
                 fontWeight: 'bold',
-                fontSize: 4,
+                fontSize: breakpointIndex <= 1 ? 2 : 3,
                 lineHeight: 1,
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',
+                cursor: onClick ? 'pointer' : 'auto',
                 textDecoration: 'none',
+                width: 'fit-content',
                 color: 'inherit',
+                '&:hover': {
+                  textDecoration: onClick ? 'underline' : undefined,
+                },
               }}
             >
               {displayName}
@@ -188,25 +266,18 @@ const CollectorRow = forwardRef(
           </Flex>
         </CollectorRowContent>
 
-        <CollectorRowExpansion $open={open}>
+        <CollectorRowExpansion $open={open} $contentHeight={expansionHeight}>
           <Grid
-            columns={['1fr', '1fr', '1fr', !isFirstColumn ? '1fr' : '1fr 1fr']}
-            sx={{ marginX: [0, 0, 46], columnGap: 72, p: 6 }}
+            columns={[
+              '1fr',
+              '1fr',
+              !isFirstColumn || !extraCollections.length ? '1fr' : '1fr 1fr',
+            ]}
+            sx={{ marginX: [0, 46], columnGap: 72, p: 4 }}
+            ref={expansionContentRef}
           >
             {isFirstColumn && (
               <Flex sx={{ flexDirection: 'column', gap: 4 }}>
-                <a href={`/analytics/user/${address}`} style={{ textDecoration: 'none' }}>
-                  <Text
-                    variant='h3Primary'
-                    sx={{
-                      color: 'primary',
-                      paddingBottom: '12px',
-                      fontSize: 4,
-                    }}
-                  >
-                    View Portfolio
-                  </Text>
-                </a>
                 {!!avgHoldTime && (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                     <Text
@@ -249,7 +320,7 @@ const CollectorRow = forwardRef(
                 {!!nftCollection && !!nftCollection.length ? (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                     <Text sx={{ fontWeight: 'heading' }}>
-                      {displayName}'s {collectionName} Collection
+                      {displayName}'s {selectedCollectionName} Collection
                     </Text>
                     <Grid
                       sx={{
@@ -258,27 +329,45 @@ const CollectorRow = forwardRef(
                           'repeat(auto-fill, minmax(92px, 1fr) )',
                       }}
                     >
-                      {nftCollection.map(
-                        ({ imageUrl, url, pixelated }, idx) => (
-                          <a href={url} key={idx}>
-                            <Box
-                              sx={{
-                                backgroundImage: `url(${imageUrl})`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                                backgroundRepeat: 'no-repeat',
-                                borderRadius: 'sm',
-                                width: '100%',
-                                paddingTop: '100%',
-                                imageRendering: pixelated
-                                  ? 'pixelated'
-                                  : 'auto',
-                              }}
-                            />
-                          </a>
-                        )
-                      )}
+                      {nftCollection
+                        .slice(page * 6, page * 6 + 6)
+                        .map(({ imageUrl, url, pixelated }, idx) => {
+                          const optimizedSrc =
+                            imageOptimizer(imageUrl, {
+                              height: 180,
+                              width: 180,
+                            }) ?? imageUrl
+                          const imageSrc = pixelated ? imageUrl : optimizedSrc
+
+                          return (
+                            <a href={url} key={idx}>
+                              <Box
+                                sx={{
+                                  backgroundImage: `url(${imageSrc})`,
+                                  backgroundSize: 'cover',
+                                  backgroundPosition: 'center',
+                                  backgroundRepeat: 'no-repeat',
+                                  borderRadius: 'sm',
+                                  width: '100%',
+                                  paddingTop: '100%',
+                                  imageRendering: pixelated
+                                    ? 'pixelated'
+                                    : 'auto',
+                                }}
+                              />
+                            </a>
+                          )
+                        })}
                     </Grid>
+                    {Math.ceil(nftCollection.length / 6) > 1 && (
+                      <Pagination
+                        forcePage={page}
+                        pageCount={Math.ceil(nftCollection.length / 6)}
+                        pageRangeDisplayed={0}
+                        marginPagesDisplayed={0}
+                        onPageChange={handlePageChange}
+                      />
+                    )}
                   </Flex>
                 ) : (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
@@ -326,7 +415,7 @@ const CollectorRow = forwardRef(
                     }}
                   >
                     {extraCollections?.map(
-                      ({ name, url, imageUrl, count }, idx) => (
+                      ({ id, name, url, imageUrl, count }, idx) => (
                         <Flex
                           sx={{
                             flexDirection: 'column',
@@ -336,9 +425,26 @@ const CollectorRow = forwardRef(
                           }}
                           key={idx}
                         >
-                          <a href={url}>
-                            <Avatar size="lg" color="white" src={imageUrl} />
-                          </a>
+                          <CollectorRowAvatarWrapper
+                            selected={idx === selectedCollection}
+                            onClick={() => {
+                              extraCollectionChanged?.(id)
+                              setSelectedCollection(idx)
+                              setSelectedCollectionName(name)
+                              setPage(0)
+                            }}
+                          >
+                            <Avatar
+                              size="lg"
+                              color="white"
+                              src={
+                                imageOptimizer(imageUrl, {
+                                  height: parseInt(theme.images.avatar.lg.size),
+                                  width: parseInt(theme.images.avatar.lg.size),
+                                }) ?? imageUrl
+                              }
+                            />
+                          </CollectorRowAvatarWrapper>
                           <Flex
                             sx={{
                               flexDirection: 'column',

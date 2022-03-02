@@ -34,6 +34,7 @@ export { default as Spinner } from './components/@UI/Spinner'
 export { default as Switch } from './components/@UI/Switch'
 export { default as SwitchDropdown } from './components/@UI/SwitchDropdown'
 export { default as Text } from './components/@UI/Text'
+export { default as Tooltip } from './components/@UI/Tooltip'
 export { default as TreeMap } from './components/@UI/TreeMap/TreeMapDynamic'
 
 /**
@@ -52,7 +53,8 @@ export { default as CollectorAccordion } from './components/App/CollectorAccordi
 export { default as CollectorAccordionHead } from './components/App/CollectorAccordionHead'
 export { default as CollectorAccordionRow } from './components/App/CollectorAccordionRow'
 export { default as ConnectModal } from './components/App/ConnectModal'
-export { default as Footer } from './components/App/Footer'
+export { default as Footer, FooterProps } from './components/App/Footer'
+export { default as Investors } from './components/App/Investors'
 export { default as LandingPanel } from './components/App/LandingPanels'
 export { default as Navbar } from './components/App/Navbar'
 export { default as OpenseaPanel } from './components/App/OpenseaPanel'
@@ -99,3 +101,10 @@ export { UpshotUIThemeType } from './themes/UpshotUI'
  */
 
 export { useBreakpointIndex } from './hooks/useBreakpointIndex'
+
+/**
+ * Utils
+ *
+ * Util functions
+ */
+ export { imageOptimizer } from './utils/imageOptimizer'

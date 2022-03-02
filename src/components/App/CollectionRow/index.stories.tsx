@@ -41,6 +41,7 @@ const Template = ({ items }: CollectionItems) => {
               {COLUMNS.map((col, key) => (
                 <TableCell {...{ key }}>{col}</TableCell>
               ))}
+              <TableCell></TableCell>
             </>
           )}
         </TableRow>
@@ -86,6 +87,13 @@ Default.args = {
         'https://res.cloudinary.com/upshot-inc/image/upload/v1628114947/xriprlqfkheg6dzhl6j7.png',
       columns: ['Value 1', 'Value 2', 'Value 3'],
       pixelated: true,
+    },
+    {
+      title:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales quis ex nec sagittis.',
+      imageSrc:
+        'https://res.cloudinary.com/upshot-inc/image/upload/v1631595287/e9pnaaeah4a1jw8kpmgd.jpg',
+      columns: ['Value 1', 'Value 2', 'Value 3'],
     },
     {
       title: 'CryptoPunk #1025',

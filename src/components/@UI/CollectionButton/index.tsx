@@ -15,6 +15,7 @@ export interface CollectionButtonProps
   subText: string
   icon: ReactNode
   underglow?: keyof typeof colors
+  hoverUnderglow?: keyof typeof colors
   error?: boolean
 }
 
@@ -25,6 +26,7 @@ const CollectionButton = forwardRef(
       subText,
       icon,
       underglow,
+      hoverUnderglow,
       error = false,
       ...props
     }: CollectionButtonProps,
@@ -47,7 +49,11 @@ const CollectionButton = forwardRef(
     }
 
     return (
-      <CollectionButtonWrapper $underglow={underglow} {...{ ref, ...props }}>
+      <CollectionButtonWrapper
+        $hoverUnderglow={hoverUnderglow}
+        $underglow={underglow}
+        {...{ ref, ...props }}
+      >
         <CollectionButtonIcon>{icon}</CollectionButtonIcon>
         <CollectionButtonTextWrapper>
           <CollectionButtonText>{text}</CollectionButtonText>

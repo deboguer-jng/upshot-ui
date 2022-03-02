@@ -1,8 +1,10 @@
-/** @jsxImportSource theme-ui */
-import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import React, { forwardRef, HTMLAttributes } from 'react'
-import { Text, Flex } from 'theme-ui'
+import { Text, Flex, Link } from 'theme-ui'
+
 import ErrorSvg from '../../../assets/svg/icons/Error.svg'
+import { imageOptimizer } from '../../../utils/imageOptimizer'
+import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
+import theme from '../../../themes/UpshotUI'
 import {
   MiniNftCardWrapper,
   MiniNftCardMainBoard,
@@ -102,11 +104,18 @@ const MiniNftCard = forwardRef(
   ) => {
     const isMobile = useBreakpointIndex() <= 1
 
+    const optimizedSrc =
+      imageOptimizer(image, {
+        height: theme.miniNftCard.height,
+        width: theme.miniNftCard.width,
+      }) ?? image
+    const imageSrc = pixelated ? image : optimizedSrc
+
     return (
       <MiniNftCardWrapper isMobile={isMobile} {...{ ref, ...props }}>
         <MiniNftCardMainBoard error={error}>
           <MiniNftCardImageWrapper
-            src={error ? ErrorSvg : image}
+            src={error ? ErrorSvg : imageSrc}
             pixelated={pixelated}
           />
           <MiniNftCardMainContentWrapper type={type}>
@@ -177,7 +186,7 @@ const MiniNftCard = forwardRef(
               ) : type === 'default' ? (
                 <Flex sx={{ alignItems: 'center' }}>
                   <AddressCircle variant="from" />
-                  <a
+                  <Link
                     href={fromLink}
                     sx={{
                       color: 'white',
@@ -188,7 +197,7 @@ const MiniNftCard = forwardRef(
                     }}
                   >
                     <Text variant="small"> {from} </Text>
-                  </a>
+                  </Link>
                 </Flex>
               ) : type === 'collection' ? (
                 sales
@@ -200,8 +209,8 @@ const MiniNftCard = forwardRef(
               {type === 'default'
                 ? 'To :'
                 : type === 'collection'
-                ? 'floor price :'
-                : 'Price :'}
+                ? 'Floor Price :'
+                : 'Last Sale :'}
             </MiniNftCardDetailLabel>
             <MiniNftCardDetailValue variant="small" error={error}>
               {error ? (
@@ -213,7 +222,7 @@ const MiniNftCard = forwardRef(
               ) : type === 'default' ? (
                 <Flex sx={{ alignItems: 'center' }}>
                   <AddressCircle variant="to" />
-                  <a
+                  <Link
                     href={toLink}
                     sx={{
                       color: 'white',
@@ -224,7 +233,7 @@ const MiniNftCard = forwardRef(
                     }}
                   >
                     <Text variant="small"> {to} </Text>
-                  </a>
+                  </Link>
                 </Flex>
               ) : type === 'collection' ? (
                 floorPrice

@@ -8,10 +8,12 @@ import { getOptions, toggle } from '../utils'
 import ButtonChartCollection from '../../ButtonChartCollection'
 import ChartLabel from '../../ChartLabel'
 import Flex from '../../../Layout/Flex'
+import Box from '../../../Layout/Box'
 import Text from '../../../@UI/Text'
 import { format } from 'date-fns'
 import colors from '../../../../themes/UpshotUI/colors'
 import { useBreakpointIndex } from '../../../../hooks/useBreakpointIndex'
+import { truncateString } from '../../../../utils/string'
 
 interface PopulatedChartProps {
   chartData: {
@@ -24,8 +26,11 @@ interface PopulatedChartProps {
     priceChange?: string
     labelColor?: keyof typeof colors
     volume?: number | boolean
+    currentFloor?: string
+    metric?: string
   }[]
   embedded?: boolean
+  onClose?: (index: number) => void
 }
 
 type HoverDataPoint = {
@@ -36,6 +41,7 @@ type HoverDataPoint = {
 const PopulatedChart = ({
   chartData,
   embedded = false,
+  onClose,
 }: PopulatedChartProps) => {
   const theme = useTheme()
 
@@ -47,7 +53,7 @@ const PopulatedChart = ({
   /* Reset filters when data changes. */
   useEffect(() => {
     setFilterStatus(emptyFilters)
-  }, [chartData, isMobile])
+  }, [chartData])
 
   /* Initialize the hover dataPoints for each series in the chartData array. */
   const emptyHoverState = [...new Array(chartData.length)].map((_) => ({
@@ -61,10 +67,9 @@ const PopulatedChart = ({
   const labelColors: Array<keyof typeof colors> = [
     'blue',
     'pink',
-    'purple',
-    'yellow',
-    'red',
+    'orange',
     'green',
+    'yellow',
   ]
   for (let i = 0; i < chartData.length; i++) {
     chartData[i].labelColor = labelColors[i]
@@ -106,6 +111,34 @@ const PopulatedChart = ({
 
   const timestamp = hoverDataPoint?.[hoverIndex]?.timestamp
 
+  const metricKeys = {
+    FLOOR: 'currentFloor',
+    AVERAGE: 'currentAvg',
+    VOLUME: 'currentVolume',
+  }
+
+  const labelValue = (
+    index: number,
+    set: {
+      data: number[][] | number[]
+      currentFloor?: string
+      currentAvg?: string
+      currentVolume?: string
+      metric?: string
+    }
+  ) => {
+    if (hoverDataPoint[index]?.value) return hoverDataPoint[index]?.value
+
+    return parseFloat(
+      set[
+        metricKeys[set.metric as keyof typeof metricKeys] as
+          | 'currentFloor'
+          | 'currentAvg'
+          | 'currentVolume'
+      ]
+    )
+  }
+
   const chartLabels = useMemo(
     () =>
       chartData
@@ -118,13 +151,9 @@ const PopulatedChart = ({
               key={i}
               title={set.name}
               titleColor={set.labelColor}
-              price_1={
-                hoverDataPoint[index]?.value ??
-                (Array.isArray(set.data[set.data.length - 1]) // Default to last price
-                  ? (set.data[set.data.length - 1] as number[])[1]
-                  : (set.data[set.data.length - 1] as number))
-              }
+              price_1={labelValue(index, set)}
               onClose={() => {
+                onClose?.(index)
                 toggle(
                   index,
                   chartData[index].name,
@@ -138,12 +167,20 @@ const PopulatedChart = ({
               change={set.priceChange}
               url={set.url}
               isDim={hoverIndex !== null && hoverIndex !== index}
+              timestamp={
+                hoverDataPoint[index]?.timestamp
+                  ? format(
+                      hoverDataPoint[index]?.timestamp,
+                      'LLL dd yyyy hh:mm'
+                    )
+                  : null
+              }
               maxWidth={isMobile ? 140 : 280}
               {...{ index }}
             />
           )
         }),
-    [chartData, filterStatus, hoverDataPoint, hoverIndex]
+    [chartData, filterStatus, hoverDataPoint, hoverIndex, isMobile]
   )
 
   /* Memoize Apex to prevent side effects from mouseEvent listeners. */
@@ -170,34 +207,24 @@ const PopulatedChart = ({
         <Flex
           sx={{
             justifyContent: 'space-between',
-            gap: [2, 2, 0],
-            flexDirection: ['column', 'column', 'row'],
+            gap: [2, 0],
+            flexDirection: ['column', 'row'],
           }}
         >
-          <Flex
+          <Box
             sx={{
+              width: '100%',
               flexDirection: 'row',
               alignItems: 'flex-start',
               textAlign: 'left',
-              display: 'inline-flex',
+              display: ['inline-grid', 'inline-grid', 'inline-flex'],
+              gridTemplateColumns: ['1fr 1fr', '1fr 1fr', null],
               flexWrap: 'wrap',
               gap: '18px',
             }}
           >
             {chartLabels}
-          </Flex>
-          <Text
-            sx={{
-              fontWeight: 'bold',
-              textTransform: 'uppercase',
-              alignSelf: ['flex-end', 'flex-end', 'flex-start'],
-              minHeight: '1.25rem',
-            }}
-          >
-            {!isMobileOrTablet && timestamp
-              ? format(timestamp, 'LLL dd yyyy hh:mm')
-              : null}
-          </Text>
+          </Box>
         </Flex>
       )}
       {chart}
@@ -207,7 +234,7 @@ const PopulatedChart = ({
             <ButtonChartCollection
               key={i}
               color={chartData[i].labelColor}
-              title={chartData[i].name}
+              title={truncateString(chartData[i].name, 16)}
               selected={filterStatus[i]}
               onClick={() =>
                 toggle(i, chartData[i].name, filterStatus, setFilterStatus)
@@ -215,23 +242,6 @@ const PopulatedChart = ({
             />
           ))}
         </CustomLegendWrapper>
-      )}
-
-      {isMobileOrTablet && !embedded && (
-        <Text
-          sx={{
-            fontWeight: 'bold',
-            textTransform: 'uppercase',
-            alignSelf: ['flex-end', 'flex-end', 'flex-start'],
-            minHeight: '1.25rem',
-            float: 'right',
-            fontSize: '18px',
-            marginBottom: '-10px',
-            paddingTop: '1px',
-          }}
-        >
-          {timestamp && format(timestamp, 'LLL dd yyyy hh:mm')}
-        </Text>
       )}
     </>
   )

@@ -4,9 +4,8 @@ import Icon from '../../@UI/Icon'
 import Flex from '../../Layout/Flex'
 import Box from '../../Layout/Box'
 import Text from '../../@UI/Text'
+import IconButton from '../../@UI/IconButton'
 import {
-  IconBox,
-  StyledIconButton,
   StyledTitle,
   StyledChangeDiv,
   StyledRed,
@@ -49,6 +48,10 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   currency_2?: string
   /**
+   * Timestamp
+   */
+  timestamp?: string
+  /**
    * Historical price change (eg. +20.47%)
    */
   change?: string
@@ -84,14 +87,15 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
 const ChartLabel = forwardRef(
   (
     {
-      title,
-      url,
       titleColor = 'white',
-      price_1,
       currency_1 = 'Ξ',
       price_2 = null,
       currency_2 = '$',
       isDim = false,
+      title,
+      url,
+      price_1,
+      timestamp,
       change,
       atl,
       ath,
@@ -124,40 +128,36 @@ const ChartLabel = forwardRef(
         {...{ ref, ...props }}
         sx={{
           transition: 'default',
-          opacity: isDim ? 0.5 : 1.0,
+          opacity: Number(!isDim),
         }}
         $isMobile={isMobile}
         $maxWidth={maxWidth}
       >
-        <IconBox $color={titleColor} $isMobile={isMobile}>
-          <StyledIconButton
-            type="button"
-            onClick={onClose}
-            $color={titleColor}
-            $isMobile={isMobile}
-          >
-            <Icon size={12} color={titleColor} icon="x" />
-          </StyledIconButton>
-        </IconBox>
+        <IconButton
+          type="button"
+          onClick={onClose}
+          color={titleColor}
+          sx={{
+            borderStyle: 'solid',
+            borderWidth: 1,
+            borderColor: titleColor,
+            width: '12px',
+            height: '12px',
+            marginRight: '4px',
+          }}
+        >
+          <Icon size={8} color={titleColor} icon="x" />
+        </IconButton>
         <StyledBox $maxWidth={maxWidth}>
           <StyledLink href={url}>
             <StyledTitle $color={titleColor}>{title}</StyledTitle>
           </StyledLink>
           <Flex style={{ whiteSpace: 'nowrap' }}>
             <Text
-              variant="small"
-              color="grey-600"
-              style={{
-                lineHeight: 1,
-                marginRight: 2,
-              }}
+              variant="h1Primary"
+              sx={{ fontWeight: 'normal', lineHeight: 1.1, fontSize: [6, 7] }}
             >
               {currency_1}
-            </Text>
-            <Text
-              variant="h1Primary"
-              sx={{ fontWeight: 'normal', lineHeight: 1, fontSize: [6, 6, 7] }}
-            >
               {nFormatter(price_1)}
             </Text>
           </Flex>
@@ -168,28 +168,42 @@ const ChartLabel = forwardRef(
                 variant="currency"
                 currencySymbol={currency_2}
                 size={isMobile ? 'xs' : 'sm'}
+                sx={{ '& label': { padding: 0 } }}
               >
                 {nFormatter(price_2)}
               </InlineLabel>
             )}
             {change && `(${change})`}
           </StyledChangeDiv>
-
-          {ath !== '-' && atl !== '-' && (
-            <Box sx={{ display: ['grid', 'grid', 'block'] }}>
-              <StyledRed sx={{ paddingTop: ['3px', '3px', '0px'] }}>
+          <Box sx={{ minHeight: '1.5rem' }}>
+            {!!timestamp && (
+              <Text
+                color="blue"
+                variant="small"
+                sx={{
+                  display: 'block',
+                  marginTop: '-2px',
+                }}
+              >
+                {timestamp}
+              </Text>
+            )}
+          </Box>
+          {/* {ath !== '-' && atl !== '-' && (
+            <Box sx={{ display: ['grid', 'block'] }}>
+              <StyledRed sx={{ paddingTop: ['3px', '0px'] }}>
                 ATL: {atl}
               </StyledRed>
               <StyledBlue
                 sx={{
-                  marginTop: ['-6px', '-6px', '0px'],
-                  paddingLeft: ['0px', '0px', '5px'],
+                  marginTop: ['-6px', '0px'],
+                  paddingLeft: ['0px', '5px'],
                 }}
               >
                 ATH: {ath}
               </StyledBlue>
             </Box>
-          )}
+          )} */}
         </StyledBox>
       </RelativeFlex>
     )

@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react'
 import Colors from '../../../themes/UpshotUI/colors'
 import { StyledThemeUILabel } from './Styled'
-import { Box } from 'theme-ui'
+import { Box, BoxProps } from 'theme-ui'
 
-export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface LabelProps extends BoxProps {
   /**
    * The text to be displayed on the label.
    */
@@ -48,17 +48,19 @@ const Label = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
-      <Box {...{ ref, ...props }} sx={{ flexShrink: 0, whiteSpace: 'nowrap' }}>
-        {variant === 'currency' && (
-          <StyledThemeUILabel variant={`${size}CurrencySymbol`} $color={color}>
-            {currencySymbol}
-          </StyledThemeUILabel>
-        )}
+      <Box
+        {...{ ref, ...props }}
+        sx={{
+          ...{ flexShrink: 0, whiteSpace: 'nowrap' },
+          ...(props?.sx ?? {}),
+        }}
+      >
         {/* Each combination of style and size is a unique variant of the theme */}
         <StyledThemeUILabel
           variant={variant + size[0].toUpperCase() + size[1]}
           $color={color}
         >
+          {variant === 'currency' && currencySymbol}
           {children}
         </StyledThemeUILabel>
 

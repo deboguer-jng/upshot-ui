@@ -1,7 +1,5 @@
 import React, {
   forwardRef,
-  HTMLAttributes,
-  EventHandler,
   ReactEventHandler,
   useState,
   useEffect,
@@ -9,9 +7,6 @@ import React, {
 import {
   NavbarWrapper,
   NavbarItem,
-  NavbarItemIcon,
-  NavbarUPTBalance,
-  NavbarUPTBalanceText,
   NavbarWallet,
   NavbarLogo,
   NavbarProfile,
@@ -20,10 +15,9 @@ import {
   StyledLink,
   Divider,
 } from './Styled'
+import Container from '../../Layout/Container'
 import Icon from '../../@UI/Icon'
 import IconButton from '../../@UI/IconButton'
-import Text from '../../@UI/Text'
-import Flex from '../../Layout/Flex'
 import Panel from '../../@UI/Panel'
 import { usePopper } from 'react-popper'
 import InputRoundedSearch, {
@@ -31,8 +25,11 @@ import InputRoundedSearch, {
 } from '../../@UI/InputRoundedSearch'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import { shortenAddress } from '../../../utils/address'
+import zIndex from '../../../themes/UpshotUI/zIndex'
+import Modal from '../../@UI/Modal'
+import { Text, Flex, BoxProps } from 'theme-ui'
 
-export interface NavbarInterface {
+export interface NavbarInterface extends BoxProps {
   /**
    * Avatar Image URL
    */
@@ -45,6 +42,10 @@ export interface NavbarInterface {
    * Wallet address
    */
   address?: string
+  /**
+   * Sidebar is visible
+   */
+  showSidebar?: boolean
   searchSuggestions?: InputSuggestion[]
   searchValue?: string
   searchDefaultValue?: string
@@ -53,6 +54,7 @@ export interface NavbarInterface {
   onSearchKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void // @todo Refactor all these props and use rfs
   onSearch: (e: React.FormEvent | React.MouseEvent) => void
   onLogoClick: (e: React.MouseEvent<HTMLElement>) => void
+  onMenuClick: (e: React.MouseEvent<HTMLElement>) => void
   onConnectClick?: (e: React.MouseEvent<HTMLElement>) => void
   onSearchBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
   onDisconnectClick?: () => void
@@ -62,6 +64,7 @@ const Navbar = forwardRef(
   (
     {
       avatarImageUrl = '/img/defaultAvatar.png',
+      showSidebar = false,
       ensName,
       address,
       searchValue,
@@ -75,11 +78,13 @@ const Navbar = forwardRef(
       onLogoClick,
       onConnectClick,
       onDisconnectClick,
+      onMenuClick,
+      children,
       ...props
     }: NavbarInterface,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    const [showNavPopper, setShowNavPopper] = useState(false)
+    const [showWalletPopper, setShowWalletPopper] = useState(false)
     const [referenceElement, setReferenceElement] = useState(null)
     const [popperElement, setPopperElement] = useState(null)
     const [navProfileElement, setNavProfileElement] = useState(null)
@@ -91,39 +96,181 @@ const Navbar = forwardRef(
       }
     )
     const isMobile = useBreakpointIndex() <= 1
+    const isMobileOrTablet = useBreakpointIndex() <= 2
 
     const handleNavPopper = () => {
-      if (!showNavPopper) {
+      if (!showWalletPopper) {
         document.addEventListener(
           'mouseup',
           (e) => {
             if ((e.target as HTMLDivElement).classList.contains('popperButton'))
               return
-            setShowNavPopper(false)
+            setShowWalletPopper(false)
           },
           {
             once: true,
           }
         )
       }
-      setShowNavPopper(!showNavPopper)
+      setShowWalletPopper(!showWalletPopper)
     }
 
     useEffect(() => {
       forceUpdate?.()
-    }, [showNavPopper])
+    }, [showWalletPopper])
 
     return (
-      <>
-        <NavbarWrapper {...{ ref, ...props }}>
-          <Flex style={{ alignItems: 'center', gap: '16px' }}>
-            <NavbarItem>
-              <NavbarLogo onClick={onLogoClick}>
-                <Icon icon="upshot" />
-              </NavbarLogo>
-            </NavbarItem>
+      <Container sx={{ paddingY: 5, paddingX: 3 }} {...{ ref, ...props }}>
+        <Flex
+          sx={{
+            width: '100%',
+            flexDirection: 'column',
+            gap: 4,
+            position: 'relative',
+          }}
+        >
+          <NavbarWrapper>
+            <Flex
+              style={{
+                alignItems: 'center',
+                gap: '16px',
+                position: 'relative',
+              }}
+            >
+              <NavbarItem>
+                <NavbarLogo onClick={onLogoClick}>
+                  <Icon icon="upshot" />
+                </NavbarLogo>
+              </NavbarItem>
+              {!isMobile && (
+                <SearchWrapper
+                  $hasValue={!!searchValue}
+                  style={{ marginLeft: '64px' }}
+                >
+                  <form onSubmit={onSearch}>
+                    <InputRoundedSearch
+                      fullWidth
+                      hasButton
+                      variant="nav"
+                      suggestions={searchSuggestions}
+                      onSuggestionSelect={onSearchSuggestionChange}
+                      placeholder="Try searching for Collections"
+                      dark
+                      value={searchValue}
+                      defaultValue={searchDefaultValue}
+                      onChange={onSearchValueChange}
+                      onBlur={onSearchBlur}
+                      onKeyUp={onSearchKeyUp}
+                      buttonProps={{
+                        onClick: onSearch,
+                        type: 'button',
+                      }}
+                      sx={{
+                        background: 'none',
+                      }}
+                    />
+                  </form>
+                </SearchWrapper>
+              )}
+            </Flex>
+            <Flex style={{ alignItems: 'center', gap: '16px' }}>
+              <>
+                {address ? (
+                  <NavbarItem ref={setReferenceElement}>
+                    <NavbarProfile
+                      ref={setNavProfileElement}
+                      $showWalletPopper={showWalletPopper}
+                    >
+                      <img src={avatarImageUrl} />
+                      {!isMobile && (
+                        <NavbarProfileDetails>
+                          {ensName && (
+                            <Text
+                              variant="medium"
+                              sx={{
+                                fontWeight: 'bold',
+                                textDecoration: 'none',
+                                color: 'white',
+                                textOverflow: 'ellipsis',
+                                overflow: 'hidden',
+                                maxWidth: '120px',
+                                whiteSpace: 'nowrap',
+                                display: 'inline-block',
+                                lineHeight: 1,
+                              }}
+                            >
+                              <StyledLink href={`/analytics/user/${address}`}>
+                                {ensName}
+                              </StyledLink>
+                            </Text>
+                          )}
+                          <Text
+                            variant="small"
+                            sx={{ color: '#A7A7A7', textDecoration: 'none' }}
+                          >
+                            <StyledLink href={`/analytics/user/${address}`}>
+                              {shortenAddress(address)}
+                            </StyledLink>
+                          </Text>
+                        </NavbarProfileDetails>
+                      )}
+                      <IconButton
+                        className="popperButton"
+                        onClick={handleNavPopper}
+                      >
+                        <Icon
+                          style={{
+                            pointerEvents: 'none',
+                            transform:
+                              'scaleY(' + (showWalletPopper ? '-1' : '1') + ')',
+                          }}
+                          icon="arrowDropUserBubble"
+                        />
+                      </IconButton>
+                    </NavbarProfile>
+                    <Modal
+                      onClose={handleNavPopper}
+                      {...{ open: showWalletPopper }}
+                      style={{
+                        background:
+                          'linear-gradient(180deg, #000000 17.57%, rgba(0, 0, 0, 0) 100%)',
+                        zIndex: zIndex.nav - 1,
+                      }}
+                    />
+                  </NavbarItem>
+                ) : (
+                  <NavbarItem onClick={onConnectClick}>
+                    <NavbarWallet>
+                      <Icon icon="wallet" size={32} />
+                      {!isMobileOrTablet && (
+                        <Text sx={{ paddingRight: '4px' }}>Connect Wallet</Text>
+                      )}
+                    </NavbarWallet>
+                  </NavbarItem>
+                )}
+              </>
 
-            <SearchWrapper>
+              <IconButton
+                onClick={onMenuClick}
+                sx={{
+                  backgroundColor: showSidebar ? 'grey-300' : 'grey-800',
+                  width: 45,
+                  height: 45,
+                  transition: 'default',
+                  '&:hover': {
+                    backgroundColor: showSidebar
+                      ? 'white !important'
+                      : 'grey-900 !important',
+                  },
+                }}
+              >
+                <Icon icon={showSidebar ? 'x' : 'items'} size={16} />
+              </IconButton>
+            </Flex>
+            {children}
+          </NavbarWrapper>
+          {isMobile && showSidebar && (
+            <SearchWrapper style={{ marginTop: '72px' }}>
               <form onSubmit={onSearch}>
                 <InputRoundedSearch
                   fullWidth
@@ -131,7 +278,7 @@ const Navbar = forwardRef(
                   variant="nav"
                   suggestions={searchSuggestions}
                   onSuggestionSelect={onSearchSuggestionChange}
-                  placeholder="Search..."
+                  placeholder="Try searching for Collections"
                   dark
                   value={searchValue}
                   defaultValue={searchDefaultValue}
@@ -142,102 +289,30 @@ const Navbar = forwardRef(
                     onClick: onSearch,
                     type: 'button',
                   }}
+                  sx={{
+                    background: 'none',
+                    width: 'calc(100% + 24px)',
+                    marginLeft: '-12px',
+                  }}
                 />
               </form>
             </SearchWrapper>
-          </Flex>
-          <Flex style={{ alignItems: 'center', gap: '16px' }}>
-            {/* <NavbarItem>
-          <NavbarItemIcon>
-            <Icon icon="notificationFilled" />
-          </NavbarItemIcon>
-        </NavbarItem> */}
-            {/* <NavbarItem>
-          <NavbarItemIcon>
-            <Icon icon="question" />
-          </NavbarItemIcon>
-        </NavbarItem> */}
-            {/* <NavbarItem>
-          <NavbarUPTBalance>
-            <Icon icon="upshot" />
-            <NavbarUPTBalanceText>
-              <Text variant="large"> 50</Text>
-              <Text variant="large">UPT</Text>
-            </NavbarUPTBalanceText>
-          </NavbarUPTBalance>
-        </NavbarItem> */}
-            {!isMobile && (
-              <>
-                {address ? (
-                  <NavbarItem ref={setReferenceElement}>
-                    <NavbarProfile ref={setNavProfileElement}>
-                      <img src={avatarImageUrl} />
-                      <NavbarProfileDetails>
-                        {ensName && (
-                          <Text
-                            variant="medium"
-                            sx={{
-                              fontWeight: 'bold',
-                              textDecoration: 'none',
-                              color: 'white',
-                            }}
-                          >
-                            <StyledLink href={`/analytics/user/${address}`}>
-                              {ensName}
-                            </StyledLink>
-                          </Text>
-                        )}
-                        <Text
-                          variant="small"
-                          sx={{ color: '#A7A7A7', textDecoration: 'none' }}
-                        >
-                          <StyledLink href={`/analytics/user/${address}`}>
-                            {shortenAddress(address)}
-                          </StyledLink>
-                        </Text>
-                      </NavbarProfileDetails>
-                      <IconButton
-                        className="popperButton"
-                        onClick={handleNavPopper}
-                      >
-                        <Icon
-                          style={{ pointerEvents: 'none' }}
-                          icon="arrowDropUserBubble"
-                        />
-                      </IconButton>
-                    </NavbarProfile>
-                  </NavbarItem>
-                ) : (
-                  <NavbarItem onClick={onConnectClick}>
-                    <NavbarWallet>
-                      <Icon icon="wallet" size={32} />
-                      Connect Wallet
-                    </NavbarWallet>
-                  </NavbarItem>
-                )}
-              </>
-            )}
-
-            {/* <NavbarItem>
-            <NavbarItemIcon>
-              <Icon icon="items" />
-            </NavbarItemIcon>
-          </NavbarItem> */}
-          </Flex>
-        </NavbarWrapper>
+          )}
+        </Flex>
         <div
           ref={setPopperElement}
           style={{
             ...styles.popper,
             ...{
               minWidth: navProfileElement?.current?.style?.width ?? '192px',
+              zIndex: zIndex.nav + 3,
             },
           }}
           {...attributes.popper}
         >
           <Panel
             sx={{
-              display: showNavPopper ? 'flex' : 'none',
+              display: showWalletPopper ? 'flex' : 'none',
               flexDirection: 'column',
               marginTop: 2,
               gap: 4,
@@ -295,7 +370,7 @@ const Navbar = forwardRef(
             </Text>
           </Panel>
         </div>
-      </>
+      </Container>
     )
   }
 )

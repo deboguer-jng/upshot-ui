@@ -8,10 +8,12 @@ export default {
   component: SpinnerBoxTemplate,
 } as ComponentMeta<typeof SpinnerBoxTemplate>
 
-const Template: ComponentStory<typeof SpinnerBoxTemplate> = (args) => <SpinnerBoxTemplate {...args} />
+const Template: ComponentStory<typeof SpinnerBoxTemplate> = (args) => (
+  <SpinnerBoxTemplate {...args} />
+)
 
 export const Default = Template.bind({})
 Default.args = {
   type: 'LoadingBox',
-  sx: { width: '600px', height: '300px' }
+  sx: { width: '600px', height: '300px' },
 }

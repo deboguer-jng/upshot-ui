@@ -34,6 +34,7 @@ export const StyledIconButton = styled(IconButton)<ChartLabelProps>`
   width: 100%;
   height: 100%;
   vertical-align: top;
+  display: inline-block;
   transition: ${({ theme }) => theme.transitions.default};
 
   &:hover svg path {
@@ -46,11 +47,17 @@ export const StyledTitle = styled('h3')<ChartLabelProps>`
   color: ${({ theme, $color }) => theme.colors[$color]};
   font-weight: bold;
   margin-bottom: 5px;
-  margin-top: 5px;
+  margin-top: 0;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 `
 
 export const StyledBox = styled(Box)<ChartLabelProps>`
-  max-width: ${({ $isMobile, $maxWidth }) => ($isMobile ? ($maxWidth-25) +'px' : ($maxWidth-32) + 'px')}
+  max-width: ${({ $isMobile, $maxWidth }) =>
+    $isMobile ? $maxWidth - 25 + 'px' : $maxWidth - 32 + 'px'};
 `
 
 export const StyledH1 = styled('h1')<ChartLabelProps>`
@@ -89,7 +96,7 @@ export const RelativeFlex = styled(Flex)<ChartLabelProps>`
   display: inline-flex;
   font-size: ${({ $isMobile }) => ($isMobile ? '0.65em' : '1em')};
   flex-wrap: wrap;
-  max-width: ${({ $maxWidth }) => ($maxWidth + 'px')};
+  max-width: ${({ $maxWidth }) => $maxWidth + 'px'};
 `
 export const StyledLink = styled.a`
   color: inherit;

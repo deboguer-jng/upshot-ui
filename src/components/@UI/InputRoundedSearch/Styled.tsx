@@ -1,8 +1,13 @@
 import styled from '@emotion/styled'
 import InputRounded from '../InputRounded'
+import type { InputRoundedSearchVariant } from './'
 
 interface InputRoundedSearchBaseProps {
   $hasButton: boolean
+}
+
+interface InputRoundedSearchWrapperProps {
+  $isMobile: boolean
 }
 
 export const InputRoundedSearchBase = styled(
@@ -17,34 +22,42 @@ export const InputRoundedSearchBase = styled(
   z-index: ${({ theme }) => theme.zIndex.default + 2};
 `
 
-export const InputRoundedSearchWrapper = styled.div`
+export const InputRoundedSearchWrapper = styled.div<InputRoundedSearchWrapperProps>`
   position: relative;
-  width: fit-content;
+  width: ${({ $isMobile }) => ($isMobile ? '100%' : 'fit-content')};
 `
 
-export const InputRoundedSearchSuggestionsWrapper = styled.div`
+export const InputRoundedSearchSuggestionsWrapper = styled.div<{
+  $variant?: InputRoundedSearchVariant
+}>`
   position: absolute;
   top: 0;
   left: 0;
   border-radius: 20px;
-  padding: 12px;
-  padding-top: 52px;
-  width: 100%;
-  background-color: ${({ theme }) => theme.colors['grey-900']};
+  margin-top: ${({ $variant }) => ($variant === 'nav' ? '54px' : '48px')};
+  margin-left: ${({ $variant }) => ($variant === 'nav' ? '-12px' : 0)};
+  width: ${({ $variant }) =>
+    $variant === 'nav' ? 'calc(100% + 24px)' : '100%'};
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid ${({ theme }) => theme.colors['grey-500']};
+  backdrop-filter: blur(4px);
+  overflow: hidden;
   z-index: ${({ theme }) => theme.zIndex.default + 1};
 `
 
 export const InputRounededSearchSuggestions = styled.div`
   overflow: auto;
   max-height: 150px;
+  margin: 8px;
   ${({ theme: { scroll } }) => scroll.thin}
 `
 
 export const InputRoundedSearchSuggestionItem = styled.div`
-  padding: 5px;
+  padding: 8px 16px;
   cursor: pointer;
+  transition: all 0.1s linear;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors['grey-800']};
+    background-color: rgba(0, 0, 0, 0.9);
   }
 `

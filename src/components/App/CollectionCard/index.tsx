@@ -1,4 +1,3 @@
-/** @jsxImportSource theme-ui */
 import { BoxProps } from 'theme-ui'
 import React, { forwardRef } from 'react'
 
@@ -6,6 +5,7 @@ import Avatar from '../../@UI/Avatar'
 import Text from '../../@UI/Text'
 import Icon from '../../@UI/Icon'
 import IconButton from '../../@UI/IconButton'
+import { imageOptimizer } from '../../../utils/imageOptimizer'
 import Flex from '../../Layout/Flex'
 import Grid from '../../Layout/Grid'
 import { SeeAllButton, CardContainer, CollectionCardBase } from './Styled'
@@ -36,6 +36,18 @@ export interface CollectionCardProps extends BoxProps {
    */
   seeAllImageSrc?: string
   /**
+   * Runder unsupported collection variant.
+   */
+  isUnsupported?: boolean
+  /**
+   * Appraisal price
+   */
+  appraisalPrice?: string
+  /**
+   * Floor price
+   */
+  floorPrice?: string
+  /**
    * Expand card to modal.
    */
   onExpand?: () => void
@@ -50,9 +62,12 @@ const CollectionCard = forwardRef(
       name,
       total = 0,
       link,
-      avatarImage = '/img/defaultAvatar.png',
+      avatarImage,
       hasSeeAll = false,
       seeAllImageSrc,
+      isUnsupported,
+      appraisalPrice,
+      floorPrice,
       onExpand,
       children,
       ...props
@@ -65,17 +80,30 @@ const CollectionCard = forwardRef(
       <CollectionCardBase onClick={onExpand} {...{ ref, ...props }}>
         <CardContainer>
           <Flex sx={{ gap: 2 }}>
-            <Avatar
-              color="black"
-              src={avatarImage}
-              size="md"
-              sx={{ width: '54px', height: '54px', border: '2px solid black' }}
-            />
+            {!!avatarImage && (
+              <Avatar
+                color="black"
+                src={
+                  imageOptimizer(avatarImage, {
+                    width: parseInt(theme.images.avatar.md.size),
+                    height: parseInt(theme.images.avatar.md.size),
+                  }) ?? avatarImage
+                }
+                size="md"
+                sx={{
+                  width: '54px',
+                  height: '54px',
+                  border: '2px solid black',
+                }}
+              />
+            )}
             <Flex
               sx={{
                 justifyContent: 'center',
                 flexDirection: 'column',
                 flexGrow: 1,
+                marginLeft: avatarImage ? 0 : 2,
+                marginTop: avatarImage ? 0 : 1,
               }}
             >
               {link ? (
@@ -83,6 +111,7 @@ const CollectionCard = forwardRef(
                   as="a"
                   // @ts-ignore
                   href={link}
+                  target={link.startsWith('http') ? '_blank' : '_self'}
                   onClick={(e) => e.stopPropagation()}
                   sx={{
                     color: 'inherit',
@@ -114,9 +143,21 @@ const CollectionCard = forwardRef(
                   {name}
                 </Text>
               )}
-              <Text color="grey-600" sx={{ fontSize: 2 }}>
-                {total} NFTs
-              </Text>
+              <Flex sx={{ gap: 2, alignItems: 'flex-end' }}>
+                <Text color="grey-600" sx={{ fontSize: 2 }}>
+                  {total} NFTs
+                </Text>
+                {!!floorPrice && (
+                  <Text color="pink" sx={{ fontSize: 2 }}>
+                    Ξ{floorPrice} Floor Price
+                  </Text>
+                )}
+                {!!appraisalPrice && (
+                  <Text color="blue" sx={{ fontSize: 2 }}>
+                    Ξ{appraisalPrice} Appraisal
+                  </Text>
+                )}
+              </Flex>
             </Flex>
             <IconButton
               type="button"
@@ -140,7 +181,7 @@ const CollectionCard = forwardRef(
 
           <Grid
             sx={{
-              gridTemplateColumns: '1fr 1fr',
+              gridTemplateColumns: isUnsupported ? '1fr' : '1fr 1fr',
               padding: 2,
               paddingTop: 0,
             }}

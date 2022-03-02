@@ -25,9 +25,6 @@ export default {
     /* Clear cache on build for local development. */
     typescript({ clean: true }),
 
-    /* Support commonjs modules. */
-    commonjs(),
-
     /* Support SVG assets. */
     svg(),
 
@@ -36,6 +33,9 @@ export default {
 
     /* Resolve dependencies */
     nodeResolve(),
+
+    /* Support commonjs modules. */
+    commonjs(),
 
     /* Additional static assets included in bundle. */
     copy({

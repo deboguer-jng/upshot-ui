@@ -41,7 +41,8 @@ export const PrimaryButton = styled(Button)<PrimaryButtonProps>`
   padding: 0px 25px;
   transition: ${({ theme }) => theme.transitions.default};
   white-space: nowrap;
-  text-transform: ${({ capitalize }) => capitalize ? 'capitalize' : 'uppercase'};
+  text-transform: ${({ capitalize }) =>
+    capitalize ? 'capitalize' : 'uppercase'};
 
   & svg {
     margin-right: ${({ theme, $size, minimized }) =>
@@ -61,7 +62,8 @@ export const PrimaryButton = styled(Button)<PrimaryButtonProps>`
   span {
     flex-grow: 1;
     font-family: ${({ theme }) => theme.fonts.body};
-    text-transform: ${({ capitalize }) => capitalize ? 'capitalize' : 'uppercase'};
+    text-transform: ${({ capitalize }) =>
+      capitalize ? 'capitalize' : 'uppercase'};
     color: ${({ theme, $type, toggled }) =>
       typeof toggled === 'undefined'
         ? theme.buttons.variants[$type].colors.color
@@ -187,7 +189,8 @@ export const PlainButton = styled(Button)<PlainButtonProps>`
   white-space: nowrap;
 
   span {
-    text-transform: ${({ capitalize }) => capitalize ? 'capitalize' : 'uppercase'};
+    text-transform: ${({ capitalize }) =>
+      capitalize ? 'capitalize' : 'uppercase'};
   }
 
   &:not(:disabled):hover {

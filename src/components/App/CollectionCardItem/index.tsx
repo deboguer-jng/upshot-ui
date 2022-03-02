@@ -1,5 +1,5 @@
 /** @jsxImportSource theme-ui */
-import { BoxProps } from 'theme-ui'
+import { Flex, BoxProps, Box} from 'theme-ui'
 import React, { forwardRef, useState } from 'react'
 import {
   CollectionCardItemBase,
@@ -7,9 +7,12 @@ import {
   CollectionCardItemDetails,
 } from './Styled'
 import Avatar from '../../@UI/Avatar'
-import { Text, Flex, Box } from 'theme-ui'
+import Text from '../../@UI/Text'
 import { Icon } from '../../..'
 import OpenseaPanel from '../OpenseaPanel'
+import Label from '../../@UI/Label'
+import { imageOptimizer } from '../../../utils/imageOptimizer'
+import { useTheme } from '../../../themes/UpshotUI'
 
 export interface CollectionCardItemProps extends BoxProps {
   /**
@@ -19,7 +22,11 @@ export interface CollectionCardItemProps extends BoxProps {
   /**
    * Image source
    */
-  imageSrc: string
+  imageSrc?: string
+  /**
+   * Collection name
+   */
+  collection: string
   /**
    * Asset name
    */
@@ -29,7 +36,27 @@ export interface CollectionCardItemProps extends BoxProps {
    */
   description: string
   /**
-   * Expanded description
+   * Appraisal Price in ETH
+   */
+  appraisalPriceETH?: number | null
+  /**
+   * Appraisal confidence (0-100)
+   */
+  appraisalConfidence?: number | null
+  /**
+   * Appraisal Price in USD
+   */
+  appraisalPriceUSD?: number | null
+  /**
+   * Floor Price in USD
+   */
+  floorPriceETH?: number | null
+  /**
+   * Floor Price in USD
+   */
+  floorPriceUSD?: number | null
+  /**
+   * Is card expanded by default
    */
   expanded?: boolean
   /**
@@ -40,10 +67,6 @@ export interface CollectionCardItemProps extends BoxProps {
   listPriceEth: number
 
   listPriceUSD: number
-
-  appraisalPriceETH: number
-
-  appraisalPriceUSD: number
 }
 
 /**
@@ -52,129 +75,143 @@ export interface CollectionCardItemProps extends BoxProps {
 const CollectionCardItem = forwardRef(
   (
     {
-      expanded = false,
-      isPixelated = false,
       avatarImage,
-      name,
       imageSrc,
+      collection,
+      name,
       description,
       listPriceEth,
       listPriceUSD,
-      appraisalPriceETH,
-      appraisalPriceUSD,
+      appraisalPriceETH = null,
+      appraisalConfidence = null,
+      appraisalPriceUSD = null,
+      floorPriceETH = null,
+      floorPriceUSD = null,
+      expanded = false,
+      isPixelated = false,
       ...props
     }: CollectionCardItemProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const [showPopup, setShowPopup] = useState(false)
+    const { theme } = useTheme()
+    const optimizedSrc = imageOptimizer(imageSrc, {width: 512}) ?? imageSrc
+    const finalImage = isPixelated ? imageSrc : optimizedSrc
+    const hoverUnderglow = appraisalPriceETH ? 'blue' : 'grey-600'
 
     return (
-      <CollectionCardItemBase $expanded={expanded} {...{ ref, ...props }}>
-        <CollectionCardItemImage $isPixelated={isPixelated} $src={imageSrc} />
-
-        <CollectionCardItemDetails>
-          <Flex sx={{ padding: 3, gap: 1, flexDirection: 'column' }}>
-            <Flex sx={{ justifyContent: 'flex-end', gap: 2 }}>
+      <CollectionCardItemBase $expanded={expanded} $hoverUnderglow={hoverUnderglow} {...{ ref, ...props }}>
+        <CollectionCardItemImage $isPixelated={isPixelated} $src={finalImage} />
+        <CollectionCardItemDetails sx={{ padding: 3, gap: 3, width: '100%' }}>
+          <Flex sx={{ flexDirection: 'column', minWidth: 'calc(100% - 120px)' }}>
+            <Flex sx={{ gap: 2 }}>
+              <Avatar
+                color="black"
+                src={imageOptimizer(avatarImage, {
+                  width: parseInt(theme.images.avatar.sm.size),
+                  height: parseInt(theme.images.avatar.sm.size)
+                }) ?? avatarImage}
+                size="xs"
+                sx={{ border: '2px solid black' }}
+              />
               <Flex
                 sx={{
-                  alignItems: 'center',
                   justifyContent: 'center',
-                  overflow: 'visible',
+                  flexDirection: 'column',
+                  flexGrow: 1,
                 }}
                 onMouseOver={() => setShowPopup(true)}
                 onMouseLeave={() => setShowPopup(false)}
               >
-                <Box sx={{ position: 'relative' }}>
-                  {showPopup && (
-                    <Box
-                      sx={{
-                        position: 'absolute',
-                        top: '-210px',
-                        right: 0,
-                        zIndex: 2,
-                      }}
-                    >
-                      <OpenseaPanel
-                        variant="popup"
-                        listPriceETH={listPriceEth}
-                        sx={{ width: '100%' }}
-                        listPriceUSD={listPriceUSD}
-                        appraisalPriceETH={appraisalPriceETH}
-                        openseaUrl="https://upshot.io/"
-                      />
-                    </Box>
-                  )}
-                  <Flex sx={{ gap: 1 }}>
-                    <Text sx={{ color: 'grey-500', fontSize: 2 }}>
-                      {' '}
-                      Appraisal Price{' '}
-                    </Text>
-                    {listPriceEth <= appraisalPriceETH && (
-                      <Icon
-                        color="green"
-                        sx={{ width: '14px', height: '14px' }}
-                        icon="upshot"
-                      />
-                    )}
-                  </Flex>
-                </Box>
-              </Flex>
-            </Flex>
-            <Flex
-              sx={{ gap: 2, width: '100%', justifyContent: 'space-between' }}
-            >
-              <Flex sx={{ flexDirection: 'column', gap: 2, width: '80%' }}>
-                <Flex sx={{ gap: 2, alignItems: 'center' }}>
-                  <Avatar
-                    color="black"
-                    src={avatarImage}
-                    size="sm"
-                    sx={{ border: '2px solid black' }}
-                  />
-                  <Text
-                    sx={{
-                      fontSize: 2,
-                      color: 'grey-500',
-                      textOverflow: 'ellipsis',
-                      overflow: 'hidden',
-                      whiteSpace: 'nowrap',
-                      lineHeight: 1.25,
-                    }}
-                  >
-                    {name}
-                  </Text>
-                </Flex>
                 <Text
+                  variant="xSmall"
+                  color="grey-500"
                   sx={{
-                    color: 'grey-300',
                     textOverflow: 'ellipsis',
                     overflow: 'hidden',
-                    display: '-webkit-box',
-                    WebkitBoxOrient: 'vertical',
-                    WebkitLineClamp: 2,
-                    fontSize: 2,
                   }}
                 >
-                  {description}
-                </Text>
-              </Flex>
-              <Flex sx={{ gap: 2, flexDirection: 'column' }}>
-                <Text
-                  sx={{
-                    color: 'grey-500',
-                    fontSize: 3,
-                    lineHeight: '24px',
-                    textAlign: 'right',
-                  }}
-                >
-                  Ξ{appraisalPriceETH}
-                </Text>
-                <Text sx={{ color: 'grey-500', fontSize: 2 }}>
-                  ${appraisalPriceUSD}
+                  {collection}
                 </Text>
               </Flex>
             </Flex>
+
+            <Text
+            variant="large"
+              color="grey-300"
+              sx={{
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                display: '-webkit-box',
+                WebkitBoxOrient: 'vertical',
+                WebkitLineClamp: 2,
+              }}
+            >
+              {name}
+            </Text>
           </Flex>
+          {showPopup && (
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '-210px',
+                right: 0,
+                zIndex: 2,
+              }}
+            >
+              <OpenseaPanel
+                variant="popup"
+                listPriceETH={listPriceEth}
+                sx={{ width: '100%' }}
+                listPriceUSD={listPriceUSD}
+                appraisalPriceETH={appraisalPriceETH}
+                openseaUrl="https://upshot.io/"
+              />
+            </Box>
+          )}
+          { appraisalPriceETH != null && (// appraisal price
+            <Flex sx={{ flexDirection: 'column', minWidth: 'fit-content' }}>
+              <Text color='grey-500' variant="xSmall">
+                Appraisal price
+              </Text>
+              <Label
+                color="primary"
+                currencySymbol=""
+                size="sm"
+                topRightLabel={appraisalConfidence ? appraisalConfidence.toString() + '%' : ''}
+                variant="currency"
+                style={{ lineHeight: 1 }}
+              >
+                {'Ξ' + appraisalPriceETH.toLocaleString()}
+              </Label>
+              { appraisalPriceUSD != null && (
+                <Text color='grey-300' variant="small" sx={{ opacity: 0.5 }}>
+                  ${appraisalPriceUSD.toLocaleString()}
+                </Text>
+              )}
+            </Flex>
+            )}
+            { floorPriceETH  != null && ( // floor price
+              <Flex sx={{ flexDirection: 'column', minWidth: 'fit-content' }}>
+                <Text color='grey-500' variant="xSmall">
+                  Floor price
+                </Text>
+                <Label
+                  color="grey-500"
+                  currencySymbol=""
+                  size="sm"
+                  variant="currency"
+                  style={{ lineHeight: 1 }}
+                >
+                  {'Ξ' + floorPriceETH.toLocaleString()}
+                </Label>
+                { floorPriceUSD != null && (
+                  <Text color='grey-300' variant="small" sx={{ opacity: 0.5 }}>
+                    ${floorPriceUSD.toLocaleString()}
+                  </Text>
+                )}
+              </Flex>
+              )}
         </CollectionCardItemDetails>
       </CollectionCardItemBase>
     )

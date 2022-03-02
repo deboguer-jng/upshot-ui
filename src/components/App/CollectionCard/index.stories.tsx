@@ -20,6 +20,7 @@ Default.args = {
   name: 'Bored Ape Yacht Club',
   total: 25,
   hasSeeAll: true,
+  avatarImage: '/img/defaultAvatar.png',
   seeAllImageSrc: '/img/sample_nft_3.jpg',
   children: [...new Array(3)].map((_, idx) => (
     <Box
@@ -46,6 +47,7 @@ SmallCollection.args = {
   name: 'Bored Ape Yacht Club',
   total: 2,
   hasSeeAll: false,
+  appraisalPrice: '320',
   children: [...new Array(2)].map((_, idx) => (
     <Image
       src={`/img/sample_nft_${(idx % 3) + 1}.jpg`}
@@ -53,4 +55,25 @@ SmallCollection.args = {
       sx={{ borderRadius: 'sm', width: '100%', height: '100%' }}
     />
   )),
+}
+
+export const UnsupportedCollection = Template.bind({})
+UnsupportedCollection.args = {
+  name: 'Unsupported',
+  total: 1,
+  hasSeeAll: false,
+  isUnsupported: true,
+  floorPrice: '320',
+  children: [
+    <Image
+      src={`/img/sample_nft_1.jpg`}
+      sx={{
+        borderRadius: 'sm',
+        width: '100%',
+        height: '150px',
+        objectFit: 'cover',
+        objectPosition: 'center',
+      }}
+    />,
+  ],
 }

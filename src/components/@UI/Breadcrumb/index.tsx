@@ -5,7 +5,7 @@ import { BreadcrumbWrapper } from './Styled'
 
 export interface BreadcrumbProps {
   text: string
-};
+}
 
 const Breadcrumb = forwardRef(
   (
@@ -13,7 +13,7 @@ const Breadcrumb = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
-      <BreadcrumbWrapper {...{ref, ...props}}>
+      <BreadcrumbWrapper {...{ ref, ...props }}>
         <Icon icon="arrowStylizedLeft" />
         <Text> {text} </Text>
       </BreadcrumbWrapper>

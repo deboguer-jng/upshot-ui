@@ -11,9 +11,11 @@ export default {
 
 const Template: ComponentStory<typeof Navbar> = (args: any) => {
   const [value, setValue] = useState('')
-  const [open, setOpen] = useState(false)
+  const [connectOpen, setConnectOpen] = useState(false)
+  const [blackOpen, setBlackOpen] = useState(false)
+  const [showSidebar, setShowSidebar] = useState(false)
   const modalRef = useRef(null)
-  const toggleModal = () => setOpen(!open)
+  const toggleConnectModal = () => setConnectOpen(!connectOpen)
 
   const handleConnect = (provider: string) => {
     console.info(`Connect to: ${provider}`)
@@ -23,7 +25,7 @@ const Template: ComponentStory<typeof Navbar> = (args: any) => {
   return (
     <>
       <Navbar
-        onConnectClick={toggleModal}
+        onConnectClick={toggleConnectModal}
         searchValue={value}
         onSearchValueChange={(e) =>
           setValue((e.target as HTMLInputElement).value)
@@ -34,9 +36,11 @@ const Template: ComponentStory<typeof Navbar> = (args: any) => {
         onSearch={(e) => {
           console.log({ value })
         }}
+        onMenuClick={() => setShowSidebar(!showSidebar)}
+        showSidebar={showSidebar}
         {...args}
       />
-      <Modal ref={modalRef} onClose={toggleModal} {...{ open }}>
+      <Modal ref={modalRef} onClose={toggleConnectModal} {...{ open: connectOpen }}>
         <ConnectModal onConnect={handleConnect} {...args} />
       </Modal>
     </>
@@ -77,13 +81,13 @@ const searchSuggestions = [
 export const Default = Template.bind({})
 Default.args = {
   ensName: 'emmons.eth',
-  address: '0x1A2b...3c4D',
+  address: '0x123400000000000000000000000000000000abcd',
   searchSuggestions,
 }
 
 export const ENSUnavailable = Template.bind({})
 ENSUnavailable.args = {
-  address: '0x1A2b...3c4D',
+  address: '0x123400000000000000000000000000000000abcd',
   searchSuggestions,
 }
 
