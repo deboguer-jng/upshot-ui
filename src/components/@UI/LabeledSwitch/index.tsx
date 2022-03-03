@@ -17,13 +17,13 @@ export interface LabeledSwitchProps extends BoxProps {
    */
   on?: boolean
   /**
-   * Callback for the toggle event.
+   * Callback for the toggle click event.
    */
   onToggle?: () => void
 }
 
 /**
- * Provides a surface for UI elements.
+ * Provides a labeled switch component.
  */
 const LabeledSwitch = forwardRef(
   (
