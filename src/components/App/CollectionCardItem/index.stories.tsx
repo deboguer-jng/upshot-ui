@@ -21,6 +21,8 @@ Default.args = {
   collection: 'Bored Ape Yacht Club',
   name:
     'The Bored Ape Yacht Club is a collection of 10,000 unique Bored Ape NFTs— unique digital collectibles living on the Ethereum blockchain.',
+  appraisalPriceETH: 4,
+  appraisalPriceUSD: 2000,
 }
 
 export const Expanded = Template.bind({})
@@ -31,6 +33,8 @@ Expanded.args = {
   collection: 'Bored Ape Yacht Club',
   name:
     'The Bored Ape Yacht Club is a collection of 10,000 unique Bored Ape NFTs— unique digital collectibles living on the Ethereum blockchain.',
+  appraisalPriceETH: 4,
+  appraisalPriceUSD: 2000,
 }
 
 export const AppraisalSupported = Template.bind({})
@@ -56,4 +60,17 @@ AppraisalUnsupported.args = {
     'The Bored',
     floorPriceETH: 69.420,
     floorPriceUSD: 420420.69,
+}
+
+export const ListPriceSupported = Template.bind({})
+ListPriceSupported.args = {
+  avatarImage: '/img/defaultAvatar.png',
+  imageSrc: '/img/sample_nft_1.jpg',
+  collection: 'Bored Ape Yacht Club',
+  name:
+    'The Bored Ape Yacht Club is a collection of 10,000 unique Bored Ape NFTs— unique digital collectibles living on the Ethereum blockchain.',
+  listPriceEth: 3,
+  listPriceUSD: 300,
+  appraisalPriceETH: 4,
+  appraisalPriceUSD: 2000,
 }

@@ -1,12 +1,12 @@
 import styled from '@emotion/styled'
 import { darken } from 'polished'
 import Buttons from '../../../themes/UpshotUI/buttons'
+import { Button } from 'theme-ui'
 
 interface PrimaryButtonProps {
   $type: keyof typeof Buttons.variants
   $size: keyof typeof Buttons.property
   toggled: boolean
-  width: number
   minimized: boolean
   capitalize?: boolean
 }
@@ -16,7 +16,7 @@ interface PlainButtonProps {
   capitalize?: boolean
 }
 
-export const PrimaryButton = styled.button<PrimaryButtonProps>`
+export const PrimaryButton = styled(Button)<PrimaryButtonProps>`
   background: ${({ theme, $type, toggled }) =>
     typeof toggled === 'undefined'
       ? theme.buttons.variants[$type].colors.background
@@ -34,7 +34,6 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   font-size: ${({ theme, $size }) => theme.buttons.property[$size].fontSize}px;
   height: ${({ theme, $size }) => theme.buttons.property[$size].height}px;
   border-radius: ${({ theme }) => theme.radii.pill};
-  width: ${({ width }) => width}px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -176,7 +175,7 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
 `
 
 // fixme: 'plain' should be a theme variant
-export const PlainButton = styled.button<PlainButtonProps>`
+export const PlainButton = styled(Button)<PlainButtonProps>`
   font-size: ${({ theme, $size }) => theme.buttons.property[$size].fontSize}px;
   border: none;
   background: transparent;
