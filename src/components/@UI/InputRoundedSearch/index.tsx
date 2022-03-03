@@ -15,7 +15,7 @@ import { useTheme } from '../../../themes/UpshotUI'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 
 export interface InputSuggestion {
-  id: number
+  id: number | string
   name: string
 }
 
