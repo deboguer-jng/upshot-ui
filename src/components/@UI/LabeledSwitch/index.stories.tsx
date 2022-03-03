@@ -12,8 +12,6 @@ export default {
 const Template: ComponentStory<typeof LabeledSwitch> = (args) => {
   const [on, setOn] = useState(false)
 
-  console.log({ args })
-
   return (
     <Box sx={{ width: 240 }}>
       <LabeledSwitch onToggle={() => setOn(!on)} {...{ on, ...args }} />
