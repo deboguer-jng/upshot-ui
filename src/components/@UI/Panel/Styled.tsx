@@ -7,12 +7,14 @@ interface PanelBaseProps {
   $inner: boolean
   $shadow: string
   $isMobile: boolean
+  $backgroundColor: keyof typeof colors
 }
 
 export const PanelBase = styled(Box)<PanelBaseProps>`
   padding: ${({ $isMobile }) => $isMobile ? '24px' : '30px'};
-  background-color: ${({ theme, $inner }) =>
-    theme.colors[$inner ? 'black' : 'grey-800']};
+  background-color: ${({ theme, $inner, $backgroundColor }) =>
+    $backgroundColor ? $backgroundColor : theme.colors[$inner ? 'black' : 'grey-800']
+  };
   border-radius: ${({ theme, $inner }) => theme.radii[$inner ? 'md' : 'lg']};
   &:hover {
     ${({ theme, $shadow }) => $shadow.length > 0 && `box-shadow: ${$shadow};`}

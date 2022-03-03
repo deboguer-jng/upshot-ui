@@ -1,4 +1,4 @@
-import { Flex, BoxProps, Box} from 'theme-ui'
+import { Flex, BoxProps, Box } from 'theme-ui'
 import React, { forwardRef, useState } from 'react'
 import {
   CollectionCardItemBase,
@@ -12,8 +12,9 @@ import OpenseaPanel from '../OpenseaPanel'
 import Label from '../../@UI/Label'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
 import { useTheme } from '../../../themes/UpshotUI'
+import { PanelProps } from '../../@UI/Panel'
 
-export interface CollectionCardItemProps extends BoxProps {
+export interface CollectionCardItemProps extends PanelProps {
   /**
    * NFT Avatar
    */

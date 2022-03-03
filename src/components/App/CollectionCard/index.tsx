@@ -1,4 +1,3 @@
-import { BoxProps } from 'theme-ui'
 import React, { forwardRef } from 'react'
 
 import Avatar from '../../@UI/Avatar'
@@ -10,7 +9,8 @@ import Flex from '../../Layout/Flex'
 import Grid from '../../Layout/Grid'
 import { SeeAllButton, CardContainer, CollectionCardBase } from './Styled'
 import { useTheme } from '../../../themes/UpshotUI'
-export interface CollectionCardProps extends BoxProps {
+import { PanelProps } from '../../@UI/Panel'
+export interface CollectionCardProps extends PanelProps {
   /**
    * Collection name
    */
