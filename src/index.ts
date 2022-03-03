@@ -20,6 +20,7 @@ export { default as InputRounded } from './components/@UI/InputRounded'
 export { default as InputRoundedSearch } from './components/@UI/InputRoundedSearch'
 export { default as Label } from './components/@UI/Label'
 export { default as LabelAttribute } from './components/@UI/LabelAttribute'
+export { default as LabeledSwitch } from './components/@UI/LabeledSwitch'
 export { default as MiniNftCard } from './components/@UI/MiniNftCard'
 export { default as Modal } from './components/@UI/Modal'
 export { default as Pagination } from './components/@UI/Pagination'
@@ -107,4 +108,4 @@ export { useBreakpointIndex } from './hooks/useBreakpointIndex'
  *
  * Util functions
  */
- export { imageOptimizer } from './utils/imageOptimizer'
+export { imageOptimizer } from './utils/imageOptimizer'
