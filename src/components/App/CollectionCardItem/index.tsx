@@ -32,10 +32,6 @@ export interface CollectionCardItemProps extends PanelProps {
    */
   name: string
   /**
-   * Description metadata
-   */
-  description: string
-  /**
    * Appraisal Price in ETH
    */
   appraisalPriceETH?: number | null
@@ -64,9 +60,9 @@ export interface CollectionCardItemProps extends PanelProps {
    */
   isPixelated?: boolean
 
-  listPriceEth: number
+  listPriceEth?: number
 
-  listPriceUSD: number
+  listPriceUSD?: number
 }
 
 /**
@@ -79,7 +75,6 @@ const CollectionCardItem = forwardRef(
       imageSrc,
       collection,
       name,
-      description,
       listPriceEth = null,
       listPriceUSD = null,
       appraisalPriceETH = null,
