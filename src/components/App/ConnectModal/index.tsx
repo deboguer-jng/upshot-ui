@@ -34,9 +34,7 @@ const ConnectModal = forwardRef(
   ) => (
     <ConnectModalBase {...{ ref, ...props }}>
       <Text variant="h1Primary">Connect</Text>
-      <Text>
-        Link your Ethereum wallet to start answering and earning on Upshot.
-      </Text>
+      <Text>Link your Ethereum wallet to view your NFTs on Upshot</Text>
 
       <ConnectProviders>
         {!hideMetaMask && (
