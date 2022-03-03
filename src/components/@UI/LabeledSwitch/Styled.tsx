@@ -19,6 +19,7 @@ export const LabeledSwitchButton = styled.div<LabeledSwitchButtonProps>`
   height: 36px;
   align-items: center;
   justify-content: center;
+  user-select: none;
   padding: 0 ${({ theme }) => theme.space[5] + 'px'};
   background: ${({ theme, $on }) => theme.colors[$on ? 'blue' : 'black']};
   color: ${({ theme, $on }) => theme.colors[$on ? 'black' : 'blue']};
