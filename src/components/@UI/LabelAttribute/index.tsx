@@ -82,30 +82,40 @@ const LabelAttribute = forwardRef(
         $transparent={transparent}
         hasHover={hasHover}
         expanded={expanded}
-        {...{ ref, props }}
+        {...{ ref, ...props }}
       >
         {showTooltip && (
           <LabelAttributeTooltip>
             {expanded && expandedText && (
               <div>
-              <Text variant="small" color="grey-500">
-                {expandedText}
-              </Text>
+                <Text variant="small" color="grey-500">
+                  {expandedText}
+                </Text>
               </div>
             )}
             <div>
-            <Text variant="small" color="grey-500" sx={{ fontWeight: 'bold' }}>
-              {children}{' '}
-            </Text>
+              <Text
+                variant="small"
+                color="grey-500"
+                sx={{ fontWeight: 'bold' }}
+              >
+                {children}{' '}
+              </Text>
             </div>
           </LabelAttributeTooltip>
         )}
         {expanded && expandedText ? (
           <LabelAttributeExpandedTextContainer>
-            <ExpandedLabelAttributeTitleText ref={labelRef} showTooltip={showTooltip}>
+            <ExpandedLabelAttributeTitleText
+              ref={labelRef}
+              showTooltip={showTooltip}
+            >
               {expandedText}
             </ExpandedLabelAttributeTitleText>
-            <ExpandedLabelAttributeText ref={labelRef} showTooltip={showTooltip}>
+            <ExpandedLabelAttributeText
+              ref={labelRef}
+              showTooltip={showTooltip}
+            >
               {children}
             </ExpandedLabelAttributeText>
           </LabelAttributeExpandedTextContainer>
@@ -116,9 +126,7 @@ const LabelAttribute = forwardRef(
         )}
         {variant === 'percentage' && (
           <RightAlignBlock>
-            {!expanded && (
-              <Division>|</Division>
-            )}
+            {!expanded && <Division>|</Division>}
             <Text variant="body">{percentage}%</Text>
           </RightAlignBlock>
         )}
