@@ -118,9 +118,15 @@ const ChartLabel = forwardRef(
         .slice()
         .reverse()
         .find((item) => num >= item.value)
-      return item
-        ? (num / item.value).toFixed(2) + item.symbol
-        : Number(0).toFixed(digits)
+      if (item) {
+        return (num / item.value).toFixed(2) + item.symbol
+      } else {
+        if (num >= 0.01) {
+          return Number(num.toFixed(digits))
+        } else {
+          return '<0.01'
+        }
+      } 
     }
 
     return (
