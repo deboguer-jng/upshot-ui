@@ -147,9 +147,14 @@ const CollectionCard = forwardRef(
                 <Text color="grey-600" sx={{ fontSize: 2 }}>
                   {total} NFTs
                 </Text>
-                {!!floorPrice && (
+                {!!floorPrice && isUnsupported && (
                   <Text color="pink" sx={{ fontSize: 2 }}>
                     Ξ{floorPrice} Floor Price
+                  </Text>
+                )}
+                {!!floorPrice && !isUnsupported && (
+                  <Text color="pink" sx={{ fontSize: 2 }}>
+                    Ξ{floorPrice} Floor Sum
                   </Text>
                 )}
                 {!!appraisalPrice && (
