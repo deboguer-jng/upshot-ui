@@ -48,6 +48,7 @@ export const imageOptimizer = (
   const cloudinaryUrlSchemeStart = '//res.cloudinary.com/upshot-inc/image/upload/'
   if (optimizations.length > 0) {
     optimizations.push('c_' + opts.cropMode)
+    optimizations.push('f_auto', 'q_auto', 'dpr_2')
     const optimiationString = optimizations.join(',')
 
     // If src is already a Cloudinary URL
