@@ -55,7 +55,7 @@ const TreeMap = forwardRef(
                   {
                     data: data.map((item: any) => ({
                       x: item.name,
-                      y: item.marketCap,
+                      y: Math.log(item.marketCap) ** 3,
                     })),
                   },
                 ]}
