@@ -19,6 +19,10 @@ export interface BuyButtonProps extends ButtonProps {
   /**
    * Button URL
    */
+  marketplaceName?: string
+  /**
+   * Button URL
+   */
   url?: string
   /**
    * Button width
@@ -27,7 +31,7 @@ export interface BuyButtonProps extends ButtonProps {
 }
 
 const BuyButton = forwardRef(
-  ({ url, width = null, ...props }: BuyButtonProps) => (
+  ({ url, width = null, marketplaceName, ...props }: BuyButtonProps) => (
     <Link href={url} target="_blank">
       <StyledButton
         variant="secondary"
@@ -36,13 +40,13 @@ const BuyButton = forwardRef(
         $width={width}
       >
         <StyledIcon icon="openSeaBlock" color="white" size={16} />
-        <StyledText color="white">Buy on Opensea</StyledText>
+        <StyledText color="white">Buy on {marketplaceName}</StyledText>
       </StyledButton>
     </Link>
   )
 )
 
-export interface OpenseaPanelProps extends PanelProps {
+export interface BuyNowPanelProps extends PanelProps {
   /**
    * Variant: wide or popup. Default: wide. The popup variant has 20% transparency and blurry backdrop.
    */
@@ -58,51 +62,55 @@ export interface OpenseaPanelProps extends PanelProps {
   /**
    * Appraisal price in ETH
    */
-  appraisalPriceETH: number
+  listAppraisalPercentage?: number
   /**
-   * Opensea URL
+   * Marketplace name
    */
-  openseaUrl: string
+  marketplaceName: string
+  /**
+   * Marketplace URL
+   */
+  marketplaceUrl: string
 }
 
 /**
  * Provides wide and popup Opensea panels.
  */
-const OpenseaPanel = forwardRef(
+const BuyNowPanel = forwardRef(
   (
     {
       variant = 'wide',
       listPriceETH,
       listPriceUSD,
-      appraisalPriceETH,
-      openseaUrl,
+      listAppraisalPercentage,
+      marketplaceName,
+      marketplaceUrl,
       ...props
-    }: OpenseaPanelProps,
+    }: BuyNowPanelProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const isMobile = useBreakpointIndex() <= 1
 
     let isUnderPriced
-    if (listPriceETH <= appraisalPriceETH) {
+    if (listAppraisalPercentage && listAppraisalPercentage > 0) {
       isUnderPriced = true
     } else {
       isUnderPriced = false
     }
 
-    const textColor = 'green' as keyof typeof colors
-    const title = 'Underpriced'
-    const belowOrAbove = 'below'
+    const textColor = isUnderPriced ? 'green' as keyof typeof colors : 'red' as keyof typeof colors
+    const title = isUnderPriced ? 'Underpriced' : 'Overpriced'
+    const belowOrAbove = isUnderPriced ? 'below' : 'above'
     let buttonPosition
     if (variant === 'wide' && isMobile === false) {
       buttonPosition = 'right'
     } else {
       buttonPosition = 'bottom'
     }
-    const percentage = (listPriceETH / appraisalPriceETH) * 100
 
     return (
       <StyledPanel $variant={variant} {...props}>
-        {buttonPosition === 'right' && <BuyButton url={openseaUrl} />}
+        {buttonPosition === 'right' && <BuyButton url={marketplaceUrl} marketplaceName={marketplaceName} />}
 
         <Flex
           sx={{
@@ -111,23 +119,21 @@ const OpenseaPanel = forwardRef(
             gap: 4,
           }}
         >
-          {isUnderPriced && (
-            <Box>
-              <StyledIcon icon="upshot" color={textColor} size={16} />
-              <StyledText color={textColor} variant="large">
-                {title}
-              </StyledText>
-            </Box>
-          )}
+          <Box>
+            <StyledIcon icon="upshot" color={textColor} size={16} />
+            <StyledText color={textColor} variant="large">
+              {title}
+            </StyledText>
+          </Box>
 
           <StyledBox>
             <Text color="grey-500">
-              {variant === 'wide' && 'Listed'}
+              {variant === 'wide' && 'This NFT is listed'}
               {variant === 'popup' && 'This NFT is listed'}
             </Text>
             &nbsp; {variant === 'popup' && <br />}
             <Text color={textColor}>
-              {percentage}% {belowOrAbove} appraisal price
+              {Math.abs(listAppraisalPercentage).toFixed(2)}% {belowOrAbove} appraisal price
             </Text>
             &nbsp; {variant === 'popup' && <br />}
             <Text color="grey-500">at</Text>
@@ -137,7 +143,7 @@ const OpenseaPanel = forwardRef(
             </Text>
           </StyledBox>
           {buttonPosition === 'bottom' && (
-            <BuyButton url={openseaUrl} width="100%" />
+            <BuyButton url={marketplaceUrl} marketplaceName={marketplaceName} width="100%" />
           )}
         </Flex>
       </StyledPanel>
@@ -145,4 +151,4 @@ const OpenseaPanel = forwardRef(
   }
 )
 
-export default OpenseaPanel
+export default BuyNowPanel

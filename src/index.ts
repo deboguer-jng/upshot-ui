@@ -58,7 +58,7 @@ export { default as Footer, FooterProps } from './components/App/Footer'
 export { default as Investors } from './components/App/Investors'
 export { default as LandingPanel } from './components/App/LandingPanels'
 export { default as Navbar } from './components/App/Navbar'
-export { default as OpenseaPanel } from './components/App/OpenseaPanel'
+export { default as BuyNowPanel } from './components/App/BuyNowPanel'
 
 /**
  * Components: Layout
