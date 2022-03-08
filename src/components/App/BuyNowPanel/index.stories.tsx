@@ -2,14 +2,14 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import Text from '../../@UI/Text'
-import OpenseaPanel from './'
+import BuyNowPanel from '.'
 
 export default {
-  title: 'App/OpenseaPanel',
-  component: OpenseaPanel,
-} as ComponentMeta<typeof OpenseaPanel>
+  title: 'App/BuyNowPanel',
+  component: BuyNowPanel,
+} as ComponentMeta<typeof BuyNowPanel>
 
-const Template: ComponentStory<typeof OpenseaPanel> = (args) => (
+const Template: ComponentStory<typeof BuyNowPanel> = (args) => (
   <>
     <Text sx={{ padding: '10px', position: 'absolute', zIndex: -1 }}>
       If you see this, you probably use Firefox. <br />
@@ -18,7 +18,7 @@ const Template: ComponentStory<typeof OpenseaPanel> = (args) => (
       This is a background. This is a background. <br />
       This is a background. This is a background.
       </Text>
-    <OpenseaPanel {...args} />
+    <BuyNowPanel {...args} />
   </>
 )
 
@@ -27,7 +27,9 @@ Wide.args = {
   listPriceETH: 1,
   listPriceUSD: 4000,
   appraisalPriceETH: 2,
-  openseaUrl: 'https://upshot.io/',
+  listAppraisalPercentage: 5.5,
+  marketplaceName: 'OpenSea',
+  marketplaceUrl: 'https://opensea.io/',
 }
 
 
@@ -37,7 +39,9 @@ Popup.args = {
   listPriceETH: 1,
   listPriceUSD: 4000,
   appraisalPriceETH: 2,
-  openseaUrl: 'https://upshot.io/',
+  listAppraisalPercentage: -2,
+  marketplaceName: 'OpenSea',
+  marketplaceUrl: 'https://opensea.io/',
   sx: {width: '350px'},
 }
 
@@ -49,6 +53,8 @@ PopupRed.args = {
   listPriceETH: 4,
   listPriceUSD: 16000,
   appraisalPriceETH: 2,
-  openseaUrl: 'https://upshot.io/',
+  listAppraisalPercentage: 20.1,
+  marketplaceName: 'OpenSea',
+  marketplaceUrl: 'https://opensea.io/',
   sx: {width: '350px'},
 }

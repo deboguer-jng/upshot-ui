@@ -8,7 +8,7 @@ import {
 import Avatar from '../../@UI/Avatar'
 import Text from '../../@UI/Text'
 import { Icon } from '../../..'
-import OpenseaPanel from '../OpenseaPanel'
+import BuyNowPanel from '../BuyNowPanel'
 import Label from '../../@UI/Label'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
 import { useTheme } from '../../../themes/UpshotUI'
@@ -166,13 +166,14 @@ const CollectionCardItem = forwardRef(
                 zIndex: 2,
               }}
             >
-              <OpenseaPanel
+              <BuyNowPanel
                 variant="popup"
                 listPriceETH={listPriceEth}
                 sx={{ width: '100%' }}
                 listPriceUSD={listPriceUSD}
-                appraisalPriceETH={appraisalPriceETH}
-                openseaUrl="https://upshot.io/"
+                listAppraisalPercentage={listPriceEth / appraisalPriceETH}
+                marketplaceName="OpenSea"
+                marketplaceUrl="https://opensea.io/"
               />
             </Box>
           )}
