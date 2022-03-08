@@ -122,7 +122,7 @@ const ChartLabel = forwardRef(
         return (num / item.value).toFixed(2) + item.symbol
       } else {
         if (num >= 0.01) {
-          return Number(num.toFixed(digits))
+          return Number(num.toFixed(digits)).toString()
         } else {
           return '<0.01'
         }
