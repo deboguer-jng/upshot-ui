@@ -92,7 +92,7 @@ const BuyNowPanel = forwardRef(
     const isMobile = useBreakpointIndex() <= 1
 
     let isUnderPriced
-    if (listAppraisalPercentage && listAppraisalPercentage < 0) {
+    if (listAppraisalPercentage && listAppraisalPercentage > 0) {
       isUnderPriced = true
     } else {
       isUnderPriced = false
