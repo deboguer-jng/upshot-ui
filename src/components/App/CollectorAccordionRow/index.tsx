@@ -63,7 +63,11 @@ export interface CollectorAccordionRowProps
   /**
    * Age of entire collection
    */
-   ageOfCollection?: number
+  ageOfCollection?: number
+  /**
+   * Renders slightly differently for landing page
+   */
+  isLandingPage?: boolean
   /**
    * Total NFT value
    */
@@ -119,6 +123,7 @@ const CollectorRow = forwardRef(
       children,
       extraCollectionChanged,
       defaultOpen = false,
+      isLandingPage = false,
       onClick,
       ...props
     }: CollectorAccordionRowProps,
@@ -252,8 +257,8 @@ const CollectorRow = forwardRef(
           </Flex>
 
           <Flex sx={{ alignItems: 'center' }}>
-            {portfolioValue ? (
-              <Label size="sm" variant="currency">
+            {portfolioValue && isLandingPage ? (
+              <Label size="xs" variant="currency">
                 {portfolioValue}
               </Label>
             ) : (
@@ -353,7 +358,6 @@ const CollectorRow = forwardRef(
                       </Flex>
                     </StyledPanel>
                   )}
-
                   
                   {!!totalNftValue && (
                     <StyledPanel>
@@ -384,7 +388,7 @@ const CollectorRow = forwardRef(
                 {!!extraCollections && !!extraCollections.length && (
                   <StyledPanel>
                     <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                      <Text sx={{ fontWeight: 'heading' }}>Also Collecting:</Text>
+                      <Text sx={{ fontWeight: 'heading' }}>{isLandingPage ? 'Collections in Portfolio:' : 'Also Collecting:'}</Text>
                       <Flex
                         sx={{
                           gap: 4,
@@ -466,7 +470,14 @@ const CollectorRow = forwardRef(
                 {!!nftCollection && !!nftCollection.length ? (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                     <Text sx={{ fontWeight: 'heading' }}>
-                      {displayName}'s {selectedCollectionName} Collection
+                      {
+                        selectedCollectionName &&
+                          `${displayName}'s ${selectedCollectionName} Collection`
+                      }
+                      {
+                        !selectedCollectionName &&
+                          `Notable NFTs in ${displayName}'s Collection`
+                      }
                     </Text>
                     <Grid
                       sx={{
