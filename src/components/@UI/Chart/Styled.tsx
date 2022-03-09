@@ -126,9 +126,11 @@ export const ReactChartWrapper = styled.div<{ $isEmpty?: boolean }>`
   }
 `
 
-export const ReactApexChartWrapper = styled.div`
-  width: 100%;
+export const ReactApexChartWrapper = styled.div<{ isMobile?: boolean }>`
+  width: ${({ isMobile }) => (isMobile ? '100vw' : '100%')};
   padding-top: 25%;
+  margin-left: ${({ isMobile }) => (isMobile ? '-16px' : 0)};
+  margin-right: ${({ isMobile }) => (isMobile ? '-16px' : 0)};
   position: relative;
 
   & > div {
