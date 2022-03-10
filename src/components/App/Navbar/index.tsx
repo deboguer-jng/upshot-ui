@@ -56,7 +56,6 @@ export interface NavbarInterface extends BoxProps {
   onLogoClick: (e: React.MouseEvent<HTMLElement>) => void
   onMenuClick: (e: React.MouseEvent<HTMLElement>) => void
   onConnectClick?: (e: React.MouseEvent<HTMLElement>) => void
-  onSearchBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
   onDisconnectClick?: () => void
 }
 
@@ -73,7 +72,6 @@ const Navbar = forwardRef(
       onSearchKeyUp,
       onSearchValueChange,
       onSearchSuggestionChange,
-      onSearchBlur,
       onSearch,
       onLogoClick,
       onConnectClick,
@@ -159,7 +157,6 @@ const Navbar = forwardRef(
                       value={searchValue}
                       defaultValue={searchDefaultValue}
                       onChange={onSearchValueChange}
-                      onBlur={onSearchBlur}
                       onKeyUp={onSearchKeyUp}
                       buttonProps={{
                         onClick: onSearch,
@@ -283,7 +280,6 @@ const Navbar = forwardRef(
                   value={searchValue}
                   defaultValue={searchDefaultValue}
                   onChange={onSearchValueChange}
-                  onBlur={onSearchBlur}
                   onKeyUp={onSearchKeyUp}
                   buttonProps={{
                     onClick: onSearch,

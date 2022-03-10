@@ -104,9 +104,9 @@ const InputRoundedSearch = forwardRef(
             placeholder="Search..."
             $hasButton={hasButton}
             onFocus={() => setOpen(true)}
+            onBlur={() => setOpen(false)}
             {...{ ref, ...props }}
           />
-
           <IconButton
             color="primary"
             sx={{
@@ -140,7 +140,7 @@ const InputRoundedSearch = forwardRef(
               {suggestions.map((suggestion) => (
                 <InputRoundedSearchSuggestionItem
                   key={suggestion.id}
-                  onClick={() => {
+                  onMouseDown={() => {
                     onSuggestionSelect(suggestion)
                     setOpen(false)
                   }}
