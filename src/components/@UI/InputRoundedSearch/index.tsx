@@ -140,7 +140,7 @@ const InputRoundedSearch = forwardRef(
               {suggestions.map((suggestion) => (
                 <InputRoundedSearchSuggestionItem
                   key={suggestion.id}
-                  onClick={() => {
+                  onMouseDown={() => {
                     onSuggestionSelect(suggestion)
                     setOpen(false)
                   }}
