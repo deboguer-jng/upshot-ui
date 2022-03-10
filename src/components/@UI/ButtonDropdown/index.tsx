@@ -20,6 +20,7 @@ export interface ButtonDropdownInterface
   name: string
   value: string | string[]
   onChange?: (val: string) => void
+  label?: string
   isMulti?: boolean
   disabled?: boolean
 }
@@ -32,6 +33,7 @@ const ButtonDropdown = forwardRef(
       name,
       value,
       disabled,
+      label,
       onChange,
       ...props
     }: ButtonDropdownInterface,
@@ -61,7 +63,7 @@ const ButtonDropdown = forwardRef(
             isMulti={isMulti}
             onClick={() => !disabled && setOpen(!open)}
           >
-            <span> {isMulti ? 'Filter By' : 'Category:'} </span>
+            <span> {label ? label + ':' : isMulti ? 'Filter By' : 'Category:'} </span>
             {isMulti ? (
               <DropdownMultiSelected disabled={disabled}>
                 <Icon icon="filter" />
