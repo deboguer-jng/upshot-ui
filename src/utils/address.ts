@@ -1,7 +1,5 @@
 import { ethers } from 'ethers'
 
-type EnsDetails = { name?: string; avatar?: string }
-
 /**
  * Shorten address
  *
