@@ -30,6 +30,13 @@ Single.args = {
   name: 'test1',
 }
 
+export const LabelSingle = Template.bind({})
+LabelSingle.args = {
+  options: ['option1', 'option2', 'option3', 'option4', 'option5', 'option6'],
+  name: 'test1',
+  label: 'Sort by',
+}
+
 export const Multi = Template.bind({})
 Multi.args = {
   options: ['option1', 'option2', 'option3', 'option4', 'option5', 'option6'],
