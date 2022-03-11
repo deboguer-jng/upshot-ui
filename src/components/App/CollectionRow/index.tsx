@@ -145,12 +145,14 @@ const CollectionRow = forwardRef(
             onClick={() => setOpen(!open)}
           >
             <CollectorRowContent>
-              <Avatar
-                {...{ src, onClick }}
-                size="md"
-                pixelated={pixelated}
-                sx={{ cursor: onClick ? 'pointer' : 'auto' }}
-              />
+              {!!imageSrc && (
+                <Avatar
+                  {...{ src, onClick }}
+                  size="md"
+                  pixelated={pixelated}
+                  sx={{ cursor: onClick ? 'pointer' : 'auto' }}
+                />
+              )}
 
               <Flex
                 sx={{
