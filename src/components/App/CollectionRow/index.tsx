@@ -144,7 +144,7 @@ const CollectionRow = forwardRef(
             {...{ ref, ...props }}
             onClick={() => setOpen(!open)}
           >
-            <CollectorRowContent>
+            <CollectorRowContent $hasImage={!!imageSrc}>
               {!!imageSrc && (
                 <Avatar
                   {...{ src, onClick }}
