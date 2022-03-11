@@ -25,6 +25,10 @@ export interface CollectionRowProps extends TableRowProps {
    */
   title: string
   /**
+   * The subtitle for the item.
+   */
+  subtitle?: string
+  /**
    * Background variant
    */
   variant?: Variant
@@ -32,8 +36,6 @@ export interface CollectionRowProps extends TableRowProps {
    * OnClick handler.
    */
   onClick?: () => void
-
-  volume?: string
 
   pixelated?: boolean
 
@@ -50,7 +52,7 @@ const CollectionRow = forwardRef(
       title,
       children,
       pixelated,
-      volume,
+      subtitle,
       defaultOpen = false,
       nftCount,
       onClick,
@@ -182,7 +184,7 @@ const CollectionRow = forwardRef(
                     lineHeight: 1,
                   }}
                 >
-                  {volume ?? ''}
+                  {subtitle ?? ''}
                 </Text>
               </Flex>
 
