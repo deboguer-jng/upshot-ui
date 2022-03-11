@@ -13,7 +13,7 @@ export const CollectorRowBase = styled.div`
   background: ${({ theme }) => theme.colors['grey-900']};
 `
 
-export const CollectorRowContent = styled(Grid)<{ $hasImage: boolean }>`
+export const CollectorRowContent = styled(Grid)<{ $hasImage?: boolean }>`
   grid-template-columns: ${({ $hasImage = true }) =>
     $hasImage
       ? '48px auto min-content min-content'
