@@ -186,7 +186,7 @@ const PopulatedChart = ({
   /* Memoize Apex to prevent side effects from mouseEvent listeners. */
   const chart = useMemo(
     () => (
-      <ReactApexChartWrapper>
+      <ReactApexChartWrapper isFullWidth={isMobile && !embedded}>
         <div>
           <ReactApexChart
             series={chartData}
@@ -198,7 +198,7 @@ const PopulatedChart = ({
         </div>
       </ReactApexChartWrapper>
     ),
-    [chartData]
+    [chartData, isMobile]
   )
 
   return (

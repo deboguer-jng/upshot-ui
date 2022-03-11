@@ -126,9 +126,11 @@ export const ReactChartWrapper = styled.div<{ $isEmpty?: boolean }>`
   }
 `
 
-export const ReactApexChartWrapper = styled.div`
-  width: 100%;
+export const ReactApexChartWrapper = styled.div<{ isFullWidth?: boolean }>`
+  width: ${({ isFullWidth }) => (isFullWidth ? '100vw' : '100%')};
   padding-top: 25%;
+  margin-left: ${({ isFullWidth }) => (isFullWidth ? '-16px' : 0)};
+  margin-right: ${({ isFullWidth }) => (isFullWidth ? '-16px' : 0)};
   position: relative;
 
   & > div {
