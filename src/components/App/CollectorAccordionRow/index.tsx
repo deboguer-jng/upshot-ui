@@ -18,13 +18,7 @@ import makeBlockie from 'ethereum-blockies-base64'
 import { Pagination } from '../../..'
 import IconButton from '../../@UI/IconButton'
 import { useBreakpointIndex } from '../../..'
-import {
-  formatUsername,
-  shortenAddress,
-  fetchEns,
-} from '../../../utils/address'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
-import colors from '../../../themes/UpshotUI/colors'
 
 export interface CollectorAccordionRowProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -33,9 +27,9 @@ export interface CollectorAccordionRowProps
    */
   address?: string
   /**
-   * Collector's username
+   * Collector's username or address to display
    */
-  username?: string
+  displayName?: string
   /**
    * Small subheading text.
    */
@@ -109,7 +103,7 @@ const CollectorRow = forwardRef(
   (
     {
       address,
-      username,
+      displayName,
       subtitle,
       collectionName,
       count,
@@ -137,29 +131,9 @@ const CollectorRow = forwardRef(
       useState(collectionName)
     const breakpointIndex = useBreakpointIndex()
     const isFirstColumn = !!avgHoldTime || !!firstAcquisition || !!ageOfCollection || !!totalNftValue
-    const [avatarUrl, setAvatarUrl] = useState(
-      address ? makeBlockie(address) : null
-    )
-    const [name, setName] = useState(username ? formatUsername(username) : null)
     const [expansionHeight, setExpansionHeight] = useState(0)
     const [expansionWidth, setExpansionWidth] = useState(0)
     const expansionContentRef = useRef(null)
-
-    useEffect(() => {
-      const updateEns = async (address?: string) => {
-        if (!address) return
-
-        const { name, avatar } = await fetchEns(
-          address,
-          ethers.getDefaultProvider()
-        )
-
-        if (name) setName(name)
-        if (avatar) setAvatarUrl(avatar)
-      }
-
-      updateEns(address)
-    }, [])
 
     useEffect(() => {
       setExpansionHeight(expansionContentRef.current.clientHeight)
@@ -169,8 +143,6 @@ const CollectorRow = forwardRef(
     const handlePageChange = ({ selected }: { selected: number }) => {
       setPage(selected)
     }
-
-    const displayName = name ?? (address ? shortenAddress(address) : 'Unknown')
 
     return (
       <CollectorRowBase {...{ ref, ...props }}>
@@ -200,7 +172,7 @@ const CollectorRow = forwardRef(
               onClick && onClick()
             }}
           >
-            <Avatar size="md" src={avatarUrl} />
+            <Avatar size="md" src={makeBlockie(address)} />
             <Icon
               icon="arrowStylizedRight"
               color="primary"
