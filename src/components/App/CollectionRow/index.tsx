@@ -77,9 +77,11 @@ const CollectionRow = forwardRef(
             $variant={variant}
             {...{ ref, ...props, onClick }}
             sx={{
-              cursor: 'pointer',
+              cursor: onClick ? 'pointer' : undefined,
               '&:hover': {
-                boxShadow: theme.shadow.underglow('primary'),
+                boxShadow: onClick
+                  ? theme.shadow.underglow('primary')
+                  : undefined,
                 'td:last-child': {
                   svg: {
                     display: 'block',
