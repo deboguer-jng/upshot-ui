@@ -19,7 +19,7 @@ export interface CollectionRowProps extends TableRowProps {
   /**
    * The image source url for the avatar.
    */
-  imageSrc: string
+  imageSrc?: string
   /**
    * The main title of the item.
    */
@@ -91,26 +91,27 @@ const CollectionRow = forwardRef(
               borderRadius: theme.radii.md,
             }}
           >
-            {/* Each row has a required avatar image circle. */}
-            <TableCell>
-              <Box
-                sx={{
-                  width: '100%',
-                  height: '48px',
-                  position: 'relative',
-                }}
-              >
-                <Avatar
-                  {...{ pixelated, src }}
+            {!!imageSrc && (
+              <TableCell>
+                <Box
                   sx={{
-                    backgroundColor: 'grey-600',
-                    borderColor: 'black',
+                    width: '100%',
+                    height: '48px',
+                    position: 'relative',
                   }}
-                />
-              </Box>
-            </TableCell>
+                >
+                  <Avatar
+                    {...{ pixelated, src }}
+                    sx={{
+                      backgroundColor: 'grey-600',
+                      borderColor: 'black',
+                    }}
+                  />
+                </Box>
+              </TableCell>
+            )}
 
-            <TableCell sx={{ width: '100% !important' }}>
+            <TableCell sx={{ width: '100% !important', height: '48px' }}>
               <Text
                 variant="large"
                 {...{ onClick }}
@@ -145,13 +146,15 @@ const CollectionRow = forwardRef(
             {...{ ref, ...props }}
             onClick={() => setOpen(!open)}
           >
-            <CollectorRowContent>
-              <Avatar
-                {...{ src, onClick }}
-                size="md"
-                pixelated={pixelated}
-                sx={{ cursor: onClick ? 'pointer' : 'auto' }}
-              />
+            <CollectorRowContent $hasImage={!!imageSrc}>
+              {!!imageSrc && (
+                <Avatar
+                  {...{ src, onClick }}
+                  size="md"
+                  pixelated={pixelated}
+                  sx={{ cursor: onClick ? 'pointer' : 'auto' }}
+                />
+              )}
 
               <Flex
                 sx={{

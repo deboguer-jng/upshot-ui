@@ -9,11 +9,14 @@ export interface CollectionTableProps extends TableProps {}
  */
 const CollectionTable = forwardRef(
   (
-    { children, ...props }: CollectionTableProps,
+    { children, sx, ...props }: CollectionTableProps,
     ref: React.ForwardedRef<HTMLTableElement>
   ) => (
     <CollectionTableBase
-      sx={{ borderSpacing: '0 8px', tableLayout: 'fixed' }}
+      sx={{
+        ...{ borderSpacing: '0 8px', tableLayout: 'fixed' },
+        ...(sx ?? {}),
+      }}
       {...{ ref, children, ...props }}
     >
       {children}
