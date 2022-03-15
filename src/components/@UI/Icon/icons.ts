@@ -48,6 +48,9 @@ import SVGFoundationBlock from '../../../assets/svg/icons/Foundation_BlockColor.
 import SVGFoundation from '../../../assets/svg/icons/Foundation.svg'
 import SVGGridView from '../../../assets/svg/icons/GridView_NotSelected.svg'
 import SVGGridViewSelected from '../../../assets/svg/icons/GriedView_Selected.svg'
+import SVGGridViewV2 from '../../../assets/svg/icons/GridView_v2.svg'
+import SVGSmallGridViewV2 from '../../../assets/svg/icons/SmallGridView_v2.svg'
+import SVGListViewV2 from '../../../assets/svg/icons/ListView_v2.svg'
 import SVGGroups from '../../../assets/svg/icons/Groups.svg'
 import SVGHelp from '../../../assets/svg/icons/Help.svg'
 import SVGHome from '../../../assets/svg/icons/Home.svg'
@@ -166,6 +169,9 @@ const icons = {
   foundation: SVGFoundation,
   gridView: SVGGridView,
   gridViewSelected: SVGGridViewSelected,
+  gridViewV2: SVGGridViewV2,
+  smallGridViewV2: SVGSmallGridViewV2,
+  listViewV2: SVGListViewV2,
   groups: SVGGroups,
   help: SVGHelp,
   home: SVGHome,
