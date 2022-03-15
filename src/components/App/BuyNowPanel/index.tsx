@@ -39,7 +39,9 @@ const BuyButton = forwardRef(
         capitalize={true}
         $width={width}
       >
-        <StyledIcon icon="openSeaBlock" color="white" size={16} />
+        {marketplaceName === "OpenSea" && (
+          <StyledIcon icon="openSeaBlock" color="white" size={16} />
+        )}
         <StyledText color="white">Buy on {marketplaceName}</StyledText>
       </StyledButton>
     </Link>
