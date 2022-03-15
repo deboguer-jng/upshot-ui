@@ -1,10 +1,10 @@
 import styled from '@emotion/styled'
 
-interface AppraisalscopyWrapperProps {
+interface AppraisalsCopyWrapperProps {
   open: boolean
 }
 
-export const AppraisalsCopyWrapper = styled.div<AppraisalscopyWrapperProps>`
+export const AppraisalsCopyWrapper = styled.div<AppraisalsCopyWrapperProps>`
   background: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.black};
   border: 1px solid ${({ theme }) => theme.colors.primary};
