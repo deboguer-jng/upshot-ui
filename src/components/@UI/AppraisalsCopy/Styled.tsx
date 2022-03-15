@@ -72,8 +72,7 @@ export const ArrpaisalsCopyOpenedTopBar = styled.div`
 export const AppraisalsCopyButton = styled.span`
   font-weight: bold;
   width: fit-content;
-  cursor: auto;
-  user-select: none;
+  cursor: pointer;
   font-size: 12px;
   color: ${({ theme }) => theme.colors.black};
 `
