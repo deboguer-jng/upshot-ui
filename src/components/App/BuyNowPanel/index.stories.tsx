@@ -58,3 +58,13 @@ PopupRed.args = {
   marketplaceUrl: 'https://opensea.io/',
   sx: {width: '350px'},
 }
+
+export const NotOpenSea = Template.bind({})
+NotOpenSea.args = {
+  listPriceETH: 1,
+  listPriceUSD: 4000,
+  appraisalPriceETH: 2,
+  listAppraisalPercentage: 5.5,
+  marketplaceName: 'Larva Labs',
+  marketplaceUrl: 'https://www.larvalabs.com/',
+}

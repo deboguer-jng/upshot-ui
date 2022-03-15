@@ -14,6 +14,7 @@ import {
   StyledBox,
   StyledIcon,
 } from './Styled'
+import { formatCommas } from '../../../utils/number'
 
 export interface BuyButtonProps extends ButtonProps {
   /**
@@ -39,7 +40,9 @@ const BuyButton = forwardRef(
         capitalize={true}
         $width={width}
       >
-        <StyledIcon icon="openSeaBlock" color="white" size={16} />
+        {marketplaceName === "OpenSea" && (
+          <StyledIcon icon="openSeaBlock" color="white" size={16} />
+        )}
         <StyledText color="white">Buy on {marketplaceName}</StyledText>
       </StyledButton>
     </Link>
@@ -139,7 +142,7 @@ const BuyNowPanel = forwardRef(
             <Text color="grey-500">at</Text>
             &nbsp;
             <Text color="grey-400">
-              Ξ{listPriceETH} {listPriceUSD > 0 && '($' + listPriceUSD + ')'}
+              Ξ{listPriceETH} {listPriceUSD > 0 && '($' + formatCommas(listPriceUSD) + ')'}
             </Text>
           </StyledBox>
           {buttonPosition === 'bottom' && (
