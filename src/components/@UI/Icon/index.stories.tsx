@@ -172,6 +172,15 @@ GridView.args = { icon: 'gridView', color: 'primary', size: 32 }
 export const GridViewSelected = Template.bind({})
 GridViewSelected.args = { icon: 'gridViewSelected', color: 'primary', size: 32 }
 
+export const GridViewV2 = Template.bind({})
+GridViewV2.args = { icon: 'gridViewV2', color: 'primary', size: 32 }
+
+export const SmallGridViewV2 = Template.bind({})
+SmallGridViewV2.args = { icon: 'smallGridViewV2', color: 'primary', size: 32 }
+
+export const ListViewV2 = Template.bind({})
+ListViewV2.args = { icon: 'listViewV2', color: 'primary', size: 32 }
+
 export const Groups = Template.bind({})
 Groups.args = { icon: 'groups', color: 'primary', size: 32 }
 
