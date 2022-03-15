@@ -14,6 +14,7 @@ import {
   StyledBox,
   StyledIcon,
 } from './Styled'
+import { formatCommas } from '../../../utils/number'
 
 export interface BuyButtonProps extends ButtonProps {
   /**
@@ -141,7 +142,7 @@ const BuyNowPanel = forwardRef(
             <Text color="grey-500">at</Text>
             &nbsp;
             <Text color="grey-400">
-              Ξ{listPriceETH} {listPriceUSD > 0 && '($' + listPriceUSD + ')'}
+              Ξ{listPriceETH} {listPriceUSD > 0 && '($' + formatCommas(listPriceUSD) + ')'}
             </Text>
           </StyledBox>
           {buttonPosition === 'bottom' && (
