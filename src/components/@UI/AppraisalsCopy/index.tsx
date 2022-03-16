@@ -25,7 +25,7 @@ const AppraisalsCopy = forwardRef(
           {!open ? (
             <AppraisalsCopyClosed>
               <div>
-                How do we develop our appraisals?
+                How are our appraisals calculated?
                 <AppraisalsCopyButton onClick={() => setOpen(true)}>
                   {' '}
                   Read more.{' '}
@@ -36,14 +36,14 @@ const AppraisalsCopy = forwardRef(
           ) : (
             <AppraisalsCopyOpened>
               <ArrpaisalsCopyOpenedTopBar>
-                How do we develop our appraisals?
+                How are our appraisals calculated?
                 <Icon icon="attentionCircle" color="black" size="16" />
               </ArrpaisalsCopyOpenedTopBar>
 
               <AppraisalsCopyOpenedContent>
-                Our appraisals combine real-time market, collection, and trait
-                level data from on chain with off chain sources like bid/ask
-                spreads and market behaviors and then seasoned with a little
+                Our appraisals combine on-chain data (like transactions,
+                collections, traits, metadata, and rarity) with off-chain data
+                (like bid/ask spread, market behaviors, etc) with a little
                 Upshot magic.
                 <a href={link} target="_blank" rel="noreferrer">
                   Read article.
