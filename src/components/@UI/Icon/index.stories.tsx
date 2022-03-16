@@ -79,6 +79,9 @@ Async.args = { icon: 'async', color: 'primary', size: 32 }
 export const Attention = Template.bind({})
 Attention.args = { icon: 'attention', color: 'primary', size: 32 }
 
+export const AttentionCircle = Template.bind({})
+AttentionCircle.args = { icon: 'attentionCircle', color: 'primary', size: 32 }
+
 export const BadgeFilled = Template.bind({})
 BadgeFilled.args = { icon: 'badgeFilled', color: 'primary', size: 32 }
 

@@ -18,6 +18,7 @@ import SVGAsk from '../../../assets/svg/icons/Ask.svg'
 import SVGAsyncBlock from '../../../assets/svg/icons/Async_BlockColor.svg'
 import SVGAsync from '../../../assets/svg/icons/Async.svg'
 import SVGAttention from '../../../assets/svg/icons/Attention.svg'
+import SVGAttentionCircle from '../../../assets/svg/icons/AttentionCircle.svg'
 import SVGBadgeFilled from '../../../assets/svg/icons/Badge_Filled.svg'
 import SVGBadgeHollow from '../../../assets/svg/icons/Badge_Hollow.svg'
 import SVGBitcoinBlock from '../../../assets/svg/icons/Bitcoin_BlockColor.svg'
@@ -139,6 +140,7 @@ const icons = {
   asyncBlock: SVGAsyncBlock,
   async: SVGAsync,
   attention: SVGAttention,
+  attentionCircle: SVGAttentionCircle,
   badgeFilled: SVGBadgeFilled,
   badgeHollow: SVGBadgeHollow,
   bitcoinBlock: SVGBitcoinBlock,
