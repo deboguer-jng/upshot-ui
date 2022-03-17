@@ -113,8 +113,8 @@ const PopulatedChart = ({
 
   const metricKeys = {
     FLOOR: 'currentFloor',
-    AVERAGE: 'currentAvg',
-    VOLUME: 'currentVolume',
+    PAST_WEEK_AVERAGE: 'currentAvg',
+    PAST_WEEK_VOLUME: 'currentVolume',
   }
 
   const labelValue = (
