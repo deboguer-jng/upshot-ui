@@ -158,6 +158,9 @@ const CollectionRow = forwardRef(
         ) : (
           <CollectorRowBase
             {...{ ref, ...props }}
+            style={{
+              width: fullWidth ? '100%' : 'auto',
+            }}
             onClick={() => setOpen(!open)}
           >
             <CollectorRowContent $hasImage={!!imageSrc}>
