@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import Accordion from './'
@@ -8,9 +8,15 @@ export default {
   component: Accordion,
 } as ComponentMeta<typeof Accordion>
 
-const Template: ComponentStory<typeof Accordion> = (args) => (
-  <>
-    <Accordion {...args}>
+const Template: ComponentStory<typeof Accordion> = (args) => {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <Accordion
+      onClick={() => setOpen(!open)}
+      onClose={() => setOpen(false)}
+      {...{ open, ...args }}
+    >
       <div>
         <h1> This is same text </h1>
         <h1> This is same text </h1>
@@ -22,32 +28,8 @@ const Template: ComponentStory<typeof Accordion> = (args) => (
         <h1> This is same text </h1>
       </div>
     </Accordion>
-    <Accordion {...args}>
-      <div>
-        <h1> This is same text </h1>
-        <h1> This is same text </h1>
-        <h1> This is same text </h1>
-        <h1> This is same text </h1>
-        <h1> This is same text </h1>
-        <h1> This is same text </h1>
-        <h1> This is same text </h1>
-        <h1> This is same text </h1>
-      </div>
-    </Accordion>
-    <Accordion {...args}>
-      <div>
-        <h1> This is same text </h1>
-        <h1> This is same text </h1>
-        <h1> This is same text </h1>
-        <h1> This is same text </h1>
-        <h1> This is same text </h1>
-        <h1> This is same text </h1>
-        <h1> This is same text </h1>
-        <h1> This is same text </h1>
-      </div>
-    </Accordion>
-  </>
-)
+  )
+}
 
 export const Default = Template.bind({})
 

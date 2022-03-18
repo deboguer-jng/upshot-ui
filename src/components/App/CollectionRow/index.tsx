@@ -33,14 +33,24 @@ export interface CollectionRowProps extends TableRowProps {
    */
   variant?: Variant
   /**
+   * Expand to full-width.
+   */
+  fullWidth?: boolean
+  /**
    * OnClick handler.
    */
   onClick?: () => void
-
+  /**
+   * Use nearest-neighbor interpolation.
+   */
   pixelated?: boolean
-
+  /**
+   * Default state for the row.
+   */
   defaultOpen?: boolean
-
+  /**
+   * Total count of NFTs.
+   */
   nftCount?: number
 }
 
@@ -48,12 +58,13 @@ const CollectionRow = forwardRef(
   (
     {
       variant = 'normal',
+      fullWidth = false,
+      defaultOpen = false,
       imageSrc,
       title,
       children,
       pixelated,
       subtitle,
-      defaultOpen = false,
       nftCount,
       onClick,
       ...props
@@ -79,6 +90,7 @@ const CollectionRow = forwardRef(
             $variant={variant}
             {...{ ref, ...props, onClick }}
             sx={{
+              width: fullWidth ? '100%' : 'auto',
               cursor: onClick ? 'pointer' : undefined,
               '&:hover': {
                 boxShadow: onClick
@@ -146,6 +158,9 @@ const CollectionRow = forwardRef(
         ) : (
           <CollectorRowBase
             {...{ ref, ...props }}
+            style={{
+              width: fullWidth ? '100%' : 'auto',
+            }}
             onClick={() => setOpen(!open)}
           >
             <CollectorRowContent $hasImage={!!imageSrc}>
