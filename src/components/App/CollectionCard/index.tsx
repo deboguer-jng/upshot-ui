@@ -23,7 +23,7 @@ export interface CollectionCardProps extends PanelProps {
   /**
    * Total NFTs
    */
-  total?: number | string
+  total?: number
   /**
    * Collection Avatar
    */
