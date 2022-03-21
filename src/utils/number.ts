@@ -23,7 +23,17 @@ export const formatLargeNumber = (num: number, digits = 2) => {
  * @param value
  * @returns Formatted currency
  */
-export const formatCommas = (value: number) =>
-  Math.round(value)
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+export const formatCommas = (
+  value: string | number,
+  maximumFractionDigits = 0,
+  minimumFractionDigits = 0
+) => {
+  if (Number.isNaN(Number(value))) return null
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    maximumFractionDigits,
+    minimumFractionDigits,
+  })
+
+  return formatter.format(Number(value))
+}
