@@ -11,6 +11,10 @@ interface InputRoundedSearchWrapperProps {
   $isFullWidth: boolean
 }
 
+interface InputRoundedSearchSuggestionItemProps {
+  isArrowSelected: boolean
+}
+
 export const InputRoundedSearchBase = styled(
   InputRounded
 )<InputRoundedSearchBaseProps>`
@@ -54,12 +58,21 @@ export const InputRounededSearchSuggestions = styled.div`
   ${({ theme: { scroll } }) => scroll.thin}
 `
 
-export const InputRoundedSearchSuggestionItem = styled.div`
+export const InputRoundedSearchSuggestionItem = styled.div<InputRoundedSearchSuggestionItemProps>`
   padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   cursor: pointer;
   transition: all 0.1s linear;
+  color: ${({ isArrowSelected, theme }) =>
+    isArrowSelected ? theme.colors['grey-300'] : theme.colors['grey-500']};
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.9);
+    color: ${({ theme }) => theme.colors['grey-300']};
+
+    svg {
+      color: ${({ theme }) => theme.colors['grey-300']};
+    }
   }
 `
