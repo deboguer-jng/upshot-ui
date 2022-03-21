@@ -176,6 +176,11 @@ const InputRoundedSearch = forwardRef(
                   }}
                 >
                   {suggestion.name}
+                  <Icon
+                    icon="arrowStylizedRight"
+                    color={arrowSelected === index ? 'grey-300' : 'grey-500'}
+                    size="16"
+                  />
                 </InputRoundedSearchSuggestionItem>
               ))}
             </InputRounededSearchSuggestions>

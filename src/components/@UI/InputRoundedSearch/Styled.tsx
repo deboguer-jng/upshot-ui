@@ -60,12 +60,19 @@ export const InputRounededSearchSuggestions = styled.div`
 
 export const InputRoundedSearchSuggestionItem = styled.div<InputRoundedSearchSuggestionItemProps>`
   padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   cursor: pointer;
   transition: all 0.1s linear;
-  background-color: ${({ isArrowSelected }) =>
-    isArrowSelected ? 'rgba(0, 0, 0, 0.9)' : 'transparent'};
+  color: ${({ isArrowSelected, theme }) =>
+    isArrowSelected ? theme.colors['grey-300'] : theme.colors['grey-500']};
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.9);
+    color: ${({ theme }) => theme.colors['grey-300']};
+
+    svg {
+      color: ${({ theme }) => theme.colors['grey-300']};
+    }
   }
 `
