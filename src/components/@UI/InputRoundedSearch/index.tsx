@@ -100,21 +100,23 @@ const InputRoundedSearch = forwardRef(
         let currentItem = suggestionsRef.current.children.item(
           arrowSelected
         ) as HTMLElement
-        if (e.code === 'ArrowUp' && arrowSelected >= 1) {
-          setArrowSelected(arrowSelected - 1)
-          suggestionsRef.current.scrollTop =
-            currentItem.offsetTop - suggestionsRef.current.clientHeight + 20
-        } else if (
-          e.code === 'ArrowDown' &&
-          (typeof arrowSelected === 'undefined' ||
-            arrowSelected < suggestions.length - 1)
-        ) {
-          setArrowSelected((arrowSelected || 0) + 1)
-          suggestionsRef.current.scrollTop =
-            currentItem.offsetTop - suggestionsRef.current.clientHeight + 70
-        } else if (e.code === 'Enter') {
-          onSuggestionSelect(suggestions[arrowSelected])
-          setOpen(false)
+        if (currentItem) {
+          if (e.code === 'ArrowUp' && arrowSelected >= 1) {
+            setArrowSelected(arrowSelected - 1)
+            suggestionsRef.current.scrollTop =
+              currentItem.offsetTop - suggestionsRef.current.clientHeight + 20
+          } else if (
+            e.code === 'ArrowDown' &&
+            (typeof arrowSelected === 'undefined' ||
+              arrowSelected < suggestions.length - 1)
+          ) {
+            setArrowSelected((arrowSelected || 0) + 1)
+            suggestionsRef.current.scrollTop =
+              currentItem.offsetTop - suggestionsRef.current.clientHeight + 70
+          } else if (e.code === 'Enter') {
+            onSuggestionSelect(suggestions[arrowSelected])
+            setOpen(false)
+          }
         }
       }
     }
