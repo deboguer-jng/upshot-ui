@@ -18,7 +18,7 @@ const Template: ComponentStory<typeof CollectionCard> = (args) => (
 export const Default = Template.bind({})
 Default.args = {
   name: 'Bored Ape Yacht Club',
-  total: 2500,
+  total: 25,
   hasSeeAll: true,
   avatarImage: '/img/defaultAvatar.png',
   seeAllImageSrc: '/img/sample_nft_3.jpg',
