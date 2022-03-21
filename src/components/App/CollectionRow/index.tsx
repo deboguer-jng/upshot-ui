@@ -218,7 +218,7 @@ const CollectionRow = forwardRef(
                         lineHeight: 1,
                       }}
                     >
-                      {nftCount}
+                      {formatCommas(nftCount)}
                     </Text>
                   </Flex>
                 </>
