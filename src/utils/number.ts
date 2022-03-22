@@ -1,7 +1,57 @@
+import { ethers } from 'ethers'
+const BN = ethers.BigNumber
+
+/**
+ * Prefixes for formatted currency values.
+ */
+export const NUMBER_PREFIX = {
+  USD: '$',
+  ETHER: 'Ξ',
+  NONE: '',
+}
+
+/**
+ * Parse a uint256 string to a float.
+ */
+export const parseUint256 = (
+  amount: string,
+  decimals: number = 18,
+  precision: number = 4
+) => {
+  const denom = BN.from(10).pow(decimals)
+  const pow = BN.from(10).pow(precision)
+  const val = BN.from(amount).mul(pow).div(denom).toNumber()
+
+  return val / 10 ** precision
+}
+
+interface FormatNumberOptions {
+  /**
+   * The number of decimal places to show after the formatted value.
+   */
+  decimals?: number
+  /**
+   * If true, display 1,000.0 as "1k".
+   */
+  kmbUnits?: boolean
+  /**
+   * Parse the number from uint256 string representation.
+   */
+  fromWei?: boolean
+  /**
+   * Decimals for the uint256 representation (default: 18).
+   */
+  fromDecimals?: number
+  /**
+   * Adds a leading currency symbol prefix.
+   */
+  prefix?: keyof typeof NUMBER_PREFIX
+}
+
 /**
  * Formats a large number into a smaller unit.
  */
-export const formatLargeNumber = (num: number, digits = 2) => {
+const formatLargeNumber = (num: number, decimals = 2) => {
   const lookup = [
     { value: 1, symbol: '' },
     { value: 1e3, symbol: 'k' },
@@ -12,28 +62,36 @@ export const formatLargeNumber = (num: number, digits = 2) => {
     .slice()
     .reverse()
     .find((item) => num >= item.value)
+
   return item
-    ? (num / item.value).toFixed(2) + item.symbol
-    : Number(0).toFixed(digits)
+    ? (num / item.value).toFixed(decimals) + item.symbol
+    : Number(0).toFixed(decimals)
 }
 
 /**
- * Format commas
+ * Format number
  *
  * @param value
- * @returns Formatted currency
+ * @returns Internationally-formatted number with optional decimals + kmb units.
  */
-export const formatCommas = (
+export const formatNumber = (
   value: string | number,
-  maximumFractionDigits = 0,
-  minimumFractionDigits = 0
+  opts?: FormatNumberOptions
 ) => {
-  if (Number.isNaN(Number(value))) return null
+  if (Number.isNaN(Number(value))) return undefined
+
+  const prefix = opts?.prefix ? NUMBER_PREFIX[opts.prefix] : ''
+  const decimals = opts?.decimals ?? 0
+
+  if (opts?.fromWei)
+    value = parseUint256(value.toString(), opts.fromDecimals ?? 18, decimals)
+
+  if (opts?.kmbUnits) return prefix + formatLargeNumber(Number(value), decimals)
 
   const formatter = new Intl.NumberFormat('en-US', {
-    maximumFractionDigits,
-    minimumFractionDigits,
+    maximumFractionDigits: decimals,
+    minimumFractionDigits: decimals,
   })
 
-  return formatter.format(Number(value))
+  return prefix + formatter.format(Number(value))
 }
