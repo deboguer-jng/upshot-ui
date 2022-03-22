@@ -13,6 +13,7 @@ import Label from '../../@UI/Label'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
 import { useTheme } from '../../../themes/UpshotUI'
 import { PanelProps } from '../../@UI/Panel'
+import { formatCommas } from '../../../utils/number'
 
 export interface CollectionCardItemProps extends PanelProps {
   /**
@@ -90,34 +91,40 @@ const CollectionCardItem = forwardRef(
   ) => {
     const [showPopup, setShowPopup] = useState(false)
     const { theme } = useTheme()
-    const optimizedSrc = imageOptimizer(imageSrc, {width: 512}) ?? imageSrc
+    const optimizedSrc = imageOptimizer(imageSrc, { width: 512 }) ?? imageSrc
     const finalImage = isPixelated ? imageSrc : optimizedSrc
     const hoverUnderglow = appraisalPriceETH ? 'blue' : 'grey-600'
 
     return (
-      <CollectionCardItemBase $expanded={expanded} $hoverUnderglow={hoverUnderglow} {...{ ref, ...props }}>
+      <CollectionCardItemBase
+        $expanded={expanded}
+        $hoverUnderglow={hoverUnderglow}
+        {...{ ref, ...props }}
+      >
         <CollectionCardItemImage $isPixelated={isPixelated} $src={finalImage} />
         <CollectionCardItemDetails
           sx={{
             padding: 3,
             gap: 3,
-            width: '100%'
+            width: '100%',
           }}
-          onMouseLeave={() => setShowPopup(false)}   
+          onMouseLeave={() => setShowPopup(false)}
         >
           <Flex
             sx={{
               flexDirection: 'column',
-              minWidth: 'calc(100% - 120px)'
-            }} 
+              minWidth: 'calc(100% - 120px)',
+            }}
           >
             <Flex sx={{ gap: 2 }}>
               <Avatar
                 color="black"
-                src={imageOptimizer(avatarImage, {
-                  width: parseInt(theme.images.avatar.sm.size),
-                  height: parseInt(theme.images.avatar.sm.size)
-                }) ?? avatarImage}
+                src={
+                  imageOptimizer(avatarImage, {
+                    width: parseInt(theme.images.avatar.sm.size),
+                    height: parseInt(theme.images.avatar.sm.size),
+                  }) ?? avatarImage
+                }
                 size="xs"
                 sx={{ border: '2px solid black' }}
               />
@@ -144,7 +151,7 @@ const CollectionCardItem = forwardRef(
             </Flex>
 
             <Text
-            variant="large"
+              variant="large"
               color="grey-300"
               sx={{
                 textOverflow: 'ellipsis',
@@ -177,55 +184,59 @@ const CollectionCardItem = forwardRef(
               />
             </Box>
           )}
-          { appraisalPriceETH != null && (// appraisal price
+          {appraisalPriceETH != null && ( // appraisal price
             <Flex
               sx={{
                 flexDirection: 'column',
-                minWidth: 'fit-content'
+                minWidth: 'fit-content',
               }}
               onMouseOver={() => setShowPopup(true)}
             >
-              <Text color='grey-500' variant="xSmall">
+              <Text color="grey-500" variant="xSmall">
                 Appraisal price
               </Text>
               <Label
                 color="primary"
                 currencySymbol=""
                 size="sm"
-                topRightLabel={appraisalConfidence ? appraisalConfidence.toString() + '%' : ''}
+                topRightLabel={
+                  appraisalConfidence
+                    ? appraisalConfidence.toString() + '%'
+                    : ''
+                }
                 variant="currency"
                 style={{ lineHeight: 1 }}
               >
-                {'Ξ' + appraisalPriceETH.toLocaleString()}
+                {'Ξ' + formatCommas(appraisalPriceETH)}
               </Label>
-              { appraisalPriceUSD != null && (
-                <Text color='grey-300' variant="small" sx={{ opacity: 0.5 }}>
-                  ${appraisalPriceUSD.toLocaleString()}
+              {appraisalPriceUSD != null && (
+                <Text color="grey-300" variant="small" sx={{ opacity: 0.5 }}>
+                  ${formatCommas(appraisalPriceUSD)}
                 </Text>
               )}
             </Flex>
-            )}
-            { floorPriceETH  != null && ( // floor price
-              <Flex sx={{ flexDirection: 'column', minWidth: 'fit-content' }}>
-                <Text color='grey-500' variant="xSmall">
-                  Floor price
+          )}
+          {floorPriceETH != null && ( // floor price
+            <Flex sx={{ flexDirection: 'column', minWidth: 'fit-content' }}>
+              <Text color="grey-500" variant="xSmall">
+                Floor price
+              </Text>
+              <Label
+                color="grey-500"
+                currencySymbol=""
+                size="sm"
+                variant="currency"
+                style={{ lineHeight: 1 }}
+              >
+                {'Ξ' + floorPriceETH.toLocaleString()}
+              </Label>
+              {floorPriceUSD != null && (
+                <Text color="grey-300" variant="small" sx={{ opacity: 0.5 }}>
+                  ${floorPriceUSD.toLocaleString()}
                 </Text>
-                <Label
-                  color="grey-500"
-                  currencySymbol=""
-                  size="sm"
-                  variant="currency"
-                  style={{ lineHeight: 1 }}
-                >
-                  {'Ξ' + floorPriceETH.toLocaleString()}
-                </Label>
-                { floorPriceUSD != null && (
-                  <Text color='grey-300' variant="small" sx={{ opacity: 0.5 }}>
-                    ${floorPriceUSD.toLocaleString()}
-                  </Text>
-                )}
-              </Flex>
               )}
+            </Flex>
+          )}
         </CollectionCardItemDetails>
       </CollectionCardItemBase>
     )

@@ -19,6 +19,7 @@ import { Pagination } from '../../..'
 import IconButton from '../../@UI/IconButton'
 import { useBreakpointIndex } from '../../..'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
+import { formatCommas } from '../../../utils/number'
 
 export interface CollectorAccordionRowProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -126,11 +127,17 @@ const CollectorRow = forwardRef(
     const theme = useTheme()
     const [open, setOpen] = useState(defaultOpen)
     const [page, setPage] = useState(0)
-    const [selectedCollection, setSelectedCollection] = useState<number | undefined>()
+    const [selectedCollection, setSelectedCollection] = useState<
+      number | undefined
+    >()
     const [selectedCollectionName, setSelectedCollectionName] =
       useState(collectionName)
     const breakpointIndex = useBreakpointIndex()
-    const isFirstColumn = !!avgHoldTime || !!firstAcquisition || !!ageOfCollection || !!totalNftValue
+    const isFirstColumn =
+      !!avgHoldTime ||
+      !!firstAcquisition ||
+      !!ageOfCollection ||
+      !!totalNftValue
     const [expansionHeight, setExpansionHeight] = useState(0)
     const [expansionWidth, setExpansionWidth] = useState(0)
     const expansionContentRef = useRef(null)
@@ -146,9 +153,7 @@ const CollectorRow = forwardRef(
 
     return (
       <CollectorRowBase {...{ ref, ...props }}>
-        <CollectorRowContent
-          onClick={() => setOpen(!open)}
-        >
+        <CollectorRowContent onClick={() => setOpen(!open)}>
           <Box
             sx={{
               width: '100%',
@@ -241,7 +246,7 @@ const CollectorRow = forwardRef(
                   lineHeight: 1,
                 }}
               >
-                {count ?? ''}
+                {count ? formatCommas(count) : null}
               </Text>
             )}
           </Flex>
@@ -256,14 +261,18 @@ const CollectorRow = forwardRef(
         <CollectorRowExpansion $open={open} $contentHeight={expansionHeight}>
           <Grid
             columns={
-              expansionWidth < parseInt(theme.breakpointsNamed.xs) ?
-              '1fr' :
-              '1fr 1fr'
+              expansionWidth < parseInt(theme.breakpointsNamed.xs)
+                ? '1fr'
+                : '1fr 1fr'
             }
-            sx={{ marginX: [0, 46], paddingBottom: '46px !important', columnGap: 6, p: 4 }}
+            sx={{
+              marginX: [0, 46],
+              paddingBottom: '46px !important',
+              columnGap: 6,
+              p: 4,
+            }}
             ref={expansionContentRef}
           >
-            
             {isFirstColumn && (
               <Flex sx={{ flexDirection: 'column', gap: 4 }}>
                 <Grid columns={breakpointIndex <= 2 ? 1 : 2}>
@@ -308,11 +317,12 @@ const CollectorRow = forwardRef(
                     </StyledPanel>
                   )}
 
-                  
                   {!!ageOfCollection && (
                     <StyledPanel>
                       <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                        <Text sx={{ fontWeight: 'heading' }}>Age of entire collection:</Text>
+                        <Text sx={{ fontWeight: 'heading' }}>
+                          Age of entire collection:
+                        </Text>
                         <Flex
                           sx={{
                             gap: 1,
@@ -330,11 +340,13 @@ const CollectorRow = forwardRef(
                       </Flex>
                     </StyledPanel>
                   )}
-                  
+
                   {!!totalNftValue && (
                     <StyledPanel>
                       <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                        <Text sx={{ fontWeight: 'heading' }}>Appraised value of collection:</Text>
+                        <Text sx={{ fontWeight: 'heading' }}>
+                          Appraised value of collection:
+                        </Text>
                         <Flex
                           sx={{
                             gap: 1,
@@ -360,7 +372,11 @@ const CollectorRow = forwardRef(
                 {!!extraCollections && !!extraCollections.length && (
                   <StyledPanel>
                     <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                      <Text sx={{ fontWeight: 'heading' }}>{isLandingPage ? 'Collections in Portfolio:' : 'Also Collecting:'}</Text>
+                      <Text sx={{ fontWeight: 'heading' }}>
+                        {isLandingPage
+                          ? 'Collections in Portfolio:'
+                          : 'Also Collecting:'}
+                      </Text>
                       <Flex
                         sx={{
                           gap: 4,
@@ -392,8 +408,12 @@ const CollectorRow = forwardRef(
                                   color="white"
                                   src={
                                     imageOptimizer(imageUrl, {
-                                      height: parseInt(theme.images.avatar.lg.size),
-                                      width: parseInt(theme.images.avatar.lg.size),
+                                      height: parseInt(
+                                        theme.images.avatar.lg.size
+                                      ),
+                                      width: parseInt(
+                                        theme.images.avatar.lg.size
+                                      ),
                                     }) ?? imageUrl
                                   }
                                 />
@@ -424,7 +444,7 @@ const CollectorRow = forwardRef(
                                   color="blue"
                                   sx={{ lineHeight: 1 }}
                                 >
-                                  {count} NFTs
+                                  {count ? formatCommas(count) : 0} NFTs
                                 </Text>
                               </Flex>
                             </Flex>
@@ -442,14 +462,10 @@ const CollectorRow = forwardRef(
                 {!!nftCollection && !!nftCollection.length ? (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                     <Text sx={{ fontWeight: 'heading' }}>
-                      {
-                        selectedCollectionName &&
-                          `${displayName}'s ${selectedCollectionName} Collection`
-                      }
-                      {
-                        !selectedCollectionName &&
-                          `Notable NFTs in ${displayName}'s Collection`
-                      }
+                      {selectedCollectionName &&
+                        `${displayName}'s ${selectedCollectionName} Collection`}
+                      {!selectedCollectionName &&
+                        `Notable NFTs in ${displayName}'s Collection`}
                     </Text>
                     <Grid
                       sx={{
@@ -508,7 +524,9 @@ const CollectorRow = forwardRef(
                 )}
 
                 {!!children && (
-                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>{children}</Flex>
+                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                    {children}
+                  </Flex>
                 )}
               </Flex>
             </StyledPanel>
