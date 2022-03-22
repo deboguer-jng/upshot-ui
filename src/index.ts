@@ -22,6 +22,7 @@ export { default as InputRoundedSearch } from './components/@UI/InputRoundedSear
 export { default as Label } from './components/@UI/Label'
 export { default as LabelAttribute } from './components/@UI/LabelAttribute'
 export { default as LabeledSwitch } from './components/@UI/LabeledSwitch'
+export { default as Link } from './components/@UI/Link'
 export { default as MiniNftCard } from './components/@UI/MiniNftCard'
 export { default as Modal } from './components/@UI/Modal'
 export { default as Pagination } from './components/@UI/Pagination'
