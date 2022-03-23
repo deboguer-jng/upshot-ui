@@ -67,6 +67,8 @@ const InputRoundedSearch = forwardRef(
   ) => {
     const { theme } = useTheme()
     const [open, setOpen] = useState(false)
+    const [arrowSelected, setArrowSelected] = useState<number | undefined>()
+    const suggestionsRef = useRef<HTMLDivElement>()
     const wrapperRef = useRef<HTMLDivElement>()
     const isMobile = useBreakpointIndex() <= 1
 
@@ -93,11 +95,38 @@ const InputRoundedSearch = forwardRef(
     /* Apply button style & properties. */
     const { sx: buttonSx, ...buttonProps } = buttonPropsRaw ?? {}
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (suggestionsRef.current) {
+        let currentItem = suggestionsRef.current.children.item(
+          arrowSelected
+        ) as HTMLElement
+        if (currentItem) {
+          if (e.code === 'ArrowUp' && arrowSelected >= 1) {
+            setArrowSelected(arrowSelected - 1)
+            suggestionsRef.current.scrollTop =
+              currentItem.offsetTop - suggestionsRef.current.clientHeight + 20
+          } else if (
+            e.code === 'ArrowDown' &&
+            (typeof arrowSelected === 'undefined' ||
+              arrowSelected < suggestions.length - 1)
+          ) {
+            setArrowSelected((arrowSelected || 0) + 1)
+            suggestionsRef.current.scrollTop =
+              currentItem.offsetTop - suggestionsRef.current.clientHeight + 70
+          } else if (e.code === 'Enter') {
+            onSuggestionSelect(suggestions[arrowSelected])
+            setOpen(false)
+          }
+        }
+      }
+    }
+
     return (
       <InputRoundedSearchWrapper
         ref={wrapperRef}
         $isMobile={isMobile}
         $isFullWidth={fullWidth}
+        onKeyDown={(e) => handleKeyDown(e as any)}
       >
         <Flex sx={{ width: fullWidth ? '100%' : 'auto' }}>
           <InputRoundedSearchBase
@@ -136,16 +165,22 @@ const InputRoundedSearch = forwardRef(
         </Flex>
         {!!suggestions?.length && open && (
           <InputRoundedSearchSuggestionsWrapper $variant={variant}>
-            <InputRounededSearchSuggestions>
-              {suggestions.map((suggestion) => (
+            <InputRounededSearchSuggestions ref={suggestionsRef}>
+              {suggestions.map((suggestion, index) => (
                 <InputRoundedSearchSuggestionItem
                   key={suggestion.id}
+                  isArrowSelected={arrowSelected === index}
                   onMouseDown={() => {
                     onSuggestionSelect(suggestion)
                     setOpen(false)
                   }}
                 >
                   {suggestion.name}
+                  <Icon
+                    icon="arrowStylizedRight"
+                    color={arrowSelected === index ? 'grey-300' : 'grey-500'}
+                    size="16"
+                  />
                 </InputRoundedSearchSuggestionItem>
               ))}
             </InputRounededSearchSuggestions>

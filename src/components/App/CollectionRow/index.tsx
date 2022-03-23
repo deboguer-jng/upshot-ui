@@ -13,6 +13,7 @@ import { TableRowProps } from '../../Layout/TableRow'
 import { Icon, useBreakpointIndex } from '../../..'
 import { Flex, IconButton } from '@theme-ui/components'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
+import { formatCommas } from '../../../utils/number'
 import { useTheme } from '@emotion/react'
 export type Variant = 'black' | 'dark' | 'normal'
 export interface CollectionRowProps extends TableRowProps {
@@ -33,14 +34,24 @@ export interface CollectionRowProps extends TableRowProps {
    */
   variant?: Variant
   /**
+   * Expand to full-width.
+   */
+  fullWidth?: boolean
+  /**
    * OnClick handler.
    */
   onClick?: () => void
-
+  /**
+   * Use nearest-neighbor interpolation.
+   */
   pixelated?: boolean
-
+  /**
+   * Default state for the row.
+   */
   defaultOpen?: boolean
-
+  /**
+   * Total count of NFTs.
+   */
   nftCount?: number
 }
 
@@ -48,12 +59,13 @@ const CollectionRow = forwardRef(
   (
     {
       variant = 'normal',
+      fullWidth = false,
+      defaultOpen = false,
       imageSrc,
       title,
       children,
       pixelated,
       subtitle,
-      defaultOpen = false,
       nftCount,
       onClick,
       ...props
@@ -79,6 +91,7 @@ const CollectionRow = forwardRef(
             $variant={variant}
             {...{ ref, ...props, onClick }}
             sx={{
+              width: fullWidth ? '100%' : 'auto',
               cursor: onClick ? 'pointer' : undefined,
               '&:hover': {
                 boxShadow: onClick
@@ -146,6 +159,9 @@ const CollectionRow = forwardRef(
         ) : (
           <CollectorRowBase
             {...{ ref, ...props }}
+            style={{
+              width: fullWidth ? '100%' : 'auto',
+            }}
             onClick={() => setOpen(!open)}
           >
             <CollectorRowContent $hasImage={!!imageSrc}>
@@ -203,7 +219,7 @@ const CollectionRow = forwardRef(
                         lineHeight: 1,
                       }}
                     >
-                      {nftCount}
+                      {formatCommas(nftCount)}
                     </Text>
                   </Flex>
                 </>
