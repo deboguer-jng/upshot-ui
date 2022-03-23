@@ -60,7 +60,7 @@ const HelpModal = forwardRef(
                 Metadata | Trait-specific performance | Overall rarity score of
                 this NFT vs the collection | &quot;Hard&quot; market
                 interactions (sales, mints, transfers of ownership) |
-                &quot;Soft&quot; market interactions (bids, asks, order books.)
+                &quot;Soft&quot; market interactions (bids, asks, order books).
               </Text>
             </Flex>
           </Grid>
@@ -90,8 +90,8 @@ const HelpModal = forwardRef(
                 Upshot&apos;s fine-tuning
               </Text>
               <Text sx={{ color: theme.colors['grey-600'] }}>
-                Crowd intelligence (manual review by our Machine Learning
-                Engineering team to review and fine-tune our models.)
+                Crowd intelligence (manually reviewed by our Machine Learning
+                Engineering team to fine-tune our models.)
               </Text>
             </Flex>
           </Grid>
@@ -109,7 +109,7 @@ const HelpModal = forwardRef(
                 We compare historical NFT sales to historical appraisal prices
                 from our models; from this, we can calculate our Median Relative
                 Error % for each price (e.g. the appraisal is accurate within
-                +/- MRE%.)
+                +/- MRE%).
                 <br />
                 <br />
                 Our MRE is industry-leading at 8-15%.
