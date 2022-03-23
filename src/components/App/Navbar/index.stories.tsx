@@ -37,10 +37,15 @@ const Template: ComponentStory<typeof Navbar> = (args: any) => {
           console.log({ value })
         }}
         onMenuClick={() => setShowSidebar(!showSidebar)}
+        onHelpClick={() => {}}
         showSidebar={showSidebar}
         {...args}
       />
-      <Modal ref={modalRef} onClose={toggleConnectModal} {...{ open: connectOpen }}>
+      <Modal
+        ref={modalRef}
+        onClose={toggleConnectModal}
+        {...{ open: connectOpen }}
+      >
         <ConnectModal onConnect={handleConnect} {...args} />
       </Modal>
     </>

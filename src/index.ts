@@ -56,6 +56,7 @@ export { default as CollectorAccordion } from './components/App/CollectorAccordi
 export { default as CollectorAccordionHead } from './components/App/CollectorAccordionHead'
 export { default as CollectorAccordionRow } from './components/App/CollectorAccordionRow'
 export { default as ConnectModal } from './components/App/ConnectModal'
+export { default as HelpModal } from './components/App/HelpModal'
 export { default as Footer, FooterProps } from './components/App/Footer'
 export { default as Investors } from './components/App/Investors'
 export { default as LandingPanel } from './components/App/LandingPanels'
