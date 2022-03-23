@@ -97,10 +97,8 @@ const CollectionRow = forwardRef(
                 boxShadow: onClick
                   ? theme.shadow.underglow('primary')
                   : undefined,
-                'td:last-child': {
-                  svg: {
-                    display: 'block',
-                  },
+                '& td:last-child svg': {
+                  display: 'block !important',
                 },
               },
               borderRadius: theme.radii.md,
@@ -151,6 +149,7 @@ const CollectionRow = forwardRef(
                     display: 'none',
                     width: '20px',
                     height: '20px',
+                    flexShrink: 0,
                   }}
                 />
               </Flex>
