@@ -56,6 +56,7 @@ export interface NavbarInterface extends BoxProps {
   onLogoClick: (e: React.MouseEvent<HTMLElement>) => void
   onMenuClick: (e: React.MouseEvent<HTMLElement>) => void
   onConnectClick?: (e: React.MouseEvent<HTMLElement>) => void
+  onHelpClick?: (e: React.MouseEvent<HTMLElement>) => void
   onDisconnectClick?: () => void
 }
 
@@ -76,6 +77,7 @@ const Navbar = forwardRef(
       onLogoClick,
       onConnectClick,
       onDisconnectClick,
+      onHelpClick,
       onMenuClick,
       children,
       ...props
@@ -171,6 +173,22 @@ const Navbar = forwardRef(
               )}
             </Flex>
             <Flex style={{ alignItems: 'center', gap: '16px' }}>
+              {!!onHelpClick && (
+                <IconButton
+                  onClick={onHelpClick}
+                  sx={{
+                    backgroundColor: 'grey-800',
+                    width: 45,
+                    height: 45,
+                    transition: 'default',
+                    '&:hover': {
+                      boxShadow: '0px 0px 14px #0091FF',
+                    },
+                  }}
+                >
+                  <Icon icon="question" color="grey-300" size="20" />
+                </IconButton>
+              )}
               <>
                 {address ? (
                   <NavbarItem ref={setReferenceElement}>
