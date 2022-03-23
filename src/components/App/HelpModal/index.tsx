@@ -90,8 +90,8 @@ const HelpModal = forwardRef(
                 Upshot&apos;s fine-tuning
               </Text>
               <Text sx={{ color: theme.colors['grey-600'] }}>
-                Crowd intelligence (manually reviewed by our Machine Learning
-                Engineering team to fine-tune our models.)
+                Crowd intelligence (manual review by our Machine Learning
+                Engineering team to fine-tune our models).
               </Text>
             </Flex>
           </Grid>
