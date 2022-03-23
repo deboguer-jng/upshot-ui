@@ -58,9 +58,9 @@ const HelpModal = forwardRef(
               </Text>
               <Text sx={{ color: theme.colors['grey-600'] }}>
                 Metadata | Trait-specific performance | Overall rarity score of
-                this NFT vs the collection| “Hard” market interactions (sales,
-                mints, transfers of ownership) | “Soft” market interactions
-                (bids, asks, order books )
+                this NFT vs the collection | &quot;Hard&quot; market
+                interactions (sales, mints, transfers of ownership) |
+                &quot;Soft&quot; market interactions (bids, asks, order books.)
               </Text>
             </Flex>
           </Grid>
@@ -75,7 +75,7 @@ const HelpModal = forwardRef(
                 Factor off-chain data
               </Text>
               <Text sx={{ color: theme.colors['grey-600'] }}>
-                Social sentiment analysis | Twitter/ Discord engagement
+                Social sentiment analysis | Twitter/Discord engagement.
               </Text>
             </Flex>
           </Grid>
@@ -87,11 +87,11 @@ const HelpModal = forwardRef(
               <Text
                 sx={{ fontSize: isMobile ? '18px' : '23px', fontWeight: 700 }}
               >
-                Upshot’s fine-tuning
+                Upshot&apos;s fine-tuning
               </Text>
               <Text sx={{ color: theme.colors['grey-600'] }}>
                 Crowd intelligence (manual review by our Machine Learning
-                Engineering team to review and fine-tune our models)
+                Engineering team to review and fine-tune our models.)
               </Text>
             </Flex>
           </Grid>
@@ -107,16 +107,16 @@ const HelpModal = forwardRef(
               </Text>
               <Text sx={{ color: theme.colors['grey-600'] }}>
                 We compare historical NFT sales to historical appraisal prices
-                from our models; from this we can calculate our Median Relative
+                from our models; from this, we can calculate our Median Relative
                 Error % for each price (e.g. the appraisal is accurate within
-                +/- MRE%).
+                +/- MRE%.)
                 <br />
                 <br />
-                Our MRE is industry-leading at 8-15%
+                Our MRE is industry-leading at 8-15%.
                 <br />
                 <br />
-                We currently support 240 collections, and 270k NFTs across those
-                collections, with appraisals refreshed every hour
+                We currently support 240 collections and 270k NFTs across those
+                collections, with appraisals refreshed every hour.
               </Text>
             </Flex>
           </Grid>
@@ -139,7 +139,7 @@ const HelpModal = forwardRef(
             </Text>
             <Text sx={{ color: theme.colors['grey-600'] }}>
               Upshot appraisals are fine-tuned and updated over time to respond
-              to the ever evolving market.
+              to the ever-evolving market.
             </Text>
           </Flex>
         </Footer>
