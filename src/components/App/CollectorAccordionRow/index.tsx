@@ -504,15 +504,17 @@ const CollectorRow = forwardRef(
                           )
                         })}
                     </Grid>
-                    {Math.ceil(nftCollection.length / 9) > 1 && (
-                      <Pagination
-                        forcePage={page}
-                        pageCount={Math.ceil(nftCollection.length / 9)}
-                        pageRangeDisplayed={0}
-                        marginPagesDisplayed={0}
-                        onPageChange={handlePageChange}
-                      />
-                    )}
+                    <Box sx={{ textAlign: 'center'}}>
+                      {Math.ceil(nftCollection.length / 9) > 1 && (
+                        <Pagination
+                          forcePage={page}
+                          pageCount={Math.ceil(nftCollection.length / 9)}
+                          pageRangeDisplayed={0}
+                          marginPagesDisplayed={0}
+                          onPageChange={handlePageChange}
+                        />
+                      )}
+                    </Box>
                   </Flex>
                 ) : (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>
