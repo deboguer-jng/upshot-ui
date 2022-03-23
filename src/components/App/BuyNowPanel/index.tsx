@@ -14,7 +14,7 @@ import {
   StyledBox,
   StyledIcon,
 } from './Styled'
-import { formatCommas } from '../../../utils/number'
+import { formatNumber } from '../../../utils/number'
 
 export interface BuyButtonProps extends ButtonProps {
   /**
@@ -40,7 +40,7 @@ const BuyButton = forwardRef(
         capitalize={true}
         $width={width}
       >
-        {marketplaceName === "OpenSea" && (
+        {marketplaceName === 'OpenSea' && (
           <StyledIcon icon="openSeaBlock" color="white" size={16} />
         )}
         <StyledText color="white">Buy on {marketplaceName}</StyledText>
@@ -101,7 +101,9 @@ const BuyNowPanel = forwardRef(
       isUnderPriced = false
     }
 
-    const textColor = isUnderPriced ? 'green' as keyof typeof colors : 'red' as keyof typeof colors
+    const textColor = isUnderPriced
+      ? ('green' as keyof typeof colors)
+      : ('red' as keyof typeof colors)
     const title = isUnderPriced ? 'Underpriced' : 'Overpriced'
     const belowOrAbove = isUnderPriced ? 'below' : 'above'
     let buttonPosition
@@ -113,7 +115,9 @@ const BuyNowPanel = forwardRef(
 
     return (
       <StyledPanel $variant={variant} {...props}>
-        {buttonPosition === 'right' && <BuyButton url={marketplaceUrl} marketplaceName={marketplaceName} />}
+        {buttonPosition === 'right' && (
+          <BuyButton url={marketplaceUrl} marketplaceName={marketplaceName} />
+        )}
 
         <Flex
           sx={{
@@ -136,17 +140,23 @@ const BuyNowPanel = forwardRef(
             </Text>
             &nbsp; {variant === 'popup' && <br />}
             <Text color={textColor}>
-              {Math.abs(listAppraisalPercentage).toFixed(2)}% {belowOrAbove} appraisal price
+              {Math.abs(listAppraisalPercentage).toFixed(2)}% {belowOrAbove}{' '}
+              appraisal price
             </Text>
             &nbsp; {variant === 'popup' && <br />}
             <Text color="grey-500">at</Text>
             &nbsp;
             <Text color="grey-400">
-              Ξ{listPriceETH} {listPriceUSD > 0 && '($' + formatCommas(listPriceUSD) + ')'}
+              Ξ{listPriceETH}{' '}
+              {listPriceUSD > 0 && '($' + formatNumber(listPriceUSD) + ')'}
             </Text>
           </StyledBox>
           {buttonPosition === 'bottom' && (
-            <BuyButton url={marketplaceUrl} marketplaceName={marketplaceName} width="100%" />
+            <BuyButton
+              url={marketplaceUrl}
+              marketplaceName={marketplaceName}
+              width="100%"
+            />
           )}
         </Flex>
       </StyledPanel>

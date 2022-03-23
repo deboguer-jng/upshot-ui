@@ -13,7 +13,7 @@ import { TableRowProps } from '../../Layout/TableRow'
 import { Icon, useBreakpointIndex } from '../../..'
 import { Flex, IconButton } from '@theme-ui/components'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
-import { formatCommas } from '../../../utils/number'
+import { formatNumber } from '../../../utils/number'
 import { useTheme } from '@emotion/react'
 export type Variant = 'black' | 'dark' | 'normal'
 export interface CollectionRowProps extends TableRowProps {
@@ -219,7 +219,7 @@ const CollectionRow = forwardRef(
                         lineHeight: 1,
                       }}
                     >
-                      {formatCommas(nftCount)}
+                      {formatNumber(nftCount)}
                     </Text>
                   </Flex>
                 </>
