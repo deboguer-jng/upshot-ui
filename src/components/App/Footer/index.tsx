@@ -41,10 +41,6 @@ const Footer = forwardRef(
               </LogoBox>
               <StyledBox>
                 <Flex>
-                  <StyledMiddleLink href="/whitepaper.pdf" target="_blank">
-                    Whitepaper
-                  </StyledMiddleLink>
-                  <StyledBoxMiddleSeparate>|</StyledBoxMiddleSeparate>
                   <StyledMiddleLink href="/privacy.pdf" target="_blank">
                     Privacy
                   </StyledMiddleLink>
