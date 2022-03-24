@@ -18,5 +18,6 @@ export const StyledPanel = styled(Panel)`
   backdrop-filter: blur(12px);
   background-color: ${({ theme }) => theme.colors['grey-900']};
   border-radius: ${({ theme }) => theme.radii.md};
+  padding: 12px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.7);
 `
