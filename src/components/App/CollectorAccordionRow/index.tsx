@@ -471,7 +471,7 @@ const CollectorRow = forwardRef(
                       sx={{
                         gap: 2,
                         gridTemplateColumns:
-                          'repeat(auto-fill, minmax(92px, 1fr) )',
+                          'repeat(auto-fill, minmax(30%, 1fr) )',
                       }}
                     >
                       {nftCollection
@@ -504,7 +504,7 @@ const CollectorRow = forwardRef(
                           )
                         })}
                     </Grid>
-                    <Box sx={{ textAlign: 'center'}}>
+                    <Box sx={{ textAlign: 'center' }}>
                       {Math.ceil(nftCollection.length / 9) > 1 && (
                         <Pagination
                           forcePage={page}
