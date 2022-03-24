@@ -98,7 +98,7 @@ const CollectionRow = forwardRef(
                   ? theme.shadow.underglow('primary')
                   : undefined,
                 '& td:last-child svg': {
-                  display: 'block !important',
+                  display: onClick ? 'block !important' : undefined,
                 },
               },
               borderRadius: theme.radii.md,
