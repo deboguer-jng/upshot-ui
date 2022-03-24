@@ -1,42 +1,38 @@
 import styled from '@emotion/styled'
 import { Box, Flex } from 'theme-ui'
 
-interface HelpModalBaseProps {
-  isMobile: boolean
-}
-
-export const HelpModalBase = styled(Box)<HelpModalBaseProps>`
+export const HelpModalBase = styled(Box)`
   border-radius: 30px;
   background: ${({ theme }) => theme.colors['grey-800']};
-  padding: ${({ isMobile }) => (isMobile ? '20px' : '60px')};
 `
 
 export const Header = styled.div`
+  display: flex;
+  width: 100%;
   position: relative;
-  padding-bottom: 40px;
+  padding-bottom: 25px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 `
 
 export const CloseButton = styled.button`
-  position: absolute;
-  top: 0;
-  right: 0;
+  height: fit-content;
   border: none;
   outline: none;
   background: none;
+  cursor: pointer;
 `
 
 export const Body = styled(Flex)`
   flex-direction: column;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   gap: 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 `
 
 export const BodyInfoIcon = styled.div`
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,10 +43,10 @@ export const BodyInfoIcon = styled.div`
 
 export const Footer = styled.div`
   display: grid;
-  grid-template-columns: 28px auto;
+  grid-template-columns: 20px auto;
   gap: 1rem;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 `
 
 export const ReadMore = styled.a`

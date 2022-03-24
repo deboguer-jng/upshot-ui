@@ -22,21 +22,33 @@ const HelpModal = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const { theme } = useTheme()
-    const isMobile = useBreakpointIndex() <= 2
+
     return (
-      <HelpModalBase isMobile={isMobile} {...{ ref, ...props }}>
+      <HelpModalBase
+        sx={{
+          padding: ['20px', '40px', '60px'],
+          width: ['calc(100vw - 2rem)', '80vw', '750px'],
+          margin: 'auto',
+        }}
+        {...{ ref, ...props }}
+      >
         <Header>
-          <Flex sx={{ flexDirection: 'column' }}>
+          <Flex sx={{ flexDirection: 'column', flexGrow: 1 }}>
             <Text
               sx={{
-                fontSize: isMobile ? '30px' : '60px',
-                lineHeight: isMobile ? '50px' : '80px',
+                fontSize: ['24px', '30px', '50px'],
+                lineHeight: ['34px', '40px', '60px'],
                 fontWeight: 700,
               }}
             >
               Our Appraisal Models
             </Text>
-            <Text sx={{ color: theme.colors['grey-600'] }}>
+            <Text
+              sx={{
+                color: theme.colors['grey-600'],
+                fontSize: ['12px', '14px', '16px'],
+              }}
+            >
               Our appraisal algorithm prices NFTs just as any good Degen would,
               only faster.
             </Text>
@@ -46,17 +58,20 @@ const HelpModal = forwardRef(
           </CloseButton>
         </Header>
         <Body>
-          <Grid columns={['28px auto']} sx={{ gap: '1rem' }}>
+          <Grid columns={['20px auto']} sx={{ gap: '1rem' }}>
             <BodyInfoIcon>
-              <Icon icon="checkmark" color="white" size="20" />
+              <Icon icon="checkmark" color="white" size="16" />
             </BodyInfoIcon>
             <Flex sx={{ flexDirection: 'column', gap: '0.5rem' }}>
-              <Text
-                sx={{ fontSize: isMobile ? '18px' : '23px', fontWeight: 700 }}
-              >
+              <Text sx={{ fontSize: ['16px', '20px'], fontWeight: 700 }}>
                 Factor on-chain data
               </Text>
-              <Text sx={{ color: theme.colors['grey-600'] }}>
+              <Text
+                sx={{
+                  color: theme.colors['grey-600'],
+                  fontSize: ['12px', '14px', '16px'],
+                }}
+              >
                 Metadata | Trait-specific performance | Overall rarity score of
                 this NFT vs the collection | &quot;Hard&quot; market
                 interactions (sales, mints, transfers of ownership) |
@@ -64,58 +79,50 @@ const HelpModal = forwardRef(
               </Text>
             </Flex>
           </Grid>
-          <Grid columns={['28px auto']} sx={{ gap: '1rem' }}>
+          <Grid columns={['20px auto']} sx={{ gap: '1rem' }}>
             <BodyInfoIcon>
-              <Icon icon="checkmark" color="white" size="20" />
+              <Icon icon="checkmark" color="white" size="16" />
             </BodyInfoIcon>
             <Flex sx={{ flexDirection: 'column', gap: '0.5rem' }}>
-              <Text
-                sx={{ fontSize: isMobile ? '18px' : '23px', fontWeight: 700 }}
-              >
-                Factor off-chain data
-              </Text>
-              <Text sx={{ color: theme.colors['grey-600'] }}>
-                Social sentiment analysis | Twitter/Discord engagement.
-              </Text>
-            </Flex>
-          </Grid>
-          <Grid columns={['28px auto']} sx={{ gap: '1rem' }}>
-            <BodyInfoIcon>
-              <Icon icon="checkmark" color="white" size="20" />
-            </BodyInfoIcon>
-            <Flex sx={{ flexDirection: 'column', gap: '0.5rem' }}>
-              <Text
-                sx={{ fontSize: isMobile ? '18px' : '23px', fontWeight: 700 }}
-              >
+              <Text sx={{ fontSize: ['16px', '20px'], fontWeight: 700 }}>
                 Upshot&apos;s fine-tuning
               </Text>
-              <Text sx={{ color: theme.colors['grey-600'] }}>
-                Crowd intelligence (manual review by our Machine Learning
-                Engineering team to fine-tune our models).
+              <Text
+                sx={{
+                  color: theme.colors['grey-600'],
+                  fontSize: ['12px', '14px', '16px'],
+                }}
+              >
+                Per-collection review by our Machine Learning
+                team and others to fine-tune our models 
+                for collection-specific properties, &quot;meta traits&quot;, etc.
               </Text>
             </Flex>
           </Grid>
-          <Grid columns={['28px auto']} sx={{ gap: '1rem' }}>
+          <Grid columns={['20px auto']} sx={{ gap: '1rem' }}>
             <BodyInfoIcon>
-              <Icon icon="checkmark" color="white" size="20" />
+              <Icon icon="checkmark" color="white" size="16" />
             </BodyInfoIcon>
             <Flex sx={{ flexDirection: 'column', gap: '0.5rem' }}>
-              <Text
-                sx={{ fontSize: isMobile ? '18px' : '23px', fontWeight: 700 }}
-              >
+              <Text sx={{ fontSize: ['16px', '20px'], fontWeight: 700 }}>
                 Maintain model integrity
               </Text>
-              <Text sx={{ color: theme.colors['grey-600'] }}>
+              <Text
+                sx={{
+                  color: theme.colors['grey-600'],
+                  fontSize: ['12px', '14px', '16px'],
+                }}
+              >
                 We compare historical NFT sales to historical appraisal prices
                 from our models; from this, we can calculate our Median Relative
                 Error % for each price (e.g. the appraisal is accurate within
                 +/- MRE%).
                 <br />
                 <br />
-                Our MRE is industry-leading at 8-15%.
+                Our MRE is industry-leading at 8-15% for most collections.
                 <br />
                 <br />
-                We currently support 240 collections and 270k NFTs across those
+                We currently support over 240 collections and around 270k NFTs across those
                 collections, with appraisals refreshed every hour.
               </Text>
             </Flex>
@@ -125,29 +132,38 @@ const HelpModal = forwardRef(
         <Footer>
           <Box
             sx={{
-              width: 28,
-              height: 28,
+              width: 20,
+              height: 20,
               borderRadius: 14,
               border: '1px solid white',
             }}
           />
           <Flex sx={{ flexDirection: 'column', gap: '0.5rem' }}>
-            <Text
-              sx={{ fontSize: isMobile ? '18px' : '23px', fontWeight: 700 }}
-            >
-              More to come
+            <Text sx={{ fontSize: ['16px', '20px'], fontWeight: 700 }}>
+              Coming Soon
             </Text>
-            <Text sx={{ color: theme.colors['grey-600'] }}>
-              Upshot appraisals are fine-tuned and updated over time to respond
-              to the ever-evolving market.
+            <Text
+              sx={{
+                color: theme.colors['grey-600'],
+                fontSize: ['12px', '14px', '16px'],
+              }}
+            >
+              Social sentiment analysis | Twitter/Discord engagement | And more
             </Text>
           </Flex>
         </Footer>
 
+        <Flex sx={{ flexDirection: 'row', alignItems: 'center', gap: 1 }}>
         <ReadMore href={link} target="_blank" rel="noreferrer">
-          {' '}
-          Read More{' '}
-        </ReadMore>
+            {' '}
+            Read More{' '}
+          </ReadMore>
+          <Icon
+              color="primary"
+              icon="openLink"
+              size={16}
+            />
+          </Flex>
       </HelpModalBase>
     )
   }
