@@ -10,7 +10,7 @@ import Grid from '../../Layout/Grid'
 import { SeeAllButton, CardContainer, CollectionCardBase } from './Styled'
 import { useTheme } from '../../../themes/UpshotUI'
 import { PanelProps } from '../../@UI/Panel'
-import { formatCommas } from '../../../utils/number'
+import { formatNumber } from '../../../utils/number'
 export interface CollectionCardProps extends PanelProps {
   /**
    * Collection name
@@ -146,7 +146,7 @@ const CollectionCard = forwardRef(
               )}
               <Flex sx={{ gap: 2, alignItems: 'flex-end' }}>
                 <Text color="grey-600" sx={{ fontSize: 2 }}>
-                  {total ? formatCommas(total) : 0} NFTs
+                  {total ? formatNumber(total) : 0} NFTs
                 </Text>
                 {!!floorPrice && isUnsupported && (
                   <Text color="pink" sx={{ fontSize: 2 }}>

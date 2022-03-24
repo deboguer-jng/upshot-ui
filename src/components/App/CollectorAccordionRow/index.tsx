@@ -19,7 +19,7 @@ import { Pagination } from '../../..'
 import IconButton from '../../@UI/IconButton'
 import { useBreakpointIndex } from '../../..'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
-import { formatCommas } from '../../../utils/number'
+import { formatNumber } from '../../../utils/number'
 
 export interface CollectorAccordionRowProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -246,7 +246,7 @@ const CollectorRow = forwardRef(
                   lineHeight: 1,
                 }}
               >
-                {count ? formatCommas(count) : null}
+                {count ? formatNumber(count) : null}
               </Text>
             )}
           </Flex>
@@ -444,7 +444,7 @@ const CollectorRow = forwardRef(
                                   color="blue"
                                   sx={{ lineHeight: 1 }}
                                 >
-                                  {count ? formatCommas(count) : 0} NFTs
+                                  {count ? formatNumber(count) : 0} NFTs
                                 </Text>
                               </Flex>
                             </Flex>
@@ -504,15 +504,17 @@ const CollectorRow = forwardRef(
                           )
                         })}
                     </Grid>
-                    {Math.ceil(nftCollection.length / 9) > 1 && (
-                      <Pagination
-                        forcePage={page}
-                        pageCount={Math.ceil(nftCollection.length / 9)}
-                        pageRangeDisplayed={0}
-                        marginPagesDisplayed={0}
-                        onPageChange={handlePageChange}
-                      />
-                    )}
+                    <Box sx={{ textAlign: 'center'}}>
+                      {Math.ceil(nftCollection.length / 9) > 1 && (
+                        <Pagination
+                          forcePage={page}
+                          pageCount={Math.ceil(nftCollection.length / 9)}
+                          pageRangeDisplayed={0}
+                          marginPagesDisplayed={0}
+                          onPageChange={handlePageChange}
+                        />
+                      )}
+                    </Box>
                   </Flex>
                 ) : (
                   <Flex sx={{ flexDirection: 'column', gap: 2 }}>

@@ -112,3 +112,9 @@ export { useBreakpointIndex } from './hooks/useBreakpointIndex'
  * Util functions
  */
 export { imageOptimizer } from './utils/imageOptimizer'
+export { formatNumber, parseUint256 } from './utils/number'
+
+/**
+ * Constants
+ */
+export { NUMBER_PREFIX } from './utils/number'

@@ -13,7 +13,7 @@ import Label from '../../@UI/Label'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
 import { useTheme } from '../../../themes/UpshotUI'
 import { PanelProps } from '../../@UI/Panel'
-import { formatCommas } from '../../../utils/number'
+import { formatNumber } from '../../../utils/number'
 
 export interface CollectionCardItemProps extends PanelProps {
   /**
@@ -207,11 +207,11 @@ const CollectionCardItem = forwardRef(
                 variant="currency"
                 style={{ lineHeight: 1 }}
               >
-                {'Ξ' + formatCommas(appraisalPriceETH)}
+                {'Ξ' + formatNumber(appraisalPriceETH)}
               </Label>
               {appraisalPriceUSD != null && (
                 <Text color="grey-300" variant="small" sx={{ opacity: 0.5 }}>
-                  ${formatCommas(appraisalPriceUSD)}
+                  ${formatNumber(appraisalPriceUSD)}
                 </Text>
               )}
             </Flex>

@@ -73,9 +73,9 @@ const HelpModal = forwardRef(
                 }}
               >
                 Metadata | Trait-specific performance | Overall rarity score of
-                this NFT vs the collection| “Hard” market interactions (sales,
-                mints, transfers of ownership) | “Soft” market interactions
-                (bids, asks, order books )
+                this NFT vs the collection | &quot;Hard&quot; market
+                interactions (sales, mints, transfers of ownership) |
+                &quot;Soft&quot; market interactions (bids, asks, order books).
               </Text>
             </Flex>
           </Grid>
@@ -85,7 +85,7 @@ const HelpModal = forwardRef(
             </BodyInfoIcon>
             <Flex sx={{ flexDirection: 'column', gap: '0.5rem' }}>
               <Text sx={{ fontSize: ['16px', '20px'], fontWeight: 700 }}>
-                Upshot’s fine-tuning
+                Upshot&apos;s fine-tuning
               </Text>
               <Text
                 sx={{
@@ -94,7 +94,7 @@ const HelpModal = forwardRef(
                 }}
               >
                 Crowd intelligence (manual review by our Machine Learning
-                Engineering team to review and fine-tune our models)
+                Engineering team to fine-tune our models).
               </Text>
             </Flex>
           </Grid>
@@ -113,16 +113,16 @@ const HelpModal = forwardRef(
                 }}
               >
                 We compare historical NFT sales to historical appraisal prices
-                from our models; from this we can calculate our Median Relative
+                from our models; from this, we can calculate our Median Relative
                 Error % for each price (e.g. the appraisal is accurate within
                 +/- MRE%).
                 <br />
                 <br />
-                Our MRE is industry-leading at 8-15%
+                Our MRE is industry-leading at 8-15%.
                 <br />
                 <br />
-                We currently support 240 collections, and 270k NFTs across those
-                collections, with appraisals refreshed every hour
+                We currently support 240 collections and 270k NFTs across those
+                collections, with appraisals refreshed every hour.
               </Text>
             </Flex>
           </Grid>

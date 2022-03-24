@@ -30,7 +30,7 @@ export interface ChartProps {
     url?: string
     ath?: string
     atl?: string
-    volume?: number | boolean
+    volume?: number
     currentFloor?: string
     currentAvg?: string
     currentVolume?: string

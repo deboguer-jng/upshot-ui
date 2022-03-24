@@ -13,7 +13,7 @@ import { TableRowProps } from '../../Layout/TableRow'
 import { Icon, useBreakpointIndex } from '../../..'
 import { Flex, IconButton } from '@theme-ui/components'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
-import { formatCommas } from '../../../utils/number'
+import { formatNumber } from '../../../utils/number'
 import { useTheme } from '@emotion/react'
 export type Variant = 'black' | 'dark' | 'normal'
 export interface CollectionRowProps extends TableRowProps {
@@ -97,10 +97,8 @@ const CollectionRow = forwardRef(
                 boxShadow: onClick
                   ? theme.shadow.underglow('primary')
                   : undefined,
-                'td:last-child': {
-                  svg: {
-                    display: 'block',
-                  },
+                '& td:last-child svg': {
+                  display: onClick ? 'block !important' : undefined,
                 },
               },
               borderRadius: theme.radii.md,
@@ -151,6 +149,7 @@ const CollectionRow = forwardRef(
                     display: 'none',
                     width: '20px',
                     height: '20px',
+                    flexShrink: 0,
                   }}
                 />
               </Flex>
@@ -219,7 +218,7 @@ const CollectionRow = forwardRef(
                         lineHeight: 1,
                       }}
                     >
-                      {formatCommas(nftCount)}
+                      {formatNumber(nftCount)}
                     </Text>
                   </Flex>
                 </>
