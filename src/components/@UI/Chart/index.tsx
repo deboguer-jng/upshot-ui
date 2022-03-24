@@ -31,9 +31,9 @@ export interface ChartProps {
     ath?: string
     atl?: string
     volume?: number
-    currentFloor?: string
-    currentAvg?: string
-    currentVolume?: string
+    currentFloor?: number
+    currentAvg?: number
+    currentVolume?: number
     metric?: string
   }[]
   /**

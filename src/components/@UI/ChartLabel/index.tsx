@@ -8,14 +8,13 @@ import IconButton from '../../@UI/IconButton'
 import {
   StyledTitle,
   StyledChangeDiv,
-  StyledRed,
-  StyledBlue,
   InlineLabel,
   RelativeFlex,
   StyledLink,
   StyledBox,
 } from './Styled'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
+import { formatNumber } from '../../../utils/number'
 
 export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -107,28 +106,6 @@ const ChartLabel = forwardRef(
   ) => {
     const isMobile = useBreakpointIndex() <= 1
 
-    function nFormatter(num: number, digits = 2) {
-      const lookup = [
-        { value: 1, symbol: '' },
-        { value: 1e3, symbol: 'k' },
-        { value: 1e6, symbol: 'M' },
-        { value: 1e9, symbol: 'B' },
-      ]
-      const item = lookup
-        .slice()
-        .reverse()
-        .find((item) => num >= item.value)
-      if (item) {
-        return (num / item.value).toFixed(2) + item.symbol
-      } else {
-        if (num >= 0.01) {
-          return Number(num.toFixed(digits)).toString()
-        } else {
-          return '<0.01'
-        }
-      } 
-    }
-
     return (
       <RelativeFlex
         {...{ ref, ...props }}
@@ -164,7 +141,7 @@ const ChartLabel = forwardRef(
               sx={{ fontWeight: 'normal', lineHeight: 1.1, fontSize: [6, 7] }}
             >
               {currency_1}
-              {nFormatter(price_1)}
+              {formatNumber(price_1, { kmbUnits: true, decimals: 2 })}
             </Text>
           </Flex>
           <StyledChangeDiv>
@@ -176,7 +153,7 @@ const ChartLabel = forwardRef(
                 size={isMobile ? 'xs' : 'sm'}
                 sx={{ '& label': { padding: 0 } }}
               >
-                {nFormatter(price_2)}
+                {formatNumber(price_2, { kmbUnits: true, decimals: 2 })}
               </InlineLabel>
             )}
             {change && `(${change})`}
@@ -195,21 +172,6 @@ const ChartLabel = forwardRef(
               </Text>
             )}
           </Box>
-          {/* {ath !== '-' && atl !== '-' && (
-            <Box sx={{ display: ['grid', 'block'] }}>
-              <StyledRed sx={{ paddingTop: ['3px', '0px'] }}>
-                ATL: {atl}
-              </StyledRed>
-              <StyledBlue
-                sx={{
-                  marginTop: ['-6px', '0px'],
-                  paddingLeft: ['0px', '5px'],
-                }}
-              >
-                ATH: {ath}
-              </StyledBlue>
-            </Box>
-          )} */}
         </StyledBox>
       </RelativeFlex>
     )
