@@ -93,8 +93,9 @@ const HelpModal = forwardRef(
                   fontSize: ['12px', '14px', '16px'],
                 }}
               >
-                Crowd intelligence (manual review by our Machine Learning
-                Engineering team to fine-tune our models).
+                Per-collection review by our Machine Learning
+                team and others to fine-tune our models 
+                for collection-specific properties, &quot;meta traits&quot;, etc.
               </Text>
             </Flex>
           </Grid>
@@ -118,10 +119,10 @@ const HelpModal = forwardRef(
                 +/- MRE%).
                 <br />
                 <br />
-                Our MRE is industry-leading at 8-15%.
+                Our MRE is industry-leading at 8-15% for most collections.
                 <br />
                 <br />
-                We currently support 240 collections and 270k NFTs across those
+                We currently support over 240 collections and around 270k NFTs across those
                 collections, with appraisals refreshed every hour.
               </Text>
             </Flex>
@@ -147,15 +148,22 @@ const HelpModal = forwardRef(
                 fontSize: ['12px', '14px', '16px'],
               }}
             >
-              Social sentiment analysis | Twitter/Discord engagement
+              Social sentiment analysis | Twitter/Discord engagement | And more
             </Text>
           </Flex>
         </Footer>
 
+        <Flex sx={{ flexDirection: 'row', alignItems: 'center', gap: 1 }}>
         <ReadMore href={link} target="_blank" rel="noreferrer">
-          {' '}
-          Read More{' '}
-        </ReadMore>
+            {' '}
+            Read More{' '}
+          </ReadMore>
+          <Icon
+              color="primary"
+              icon="openLink"
+              size={16}
+            />
+          </Flex>
       </HelpModalBase>
     )
   }

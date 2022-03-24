@@ -19,6 +19,7 @@ export const CloseButton = styled.button`
   border: none;
   outline: none;
   background: none;
+  cursor: pointer;
 `
 
 export const Body = styled(Flex)`
