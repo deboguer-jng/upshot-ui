@@ -23,6 +23,7 @@ import { usePopper } from 'react-popper'
 import InputRoundedSearch, {
   InputSuggestion,
 } from '../../@UI/InputRoundedSearch'
+import Tooltip from '../../../components/@UI/Tooltip'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import { shortenAddress } from '../../../utils/address'
 import zIndex from '../../../themes/UpshotUI/zIndex'
@@ -174,20 +175,25 @@ const Navbar = forwardRef(
             </Flex>
             <Flex style={{ alignItems: 'center', gap: '16px' }}>
               {!!onHelpClick && (
-                <IconButton
-                  onClick={onHelpClick}
-                  sx={{
-                    backgroundColor: 'grey-800',
-                    width: 45,
-                    height: 45,
-                    transition: 'default',
-                    '&:hover': {
-                      boxShadow: '0px 0px 14px #0091FF',
-                    },
-                  }}
+                <Tooltip
+                  tooltip={'How do we price NFTs?'}
+                  sx={{ marginLeft: '0px' }}
                 >
-                  <Icon icon="question" color="grey-300" size="20" />
-                </IconButton>
+                  <IconButton
+                    onClick={onHelpClick}
+                    sx={{
+                      backgroundColor: 'grey-800',
+                      width: 45,
+                      height: 45,
+                      transition: 'default',
+                      '&:hover': {
+                        boxShadow: '0px 0px 14px #0091FF',
+                      },
+                    }}
+                  >
+                    <Icon icon="question" color="grey-300" size="20" />
+                  </IconButton>
+                </Tooltip>
               )}
               <>
                 {address ? (

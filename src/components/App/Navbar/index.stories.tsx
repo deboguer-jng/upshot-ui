@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import Modal from '../../@UI/Modal'
 import Navbar from '.'
 import ConnectModal from '../ConnectModal'
+import HelpModal from '../HelpModal'
 
 export default {
   title: 'App/Navbar',
@@ -14,8 +15,11 @@ const Template: ComponentStory<typeof Navbar> = (args: any) => {
   const [connectOpen, setConnectOpen] = useState(false)
   const [blackOpen, setBlackOpen] = useState(false)
   const [showSidebar, setShowSidebar] = useState(false)
+  const [showHelpModal, setShowHelpModal] = useState(false)
   const modalRef = useRef(null)
+  const helpModalRef = useRef(null)
   const toggleConnectModal = () => setConnectOpen(!connectOpen)
+  const toggleHelpModal = () => setShowHelpModal(!showHelpModal)
 
   const handleConnect = (provider: string) => {
     console.info(`Connect to: ${provider}`)
@@ -37,7 +41,7 @@ const Template: ComponentStory<typeof Navbar> = (args: any) => {
           console.log({ value })
         }}
         onMenuClick={() => setShowSidebar(!showSidebar)}
-        onHelpClick={() => {}}
+        onHelpClick={() => setShowHelpModal(!showHelpModal)}
         showSidebar={showSidebar}
         {...args}
       />
@@ -47,6 +51,13 @@ const Template: ComponentStory<typeof Navbar> = (args: any) => {
         {...{ open: connectOpen }}
       >
         <ConnectModal onConnect={handleConnect} {...args} />
+      </Modal>
+      <Modal
+        ref={helpModalRef}
+        onClose={toggleHelpModal}
+        {...{ open: showHelpModal }}
+      >
+        <HelpModal link="" onClose={() => setShowHelpModal(!showHelpModal)} />
       </Modal>
     </>
   )

@@ -16,6 +16,7 @@ export const IconMiddle = styled(Icon)`
 `
 export const StyledPanel = styled(Panel)`
   backdrop-filter: blur(12px);
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: ${({ theme }) => theme.colors['grey-900']};
   border-radius: ${({ theme }) => theme.radii.md};
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.7);
 `
