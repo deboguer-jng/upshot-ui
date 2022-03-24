@@ -9,7 +9,6 @@ import ButtonChartCollection from '../../ButtonChartCollection'
 import ChartLabel from '../../ChartLabel'
 import Flex from '../../../Layout/Flex'
 import Box from '../../../Layout/Box'
-import Text from '../../../@UI/Text'
 import { format } from 'date-fns'
 import colors from '../../../../themes/UpshotUI/colors'
 import { useBreakpointIndex } from '../../../../hooks/useBreakpointIndex'
@@ -26,7 +25,7 @@ interface PopulatedChartProps {
     priceChange?: string
     labelColor?: keyof typeof colors
     volume?: number | boolean
-    currentFloor?: string
+    currentFloor?: number
     metric?: string
   }[]
   embedded?: boolean
@@ -48,7 +47,6 @@ const PopulatedChart = ({
   const emptyFilters = chartData.map((_) => true)
   const [filterStatus, setFilterStatus] = useState(emptyFilters)
   const isMobile = useBreakpointIndex() <= 1
-  const isMobileOrTablet = useBreakpointIndex() <= 2
 
   /* Reset filters when data changes. */
   useEffect(() => {
@@ -109,8 +107,6 @@ const PopulatedChart = ({
     },
   })
 
-  const timestamp = hoverDataPoint?.[hoverIndex]?.timestamp
-
   const metricKeys = {
     FLOOR: 'currentFloor',
     PAST_WEEK_AVERAGE: 'currentAvg',
@@ -121,22 +117,20 @@ const PopulatedChart = ({
     index: number,
     set: {
       data: number[][] | number[]
-      currentFloor?: string
-      currentAvg?: string
-      currentVolume?: string
+      currentFloor?: number
+      currentAvg?: number
+      currentVolume?: number
       metric?: string
     }
   ) => {
     if (hoverDataPoint[index]?.value) return hoverDataPoint[index]?.value
 
-    return parseFloat(
-      set[
-        metricKeys[set.metric as keyof typeof metricKeys] as
-          | 'currentFloor'
-          | 'currentAvg'
-          | 'currentVolume'
-      ]
-    )
+    return set[
+      metricKeys[set.metric as keyof typeof metricKeys] as
+        | 'currentFloor'
+        | 'currentAvg'
+        | 'currentVolume'
+    ]
   }
 
   const chartLabels = useMemo(
