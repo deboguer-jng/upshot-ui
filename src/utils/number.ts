@@ -18,11 +18,15 @@ export const parseUint256 = (
   decimals: number = 18,
   precision: number = 4
 ) => {
-  const denom = BN.from(10).pow(decimals)
-  const pow = BN.from(10).pow(precision)
-  const val = BN.from(amount).mul(pow).div(denom).toNumber()
-
-  return val / 10 ** precision
+  try {  
+    const denom = BN.from(10).pow(decimals)
+    const pow = BN.from(10).pow(precision)
+    const val = BN.from(amount).mul(pow).div(denom).toNumber()
+    return val / 10 ** precision
+  } catch(err) {
+    console.log(err)
+    return null
+  } 
 }
 
 interface FormatNumberOptions {
