@@ -5,7 +5,7 @@ import { StyledLink } from './Styled'
 
 export interface LinkProps extends LinkPropsUI {
   /**
-   * Link url.
+   * Disable text-decoration on hover
    */
    noHover?: boolean
 }
