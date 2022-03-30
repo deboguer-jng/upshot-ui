@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react'
-import { ButtonProps, Link } from 'theme-ui'
+import { ButtonProps } from 'theme-ui'
 
+import Link from '../../@UI/Link'
 import { PanelProps } from '../../@UI/Panel'
 import Text from '../../@UI/Text'
 import Flex from '../../Layout/Flex'

@@ -1,7 +1,6 @@
 import React, { forwardRef, useState, useEffect, useRef } from 'react'
 import { useTheme } from '@emotion/react'
 import { format, formatDistance } from 'date-fns'
-import { ethers } from 'ethers'
 
 import {
   CollectorRowAvatarWrapper,
@@ -14,6 +13,7 @@ import { Grid, Flex, Text, Box } from 'theme-ui'
 import Avatar from '../../@UI/Avatar'
 import Icon from '../../@UI/Icon'
 import Label from '../../@UI/Label'
+import Link from '../../@UI/Link'
 import makeBlockie from 'ethereum-blockies-base64'
 import { Pagination } from '../../..'
 import IconButton from '../../@UI/IconButton'
@@ -485,7 +485,7 @@ const CollectorRow = forwardRef(
                           const imageSrc = pixelated ? imageUrl : optimizedSrc
 
                           return (
-                            <a href={url} key={idx}>
+                            <Link href={url} key={idx}>
                               <Box
                                 sx={{
                                   backgroundImage: `url(${imageSrc})`,
@@ -500,7 +500,7 @@ const CollectorRow = forwardRef(
                                     : 'auto',
                                 }}
                               />
-                            </a>
+                            </Link>
                           )
                         })}
                     </Grid>

@@ -1,6 +1,7 @@
 import React, { forwardRef, HTMLAttributes } from 'react'
-import { Text, Flex, Link } from 'theme-ui'
+import { Text, Flex } from 'theme-ui'
 
+import Link from '../../@UI/Link'
 import ErrorSvg from '../../../assets/svg/icons/Error.svg'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
@@ -186,16 +187,7 @@ const MiniNftCard = forwardRef(
               ) : type === 'default' ? (
                 <Flex sx={{ alignItems: 'center' }}>
                   <AddressCircle variant="from" />
-                  <Link
-                    href={fromLink}
-                    sx={{
-                      color: 'white',
-                      textDecoration: 'none',
-                      '&:hover': {
-                        textDecoration: 'underline',
-                      },
-                    }}
-                  >
+                  <Link href={fromLink}>
                     <Text variant="small"> {from} </Text>
                   </Link>
                 </Flex>
@@ -222,16 +214,7 @@ const MiniNftCard = forwardRef(
               ) : type === 'default' ? (
                 <Flex sx={{ alignItems: 'center' }}>
                   <AddressCircle variant="to" />
-                  <Link
-                    href={toLink}
-                    sx={{
-                      color: 'white',
-                      textDecoration: 'none',
-                      '&:hover': {
-                        textDecoration: 'underline',
-                      },
-                    }}
-                  >
+                  <Link href={toLink}>
                     <Text variant="small"> {to} </Text>
                   </Link>
                 </Flex>

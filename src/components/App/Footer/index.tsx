@@ -1,4 +1,6 @@
 import React, { forwardRef } from 'react'
+import { Box, FlexProps } from 'theme-ui'
+
 import {
   FooterLine,
   StyledBoxMiddleSeparate,
@@ -10,10 +12,10 @@ import {
   StyledMiddleLink,
 } from './Styled'
 import Flex from '../../Layout/Flex'
-import { Box, FlexProps, Link } from 'theme-ui'
+import Link from '../../@UI/Link'
 import Icon from '../../@UI/Icon'
 import IconButton from '../../@UI/IconButton'
-import { Container, useTheme } from '../../..'
+import { Container } from '../../..'
 import colors from '../../../themes/UpshotUI/colors'
 
 export interface FooterProps extends FlexProps {
