@@ -93,8 +93,6 @@ export interface CollectorAccordionRowProps
    * Is it opened by default?
    */
   defaultOpen?: boolean
-
-  onClick?: () => void
 }
 
 /**
@@ -119,7 +117,6 @@ const CollectorRow = forwardRef(
       extraCollectionChanged,
       defaultOpen = false,
       isLandingPage = false,
-      onClick,
       ...props
     }: CollectorAccordionRowProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -154,7 +151,7 @@ const CollectorRow = forwardRef(
     return (
       <CollectorRowBase {...{ ref, ...props }}>
         <CollectorRowContent onClick={() => setOpen(!open)}>
-          <Box
+          <Link
             sx={{
               width: '100%',
               height: '48px',
@@ -170,12 +167,8 @@ const CollectorRow = forwardRef(
                 borderRadius: '50%',
                 border: '2px solid black',
               },
-              cursor: onClick ? 'pointer' : 'auto',
             }}
-            onClick={(e) => {
-              e.stopPropagation()
-              onClick && onClick()
-            }}
+            href={`/collector/${address}`}
           >
             <Avatar size="md" src={makeBlockie(address)} />
             <Icon
@@ -191,16 +184,11 @@ const CollectorRow = forwardRef(
               }}
               size="40%"
             />
-          </Box>
+          </Link>
           <Flex
             sx={{ flexDirection: 'column', justifyContent: 'center', gap: 1 }}
           >
-            <Text
-              as={onClick ? 'a' : 'span'}
-              onClick={(e) => {
-                e.stopPropagation()
-                onClick && onClick()
-              }}
+            <Link
               sx={{
                 fontWeight: 'bold',
                 fontSize: breakpointIndex <= 1 ? 2 : 3,
@@ -208,17 +196,14 @@ const CollectorRow = forwardRef(
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',
-                cursor: onClick ? 'pointer' : 'auto',
                 textDecoration: 'none',
                 width: 'fit-content',
                 color: 'inherit',
-                '&:hover': {
-                  textDecoration: onClick ? 'underline' : undefined,
-                },
               }}
+              href={`/collector/${address}`}
             >
               {displayName}
-            </Text>
+            </Link>
             {!!subtitle && (
               <Text
                 sx={{
