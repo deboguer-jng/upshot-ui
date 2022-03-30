@@ -168,7 +168,7 @@ const CollectorRow = forwardRef(
                 border: '2px solid black',
               },
             }}
-            href={`/collector/${address}`}
+            href={`/analytics/user/${address}`}
           >
             <Avatar size="md" src={makeBlockie(address)} />
             <Icon
@@ -200,7 +200,7 @@ const CollectorRow = forwardRef(
                 width: 'fit-content',
                 color: 'inherit',
               }}
-              href={`/collector/${address}`}
+              href={`/analytics/user/${address}`}
             >
               {displayName}
             </Link>
