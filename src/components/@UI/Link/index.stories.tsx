@@ -13,3 +13,8 @@ const Template: ComponentStory<typeof Link> = (args) => (
 )
 
 export const Default = Template.bind({})
+
+export const NoHover = Template.bind({})
+NoHover.args = {
+  noHover: true
+}
