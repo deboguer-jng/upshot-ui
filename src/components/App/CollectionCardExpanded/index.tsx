@@ -1,20 +1,19 @@
-import { BoxProps } from 'theme-ui'
 import React, { forwardRef, useEffect, useCallback, useRef } from 'react'
+import { usePositioner, useResizeObserver, useMasonry } from 'masonic'
+import { useSize, useScroller } from 'mini-virtual-list'
 
 import Avatar from '../../@UI/Avatar'
-import Text from '../../@UI/Text'
-import IconButton from '../../@UI/IconButton'
-import Icon from '../../@UI/Icon'
-import Flex from '../../Layout/Flex'
-import CollectionCardItem from '../CollectionCardItem'
+import CollectionCardItem, { CollectionCardItemProps } from '../CollectionCardItem'
 import {
   CardContainer,
   CollectionCardExpandedBase,
   MasonryContainer,
 } from './Styled'
-import { usePositioner, useResizeObserver, useMasonry } from 'masonic'
-import { useSize, useScroller } from 'mini-virtual-list'
-import { CollectionCardItemProps } from '../CollectionCardItem'
+import Flex from '../../Layout/Flex'
+import Icon from '../../@UI/Icon'
+import IconButton from '../../@UI/IconButton'
+import Text from '../../@UI/Text'
+import Link from '../../@UI/Link'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import { useTheme } from '../../../themes/UpshotUI'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
@@ -104,9 +103,9 @@ const CollectionCardExpanded = forwardRef(
     const MasonryRenderer = useCallback(
       ({ index, data }: { index: number; data: any }) => {
         return (
-          <a href={data.url} target="_blank">
+          <Link href={data.url} target="_blank">
             <CollectionCardItem sx={{ height: 320 }} {...data} />
-          </a>
+          </Link>
         )
       },
       [isMobile]

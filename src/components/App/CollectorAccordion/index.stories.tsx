@@ -62,7 +62,7 @@ export const Default = Template.bind({})
 Default.args = {
   items: [...new Array(5)].map((_) => ({
     address: '0xd387a6e4e84a6c86bd90c158c6028a58cc8ac459',
-    username: 'Pranksy',
+    displayName: 'Pranksy',
     collectionName: 'Mad Dog Jones',
     count: '24',
     avgHoldTime: 10622266,

@@ -9,6 +9,7 @@ import {
   CollectorRowExpansion,
 } from '../CollectorAccordionRow/Styled'
 import TableCell from '../../Layout/TableCell'
+import Link from '../../@UI/Link'
 import { TableRowProps } from '../../Layout/TableRow'
 import { Icon, useBreakpointIndex } from '../../..'
 import { Flex, IconButton } from '@theme-ui/components'
@@ -53,6 +54,10 @@ export interface CollectionRowProps extends TableRowProps {
    * Total count of NFTs.
    */
   nftCount?: number
+  /**
+   * Link url.
+   */
+  href?: string
 }
 
 const CollectionRow = forwardRef(
@@ -64,10 +69,11 @@ const CollectionRow = forwardRef(
       imageSrc,
       title,
       children,
+      onClick,
       pixelated,
       subtitle,
       nftCount,
-      onClick,
+      href,
       ...props
     }: CollectionRowProps,
     ref: React.ForwardedRef<HTMLTableRowElement>
@@ -106,53 +112,59 @@ const CollectionRow = forwardRef(
           >
             {!!imageSrc && (
               <TableCell>
-                <Box
-                  sx={{
-                    width: '100%',
-                    height: '48px',
-                    position: 'relative',
-                  }}
-                >
-                  <Avatar
-                    {...{ pixelated, src }}
+                <Link href={href}>
+                  <Box
                     sx={{
-                      backgroundColor: 'grey-600',
-                      borderColor: 'black',
+                      width: '100%',
+                      height: '48px',
+                      position: 'relative',
                     }}
-                  />
-                </Box>
+                  >
+                    <Avatar
+                      {...{ pixelated, src }}
+                      sx={{
+                        backgroundColor: 'grey-600',
+                        borderColor: 'black',
+                      }}
+                    />
+                  </Box>
+                </Link>
               </TableCell>
             )}
 
             <TableCell sx={{ width: '100% !important', height: '48px' }}>
-              <Text
-                variant="large"
-                {...{ onClick }}
-                sx={{
-                  textOverflow: 'ellipsis',
-                  overflow: 'hidden',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                {title}
-              </Text>
+              <Link href={href}>
+                <Text
+                  variant="large"
+                  {...{ onClick }}
+                  sx={{
+                    textOverflow: 'ellipsis',
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {title}
+                </Text>
+              </Link>
             </TableCell>
 
             {/* Additional columns (React.Fragment) */}
             {children}
             <TableCell>
-              <Flex sx={{ justifyContent: 'flex-end', alignItems: 'center' }}>
-                <Icon
-                  icon="arrowStylizedRight"
-                  color="primary"
-                  style={{
-                    display: 'none',
-                    width: '20px',
-                    height: '20px',
-                    flexShrink: 0,
-                  }}
-                />
-              </Flex>
+              <Link href={href}>
+                <Flex sx={{ justifyContent: 'flex-end', alignItems: 'center' }}>
+                  <Icon
+                    icon="arrowStylizedRight"
+                    color="primary"
+                    style={{
+                      display: 'none',
+                      width: '20px',
+                      height: '20px',
+                      flexShrink: 0,
+                    }}
+                  />
+                </Flex>
+              </Link>
             </TableCell>
           </CollectionRowBase>
         ) : (

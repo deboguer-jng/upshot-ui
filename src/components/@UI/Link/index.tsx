@@ -4,7 +4,10 @@ import { LinkProps as LinkPropsUI } from 'theme-ui'
 import { StyledLink } from './Styled'
 
 export interface LinkProps extends LinkPropsUI {
-
+  /**
+   * Disable text-decoration on hover
+   */
+   noHover?: boolean
 }
 
 /**
@@ -13,7 +16,10 @@ export interface LinkProps extends LinkPropsUI {
  */
 const Link = forwardRef(
   (
-    { ...props }: LinkProps,
+    {
+      noHover = false,
+      ...props
+    }: LinkProps,
     ref: React.ForwardedRef<HTMLAnchorElement>
   ) => {
     return (
@@ -23,6 +29,7 @@ const Link = forwardRef(
           ...{ flexShrink: 0, whiteSpace: 'nowrap' },
           ...(props?.sx ?? {}),
         }}
+        $noHover={noHover}
       >
       </StyledLink>
     )

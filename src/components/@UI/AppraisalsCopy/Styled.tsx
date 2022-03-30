@@ -53,6 +53,9 @@ export const AppraisalsCopyOpened = styled.div`
   flex-direction: column;
   gap: 1rem;
   width: 100%;
+  a {
+    font-size: 12px;
+  }
 `
 
 export const ArrpaisalsCopyOpenedTopBar = styled.div`

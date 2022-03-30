@@ -1,5 +1,6 @@
 import React, { forwardRef, useState } from 'react'
 import Icon from '../Icon'
+import Link from '../../@UI/Link'
 import {
   AppraisalsCopyWrapper,
   AppraisalsCopyClosed,
@@ -45,9 +46,9 @@ const AppraisalsCopy = forwardRef(
                 collections, traits, metadata, and rarity) with off-chain data
                 (like bid/ask spread, market behaviors, etc) with a little
                 Upshot magic.
-                <a href={link} target="_blank" rel="noreferrer">
+                <Link href={link} target="_blank" rel="noreferrer">
                   Read article.
-                </a>
+                </Link>
               </AppraisalsCopyOpenedContent>
 
               <AppraisalsCopyButton onClick={() => setOpen(false)}>
