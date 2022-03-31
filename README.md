@@ -28,6 +28,14 @@ yarn build
 
 ### Publish on NPM
 
+1. Always delete the `dist` folder
+
+2.
+```bash
+yarn && yarn build
+```
+
+3.
 ```bash
 npm publish
 ```
