@@ -8,9 +8,12 @@ import investorLogos from './investorLogos.json'
  * Investors footer at the bottom of the landing page.
  */
 const Investors = forwardRef(
-  ({ ...props }: FlexProps, ref: React.ForwardedRef<HTMLDivElement>) => {
+  (props: FlexProps, ref: React.ForwardedRef<HTMLDivElement>) => {
     return (
-      <Box sx={{ backgroundColor: colors['grey-900'], padding: 4 }}>
+      <Box
+        sx={{ backgroundColor: colors['grey-900'], padding: 4 }}
+        {...{ ref, ...props }}
+      >
         <Container maxBreakpoint="lg">
           <Flex
             sx={{
@@ -22,7 +25,6 @@ const Investors = forwardRef(
               justifyContent: 'center',
               backgroundColor: colors['grey-900'],
             }}
-            {...{ ref, ...props }}
           >
             {investorLogos.map((props, key) => (
               <img width={100} {...{ key, ...props }} />
