@@ -24,8 +24,8 @@ const Investors = forwardRef(
             }}
             {...{ ref, ...props }}
           >
-            {investorLogos.map((props) => (
-              <img width={100} {...props} />
+            {investorLogos.map((props, key) => (
+              <img width={100} {...{ key, ...props }} />
             ))}
           </Flex>
         </Container>
