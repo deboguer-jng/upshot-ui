@@ -33,8 +33,11 @@ export interface BuyButtonProps extends ButtonProps {
 }
 
 const BuyButton = forwardRef(
-  ({ url, width = null, marketplaceName, ...props }: BuyButtonProps) => (
-    <Link href={url} target="_blank">
+  (
+    { url, width = null, marketplaceName, ...props }: BuyButtonProps,
+    ref: React.ForwardedRef<HTMLAnchorElement>
+  ) => (
+    <Link href={url} target="_blank" {...{ ref }}>
       <StyledButton
         variant="secondary"
         size="md"
