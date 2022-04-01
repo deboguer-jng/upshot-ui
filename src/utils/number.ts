@@ -69,7 +69,7 @@ const formatLargeNumber = (num: number, decimals = 2) => {
 
   return item
     ? (num / item.value).toFixed(decimals) + item.symbol
-    : Number(0).toFixed(decimals)
+    : Number(num).toFixed(decimals)
 }
 
 /**
