@@ -34,10 +34,10 @@ const Link = forwardRef(
     ref: React.ForwardedRef<HTMLAnchorElement>
   ) => {
     /**
-     * If a Link component is provided, assume it's a Next/link
-     * and return a wrapped theme-UI anchor with the href passed.
+     * If a component prop is provided, assume it's a Next/link
+     * and return a wrapped theme-UI anchor with the href attached.
      */
-    if (LinkComponent)
+    if (LinkComponent && href)
       return (
         <LinkComponent {...{ href }} passHref>
           <StyledLink $color={color} $noHover={noHover} {...{ ref, ...props }}>
@@ -47,7 +47,8 @@ const Link = forwardRef(
       )
 
     /**
-     * Fallback to a styled theme-UI anchor if no router commponent is passed.
+     * Fallback to a styled theme-UI anchor if no router commponent is passed
+     * or the href is missing.
      */
     return (
       <StyledLink $color={color} $noHover={noHover} {...{ ref, ...props }}>
