@@ -18,7 +18,6 @@ import {
   MiniNftCardDetailLabel,
   MiniNftCardDetailValue,
   MiniNftCardImageWrapper,
-  WrappedLink,
   PriceTooltip,
 } from './Styled'
 
@@ -77,6 +76,11 @@ export interface MiniNftCardInterface {
   link?: string
 
   tooltip?: string
+
+  /**
+   * Link component
+   */
+  linkComponent?: React.FunctionComponent<any>
 }
 
 const MiniNftCard = forwardRef(
@@ -98,6 +102,7 @@ const MiniNftCard = forwardRef(
       date,
       link,
       pixelated = false,
+      linkComponent,
       tooltip,
       ...props
     }: MiniNftCardInterface & HTMLAttributes<HTMLDivElement>,
@@ -187,7 +192,7 @@ const MiniNftCard = forwardRef(
               ) : type === 'default' ? (
                 <Flex sx={{ alignItems: 'center' }}>
                   <AddressCircle variant="from" />
-                  <Link href={fromLink}>
+                  <Link href={fromLink} component={linkComponent}>
                     <Text variant="small"> {from} </Text>
                   </Link>
                 </Flex>
@@ -214,7 +219,7 @@ const MiniNftCard = forwardRef(
               ) : type === 'default' ? (
                 <Flex sx={{ alignItems: 'center' }}>
                   <AddressCircle variant="to" />
-                  <Link href={toLink}>
+                  <Link href={toLink} component={linkComponent}>
                     <Text variant="small"> {to} </Text>
                   </Link>
                 </Flex>
@@ -230,13 +235,13 @@ const MiniNftCard = forwardRef(
                   View Collection
                 </Text>
               ) : (
-                <WrappedLink href={link}>
+                <Link href={link} component={linkComponent}>
                   {' '}
                   <Text variant="small" color="primary">
                     {' '}
                     View Collection{' '}
                   </Text>
-                </WrappedLink>
+                </Link>
               )}
             </MiniNftCardDetailValue>
           </MiniNftCardDetailsBoard>

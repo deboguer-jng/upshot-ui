@@ -1,18 +1,19 @@
 import styled from '@emotion/styled'
 import { Link } from 'theme-ui'
-
 import colors from '../../../themes/UpshotUI/colors'
 
 interface LinkProp {
-  $noHover: boolean,
+  $noHover: boolean
   $color: keyof typeof colors
 }
 
 export const StyledLink = styled(Link)<LinkProp>`
-  color:  ${({ $color }) => $color ?? 'inherit'};
+  color: ${({ $color }) => $color ?? 'inherit'};
   font-size: inherit;
   text-decoration: none;
+  flex-shrink: 0;
+  white-space: nowrap;
   :hover {
-    text-decoration: ${({ $noHover }) => !!$noHover ? 'none' : 'underline'};
+    text-decoration: ${({ $noHover }) => ($noHover ? 'none' : 'underline')};
   }
 `

@@ -1,6 +1,6 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-
+import Link from '../Link'
 import AppraisalsCopy from './'
 
 export default {
@@ -10,7 +10,9 @@ export default {
 
 const Template: ComponentStory<typeof AppraisalsCopy> = () => (
   <>
-    <AppraisalsCopy link="google.com" />
+    <AppraisalsCopy
+      link={<Link href="https://google.com">)Read article</Link>}
+    />
   </>
 )
 

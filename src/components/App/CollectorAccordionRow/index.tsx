@@ -93,6 +93,10 @@ export interface CollectorAccordionRowProps
    * Is it opened by default?
    */
   defaultOpen?: boolean
+  /**
+   * Link component
+   */
+  linkComponent?: React.FunctionComponent<any>
 }
 
 /**
@@ -117,6 +121,7 @@ const CollectorRow = forwardRef(
       extraCollectionChanged,
       defaultOpen = false,
       isLandingPage = false,
+      linkComponent,
       ...props
     }: CollectorAccordionRowProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -169,6 +174,7 @@ const CollectorRow = forwardRef(
               },
             }}
             href={`/analytics/user/${address}`}
+            component={linkComponent}
           >
             <Avatar size="md" src={makeBlockie(address)} />
             <Icon
@@ -201,6 +207,7 @@ const CollectorRow = forwardRef(
                 color: 'inherit',
               }}
               href={`/analytics/user/${address}`}
+              component={linkComponent}
             >
               {displayName}
             </Link>
@@ -470,7 +477,11 @@ const CollectorRow = forwardRef(
                           const imageSrc = pixelated ? imageUrl : optimizedSrc
 
                           return (
-                            <Link href={url} key={idx}>
+                            <Link
+                              href={url}
+                              key={idx}
+                              component={linkComponent}
+                            >
                               <Box
                                 sx={{
                                   backgroundImage: `url(${imageSrc})`,
