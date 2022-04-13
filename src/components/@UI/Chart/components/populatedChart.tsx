@@ -15,6 +15,10 @@ import { useBreakpointIndex } from '../../../../hooks/useBreakpointIndex'
 import { truncateString } from '../../../../utils/string'
 
 interface PopulatedChartProps {
+  /**
+   * Link component
+   */
+  linkComponent?: React.FunctionComponent<any>
   chartData: {
     name: string
     data: number[] | number[][] // Supports 1D line chart or 2D [timestamp, value] series
@@ -38,6 +42,7 @@ type HoverDataPoint = {
 }
 
 const PopulatedChart = ({
+  linkComponent,
   chartData,
   embedded = false,
   onClose,
@@ -170,7 +175,7 @@ const PopulatedChart = ({
                   : null
               }
               maxWidth={isMobile ? 140 : 280}
-              {...{ index }}
+              {...{ index, linkComponent }}
             />
           )
         }),

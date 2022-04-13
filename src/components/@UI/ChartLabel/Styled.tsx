@@ -44,7 +44,7 @@ export const StyledIconButton = styled(IconButton)<ChartLabelProps>`
 
 export const StyledTitle = styled('h3')<ChartLabelProps>`
   text-transform: uppercase;
-  color: ${({ theme, $color }) => theme.colors[$color]};
+  color: inherit;
   font-weight: bold;
   margin-bottom: 5px;
   margin-top: 0;
@@ -97,13 +97,4 @@ export const RelativeFlex = styled(Flex)<ChartLabelProps>`
   font-size: ${({ $isMobile }) => ($isMobile ? '0.65em' : '1em')};
   flex-wrap: wrap;
   max-width: ${({ $maxWidth }) => $maxWidth + 'px'};
-`
-export const StyledLink = styled.a`
-  color: inherit;
-  text-decoration: none;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: none;
-  }
 `
