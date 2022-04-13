@@ -8,7 +8,7 @@ interface LinkProp {
 }
 
 export const StyledLink = styled(Link)<LinkProp>`
-  color: ${({ $color }) => $color ?? 'inherit'};
+  color: ${({ $color, theme }) => theme.rawColors[$color] ?? 'inherit'};
   font-size: inherit;
   text-decoration: none;
   flex-shrink: 0;

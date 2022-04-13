@@ -235,12 +235,8 @@ const MiniNftCard = forwardRef(
                   View Collection
                 </Text>
               ) : (
-                <Link href={link} component={linkComponent}>
-                  {' '}
-                  <Text variant="small" color="primary">
-                    {' '}
-                    View Collection{' '}
-                  </Text>
+                <Link color="primary" href={link} component={linkComponent}>
+                  <Text variant="small">View Collection</Text>
                 </Link>
               )}
             </MiniNftCardDetailValue>
