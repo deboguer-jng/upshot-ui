@@ -45,7 +45,6 @@ export { default as TreeMap } from './components/@UI/TreeMap/TreeMapDynamic'
  *
  * Shared app-level components.
  */
-export { default as AppBar } from './components/App/AppBar'
 export { default as CollectionCard } from './components/App/CollectionCard'
 export { default as CollectionCardExpanded } from './components/App/CollectionCardExpanded'
 export { default as CollectionCardItem } from './components/App/CollectionCardItem'

@@ -58,6 +58,10 @@ export interface CollectionRowProps extends TableRowProps {
    * Link url.
    */
   href?: string
+  /**
+   * Link component
+   */
+  linkComponent?: React.FunctionComponent<any>
 }
 
 const CollectionRow = forwardRef(
@@ -74,6 +78,7 @@ const CollectionRow = forwardRef(
       subtitle,
       nftCount,
       href,
+      linkComponent,
       ...props
     }: CollectionRowProps,
     ref: React.ForwardedRef<HTMLTableRowElement>
@@ -112,7 +117,7 @@ const CollectionRow = forwardRef(
           >
             {!!imageSrc && (
               <TableCell>
-                <Link href={href}>
+                <Link component={linkComponent} {...{ href }}>
                   <Box
                     sx={{
                       width: '100%',
@@ -133,7 +138,7 @@ const CollectionRow = forwardRef(
             )}
 
             <TableCell sx={{ width: '100% !important', height: '48px' }}>
-              <Link href={href}>
+              <Link component={linkComponent} {...{ href }}>
                 <Text
                   variant="large"
                   {...{ onClick }}
@@ -151,7 +156,7 @@ const CollectionRow = forwardRef(
             {/* Additional columns (React.Fragment) */}
             {children}
             <TableCell>
-              <Link href={href}>
+              <Link component={linkComponent} {...{ href }}>
                 <Flex sx={{ justifyContent: 'flex-end', alignItems: 'center' }}>
                   <Icon
                     icon="arrowStylizedRight"

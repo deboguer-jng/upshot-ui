@@ -23,6 +23,10 @@ export interface FooterProps extends FlexProps {
    * Sidebar is visible.
    */
   sidebarVisible?: boolean
+  /**
+   * Polymorphic wrapper (used to inherit Next routing)
+   */
+  linkComponent?: React.FunctionComponent<any>
 }
 
 /**
@@ -30,7 +34,7 @@ export interface FooterProps extends FlexProps {
  */
 const Footer = forwardRef(
   (
-    { sidebarVisible = false, ...props }: FooterProps,
+    { sidebarVisible = false, linkComponent, ...props }: FooterProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
@@ -60,6 +64,7 @@ const Footer = forwardRef(
                     <Link
                       href="https://mirror.xyz/0x82FE4757D134a56BFC7968A0f0d1635345053104"
                       target="_blank"
+                      component={linkComponent}
                     >
                       <IconButton>
                         <Icon color="grey-700" icon="mirror" size={24} />
@@ -67,14 +72,22 @@ const Footer = forwardRef(
                     </Link>
                   </StyledBoxMiddle>
                   <StyledBoxMiddle>
-                    <Link href="https://twitter.com/upshothq" target="_blank">
+                    <Link
+                      href="https://twitter.com/upshothq"
+                      target="_blank"
+                      component={linkComponent}
+                    >
                       <IconButton>
                         <Icon color="grey-700" icon="twitterCircle" size={24} />
                       </IconButton>
                     </Link>
                   </StyledBoxMiddle>
                   <StyledBoxMiddle>
-                    <Link href="https://discord.gg/upshot" target="_blank">
+                    <Link
+                      href="https://discord.gg/upshot"
+                      target="_blank"
+                      component={linkComponent}
+                    >
                       <IconButton>
                         <Icon color="grey-700" icon="discord" size={24} />
                       </IconButton>
@@ -84,6 +97,7 @@ const Footer = forwardRef(
                     <Link
                       href="https://www.instagram.com/upshot.hq/"
                       target="_blank"
+                      component={linkComponent}
                     >
                       <IconButton>
                         <Icon

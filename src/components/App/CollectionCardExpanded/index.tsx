@@ -3,7 +3,9 @@ import { usePositioner, useResizeObserver, useMasonry } from 'masonic'
 import { useSize, useScroller } from 'mini-virtual-list'
 
 import Avatar from '../../@UI/Avatar'
-import CollectionCardItem, { CollectionCardItemProps } from '../CollectionCardItem'
+import CollectionCardItem, {
+  CollectionCardItemProps,
+} from '../CollectionCardItem'
 import {
   CardContainer,
   CollectionCardExpandedBase,
@@ -44,6 +46,10 @@ export interface CollectionCardExpandedProps extends PanelProps {
    * Infinite scroll handler
    */
   onFetchMore?: (offset: number) => void
+  /**
+   * Link component
+   */
+  linkComponent?: React.FunctionComponent<any>
 }
 
 /**
@@ -56,6 +62,7 @@ const CollectionCardExpanded = forwardRef(
       total = 0,
       avatarImage,
       items = [],
+      linkComponent,
       onClose,
       onFetchMore,
       ...props
@@ -103,7 +110,7 @@ const CollectionCardExpanded = forwardRef(
     const MasonryRenderer = useCallback(
       ({ index, data }: { index: number; data: any }) => {
         return (
-          <Link href={data.url} target="_blank">
+          <Link component={linkComponent} href={data.url} target="_blank">
             <CollectionCardItem sx={{ height: 320 }} {...data} />
           </Link>
         )

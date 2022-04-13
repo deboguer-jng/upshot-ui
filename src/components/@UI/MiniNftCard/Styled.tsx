@@ -191,14 +191,6 @@ export const MiniNftCardDetailValue = styled(Text)<MiniNftCardDetailValueProps>`
   -webkit-box-orient: vertical;
 `
 
-export const WrappedLink = styled(Link)`
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: none;
-  }
-`
-
 export const PriceTooltip = styled.div`
   position: absolute;
   display: none;

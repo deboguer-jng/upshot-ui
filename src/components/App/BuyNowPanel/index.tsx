@@ -30,14 +30,24 @@ export interface BuyButtonProps extends ButtonProps {
    * Button width
    */
   width?: string
+  /**
+   * Link component
+   */
+  linkComponent?: React.FunctionComponent<any>
 }
 
 const BuyButton = forwardRef(
   (
-    { url, width = null, marketplaceName, ...props }: BuyButtonProps,
+    {
+      url,
+      width = null,
+      marketplaceName,
+      linkComponent,
+      ...props
+    }: BuyButtonProps,
     ref: React.ForwardedRef<HTMLAnchorElement>
   ) => (
-    <Link href={url} target="_blank" {...{ ref }}>
+    <Link href={url} target="_blank" component={linkComponent} {...{ ref }}>
       <StyledButton
         variant="secondary"
         size="md"
@@ -78,6 +88,10 @@ export interface BuyNowPanelProps extends PanelProps {
    * Marketplace URL
    */
   marketplaceUrl: string
+  /**
+   * Link component
+   */
+  linkComponent?: React.FunctionComponent<any>
 }
 
 /**
@@ -92,6 +106,7 @@ const BuyNowPanel = forwardRef(
       listAppraisalPercentage,
       marketplaceName,
       marketplaceUrl,
+      linkComponent,
       ...props
     }: BuyNowPanelProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -120,7 +135,10 @@ const BuyNowPanel = forwardRef(
     return (
       <StyledPanel $variant={variant} {...props}>
         {buttonPosition === 'right' && (
-          <BuyButton url={marketplaceUrl} marketplaceName={marketplaceName} />
+          <BuyButton
+            url={marketplaceUrl}
+            {...{ marketplaceName, linkComponent }}
+          />
         )}
 
         <Flex
