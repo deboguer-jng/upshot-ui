@@ -11,6 +11,7 @@ import { SeeAllButton, CardContainer, CollectionCardBase } from './Styled'
 import { useTheme } from '../../../themes/UpshotUI'
 import { PanelProps } from '../../@UI/Panel'
 import { formatNumber } from '../../../utils/number'
+import Link from '../../@UI/Link'
 export interface CollectionCardProps extends PanelProps {
   /**
    * Collection name
@@ -49,6 +50,10 @@ export interface CollectionCardProps extends PanelProps {
    */
   floorPrice?: string
   /**
+   * Link component
+   */
+  linkComponent?: React.FunctionComponent<any>
+  /**
    * Expand card to modal.
    */
   onExpand?: () => void
@@ -69,6 +74,7 @@ const CollectionCard = forwardRef(
       isUnsupported,
       appraisalPrice,
       floorPrice,
+      linkComponent,
       onExpand,
       children,
       ...props
@@ -108,10 +114,9 @@ const CollectionCard = forwardRef(
               }}
             >
               {link ? (
-                <Text
-                  as="a"
-                  // @ts-ignore
+                <Link
                   href={link}
+                  component={linkComponent}
                   target={link.startsWith('http') ? '_blank' : '_self'}
                   onClick={(e) => e.stopPropagation()}
                   sx={{
@@ -129,7 +134,7 @@ const CollectionCard = forwardRef(
                   }}
                 >
                   {name}
-                </Text>
+                </Link>
               ) : (
                 <Text
                   sx={{
