@@ -15,6 +15,7 @@ import {
   StyledLink,
   Divider,
 } from './Styled'
+import Link from '../../@UI/Link'
 import Container from '../../Layout/Container'
 import Icon from '../../@UI/Icon'
 import IconButton from '../../@UI/IconButton'
@@ -43,6 +44,10 @@ export interface NavbarInterface extends BoxProps {
    * Wallet address
    */
   address?: string
+  /**
+   * Link component
+   */
+  linkComponent?: React.FunctionComponent<any>
   /**
    * Sidebar is visible
    */
@@ -80,6 +85,7 @@ const Navbar = forwardRef(
       onDisconnectClick,
       onHelpClick,
       onMenuClick,
+      linkComponent,
       children,
       ...props
     }: NavbarInterface,
@@ -359,9 +365,8 @@ const Navbar = forwardRef(
 
             <Divider />
 
-            <Text
-              as="a"
-              // @ts-ignore
+            <Link
+              component={linkComponent}
               href={`/analytics/user/${address}`}
               color="grey-600"
               sx={{
@@ -373,7 +378,7 @@ const Navbar = forwardRef(
               }}
             >
               View Profile
-            </Text>
+            </Link>
 
             <Text
               as="a"
