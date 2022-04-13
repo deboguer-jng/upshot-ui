@@ -37,6 +37,10 @@ export interface ChartProps {
     metric?: string
   }[]
   /**
+   * Link component
+   */
+  linkComponent?: React.FunctionComponent<any>
+  /**
    * Renders the search variant.
    */
   search?: boolean
@@ -59,6 +63,7 @@ const Chart = forwardRef(
       data = [],
       search = false,
       embedded = false,
+      linkComponent,
       onClose,
       ...props
     }: ChartProps,
@@ -70,7 +75,10 @@ const Chart = forwardRef(
       <ChartWrapper $embedded={embedded} {...{ ref, ...props }}>
         <div>
           {dataAvailable ? (
-            <PopulatedChart chartData={data} {...{ embedded, onClose }} />
+            <PopulatedChart
+              chartData={data}
+              {...{ embedded, linkComponent, onClose }}
+            />
           ) : (
             <EmptyChart
               {...{

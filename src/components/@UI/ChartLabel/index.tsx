@@ -5,12 +5,12 @@ import Flex from '../../Layout/Flex'
 import Box from '../../Layout/Box'
 import Text from '../../@UI/Text'
 import IconButton from '../../@UI/IconButton'
+import Link from '../../@UI/Link'
 import {
   StyledTitle,
   StyledChangeDiv,
   InlineLabel,
   RelativeFlex,
-  StyledLink,
   StyledBox,
 } from './Styled'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
@@ -67,6 +67,10 @@ export interface LabelProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   isDim?: boolean
   /**
+   * Link component.
+   */
+  linkComponent?: React.FunctionComponent<any>
+  /**
    * On close handler.
    */
   onClose?: React.MouseEventHandler<HTMLButtonElement>
@@ -98,6 +102,7 @@ const ChartLabel = forwardRef(
       change,
       atl,
       ath,
+      linkComponent,
       onClose,
       maxWidth,
       ...props
@@ -132,9 +137,9 @@ const ChartLabel = forwardRef(
           <Icon size={8} color={titleColor} icon="x" />
         </IconButton>
         <StyledBox $maxWidth={maxWidth}>
-          <StyledLink href={url}>
-            <StyledTitle $color={titleColor}>{title}</StyledTitle>
-          </StyledLink>
+          <Link href={url} color={titleColor} component={linkComponent}>
+            <StyledTitle>{title}</StyledTitle>
+          </Link>
           <Flex style={{ whiteSpace: 'nowrap' }}>
             <Text
               variant="h1Primary"
