@@ -161,22 +161,26 @@ const CollectionRow = forwardRef(
 
             {/* Additional columns (React.Fragment) */}
             {children}
-            <TableCell>
-              <Link component={linkComponent} {...{ href }}>
-                <Flex sx={{ justifyContent: 'flex-end', alignItems: 'center' }}>
-                  <Icon
-                    icon="arrowStylizedRight"
-                    color="primary"
-                    style={{
-                      opacity: 0,
-                      width: '20px',
-                      height: '20px',
-                      flexShrink: 0,
-                    }}
-                  />
-                </Flex>
-              </Link>
-            </TableCell>
+            {!!onClick && (
+              <TableCell>
+                <Link component={linkComponent} {...{ href }}>
+                  <Flex
+                    sx={{ justifyContent: 'flex-end', alignItems: 'center' }}
+                  >
+                    <Icon
+                      icon="arrowStylizedRight"
+                      color="primary"
+                      style={{
+                        opacity: 0,
+                        width: '20px',
+                        height: '20px',
+                        flexShrink: 0,
+                      }}
+                    />
+                  </Flex>
+                </Link>
+              </TableCell>
+            )}
           </CollectionRowBase>
         ) : (
           <CollectorRowBase
