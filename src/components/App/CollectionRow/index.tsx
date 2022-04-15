@@ -109,7 +109,7 @@ const CollectionRow = forwardRef(
                   ? theme.shadow.underglow('primary')
                   : undefined,
                 '& td:last-child svg': {
-                  display: onClick ? 'block !important' : undefined,
+                  opacity: onClick ? '1 !important' : '0',
                 },
               },
               borderRadius: theme.radii.md,
@@ -137,7 +137,13 @@ const CollectionRow = forwardRef(
               </TableCell>
             )}
 
-            <TableCell sx={{ width: '100% !important', height: '48px' }}>
+            <TableCell
+              sx={{
+                width: '100% !important',
+                maxWidth: [100, 100, null],
+                height: '48px',
+              }}
+            >
               <Link component={linkComponent} {...{ href }}>
                 <Text
                   variant="large"
@@ -155,22 +161,26 @@ const CollectionRow = forwardRef(
 
             {/* Additional columns (React.Fragment) */}
             {children}
-            <TableCell>
-              <Link component={linkComponent} {...{ href }}>
-                <Flex sx={{ justifyContent: 'flex-end', alignItems: 'center' }}>
-                  <Icon
-                    icon="arrowStylizedRight"
-                    color="primary"
-                    style={{
-                      display: 'none',
-                      width: '20px',
-                      height: '20px',
-                      flexShrink: 0,
-                    }}
-                  />
-                </Flex>
-              </Link>
-            </TableCell>
+            {!!onClick && (
+              <TableCell>
+                <Link component={linkComponent} {...{ href }}>
+                  <Flex
+                    sx={{ justifyContent: 'flex-end', alignItems: 'center' }}
+                  >
+                    <Icon
+                      icon="arrowStylizedRight"
+                      color="primary"
+                      style={{
+                        opacity: 0,
+                        width: '20px',
+                        height: '20px',
+                        flexShrink: 0,
+                      }}
+                    />
+                  </Flex>
+                </Link>
+              </TableCell>
+            )}
           </CollectionRowBase>
         ) : (
           <CollectorRowBase

@@ -14,7 +14,7 @@ const CollectionTable = forwardRef(
   ) => (
     <CollectionTableBase
       sx={{
-        ...{ borderSpacing: '0 8px', tableLayout: 'fixed' },
+        ...{ borderSpacing: '0 8px' },
         ...(sx ?? {}),
       }}
       {...{ ref, children, ...props }}
