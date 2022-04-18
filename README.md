@@ -11,7 +11,7 @@ yarn
 ### Start storybook server
 
 ```bash
-yarn storybook
+yarn start
 ```
 
 ### Fix code formatting
@@ -25,6 +25,10 @@ yarn lint
 ```bash
 yarn build
 ```
+
+### Link with Upshot UIs
+
+In development, you will likely want to link this repo with the one containing the Upshot UIs (Analytics, Answer, etc.) Follow the latest guide in the [upshot-web repo](https://github.com/upshot-tech/upshot-web/blob/staging/README.md).
 
 ### Publish on NPM
 
@@ -40,6 +44,14 @@ yarn && yarn build
 npm publish
 ```
 
-### Link with Upshot UIs
+### Shortcuts
 
-In development, you will likely want to link this repo with the one containing the Upshot UIs (Analytics, Answer, etc.) Follow the latest guide in the [upshot-web repo](https://github.com/upshot-tech/upshot-web/blob/staging/README.md).
+Update the current branch and start development
+```bash
+yarn pulld
+```
+
+Checkout to the main branch of the repo, update, and start development
+```bash
+yarn maind
+```

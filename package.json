@@ -7,7 +7,9 @@
     "start": "start-storybook -p 6006 -s public",
     "lint": "prettier --write . && eslint . --fix",
     "build": "rollup -c",
-    "build-static": "yarn build-storybook -o ./static -s public"
+    "build-static": "yarn build-storybook -o ./static -s public",
+    "pulld": "git pull && yarn install && yarn start",
+    "maind": "git checkout main && git pull && yarn install && yarn start"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
