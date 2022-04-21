@@ -56,7 +56,7 @@ export const imageOptimizer = (
       return src.replace(cloudinaryUrlSchemeStart, cloudinaryUrlSchemeStart + optimiationString + '/')
     // if image is an absolute URL
     } else if (src.startsWith('//') || src.startsWith('http://') || src.startsWith('https://')) {
-      return '//res.cloudinary.com/upshot-inc/image/fetch/' + optimiationString + '/' + encodeURI(src)
+      return '//res.cloudinary.com/upshot-inc/image/fetch/' + optimiationString + '/' + encodeURIComponent(src)
     }
   }
   return src
