@@ -119,7 +119,7 @@ const HelpModal = forwardRef(
                 +/- MRE%).
                 <br />
                 <br />
-                Our MRE is industry-leading at 8-15% for most collections.
+                Our MRE is industry-leading at 4-11% for most collections.
                 <br />
                 <br />
                 We currently support over 240 collections and around 270k NFTs across those
