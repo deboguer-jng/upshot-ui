@@ -59,7 +59,6 @@ export interface NavbarInterface extends BoxProps {
   onSearchSuggestionChange?: (item: InputSuggestion) => void
   onSearchKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void // @todo Refactor all these props and use rfs
   onSearch: (e: React.FormEvent | React.MouseEvent) => void
-  onLogoClick: (e: React.MouseEvent<HTMLElement>) => void
   onMenuClick: (e: React.MouseEvent<HTMLElement>) => void
   onConnectClick?: (e: React.MouseEvent<HTMLElement>) => void
   onHelpClick?: (e: React.MouseEvent<HTMLElement>) => void
@@ -80,7 +79,6 @@ const Navbar = forwardRef(
       onSearchValueChange,
       onSearchSuggestionChange,
       onSearch,
-      onLogoClick,
       onConnectClick,
       onDisconnectClick,
       onHelpClick,
@@ -145,9 +143,11 @@ const Navbar = forwardRef(
               }}
             >
               <NavbarItem>
-                <NavbarLogo onClick={onLogoClick}>
-                  <Icon icon="upshot" />
-                </NavbarLogo>
+                <Link component={linkComponent} href="/">
+                  <NavbarLogo>
+                    <Icon icon="upshot" />
+                  </NavbarLogo>
+                </Link>
               </NavbarItem>
               {!isMobile && (
                 <SearchWrapper

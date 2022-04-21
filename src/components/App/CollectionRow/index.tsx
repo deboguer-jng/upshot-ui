@@ -147,7 +147,6 @@ const CollectionRow = forwardRef(
               <Link component={linkComponent} {...{ href }}>
                 <Text
                   variant="large"
-                  {...{ onClick }}
                   sx={{
                     textOverflow: 'ellipsis',
                     overflow: 'hidden',
@@ -207,20 +206,22 @@ const CollectionRow = forwardRef(
                   gap: 1,
                 }}
               >
-                <Text
-                  sx={{
-                    fontWeight: 'bold',
-                    fontSize: breakpointIndex <= 1 ? 2 : 4,
-                    lineHeight: 1,
-                    textOverflow: 'ellipsis',
-                    overflow: 'hidden',
-                    whiteSpace: 'nowrap',
-                    textDecoration: 'none',
-                    color: 'inherit',
-                  }}
-                >
-                  {title}
-                </Text>
+                <Link component={linkComponent} {...{ href }}>
+                  <Text
+                    sx={{
+                      fontWeight: 'bold',
+                      fontSize: breakpointIndex <= 1 ? 2 : 4,
+                      lineHeight: 1,
+                      textOverflow: 'ellipsis',
+                      overflow: 'hidden',
+                      whiteSpace: 'nowrap',
+                      textDecoration: 'none',
+                      color: 'inherit',
+                    }}
+                  >
+                    {title}
+                  </Text>
+                </Link>
               </Flex>
 
               <Flex sx={{ alignItems: 'center' }}>
