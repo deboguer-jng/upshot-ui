@@ -399,14 +399,16 @@ const CollectorRow = forwardRef(
                                   size="lg"
                                   color="white"
                                   src={
-                                    imageOptimizer(imageUrl, {
-                                      height: parseInt(
-                                        theme.images.avatar.lg.size
-                                      ),
-                                      width: parseInt(
-                                        theme.images.avatar.lg.size
-                                      ),
-                                    }) ?? imageUrl
+                                    open
+                                      ? imageOptimizer(imageUrl, {
+                                        height: parseInt(
+                                          theme.images.avatar.lg.size
+                                        ),
+                                        width: parseInt(
+                                          theme.images.avatar.lg.size
+                                        ),
+                                      }) ?? imageUrl
+                                    : '' // load image only when card is open
                                   }
                                 />
                               </CollectorRowAvatarWrapper>
@@ -474,7 +476,9 @@ const CollectorRow = forwardRef(
                               height: 180,
                               width: 180,
                             }) ?? imageUrl
-                          const imageSrc = pixelated ? imageUrl : optimizedSrc
+                          const imageSrc = open
+                                          ? (pixelated ? imageUrl : optimizedSrc)
+                                          : '' // load image only when card is open
 
                           return (
                             <Link
