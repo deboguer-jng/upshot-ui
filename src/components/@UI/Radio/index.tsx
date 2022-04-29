@@ -1,14 +1,19 @@
 import React, { forwardRef } from 'react'
+import { StyledWrapper } from './Styled'
 import {
-  Radio as ThemeUIRadio,
-  RadioProps as ThemeUIRadioProps,
+  Radio as ThemeRadio,
+  RadioProps as ThemeRadioProps,
 } from 'theme-ui'
 
-export interface RadioProps extends ThemeUIRadioProps {
+export interface RadioProps extends ThemeRadioProps {
   /**
    * Use the radio.error variant styling.
    */
   error?: boolean
+  /**
+   * Hide radio circle
+   */
+  hideRadio?: boolean
 }
 
 /**
@@ -16,13 +21,19 @@ export interface RadioProps extends ThemeUIRadioProps {
  */
 const Radio = forwardRef(
   (
-    { error = false, ...props }: RadioProps,
+    {
+      error = false,
+      hideRadio = false,
+      ...props
+    }: RadioProps,
     ref: React.ForwardedRef<HTMLInputElement>
   ) => (
-    <ThemeUIRadio
-      variant={`radio.${error ? 'error' : 'primary'}`}
-      {...{ ref, ...props }}
-    />
+    <StyledWrapper $hideRadio={hideRadio}>
+      <ThemeRadio
+        variant={`radio.${error ? 'error' : 'primary'}`}
+        {...{ ref, ...props }}
+      />
+    </StyledWrapper>
   )
 )
 

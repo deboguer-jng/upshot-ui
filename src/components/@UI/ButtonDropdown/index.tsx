@@ -23,18 +23,20 @@ export interface ButtonDropdownInterface
   label?: string
   isMulti?: boolean
   disabled?: boolean
+  hideRadio?: boolean
 }
 
 const ButtonDropdown = forwardRef(
   (
     {
       options,
-      isMulti = false,
       name,
       value,
-      disabled,
-      label,
       onChange,
+      label,
+      isMulti = false,
+      disabled,
+      hideRadio = false,
       ...props
     }: ButtonDropdownInterface,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -95,7 +97,7 @@ const ButtonDropdown = forwardRef(
                     {isMulti ? (
                       <Checkbox readOnly checked={value.includes(option)} />
                     ) : (
-                      <Radio readOnly name={name} checked={option === value} />
+                      <Radio hideRadio={hideRadio} readOnly name={name} checked={option === value} />
                     )}
                     {option}
                   </DropdownMenuItem>

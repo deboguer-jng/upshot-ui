@@ -37,6 +37,14 @@ LabelSingle.args = {
   label: 'Sort by',
 }
 
+export const LabelNoRadio = Template.bind({})
+LabelNoRadio.args = {
+  options: ['option1', 'option2', 'option3', 'option4', 'option5', 'option6'],
+  name: 'test1',
+  label: 'Sort by',
+  hideRadio: true,
+}
+
 export const Multi = Template.bind({})
 Multi.args = {
   options: ['option1', 'option2', 'option3', 'option4', 'option5', 'option6'],
