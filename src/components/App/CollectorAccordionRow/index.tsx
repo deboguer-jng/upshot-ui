@@ -99,6 +99,16 @@ export interface CollectorAccordionRowProps
   linkComponent?: React.FunctionComponent<any>
 }
 
+enum BREAKPOINT_INDEXES {
+  ZERO = 0,
+  ONE = 1,
+  TWO = 2,
+  THREE = 3,
+  FOUR = 4,
+  FIVE = 5,
+  SIX = 6,
+}
+
 /**
  * Provides a surface for UI elements.
  */
@@ -129,6 +139,7 @@ const CollectorRow = forwardRef(
     const theme = useTheme()
     const [open, setOpen] = useState(defaultOpen)
     const [page, setPage] = useState(0)
+    const [extraCollectionPage, setExtraCollectionPage] = useState(0)
     const [selectedCollection, setSelectedCollection] = useState<
       number | undefined
     >()
@@ -152,6 +163,49 @@ const CollectorRow = forwardRef(
     const handlePageChange = ({ selected }: { selected: number }) => {
       setPage(selected)
     }
+
+    const handleExtrCollectionPageChange = ({
+      selected,
+    }: {
+      selected: number
+    }) => {
+      setExtraCollectionPage(selected)
+    }
+
+    const collectionTemplateWidth = {
+      [BREAKPOINT_INDEXES.ZERO]: 20,
+      [BREAKPOINT_INDEXES.ONE]: 20,
+      [BREAKPOINT_INDEXES.TWO]: 20,
+      [BREAKPOINT_INDEXES.THREE]: 14,
+      [BREAKPOINT_INDEXES.FOUR]: extraCollections?.length ? 20 : 14,
+      [BREAKPOINT_INDEXES.FIVE]: extraCollections?.length ? 20 : 14,
+      [BREAKPOINT_INDEXES.SIX]: extraCollections?.length ? 20 : 14,
+    }
+
+    const collectionPageSize = {
+      [BREAKPOINT_INDEXES.ZERO]: 4,
+      [BREAKPOINT_INDEXES.ONE]: 4,
+      [BREAKPOINT_INDEXES.TWO]: 8,
+      [BREAKPOINT_INDEXES.THREE]: 12,
+      [BREAKPOINT_INDEXES.FOUR]: extraCollections?.length ? 16 : 12,
+      [BREAKPOINT_INDEXES.FIVE]: extraCollections?.length ? 16 : 12,
+      [BREAKPOINT_INDEXES.SIX]: extraCollections?.length ? 16 : 12,
+    }
+
+    const extraCollectionPageSize = {
+      [BREAKPOINT_INDEXES.ZERO]: 4,
+      [BREAKPOINT_INDEXES.ONE]: 4,
+      [BREAKPOINT_INDEXES.TWO]: 8,
+      [BREAKPOINT_INDEXES.THREE]: 12,
+      [BREAKPOINT_INDEXES.FOUR]: extraCollections?.length > 8 ? 8 : 4,
+      [BREAKPOINT_INDEXES.FIVE]: extraCollections?.length > 8 ? 8 : 4,
+      [BREAKPOINT_INDEXES.SIX]: extraCollections?.length > 8 ? 8 : 4,
+    }
+
+    const curCollectionPageSize =
+      collectionPageSize[breakpointIndex as BREAKPOINT_INDEXES]
+    const curextraCollectionPageSize =
+      extraCollectionPageSize[breakpointIndex as BREAKPOINT_INDEXES]
 
     return (
       <CollectorRowBase {...{ ref, ...props }}>
@@ -253,7 +307,8 @@ const CollectorRow = forwardRef(
         <CollectorRowExpansion $open={open} $contentHeight={expansionHeight}>
           <Grid
             columns={
-              expansionWidth < parseInt(theme.breakpointsNamed.xs)
+              expansionWidth < parseInt(theme.breakpointsNamed.sm) ||
+              !extraCollections?.length
                 ? '1fr'
                 : '1fr 1fr'
             }
@@ -274,6 +329,7 @@ const CollectorRow = forwardRef(
                         <Text
                           sx={{
                             fontWeight: 'heading',
+                            fontSize: '12px',
                             textTransform: 'capitalize',
                           }}
                         >
@@ -294,7 +350,7 @@ const CollectorRow = forwardRef(
                   {!!firstAcquisition && (
                     <StyledPanel>
                       <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                        <Text sx={{ fontWeight: 'heading' }}>
+                        <Text sx={{ fontWeight: 'heading', fontSize: '12px' }}>
                           First {collectionName} Acquisition:
                         </Text>
                         <Text
@@ -312,7 +368,7 @@ const CollectorRow = forwardRef(
                   {!!ageOfCollection && (
                     <StyledPanel>
                       <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                        <Text sx={{ fontWeight: 'heading' }}>
+                        <Text sx={{ fontWeight: 'heading', fontSize: '12px' }}>
                           Age of entire collection:
                         </Text>
                         <Flex
@@ -336,7 +392,7 @@ const CollectorRow = forwardRef(
                   {!!totalNftValue && (
                     <StyledPanel>
                       <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                        <Text sx={{ fontWeight: 'heading' }}>
+                        <Text sx={{ fontWeight: 'heading', fontSize: '12px' }}>
                           Appraised value of collection:
                         </Text>
                         <Flex
@@ -362,21 +418,30 @@ const CollectorRow = forwardRef(
                 </Grid>
 
                 {!!extraCollections && !!extraCollections.length && (
-                  <StyledPanel>
+                  <StyledPanel sx={{ flexGrow: 1 }}>
                     <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                       <Text sx={{ fontWeight: 'heading' }}>
                         {isLandingPage
                           ? 'Collections in Portfolio:'
                           : 'Also Collecting:'}
                       </Text>
-                      <Flex
+                      <Grid
                         sx={{
-                          gap: 4,
-                          flexWrap: 'wrap',
+                          gap: 2,
+                          gridTemplateColumns: `repeat(auto-fill, minmax(${
+                            collectionTemplateWidth[
+                              breakpointIndex as BREAKPOINT_INDEXES
+                            ]
+                          }%, 1fr))`,
                         }}
                       >
-                        {extraCollections?.map(
-                          ({ id, name, url, imageUrl, count }, idx) => (
+                        {extraCollections
+                          ?.slice(
+                            extraCollectionPage * curextraCollectionPageSize,
+                            extraCollectionPage * curextraCollectionPageSize +
+                              curextraCollectionPageSize
+                          )
+                          ?.map(({ id, name, url, imageUrl, count }, idx) => (
                             <Flex
                               sx={{
                                 flexDirection: 'column',
@@ -396,8 +461,17 @@ const CollectorRow = forwardRef(
                                 }}
                               >
                                 <Avatar
-                                  size="lg"
+                                  size="md"
                                   color="white"
+                                  sx={{
+                                    position: 'absolute',
+                                    top: '0px',
+                                    left: '0px',
+                                    rigth: '0px',
+                                    bottom: '0px',
+                                    width: '100%!important',
+                                    height: '100%!important',
+                                  }}
                                   src={
                                     imageOptimizer(imageUrl, {
                                       height: parseInt(
@@ -440,9 +514,24 @@ const CollectorRow = forwardRef(
                                 </Text>
                               </Flex>
                             </Flex>
-                          )
+                          ))}
+                      </Grid>
+                      <Box sx={{ textAlign: 'center' }}>
+                        {Math.ceil(
+                          extraCollections.length / curextraCollectionPageSize
+                        ) > 1 && (
+                          <Pagination
+                            forcePage={extraCollectionPage}
+                            pageCount={Math.ceil(
+                              extraCollections.length /
+                                curextraCollectionPageSize
+                            )}
+                            pageRangeDisplayed={0}
+                            marginPagesDisplayed={0}
+                            onPageChange={handleExtrCollectionPageChange}
+                          />
                         )}
-                      </Flex>
+                      </Box>
                     </Flex>
                   </StyledPanel>
                 )}
@@ -450,61 +539,74 @@ const CollectorRow = forwardRef(
             )}
 
             <StyledPanel $hideBorder={!isFirstColumn}>
-              <Flex sx={{ flexDirection: 'column', gap: 4 }}>
+              <Flex sx={{ flexDirection: 'column', gap: 4, height: '100%' }}>
                 {!!nftCollection && !!nftCollection.length ? (
-                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                  <Flex
+                    sx={{ flexDirection: 'column', gap: 2, height: '100%' }}
+                  >
                     <Text sx={{ fontWeight: 'heading' }}>
                       {selectedCollectionName &&
                         `${displayName}'s ${selectedCollectionName} Collection`}
                       {!selectedCollectionName &&
                         `Notable NFTs in ${displayName}'s Collection`}
                     </Text>
-                    <Grid
-                      sx={{
-                        gap: 2,
-                        gridTemplateColumns:
-                          'repeat(auto-fill, minmax(30%, 1fr) )',
-                      }}
-                    >
-                      {nftCollection
-                        .slice(page * 9, page * 9 + 9)
-                        .map(({ imageUrl, url, pixelated }, idx) => {
-                          const optimizedSrc =
-                            imageOptimizer(imageUrl, {
-                              height: 180,
-                              width: 180,
-                            }) ?? imageUrl
-                          const imageSrc = pixelated ? imageUrl : optimizedSrc
-
-                          return (
-                            <Link
-                              href={url}
-                              key={idx}
-                              component={linkComponent}
-                            >
-                              <Box
-                                sx={{
-                                  backgroundImage: `url(${imageSrc})`,
-                                  backgroundSize: 'cover',
-                                  backgroundPosition: 'center',
-                                  backgroundRepeat: 'no-repeat',
-                                  borderRadius: 'sm',
-                                  width: '100%',
-                                  paddingTop: '100%',
-                                  imageRendering: pixelated
-                                    ? 'pixelated'
-                                    : 'auto',
-                                }}
-                              />
-                            </Link>
+                    <Box sx={{ flexGrow: 1 }}>
+                      <Grid
+                        sx={{
+                          gap: 2,
+                          gridTemplateColumns: `repeat(auto-fill, minmax(${
+                            collectionTemplateWidth[
+                              breakpointIndex as BREAKPOINT_INDEXES
+                            ]
+                          }%, 1fr) )`,
+                        }}
+                      >
+                        {nftCollection
+                          .slice(
+                            page * curCollectionPageSize,
+                            page * curCollectionPageSize + curCollectionPageSize
                           )
-                        })}
-                    </Grid>
+                          .map(({ imageUrl, url, pixelated }, idx) => {
+                            const optimizedSrc =
+                              imageOptimizer(imageUrl, {
+                                height: 180,
+                                width: 180,
+                              }) ?? imageUrl
+                            const imageSrc = pixelated ? imageUrl : optimizedSrc
+
+                            return (
+                              <Link
+                                href={url}
+                                key={idx}
+                                component={linkComponent}
+                              >
+                                <Box
+                                  sx={{
+                                    backgroundImage: `url(${imageSrc})`,
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: 'center',
+                                    backgroundRepeat: 'no-repeat',
+                                    borderRadius: 'sm',
+                                    width: '100%',
+                                    paddingTop: '100%',
+                                    imageRendering: pixelated
+                                      ? 'pixelated'
+                                      : 'auto',
+                                  }}
+                                />
+                              </Link>
+                            )
+                          })}
+                      </Grid>
+                    </Box>
                     <Box sx={{ textAlign: 'center' }}>
-                      {Math.ceil(nftCollection.length / 9) > 1 && (
+                      {Math.ceil(nftCollection.length / curCollectionPageSize) >
+                        1 && (
                         <Pagination
                           forcePage={page}
-                          pageCount={Math.ceil(nftCollection.length / 9)}
+                          pageCount={Math.ceil(
+                            nftCollection.length / curCollectionPageSize
+                          )}
                           pageRangeDisplayed={0}
                           marginPagesDisplayed={0}
                           onPageChange={handlePageChange}

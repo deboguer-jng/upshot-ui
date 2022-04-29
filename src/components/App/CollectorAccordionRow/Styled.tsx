@@ -39,6 +39,10 @@ export const CollectorRowAvatarWrapper = styled.button<CollectorRowAvatarWrapper
   outline: none;
   border: none;
   cursor: pointer;
+  flex-grow: 1;
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
 
   img {
     border: 4px solid
