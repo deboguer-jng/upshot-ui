@@ -99,16 +99,6 @@ export interface CollectorAccordionRowProps
   linkComponent?: React.FunctionComponent<any>
 }
 
-enum BREAKPOINT_INDEXES {
-  ZERO = 0,
-  ONE = 1,
-  TWO = 2,
-  THREE = 3,
-  FOUR = 4,
-  FIVE = 5,
-  SIX = 6,
-}
-
 /**
  * Provides a surface for UI elements.
  */
@@ -172,40 +162,38 @@ const CollectorRow = forwardRef(
       setExtraCollectionPage(selected)
     }
 
-    const collectionTemplateWidth = {
-      [BREAKPOINT_INDEXES.ZERO]: 20,
-      [BREAKPOINT_INDEXES.ONE]: 20,
-      [BREAKPOINT_INDEXES.TWO]: 20,
-      [BREAKPOINT_INDEXES.THREE]: 14,
-      [BREAKPOINT_INDEXES.FOUR]: extraCollections?.length ? 20 : 14,
-      [BREAKPOINT_INDEXES.FIVE]: extraCollections?.length ? 20 : 14,
-      [BREAKPOINT_INDEXES.SIX]: extraCollections?.length ? 20 : 14,
-    }
+    const collectionTemplateWidth = [
+      20,
+      20,
+      20,
+      14,
+      extraCollections?.length ? 20 : 14,
+      extraCollections?.length ? 20 : 14,
+      extraCollections?.length ? 20 : 14,
+    ]
 
-    const collectionPageSize = {
-      [BREAKPOINT_INDEXES.ZERO]: 4,
-      [BREAKPOINT_INDEXES.ONE]: 4,
-      [BREAKPOINT_INDEXES.TWO]: 8,
-      [BREAKPOINT_INDEXES.THREE]: 12,
-      [BREAKPOINT_INDEXES.FOUR]: extraCollections?.length ? 16 : 12,
-      [BREAKPOINT_INDEXES.FIVE]: extraCollections?.length ? 16 : 12,
-      [BREAKPOINT_INDEXES.SIX]: extraCollections?.length ? 16 : 12,
-    }
+    const collectionPageSize = [
+      4,
+      4,
+      8,
+      12,
+      extraCollections?.length ? 16 : 12,
+      extraCollections?.length ? 16 : 12,
+      extraCollections?.length ? 16 : 12,
+    ]
 
-    const extraCollectionPageSize = {
-      [BREAKPOINT_INDEXES.ZERO]: 4,
-      [BREAKPOINT_INDEXES.ONE]: 4,
-      [BREAKPOINT_INDEXES.TWO]: 8,
-      [BREAKPOINT_INDEXES.THREE]: 12,
-      [BREAKPOINT_INDEXES.FOUR]: extraCollections?.length > 8 ? 8 : 4,
-      [BREAKPOINT_INDEXES.FIVE]: extraCollections?.length > 8 ? 8 : 4,
-      [BREAKPOINT_INDEXES.SIX]: extraCollections?.length > 8 ? 8 : 4,
-    }
+    const extraCollectionPageSize = [
+      4,
+      4,
+      8,
+      12,
+      extraCollections?.length > 8 ? 8 : 4,
+      extraCollections?.length > 8 ? 8 : 4,
+      extraCollections?.length > 8 ? 8 : 4,
+    ]
 
-    const curCollectionPageSize =
-      collectionPageSize[breakpointIndex as BREAKPOINT_INDEXES]
-    const curextraCollectionPageSize =
-      extraCollectionPageSize[breakpointIndex as BREAKPOINT_INDEXES]
+    const curCollectionPageSize = collectionPageSize[breakpointIndex]
+    const curextraCollectionPageSize = extraCollectionPageSize[breakpointIndex]
 
     return (
       <CollectorRowBase {...{ ref, ...props }}>
@@ -428,11 +416,7 @@ const CollectorRow = forwardRef(
                       <Grid
                         sx={{
                           gap: 2,
-                          gridTemplateColumns: `repeat(auto-fill, minmax(${
-                            collectionTemplateWidth[
-                              breakpointIndex as BREAKPOINT_INDEXES
-                            ]
-                          }%, 1fr))`,
+                          gridTemplateColumns: `repeat(auto-fill, minmax(${collectionTemplateWidth[breakpointIndex]}%, 1fr))`,
                         }}
                       >
                         {extraCollections
@@ -556,11 +540,7 @@ const CollectorRow = forwardRef(
                       <Grid
                         sx={{
                           gap: 2,
-                          gridTemplateColumns: `repeat(auto-fill, minmax(${
-                            collectionTemplateWidth[
-                              breakpointIndex as BREAKPOINT_INDEXES
-                            ]
-                          }%, 1fr) )`,
+                          gridTemplateColumns: `repeat(auto-fill, minmax(${collectionTemplateWidth[breakpointIndex]}%, 1fr) )`,
                         }}
                       >
                         {nftCollection
