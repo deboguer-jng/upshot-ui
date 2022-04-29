@@ -26,6 +26,11 @@ const Template: ComponentStory<typeof Radio> = (args) => (
 export const Default = Template.bind({})
 Default.args = {}
 
+export const hideRadio = Template.bind({})
+hideRadio.args = {
+  hideRadio: true,
+}
+
 export const error = Template.bind({})
 error.args = {
   error: true,
