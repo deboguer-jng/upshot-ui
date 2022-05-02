@@ -129,6 +129,7 @@ const CollectorRow = forwardRef(
     const theme = useTheme()
     const [open, setOpen] = useState(defaultOpen)
     const [page, setPage] = useState(0)
+    const [extraCollectionPage, setExtraCollectionPage] = useState(0)
     const [selectedCollection, setSelectedCollection] = useState<
       number | undefined
     >()
@@ -152,6 +153,57 @@ const CollectorRow = forwardRef(
     const handlePageChange = ({ selected }: { selected: number }) => {
       setPage(selected)
     }
+
+    const handleExtrCollectionPageChange = ({
+      selected,
+    }: {
+      selected: number
+    }) => {
+      setExtraCollectionPage(selected)
+    }
+
+    const collectionTemplateWidth = [
+      20,
+      20,
+      20,
+      14,
+      extraCollections?.length ? 20 : 14,
+      extraCollections?.length ? 20 : 14,
+      extraCollections?.length ? 20 : 14,
+    ]
+
+    const extraCollectionTemplateWidth = [
+      25,
+      25,
+      25,
+      14,
+      extraCollections?.length ? 25 : 14,
+      extraCollections?.length ? 25 : 14,
+      extraCollections?.length ? 25 : 14,
+    ]
+
+    const collectionPageSize = [
+      4,
+      4,
+      8,
+      12,
+      extraCollections?.length ? 16 : 12,
+      extraCollections?.length ? 16 : 12,
+      extraCollections?.length ? 16 : 12,
+    ]
+
+    const extraCollectionPageSize = [
+      4,
+      4,
+      8,
+      12,
+      extraCollections?.length > 8 ? 8 : 4,
+      extraCollections?.length > 8 ? 8 : 4,
+      extraCollections?.length > 8 ? 8 : 4,
+    ]
+
+    const curCollectionPageSize = collectionPageSize[breakpointIndex]
+    const curextraCollectionPageSize = extraCollectionPageSize[breakpointIndex]
 
     return (
       <CollectorRowBase {...{ ref, ...props }}>
@@ -253,7 +305,8 @@ const CollectorRow = forwardRef(
         <CollectorRowExpansion $open={open} $contentHeight={expansionHeight}>
           <Grid
             columns={
-              expansionWidth < parseInt(theme.breakpointsNamed.xs)
+              expansionWidth < parseInt(theme.breakpointsNamed.sm) ||
+              !extraCollections?.length
                 ? '1fr'
                 : '1fr 1fr'
             }
@@ -274,6 +327,7 @@ const CollectorRow = forwardRef(
                         <Text
                           sx={{
                             fontWeight: 'heading',
+                            fontSize: '12px',
                             textTransform: 'capitalize',
                           }}
                         >
@@ -294,7 +348,7 @@ const CollectorRow = forwardRef(
                   {!!firstAcquisition && (
                     <StyledPanel>
                       <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                        <Text sx={{ fontWeight: 'heading' }}>
+                        <Text sx={{ fontWeight: 'heading', fontSize: '12px' }}>
                           First {collectionName} Acquisition:
                         </Text>
                         <Text
@@ -312,7 +366,7 @@ const CollectorRow = forwardRef(
                   {!!ageOfCollection && (
                     <StyledPanel>
                       <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                        <Text sx={{ fontWeight: 'heading' }}>
+                        <Text sx={{ fontWeight: 'heading', fontSize: '12px' }}>
                           Age of entire collection:
                         </Text>
                         <Flex
@@ -336,7 +390,7 @@ const CollectorRow = forwardRef(
                   {!!totalNftValue && (
                     <StyledPanel>
                       <Flex sx={{ flexDirection: 'column', gap: 2 }}>
-                        <Text sx={{ fontWeight: 'heading' }}>
+                        <Text sx={{ fontWeight: 'heading', fontSize: '12px' }}>
                           Appraised value of collection:
                         </Text>
                         <Flex
@@ -362,21 +416,27 @@ const CollectorRow = forwardRef(
                 </Grid>
 
                 {!!extraCollections && !!extraCollections.length && (
-                  <StyledPanel>
+                  <StyledPanel sx={{ flexGrow: 1 }}>
                     <Flex sx={{ flexDirection: 'column', gap: 2 }}>
                       <Text sx={{ fontWeight: 'heading' }}>
                         {isLandingPage
                           ? 'Collections in Portfolio:'
                           : 'Also Collecting:'}
                       </Text>
-                      <Flex
+                      <Grid
                         sx={{
-                          gap: 4,
-                          flexWrap: 'wrap',
+                          gap: 0,
+                          rowGap: 2,
+                          gridTemplateColumns: `repeat(auto-fill, minmax(${extraCollectionTemplateWidth[breakpointIndex]}%, 1fr))`,
                         }}
                       >
-                        {extraCollections?.map(
-                          ({ id, name, url, imageUrl, count }, idx) => (
+                        {extraCollections
+                          ?.slice(
+                            extraCollectionPage * curextraCollectionPageSize,
+                            extraCollectionPage * curextraCollectionPageSize +
+                              curextraCollectionPageSize
+                          )
+                          ?.map(({ id, name, url, imageUrl, count }, idx) => (
                             <Flex
                               sx={{
                                 flexDirection: 'column',
@@ -396,19 +456,33 @@ const CollectorRow = forwardRef(
                                 }}
                               >
                                 <Avatar
-                                  size="lg"
+                                  size="md"
                                   color="white"
+                                  sx={{
+                                    position: 'absolute',
+                                    top: '0px',
+                                    left: '0',
+                                    rigth: '0px',
+                                    bottom: '0px',
+                                    width: '100%!important',
+                                    height: '100%!important',
+
+                                    '&>img': {
+                                      width: '100%!important',
+                                      height: '100%!important',
+                                    },
+                                  }}
                                   src={
                                     open
                                       ? imageOptimizer(imageUrl, {
-                                        height: parseInt(
-                                          theme.images.avatar.lg.size
-                                        ),
-                                        width: parseInt(
-                                          theme.images.avatar.lg.size
-                                        ),
-                                      }) ?? imageUrl
-                                    : '' // load image only when card is open
+                                          height: parseInt(
+                                            theme.images.avatar.lg.size
+                                          ),
+                                          width: parseInt(
+                                            theme.images.avatar.lg.size
+                                          ),
+                                        }) ?? imageUrl
+                                      : '' // load image only when card is open
                                   }
                                 />
                               </CollectorRowAvatarWrapper>
@@ -442,9 +516,24 @@ const CollectorRow = forwardRef(
                                 </Text>
                               </Flex>
                             </Flex>
-                          )
+                          ))}
+                      </Grid>
+                      <Box sx={{ textAlign: 'center' }}>
+                        {Math.ceil(
+                          extraCollections.length / curextraCollectionPageSize
+                        ) > 1 && (
+                          <Pagination
+                            forcePage={extraCollectionPage}
+                            pageCount={Math.ceil(
+                              extraCollections.length /
+                                curextraCollectionPageSize
+                            )}
+                            pageRangeDisplayed={0}
+                            marginPagesDisplayed={0}
+                            onPageChange={handleExtrCollectionPageChange}
+                          />
                         )}
-                      </Flex>
+                      </Box>
                     </Flex>
                   </StyledPanel>
                 )}
@@ -452,63 +541,74 @@ const CollectorRow = forwardRef(
             )}
 
             <StyledPanel $hideBorder={!isFirstColumn}>
-              <Flex sx={{ flexDirection: 'column', gap: 4 }}>
+              <Flex sx={{ flexDirection: 'column', gap: 4, height: '100%' }}>
                 {!!nftCollection && !!nftCollection.length ? (
-                  <Flex sx={{ flexDirection: 'column', gap: 2 }}>
+                  <Flex
+                    sx={{ flexDirection: 'column', gap: 2, height: '100%' }}
+                  >
                     <Text sx={{ fontWeight: 'heading' }}>
                       {selectedCollectionName &&
                         `${displayName}'s ${selectedCollectionName} Collection`}
                       {!selectedCollectionName &&
                         `Notable NFTs in ${displayName}'s Collection`}
                     </Text>
-                    <Grid
-                      sx={{
-                        gap: 2,
-                        gridTemplateColumns:
-                          'repeat(auto-fill, minmax(30%, 1fr) )',
-                      }}
-                    >
-                      {nftCollection
-                        .slice(page * 9, page * 9 + 9)
-                        .map(({ imageUrl, url, pixelated }, idx) => {
-                          const optimizedSrc =
-                            imageOptimizer(imageUrl, {
-                              height: 180,
-                              width: 180,
-                            }) ?? imageUrl
-                          const imageSrc = open
-                                          ? (pixelated ? imageUrl : optimizedSrc)
-                                          : '' // load image only when card is open
-
-                          return (
-                            <Link
-                              href={url}
-                              key={idx}
-                              component={linkComponent}
-                            >
-                              <Box
-                                sx={{
-                                  backgroundImage: `url(${imageSrc})`,
-                                  backgroundSize: 'cover',
-                                  backgroundPosition: 'center',
-                                  backgroundRepeat: 'no-repeat',
-                                  borderRadius: 'sm',
-                                  width: '100%',
-                                  paddingTop: '100%',
-                                  imageRendering: pixelated
-                                    ? 'pixelated'
-                                    : 'auto',
-                                }}
-                              />
-                            </Link>
+                    <Box sx={{ flexGrow: 1 }}>
+                      <Grid
+                        sx={{
+                          gap: 2,
+                          gridTemplateColumns: `repeat(auto-fill, minmax(${collectionTemplateWidth[breakpointIndex]}%, 1fr) )`,
+                        }}
+                      >
+                        {nftCollection
+                          .slice(
+                            page * curCollectionPageSize,
+                            page * curCollectionPageSize + curCollectionPageSize
                           )
-                        })}
-                    </Grid>
+                          .map(({ imageUrl, url, pixelated }, idx) => {
+                            const optimizedSrc =
+                              imageOptimizer(imageUrl, {
+                                height: 180,
+                                width: 180,
+                              }) ?? imageUrl
+                            const imageSrc = open
+                              ? pixelated
+                                ? imageUrl
+                                : optimizedSrc
+                              : '' // load image only when card is open
+
+                            return (
+                              <Link
+                                href={url}
+                                key={idx}
+                                component={linkComponent}
+                              >
+                                <Box
+                                  sx={{
+                                    backgroundImage: `url(${imageSrc})`,
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: 'center',
+                                    backgroundRepeat: 'no-repeat',
+                                    borderRadius: 'sm',
+                                    width: '100%',
+                                    paddingTop: '100%',
+                                    imageRendering: pixelated
+                                      ? 'pixelated'
+                                      : 'auto',
+                                  }}
+                                />
+                              </Link>
+                            )
+                          })}
+                      </Grid>
+                    </Box>
                     <Box sx={{ textAlign: 'center' }}>
-                      {Math.ceil(nftCollection.length / 9) > 1 && (
+                      {Math.ceil(nftCollection.length / curCollectionPageSize) >
+                        1 && (
                         <Pagination
                           forcePage={page}
-                          pageCount={Math.ceil(nftCollection.length / 9)}
+                          pageCount={Math.ceil(
+                            nftCollection.length / curCollectionPageSize
+                          )}
                           pageRangeDisplayed={0}
                           marginPagesDisplayed={0}
                           onPageChange={handlePageChange}
