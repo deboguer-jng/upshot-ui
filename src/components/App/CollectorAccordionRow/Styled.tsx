@@ -41,8 +41,9 @@ export const CollectorRowAvatarWrapper = styled.button<CollectorRowAvatarWrapper
   cursor: pointer;
   flex-grow: 1;
   position: relative;
-  width: 100%;
-  padding-top: 100%;
+  margin: auto;
+  width: 70%;
+  padding-top: 70%;
 
   img {
     border: 4px solid

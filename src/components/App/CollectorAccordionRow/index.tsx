@@ -172,6 +172,16 @@ const CollectorRow = forwardRef(
       extraCollections?.length ? 20 : 14,
     ]
 
+    const extraCollectionTemplateWidth = [
+      25,
+      25,
+      25,
+      14,
+      extraCollections?.length ? 25 : 14,
+      extraCollections?.length ? 25 : 14,
+      extraCollections?.length ? 25 : 14,
+    ]
+
     const collectionPageSize = [
       4,
       4,
@@ -415,8 +425,9 @@ const CollectorRow = forwardRef(
                       </Text>
                       <Grid
                         sx={{
-                          gap: 2,
-                          gridTemplateColumns: `repeat(auto-fill, minmax(${collectionTemplateWidth[breakpointIndex]}%, 1fr))`,
+                          gap: 0,
+                          rowGap: 2,
+                          gridTemplateColumns: `repeat(auto-fill, minmax(${extraCollectionTemplateWidth[breakpointIndex]}%, 1fr))`,
                         }}
                       >
                         {extraCollections
@@ -450,11 +461,16 @@ const CollectorRow = forwardRef(
                                   sx={{
                                     position: 'absolute',
                                     top: '0px',
-                                    left: '0px',
+                                    left: '0',
                                     rigth: '0px',
                                     bottom: '0px',
                                     width: '100%!important',
                                     height: '100%!important',
+
+                                    '&>img': {
+                                      width: '100%!important',
+                                      height: '100%!important',
+                                    },
                                   }}
                                   src={
                                     open
