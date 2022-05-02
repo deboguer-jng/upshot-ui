@@ -25,3 +25,9 @@ export const Default = Template.bind({})
 Default.args = {
   children: <Box sx={{ bg: '#fff', color: '#000', p: 8 }}>Content</Box>,
 }
+
+export const BackdropBlur = Template.bind({})
+BackdropBlur.args = {
+  children: <Box sx={{ bg: '#fff', color: '#000', p: 8 }}>Content</Box>,
+  backdropBlur: true,
+}

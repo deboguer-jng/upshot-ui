@@ -5,7 +5,11 @@ import ReactDOM from 'react-dom'
 import { BackdropProps } from '../Backdrop'
 import { ModalWrapper } from './Styled'
 
-interface ModalProps extends BackdropProps {
+export interface ModalProps extends BackdropProps {
+  /**
+   * Poss blur to backdrop filter.
+   */
+  backdropBlur?: boolean
   /**
    * Handler to close modal
    */
@@ -24,7 +28,13 @@ const Portal = ({ children }: { children: React.ReactNode }) =>
  */
 const Modal = forwardRef(
   (
-    { open = false, onClose, children, ...props }: ModalProps,
+    {
+      open = false,
+      backdropBlur = false,
+      onClose,
+      children,
+      ...props
+    }: ModalProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     /**
@@ -32,9 +42,9 @@ const Modal = forwardRef(
      */
     const [isClosing, setIsClosing] = useState(false)
     if (open === false || isClosing === true) {
-      document.body.style.overflow = "visible"
+      document.body.style.overflow = 'visible'
     } else {
-      document.body.style.overflow = "hidden"
+      document.body.style.overflow = 'hidden'
     }
 
     const handleClose = () => {
@@ -52,6 +62,7 @@ const Modal = forwardRef(
         <Backdrop
           open={open && !isClosing}
           onClick={handleClose}
+          blur={backdropBlur}
           {...{ ref, ...props }}
         />
         <Portal>
