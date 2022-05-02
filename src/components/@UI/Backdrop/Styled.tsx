@@ -34,7 +34,7 @@ export const Overlay = styled.div<{ $open: boolean; $blur: boolean }>`
     left: 0;
     width: 100vw;
     height: 100vh;
-    backdrop-filter: ${({ $blur }) => ($blur ? 'blur(16px)' : 'none')};
+    backdrop-filter: ${({ $blur }) => ($blur ? 'blur(12px)' : 'none')};
     opacity: ${({ $open }) => ($open ? 1 : 0)};
     transition: all 0.5s ease;
   }
