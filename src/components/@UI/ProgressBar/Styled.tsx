@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { Box } from 'theme-ui'
 import colors from '../../../themes/UpshotUI/colors'
+import { transparentize } from 'polished'
 interface ProgressBarBaseProps {
   $percent: number
   $bgColor?: keyof typeof colors
@@ -26,7 +27,11 @@ export const ProgressBarBase = styled(Box)<ProgressBarBaseProps>`
         ${({ theme, $bgColor }) => theme.rawColors[$bgColor || 'grey-800']} 60%,
         ${({ theme, $bgColor }) => theme.rawColors[$bgColor || 'grey-800']} 100%
       ),
-      linear-gradient(0deg, #1d3f64 0%, #1d3f64 100%);
+      linear-gradient(
+        0deg,
+        ${({ theme }) => transparentize(0.65, theme.rawColors.blue)} 0%,
+        ${({ theme }) => transparentize(0.65, theme.rawColors.blue)} 100%
+      );
     background-size: 12px 100%, 100% 100%;
     border: none;
   }
