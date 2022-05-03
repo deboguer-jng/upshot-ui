@@ -8,6 +8,10 @@ export interface BackdropProps extends React.HTMLAttributes<HTMLDivElement> {
    * Backdrop visibility
    */
   open?: boolean
+  /**
+   * Backdrop filter blur
+   */
+  blur?: boolean
 }
 
 /**
@@ -22,11 +26,11 @@ const Portal = ({ children }: { children: React.ReactNode }) =>
  */
 const Backdrop = forwardRef(
   (
-    { open, ...props }: BackdropProps,
+    { open, blur, ...props }: BackdropProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => (
     <Portal>
-      <Overlay $open={open} {...{ ref, ...props }} />
+      <Overlay $open={open} $blur={blur} {...{ ref, ...props }} />
     </Portal>
   )
 )
