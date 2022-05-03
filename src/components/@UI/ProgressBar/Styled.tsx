@@ -43,7 +43,7 @@ export const ProgressBarBase = styled(Box)<ProgressBarBaseProps>`
     top: 0;
     left: 0;
     height: 22px;
-    width: ${({ $percent }) => $percent + '%'};
+    width: ${({ $percent = '100' }) => $percent + '%'};
     background-image: linear-gradient(
         90deg,
         transparent,
