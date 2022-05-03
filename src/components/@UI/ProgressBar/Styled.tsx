@@ -24,8 +24,8 @@ export const ProgressBarBase = styled(Box)<ProgressBarBaseProps>`
         90deg,
         transparent,
         transparent 60%,
-        ${({ theme, $bgColor = 'grey-800' }) => theme.rawColors[$bgColor]} 60%,
-        ${({ theme, $bgColor = 'grey-800' }) => theme.rawColors[$bgColor]} 100%
+        ${({ theme, $bgColor }) => theme.rawColors[$bgColor]} 60%,
+        ${({ theme, $bgColor }) => theme.rawColors[$bgColor]} 100%
       ),
       linear-gradient(
         0deg,
@@ -42,13 +42,13 @@ export const ProgressBarBase = styled(Box)<ProgressBarBaseProps>`
     top: 0;
     left: 0;
     height: 22px;
-    width: ${({ $percent = '100' }) => $percent + '%'};
+    width: ${({ $percent }) => $percent + '%'};
     background-image: linear-gradient(
         90deg,
         transparent,
         transparent 60%,
-        ${({ theme, $bgColor = 'grey-800' }) => theme.rawColors[$bgColor]} 60%,
-        ${({ theme, $bgColor = 'grey-800' }) => theme.rawColors[$bgColor]} 100%
+        ${({ theme, $bgColor }) => theme.rawColors[$bgColor]} 60%,
+        ${({ theme, $bgColor }) => theme.rawColors[$bgColor]} 100%
       ),
       linear-gradient(-2deg, #3e8ff7 15%, #ec5b94 65%, #ff5628 90%);
     background-size: ${({ theme }) => theme.space[3] + 'px'} 100%, 100% 100%;

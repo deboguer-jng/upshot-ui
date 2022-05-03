@@ -19,10 +19,16 @@ export interface ProgressBarProps extends BoxProps {
  */
 const ProgressBar = forwardRef(
   (
-    { percent = 0, ...props }: ProgressBarProps,
+    { percent = 0, bgColor = 'grey-800', ...props }: ProgressBarProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    return <ProgressBarBase $percent={percent} {...{ ref, ...props }} />
+    return (
+      <ProgressBarBase
+        $percent={percent}
+        $bgColor={bgColor}
+        {...{ ref, ...props }}
+      />
+    )
   }
 )
 
