@@ -1,36 +1,18 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-
-import Panel from './'
+import Panel from '../Panel'
+import ProgressBar from './'
 
 export default {
-  title: '@UI/Panel',
-  component: Panel,
-} as ComponentMeta<typeof Panel>
+  title: '@UI/ProgressBar',
+  component: ProgressBar,
+} as ComponentMeta<typeof ProgressBar>
 
-const Template: ComponentStory<typeof Panel> = (args) => <Panel {...args} />
+const Template: ComponentStory<typeof ProgressBar> = (args) => (
+  <Panel>
+    <ProgressBar bgColor="grey-800" {...args} />
+  </Panel>
+)
 
 export const Default = Template.bind({})
-Default.args = { sx: { width: '300px', height: '225px' } }
-
-export const hoverUnderglow = Template.bind({})
-hoverUnderglow.args = {
-  hoverUnderglow: 'red',
-  sx: { width: '300px', height: '225px' },
-}
-
-export const hoverBorder = Template.bind({})
-hoverBorder.args = {
-  hoverBorder: 'red',
-  sx: { width: '300px', height: '225px' },
-}
-
-export const hoverUnderglowAndBorder = Template.bind({})
-hoverUnderglowAndBorder.args = {
-  hoverUnderglow: 'red',
-  hoverBorder: 'red',
-  sx: { width: '300px', height: '225px' },
-}
-
-export const Inner = Template.bind({})
-Inner.args = { inner: true, sx: { width: '300px', height: '225px' } }
+Default.args = { percent: 67 }
