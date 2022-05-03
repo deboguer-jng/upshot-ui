@@ -15,7 +15,7 @@ export interface ProgressBarProps extends BoxProps {
 }
 
 /**
- * Provides a surface for UI elements.
+ * Provides a progress bar for the gmi scoring.
  */
 const ProgressBar = forwardRef(
   (
