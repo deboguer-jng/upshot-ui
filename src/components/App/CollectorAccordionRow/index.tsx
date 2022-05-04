@@ -258,6 +258,7 @@ const CollectorRow = forwardRef(
                   textDecoration: 'none',
                   width: 'fit-content',
                   color: 'inherit',
+                  mr: 1,
                 }}
                 href={`/analytics/user/${address}`}
                 component={linkComponent}
@@ -268,7 +269,8 @@ const CollectorRow = forwardRef(
                 icon="copy"
                 size="13"
                 color="grey-300"
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation()
                   navigator.clipboard.writeText(address)
                 }}
               />
