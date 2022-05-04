@@ -21,7 +21,7 @@ const formInputs = {
   },
   roundedDark: {
     variant: 'forms.inputs.rounded',
-    bg: 'black',
+    bg: '#000',
   },
 }
 

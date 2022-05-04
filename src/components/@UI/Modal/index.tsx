@@ -48,10 +48,12 @@ const Modal = forwardRef(
     }
 
     const handleClose = () => {
+      if (!onClose) return
+
       setIsClosing(true)
       window.setTimeout(() => {
         setIsClosing(false)
-        onClose?.()
+        onClose()
       }, 500)
     }
 
