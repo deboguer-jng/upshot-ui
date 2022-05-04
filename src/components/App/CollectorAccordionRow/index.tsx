@@ -246,23 +246,35 @@ const CollectorRow = forwardRef(
           <Flex
             sx={{ flexDirection: 'column', justifyContent: 'center', gap: 1 }}
           >
-            <Link
-              sx={{
-                fontWeight: 'bold',
-                fontSize: breakpointIndex <= 1 ? 2 : 3,
-                lineHeight: 1,
-                textOverflow: 'ellipsis',
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-                textDecoration: 'none',
-                width: 'fit-content',
-                color: 'inherit',
-              }}
-              href={`/analytics/user/${address}`}
-              component={linkComponent}
-            >
-              {displayName}
-            </Link>
+            <Flex sx={{ alignItems: 'center', gap: 1 }}>
+              <Link
+                sx={{
+                  fontWeight: 'bold',
+                  fontSize: breakpointIndex <= 1 ? 2 : 3,
+                  lineHeight: 1,
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden',
+                  whiteSpace: 'nowrap',
+                  textDecoration: 'none',
+                  width: 'fit-content',
+                  color: 'inherit',
+                  mr: 1,
+                }}
+                href={`/analytics/user/${address}`}
+                component={linkComponent}
+              >
+                {displayName}
+              </Link>
+              <Icon
+                icon="copy"
+                size="13"
+                color="grey-300"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  navigator.clipboard.writeText(address)
+                }}
+              />
+            </Flex>
             {!!subtitle && (
               <Text
                 sx={{
