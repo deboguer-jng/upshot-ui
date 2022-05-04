@@ -24,6 +24,7 @@ export interface ButtonDropdownInterface
   isMulti?: boolean
   disabled?: boolean
   hideRadio?: boolean
+  closeOnSelect?: boolean
 }
 
 const ButtonDropdown = forwardRef(
@@ -37,6 +38,7 @@ const ButtonDropdown = forwardRef(
       isMulti = false,
       disabled,
       hideRadio = false,
+      closeOnSelect = false,
       ...props
     }: ButtonDropdownInterface,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -55,6 +57,13 @@ const ButtonDropdown = forwardRef(
 
       return () => document.removeEventListener('mousedown', handleClickOutside)
     }, [])
+
+    const handleChange = (option: string) => {
+      onChange(option)
+      if (closeOnSelect) {
+        setOpen(false)
+      }
+    }
 
     return (
       <div {...{ ref, ...props }}>
@@ -92,7 +101,7 @@ const ButtonDropdown = forwardRef(
                     key={index}
                     isMulti={isMulti}
                     unSelected={option !== value && !!value.length}
-                    onClick={() => onChange(option)}
+                    onClick={() => handleChange(option)}
                   >
                     {isMulti ? (
                       <Checkbox readOnly checked={value.includes(option)} />
