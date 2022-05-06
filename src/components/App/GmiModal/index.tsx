@@ -58,6 +58,7 @@ const GmiModal = forwardRef(
                 padding: '8px 20px',
                 outline: 'none',
                 flexGrow: 1,
+                paddingRight: '120px',
               }}
             />
           </form>
