@@ -23,7 +23,7 @@ export const Overlay = styled.div<{ $open: boolean; $blur: boolean }>`
     background-color: ${({ theme }) => theme.rawColors.black};
     animation: ${keyframes`from { opacity: 0; }`} 0.5s ease;
     opacity: ${({ $open }) => ($open ? 0.8 : 0.0)};
-    transition: all 0.5s ease;
+    transition: opacity 0.5s ease;
   }
 
   &::after {
@@ -36,6 +36,6 @@ export const Overlay = styled.div<{ $open: boolean; $blur: boolean }>`
     height: 100vh;
     backdrop-filter: ${({ $blur }) => ($blur ? 'blur(12px)' : 'none')};
     opacity: ${({ $open }) => ($open ? 1 : 0)};
-    transition: all 0.5s ease;
+    transition: opacity 0.5s ease;
   }
 `
