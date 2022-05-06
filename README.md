@@ -35,11 +35,13 @@ In development, you will likely want to link this repo with the one containing t
 1. Always delete the `dist` folder
 
 2.
+
 ```bash
 yarn && yarn build
 ```
 
 3.
+
 ```bash
 npm publish
 ```
@@ -47,11 +49,17 @@ npm publish
 ### Shortcuts
 
 Update the current branch and start development
+
 ```bash
 yarn pulld
 ```
 
 Checkout to the main branch of the repo, update, and start development
+
 ```bash
 yarn maind
 ```
+
+### Routing
+
+To enable client-side routing from Next.js, use `<Link>` (@UI/Link) in place of `<a>` with a `linkComponent` prop to receive the next/link router.
