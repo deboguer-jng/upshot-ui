@@ -50,10 +50,9 @@ export const Search = styled(Flex)<{ $color: keyof typeof Colors }>`
   position: absolute;
   top: 4px;
   right: 4px;
-
+  width: 96px;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 ${({ theme }) => theme.space[4] + 'px'};
+  justify-content: center;
   background: ${({ theme, $color }) => theme.rawColors[$color]};
   height: calc(56px - 2 * 4px);
   border-radius: 14px;
