@@ -20,6 +20,7 @@ import IconButton from '../../@UI/IconButton'
 import { useBreakpointIndex } from '../../..'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
 import { formatNumber } from '../../../utils/number'
+import Tooltip from '../../@UI/Tooltip'
 
 export interface CollectorAccordionRowProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -69,6 +70,8 @@ export interface CollectorAccordionRowProps
   totalNftValue?: string
 
   extraCollectionChanged?: (id: number) => void
+
+  onCopyAddress: () => void
   /**
    * NFT collection
    */
@@ -119,6 +122,7 @@ const CollectorRow = forwardRef(
       extraCollections = [],
       children,
       extraCollectionChanged,
+      onCopyAddress,
       defaultOpen = false,
       isLandingPage = false,
       linkComponent,
@@ -265,15 +269,30 @@ const CollectorRow = forwardRef(
               >
                 {displayName}
               </Link>
-              <Icon
-                icon="copy"
-                size="13"
-                color="grey-300"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  navigator.clipboard.writeText(address)
+              <Tooltip
+                tooltip={'Copy to clipboard'}
+                placement="top"
+                sx={{
+                  marginLeft: '0',
+                  height: '13px',
+                  '&:hover': {
+                    svg: {
+                      color: theme.colors['grey-500'],
+                    },
+                  },
                 }}
-              />
+              >
+                <Icon
+                  icon="copy"
+                  size="13"
+                  color="grey-300"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    navigator.clipboard.writeText(address)
+                    onCopyAddress()
+                  }}
+                />
+              </Tooltip>
             </Flex>
             {!!subtitle && (
               <Text
