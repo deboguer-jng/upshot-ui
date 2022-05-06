@@ -64,7 +64,7 @@ const HelpModal = forwardRef(
             </BodyInfoIcon>
             <Flex sx={{ flexDirection: 'column', gap: '0.5rem' }}>
               <Text sx={{ fontSize: ['16px', '20px'], fontWeight: 700 }}>
-                Factor on-chain data
+                Factor on-chain and off-chain data
               </Text>
               <Text
                 sx={{
@@ -120,10 +120,6 @@ const HelpModal = forwardRef(
                 <br />
                 <br />
                 Our MRE is industry-leading at 4-11% for most collections.
-                <br />
-                <br />
-                We currently support over 240 collections and around 270k NFTs across those
-                collections, with appraisals refreshed every hour.
               </Text>
             </Flex>
           </Grid>
