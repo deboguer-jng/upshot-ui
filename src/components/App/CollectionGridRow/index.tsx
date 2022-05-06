@@ -116,18 +116,23 @@ const CollectionGridRow = forwardRef(
             sx={{
               flexDirection: 'column',
               justifyContent: 'center',
-              gap: 1,
+              gap: 1
             }}
           >
-            <Link component={linkComponent} {...{ href }}>
+            <Link 
+              sx={{
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap'
+              }}
+              component={linkComponent}
+              {...{ href }}
+            >
               <Text
                 sx={{
                   fontWeight: 'bold',
                   fontSize: breakpointIndex <= 1 ? 2 : 4,
                   lineHeight: 1,
-                  textOverflow: 'ellipsis',
-                  overflow: 'hidden',
-                  whiteSpace: 'nowrap',
                   textDecoration: 'none',
                   color: 'inherit',
                 }}

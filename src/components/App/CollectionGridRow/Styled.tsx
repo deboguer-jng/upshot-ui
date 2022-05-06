@@ -15,10 +15,12 @@ export const CollectionGridRowBase = styled(Grid)<{ $variant: Variant }>`
   background-color: ${({ theme, $variant }) =>
     theme.colors[colorsByVariant[$variant]]};
   align-items: center;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
   font-size: ${({ theme }) => theme.fontSizes[2]};
   padding: ${({ theme }) => [1, 3].map((n) => theme.space[n] + 'px').join(' ')};
   margin: 8px 0;
+  & > div {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 `
