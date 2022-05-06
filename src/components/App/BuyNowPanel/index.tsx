@@ -122,8 +122,10 @@ const BuyNowPanel = forwardRef(
 
     const textColor = isUnderPriced
       ? ('green' as keyof typeof colors)
+      : !listAppraisalPercentage
+      ? ('white' as keyof typeof colors)
       : ('red' as keyof typeof colors)
-    const title = isUnderPriced ? 'Underpriced' : 'Overpriced'
+    const title = isUnderPriced ? 'Underpriced' : !listAppraisalPercentage ? 'For Sale' : 'Overpriced'
     const belowOrAbove = isUnderPriced ? 'below' : 'above'
     let buttonPosition
     if (variant === 'wide' && isMobile === false) {
@@ -160,18 +162,26 @@ const BuyNowPanel = forwardRef(
               {variant === 'wide' && 'This NFT is listed'}
               {variant === 'popup' && 'This NFT is listed'}
             </Text>
-            &nbsp; {variant === 'popup' && <br />}
-            <Text color={textColor}>
-              {Math.abs(listAppraisalPercentage).toFixed(2)}% {belowOrAbove}{' '}
-              appraisal price
-            </Text>
-            &nbsp; {variant === 'popup' && <br />}
+            &nbsp;
             <Text color="grey-500">at</Text>
             &nbsp;
             <Text color="grey-400">
               Ξ{listPriceETH}{' '}
               {listPriceUSD > 0 && '($' + formatNumber(listPriceUSD) + ')'}
             </Text>
+            {listAppraisalPercentage && (
+              <>
+                <Text color="grey-400">
+                  :
+                </Text>
+                &nbsp;
+                <Text color={textColor}>
+                  {Math.abs(listAppraisalPercentage).toFixed(2)}% {belowOrAbove}{' '}
+                  appraisal price
+                </Text>
+              </>
+            )}
+            &nbsp; {variant === 'popup' && <br />}
           </StyledBox>
           {buttonPosition === 'bottom' && (
             <BuyButton

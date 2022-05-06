@@ -17,6 +17,8 @@ export interface TooltipProps extends BoxProps {
    * The tooltip content
    */
   tooltip: React.ReactNode
+
+  placement?: 'top' | 'bottom'
 }
 
 /**
@@ -27,6 +29,7 @@ const Tooltip = forwardRef(
     {
       children = <IconMiddle color="primary" icon="information" size={16} />,
       tooltip,
+      placement = 'bottom',
       ...props
     }: TooltipProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -40,6 +43,7 @@ const Tooltip = forwardRef(
     } = usePopperTooltip({
       interactive: true,
       delayHide: 250,
+      placement,
     })
 
     return (

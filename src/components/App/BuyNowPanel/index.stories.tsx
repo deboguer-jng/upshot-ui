@@ -32,6 +32,15 @@ Wide.args = {
   marketplaceUrl: 'https://opensea.io/',
 }
 
+export const WideNeutral = Template.bind({})
+WideNeutral.args = {
+  listPriceETH: 1,
+  listPriceUSD: 4000,
+  appraisalPriceETH: 2,
+  marketplaceName: 'OpenSea',
+  marketplaceUrl: 'https://opensea.io/',
+}
+
 
 export const Popup = Template.bind({})
 Popup.args = {
@@ -40,6 +49,18 @@ Popup.args = {
   listPriceUSD: 4000,
   appraisalPriceETH: 2,
   listAppraisalPercentage: 20.1,
+  marketplaceName: 'OpenSea',
+  marketplaceUrl: 'https://opensea.io/',
+  sx: {width: '350px'},
+}
+
+
+export const PopupNeutral = Template.bind({})
+PopupNeutral.args = {
+  variant: 'popup',
+  listPriceETH: 1,
+  listPriceUSD: 4000,
+  appraisalPriceETH: 2,
   marketplaceName: 'OpenSea',
   marketplaceUrl: 'https://opensea.io/',
   sx: {width: '350px'},
