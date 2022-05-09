@@ -48,6 +48,7 @@ const GmiModal = forwardRef(
         <Flex sx={{ position: 'relative', width: '100%' }}>
           <form onSubmit={handleSearch} style={{ width: '100%' }}>
             <Input
+              autoFocus
               ref={inputRef}
               placeholder="Wallet address or ENS"
               sx={{
