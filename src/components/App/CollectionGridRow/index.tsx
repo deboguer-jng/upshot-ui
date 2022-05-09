@@ -242,7 +242,7 @@ const CollectionGridRow = forwardRef(
     )
 
     /* if href is provided, wrap the row in a Link */
-    return href ? (
+    return (href && !isMobile) ? (
       <Link noHover component={linkComponent} {...{ href }}>
         {content}
       </Link>
