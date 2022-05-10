@@ -34,6 +34,21 @@ ImageIcon.args = {
   ),
 }
 
+export const WithBadge = Template.bind({})
+WithBadge.args = {
+  text: 'name',
+  subText: 'eth value',
+  icon: (
+    <Image
+      src="/img/defaultAvatar.png"
+      height="100%"
+      width="100%"
+      sx={{ borderRadius: 'circle' }}
+    />
+  ),
+  showBadge: true,
+}
+
 export const Error = Template.bind({})
 Error.args = {
   error: true,
