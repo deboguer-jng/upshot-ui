@@ -17,5 +17,5 @@ export const ModalWrapper = styled.div<ModalWrapperProps>`
   z-index: ${({ theme }) => theme.zIndex.modal};
   animation: ${keyframes`from { opacity: 0; }`} 0.25s ease;
   opacity: ${({ $open }) => ($open ? 1.0 : 0.0)};
-  transition: all 0.25s ease;
+  transition: opacity 0.25s ease;
 `
