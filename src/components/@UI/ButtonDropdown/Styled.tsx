@@ -39,6 +39,7 @@ export const Dropdown = styled.div<DropdownProps>`
   padding: 6px 12px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   span {
     font-family: ${({ theme }) => theme.fonts.body};
@@ -108,6 +109,7 @@ export const DropdownMenuItem = styled.div<DropdownMenuItemProps>`
   align-items: center;
   padding: 6px 11px;
   user-select: none;
+  cursor: pointer;
   font-family: ${({ theme }) => theme.fonts.body};
   color: ${({ theme, unSelected, isMulti }) => {
     if (isMulti) return theme.buttons.dropdown.variants.isMulti.color
