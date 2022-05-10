@@ -172,7 +172,7 @@ const MiniNftCard = forwardRef(
             </MiniNftCardDetailsName>
             {type === 'default' ? (
               <MiniNftCardDetailValue variant="xSmall" error={error}>
-                {error ? 'Error' : date}
+                {error ? 'Error' : date + ' ago'}
               </MiniNftCardDetailValue>
             ) : null}
             <MiniNftCardDetailLabel variant="xSmall">
