@@ -48,6 +48,29 @@ export const CollectionButtonIcon = styled.div`
   }
 `
 
+export const CollectionButtonIconBadge = styled.div`
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  height: 13px;
+  width: 13px;
+  border-radius: 50%;
+
+  svg {
+    height: 13px;
+    width: 13px;
+
+    * {
+      fill: ${({ theme }) => theme.colors.primary};
+    }
+  }
+`
+
+export const CollectionButtonIconWrapper = styled.div`
+  display: inline-block;
+  position: relative;
+`
+
 export const CollectionButtonTextWrapper = styled.div`
   display: flex;
   flex-direction: column;

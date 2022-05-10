@@ -1,12 +1,15 @@
 import React, { ReactNode, forwardRef } from 'react'
 import ErrorSvg from '../../../assets/svg/icons/Error.svg'
 import colors from '../../../themes/UpshotUI/colors'
+import Icon from '../Icon'
 import {
   CollectionButtonWrapper,
   CollectionButtonTextWrapper,
   CollectionButtonText,
   CollectionButtonSubText,
   CollectionButtonIcon,
+  CollectionButtonIconBadge,
+  CollectionButtonIconWrapper,
 } from './Styled'
 
 export interface CollectionButtonProps
@@ -14,6 +17,7 @@ export interface CollectionButtonProps
   text: string
   subText: string
   icon: ReactNode
+  showBadge?: boolean
   underglow?: keyof typeof colors
   hoverUnderglow?: keyof typeof colors
   error?: boolean
@@ -25,6 +29,7 @@ const CollectionButton = forwardRef(
       text,
       subText,
       icon,
+      showBadge,
       underglow,
       hoverUnderglow,
       error = false,
@@ -54,7 +59,12 @@ const CollectionButton = forwardRef(
         $underglow={underglow}
         {...{ ref, ...props }}
       >
-        <CollectionButtonIcon>{icon}</CollectionButtonIcon>
+        <CollectionButtonIconWrapper>
+          <CollectionButtonIcon>{icon}</CollectionButtonIcon>
+          {showBadge && (
+            <CollectionButtonIconBadge><Icon icon="upshot" /></CollectionButtonIconBadge>
+          )}
+        </CollectionButtonIconWrapper>
         <CollectionButtonTextWrapper>
           <CollectionButtonText>{text}</CollectionButtonText>
           <CollectionButtonSubText>{subText}</CollectionButtonSubText>
