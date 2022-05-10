@@ -1,12 +1,18 @@
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
 
-export const ModalWrapper = styled.div<{ $open: boolean }>`
+interface ModalWrapperProps {
+  $open: boolean
+  $fullWidth: boolean
+}
+
+export const ModalWrapper = styled.div<ModalWrapperProps>`
   position: fixed;
   top: 50%;
   left: 50%;
   max-height: 100vh;
   overflow-y: auto;
+  width: ${({ $fullWidth }) => ($fullWidth ? '100vw' : 'auto')};
   transform: translate(-50%, -50%);
   z-index: ${({ theme }) => theme.zIndex.modal};
   animation: ${keyframes`from { opacity: 0; }`} 0.25s ease;

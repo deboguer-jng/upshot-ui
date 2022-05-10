@@ -11,6 +11,14 @@ export interface ModalProps extends BackdropProps {
    */
   backdropBlur?: boolean
   /**
+   * Hide the main page scrollbar while open.
+   */
+  hideScroll?: boolean
+  /**
+   * Expand the modal to 100% of the viewport width.
+   */
+  fullWidth?: boolean
+  /**
    * Handler to close modal
    */
   onClose?: () => void
@@ -31,6 +39,8 @@ const Modal = forwardRef(
     {
       open = false,
       backdropBlur = false,
+      hideScroll = false,
+      fullWidth = false,
       onClose,
       children,
       ...props
@@ -41,11 +51,11 @@ const Modal = forwardRef(
      * Adds a small delay for the transition to complete.
      */
     const [isClosing, setIsClosing] = useState(false)
-    if (open === false || isClosing === true) {
-      document.body.style.overflow = 'visible'
-    } else {
-      document.body.style.overflow = 'hidden'
-    }
+    // if (open === false || isClosing === true) {
+    //   document.body.style.overflowY = 'visible'
+    // } else {
+    //   document.body.style.overflowY = 'hidden'
+    // }
 
     const handleClose = () => {
       if (!onClose) return
@@ -68,7 +78,9 @@ const Modal = forwardRef(
           {...{ ref, ...props }}
         />
         <Portal>
-          <ModalWrapper $open={open && !isClosing}>{children}</ModalWrapper>
+          <ModalWrapper $fullWidth={fullWidth} $open={open && !isClosing}>
+            {children}
+          </ModalWrapper>
         </Portal>
       </>
     )
