@@ -9,12 +9,14 @@ import { toggle } from '../../Chart/utils'
 import colors from '../../../../themes/UpshotUI/colors'
 import { useBreakpointIndex } from '../../../..'
 
+type ChartData = {
+  name: string
+  data: any[]
+  labelColor?: keyof typeof colors
+}
+
 interface PopulatedScatterChartProps {
-  chartData: {
-    name: string
-    data: any
-    labelColor?: keyof typeof colors
-  }[]
+  chartData: ChartData[]
 }
 
 const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
@@ -39,27 +41,23 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
       //   return 0
     }
   }
+  const markerColors = [theme.rawColors.blue, theme.rawColors.pink]
 
-  const labelColors: Array<keyof typeof colors> = [
-    'blue',
-    'pink',
-    'orange',
-    'green',
-    'yellow',
-  ]
-  for (let i = 0; i < chartData.length; i++) {
-    chartData[i].labelColor = labelColors[i]
-  }
+  let highGMISeries: ChartData = { name: 'Based', data: [], labelColor: 'pink' };
+  let lowGMISeries: ChartData = { name: 'NGMI', data: [], labelColor: 'blue' };
 
   let min = chartData[0].data[0][0]
   chartData[0].data.forEach((info: any) => {
     if (min > info[0]) min = info[0]
+
+    if(info[4] > 900) highGMISeries.data.push(info);
+    else lowGMISeries.data.push(info);
   })
 
   return (
     <>
       <ReactApexChart
-        series={chartData}
+        series={[highGMISeries, lowGMISeries]}
         type="scatter"
         height={300}
         width="100%"
@@ -95,11 +93,18 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
             enabled: true,
             theme: 'dark',
 
-            custom: function ({ dataPointIndex }: { dataPointIndex: number }) {
-              const name = chartData[0].name
-              const [timestamp, price, tokenId, buyer] = chartData[0].data[
-                dataPointIndex
-              ] as any
+            custom: function ({
+              seriesIndex,
+              dataPointIndex,
+              w,
+            }: {
+              seriesIndex: number
+              dataPointIndex: number
+              w: any
+            }) {
+              const name = w.globals.initialSeries[seriesIndex].name
+              const [timestamp, price, tokenId, buyer, buyerGMI] = w.globals
+                .initialSeries[seriesIndex].data[dataPointIndex] as any
 
               return `
                 <div style="background-color: ${
@@ -111,13 +116,14 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
                   <div style="font-size: 0.9rem; color: ${
                     theme.rawColors.white
                   }">${format(timestamp, 'MM/dd/yyyy')} (Ξ${price})</div>
-            <div style="display: flex; align-items: center; font-weight: 400; font-size: 0.9rem; color: ${
-              theme.rawColors['grey-400']
-            };">
-            <div style="width:5px; height: 5px; border-radius: 50%; background-color: ${
-              theme.rawColors.purple
-            }; margin-right: 4px;"></div>
-            ${buyer}</div>
+                  <div style="display: flex; align-items: center; font-weight: 400; font-size: 0.9rem; color: ${
+                    theme.rawColors['grey-400']
+                  };">
+                    <div style="width:5px; height: 5px; border-radius: 50%; background-color: ${
+                      theme.rawColors.purple
+                    }; margin-right: 4px;"></div>
+                  ${buyer}</div>
+                  <div>${buyerGMI}</div>
               </div>
             `
             },
@@ -164,11 +170,11 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
               enabled: false,
             },
           },
-          colors: [theme.rawColors.primary],
+          colors: markerColors,
           markers: {
             size: 6,
-            colors: [theme.rawColors.primary],
-            strokeColors: [theme.rawColors.primary],
+            colors: markerColors,
+            strokeColors: markerColors,
           },
         }}
       />
