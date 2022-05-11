@@ -12,6 +12,7 @@ import { useBreakpointIndex } from '../../../..'
 type ChartData = {
   name: string
   data: any[]
+  collection?: string
   labelColor?: keyof typeof colors
 }
 
@@ -43,8 +44,8 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
   }
   const markerColors = [theme.rawColors.pink, theme.rawColors.blue]
 
-  let highGMISeries: ChartData = { name: 'Based', data: [], labelColor: 'pink' };
-  let lowGMISeries: ChartData = { name: 'NGMI', data: [], labelColor: 'blue' };
+  let highGMISeries: ChartData = { collection: chartData[0].name, name: 'Based', data: [], labelColor: 'pink' };
+  let lowGMISeries: ChartData = { collection: chartData[0].name, name: 'NGMI', data: [], labelColor: 'blue' };
 
   let min = chartData[0].data[0][0]
   chartData[0].data.forEach((info: any) => {
@@ -102,7 +103,7 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
               dataPointIndex: number
               w: any
             }) {
-              const name = w.globals.initialSeries[seriesIndex].name
+              const name = w.globals.initialSeries[seriesIndex].collection
               const [timestamp, price, tokenId, buyer, buyerGMI, buyerENS] = w.globals
                 .initialSeries[seriesIndex].data[dataPointIndex] as any
 
@@ -118,7 +119,7 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
                     <div style="width:5px; height: 5px; border-radius: 50%; background-color: ${theme.rawColors.purple}; margin-right: 4px;"></div>
                     ${buyerENS ? buyerENS : buyer}
                     <span style="font-size: 0.9rem; color: ${theme.rawColors.white}; margin-left: 5px;">
-                      (${buyerGMI})
+                      (${Math.round(buyerGMI)})
                     </span>
                   </div>
                 </div>
