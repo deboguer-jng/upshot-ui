@@ -103,28 +103,25 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
               w: any
             }) {
               const name = w.globals.initialSeries[seriesIndex].name
-              const [timestamp, price, tokenId, buyer, buyerGMI] = w.globals
+              const [timestamp, price, tokenId, buyer, buyerGMI, buyerENS] = w.globals
                 .initialSeries[seriesIndex].data[dataPointIndex] as any
 
               return `
-                <div style="background-color: ${
-                  theme.rawColors['grey-900']
-                }; border-radius: 5px; color: white; padding: 12px; font-weight: 600; font-size: 1rem;">
-                  <div style="color: ${
-                    theme.rawColors.blue
-                  }">${name} #${tokenId}</div>
-                  <div style="font-size: 0.9rem; color: ${
-                    theme.rawColors.white
-                  }">${format(timestamp, 'MM/dd/yyyy')} (Ξ${price})</div>
-                  <div style="display: flex; align-items: center; font-weight: 400; font-size: 0.9rem; color: ${
-                    theme.rawColors['grey-400']
-                  };">
-                    <div style="width:5px; height: 5px; border-radius: 50%; background-color: ${
-                      theme.rawColors.purple
-                    }; margin-right: 4px;"></div>
-                  ${buyer}</div>
-                  <div>${buyerGMI}</div>
-              </div>
+                <div style="background-color: ${theme.rawColors['grey-900']}; border-radius: 5px; color: white; padding: 12px; font-weight: 600; font-size: 1rem;">
+                  <div style="color: ${theme.rawColors.blue}">
+                    ${name} #${tokenId}
+                  </div>
+                  <div style="font-size: 0.9rem; color: ${theme.rawColors.white}">
+                    ${format(timestamp, 'MM/dd/yyyy')} (Ξ${price})
+                  </div>
+                  <div style="display: flex; align-items: center; font-weight: 400; font-size: 0.9rem; color: ${theme.rawColors['grey-400']};">
+                    <div style="width:5px; height: 5px; border-radius: 50%; background-color: ${theme.rawColors.purple}; margin-right: 4px;"></div>
+                    ${buyerENS ? buyerENS : buyer}
+                    <span style="font-size: 0.9rem; color: ${theme.rawColors.white}; margin-left: 5px;">
+                      (${buyerGMI})
+                    </span>
+                  </div>
+                </div>
             `
             },
           },
