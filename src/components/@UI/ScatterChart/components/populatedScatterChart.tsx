@@ -41,7 +41,7 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
       //   return 0
     }
   }
-  const markerColors = [theme.rawColors.blue, theme.rawColors.pink]
+  const markerColors = [theme.rawColors.pink, theme.rawColors.blue]
 
   let highGMISeries: ChartData = { name: 'Based', data: [], labelColor: 'pink' };
   let lowGMISeries: ChartData = { name: 'NGMI', data: [], labelColor: 'blue' };
