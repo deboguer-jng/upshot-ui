@@ -173,6 +173,9 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
             colors: markerColors,
             strokeColors: markerColors,
           },
+          legend: {
+            labels: { colors: [theme.rawColors.white] }
+          }
         }}
       />
       <TimeFilterWrapper>
