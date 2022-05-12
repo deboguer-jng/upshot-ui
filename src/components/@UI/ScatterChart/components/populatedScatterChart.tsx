@@ -52,8 +52,8 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
   }
   const markerColors = [theme.rawColors.blue, theme.rawColors.pink]
 
-  let highGMISeries: ChartData = { collection: chartData[0].name, name: 'GMI > 900', data: [], labelColor: 'pink' };
-  let lowGMISeries: ChartData = { collection: chartData[0].name, name: 'GMI < 900', data: [], labelColor: 'blue' };
+  let highGMISeries: ChartData = { collection: chartData[0].name, name: 'gmi > 900', data: [], labelColor: 'pink' };
+  let lowGMISeries: ChartData = { collection: chartData[0].name, name: 'gmi < 900', data: [], labelColor: 'blue' };
 
   let min = chartData[0].data[0].x
   chartData[0].data.forEach((info: any) => {
