@@ -5,13 +5,9 @@ import colors from '../../../themes/UpshotUI/colors'
 import { PanelBase } from './Styled'
 import { theme } from '../../..'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
+import { radii } from '../../../themes/UpshotUI/sizes'
 
 export interface PanelProps extends BoxProps {
-  /**
-   * Inner variants use a darker color with a smaller
-   * border radius.
-   */
-  inner?: boolean
   /**
    * Underglow color on :hover
    */
@@ -23,7 +19,15 @@ export interface PanelProps extends BoxProps {
   /**
    * Background color
    */
-   backgroundColor?: keyof typeof colors
+  backgroundColor?: keyof typeof colors
+  /**
+   * Adds a 1px grey border.
+   */
+  outlined?: boolean
+  /**
+   * Border radius.
+   */
+  radii?: keyof typeof radii
 }
 
 /**
@@ -32,10 +36,11 @@ export interface PanelProps extends BoxProps {
 const Panel = forwardRef(
   (
     {
-      inner = false,
       hoverUnderglow = 'transparent',
       hoverBorder = 'transparent',
-      backgroundColor,
+      radii = 'lg',
+      backgroundColor = 'grey-800',
+      outlined,
       ...props
     }: PanelProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -50,10 +55,11 @@ const Panel = forwardRef(
 
     return (
       <PanelBase
-        $inner={inner}
         $shadow={shadow}
         $isMobile={isMobile}
         $backgroundColor={backgroundColor}
+        $outlined={outlined}
+        $radii={radii}
         {...{ ref, ...props }}
       />
     )
