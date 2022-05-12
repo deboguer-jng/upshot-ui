@@ -20,6 +20,13 @@ Outlined.args = {
   sx: { width: '300px', height: '225px' },
 }
 
+export const Dark = Template.bind({})
+Dark.args = {
+  dark: true,
+  radii: 'md',
+  sx: { width: '300px', height: '225px' },
+}
+
 export const hoverUnderglow = Template.bind({})
 hoverUnderglow.args = {
   hoverUnderglow: 'red',
@@ -36,12 +43,5 @@ export const hoverUnderglowAndBorder = Template.bind({})
 hoverUnderglowAndBorder.args = {
   hoverUnderglow: 'red',
   hoverBorder: 'red',
-  sx: { width: '300px', height: '225px' },
-}
-
-export const Inner = Template.bind({})
-Inner.args = {
-  dark: true,
-  radii: 'md',
   sx: { width: '300px', height: '225px' },
 }
