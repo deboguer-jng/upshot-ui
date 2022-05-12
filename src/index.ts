@@ -120,3 +120,5 @@ export { formatNumber, parseUint256 } from './utils/number'
  * Constants
  */
 export { NUMBER_PREFIX } from './utils/number'
+
+export { ChartDataItem } from './components/@UI/ScatterChart/components/populatedScatterChart';
