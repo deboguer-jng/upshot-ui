@@ -112,7 +112,6 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
               w: any
             }) {
               const name = w.globals.initialSeries[seriesIndex].collection
-              // const [timestamp, price, tokenId, buyer, buyerGMI, buyerENS] = w.globals
               const {
                 x: timestamp,
                 y: price,
