@@ -13,6 +13,13 @@ const Template: ComponentStory<typeof Panel> = (args) => <Panel {...args} />
 export const Default = Template.bind({})
 Default.args = { sx: { width: '300px', height: '225px' } }
 
+export const Outlined = Template.bind({})
+Outlined.args = {
+  outlined: true,
+  radii: 'md',
+  sx: { width: '300px', height: '225px' },
+}
+
 export const hoverUnderglow = Template.bind({})
 hoverUnderglow.args = {
   hoverUnderglow: 'red',
@@ -33,4 +40,8 @@ hoverUnderglowAndBorder.args = {
 }
 
 export const Inner = Template.bind({})
-Inner.args = { inner: true, sx: { width: '300px', height: '225px' } }
+Inner.args = {
+  dark: true,
+  radii: 'md',
+  sx: { width: '300px', height: '225px' },
+}
