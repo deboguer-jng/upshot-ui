@@ -9,10 +9,6 @@ import { radii } from '../../../themes/UpshotUI/sizes'
 
 export interface PanelProps extends BoxProps {
   /**
-   * Renders a darker background panel.
-   */
-  dark?: boolean
-  /**
    * Underglow color on :hover
    */
   hoverUnderglow?: keyof typeof colors
@@ -40,11 +36,10 @@ export interface PanelProps extends BoxProps {
 const Panel = forwardRef(
   (
     {
-      dark = false,
       hoverUnderglow = 'transparent',
       hoverBorder = 'transparent',
       radii = 'lg',
-      backgroundColor,
+      backgroundColor = 'grey-800',
       outlined,
       ...props
     }: PanelProps,
@@ -60,7 +55,6 @@ const Panel = forwardRef(
 
     return (
       <PanelBase
-        $dark={dark}
         $shadow={shadow}
         $isMobile={isMobile}
         $backgroundColor={backgroundColor}

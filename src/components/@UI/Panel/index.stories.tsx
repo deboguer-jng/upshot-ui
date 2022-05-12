@@ -22,7 +22,7 @@ Outlined.args = {
 
 export const Dark = Template.bind({})
 Dark.args = {
-  dark: true,
+  backgroundColor: 'grey-900',
   radii: 'md',
   sx: { width: '300px', height: '225px' },
 }
