@@ -10,7 +10,7 @@ interface MiniNftCardNameProps {
 }
 
 interface MiniNftCardMainContentWrapperProps {
-  type: 'default' | 'search' | 'collection'
+  type: 'default' | 'search' | 'collection' | 'recommend'
 }
 
 interface AddressCircleProps {

@@ -33,6 +33,10 @@ export interface MiniNftCardInterface {
 
   sales?: string
 
+  appraisal?: string
+
+  listing?: string
+
   floorPrice?: string
   /**
    * NFT creator information.
@@ -69,7 +73,7 @@ export interface MiniNftCardInterface {
   /**
    * Variant type
    */
-  type?: 'default' | 'search' | 'collection'
+  type?: 'default' | 'search' | 'collection' | 'recommend'
 
   pixelated?: boolean
 
@@ -104,6 +108,8 @@ const MiniNftCard = forwardRef(
       pixelated = false,
       linkComponent,
       tooltip,
+      appraisal,
+      listing,
       ...props
     }: MiniNftCardInterface & HTMLAttributes<HTMLDivElement>,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -125,7 +131,9 @@ const MiniNftCard = forwardRef(
             pixelated={pixelated}
           />
           <MiniNftCardMainContentWrapper type={type}>
-            {type === 'default' || type === 'collection' ? (
+            {type === 'default' ||
+            type === 'collection' ||
+            type === 'recommend' ? (
               <>
                 {error ? (
                   <MiniNftCardPrice error={error}>Error</MiniNftCardPrice>
@@ -166,7 +174,9 @@ const MiniNftCard = forwardRef(
             <MiniNftCardDetailsName variant="small" error={error}>
               {error
                 ? 'Error'
-                : type === 'default' || type === 'collection'
+                : type === 'default' ||
+                  type === 'collection' ||
+                  type === 'recommend'
                 ? name
                 : creator}
             </MiniNftCardDetailsName>
@@ -180,9 +190,17 @@ const MiniNftCard = forwardRef(
                 ? 'From :'
                 : type === 'collection'
                 ? '# of sales :'
+                : type === 'recommend'
+                ? 'Appraisal Price:'
                 : 'Rarity :'}
             </MiniNftCardDetailLabel>
-            <MiniNftCardDetailValue variant="small" error={error}>
+            <MiniNftCardDetailValue
+              variant="small"
+              error={error}
+              color={
+                type === 'recommend' ? theme.colors.primary : theme.colors.white
+              }
+            >
               {error ? (
                 type === 'default' ? (
                   'Error'
@@ -198,6 +216,8 @@ const MiniNftCard = forwardRef(
                 </Flex>
               ) : type === 'collection' ? (
                 sales
+              ) : type === 'recommend' ? (
+                appraisal
               ) : (
                 rarity
               )}
@@ -207,9 +227,15 @@ const MiniNftCard = forwardRef(
                 ? 'To :'
                 : type === 'collection'
                 ? 'Floor Price :'
+                : type === 'recommend'
+                ? 'Listing Price'
                 : 'Last Sale :'}
             </MiniNftCardDetailLabel>
-            <MiniNftCardDetailValue variant="small" error={error}>
+            <MiniNftCardDetailValue
+              variant="small"
+              error={error}
+              sx={{ flexGrow: 1 }}
+            >
               {error ? (
                 type === 'default' ? (
                   'Error'
@@ -225,6 +251,8 @@ const MiniNftCard = forwardRef(
                 </Flex>
               ) : type === 'collection' ? (
                 floorPrice
+              ) : type === 'recommend' ? (
+                listing
               ) : (
                 price
               )}
@@ -236,7 +264,11 @@ const MiniNftCard = forwardRef(
                 </Text>
               ) : (
                 <Link color="primary" href={link} component={linkComponent}>
-                  <Text variant="small">View Collection</Text>
+                  <Text variant="small">
+                    {type === 'recommend'
+                      ? 'Buy on Opensea'
+                      : 'View Collection'}
+                  </Text>
                 </Link>
               )}
             </MiniNftCardDetailValue>
