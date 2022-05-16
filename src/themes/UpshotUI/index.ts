@@ -1,6 +1,7 @@
 import animations, { durations } from './animations'
 import alerts from './alerts'
 import accordion from './accordion'
+import badges from './badges'
 import images from './images'
 import buttons from './buttons'
 import colors from './colors'
@@ -31,6 +32,7 @@ const theme = {
   alerts,
   accordion,
   animations,
+  badges,
   breakpointsNamed,
   breakpoints,
   buttons,

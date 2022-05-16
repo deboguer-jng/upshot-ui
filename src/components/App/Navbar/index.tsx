@@ -14,6 +14,7 @@ import {
   SearchWrapper,
   StyledLink,
   Divider,
+  Divider2,
 } from './Styled'
 import Link from '../../@UI/Link'
 import Container from '../../Layout/Container'
@@ -29,7 +30,7 @@ import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import { shortenAddress } from '../../../utils/address'
 import zIndex from '../../../themes/UpshotUI/zIndex'
 import Modal from '../../@UI/Modal'
-import { Text, Flex, BoxProps } from 'theme-ui'
+import { Text, Flex, BoxProps, Badge } from 'theme-ui'
 
 export interface NavbarInterface extends BoxProps {
   /**
@@ -55,6 +56,10 @@ export interface NavbarInterface extends BoxProps {
   searchSuggestions?: InputSuggestion[]
   searchValue?: string
   searchDefaultValue?: string
+  /**
+   * Array of notification objects
+   */
+  notifications?: Array<object>
   onSearchValueChange?: ReactEventHandler<HTMLInputElement>
   onSearchSuggestionChange?: (item: InputSuggestion) => void
   onSearchKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void // @todo Refactor all these props and use rfs
@@ -75,6 +80,7 @@ const Navbar = forwardRef(
       searchValue,
       searchSuggestions = [],
       searchDefaultValue,
+      notifications,
       onSearchKeyUp,
       onSearchValueChange,
       onSearchSuggestionChange,
@@ -90,15 +96,25 @@ const Navbar = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const [showWalletPopper, setShowWalletPopper] = useState(false)
+    const [showNotificationPopper, setShowNotificationPopper] = useState(false)
     const [referenceElement, setReferenceElement] = useState(null)
+    const [notificationReferenceElement, setNotificationReferenceElement] = useState(null)
     const [popperElement, setPopperElement] = useState(null)
+    const [notificationPopperElement, setNotificationPopperElement] = useState(null)
     const [navProfileElement, setNavProfileElement] = useState(null)
     const { styles, attributes, forceUpdate } = usePopper(
       referenceElement,
       popperElement,
       {
         placement: 'bottom-end',
-      }
+      },
+    )
+    const notificationPopper = usePopper(
+      notificationReferenceElement,
+      notificationPopperElement,
+      {
+        placement: 'bottom-end',
+      },
     )
     const isMobile = useBreakpointIndex() <= 1
     const isMobileOrTablet = useBreakpointIndex() <= 2
@@ -118,6 +134,23 @@ const Navbar = forwardRef(
         )
       }
       setShowWalletPopper(!showWalletPopper)
+    }
+
+    const handleNotificationPopper = () => {
+      if (!showNotificationPopper) {
+        document.addEventListener(
+          'mouseup',
+          (e) => {
+            if ((e.target as HTMLDivElement).classList.contains('notificationPopperButton'))
+              return
+            setShowNotificationPopper(false)
+          },
+          {
+            once: true,
+          }
+        )
+      }
+      setShowNotificationPopper(!showNotificationPopper)
     }
 
     useEffect(() => {
@@ -179,7 +212,8 @@ const Navbar = forwardRef(
                 </SearchWrapper>
               )}
             </Flex>
-            <Flex style={{ alignItems: 'center', gap: '16px' }}>
+            <Flex style={{ alignItems: 'center', gap: '16px' }}
+                  ref={setNotificationReferenceElement}>
               {!!onHelpClick && (
                 <Tooltip
                   tooltip={'How do we price NFTs?'}
@@ -201,6 +235,37 @@ const Navbar = forwardRef(
                   </IconButton>
                 </Tooltip>
               )}
+              <IconButton
+                className="notificationPopperButton"
+                onClick={handleNotificationPopper}
+                sx={{
+                  backgroundColor: showNotificationPopper ? 'grey-300' : 'grey-800',
+                  width: 45,
+                  height: 45,
+                  position: 'relative',
+                  transition: 'default',
+                  '&:hover': {
+                    boxShadow: '0px 0px 14px #0091FF',
+                  },
+                  '&:not(:disabled):hover': {
+                    backgroundColor: showNotificationPopper ? 'white' : 'rgba(35,31,32,0.5)',
+                  }
+                }}
+              >
+                <Icon icon="notificationFilled" color={ showNotificationPopper ? 'grey-800' : ( notifications?.length > 0 ? 'blue' : 'grey-300') } size="20" />
+                {notifications?.length > 0 &&
+                  <Badge variant='notification'></Badge>
+                }
+              </IconButton>
+              <Modal
+                onClose={handleNotificationPopper}
+                {...{ open: showNotificationPopper }}
+                style={{
+                  background:
+                    'linear-gradient(180deg, #000000 17.57%, rgba(0, 0, 0, 0) 100%)',
+                  zIndex: zIndex.nav - 1,
+                }}
+              />
               <>
                 {address ? (
                   <NavbarItem ref={setReferenceElement}>
@@ -393,6 +458,67 @@ const Navbar = forwardRef(
             >
               Disconnect
             </Text>
+          </Panel>
+        </div>
+        <div
+          ref={setNotificationPopperElement}
+          style={{
+            ...notificationPopper.styles.popper,
+            ...{
+              minWidth: notificationReferenceElement?.current?.style?.width ?? '392px',
+              zIndex: zIndex.nav + 3,
+            },
+          }}
+          {...notificationPopper.attributes.popper}
+        >
+          <Panel
+            sx={{
+              display: showNotificationPopper ? 'flex' : 'none',
+              flexDirection: 'column',
+              marginTop: 2,
+              gap: 4,
+            }}
+          >
+            <Text
+              color="white"
+              sx={{
+                fontSize: 4,
+                fontWeight: 'bold',
+              }}
+            >
+              Notifications
+            </Text>
+
+            <Text
+              color="grey-600"
+              sx={{
+                fontWeight: 'bold',
+              }}
+            >
+              Unread
+            </Text>
+
+            <Divider2 />
+
+            <Text>Notification-1</Text>
+            <Text>Notification-2</Text>
+            <Text>Notification-3</Text>
+            <Text>Notification-4</Text>
+
+            <Text
+              color="grey-600"
+              sx={{
+                fontWeight: 'bold',
+              }}
+            >
+              Read
+            </Text>
+
+            <Divider2 />
+
+            <Text>Notification-5</Text>
+            <Text>Notification-6</Text>
+            <Text>Notification-7</Text>
           </Panel>
         </div>
       </Container>
