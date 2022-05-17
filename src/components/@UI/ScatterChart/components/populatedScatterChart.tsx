@@ -9,12 +9,23 @@ import { toggle } from '../../Chart/utils'
 import colors from '../../../../themes/UpshotUI/colors'
 import { useBreakpointIndex } from '../../../..'
 
+export type ChartDataItem = {
+  x: number,
+  y: number,
+  id: string,
+  address: string | null,
+  gmi?: number,
+  ens?: string
+}
+type ChartData = {
+  name: string
+  data: ChartDataItem[]
+  collection?: string
+  labelColor?: keyof typeof colors
+}
+
 interface PopulatedScatterChartProps {
-  chartData: {
-    name: string
-    data: any
-    labelColor?: keyof typeof colors
-  }[]
+  chartData: ChartData[]
 }
 
 const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
@@ -39,27 +50,23 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
       //   return 0
     }
   }
+  const markerColors = [theme.rawColors.blue, theme.rawColors.pink]
 
-  const labelColors: Array<keyof typeof colors> = [
-    'blue',
-    'pink',
-    'orange',
-    'green',
-    'yellow',
-  ]
-  for (let i = 0; i < chartData.length; i++) {
-    chartData[i].labelColor = labelColors[i]
-  }
+  let highGMISeries: ChartData = { collection: chartData[0].name, name: 'gmi > 900', data: [], labelColor: 'pink' };
+  let lowGMISeries: ChartData = { collection: chartData[0].name, name: 'gmi < 900', data: [], labelColor: 'blue' };
 
-  let min = chartData[0].data[0][0]
+  let min = chartData[0].data[0].x
   chartData[0].data.forEach((info: any) => {
-    if (min > info[0]) min = info[0]
+    if (min > info.x) min = info.x
+
+    if(info.gmi > 900) highGMISeries.data.push(info);
+    else lowGMISeries.data.push(info)
   })
 
   return (
     <>
       <ReactApexChart
-        series={chartData}
+        series={[lowGMISeries, highGMISeries]}
         type="scatter"
         height={300}
         width="100%"
@@ -95,9 +102,24 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
             enabled: true,
             theme: 'dark',
 
-            custom: function ({ dataPointIndex }: { dataPointIndex: number }) {
-              const name = chartData[0].name
-              const [timestamp, price, tokenId, buyer] = chartData[0].data[
+            custom: function ({
+              seriesIndex,
+              dataPointIndex,
+              w,
+            }: {
+              seriesIndex: number
+              dataPointIndex: number
+              w: any
+            }) {
+              const name = w.globals.initialSeries[seriesIndex].collection
+              const {
+                x: timestamp,
+                y: price,
+                id,
+                address,
+                gmi,
+                ens,
+              } = w.globals.initialSeries[seriesIndex].data[
                 dataPointIndex
               ] as any
 
@@ -105,20 +127,28 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
                 <div style="background-color: ${
                   theme.rawColors['grey-900']
                 }; border-radius: 5px; color: white; padding: 12px; font-weight: 600; font-size: 1rem;">
-                  <div style="color: ${
-                    theme.rawColors.blue
-                  }">${name} #${tokenId}</div>
+                  <div style="color: ${theme.rawColors.blue}">
+                    ${name} #${id}
+                  </div>
                   <div style="font-size: 0.9rem; color: ${
                     theme.rawColors.white
-                  }">${format(timestamp, 'MM/dd/yyyy')} (Ξ${price})</div>
-            <div style="display: flex; align-items: center; font-weight: 400; font-size: 0.9rem; color: ${
-              theme.rawColors['grey-400']
-            };">
-            <div style="width:5px; height: 5px; border-radius: 50%; background-color: ${
-              theme.rawColors.purple
-            }; margin-right: 4px;"></div>
-            ${buyer}</div>
-              </div>
+                  }">
+                    ${format(timestamp, 'MM/dd/yyyy')} (Ξ${price})
+                  </div>
+                  <div style="display: flex; align-items: center; font-weight: 400; font-size: 0.9rem; color: ${
+                    theme.rawColors['grey-400']
+                  };">
+                    <div style="width:5px; height: 5px; border-radius: 50%; background-color: ${
+                      theme.rawColors.purple
+                    }; margin-right: 4px;"></div>
+                    ${ens ? ens : address}
+                    <span style="font-size: 0.9rem; color: ${
+                      theme.rawColors.white
+                    }; margin-left: 5px;">
+                      (${Math.round(gmi)})
+                    </span>
+                  </div>
+                </div>
             `
             },
           },
@@ -164,11 +194,14 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
               enabled: false,
             },
           },
-          colors: [theme.rawColors.primary],
+          colors: markerColors,
           markers: {
             size: 6,
-            colors: [theme.rawColors.primary],
-            strokeColors: [theme.rawColors.primary],
+            colors: markerColors,
+            strokeColors: markerColors,
+          },
+          legend: {
+            labels: { colors: [theme.rawColors.white] },
           },
         }}
       />
