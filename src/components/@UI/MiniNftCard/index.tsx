@@ -137,9 +137,13 @@ const MiniNftCard = forwardRef(
               <>
                 {error ? (
                   <MiniNftCardPrice error={error}>Error</MiniNftCardPrice>
-                ) : price?.length ? (
-                  <MiniNftCardPrice>
-                    {price}
+                ) : appraisal?.length || listing?.length ? (
+                  <MiniNftCardPrice
+                    isRecommendListing={
+                      type === 'recommend' && !appraisal && !!listing
+                    }
+                  >
+                    {type === 'recommend' && appraisal ? appraisal : listing}
                     {!!tooltip && (
                       <PriceTooltip>
                         <Text
@@ -191,7 +195,9 @@ const MiniNftCard = forwardRef(
                 : type === 'collection'
                 ? '# of sales :'
                 : type === 'recommend'
-                ? 'Appraisal Price:'
+                ? appraisal
+                  ? 'Listing Price :'
+                  : 'Last Sale'
                 : 'Rarity :'}
             </MiniNftCardDetailLabel>
             <MiniNftCardDetailValue
@@ -217,7 +223,11 @@ const MiniNftCard = forwardRef(
               ) : type === 'collection' ? (
                 sales
               ) : type === 'recommend' ? (
-                appraisal
+                appraisal ? (
+                  listing
+                ) : (
+                  price
+                )
               ) : (
                 rarity
               )}
@@ -228,7 +238,9 @@ const MiniNftCard = forwardRef(
                 : type === 'collection'
                 ? 'Floor Price :'
                 : type === 'recommend'
-                ? 'Listing Price'
+                ? appraisal
+                  ? 'Last Sale :'
+                  : null
                 : 'Last Sale :'}
             </MiniNftCardDetailLabel>
             <MiniNftCardDetailValue
@@ -252,7 +264,9 @@ const MiniNftCard = forwardRef(
               ) : type === 'collection' ? (
                 floorPrice
               ) : type === 'recommend' ? (
-                listing
+                appraisal ? (
+                  price
+                ) : null
               ) : (
                 price
               )}
@@ -263,7 +277,13 @@ const MiniNftCard = forwardRef(
                   View Collection
                 </Text>
               ) : (
-                <Link color="primary" href={link} component={linkComponent}>
+                <Link
+                  color="primary"
+                  target={type === 'recommend' && '_blank'}
+                  onClick={(e) => e.stopPropagation()}
+                  href={link}
+                  component={linkComponent}
+                >
                   <Text variant="small">
                     {type === 'recommend'
                       ? 'Buy on Opensea'
