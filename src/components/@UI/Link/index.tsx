@@ -51,7 +51,11 @@ const Link = forwardRef(
      * or the href is missing.
      */
     return (
-      <StyledLink $color={color} $noHover={noHover} {...{ ref, ...props }}>
+      <StyledLink
+        $color={color}
+        $noHover={noHover}
+        {...{ ref, href, ...props }}
+      >
         {children}
       </StyledLink>
     )
