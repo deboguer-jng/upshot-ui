@@ -38,6 +38,7 @@ export { default as Spinner } from './components/@UI/Spinner'
 export { default as Switch } from './components/@UI/Switch'
 export { default as SwitchDropdown } from './components/@UI/SwitchDropdown'
 export { default as Text } from './components/@UI/Text'
+export { default as TextareaRounded } from './components/@UI/TextAreaRounded'
 export { default as Tooltip } from './components/@UI/Tooltip'
 export { default as TreeMap } from './components/@UI/TreeMap/TreeMapDynamic'
 
@@ -64,7 +65,7 @@ export { default as Investors } from './components/App/Investors'
 export { default as LandingPanel } from './components/App/LandingPanels'
 export { default as Navbar } from './components/App/Navbar'
 export { default as BuyNowPanel } from './components/App/BuyNowPanel'
-export { default as SettingsPanel } from './components/App/SettingsPanel'
+export { SettingsPanel, SettingsMenuItem, SettingsPanelProps } from './components/App/SettingsPanel'
 
 /**
  * Components: Layout
