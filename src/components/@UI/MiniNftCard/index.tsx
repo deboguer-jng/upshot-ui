@@ -73,7 +73,7 @@ export interface MiniNftCardInterface {
   /**
    * Pricing type
    */
-  priceType?: 'appraisal' | 'listed' | 'last-sold' | ''
+  priceType?: 'appraisal' | 'listed' | 'last-sold'
 
   pixelated?: boolean
 
@@ -92,7 +92,7 @@ const MiniNftCard = forwardRef(
     {
       error = false,
       type = 'default',
-      priceType = '',
+      priceType,
       creator,
       image,
       name,
@@ -168,8 +168,11 @@ const MiniNftCard = forwardRef(
                 Owner:
               </MiniNftCardDetailLabel>
             ) : null}
-            <MiniNftCardDetailsName variant="small" error={error}
-              sx={{ mb: 2 }}>
+            <MiniNftCardDetailsName
+              variant="small"
+              error={error}
+              sx={{ mb: 2 }}
+            >
               {error
                 ? 'Error'
                 : type === 'default' || type === 'collection'
@@ -213,9 +216,11 @@ const MiniNftCard = forwardRef(
                 ? 'To :'
                 : type === 'collection'
                 ? 'Floor Price :'
-                : ( priceType === 'appraisal' ?
-                  'Appraisal :' : priceType === 'listed' ?
-                    'Listed :' : 'Last Sold:' )}
+                : priceType === 'appraisal'
+                ? 'Appraisal :'
+                : priceType === 'listed'
+                ? 'Listed :'
+                : 'Last Sold:'}
             </MiniNftCardDetailLabel>
             <MiniNftCardDetailValue variant="small" error={error}>
               {error ? (
@@ -238,17 +243,17 @@ const MiniNftCard = forwardRef(
               )}
             </MiniNftCardDetailValue>
             {!!link && (
-            <MiniNftCardDetailValue>
-              {error ? (
-                <Text variant="small" color="grey-600">
-                  View Collection
-                </Text>
-              ) : (
-                <Link color="primary" href={link} component={linkComponent}>
-                  <Text variant="small">View Collection</Text>
-                </Link>
-              )}
-            </MiniNftCardDetailValue>
+              <MiniNftCardDetailValue>
+                {error ? (
+                  <Text variant="small" color="grey-600">
+                    View Collection
+                  </Text>
+                ) : (
+                  <Link color="primary" href={link} component={linkComponent}>
+                    <Text variant="small">View Collection</Text>
+                  </Link>
+                )}
+              </MiniNftCardDetailValue>
             )}
           </MiniNftCardDetailsBoard>
         )}
