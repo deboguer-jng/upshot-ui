@@ -379,6 +379,21 @@ const Navbar = forwardRef(
             >
               View Profile
             </Link>
+            
+            <Link
+              component={linkComponent}
+              href={`/analytics/settings`}
+              color="grey-600"
+              sx={{
+                cursor: 'pointer',
+                transition: 'default',
+                '&:hover': { color: 'white' },
+                fontWeight: 'bold',
+                textDecoration: 'none',
+              }}
+            >
+              Settings
+            </Link>
 
             <Text
               as="a"
