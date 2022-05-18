@@ -1,6 +1,6 @@
 import React, { ChangeEvent, forwardRef, useState } from 'react'
 import { Flex, Text, TextareaProps } from 'theme-ui'
-import { WrappedTextarea, TextareaOverlay } from './Styled'
+import { WrappedTextarea, TextareaOverlay, TextareaContainer } from './Styled'
 
 export interface TextareaRoundedProps extends TextareaProps {
   /**
@@ -32,19 +32,19 @@ export const TextareaRounded = forwardRef(
     }
 
     return (
-      <Flex sx={{width: props.sx}}>
+      <TextareaContainer {...{ variant }} sx={props.sx}>
         <WrappedTextarea 
           {...{ variant, ref, ...props }} 
-          sx={{ ...(optional || showCount) && {paddingRight: '100px'}, ...props.sx }}
           rows={rows}
           maxLength={maxLength}
           onChange={onChange}
         />
+        {(optional || showCount) && (
         <TextareaOverlay>
           {optional && (<Text>Optional</Text>)}
           {showCount && (<Text>{curLength}/{maxLength}</Text>)}
-        </TextareaOverlay>
-      </Flex>
+        </TextareaOverlay>)}
+      </TextareaContainer>
     )
   }
 )
