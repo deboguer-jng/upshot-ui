@@ -73,3 +73,13 @@ export const Search = styled(Flex)<{ $color: keyof typeof Colors }>`
     color: ${({ theme }) => theme.rawColors.white};
   }
 `
+
+export const StyledLink = styled.a`
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`
