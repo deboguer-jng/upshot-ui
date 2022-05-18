@@ -3,7 +3,7 @@ import { Flex, Textarea } from 'theme-ui'
 import theme from '../../../themes/UpshotUI'
 
 export const TextareaContainer = styled(Flex)`
-  padding: ${({theme}) => theme.sizes[4]}px;
+  padding: ${({theme}) => theme.sizes[2]}px;
 `
 
 export const WrappedTextarea = styled(Textarea)`
@@ -31,6 +31,7 @@ export const TextareaOverlay = styled(Flex)`
   text-align: right;
   position: relative;
   padding-top: 8px;
+  padding-right: 6px;
   font-size: 16px;
   color: ${({theme}) => theme.colors['grey-500']};
 `

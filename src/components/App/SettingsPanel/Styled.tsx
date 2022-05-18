@@ -14,13 +14,12 @@ interface MenuItemProps {
 
 export const PanelBase = styled(Panel)`
   padding: 0;
-  width: 75%;
+  width: 100%;
   height: 50%;
 `
 
 export const SettingsMenu = styled(Flex)<SettingsMenuProps>`
   flex-direction: column; 
-  width: 30%; 
   background-color: ${({ theme }) => theme.colors['grey-900']};
   border-top-left-radius: ${({ theme, $radii }) => theme.radii[$radii]};
   border-bottom-left-radius: ${({ theme, $radii }) => theme.radii[$radii]};
@@ -32,9 +31,9 @@ export const MenuItem = styled(Text)<MenuItemProps>`
   border-bottom: thin solid ${({ theme }) => theme.colors['grey-700']};
   padding: 20px;
   cursor: pointer;
+  position: relative;
 `
 
 export const SettingsContainer = styled(Flex)`
   flex-direction: column;
-  padding: 25px 40px;
 `
