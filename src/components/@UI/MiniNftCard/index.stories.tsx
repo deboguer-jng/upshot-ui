@@ -124,6 +124,7 @@ Search.args = {
   creator: 'creator',
   rarity: '45%',
   type: 'search',
+  priceType: 'appraisal',
   link: 'https://google.com',
 }
 
@@ -137,5 +138,6 @@ SearchLongName.args = {
   date: '08/25/2021',
   rarity: '62.5%',
   type: 'search',
+  priceType: 'listed',
   link: 'https://google.com',
 }

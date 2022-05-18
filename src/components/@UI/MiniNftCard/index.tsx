@@ -75,6 +75,10 @@ export interface MiniNftCardInterface {
    * Variant type
    */
   type?: 'default' | 'search' | 'collection' | 'recommend'
+  /**
+   * Pricing type
+   */
+  priceType?: 'appraisal' | 'listed' | 'last-sold'
 
   pixelated?: boolean
 
@@ -93,6 +97,7 @@ const MiniNftCard = forwardRef(
     {
       error = false,
       type = 'default',
+      priceType,
       creator,
       image,
       name,
@@ -116,8 +121,7 @@ const MiniNftCard = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const isMobile = useBreakpointIndex() <= 1
-    console.log({appraisal})
-    console.log({type})
+
     const optimizedSrc =
       imageOptimizer(image, {
         height: theme.miniNftCard.height,
@@ -179,10 +183,14 @@ const MiniNftCard = forwardRef(
           <MiniNftCardDetailsBoard>
             {type === 'search' ? (
               <MiniNftCardDetailLabel variant="xSmall">
-                Creator:
+                Owner:
               </MiniNftCardDetailLabel>
             ) : null}
-            <MiniNftCardDetailsName variant="small" error={error}>
+            <MiniNftCardDetailsName
+              variant="small"
+              error={error}
+              sx={{ mb: 2 }}
+            >
               {error
                 ? 'Error'
                 : type === 'default' ||
@@ -193,7 +201,7 @@ const MiniNftCard = forwardRef(
             </MiniNftCardDetailsName>
             {type === 'default' ? (
               <MiniNftCardDetailValue variant="xSmall" error={error}>
-                {error ? 'Error' : date + ' ago'}
+                {error ? 'Error' : 'Sold ' + date + ' ago'}
               </MiniNftCardDetailValue>
             ) : null}
             <MiniNftCardDetailLabel variant="xSmall">
