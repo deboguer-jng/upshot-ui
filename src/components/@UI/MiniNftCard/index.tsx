@@ -6,6 +6,7 @@ import ErrorSvg from '../../../assets/svg/icons/Error.svg'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import theme from '../../../themes/UpshotUI'
+import Icon from '../Icon'
 import {
   MiniNftCardWrapper,
   MiniNftCardMainBoard,
@@ -115,7 +116,8 @@ const MiniNftCard = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const isMobile = useBreakpointIndex() <= 1
-
+    console.log({appraisal})
+    console.log({type})
     const optimizedSrc =
       imageOptimizer(image, {
         height: theme.miniNftCard.height,
@@ -143,7 +145,12 @@ const MiniNftCard = forwardRef(
                       type === 'recommend' && !appraisal && !!listing
                     }
                   >
-                    {type === 'recommend' && appraisal ? appraisal : listing}
+                    {(type === 'recommend' && appraisal) ? 
+                      <>
+                        <Text sx={{marginRight: 1, fontWeight: 'bold'}}>{appraisal}</Text>
+                        <Icon size={16} icon="upshot" />
+                      </>
+                     : listing}
                     {!!tooltip && (
                       <PriceTooltip>
                         <Text
@@ -191,14 +198,14 @@ const MiniNftCard = forwardRef(
             ) : null}
             <MiniNftCardDetailLabel variant="xSmall">
               {type === 'default'
-                ? 'From :'
+                ? !!from && 'From :'
                 : type === 'collection'
-                ? '# of sales :'
+                ? !!sales && '# of sales :'
                 : type === 'recommend'
                 ? appraisal
-                  ? 'Listing Price :'
-                  : 'Last Sale'
-                : 'Rarity :'}
+                  ? !!listing && 'Listing Price :'
+                  : !!price && 'Last Sale'
+                : !!rarity && 'Rarity :'}
             </MiniNftCardDetailLabel>
             <MiniNftCardDetailValue
               variant="small"
@@ -234,14 +241,14 @@ const MiniNftCard = forwardRef(
             </MiniNftCardDetailValue>
             <MiniNftCardDetailLabel variant="xSmall">
               {type === 'default'
-                ? 'To :'
+                ? !!to && 'To :'
                 : type === 'collection'
-                ? 'Floor Price :'
+                ? !!floorPrice && 'Floor Price :'
                 : type === 'recommend'
                 ? appraisal
-                  ? 'Last Sale :'
+                  ? !!price && 'Last Sale :'
                   : null
-                : 'Last Sale :'}
+                : !!price && 'Last Sale :'}
             </MiniNftCardDetailLabel>
             <MiniNftCardDetailValue
               variant="small"

@@ -130,6 +130,8 @@ export const MiniNftCardPrice = styled.span<MiniNftCardPriceProps>`
     error ? theme.miniNftCard.price.error : isRecommendListing ? 'white' : theme.miniNftCard.price.default};
   padding: ${({ theme }) =>
     `${theme.miniNftCard.price.paddingTop}px ${theme.miniNftCard.price.paddingLeft}px`};
+  display: flex;
+  align-items: center;
 
   &:hover {
     div {
