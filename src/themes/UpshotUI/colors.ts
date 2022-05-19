@@ -1,6 +1,6 @@
 const swatches = {
   blue: '#0091FF',
-  pink: '#EC5B94',
+  pink: '#D356B9',
   red: '#FF562B',
   orange: '#D87C22',
   yellow: '#FFC503',
