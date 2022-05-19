@@ -10,7 +10,7 @@ export const ModalWrapper = styled.div<ModalWrapperProps>`
   position: fixed;
   top: 50%;
   left: 50%;
-  max-height: 100%;
+  max-height: 100vh;
   overflow-y: auto;
   width: ${({ $fullWidth }) => ($fullWidth ? '100%' : 'auto')};
   transform: translate(-50%, -50%);
