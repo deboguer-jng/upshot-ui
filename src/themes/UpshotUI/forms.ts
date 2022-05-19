@@ -11,7 +11,7 @@ const forms = {
   radio,
   switch: switches,
   ...labels,
-  textarea
+  textarea,
 }
 
 export default forms

@@ -19,7 +19,7 @@ export const PanelBase = styled(Panel)`
 `
 
 export const SettingsMenu = styled(Flex)<SettingsMenuProps>`
-  flex-direction: column; 
+  flex-direction: column;
   background-color: ${({ theme }) => theme.colors['grey-900']};
   border-top-left-radius: ${({ theme, $radii }) => theme.radii[$radii]};
   border-bottom-left-radius: ${({ theme, $radii }) => theme.radii[$radii]};
@@ -27,7 +27,8 @@ export const SettingsMenu = styled(Flex)<SettingsMenuProps>`
 `
 
 export const MenuItem = styled(Text)<MenuItemProps>`
-  color: ${({active}) => active ? theme.colors.text : theme.colors['grey-400']};
+  color: ${({ active }) =>
+    active ? theme.colors.text : theme.colors['grey-400']};
   border-bottom: thin solid ${({ theme }) => theme.colors['grey-700']};
   padding: 20px;
   cursor: pointer;

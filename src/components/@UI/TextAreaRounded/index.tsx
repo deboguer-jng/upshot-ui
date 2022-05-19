@@ -8,11 +8,11 @@ export interface TextareaRoundedProps extends TextareaProps {
    */
   dark?: boolean
   /**
-   * show overlay text "optional" 
+   * show overlay text "optional"
    */
   optional?: boolean
   /**
-   * show overlay character count 
+   * show overlay character count
    */
   showCount?: boolean
 }
@@ -22,28 +22,40 @@ export interface TextareaRoundedProps extends TextareaProps {
  */
 export const TextareaRounded = forwardRef(
   (
-    { dark = false, rows = 3, maxLength = 100, optional = false, showCount = false, ...props }: TextareaRoundedProps,
+    {
+      dark = false,
+      rows = 3,
+      maxLength = 100,
+      optional = false,
+      showCount = false,
+      ...props
+    }: TextareaRoundedProps,
     ref: React.ForwardedRef<HTMLTextAreaElement>
   ) => {
     const variant = `forms.textarea.rounded${dark ? 'Dark' : ''}`
-    const [curLength, setCurLength] = useState(0);
+    const [curLength, setCurLength] = useState(0)
     const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-      setCurLength(e.currentTarget.value.length);
+      setCurLength(e.currentTarget.value.length)
     }
 
     return (
       <TextareaContainer {...{ variant }} sx={props.sx}>
-        <WrappedTextarea 
-          {...{ variant, ref, ...props }} 
+        <WrappedTextarea
+          {...{ variant, ref, ...props }}
           rows={rows}
           maxLength={maxLength}
           onChange={onChange}
         />
         {(optional || showCount) && (
-        <TextareaOverlay>
-          {optional && (<Text>Optional</Text>)}
-          {showCount && (<Text>{curLength}/{maxLength}</Text>)}
-        </TextareaOverlay>)}
+          <TextareaOverlay>
+            {optional && <Text>Optional</Text>}
+            {showCount && (
+              <Text>
+                {curLength}/{maxLength}
+              </Text>
+            )}
+          </TextareaOverlay>
+        )}
       </TextareaContainer>
     )
   }

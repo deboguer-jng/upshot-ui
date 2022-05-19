@@ -379,7 +379,7 @@ const Navbar = forwardRef(
             >
               View Profile
             </Link>
-            
+
             <Link
               component={linkComponent}
               href={`/analytics/settings`}
