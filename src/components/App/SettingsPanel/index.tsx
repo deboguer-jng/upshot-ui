@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement, useState } from 'react'
+import React, { forwardRef, ReactElement, useEffect, useLayoutEffect, useState } from 'react'
 import { useTheme } from '@emotion/react'
 import { PanelProps } from '../../@UI/Panel'
 import { PanelBase, MenuItem, SettingsMenu, SettingsContainer } from './Styled'
@@ -25,11 +25,16 @@ export const SettingsPanel = forwardRef(
   ) => {
     const isMobile = useBreakpointIndex() <= 1
     const theme = useTheme()
-    const [activeItem, setActiveItem] = useState(children[0].props.label)
+    const [activeItem, setActiveItem] = useState(null)
 
     const onBackClick = () => {
       setActiveItem(null)
     }
+
+    // set initial activeItem state if not mobile
+    useEffect(() => {
+      if(!isMobile && !activeItem) setActiveItem(children[0].props.label)
+    }, [isMobile])
 
     return (
       <PanelBase {...{ ref, ...props }}>
