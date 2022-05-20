@@ -7,6 +7,7 @@ export { default as Accordion } from './components/@UI/Accordion'
 export { default as Avatar } from './components/@UI/Avatar'
 export { default as AvatarInitials } from './components/@UI/AvatarInitials'
 export { default as AppraisalsCopy } from './components/@UI/AppraisalsCopy'
+export { default as Backdrop } from './components/@UI/Backdrop'
 export { default as Breadcrumb } from './components/@UI/Breadcrumb'
 export { default as Button } from './components/@UI/Button'
 export { default as ButtonDropdown } from './components/@UI/ButtonDropdown'
@@ -121,4 +122,4 @@ export { formatNumber, parseUint256 } from './utils/number'
  */
 export { NUMBER_PREFIX } from './utils/number'
 
-export { ChartDataItem } from './components/@UI/ScatterChart/components/populatedScatterChart';
+export { ChartDataItem } from './components/@UI/ScatterChart/components/populatedScatterChart'
