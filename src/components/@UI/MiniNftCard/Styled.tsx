@@ -3,6 +3,7 @@ import { Text, Link } from 'theme-ui'
 
 interface MiniNftCardPriceProps {
   error?: boolean
+  isRecommendListing?: boolean
 }
 
 interface MiniNftCardNameProps {
@@ -10,7 +11,7 @@ interface MiniNftCardNameProps {
 }
 
 interface MiniNftCardMainContentWrapperProps {
-  type: 'default' | 'search' | 'collection'
+  type: 'default' | 'search' | 'collection' | 'recommend'
 }
 
 interface AddressCircleProps {
@@ -125,10 +126,12 @@ export const MiniNftCardPrice = styled.span<MiniNftCardPriceProps>`
   border-radius: ${({ theme }) => theme.miniNftCard.borderRadius}px;
   background-color: ${({ theme }) => theme.colors.black};
   font-size: ${({ theme }) => theme.miniNftCard.price.fontSize}px;
-  color: ${({ theme, error }) =>
-    error ? theme.miniNftCard.price.error : theme.miniNftCard.price.default};
+  color: ${({ theme, error, isRecommendListing }) =>
+    error ? theme.miniNftCard.price.error : isRecommendListing ? 'white' : theme.miniNftCard.price.default};
   padding: ${({ theme }) =>
     `${theme.miniNftCard.price.paddingTop}px ${theme.miniNftCard.price.paddingLeft}px`};
+  display: flex;
+  align-items: center;
 
   &:hover {
     div {
