@@ -9,6 +9,7 @@ export const TextareaContainer = styled(Flex)`
 export const WrappedTextarea = styled(Textarea)`
   width: 100% !important;
   resize: none;
+  overflow: hidden;
   &:focus::placeholder {
     color: transparent;
   }
