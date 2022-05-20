@@ -149,12 +149,16 @@ const MiniNftCard = forwardRef(
                       type === 'recommend' && !appraisal && !!listing
                     }
                   >
-                    {(type === 'recommend' && appraisal) ? 
+                    {type === 'recommend' && appraisal ? (
                       <>
-                        <Text sx={{marginRight: 1, fontWeight: 'bold'}}>{appraisal}</Text>
+                        <Text sx={{ marginRight: 1, fontWeight: 'bold' }}>
+                          {appraisal}
+                        </Text>
                         <Icon size={16} icon="upshot" />
                       </>
-                     : listing}
+                    ) : (
+                      listing
+                    )}
                     {!!tooltip && (
                       <PriceTooltip>
                         <Text
@@ -254,9 +258,13 @@ const MiniNftCard = forwardRef(
                 ? !!floorPrice && 'Floor Price :'
                 : type === 'recommend'
                 ? appraisal
-                  ? !!price && 'Last Sale :'
+                  ? !!price && 'Last Sold :'
                   : null
-                : !!price && 'Last Sale :'}
+                : priceType === 'appraisal'
+                ? 'Appraisal :'
+                : priceType === 'listed'
+                ? 'Listed :'
+                : !!price && 'Last Sold :'}
             </MiniNftCardDetailLabel>
             <MiniNftCardDetailValue
               variant="small"
@@ -286,27 +294,29 @@ const MiniNftCard = forwardRef(
                 price
               )}
             </MiniNftCardDetailValue>
-            <MiniNftCardDetailValue>
-              {error ? (
-                <Text variant="small" color="grey-600">
-                  View Collection
-                </Text>
-              ) : (
-                <Link
-                  color="primary"
-                  target={type === 'recommend' && '_blank'}
-                  onClick={(e) => e.stopPropagation()}
-                  href={link}
-                  component={linkComponent}
-                >
-                  <Text variant="small">
-                    {type === 'recommend'
-                      ? 'Buy on Opensea'
-                      : 'View Collection'}
+            {!!link && (
+              <MiniNftCardDetailValue>
+                {error ? (
+                  <Text variant="small" color="grey-600">
+                    View Collection
                   </Text>
-                </Link>
-              )}
-            </MiniNftCardDetailValue>
+                ) : (
+                  <Link
+                    color="primary"
+                    target={type === 'recommend' && '_blank'}
+                    onClick={(e) => e.stopPropagation()}
+                    href={link}
+                    component={linkComponent}
+                  >
+                    <Text variant="small">
+                      {type === 'recommend'
+                        ? 'Buy on Opensea'
+                        : 'View Collection'}
+                    </Text>
+                  </Link>
+                )}
+              </MiniNftCardDetailValue>
+            )}
           </MiniNftCardDetailsBoard>
         )}
       </MiniNftCardWrapper>
