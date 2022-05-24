@@ -15,6 +15,7 @@ export const TabButton = styled.button<TabButtonParams>`
   background: transparent;
   padding: 5px 10px;
   border: none;
+  cursor: pointer;
   border-bottom: ${({ active }) => active && `1px solid white`};
   color: ${({ active, theme }) =>
     active ? 'white' : theme.colors['grey-500']};
@@ -34,6 +35,7 @@ export const FollowButton = styled.button`
   border-radius: 15px;
   border: 1px solid white;
   margin-right: 1rem;
+  cursor: pointer;
   transition: ${({ theme }) => theme.transitions.default};
 
   &:hover {
