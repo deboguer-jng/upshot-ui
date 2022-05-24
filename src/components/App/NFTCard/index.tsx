@@ -120,13 +120,13 @@ const NFTCard = forwardRef(
         {listAppraisalPercentage && (
             <DealBadge $percentDifference={listAppraisalPercentage}>
                 <Text
-                    variant="small"
+                    variant="xSmall"
                     color="white"
                     sx={{
                         textOverflow: 'ellipsis',
                         overflow: 'hidden',
                         fontWeight: 'bold',
-                        letterSpacing: '.06rem',
+                        letterSpacing: '.05rem',
                     }}
                     >
                     {Math.abs(listAppraisalPercentage).toFixed(2)}% {title}

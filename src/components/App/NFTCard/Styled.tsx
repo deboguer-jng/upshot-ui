@@ -76,7 +76,7 @@ export const DealBadge = styled(Panel)<NFTDealBadgeProps>`
     padding: 2px 5px;
     position: absolute;
     top: 7px;
-    right: 10px;
+    right: 7px;
     max-width: 80%;
     z-index: 2;
     line-height: 13px;
