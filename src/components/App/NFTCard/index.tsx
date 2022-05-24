@@ -4,7 +4,6 @@ import {
   NFTCardBase,
   NFTCardImage,
   NFTCardDetails,
-  NFTCardWrapper,
   StyledLink,
   DealBadge,
 } from './Styled'

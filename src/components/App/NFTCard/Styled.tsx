@@ -36,17 +36,11 @@ export const NFTCardBase = styled(Flex)<NFTCardProps>`
   }
 `
 
-export const NFTCardWrapper = styled(Box)`
-  position: absolute;
-  inset: 0px;
-  place-items: center;
-`
-
 export const NFTCardImage = styled(Image)<NFTCardImageProps>`
-width: 100%;
-image-rendering: ${({ $isPixelated }) => ($isPixelated ? 'pixelated' : '')};
-pointer-events: none;
-border-radius: ${({ theme }) => `${theme.radii.sm} ${theme.radii.sm} 0 0`};
+  width: 100%;
+  image-rendering: ${({ $isPixelated }) => ($isPixelated ? 'pixelated' : '')};
+  pointer-events: none;
+  border-radius: ${({ theme }) => `${theme.radii.sm} ${theme.radii.sm} 0 0`};
 `
 
 export const NFTCardDetails = styled(Flex)`
