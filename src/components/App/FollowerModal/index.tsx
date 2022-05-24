@@ -69,6 +69,9 @@ const FollowerModal = forwardRef(
                     <Text sx={{ flexGrow: 1 }} color="white">
                       {item.address}
                     </Text>
+                    <FollowButton onClick={() => onFollow(index)}>
+                      + Follow
+                    </FollowButton>
                   </Flex>
                 ))}
               </>
