@@ -65,6 +65,7 @@ export { default as Investors } from './components/App/Investors'
 export { default as LandingPanel } from './components/App/LandingPanels'
 export { default as Navbar } from './components/App/Navbar'
 export { default as BuyNowPanel } from './components/App/BuyNowPanel'
+export { default as NFTCard } from './components/App/NFTCard'
 
 /**
  * Components: Layout
