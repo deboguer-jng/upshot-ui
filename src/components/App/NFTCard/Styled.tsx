@@ -33,10 +33,6 @@ export const NFTCardBase = styled(Flex)<NFTCardProps>`
 
   &:hover {
     box-shadow: ${({ theme, $hoverUnderglow }) => theme.shadow.underglow($hoverUnderglow)};
-
-    & > div:first-of-type {
-      box-shadow: ${({ theme }) => theme.shadow.default};
-    }
   }
 `
 
