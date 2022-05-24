@@ -175,6 +175,7 @@ const NFTCard = forwardRef(
                     sx={{
                         textOverflow: 'ellipsis',
                         overflow: 'hidden',
+                        whiteSpace: 'nowrap',
                     }}
                     >
                     {collection}
@@ -189,6 +190,8 @@ const NFTCard = forwardRef(
                     variant="large"
                     color="grey-300"
                     sx={{
+                    fontSize: 2,
+                    lineHeight: '1.2rem',
                     textOverflow: 'ellipsis',
                     overflow: 'hidden',
                     display: '-webkit-box',
@@ -233,7 +236,7 @@ const NFTCard = forwardRef(
                 {formatNumber(listPriceEth, { fromWei: true, decimals: 2 })}
               </Label>
               {appraisalPriceETH != null && (
-                <Text color="primary" variant="small" sx={{ fontWeight: 'bold' }}>
+                <Text color="primary" variant="small" sx={{ fontWeight: 'bold', textAlign: 'right' }}>
                   Appraisal: {'Ξ' + formatNumber(appraisalPriceETH, { fromWei: true, decimals: 2 })}
                 </Text>
               )}
