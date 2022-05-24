@@ -9,6 +9,7 @@ import {
   ModalContent,
   TabButton,
 } from './Styled'
+import Link from '../../@UI/Link'
 
 export interface FollowerModalProps {
   following: any[]
@@ -66,9 +67,11 @@ const FollowerModal = forwardRef(
                     py={3}
                   >
                     <FollowAvatar src={item.img} />
-                    <Text sx={{ flexGrow: 1 }} color="white">
-                      {item.address}
-                    </Text>
+                    <Link sx={{ flexGrow: 1 }} href={`/user/${item.address}`}>
+                      <Text color="white">
+                        {item.address}
+                      </Text>
+                    </Link>
                     <FollowButton onClick={() => onFollow(index)}>
                       + Follow
                     </FollowButton>
@@ -84,9 +87,11 @@ const FollowerModal = forwardRef(
                     py={3}
                   >
                     <FollowAvatar src={item.img} />
-                    <Text sx={{ flexGrow: 1 }} color="white">
-                      {item.address}
-                    </Text>
+                    <Link sx={{ flexGrow: 1 }} href={`/user/${item.address}`}>
+                      <Text color="white">
+                        {item.address}
+                      </Text>
+                    </Link>
                     <FollowButton onClick={() => onFollow(index)}>
                       + Follow
                     </FollowButton>
