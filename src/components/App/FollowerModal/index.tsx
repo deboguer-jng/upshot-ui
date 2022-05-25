@@ -17,6 +17,7 @@ export interface FollowerModalProps {
   userAddress: string
   onFollow: (id: number) => void
   onClose: () => void
+  component?: React.FunctionComponent<any>
 }
 
 const FollowerModal = forwardRef(
@@ -27,6 +28,7 @@ const FollowerModal = forwardRef(
       userAddress,
       onFollow,
       onClose,
+      component,
       ...props
     }: FollowerModalProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -67,7 +69,7 @@ const FollowerModal = forwardRef(
                     py={3}
                   >
                     <FollowAvatar src={item.img} />
-                    <Link sx={{ flexGrow: 1 }} href={`/user/${item.address}`}>
+                    <Link sx={{ flexGrow: 1 }} href={`/user/${item.address}`} component={component}>
                       <Text color="white">
                         {item.address}
                       </Text>
@@ -87,7 +89,7 @@ const FollowerModal = forwardRef(
                     py={3}
                   >
                     <FollowAvatar src={item.img} />
-                    <Link sx={{ flexGrow: 1 }} href={`/user/${item.address}`}>
+                    <Link sx={{ flexGrow: 1 }} href={`/user/${item.address}`} component={component}>
                       <Text color="white">
                         {item.address}
                       </Text>
