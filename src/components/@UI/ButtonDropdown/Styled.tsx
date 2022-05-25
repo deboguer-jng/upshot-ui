@@ -86,14 +86,9 @@ export const DropdownMenu = styled.div`
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 16px;
-<<<<<<< HEAD
-  border-radius: ${({ theme }) => theme.accordion.header.borderRadius}px;
-  height: 237px;
-=======
   border-radius: 30px;
   height: fit-content;
   max-height: 316px;
->>>>>>> main
   width: 300px;
   top: 0;
   left: 0;
