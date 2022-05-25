@@ -66,3 +66,12 @@ MultiDisabled.args = {
   isMulti: true,
   name: 'test4',
 }
+
+
+export const LongName = Template.bind({})
+LongName.args = {
+  options: ['option1', 'option2', 'option3', 'option4', 'option5', 'option6', 'option7', 'option8'],
+  value: 'Floor Change (1W): low to high',
+  label: 'Sort by',
+  hideRadio: true,
+}

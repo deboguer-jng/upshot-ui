@@ -35,7 +35,8 @@ export const Dropdown = styled.div<DropdownProps>`
   border-radius: ${({ theme }) => theme.accordion.header.borderRadius}px;
   min-height: 54px;
   background: black;
-  width: 300px;
+  min-width: 300px;
+  width: fit-content;
   padding: 6px 12px;
   display: flex;
   align-items: center;
@@ -85,8 +86,14 @@ export const DropdownMenu = styled.div`
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 16px;
+<<<<<<< HEAD
   border-radius: ${({ theme }) => theme.accordion.header.borderRadius}px;
   height: 237px;
+=======
+  border-radius: 30px;
+  height: fit-content;
+  max-height: 316px;
+>>>>>>> main
   width: 300px;
   top: 0;
   left: 0;
@@ -96,6 +103,7 @@ export const DropdownMenu = styled.div`
 export const DropdownSelected = styled.div<DropdownSelectedProps>`
   flex-grow: 1;
   margin-left: 6px;
+  margin-right: 6px;
   font-family: ${({ theme }) => theme.fonts.body};
   color: ${({ theme, isSelected, disabled }) =>
     disabled
