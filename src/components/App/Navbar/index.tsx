@@ -55,6 +55,7 @@ export interface NavbarInterface extends BoxProps {
   searchSuggestions?: InputSuggestion[]
   searchValue?: string
   searchDefaultValue?: string
+  onSettings?: VoidFunction
   onSearchValueChange?: ReactEventHandler<HTMLInputElement>
   onSearchSuggestionChange?: (item: InputSuggestion) => void
   onSearchKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void // @todo Refactor all these props and use rfs
@@ -75,6 +76,7 @@ const Navbar = forwardRef(
       searchValue,
       searchSuggestions = [],
       searchDefaultValue,
+      onSettings,
       onSearchKeyUp,
       onSearchValueChange,
       onSearchSuggestionChange,
@@ -380,9 +382,8 @@ const Navbar = forwardRef(
               View Profile
             </Link>
 
-            <Link
-              component={linkComponent}
-              href={`/analytics/settings`}
+            {/* <Link
+              onClick={onSettings}
               color="grey-600"
               sx={{
                 cursor: 'pointer',
@@ -393,7 +394,7 @@ const Navbar = forwardRef(
               }}
             >
               Settings
-            </Link>
+            </Link> */}
 
             <Text
               as="a"

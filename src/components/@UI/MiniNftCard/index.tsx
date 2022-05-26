@@ -6,6 +6,7 @@ import ErrorSvg from '../../../assets/svg/icons/Error.svg'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import theme from '../../../themes/UpshotUI'
+import Icon from '../Icon'
 import {
   MiniNftCardWrapper,
   MiniNftCardMainBoard,
@@ -32,6 +33,10 @@ export interface MiniNftCardInterface {
   rarity?: string
 
   sales?: string
+
+  appraisal?: string
+
+  listing?: string
 
   floorPrice?: string
   /**
@@ -69,7 +74,7 @@ export interface MiniNftCardInterface {
   /**
    * Variant type
    */
-  type?: 'default' | 'search' | 'collection'
+  type?: 'default' | 'search' | 'collection' | 'recommend'
   /**
    * Pricing type
    */
@@ -109,6 +114,8 @@ const MiniNftCard = forwardRef(
       pixelated = false,
       linkComponent,
       tooltip,
+      appraisal,
+      listing,
       ...props
     }: MiniNftCardInterface & HTMLAttributes<HTMLDivElement>,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -130,13 +137,28 @@ const MiniNftCard = forwardRef(
             pixelated={pixelated}
           />
           <MiniNftCardMainContentWrapper type={type}>
-            {type === 'default' || type === 'collection' ? (
+            {type === 'default' ||
+            type === 'collection' ||
+            type === 'recommend' ? (
               <>
                 {error ? (
                   <MiniNftCardPrice error={error}>Error</MiniNftCardPrice>
-                ) : price?.length ? (
-                  <MiniNftCardPrice>
-                    {price}
+                ) : appraisal?.length || listing?.length ? (
+                  <MiniNftCardPrice
+                    isRecommendListing={
+                      type === 'recommend' && !appraisal && !!listing
+                    }
+                  >
+                    {type === 'recommend' && appraisal ? (
+                      <>
+                        <Text sx={{ marginRight: 1, fontWeight: 'bold' }}>
+                          {appraisal}
+                        </Text>
+                        <Icon size={16} icon="upshot" />
+                      </>
+                    ) : (
+                      listing
+                    )}
                     {!!tooltip && (
                       <PriceTooltip>
                         <Text
@@ -175,7 +197,9 @@ const MiniNftCard = forwardRef(
             >
               {error
                 ? 'Error'
-                : type === 'default' || type === 'collection'
+                : type === 'default' ||
+                  type === 'collection' ||
+                  type === 'recommend'
                 ? name
                 : creator}
             </MiniNftCardDetailsName>
@@ -186,12 +210,22 @@ const MiniNftCard = forwardRef(
             ) : null}
             <MiniNftCardDetailLabel variant="xSmall">
               {type === 'default'
-                ? 'From :'
+                ? !!from && 'From :'
                 : type === 'collection'
-                ? '# of sales :'
-                : 'Rarity :'}
+                ? !!sales && '# of sales :'
+                : type === 'recommend'
+                ? appraisal
+                  ? !!listing && 'Listing Price :'
+                  : !!price && 'Last Sale'
+                : !!rarity && 'Rarity :'}
             </MiniNftCardDetailLabel>
-            <MiniNftCardDetailValue variant="small" error={error}>
+            <MiniNftCardDetailValue
+              variant="small"
+              error={error}
+              color={
+                type === 'recommend' ? theme.colors.primary : theme.colors.white
+              }
+            >
               {error ? (
                 type === 'default' ? (
                   'Error'
@@ -207,22 +241,36 @@ const MiniNftCard = forwardRef(
                 </Flex>
               ) : type === 'collection' ? (
                 sales
+              ) : type === 'recommend' ? (
+                appraisal ? (
+                  listing
+                ) : (
+                  price
+                )
               ) : (
                 rarity
               )}
             </MiniNftCardDetailValue>
             <MiniNftCardDetailLabel variant="xSmall">
               {type === 'default'
-                ? 'To :'
+                ? !!to && 'To :'
                 : type === 'collection'
-                ? 'Floor Price :'
+                ? !!floorPrice && 'Floor Price :'
+                : type === 'recommend'
+                ? appraisal
+                  ? !!price && 'Last Sold :'
+                  : null
                 : priceType === 'appraisal'
                 ? 'Appraisal :'
                 : priceType === 'listed'
                 ? 'Listed :'
-                : 'Last Sold:'}
+                : !!price && 'Last Sold :'}
             </MiniNftCardDetailLabel>
-            <MiniNftCardDetailValue variant="small" error={error}>
+            <MiniNftCardDetailValue
+              variant="small"
+              error={error}
+              sx={{ flexGrow: 1 }}
+            >
               {error ? (
                 type === 'default' ? (
                   'Error'
@@ -238,6 +286,10 @@ const MiniNftCard = forwardRef(
                 </Flex>
               ) : type === 'collection' ? (
                 floorPrice
+              ) : type === 'recommend' ? (
+                appraisal ? (
+                  price
+                ) : null
               ) : (
                 price
               )}
@@ -249,8 +301,18 @@ const MiniNftCard = forwardRef(
                     View Collection
                   </Text>
                 ) : (
-                  <Link color="primary" href={link} component={linkComponent}>
-                    <Text variant="small">View Collection</Text>
+                  <Link
+                    color="primary"
+                    target={type === 'recommend' && '_blank'}
+                    onClick={(e) => e.stopPropagation()}
+                    href={link}
+                    component={linkComponent}
+                  >
+                    <Text variant="small">
+                      {type === 'recommend'
+                        ? 'Buy on Opensea'
+                        : 'View Collection'}
+                    </Text>
                   </Link>
                 )}
               </MiniNftCardDetailValue>

@@ -51,6 +51,34 @@ Default.args = {
   link: 'https://google.com',
 }
 
+export const DefaultRecommends = Template1.bind({})
+DefaultRecommends.args = {
+  image: 'http://res.cloudinary.com/upshot-inc/image/upload/v1631374250/ycyzvzym0fagfd8z3b9l.png',
+  name: 'nft name',
+  price: '$69',
+  type: 'recommend',
+  appraisal: '$334',
+  date: '08/25/2021',
+  from: '0xce..ea4',
+  to: '0xdf...4a1',
+  link: 'https://google.com',
+}
+
+export const DefaultRecommendListing = Template1.bind({})
+DefaultRecommendListing.args = {
+  image:
+    'https://res.cloudinary.com/upshot-inc/image/upload/v1628115613/wmhbovutsfzp0wppi7qh.png',
+  name: 'nft name',
+  price: '$69',
+  type: 'recommend',
+  listing: '$333',
+  date: '08/25/2021',
+  from: '0xce..ea4',
+  to: '0xdf...4a1',
+  pixelated: true,
+  link: 'https://google.com',
+}
+
 export const DefaultPixelated = Template1.bind({})
 DefaultPixelated.args = {
   image:
