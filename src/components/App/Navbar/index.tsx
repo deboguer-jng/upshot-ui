@@ -159,7 +159,7 @@ const Navbar = forwardRef(
                   <form onSubmit={onSearch}>
                     <InputRoundedSearch
                       fullWidth
-                      hasButton
+                      hasSearchButton
                       variant="nav"
                       suggestions={searchSuggestions}
                       onSuggestionSelect={onSearchSuggestionChange}
@@ -303,7 +303,7 @@ const Navbar = forwardRef(
               <form onSubmit={onSearch}>
                 <InputRoundedSearch
                   fullWidth
-                  hasButton
+                  hasSearchButton
                   variant="nav"
                   suggestions={searchSuggestions}
                   onSuggestionSelect={onSearchSuggestionChange}
