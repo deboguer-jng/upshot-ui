@@ -146,9 +146,7 @@ const NFTCard = forwardRef(
           $isPixelated={isPixelated}
           src={finalImage}
           alt={`Featured image`}
-          onLoad={() =>
-            setTimeout(() => setImgLoaded(true), Math.random() * 2000 + 1000)
-          }
+          onLoad={() => setImgLoaded(true)}
           height={300}
           sx={{ display: imgLoaded ? 'block' : 'none' }}
         />
