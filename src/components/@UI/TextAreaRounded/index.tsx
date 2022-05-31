@@ -36,6 +36,7 @@ export const TextareaRounded = forwardRef(
     const [curLength, setCurLength] = useState(0)
     const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
       setCurLength(e.currentTarget.value.length)
+      props.onChange?.(e)
     }
 
     return (

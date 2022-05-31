@@ -37,4 +37,5 @@ export const MenuItem = styled(Text)<MenuItemProps>`
 
 export const SettingsContainer = styled(Flex)`
   flex-direction: column;
+  width: 100%;
 `
