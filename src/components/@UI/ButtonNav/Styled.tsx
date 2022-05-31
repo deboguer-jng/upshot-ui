@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import { darken } from 'polished'
 import { Flex } from '../../..'
 
 interface ButtonNavProps {
@@ -7,7 +6,7 @@ interface ButtonNavProps {
   capitalize?: boolean
 }
 
-export const StyledButtonNav = styled(Flex)<ButtonNavProps>`    
+export const StyledButtonNav = styled.div<ButtonNavProps>`    
   cursor: pointer;
   display: flex;
   align-items: center;
