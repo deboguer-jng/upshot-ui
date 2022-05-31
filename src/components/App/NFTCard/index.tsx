@@ -147,7 +147,6 @@ const NFTCard = forwardRef(
           src={finalImage}
           alt={`Featured image`}
           onLoad={() => setImgLoaded(true)}
-          height={300}
           sx={{ display: imgLoaded ? 'block' : 'none' }}
         />
         <NFTCardDetails
