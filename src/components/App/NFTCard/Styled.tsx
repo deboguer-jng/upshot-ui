@@ -23,6 +23,7 @@ export const NFTCardBase = styled(Flex)<NFTCardProps>`
   position: static;
   height: min-content;
   top: 160px;
+  width: 100%;
   padding: 0;
   cursor: pointer;
   overflow: hidden;
@@ -30,9 +31,9 @@ export const NFTCardBase = styled(Flex)<NFTCardProps>`
   background-color: ${({ theme }) => theme.colors['grey-800']};
   -webkit-transform: translateZ(0); /* Trim overflow with translated layer. */
 
-
   &:hover {
-    box-shadow: ${({ theme, $hoverUnderglow }) => theme.shadow.underglow($hoverUnderglow)};
+    box-shadow: ${({ theme, $hoverUnderglow }) =>
+      theme.shadow.underglow($hoverUnderglow)};
   }
 `
 
@@ -53,24 +54,25 @@ export const StyledLink = styled.a`
   text-decoration: none;
 
   &:hover {
-      text-decoration: underline;
+    text-decoration: underline;
   }
 `
 
 export const DealBadge = styled(Panel)<NFTDealBadgeProps>`
-    border-radius: ${({ theme }) => theme.radii.xs};
-    background-color: ${({ theme, $percentDifference }) => ($percentDifference > 0 ? theme.colors['green'] : theme.colors['red'])};
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2px 5px;
-    position: absolute;
-    top: 7px;
-    right: 7px;
-    max-width: 80%;
-    z-index: 2;
-    line-height: 13px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+  border-radius: ${({ theme }) => theme.radii.xs};
+  background-color: ${({ theme, $percentDifference }) =>
+    $percentDifference > 0 ? theme.colors['green'] : theme.colors['red']};
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 5px;
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  max-width: 80%;
+  z-index: 2;
+  line-height: 13px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `

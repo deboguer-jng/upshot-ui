@@ -136,6 +136,7 @@ const NFTCard = forwardRef(
             display: imgLoaded ? 'none' : 'grid',
             width: '100%',
             minHeight: 300,
+            height: 300,
             placeContent: 'center',
           }}
         >
@@ -145,7 +146,10 @@ const NFTCard = forwardRef(
           $isPixelated={isPixelated}
           src={finalImage}
           alt={`Featured image`}
-          onLoad={() => setImgLoaded(true)}
+          onLoad={() =>
+            setTimeout(() => setImgLoaded(true), Math.random() * 2000 + 1000)
+          }
+          height={300}
           sx={{ display: imgLoaded ? 'block' : 'none' }}
         />
         <NFTCardDetails
@@ -160,6 +164,7 @@ const NFTCard = forwardRef(
             sx={{
               flexDirection: 'column',
               maxWidth: '66%',
+              justifyContent: 'flex-end',
             }}
           >
             <Flex
@@ -227,6 +232,8 @@ const NFTCard = forwardRef(
               justifyContent: 'flex-end',
               alignItems: 'flex-end',
               width: '100%',
+              minHeight: 64,
+              height: 64,
             }}
           >
             {listPriceEth != null && (
