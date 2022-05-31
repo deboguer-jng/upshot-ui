@@ -15,6 +15,7 @@ import { imageOptimizer } from '../../../utils/imageOptimizer'
 import { useTheme } from '../../../themes/UpshotUI'
 import { PanelProps } from '../../@UI/Panel'
 import { formatNumber } from '../../../utils/number'
+import Spinner from '../../@UI/Spinner'
 
 export interface NFTCardProps extends PanelProps {
   /**
@@ -71,7 +72,7 @@ export interface NFTCardProps extends PanelProps {
    * NFT url
    */
   nftUrl?: string
-  }
+}
 
 /**
  * Renders an item inside a collection card container.
@@ -97,6 +98,7 @@ const NFTCard = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const [showPopup, setShowPopup] = useState(false)
+    const [imgLoaded, setImgLoaded] = useState(false)
     const { theme } = useTheme()
     const optimizedSrc = imageOptimizer(imageSrc, { width: 512 }) ?? imageSrc
     const finalImage = isPixelated ? imageSrc : optimizedSrc
@@ -112,27 +114,40 @@ const NFTCard = forwardRef(
     const title = isUnderPriced ? 'UNDERPRICED' : 'OVERPRICED'
 
     return (
-      <NFTCardBase
-        $hoverUnderglow={hoverUnderglow}
-        {...{ ref, ...props }}
-      >
+      <NFTCardBase $hoverUnderglow={hoverUnderglow} {...{ ref, ...props }}>
         {listAppraisalPercentage && (
-            <DealBadge $percentDifference={listAppraisalPercentage}>
-                <Text
-                    variant="xSmall"
-                    color="white"
-                    sx={{
-                        textOverflow: 'ellipsis',
-                        overflow: 'hidden',
-                        fontWeight: 'bold',
-                        letterSpacing: '.05rem',
-                    }}
-                    >
-                    {Math.abs(listAppraisalPercentage).toFixed(2)}% {title}
-                </Text>
-            </DealBadge>
+          <DealBadge $percentDifference={listAppraisalPercentage}>
+            <Text
+              variant="xSmall"
+              color="white"
+              sx={{
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                fontWeight: 'bold',
+                letterSpacing: '.05rem',
+              }}
+            >
+              {Math.abs(listAppraisalPercentage).toFixed(2)}% {title}
+            </Text>
+          </DealBadge>
         )}
-        <NFTCardImage $isPixelated={isPixelated} src={finalImage} alt={`Featured image`} />
+        <Box
+          sx={{
+            display: imgLoaded ? 'none' : 'grid',
+            width: '100%',
+            minHeight: 300,
+            placeContent: 'center',
+          }}
+        >
+          <Spinner size="lg" />
+        </Box>
+        <NFTCardImage
+          $isPixelated={isPixelated}
+          src={finalImage}
+          alt={`Featured image`}
+          onLoad={() => setImgLoaded(true)}
+          sx={{ display: imgLoaded ? 'block' : 'none' }}
+        />
         <NFTCardDetails
           sx={{
             padding: 3,
@@ -147,7 +162,9 @@ const NFTCard = forwardRef(
               maxWidth: '66%',
             }}
           >
-            <Flex sx={{ gap: 2, alignItems: 'center', justifyContent: 'center' }}>
+            <Flex
+              sx={{ gap: 2, alignItems: 'center', justifyContent: 'center' }}
+            >
               <Avatar
                 color="black"
                 src={
@@ -168,27 +185,27 @@ const NFTCard = forwardRef(
                 onMouseLeave={() => setShowPopup(false)}
               >
                 <StyledLink href={collectionUrl}>
-                    <Text
+                  <Text
                     variant="xSmall"
                     color="grey-500"
                     sx={{
-                        textOverflow: 'ellipsis',
-                        overflow: 'hidden',
-                        whiteSpace: 'nowrap',
+                      textOverflow: 'ellipsis',
+                      overflow: 'hidden',
+                      whiteSpace: 'nowrap',
                     }}
-                    >
+                  >
                     {collection}
-                    </Text>
+                  </Text>
                 </StyledLink>
               </Flex>
             </Flex>
 
             {name && (
-                <StyledLink href={nftUrl}>
+              <StyledLink href={nftUrl}>
                 <Text
-                    variant="large"
-                    color="grey-300"
-                    sx={{
+                  variant="large"
+                  color="grey-300"
+                  sx={{
                     fontSize: 2,
                     lineHeight: '1.2rem',
                     textOverflow: 'ellipsis',
@@ -197,11 +214,11 @@ const NFTCard = forwardRef(
                     marginTop: '2px',
                     WebkitBoxOrient: 'vertical',
                     WebkitLineClamp: 2,
-                    }}
-                    >
-                    {name}
+                  }}
+                >
+                  {name}
                 </Text>
-                </StyledLink>
+              </StyledLink>
             )}
           </Flex>
           <Flex
@@ -212,52 +229,74 @@ const NFTCard = forwardRef(
               width: '100%',
             }}
           >
-          {listPriceEth != null && (
-            <Flex
-              sx={{
-                flexDirection: 'column',
-                minWidth: 'fit-content',
-                alignItems: 'flex-end',
-                justifyContent: 'flex-end',
-              }}
-              onMouseOver={() => setShowPopup(true)}
-            >
-              <Text color="grey-500" variant="xSmall" sx={{ fontWeight: 'bold' }}>
-                Price
-              </Text>
-              <Label
-                color="white"
-                currencySymbol="Ξ"
-                size="sm"
-                variant="currency"
-                style={{ lineHeight: 1 }}
+            {listPriceEth != null && (
+              <Flex
+                sx={{
+                  flexDirection: 'column',
+                  minWidth: 'fit-content',
+                  alignItems: 'flex-end',
+                  justifyContent: 'flex-end',
+                }}
+                onMouseOver={() => setShowPopup(true)}
               >
-                {formatNumber(listPriceEth, { fromWei: true, decimals: 2 })}
-              </Label>
-              {appraisalPriceETH != null && (
-                <Text color="primary" variant="small" sx={{ fontWeight: 'bold', textAlign: 'right' }}>
-                  Appraisal: {'Ξ' + formatNumber(appraisalPriceETH, { fromWei: true, decimals: 2 })}
+                <Text
+                  color="grey-500"
+                  variant="xSmall"
+                  sx={{ fontWeight: 'bold' }}
+                >
+                  Price
                 </Text>
-              )}
-            </Flex>
-          )}
-        {listPriceEth == null && appraisalPriceETH != null && (
-            <Flex
-              sx={{
-                flexDirection: 'column',
-                minWidth: 'fit-content',
-                alignItems: 'flex-end',
-                justifyContent: 'flex-end',
-              }}
-              onMouseOver={() => setShowPopup(true)}
-            >
-              {appraisalPriceETH != null && (
-                <Text color="primary" variant="small" sx={{ fontWeight: 'bold' }}>
-                  Appraisal: {'Ξ' + formatNumber(appraisalPriceETH, { fromWei: true, decimals: 2 })}
-                </Text>
-              )}
-            </Flex>
-          )}
+                <Label
+                  color="white"
+                  currencySymbol="Ξ"
+                  size="sm"
+                  variant="currency"
+                  style={{ lineHeight: 1 }}
+                >
+                  {formatNumber(listPriceEth, { fromWei: true, decimals: 2 })}
+                </Label>
+                {appraisalPriceETH != null && (
+                  <Text
+                    color="primary"
+                    variant="small"
+                    sx={{ fontWeight: 'bold', textAlign: 'right' }}
+                  >
+                    Appraisal:{' '}
+                    {'Ξ' +
+                      formatNumber(appraisalPriceETH, {
+                        fromWei: true,
+                        decimals: 2,
+                      })}
+                  </Text>
+                )}
+              </Flex>
+            )}
+            {listPriceEth == null && appraisalPriceETH != null && (
+              <Flex
+                sx={{
+                  flexDirection: 'column',
+                  minWidth: 'fit-content',
+                  alignItems: 'flex-end',
+                  justifyContent: 'flex-end',
+                }}
+                onMouseOver={() => setShowPopup(true)}
+              >
+                {appraisalPriceETH != null && (
+                  <Text
+                    color="primary"
+                    variant="small"
+                    sx={{ fontWeight: 'bold' }}
+                  >
+                    Appraisal:{' '}
+                    {'Ξ' +
+                      formatNumber(appraisalPriceETH, {
+                        fromWei: true,
+                        decimals: 2,
+                      })}
+                  </Text>
+                )}
+              </Flex>
+            )}
           </Flex>
         </NFTCardDetails>
       </NFTCardBase>

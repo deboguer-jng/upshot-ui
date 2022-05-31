@@ -30,7 +30,11 @@ export interface InputRoundedSearchProps extends InputRoundedProps {
   /**
    * Show the search button
    */
-  hasButton?: boolean
+  hasSearchButton?: boolean
+  /**
+   * Show the clear button
+   */
+  hasClearButton?: boolean
   /**
    * Variant for the inner search button.
    */
@@ -56,7 +60,8 @@ const InputRoundedSearch = forwardRef(
   (
     {
       fullWidth = false,
-      hasButton = false,
+      hasSearchButton = false,
+      hasClearButton = false,
       variant = 'default',
       buttonProps: buttonPropsRaw,
       onSuggestionSelect,
@@ -71,6 +76,7 @@ const InputRoundedSearch = forwardRef(
     const suggestionsRef = useRef<HTMLDivElement>()
     const wrapperRef = useRef<HTMLDivElement>()
     const isMobile = useBreakpointIndex() <= 1
+    const hasButton = hasClearButton || hasSearchButton
 
     useEffect(() => {
       const handleClickOutside = (e: MouseEvent) => {
@@ -88,9 +94,6 @@ const InputRoundedSearch = forwardRef(
 
     /* Size the button equal to the height of the field. */
     const buttonSize = theme.forms.inputs.default.height
-
-    /* Padding used between button and container. */
-    const padding = theme.sizes[1] + 'px'
 
     /* Apply button style & properties. */
     const { sx: buttonSx, ...buttonProps } = buttonPropsRaw ?? {}
@@ -128,7 +131,7 @@ const InputRoundedSearch = forwardRef(
         $isFullWidth={fullWidth}
         onKeyDown={(e) => handleKeyDown(e as any)}
       >
-        <Flex sx={{ width: fullWidth ? '100%' : 'auto' }}>
+        <Flex sx={{ width: fullWidth ? '100%' : 'auto', alignItems: 'center' }}>
           <InputRoundedSearchBase
             placeholder="Search..."
             $hasButton={hasButton}
@@ -137,12 +140,12 @@ const InputRoundedSearch = forwardRef(
             {...{ ref, ...props }}
           />
           <IconButton
-            color="primary"
+            color={hasSearchButton ? 'primary' : 'grey-700'}
             sx={{
               marginLeft: '-' + buttonSize /* Position inside input field. */,
               height: buttonSize,
               width: buttonSize,
-              padding,
+              padding: theme.sizes[1] + 'px',
               /* Fade in / out. */
               pointerEvents: hasButton ? 'auto' : 'none',
               opacity: hasButton && variant !== 'nav' ? 'initial' : 0,
@@ -150,17 +153,22 @@ const InputRoundedSearch = forwardRef(
               transitionDuration: theme.durations.normal,
               zIndex: theme.zIndex.default + 2,
               '&:hover': {
+                color: hasSearchButton ? 'primary' : 'white',
                 opacity: hasButton && variant === 'nav' ? 1 : 'initial',
               },
               ...buttonSx,
             }}
             {...buttonProps}
           >
-            <Icon
-              icon={variant === 'nav' ? 'arrowStylizedRight' : 'searchCircle'}
-              size={variant === 'nav' ? 16 : '100%'}
-              aria-label="Search icon"
-            />
+            {hasSearchButton && (
+              <Icon
+                icon={variant === 'nav' ? 'arrowStylizedRight' : 'searchCircle'}
+                size={variant === 'nav' ? 16 : '100%'}
+                aria-label="Search icon"
+              />
+            )}
+
+            {hasClearButton && <Icon icon="x" size={12} aria-label="Clear" />}
           </IconButton>
         </Flex>
         {!!suggestions?.length && open && (
