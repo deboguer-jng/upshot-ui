@@ -1,4 +1,4 @@
-import React, { ChangeEvent, forwardRef, useState } from 'react'
+import React, { ChangeEvent, forwardRef, useState, useEffect } from 'react'
 import { Flex, Text, TextareaProps } from 'theme-ui'
 import { WrappedTextarea, TextareaOverlay, TextareaContainer } from './Styled'
 
@@ -34,6 +34,11 @@ export const TextareaRounded = forwardRef(
   ) => {
     const variant = `forms.textarea.rounded${dark ? 'Dark' : ''}`
     const [curLength, setCurLength] = useState(0)
+
+    useEffect(() => {
+      if(props.value) setCurLength(props.value.toString().length)
+    }, [props])
+
     const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
       setCurLength(e.currentTarget.value.length)
       props.onChange?.(e)
