@@ -21,25 +21,33 @@ const Template: ComponentStory<typeof DialogModal> = (args) => {
   )
 }
 
-export const Default = Template.bind({})
-Default.args = {
+export const Signin = Template.bind({})
+Signin.args = {
   header: 'Signing in',
-  body: 'sign the message with your wallet',
+  body: 'Please sign in with MetaMask.',
 }
 
 export const Success = Template.bind({})
 Success.args = {
   symbol: 'success',
-  header: 'Transaction complete!',
-  body: 'you successfully bought CryptoDickbutt #42069',
+  header: 'Transaction Complete!',
+  body: 'You successfully purchased CryptoDickbutt #42069 for Ξ3.14.',
   button: 'View on Profile',
   showButtonArrow: true,
+}
+
+export const Insufficient = Template.bind({})
+Insufficient.args = {
+  symbol: 'failure',
+  header: 'Insufficient Funds',
+  body: "You don't have enough funds to make this purchase.",
+  button: 'Close',
 }
 
 export const Failure = Template.bind({})
 Failure.args = {
   symbol: 'failure',
-  header: 'Insufficient funds',
-  body: 'you dont have enough funds to complete this transaction',
+  header: 'Transaction Failed',
+  body: 'Your transaction failed / An unknown error occurred.',
   button: 'Close',
 }
