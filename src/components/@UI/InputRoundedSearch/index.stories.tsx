@@ -19,7 +19,18 @@ export const Nav = Template.bind({})
 Nav.args = { sx: { width: 300 }, hasButton: true, variant: 'nav' }
 
 export const SearchButton = Template.bind({})
-SearchButton.args = { variant: 'search', hasButton: true, sx: { width: 300 } }
+SearchButton.args = {
+  variant: 'search',
+  hasSearchButton: true,
+  sx: { width: 300 },
+}
+
+export const ClearButton = Template.bind({})
+ClearButton.args = {
+  variant: 'search',
+  hasClearButton: true,
+  sx: { width: 300 },
+}
 
 export const SearchDropdown = Template.bind({})
 SearchDropdown.args = {

@@ -32,8 +32,8 @@ export const DropdownWrapper = styled.div`
 export const Dropdown = styled.div<DropdownProps>`
   position: relative;
   z-index: ${({ theme }) => theme.zIndex.dropdown + 1};
-  border-radius: 30px;
-  height: 35px;
+  border-radius: ${({ theme }) => theme.accordion.header.borderRadius}px;
+  min-height: 54px;
   background: black;
   min-width: 300px;
   width: fit-content;
@@ -41,6 +41,7 @@ export const Dropdown = styled.div<DropdownProps>`
   display: flex;
   align-items: center;
   cursor: pointer;
+  background-color: ${({ theme }) => theme.colors['grey-800']};
 
   span {
     font-family: ${({ theme }) => theme.fonts.body};
@@ -80,8 +81,8 @@ export const DropdownMenuItems = styled.div`
 export const DropdownMenu = styled.div`
   position: absolute;
   z-index: ${({ theme }) => theme.zIndex.dropdown};
-  background: #151515;
-  padding-top: 40px;
+  background-color: ${({ theme }) => theme.colors['grey-900']};
+  padding-top: 60px;
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 16px;
