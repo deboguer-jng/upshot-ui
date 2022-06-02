@@ -161,12 +161,17 @@ const NFTCard = forwardRef(
           <Flex
             sx={{
               flexDirection: 'column',
-              maxWidth: '66%',
+              flexGrow: 1,
               justifyContent: 'flex-end',
             }}
           >
             <Flex
-              sx={{ gap: 2, alignItems: 'center', justifyContent: 'center' }}
+              sx={{
+                gap: 2,
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '100%',
+              }}
             >
               <Avatar
                 color="black"
@@ -187,16 +192,18 @@ const NFTCard = forwardRef(
                 onMouseOver={() => setShowPopup(true)}
                 onMouseLeave={() => setShowPopup(false)}
               >
-                <Link href={collectionUrl} component={linkComponent}>
-                  <Text
-                    variant="xSmall"
-                    color="grey-500"
-                    sx={{
-                      textOverflow: 'ellipsis',
-                      overflow: 'hidden',
-                      whiteSpace: 'nowrap',
-                    }}
-                  >
+                <Link
+                  href={collectionUrl}
+                  component={linkComponent}
+                  sx={{
+                    display: 'inline-block',
+                    textOverflow: 'ellipsis',
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                    width: '100%',
+                  }}
+                >
+                  <Text variant="xSmall" color="grey-500">
                     {collection}
                   </Text>
                 </Link>
@@ -204,12 +211,12 @@ const NFTCard = forwardRef(
             </Flex>
 
             {name && (
-              <Link href={nftUrl} component={linkComponent}>
-                <Text
+              <Text color="grey-300" variant="large">
+                <Link
+                  component={linkComponent}
+                  href={nftUrl}
                   variant="large"
-                  color="grey-300"
                   sx={{
-                    fontSize: 2,
                     lineHeight: '1.2rem',
                     textOverflow: 'ellipsis',
                     overflow: 'hidden',
@@ -217,11 +224,15 @@ const NFTCard = forwardRef(
                     marginTop: '2px',
                     WebkitBoxOrient: 'vertical',
                     WebkitLineClamp: 2,
+                    maxWidth: '75%',
+                    width: '100%',
+                    //@ts-ignore
+                    whiteSpace: 'normal !important',
                   }}
                 >
                   {name}
-                </Text>
-              </Link>
+                </Link>
+              </Text>
             )}
           </Flex>
           <Flex
@@ -229,7 +240,6 @@ const NFTCard = forwardRef(
               flexDirection: 'column',
               justifyContent: 'flex-end',
               alignItems: 'flex-end',
-              width: '100%',
               minHeight: 64,
               height: 64,
             }}
@@ -241,38 +251,64 @@ const NFTCard = forwardRef(
                   minWidth: 'fit-content',
                   alignItems: 'flex-end',
                   justifyContent: 'flex-end',
+                  gap: 2,
                 }}
                 onMouseOver={() => setShowPopup(true)}
               >
-                <Text
-                  color="grey-500"
-                  variant="xSmall"
-                  sx={{ fontWeight: 'bold' }}
-                >
-                  Price
-                </Text>
-                <Label
-                  color="white"
-                  currencySymbol="Ξ"
-                  size="sm"
-                  variant="currency"
-                  style={{ lineHeight: 1 }}
-                >
-                  {formatNumber(listPriceEth, { fromWei: true, decimals: 2 })}
-                </Label>
-                {appraisalPriceETH != null && (
+                <Flex sx={{ flexDirection: 'column', alignItems: 'flex-end' }}>
                   <Text
-                    color="primary"
-                    variant="small"
-                    sx={{ fontWeight: 'bold', textAlign: 'right' }}
+                    color="grey-500"
+                    variant="xSmall"
+                    sx={{
+                      fontWeight: 'heading',
+                      textAlign: 'right',
+                    }}
                   >
-                    Appraisal:{' '}
-                    {'Ξ' +
-                      formatNumber(appraisalPriceETH, {
+                    Price
+                  </Text>
+                  <Text
+                    color="grey-500"
+                    variant="xSmall"
+                    sx={{
+                      fontWeight: 'bold',
+                      fontSize: 2,
+                      textAlign: 'right',
+                    }}
+                  >
+                    {formatNumber(listPriceEth, {
+                      fromWei: true,
+                      decimals: 2,
+                      prefix: 'ETHER',
+                    })}
+                  </Text>
+                </Flex>
+                {appraisalPriceETH != null && (
+                  <Flex
+                    sx={{ flexDirection: 'column', alignItems: 'flex-end' }}
+                  >
+                    <Text
+                      color="primary"
+                      variant="xSmall"
+                      sx={{ fontWeight: 'heading', textAlign: 'right' }}
+                    >
+                      Appraisal
+                    </Text>
+                    <Text
+                      color="primary"
+                      variant="xSmall"
+                      sx={{
+                        fontWeight: 'bold',
+                        fontSize: 2,
+                        textAlign: 'right',
+                      }}
+                    >
+                      {formatNumber(appraisalPriceETH, {
                         fromWei: true,
                         decimals: 2,
+                        prefix: 'ETHER',
                       })}
-                  </Text>
+                    </Text>
+                  </Flex>
                 )}
               </Flex>
             )}
