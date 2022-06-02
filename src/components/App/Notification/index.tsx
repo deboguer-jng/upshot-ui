@@ -9,13 +9,17 @@ import Box from '../../Layout/Box'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import colors from '../../../themes/UpshotUI/colors'
 import {
+  CenterFlex,
   Divider,
   StyledPanel,
+  StyledFlex,
+  RoundImage,
 } from './Styled'
 import { formatNumber } from '../../../utils/number'
 import Panel from '../../@UI/Panel'
+import Label from '../../@UI/Label'
 
-export interface BuyButtonProps extends ButtonProps {
+export interface NotifRowProps extends ButtonProps {
   /**
    * Button URL
    */
@@ -34,7 +38,7 @@ export interface BuyButtonProps extends ButtonProps {
   linkComponent?: React.FunctionComponent<any>
 }
 
-const BuyButton = forwardRef(
+export const NotifRow = forwardRef(
   (
     {
       url,
@@ -42,21 +46,41 @@ const BuyButton = forwardRef(
       marketplaceName,
       linkComponent,
       ...props
-    }: BuyButtonProps,
+    }: NotifRowProps,
     ref: React.ForwardedRef<HTMLAnchorElement>
   ) => (
-    <Link href={url} target="_blank" component={linkComponent} {...{ ref }}>
-      <StyledButton
-        variant="secondary"
-        size="md"
-        capitalize={true}
-        $width={width}
-      >
-        {marketplaceName === 'OpenSea' && (
-          <StyledIcon icon="openSeaBlock" color="white" size={16} />
-        )}
-        <StyledText color="white">Buy on {marketplaceName}</StyledText>
-      </StyledButton>
+    <Link href={url} noHover target="_blank" component={linkComponent} {...{ ref }}>
+      <StyledFlex>
+        <CenterFlex>
+          <RoundImage src={`/img/sample_nft_1.jpg`} />
+        </CenterFlex>
+
+        <CenterFlex sx={{ flexGrow: '1' }}>
+          <Text variant="xLarge">
+            Azuki
+          </Text>
+          <Text color="grey-500">
+            Collection appraisal has been updated
+          </Text>
+        </CenterFlex>
+        
+        <CenterFlex>
+          <Label
+            size="xs"
+            variant="currency"
+            sx={{ lineHeight: '1rem' }}
+          >
+            420.69
+          </Label>
+          <Text color="blue" sx={{ lineHeight: '1rem' }}>
+            +6.9%
+          </Text>
+          <Text color="grey-700" variant="small" sx={{ lineHeight: '1rem' }}>
+            69 min ago
+          </Text>
+        </CenterFlex>
+
+      </StyledFlex>
     </Link>
   )
 )
@@ -89,10 +113,7 @@ const NotifPopper = forwardRef(
       <StyledPanel>
         <Text
           color="white"
-          sx={{
-            fontSize: 4,
-            fontWeight: 'bold',
-          }}
+          variant="h3Primary"
         >
           Notifications
         </Text>
@@ -101,6 +122,7 @@ const NotifPopper = forwardRef(
           color="grey-600"
           sx={{
             fontWeight: 'bold',
+            marginTop: '10px',
           }}
         >
           Unread
@@ -108,15 +130,15 @@ const NotifPopper = forwardRef(
 
         <Divider />
 
-        <Text>Notification-1</Text>
-        <Text>Notification-2</Text>
-        <Text>Notification-3</Text>
-        <Text>Notification-4</Text>
+        <NotifRow />
+        <NotifRow />
+        <NotifRow />
 
         <Text
           color="grey-600"
           sx={{
             fontWeight: 'bold',
+            marginTop: '10px',
           }}
         >
           Read
@@ -124,9 +146,9 @@ const NotifPopper = forwardRef(
 
         <Divider />
 
-        <Text>Notification-5</Text>
-        <Text>Notification-6</Text>
-        <Text>Notification-7</Text>
+        <NotifRow />
+        <NotifRow />
+        <NotifRow />
       </StyledPanel>
     )
   }
