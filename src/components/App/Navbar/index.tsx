@@ -56,17 +56,14 @@ export interface NavbarInterface extends BoxProps {
   searchSuggestions?: InputSuggestion[]
   searchValue?: string
   searchDefaultValue?: string
-<<<<<<< .mine
   /**
    * Array of notification objects
    */
   notifications?: Array<object>
-=======
   onSettings?: VoidFunction
 
 
 
->>>>>>> .theirs
   onSearchValueChange?: ReactEventHandler<HTMLInputElement>
   onSearchSuggestionChange?: (item: InputSuggestion) => void
   onSearchKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void // @todo Refactor all these props and use rfs
@@ -87,11 +84,8 @@ const Navbar = forwardRef(
       searchValue,
       searchSuggestions = [],
       searchDefaultValue,
-<<<<<<< .mine
       notifications,
-=======
       onSettings,
->>>>>>> .theirs
       onSearchKeyUp,
       onSearchValueChange,
       onSearchSuggestionChange,
