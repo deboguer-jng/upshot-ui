@@ -1,21 +1,15 @@
 import { Flex, Box } from 'theme-ui'
 import React, { forwardRef, useState } from 'react'
-import {
-  NFTCardBase,
-  NFTCardImage,
-  NFTCardDetails,
-  StyledLink,
-  DealBadge,
-} from './Styled'
+import { NFTCardBase, NFTCardImage, NFTCardDetails, DealBadge } from './Styled'
 import Avatar from '../../@UI/Avatar'
 import Text from '../../@UI/Text'
-import BuyNowPanel from '../BuyNowPanel'
 import Label from '../../@UI/Label'
 import { imageOptimizer } from '../../../utils/imageOptimizer'
 import { useTheme } from '../../../themes/UpshotUI'
 import { PanelProps } from '../../@UI/Panel'
 import { formatNumber } from '../../../utils/number'
 import Spinner from '../../@UI/Spinner'
+import Link from '../../@UI/Link'
 
 export interface NFTCardProps extends PanelProps {
   /**
@@ -72,6 +66,10 @@ export interface NFTCardProps extends PanelProps {
    * NFT url
    */
   nftUrl?: string
+  /**
+   * Link component
+   */
+  linkComponent?: React.FunctionComponent<any>
 }
 
 /**
@@ -88,6 +86,7 @@ const NFTCard = forwardRef(
       collectionUrl,
       nftUrl,
       listAppraisalPercentage,
+      linkComponent,
       listPriceEth = null,
       listPriceUSD = null,
       appraisalPriceETH = null,
@@ -142,13 +141,15 @@ const NFTCard = forwardRef(
         >
           <Spinner size="lg" />
         </Box>
-        <NFTCardImage
-          $isPixelated={isPixelated}
-          src={finalImage}
-          alt={`Featured image`}
-          onLoad={() => setImgLoaded(true)}
-          sx={{ display: imgLoaded ? 'block' : 'none' }}
-        />
+        <Link href={nftUrl} component={linkComponent} sx={{ width: '100%' }}>
+          <NFTCardImage
+            $isPixelated={isPixelated}
+            src={finalImage}
+            alt={`Featured image`}
+            onLoad={() => setImgLoaded(true)}
+            sx={{ display: imgLoaded ? 'block' : 'none' }}
+          />
+        </Link>
         <NFTCardDetails
           sx={{
             padding: 3,
@@ -186,7 +187,7 @@ const NFTCard = forwardRef(
                 onMouseOver={() => setShowPopup(true)}
                 onMouseLeave={() => setShowPopup(false)}
               >
-                <StyledLink href={collectionUrl}>
+                <Link href={collectionUrl} component={linkComponent}>
                   <Text
                     variant="xSmall"
                     color="grey-500"
@@ -198,12 +199,12 @@ const NFTCard = forwardRef(
                   >
                     {collection}
                   </Text>
-                </StyledLink>
+                </Link>
               </Flex>
             </Flex>
 
             {name && (
-              <StyledLink href={nftUrl}>
+              <Link href={nftUrl} component={linkComponent}>
                 <Text
                   variant="large"
                   color="grey-300"
@@ -220,7 +221,7 @@ const NFTCard = forwardRef(
                 >
                   {name}
                 </Text>
-              </StyledLink>
+              </Link>
             )}
           </Flex>
           <Flex

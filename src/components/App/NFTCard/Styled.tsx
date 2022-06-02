@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import Panel from '../../@UI/Panel'
 import Image from '../../@UI/Image'
 import colors from '../../../themes/UpshotUI/colors'
-import { Box, Flex } from 'theme-ui'
+import { Flex } from 'theme-ui'
 
 type NFTCardImageProps = {
   $isPixelated: boolean
@@ -25,7 +25,6 @@ export const NFTCardBase = styled(Flex)<NFTCardProps>`
   top: 160px;
   width: 100%;
   padding: 0;
-  cursor: pointer;
   overflow: hidden;
   border-radius: ${({ theme }) => theme.radii.sm};
   background-color: ${({ theme }) => theme.colors['grey-800']};
@@ -47,15 +46,6 @@ export const NFTCardImage = styled(Image)<NFTCardImageProps>`
 export const NFTCardDetails = styled(Flex)`
   flex-direction: row;
   align-items: space-between;
-`
-
-export const StyledLink = styled.a`
-  cursor: pointer;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
 `
 
 export const DealBadge = styled(Panel)<NFTDealBadgeProps>`
