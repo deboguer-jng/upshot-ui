@@ -5,6 +5,7 @@ const swatches = {
   orange: '#D87C22',
   yellow: '#FFC503',
   green: '#1BB441',
+  greenLabel: '#2dab6e',
   purple: '#7B61FF',
   black: '#000',
   white: '#FFF',

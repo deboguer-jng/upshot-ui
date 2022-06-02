@@ -41,6 +41,8 @@ export const NFTCardImage = styled(Image)<NFTCardImageProps>`
   image-rendering: ${({ $isPixelated }) => ($isPixelated ? 'pixelated' : '')};
   pointer-events: none;
   border-radius: ${({ theme }) => `${theme.radii.sm} ${theme.radii.sm} 0 0`};
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 `
 
 export const NFTCardDetails = styled(Flex)`
@@ -51,7 +53,7 @@ export const NFTCardDetails = styled(Flex)`
 export const DealBadge = styled(Panel)<NFTDealBadgeProps>`
   border-radius: ${({ theme }) => theme.radii.xs};
   background-color: ${({ theme, $percentDifference }) =>
-    $percentDifference > 0 ? theme.colors['green'] : theme.colors['red']};
+    $percentDifference > 0 ? theme.colors['greenLabel'] : theme.colors['red']};
   flex-direction: column;
   align-items: center;
   justify-content: center;
