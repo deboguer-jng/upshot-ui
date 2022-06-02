@@ -182,15 +182,6 @@ export const Divider = styled.div`
   opacity: 5%;
 `
 
-export const Divider2 = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.colors['grey-300']};
-  opacity: 15%;
-  margin-left: -30px;
-  margin-right: -30px;
-  margin-top: -12px;
-  margin-bottom: -5px;
-`
-
 export const StyledLink = styled.a`
   color: inherit;
   text-decoration: none;

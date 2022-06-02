@@ -14,8 +14,8 @@ import {
   SearchWrapper,
   StyledLink,
   Divider,
-  Divider2,
 } from './Styled'
+import NotifPopper from '../Notification'
 import Link from '../../@UI/Link'
 import Container from '../../Layout/Container'
 import Icon from '../../@UI/Icon'
@@ -486,59 +486,12 @@ const Navbar = forwardRef(
             ...{
               minWidth: notificationReferenceElement?.current?.style?.width ?? '392px',
               zIndex: zIndex.nav + 3,
+              display: showNotificationPopper ? 'initial' : 'none',
             },
           }}
           {...notificationPopper.attributes.popper}
         >
-          <Panel
-            sx={{
-              display: showNotificationPopper ? 'flex' : 'none',
-              flexDirection: 'column',
-              marginTop: 2,
-              gap: 4,
-            }}
-          >
-            <Text
-              color="white"
-              sx={{
-                fontSize: 4,
-                fontWeight: 'bold',
-              }}
-            >
-              Notifications
-            </Text>
-
-            <Text
-              color="grey-600"
-              sx={{
-                fontWeight: 'bold',
-              }}
-            >
-              Unread
-            </Text>
-
-            <Divider2 />
-
-            <Text>Notification-1</Text>
-            <Text>Notification-2</Text>
-            <Text>Notification-3</Text>
-            <Text>Notification-4</Text>
-
-            <Text
-              color="grey-600"
-              sx={{
-                fontWeight: 'bold',
-              }}
-            >
-              Read
-            </Text>
-
-            <Divider2 />
-
-            <Text>Notification-5</Text>
-            <Text>Notification-6</Text>
-            <Text>Notification-7</Text>
-          </Panel>
+          <NotifPopper />
         </div>
       </Container>
     )
