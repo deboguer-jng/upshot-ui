@@ -10,6 +10,7 @@ export { default as AppraisalsCopy } from './components/@UI/AppraisalsCopy'
 export { default as Backdrop } from './components/@UI/Backdrop'
 export { default as Breadcrumb } from './components/@UI/Breadcrumb'
 export { default as Button } from './components/@UI/Button'
+export { default as ButtonNav } from './components/@UI/ButtonNav'
 export { default as ButtonDropdown } from './components/@UI/ButtonDropdown'
 export { default as Chart } from './components/@UI/Chart/ChartDynamic'
 export { default as ChartLabel } from './components/@UI/ChartLabel'
@@ -68,6 +69,7 @@ export { default as LandingPanel } from './components/App/LandingPanels'
 export { default as Navbar } from './components/App/Navbar'
 export { default as BuyNowPanel } from './components/App/BuyNowPanel'
 export { SettingsPanel, SettingsMenuItem, SettingsPanelProps } from './components/App/SettingsPanel'
+export { default as NFTCard } from './components/App/NFTCard'
 
 /**
  * Components: Layout
