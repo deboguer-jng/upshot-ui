@@ -3,6 +3,7 @@ import { GmiModalBase, ConnectProviders, Provider, Search } from './Styled'
 import { BoxProps, Image } from 'theme-ui'
 import Text from '../../@UI/Text'
 import { Input, Flex } from 'theme-ui'
+import { StyledLink } from './Styled'
 
 enum ConnectorName {
   Injected = 'Injected',
@@ -97,6 +98,7 @@ const GmiModal = forwardRef(
             />
           </Provider>
         </ConnectProviders>
+        <StyledLink href="/faq">Learn more about gmi →</StyledLink>
       </GmiModalBase>
     )
   }
