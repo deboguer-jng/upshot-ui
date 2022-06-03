@@ -1,13 +1,7 @@
 import styled from '@emotion/styled'
-import { transparentize } from 'polished'
 
-import { Button } from '../../..'
 import Panel from '../../@UI/Panel'
-import Icon from '../../@UI/Icon'
-import Text from '../../@UI/Text'
 import Flex from '../../Layout/Flex'
-import Box from '../../Layout/Box'
-import colors from '../../../themes/UpshotUI/colors'
 import Image from '../../@UI/Image'
 
 

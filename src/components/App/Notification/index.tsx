@@ -4,10 +4,6 @@ import { ButtonProps } from 'theme-ui'
 import Link from '../../@UI/Link'
 import { PanelProps } from '../../@UI/Panel'
 import Text from '../../@UI/Text'
-import Flex from '../../Layout/Flex'
-import Box from '../../Layout/Box'
-import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
-import colors from '../../../themes/UpshotUI/colors'
 import {
   CenterFlex,
   Divider,
@@ -15,8 +11,6 @@ import {
   StyledFlex,
   RoundImage,
 } from './Styled'
-import { formatNumber } from '../../../utils/number'
-import Panel from '../../@UI/Panel'
 import Label from '../../@UI/Label'
 
 export interface NotifRowProps extends ButtonProps {
