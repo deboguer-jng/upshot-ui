@@ -63,3 +63,4 @@ yarn maind
 ### Routing
 
 To enable client-side routing from Next.js, use `<Link>` (@UI/Link) in place of `<a>` with a `linkComponent` prop to receive the next/link router.
+
