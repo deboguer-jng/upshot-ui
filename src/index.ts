@@ -33,8 +33,6 @@ export { default as ProgressBar } from './components/@UI/ProgressBar'
 export { default as RadarChart } from './components/@UI/RadarChart/RadarChartDynamic'
 export { default as Radio } from './components/@UI/Radio'
 export { default as ScatterChart } from './components/@UI/ScatterChart/ScatterChartDynamic'
-export { default as SliderFade } from './components/@UI/Scroll/SliderFade'
-export { default as SliderIcon } from './components/@UI/Scroll/SliderIcon'
 export { default as Skeleton } from './components/@UI/Skeleton'
 export { default as Spinner } from './components/@UI/Spinner'
 export { default as Switch } from './components/@UI/Switch'
@@ -68,7 +66,11 @@ export { default as Investors } from './components/App/Investors'
 export { default as LandingPanel } from './components/App/LandingPanels'
 export { default as Navbar } from './components/App/Navbar'
 export { default as BuyNowPanel } from './components/App/BuyNowPanel'
-export { SettingsPanel, SettingsMenuItem, SettingsPanelProps } from './components/App/SettingsPanel'
+export {
+  SettingsPanel,
+  SettingsMenuItem,
+  SettingsPanelProps,
+} from './components/App/SettingsPanel'
 export { default as NFTCard } from './components/App/NFTCard'
 
 /**
