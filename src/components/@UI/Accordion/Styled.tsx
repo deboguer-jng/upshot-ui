@@ -73,7 +73,8 @@ export const AccordionBody = styled.div<AccordionBodyProps>`
   padding-top: ${({ open }) => (open ? '27px' : 0)};
   padding-bottom: ${({ open }) => (open ? theme.accordion.body.padding : 0)}px;
   max-height: ${({ open }) => (open ? '1000px' : '0px')};
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   transition: ${({ theme }) => theme.transitions.default};
   ${({ theme: { scroll } }) => scroll.thin}
 `
