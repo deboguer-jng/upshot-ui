@@ -14,6 +14,7 @@ import {
   SearchWrapper,
   StyledLink,
   Divider,
+  StyledBadge,
 } from './Styled'
 import NotifPopper from '../Notification'
 import Link from '../../@UI/Link'
@@ -30,7 +31,7 @@ import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import { shortenAddress } from '../../../utils/address'
 import zIndex from '../../../themes/UpshotUI/zIndex'
 import Modal from '../../@UI/Modal'
-import { Text, Flex, BoxProps, Badge } from 'theme-ui'
+import { Text, Flex, BoxProps } from 'theme-ui'
 
 export interface NavbarInterface extends BoxProps {
   /**
@@ -259,7 +260,7 @@ const Navbar = forwardRef(
               >
                 <Icon icon="notificationFilled" color={ showNotificationPopper ? 'grey-800' : ( notifications?.length > 0 ? 'blue' : 'grey-300') } size="20" />
                 {notifications?.length > 0 &&
-                  <Badge variant='notification'></Badge>
+                  <StyledBadge />
                 }
               </IconButton>
               <Modal
