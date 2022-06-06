@@ -10,6 +10,7 @@ import {
   StyledPanel,
   StyledFlex,
   RoundImage,
+  EllipsisText,
 } from './Styled'
 import Label from '../../@UI/Label'
 
@@ -50,15 +51,15 @@ export const NotifRow = forwardRef(
         </CenterFlex>
 
         <CenterFlex sx={{ flexGrow: '1' }}>
-          <Text variant="xLarge">
+          <EllipsisText variant="xLarge">
             Azuki
-          </Text>
-          <Text color="grey-500">
+          </EllipsisText>
+          <EllipsisText color="grey-500">
             Collection appraisal has been updated
-          </Text>
+          </EllipsisText>
         </CenterFlex>
         
-        <CenterFlex>
+        <CenterFlex sx={{ minWidth: 'min-content' }}>
           <Label
             size="xs"
             variant="currency"

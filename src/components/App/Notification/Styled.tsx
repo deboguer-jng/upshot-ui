@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import Panel from '../../@UI/Panel'
 import Flex from '../../Layout/Flex'
 import Image from '../../@UI/Image'
+import Text from '../../@UI/Text'
 
 
 /* interface panelProps {
@@ -48,5 +49,10 @@ export const CenterFlex = styled(Flex)`
 export const RoundImage = styled(Image)`
   border-radius: 50%;
   width: 52px;
-  height: 52px;
+  max-height: 52px;
+`
+
+export const EllipsisText = styled(Text)`
+  text-overflow: ellipsis;
+  overflow: hidden;
 `
