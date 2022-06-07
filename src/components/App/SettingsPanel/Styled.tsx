@@ -16,6 +16,7 @@ export const PanelBase = styled(Panel)`
   padding: 0;
   width: 100%;
   height: 50%;
+  position: relative;
 `
 
 export const SettingsMenu = styled(Flex)<SettingsMenuProps>`
@@ -38,4 +39,13 @@ export const MenuItem = styled(Text)<MenuItemProps>`
 export const SettingsContainer = styled(Flex)`
   flex-direction: column;
   width: 100%;
+`
+export const SpinnerContainer = styled(Flex)<SettingsMenuProps>`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: ${({ theme }) => theme.colors.black};
+  border-radius: ${({ theme, $radii }) => theme.radii[$radii]};
+  opacity: 0.8;
+  z-index: ${({ theme }) => theme.zIndex.modal - 1};
 `
