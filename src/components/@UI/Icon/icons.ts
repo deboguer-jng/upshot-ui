@@ -118,6 +118,7 @@ import SVGYoutubeBlock from '../../../assets/svg/icons/Youtube_BlockColor.svg'
 import SVGYoutube from '../../../assets/svg/icons/Youtube.svg'
 import SVGZoraBlock from '../../../assets/svg/icons/Zora_BlockColor.svg'
 import SVGZora from '../../../assets/svg/icons/Zora.svg'
+import SVGUpshotWallet from '../../../assets/svg/icons/Upshot_Wallet.svg'
 
 const icons = {
   addLinkBlock: SVGAddLinkBlock,
@@ -228,6 +229,7 @@ const icons = {
   twitter: SVGTwitter,
   twitterCircle: SVGTwitterCircle,
   upshot: SVGUpshot,
+  upshotWallet: SVGUpshotWallet,
   uptoken: SVGUptoken,
   uptokenStacked: SVGUptokenStacked,
   usdc: SVGUSDC,
