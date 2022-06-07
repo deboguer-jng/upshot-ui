@@ -33,7 +33,7 @@ export const InputRounded = forwardRef(
         {prefix?.length &&
           <PrefixText $disabled={disabled}>{prefix}</PrefixText>  
         }
-        <WrappedInput {...{ variant, $suffix: suffix, ref, ...props }} disabled={disabled} />
+        <WrappedInput {...{ variant, $suffix: suffix, ref, disabled, ...props }} />
         {suffix?.length && 
           <SuffixText $disabled={disabled}>{suffix}</SuffixText>
         }
