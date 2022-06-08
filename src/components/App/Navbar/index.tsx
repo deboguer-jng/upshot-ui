@@ -382,7 +382,7 @@ const Navbar = forwardRef(
               View Profile
             </Link>
 
-            <Link
+            {/* <Link
               onClick={onSettings}
               color="grey-600"
               sx={{
@@ -394,7 +394,7 @@ const Navbar = forwardRef(
               }}
             >
               Settings
-            </Link>
+            </Link> */}
 
             <Text
               as="a"
