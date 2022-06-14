@@ -1,5 +1,5 @@
 import React from 'react'
-import css from '@emotion/css'
+import { css } from '@emotion/react'
 import { ThemeProvider } from 'theme-ui'
 import { Global } from '@emotion/react'
 import theme from './UpshotUI'

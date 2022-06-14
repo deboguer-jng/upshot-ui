@@ -21,7 +21,7 @@ interface PopulatedChartProps {
   linkComponent?: React.FunctionComponent<any>
   chartData: {
     name: string
-    data: number[] | number[][] // Supports 1D line chart or 2D [timestamp, value] series
+    data: any
     url?: string
     ath?: string
     atl?: string
