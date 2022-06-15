@@ -16,7 +16,7 @@ export const Default = Template.bind({})
 Default.args = { sx: { width: 300 } }
 
 export const Nav = Template.bind({})
-Nav.args = { sx: { width: 300 }, hasButton: true, variant: 'nav' }
+Nav.args = { sx: { width: 300 }, hasSearchButton: true, variant: 'nav' }
 
 export const SearchButton = Template.bind({})
 SearchButton.args = {

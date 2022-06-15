@@ -175,6 +175,7 @@ const Navbar = forwardRef(
                       }}
                       sx={{
                         background: 'none',
+                        width: '100%'
                       }}
                     />
                   </form>

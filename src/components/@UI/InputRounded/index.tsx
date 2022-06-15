@@ -29,7 +29,7 @@ export const InputRounded = forwardRef(
     const variant = `forms.inputs.rounded${dark ? 'Dark' : ''}`
 
     return (
-      <WrappedInputContainer $dark={dark}>
+      <WrappedInputContainer $dark={dark} sx={props.sx}>
         {prefix?.length &&
           <PrefixText $disabled={disabled}>{prefix}</PrefixText>  
         }
