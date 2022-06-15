@@ -12,7 +12,6 @@ export default {
     format: 'cjs',
   },
   external: [
-    '@emotion/css',
     '@emotion/react',
     '@emotion/styled',
     '@theme-ui/match-media',
