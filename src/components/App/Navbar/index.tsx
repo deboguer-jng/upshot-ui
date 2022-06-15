@@ -174,8 +174,7 @@ const Navbar = forwardRef(
                         type: 'button',
                       }}
                       sx={{
-                        background: 'none',
-                        width: '100%'
+                        background: 'none'
                       }}
                     />
                   </form>
