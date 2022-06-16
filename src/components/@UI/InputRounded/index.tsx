@@ -27,18 +27,21 @@ export const InputRounded = forwardRef(
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
     const variant = `forms.inputs.rounded${dark ? 'Dark' : ''}`
-
-    return (
-      <WrappedInputContainer $dark={dark}>
-        {prefix?.length &&
-          <PrefixText $disabled={disabled}>{prefix}</PrefixText>  
-        }
-        <WrappedInput {...{ variant, $suffix: suffix, ref, disabled, ...props }} />
-        {suffix?.length && 
-          <SuffixText $disabled={disabled}>{suffix}</SuffixText>
-        }
-      </WrappedInputContainer>
-    )
+         
+    if (prefix?.length || suffix?.length)
+      return (
+        <WrappedInputContainer $dark={dark}>
+          {prefix?.length &&
+            <PrefixText $disabled={disabled}>{prefix}</PrefixText>  
+          }
+          <WrappedInput {...{ variant, $suffix: suffix, ref, disabled, ...props }} />
+          {suffix?.length && 
+            <SuffixText $disabled={disabled}>{suffix}</SuffixText>
+          }
+        </WrappedInputContainer>
+      )
+    else
+      return <WrappedInput {...{ variant, $suffix: suffix, ref, disabled, ...props }} />
   }
 )
 
