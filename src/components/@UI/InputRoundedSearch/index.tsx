@@ -137,7 +137,6 @@ const InputRoundedSearch = forwardRef(
             $hasButton={hasButton}
             onFocus={() => setOpen(true)}
             onBlur={() => setOpen(false)}
-            sx={{width: fullWidth ? '100%' : 'auto'}}
             {...{ ref, ...props }}
           />
           <IconButton
