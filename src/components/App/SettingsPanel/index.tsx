@@ -1,10 +1,17 @@
-import React, { forwardRef, ReactElement, useEffect, useLayoutEffect, useState } from 'react'
+import React, { forwardRef, ReactElement, useEffect, useState } from 'react'
 import { useTheme } from '@emotion/react'
 import { PanelProps } from '../../@UI/Panel'
-import { PanelBase, MenuItem, SettingsMenu, SettingsContainer } from './Styled'
+import {
+  PanelBase,
+  MenuItem,
+  SettingsMenu,
+  SettingsContainer,
+  SpinnerContainer,
+} from './Styled'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import { Box, BoxProps, Flex, IconButton, Text } from 'theme-ui'
 import Icon from '../../@UI/Icon'
+import Spinner from '../../@UI/Spinner'
 
 interface SettingsMenuItemProps extends BoxProps {
   label: string
@@ -15,12 +22,21 @@ export const SettingsMenuItem = (props: SettingsMenuItemProps) => (
 )
 
 export interface SettingsPanelProps extends PanelProps {
+  /**
+   * disable UI and show spinner
+   */
+  loading?: boolean
   children?: ReactElement<SettingsMenuItemProps>[]
 }
 
 export const SettingsPanel = forwardRef(
   (
-    { children = [], radii = 'lg', ...props }: SettingsPanelProps,
+    {
+      children = [],
+      radii = 'lg',
+      loading = false,
+      ...props
+    }: SettingsPanelProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const isMobile = useBreakpointIndex() <= 1
@@ -33,11 +49,16 @@ export const SettingsPanel = forwardRef(
 
     // set initial activeItem state if not mobile
     useEffect(() => {
-      if(!isMobile && !activeItem) setActiveItem(children[0].props.label)
+      if (!isMobile && !activeItem) setActiveItem(children[0].props.label)
     }, [isMobile])
 
     return (
       <PanelBase {...{ ref, ...props }}>
+        {loading && (
+          <SpinnerContainer $radii={radii}>
+            <Spinner sx={{ margin: 'auto' }} />
+          </SpinnerContainer>
+        )}
         <Flex>
           {((isMobile && !activeItem) || !isMobile) && (
             <SettingsMenu

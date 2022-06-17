@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import css from '@emotion/css'
+import { css } from '@emotion/react'
 import { Link } from 'theme-ui'
 
 import Flex from '../../Layout/Flex'
