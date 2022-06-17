@@ -4,11 +4,11 @@ interface FadeProps {
   $isScrolledRight: boolean
 }
 
-export const Relative = styled.div`
+export const Relative = styled('div', transientOptions)`
   position: relative;
 `
 
-export const ScrollWrapper = styled.div`
+export const ScrollWrapper = styled('div', transientOptions)`
   overflow-x: auto;
 
   /* Hide scrollbar for IE, Edge and Firefox */
@@ -21,7 +21,7 @@ export const ScrollWrapper = styled.div`
   }
 `
 
-export const FadeEffect = styled.div<FadeProps>`
+export const FadeEffect = styled('div', transientOptions)<FadeProps>`
   position: absolute;
   width: 100%;
   height: 100%;

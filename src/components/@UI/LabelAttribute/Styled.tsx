@@ -16,8 +16,12 @@ interface LabelTextProps {
   showTooltip: boolean
 }
 
-export const LabelAttributeBase = styled.div<LabelAttributeBaseProps>`
-  border-radius: ${({ theme, expanded }) => expanded ? theme.radii.lg : theme.radii.pill};
+export const LabelAttributeBase = styled(
+  'div',
+  transientOptions
+)<LabelAttributeBaseProps>`
+  border-radius: ${({ theme, expanded }) =>
+    expanded ? theme.radii.lg : theme.radii.pill};
   color: ${colors.blue};
   border-color: ${colors.blue};
   border: 2px solid;
@@ -49,7 +53,7 @@ export const LabelAttributeBase = styled.div<LabelAttributeBaseProps>`
   }
 `
 
-export const RightAlignBlock = styled.div`
+export const RightAlignBlock = styled('div', transientOptions)`
   display: flex;
   float: right;
   width: 90px;
@@ -57,7 +61,7 @@ export const RightAlignBlock = styled.div`
   padding-right: ${sizes[3] + 'px'};
 `
 
-export const LabelText = styled.div<LabelTextProps>`
+export const LabelText = styled('div', transientOptions)<LabelTextProps>`
   padding-left: ${sizes[3] + 'px'};
   text-overflow: ellipsis;
   width: 75%;
@@ -78,7 +82,7 @@ export const ExpandedLabelAttributeText = styled(LabelText)`
   font-size: ${fontSizes[3]};
 `
 
-export const Division = styled.div`
+export const Division = styled('div', transientOptions)`
   display: inline-block;
 `
 export const CloseButton = styled(Button)`
@@ -92,7 +96,7 @@ export const CloseButton = styled(Button)`
   }
 `
 
-export const LabelAttributeTooltip = styled.div`
+export const LabelAttributeTooltip = styled('div', transientOptions)`
   position: absolute;
   top: 0;
   right: 0;

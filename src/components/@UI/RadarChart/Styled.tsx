@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const RadarChartWrapper = styled.div`
+export const RadarChartWrapper = styled('div', transientOptions)`
   width: 100%;
   padding-top: 75%;
   position: relative;

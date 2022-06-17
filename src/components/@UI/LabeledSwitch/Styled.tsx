@@ -4,7 +4,7 @@ interface LabeledSwitchButtonProps {
   $on?: boolean
 }
 
-export const LabeledSwitchBase = styled.div`
+export const LabeledSwitchBase = styled('div', transientOptions)`
   display: flex;
   cursor: pointer;
   width: 100%;
@@ -14,7 +14,10 @@ export const LabeledSwitchBase = styled.div`
   color: ${({ theme }) => theme.colors.blue};
 `
 
-export const LabeledSwitchButton = styled.div<LabeledSwitchButtonProps>`
+export const LabeledSwitchButton = styled(
+  'div',
+  transientOptions
+)<LabeledSwitchButtonProps>`
   display: flex;
   height: 36px;
   align-items: center;

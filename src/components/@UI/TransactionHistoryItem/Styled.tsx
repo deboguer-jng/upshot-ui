@@ -5,12 +5,15 @@ interface TransactionHistoryItemIconProps {
   $variant: keyof typeof transactionHistoryItem.variant
 }
 
-export const TransactionHistoryItemWrapper = styled.div`
+export const TransactionHistoryItemWrapper = styled('div', transientOptions)`
   display: flex;
   align-items: center;
 `
 
-export const TransactionHistoryItemIcon = styled.div<TransactionHistoryItemIconProps>`
+export const TransactionHistoryItemIcon = styled(
+  'div',
+  transientOptions
+)<TransactionHistoryItemIconProps>`
   width: ${({ theme }) => theme.transactionHistoryItem.width}px;
   height: ${({ theme }) => theme.transactionHistoryItem.height}px;
   border-radius: ${({ theme }) => theme.transactionHistoryItem.borderRadius}px;
@@ -19,6 +22,6 @@ export const TransactionHistoryItemIcon = styled.div<TransactionHistoryItemIconP
   margin-right: ${({ theme }) => theme.transactionHistoryItem.marginRight}px;
 `
 
-export const TransactionHistoryItemText = styled.div`
+export const TransactionHistoryItemText = styled('div', transientOptions)`
   color: ${({ theme }) => theme.colors['grey-300']};
 `

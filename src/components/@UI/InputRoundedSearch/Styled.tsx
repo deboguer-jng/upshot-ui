@@ -27,13 +27,19 @@ export const InputRoundedSearchBase = styled(
   z-index: ${({ theme }) => theme.zIndex.default + 2};
 `
 
-export const InputRoundedSearchWrapper = styled.div<InputRoundedSearchWrapperProps>`
+export const InputRoundedSearchWrapper = styled(
+  'div',
+  transientOptions
+)<InputRoundedSearchWrapperProps>`
   position: relative;
   width: ${({ $isMobile, $isFullWidth }) =>
     $isMobile || $isFullWidth ? '100%' : 'fit-content'};
 `
 
-export const InputRoundedSearchSuggestionsWrapper = styled.div<{
+export const InputRoundedSearchSuggestionsWrapper = styled(
+  'div',
+  transientOptions
+)<{
   $variant?: InputRoundedSearchVariant
 }>`
   position: absolute;
@@ -51,14 +57,17 @@ export const InputRoundedSearchSuggestionsWrapper = styled.div<{
   z-index: ${({ theme }) => theme.zIndex.default + 1};
 `
 
-export const InputRounededSearchSuggestions = styled.div`
+export const InputRounededSearchSuggestions = styled('div', transientOptions)`
   overflow: auto;
   max-height: 150px;
   margin: 8px;
   ${({ theme: { scroll } }) => scroll.thin}
 `
 
-export const InputRoundedSearchSuggestionItem = styled.div<InputRoundedSearchSuggestionItemProps>`
+export const InputRoundedSearchSuggestionItem = styled(
+  'div',
+  transientOptions
+)<InputRoundedSearchSuggestionItemProps>`
   padding: 8px 16px;
   display: flex;
   align-items: center;

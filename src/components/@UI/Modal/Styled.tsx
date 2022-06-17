@@ -6,7 +6,7 @@ interface ModalWrapperProps {
   $fullWidth: boolean
 }
 
-export const ModalWrapper = styled.div<ModalWrapperProps>`
+export const ModalWrapper = styled('div', transientOptions)<ModalWrapperProps>`
   position: fixed;
   top: 50%;
   left: 50%;

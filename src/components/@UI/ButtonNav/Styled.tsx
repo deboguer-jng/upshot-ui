@@ -6,7 +6,7 @@ interface ButtonNavProps {
   capitalize?: boolean
 }
 
-export const StyledButtonNav = styled.div<ButtonNavProps>`    
+export const StyledButtonNav = styled('div', transientOptions)<ButtonNavProps>`
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -14,9 +14,11 @@ export const StyledButtonNav = styled.div<ButtonNavProps>`
   padding: 15px;
   width: min-content;
   transition: ${({ theme }) => theme.transitions.default};
-  border-bottom: ${({ toggled }) => toggled ? `3px solid white` : `3px solid transparent`};
+  border-bottom: ${({ toggled }) =>
+    toggled ? `3px solid white` : `3px solid transparent`};
   flex-wrap: nowrap;
-  color: ${({ theme, toggled }) => toggled ? theme.colors.white : theme.colors['grey-500']};
+  color: ${({ theme, toggled }) =>
+    toggled ? theme.colors.white : theme.colors['grey-500']};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
 
   &:hover {

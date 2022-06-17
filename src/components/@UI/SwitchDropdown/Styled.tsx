@@ -14,7 +14,10 @@ export const SwitchDropdownWrapper = styled(Box)`
   position: relative;
 `
 
-export const SwitchDropdownHeader = styled.div<SwitchDropdownHeaderProps>`
+export const SwitchDropdownHeader = styled(
+  'div',
+  transientOptions
+)<SwitchDropdownHeaderProps>`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -32,7 +35,10 @@ export const SwitchDropdownHeader = styled.div<SwitchDropdownHeaderProps>`
   }
 `
 
-export const SwitchDropdownOptions = styled.div<SwitchDropdownOptionsProps>`
+export const SwitchDropdownOptions = styled(
+  'div',
+  transientOptions
+)<SwitchDropdownOptionsProps>`
   position: absolute;
   width: 100%;
   visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
@@ -41,7 +47,7 @@ export const SwitchDropdownOptions = styled.div<SwitchDropdownOptionsProps>`
   transition: ${({ theme }) => theme.transitions.default};
 `
 
-export const SwitchDropdownOption = styled.div`
+export const SwitchDropdownOption = styled('div', transientOptions)`
   cursor: pointer;
   white-space: nowrap;
 `

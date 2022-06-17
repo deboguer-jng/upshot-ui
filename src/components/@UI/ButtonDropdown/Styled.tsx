@@ -25,11 +25,11 @@ interface DropdownMultiSelectedProps {
   disabled: boolean
 }
 
-export const DropdownWrapper = styled.div`
+export const DropdownWrapper = styled('div', transientOptions)`
   position: relative;
 `
 
-export const Dropdown = styled.div<DropdownProps>`
+export const Dropdown = styled('div', transientOptions)<DropdownProps>`
   position: relative;
   z-index: ${({ theme }) => theme.zIndex.dropdown + 1};
   border-radius: ${({ theme }) => theme.accordion.header.borderRadius}px;
@@ -54,7 +54,10 @@ export const Dropdown = styled.div<DropdownProps>`
   }
 `
 
-export const DropdownMenuArrow = styled.div<DropdownMenuArrowProps>`
+export const DropdownMenuArrow = styled(
+  'div',
+  transientOptions
+)<DropdownMenuArrowProps>`
   display: flex;
   align-items: center;
 
@@ -71,14 +74,14 @@ export const DropdownMenuArrow = styled.div<DropdownMenuArrowProps>`
   }
 `
 
-export const DropdownMenuItems = styled.div`
+export const DropdownMenuItems = styled('div', transientOptions)`
   overflow: auto;
   height: 100%;
   background: transparent;
   ${({ theme: { scroll } }) => scroll.thin}
 `
 
-export const DropdownMenu = styled.div`
+export const DropdownMenu = styled('div', transientOptions)`
   position: absolute;
   z-index: ${({ theme }) => theme.zIndex.dropdown};
   background-color: ${({ theme }) => theme.colors['grey-900']};
@@ -95,7 +98,10 @@ export const DropdownMenu = styled.div`
   overflow: hidden;
 `
 
-export const DropdownSelected = styled.div<DropdownSelectedProps>`
+export const DropdownSelected = styled(
+  'div',
+  transientOptions
+)<DropdownSelectedProps>`
   flex-grow: 1;
   margin-left: 6px;
   margin-right: 6px;
@@ -108,7 +114,10 @@ export const DropdownSelected = styled.div<DropdownSelectedProps>`
       : theme.buttons.dropdown.variants.isMulti.color};
 `
 
-export const DropdownMenuItem = styled.div<DropdownMenuItemProps>`
+export const DropdownMenuItem = styled(
+  'div',
+  transientOptions
+)<DropdownMenuItemProps>`
   display: flex;
   align-items: center;
   padding: 6px 11px;
@@ -126,7 +135,10 @@ export const DropdownMenuItem = styled.div<DropdownMenuItemProps>`
   }
 `
 
-export const DropdownMultiSelected = styled.div<DropdownMultiSelectedProps>`
+export const DropdownMultiSelected = styled(
+  'div',
+  transientOptions
+)<DropdownMultiSelectedProps>`
   position: relative;
   flex-grow: 1;
   display: flex;
@@ -145,7 +157,7 @@ export const DropdownMultiSelected = styled.div<DropdownMultiSelectedProps>`
   }
 `
 
-export const DropdownMultiSelectedCount = styled.div`
+export const DropdownMultiSelectedCount = styled('div', transientOptions)`
   position: absolute;
   top: -6.5px;
   right: -6.5px;

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { Box, Flex } from 'theme-ui'
+import { transientOptions } from '../../../themes'
 
 interface TabButtonParams {
   active: boolean
@@ -11,7 +12,7 @@ export const ModalContent = styled(Box)`
   background-color: ${({ theme }) => theme.colors['grey-900']};
 `
 
-export const TabButton = styled.button<TabButtonParams>`
+export const TabButton = styled('button', transientOptions)<TabButtonParams>`
   background: transparent;
   padding: 5px 10px;
   border: none;
@@ -28,7 +29,7 @@ export const FollowContentWrapper = styled(Flex)`
   ${({ theme: { scroll } }) => scroll.thin}
 `
 
-export const FollowButton = styled.button`
+export const FollowButton = styled('button', transientOptions)`
   backgorund: white;
   color: ${({ theme }) => theme.colors['grey-800']};
   padding: 6.5px 15px;
@@ -44,7 +45,7 @@ export const FollowButton = styled.button`
   }
 `
 
-export const FollowAvatar = styled.img`
+export const FollowAvatar = styled('img', transientOptions)`
   width: 50px;
   height: 50px;
   border-radius: 50%;

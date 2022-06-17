@@ -4,7 +4,7 @@ interface TimeFilterProps {
   active: boolean
 }
 
-export const ScatterChartWrapper = styled.div`
+export const ScatterChartWrapper = styled('div', transientOptions)`
   width: 100%;
 
   & .apexcharts-tooltip,
@@ -17,20 +17,20 @@ export const ScatterChartWrapper = styled.div`
   }
 `
 
-export const CustomLegendWrapper = styled.div`
+export const CustomLegendWrapper = styled('div', transientOptions)`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 `
 
-export const TimeFilterWrapper = styled.div`
+export const TimeFilterWrapper = styled('div', transientOptions)`
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
 `
 
-export const TimeFilter = styled.span<TimeFilterProps>`
+export const TimeFilter = styled('span', transientOptions)<TimeFilterProps>`
   border-radius: 20px;
   padding: 4px 16px;
   font-style: normal;

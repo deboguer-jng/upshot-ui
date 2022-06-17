@@ -1,12 +1,13 @@
 import styled from '@emotion/styled'
 import { Grid } from 'theme-ui'
 import Panel from '../../@UI/Panel'
+import { transientOptions } from '../../../themes'
 
 interface CollectorRowAvatarWrapperProps {
   selected?: boolean
 }
 
-export const CollectorRowBase = styled.div`
+export const CollectorRowBase = styled('div', transientOptions)`
   width: 100%;
   border-radius: 20px;
   overflow: hidden;
@@ -24,7 +25,7 @@ export const CollectorRowContent = styled(Grid)<{ $hasImage?: boolean }>`
   cursor: pointer;
 `
 
-export const CollectorRowExpansion = styled.div<{
+export const CollectorRowExpansion = styled('div', transientOptions)<{
   $open: boolean
   $contentHeight?: number
 }>`
@@ -34,7 +35,10 @@ export const CollectorRowExpansion = styled.div<{
     $open ? ($contentHeight ? $contentHeight + 'px' : 'auto') : '0px'};
 `
 
-export const CollectorRowAvatarWrapper = styled.button<CollectorRowAvatarWrapperProps>`
+export const CollectorRowAvatarWrapper = styled(
+  'button',
+  transientOptions
+)<CollectorRowAvatarWrapperProps>`
   background: transparent;
   outline: none;
   border: none;

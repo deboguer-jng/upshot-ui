@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { Flex } from 'theme-ui'
 import Colors from '../../../themes/UpshotUI/colors'
+import { transientOptions } from '../../../themes'
 
 export const GmiModalBase = styled(Flex)`
   flex-direction: column;
@@ -74,7 +75,7 @@ export const Search = styled(Flex)<{ $color: keyof typeof Colors }>`
   }
 `
 
-export const StyledLink = styled.a`
+export const StyledLink = styled('a', transientOptions)`
   color: inherit;
   text-decoration: none;
   cursor: pointer;

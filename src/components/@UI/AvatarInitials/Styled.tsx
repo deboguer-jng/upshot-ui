@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { Box } from 'theme-ui'
 import { AvatarSize } from '../Avatar'
+import { transientOptions } from '../../../themes'
 
 export const AvatarInitialsBase = styled(Box)<{ $size: AvatarSize }>`
   display: inline-flex;
@@ -11,7 +12,9 @@ export const AvatarInitialsBase = styled(Box)<{ $size: AvatarSize }>`
   text-transform: uppercase;
 `
 
-export const AvatarInitialsShadow = styled.div<{ $size: AvatarSize }>`
+export const AvatarInitialsShadow = styled('div', transientOptions)<{
+  $size: AvatarSize
+}>`
   display: flex;
   flex-grow: 1;
   align-items: center;

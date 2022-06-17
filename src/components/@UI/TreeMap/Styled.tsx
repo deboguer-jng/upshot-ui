@@ -13,11 +13,11 @@ export const WrappedReactApexChart = styled(ReactApexChart)`
   }
 `
 
-export const TreeMapChartWrapper = styled.div`
+export const TreeMapChartWrapper = styled('div', transientOptions)`
   width: 100%;
 `
 
-export const TreeMapWrapper = styled.div`
+export const TreeMapWrapper = styled('div', transientOptions)`
   position: absolute;
   top: 0;
   left: 0;
@@ -25,7 +25,10 @@ export const TreeMapWrapper = styled.div`
   bottom: 0;
 `
 
-export const TreeMapChartInnerWrapper = styled.div<TreeMapChartInnerWrapperProps>`
+export const TreeMapChartInnerWrapper = styled(
+  'div',
+  transientOptions
+)<TreeMapChartInnerWrapperProps>`
   position: relative;
   padding-top: ${({ isMobile }) => (isMobile ? '200%' : '35%')};
   width: 100%;
