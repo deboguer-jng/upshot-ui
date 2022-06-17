@@ -3,7 +3,9 @@ import { Box } from 'theme-ui'
 import { AvatarSize } from '../Avatar'
 import { transientOptions } from '../../../themes'
 
-export const AvatarInitialsBase = styled(Box)<{ $size: AvatarSize }>`
+export const AvatarInitialsBase = styled(Box, transientOptions)<{
+  $size: AvatarSize
+}>`
   display: inline-flex;
   border: none;
   border-radius: ${({ theme }) => theme.radii.circle};

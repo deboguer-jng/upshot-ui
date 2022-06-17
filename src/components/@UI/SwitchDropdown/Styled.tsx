@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { transientOptions } from '../../../themes'
 
 import Box from '../../Layout/Box'
 
@@ -10,7 +11,7 @@ interface SwitchDropdownOptionsProps {
   open: boolean
 }
 
-export const SwitchDropdownWrapper = styled(Box)`
+export const SwitchDropdownWrapper = styled(Box, transientOptions)`
   position: relative;
 `
 

@@ -7,7 +7,7 @@ interface ContainerBaseProps {
   $maxBkp?: keyof typeof breakpointsNamed
 }
 
-export const ContainerBase = styled(Flex)<ContainerBaseProps>`
+export const ContainerBase = styled(Flex, transientOptions)<ContainerBaseProps>`
   width: 100%;
   margin: 0 auto;
 

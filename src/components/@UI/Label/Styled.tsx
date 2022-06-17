@@ -6,7 +6,10 @@ interface ColorProp {
   $color?: keyof typeof Colors
 }
 
-export const StyledThemeUILabel = styled(ThemeUILabel)<ColorProp>`
+export const StyledThemeUILabel = styled(
+  ThemeUILabel,
+  transientOptions
+)<ColorProp>`
   ${({ theme, $color }) =>
     `
       border-color: ${theme.colors[$color]};

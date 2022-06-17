@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { Box, Flex } from 'theme-ui'
 import { transientOptions } from '../../../themes'
 
-export const HelpModalBase = styled(Box)`
+export const HelpModalBase = styled(Box, transientOptions)`
   border-radius: 30px;
   background: ${({ theme }) => theme.colors['grey-800']};
 `
@@ -23,7 +23,7 @@ export const CloseButton = styled('button', transientOptions)`
   cursor: pointer;
 `
 
-export const Body = styled(Flex)`
+export const Body = styled(Flex, transientOptions)`
   flex-direction: column;
   padding-top: 25px;
   padding-bottom: 25px;

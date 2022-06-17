@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { Box } from 'theme-ui'
+import { transientOptions } from '../../../themes'
 
 interface StyledSkeletonProps {
   $circle: boolean
@@ -8,7 +9,10 @@ interface StyledSkeletonProps {
 const minWidth = '10px'
 const minHeight = '10px'
 
-export const StyledSkeleton = styled(Box)<StyledSkeletonProps>`
+export const StyledSkeleton = styled(
+  Box,
+  transientOptions
+)<StyledSkeletonProps>`
   background: ${({ theme }) => theme.colors['grey-700']};
   min-width: ${minWidth};
   min-height: ${minHeight};

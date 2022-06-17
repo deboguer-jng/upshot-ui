@@ -5,8 +5,9 @@ import { Link } from 'theme-ui'
 import Flex from '../../Layout/Flex'
 import Box from '../../Layout/Grid'
 import Text from '../../@UI/Text'
+import { transientOptions } from '../../../themes'
 
-export const StyledBox = styled(Box)`
+export const StyledBox = styled(Box, transientOptions)`
   justify-content: center;
   align-items: center;
   flex-grow: 1;
@@ -18,17 +19,17 @@ export const StyledBox = styled(Box)`
     }
   `}
 `
-export const StyledBoxMiddle = styled(Text)`
+export const StyledBoxMiddle = styled(Text, transientOptions)`
   margin: 5px;
   align-items: center;
   cursor: pointer;
 `
-export const StyledBoxMiddleSeparate = styled(Text)`
+export const StyledBoxMiddleSeparate = styled(Text, transientOptions)`
   margin: 5px;
   font-size: 16px;
 `
 
-export const LogoBox = styled(Link)`
+export const LogoBox = styled(Link, transientOptions)`
   font-size: 18px;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.text};
@@ -38,12 +39,12 @@ export const LogoBox = styled(Link)`
   }
 `
 
-export const StyledBoxRight = styled(Box)`
+export const StyledBoxRight = styled(Box, transientOptions)`
   align-items: right;
   justify-items: end;
 `
 
-export const FooterLine = styled(Flex)`
+export const FooterLine = styled(Flex, transientOptions)`
   position: relative;
   align-items: center;
   flex-direction: column-reverse;
@@ -67,7 +68,7 @@ export const FooterLine = styled(Flex)`
   `}
 `
 
-export const StyledBoxLeft = styled(Flex)`
+export const StyledBoxLeft = styled(Flex, transientOptions)`
   flex-grow: 1;
   align-items: center;
 
@@ -77,7 +78,7 @@ export const StyledBoxLeft = styled(Flex)`
     }
   `}
 `
-export const StyledMiddleLink = styled(Link)`
+export const StyledMiddleLink = styled(Link, transientOptions)`
   margin: 5px;
   align-items: center;
   color: ${({ theme }) => theme.colors.text};

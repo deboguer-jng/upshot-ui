@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { transientOptions } from '../../../themes'
 
 export const RadarChartWrapper = styled('div', transientOptions)`
   width: 100%;

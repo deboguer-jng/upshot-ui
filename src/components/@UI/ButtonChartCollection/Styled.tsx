@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import colors from '../../../themes/UpshotUI/colors'
+import { transientOptions } from '../../../themes'
 
 interface ButtonChartCollectionIconProps {
   selected: Boolean

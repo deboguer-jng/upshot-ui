@@ -1,11 +1,12 @@
 import styled from '@emotion/styled'
 import ReactApexChart from 'react-apexcharts'
+import { transientOptions } from '../../../themes'
 
 interface TreeMapChartInnerWrapperProps {
   isMobile: boolean
 }
 
-export const WrappedReactApexChart = styled(ReactApexChart)`
+export const WrappedReactApexChart = styled(ReactApexChart, transientOptions)`
   margin-left: -2px;
   margin-right: -2px;
   .apexcharts-treemap-rect {

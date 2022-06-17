@@ -195,7 +195,10 @@ export const AddressCircle = styled(
     variant === 'from' ? theme.colors.purple : theme.colors.yellow};
 `
 
-export const MiniNftCardDetailsName = styled(Text)<MiniNftCardDetailsNameProps>`
+export const MiniNftCardDetailsName = styled(
+  Text,
+  transientOptions
+)<MiniNftCardDetailsNameProps>`
   color: ${({ theme, error }) =>
     error ? theme.colors.red : theme.colors.white};
   line-height: ${({ theme }) => theme.miniNftCard.name.lineHeight}px;
@@ -205,11 +208,14 @@ export const MiniNftCardDetailsName = styled(Text)<MiniNftCardDetailsNameProps>`
   -webkit-box-orient: vertical;
 `
 
-export const MiniNftCardDetailLabel = styled(Text)`
+export const MiniNftCardDetailLabel = styled(Text, transientOptions)`
   color: ${({ theme }) => theme.colors['grey-500']};
 `
 
-export const MiniNftCardDetailValue = styled(Text)<MiniNftCardDetailValueProps>`
+export const MiniNftCardDetailValue = styled(
+  Text,
+  transientOptions
+)<MiniNftCardDetailValueProps>`
   margin-bottom: 5px;
   color: ${({ theme, error }) =>
     error ? theme.colors.red : theme.colors.white};

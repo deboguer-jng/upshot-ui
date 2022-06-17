@@ -6,7 +6,7 @@ interface TabButtonParams {
   active: boolean
 }
 
-export const ModalContent = styled(Box)`
+export const ModalContent = styled(Box, transientOptions)`
   border-radius: 20px;
   border: 2px solid ${({ theme }) => theme.colors['grey-600']};
   background-color: ${({ theme }) => theme.colors['grey-900']};
@@ -22,7 +22,7 @@ export const TabButton = styled('button', transientOptions)<TabButtonParams>`
     active ? 'white' : theme.colors['grey-500']};
 `
 
-export const FollowContentWrapper = styled(Flex)`
+export const FollowContentWrapper = styled(Flex, transientOptions)`
   flex-direction: column;
   height: 500px;
   overflow: auto;

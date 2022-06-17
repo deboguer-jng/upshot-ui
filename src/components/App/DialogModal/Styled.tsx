@@ -1,8 +1,9 @@
 import styled from '@emotion/styled'
 import { Flex } from 'theme-ui'
 import Colors from '../../../themes/UpshotUI/colors'
+import { transientOptions } from '../../../themes'
 
-export const ModalBase = styled(Flex)`
+export const ModalBase = styled(Flex, transientOptions)`
   flex-direction: column;
   align-items: center;
   gap: 24px;

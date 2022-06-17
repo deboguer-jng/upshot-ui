@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import InputRounded from '../InputRounded'
 import type { InputRoundedSearchVariant } from './'
+import { transientOptions } from '../../../themes'
 
 interface InputRoundedSearchBaseProps {
   $hasButton: boolean
@@ -16,7 +17,8 @@ interface InputRoundedSearchSuggestionItemProps {
 }
 
 export const InputRoundedSearchBase = styled(
-  InputRounded
+  InputRounded,
+  transientOptions
 )<InputRoundedSearchBaseProps>`
   /* Leave space for the right-aligned IconButton. */
   ${({ theme, $hasButton }) =>

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { transparentize } from 'polished'
+import { transientOptions } from '../../../themes'
 
 export const PaginationBase = styled('div', transientOptions)`
   color: ${({ theme }) => theme.colors['grey-300']};

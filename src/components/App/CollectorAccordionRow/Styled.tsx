@@ -14,7 +14,9 @@ export const CollectorRowBase = styled('div', transientOptions)`
   background: ${({ theme }) => theme.colors['grey-900']};
 `
 
-export const CollectorRowContent = styled(Grid)<{ $hasImage?: boolean }>`
+export const CollectorRowContent = styled(Grid, transientOptions)<{
+  $hasImage?: boolean
+}>`
   grid-template-columns: ${({ $hasImage = true }) =>
     $hasImage
       ? '48px auto min-content min-content'
@@ -63,7 +65,7 @@ export const CollectorRowAvatarWrapper = styled(
   }
 `
 
-export const StyledPanel = styled(Panel)<{
+export const StyledPanel = styled(Panel, transientOptions)<{
   $hideBorder?: boolean
 }>`
   padding: ${({ $hideBorder }) =>

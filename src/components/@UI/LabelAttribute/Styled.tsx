@@ -5,6 +5,7 @@ import { fonts, fontWeights, fontSizes } from '../../../themes/UpshotUI/text'
 import sizes from '../../../themes/UpshotUI/sizes'
 import Button from '../Button'
 import Box from '../../Layout/Box'
+import { transientOptions } from '../../../themes'
 
 interface LabelAttributeBaseProps {
   $transparent: boolean
@@ -72,12 +73,15 @@ export const LabelText = styled('div', transientOptions)<LabelTextProps>`
   opacity: ${({ showTooltip }) => (showTooltip ? 0.7 : 1)};
 `
 
-export const ExpandedLabelAttributeTitleText = styled(LabelText)`
+export const ExpandedLabelAttributeTitleText = styled(
+  LabelText,
+  transientOptions
+)`
   font-weight: ${fontWeights.body};
   font-size: ${fontSizes[2]};
 `
 
-export const ExpandedLabelAttributeText = styled(LabelText)`
+export const ExpandedLabelAttributeText = styled(LabelText, transientOptions)`
   font-weight: ${fontWeights.bold};
   font-size: ${fontSizes[3]};
 `
@@ -85,7 +89,7 @@ export const ExpandedLabelAttributeText = styled(LabelText)`
 export const Division = styled('div', transientOptions)`
   display: inline-block;
 `
-export const CloseButton = styled(Button)`
+export const CloseButton = styled(Button, transientOptions)`
   padding: 0;
   padding-right: ${sizes[3] + 'px'};
 
@@ -108,7 +112,10 @@ export const LabelAttributeTooltip = styled('div', transientOptions)`
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.7);
 `
 
-export const LabelAttributeExpandedTextContainer = styled(Box)`
+export const LabelAttributeExpandedTextContainer = styled(
+  Box,
+  transientOptions
+)`
   margin: 11px 0px 10px 5px;
   width: 95%;
 `

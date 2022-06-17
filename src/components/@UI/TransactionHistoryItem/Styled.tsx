@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import transactionHistoryItem from '../../../themes/UpshotUI/transactionHistoryItem'
+import { transientOptions } from '../../../themes'
 
 interface TransactionHistoryItemIconProps {
   $variant: keyof typeof transactionHistoryItem.variant

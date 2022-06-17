@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { transientOptions } from '../../../themes'
 
 interface TimeFilterProps {
   active: boolean

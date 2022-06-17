@@ -1,12 +1,13 @@
 import styled from '@emotion/styled'
 import { SpinnerSize } from './'
 import Box from '../../Layout/Box'
+import { transientOptions } from '../../../themes'
 
 interface StyledSpinnerProps {
   $size: SpinnerSize
 }
 
-export const StyledSpinner = styled(Box)<StyledSpinnerProps>`
+export const StyledSpinner = styled(Box, transientOptions)<StyledSpinnerProps>`
   width: ${({ theme, $size }) => theme.spinners.sizes[$size]}px;
   height: ${({ theme, $size }) => theme.spinners.sizes[$size]}px;
 
@@ -14,7 +15,7 @@ export const StyledSpinner = styled(Box)<StyledSpinnerProps>`
   animation: ${({ theme }) => theme.animations.spin};
 `
 
-export const StyledGradient = styled(Box)`
+export const StyledGradient = styled(Box, transientOptions)`
   width: 100%;
   height: 100%;
   border-radius: ${({ theme }) => theme.radii.circle};
