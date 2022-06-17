@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { darken } from 'polished'
 import Buttons from '../../../themes/UpshotUI/buttons'
 import { Button } from 'theme-ui'
+import { transientOptions } from '../../../themes'
 
 interface PrimaryButtonProps {
   $type: keyof typeof Buttons.variants
