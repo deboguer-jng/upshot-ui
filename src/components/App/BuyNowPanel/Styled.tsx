@@ -8,6 +8,7 @@ import Text from '../../@UI/Text'
 import Flex from '../../Layout/Flex'
 import Box from '../../Layout/Box'
 import colors from '../../../themes/UpshotUI/colors'
+import { transientOptions } from '../../../themes'
 
 interface panelProps {
   $variant: 'wide' | 'popup'

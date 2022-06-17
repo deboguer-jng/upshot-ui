@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import Flex from '../../Layout/Flex'
 import Spinner from '../../@UI/Spinner'
+import { transientOptions } from '../../../themes'
 
 export const CenteredSpinner = styled(Spinner, transientOptions)`
   margin: auto;

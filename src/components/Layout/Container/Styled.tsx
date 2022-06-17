@@ -2,6 +2,7 @@ import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { Flex } from 'theme-ui'
 import { breakpointsNamed, breakpoints } from '../../../themes/UpshotUI/sizes'
+import { transientOptions } from '../../../themes'
 
 interface ContainerBaseProps {
   $maxBkp?: keyof typeof breakpointsNamed
