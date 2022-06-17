@@ -32,9 +32,9 @@ export const CollectionCardItemBase = styled(Panel)<CollectionCardItemProps>`
     opacity: 0.0;
   }`}
 
-
   &:hover {
-    box-shadow: ${({ theme, $hoverUnderglow }) => theme.shadow.underglow($hoverUnderglow)};
+    box-shadow: ${({ theme, $hoverUnderglow }) =>
+      theme.shadow.underglow($hoverUnderglow)};
 
     & > div:first-of-type {
       transform: translateY(-72px);
@@ -70,7 +70,7 @@ export const CollectionCardItemImage = styled(
   pointer-events: none;
   z-index: 1;
   border-radius: ${({ theme }) => theme.radii.md};
-  bottom: 10px
+  bottom: 10px;
 `
 
 export const CollectionCardItemDetails = styled(Flex)`

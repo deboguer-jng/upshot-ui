@@ -1,9 +1,6 @@
 import React, { forwardRef } from 'react'
 import { StyledWrapper } from './Styled'
-import {
-  Radio as ThemeRadio,
-  RadioProps as ThemeRadioProps,
-} from 'theme-ui'
+import { Radio as ThemeRadio, RadioProps as ThemeRadioProps } from 'theme-ui'
 
 export interface RadioProps extends ThemeRadioProps {
   /**
@@ -21,11 +18,7 @@ export interface RadioProps extends ThemeRadioProps {
  */
 const Radio = forwardRef(
   (
-    {
-      error = false,
-      hideRadio = false,
-      ...props
-    }: RadioProps,
+    { error = false, hideRadio = false, ...props }: RadioProps,
     ref: React.ForwardedRef<HTMLInputElement>
   ) => (
     <StyledWrapper $hideRadio={hideRadio}>

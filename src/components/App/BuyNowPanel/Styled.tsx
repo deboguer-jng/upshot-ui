@@ -15,10 +15,14 @@ interface panelProps {
 
 export const StyledPanel = styled(Panel)<panelProps>`
   /* Browser support is limited for blurry backdrop: https://caniuse.com/css-backdrop-filter */
-  ${({ $variant }) => $variant === 'popup' ? 'backdrop-filter: blur(10px);' : '' }
+  ${({ $variant }) =>
+    $variant === 'popup' ? 'backdrop-filter: blur(10px);' : ''}
 
   /* Make background transparent when variant==popup to see the panel behind it */
-  ${({ $variant }) => $variant === 'popup' ? 'background-color: ' + transparentize(0.2, colors['grey-800']) + ';' : '' }
+  ${({ $variant }) =>
+    $variant === 'popup'
+      ? 'background-color: ' + transparentize(0.2, colors['grey-800']) + ';'
+      : ''}
 `
 
 interface buttonProps {
@@ -28,7 +32,7 @@ interface buttonProps {
 export const StyledButton = styled(Button)<buttonProps>`
   float: right;
   margin-top: 8px;
-  ${({ $width }) => $width !== null ? 'width: ' + $width + ';' : '' }
+  ${({ $width }) => ($width !== null ? 'width: ' + $width + ';' : '')}
 `
 
 export const StyledText = styled(Text)`

@@ -17,7 +17,7 @@ const Template: ComponentStory<typeof BuyNowPanel> = (args) => (
       use something else for this panel. <br />
       This is a background. This is a background. <br />
       This is a background. This is a background.
-      </Text>
+    </Text>
     <BuyNowPanel {...args} />
   </>
 )
@@ -41,7 +41,6 @@ WideNeutral.args = {
   marketplaceUrl: 'https://opensea.io/',
 }
 
-
 export const Popup = Template.bind({})
 Popup.args = {
   variant: 'popup',
@@ -51,9 +50,8 @@ Popup.args = {
   listAppraisalPercentage: 20.1,
   marketplaceName: 'OpenSea',
   marketplaceUrl: 'https://opensea.io/',
-  sx: {width: '350px'},
+  sx: { width: '350px' },
 }
-
 
 export const PopupNeutral = Template.bind({})
 PopupNeutral.args = {
@@ -63,10 +61,8 @@ PopupNeutral.args = {
   appraisalPriceETH: 2,
   marketplaceName: 'OpenSea',
   marketplaceUrl: 'https://opensea.io/',
-  sx: {width: '350px'},
+  sx: { width: '350px' },
 }
-
-
 
 export const PopupRed = Template.bind({})
 PopupRed.args = {
@@ -77,7 +73,7 @@ PopupRed.args = {
   listAppraisalPercentage: -2,
   marketplaceName: 'OpenSea',
   marketplaceUrl: 'https://opensea.io/',
-  sx: {width: '350px'},
+  sx: { width: '350px' },
 }
 
 export const NotOpenSea = Template.bind({})

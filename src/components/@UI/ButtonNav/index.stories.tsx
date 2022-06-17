@@ -16,7 +16,9 @@ export default {
 } as ComponentMeta<typeof ButtonNav>
 
 const Template: ComponentStory<typeof ButtonNav> = (args) => (
-  <ButtonNav {...args}><Text>Button</Text></ButtonNav>
+  <ButtonNav {...args}>
+    <Text>Button</Text>
+  </ButtonNav>
 )
 
 const TemplateToggle: ComponentStory<typeof ButtonNav> = (args) => {
@@ -36,26 +38,24 @@ const TemplateToggle: ComponentStory<typeof ButtonNav> = (args) => {
 }
 
 const TemplateMultiToggle: ComponentStory<typeof ButtonNav> = (args) => {
-    const [toggled, setToggled] = useState(0)
-  
-    return (
-      <Flex sx={{ flexDirection: 'row' }}>
-        {['Items','Analytics','Activity'].map(
-            (data, idx) => (
-                <ButtonNav
-                    {...args}
-                    toggled={toggled == idx}
-                    onClick={() => {
-                    setToggled(idx)
-                    }}
-                >
-                <Text>{data}</Text>
-            </ButtonNav>
-          )
-        )}
-      </Flex>
-    )
-  }
+  const [toggled, setToggled] = useState(0)
+
+  return (
+    <Flex sx={{ flexDirection: 'row' }}>
+      {['Items', 'Analytics', 'Activity'].map((data, idx) => (
+        <ButtonNav
+          {...args}
+          toggled={toggled == idx}
+          onClick={() => {
+            setToggled(idx)
+          }}
+        >
+          <Text>{data}</Text>
+        </ButtonNav>
+      ))}
+    </Flex>
+  )
+}
 
 export const Default = Template.bind({})
 Default.args = {

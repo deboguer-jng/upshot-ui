@@ -19,7 +19,14 @@ export interface SwitchDropdownProps extends BoxProps {
 
 const SwitchDropdown = forwardRef(
   (
-    { value, options, onValueChange, onToggle, defaultOpen = false, ...props }: SwitchDropdownProps,
+    {
+      value,
+      options,
+      onValueChange,
+      onToggle,
+      defaultOpen = false,
+      ...props
+    }: SwitchDropdownProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const [open, setOpen] = useState(defaultOpen)
@@ -27,7 +34,6 @@ const SwitchDropdown = forwardRef(
     useEffect(() => {
       setOpen(defaultOpen)
     }, [defaultOpen])
-
 
     const handleClick = (option: string) => {
       setOpen(!open)

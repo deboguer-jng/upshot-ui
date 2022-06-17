@@ -27,7 +27,9 @@ const TooltipTemplate: ComponentStory<typeof LabelAttribute> = (args) => (
   </LabelAttribute>
 )
 
-const ExpandedTooltipTemplate: ComponentStory<typeof LabelAttribute> = (args) => (
+const ExpandedTooltipTemplate: ComponentStory<typeof LabelAttribute> = (
+  args
+) => (
   <LabelAttribute {...args} style={{ marginTop: 100 }}>
     This is a long text This is a long text This is a long text This is a long
     text This is a long text This is a long text This is a long text
@@ -42,8 +44,13 @@ LabelAttributeRegularBlue.args = { transparent: false }
 export const LabelAttributeTooltipRegularBlue = TooltipTemplate.bind({})
 LabelAttributeTooltipRegularBlue.args = { transparent: false }
 
-export const LabelAttributeExpandedTooltipRegularBlue = ExpandedTooltipTemplate.bind({})
-LabelAttributeExpandedTooltipRegularBlue.args = { transparent: false, expanded: true, expandedText: 'Trait Type' }
+export const LabelAttributeExpandedTooltipRegularBlue =
+  ExpandedTooltipTemplate.bind({})
+LabelAttributeExpandedTooltipRegularBlue.args = {
+  transparent: false,
+  expanded: true,
+  expandedText: 'Trait Type',
+}
 
 export const LabelAttributePercentageTransparent = MultiTemplate.bind({})
 LabelAttributePercentageTransparent.args = {
@@ -68,7 +75,9 @@ LabelAttributePercentageBlue.args = {
   transparent: false,
 }
 
-export const LabelAttributeExpandedPercentageTransparent = MultiTemplate.bind({})
+export const LabelAttributeExpandedPercentageTransparent = MultiTemplate.bind(
+  {}
+)
 LabelAttributeExpandedPercentageTransparent.args = {
   first: {
     percentage: 69,
