@@ -16,7 +16,7 @@ export default {
 const Template: ComponentStory<typeof AlertSettingsModal> = (args) => {
 
     return (
-        <AlertSettingsModal {...args}>
+        <AlertSettingsModal status="on" {...args}>
            <Box>
             <Box sx={{marginBottom: '10px'}}>
               <Text variant="h3Primary"> Sam. Collector Alert </Text>

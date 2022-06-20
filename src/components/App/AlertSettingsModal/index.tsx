@@ -8,12 +8,14 @@ import {useEffect, useRef, useState} from 'react';
 import {usePopper} from 'react-popper';
 
 export interface AlertSettingsModalProps{
-     children?: React.ReactNode 
+     children?: React.ReactNode
+     status?: string 
 }
 
  const AlertSettingsModal =  forwardRef( (
     {
-        children
+        children,
+        status
     }: AlertSettingsModalProps
  )  => {
     const { theme } = useTheme()
@@ -65,7 +67,11 @@ export interface AlertSettingsModalProps{
             openRefValue.current = !open;
             setOpen(!open)
           }}>
-          <Icon icon="alertOn"  color="white" size={32} />
+            {status && status === 'on' ? (
+            <Icon icon="alertOn"  color="white" size={32} />
+            ): (
+            <Icon icon="alertOff"  color="white" size={32} />
+            ) }
         </IconButton>
         <div
           ref={popperRef}
