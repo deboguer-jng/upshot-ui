@@ -118,7 +118,6 @@ import SVGYoutubeBlock from '../../../assets/svg/icons/Youtube_BlockColor.svg'
 import SVGYoutube from '../../../assets/svg/icons/Youtube.svg'
 import SVGZoraBlock from '../../../assets/svg/icons/Zora_BlockColor.svg'
 import SVGZora from '../../../assets/svg/icons/Zora.svg'
-import SVGBellAlert from '../../../assets/svg/icons/BellAlert.svg'
 import SVGAlertOn from '../../../assets/svg/icons/AlertOn.svg';
 import SVGAlertOff from '../../../assets/svg/icons/AlertOff.svg';
 
@@ -245,7 +244,6 @@ const icons = {
   youtube: SVGYoutube,
   zoraBlock: SVGZoraBlock,
   zora: SVGZora,
-  bellAlert: SVGBellAlert,
   alertOn: SVGAlertOn,
   alertOff: SVGAlertOff
 }
