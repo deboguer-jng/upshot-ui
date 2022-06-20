@@ -389,3 +389,9 @@ Zora.args = { icon: 'zora', color: 'primary', size: 32 }
 
 export const BellAlert = Template.bind({})
 BellAlert.args = { icon: 'bellAlert', color: 'primary', size: 32 }
+
+export const AlertOn = Template.bind({})
+AlertOn.args = { icon: 'alertOn', color: 'primary', size: 32 }
+
+export const AlertOff = Template.bind({})
+AlertOff.args = { icon: 'alertOff', color: 'primary', size: 32 }
