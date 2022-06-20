@@ -1,7 +1,7 @@
-import styled from '@emotion/styled'
-import Text from '../../@UI/Text';
+import styled from '@emotion/styled';
+import { Flex, Grid } from 'theme-ui';
 import InputRounded from '../../@UI/InputRounded';
-import {Grid, Flex} from 'theme-ui'
+import Text from '../../@UI/Text';
 
 export const InputContainer = styled(Grid)`
   align-items: center;  
