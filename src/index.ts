@@ -32,7 +32,7 @@ export { default as Panel } from './components/@UI/Panel'
 export { default as ProgressBar } from './components/@UI/ProgressBar'
 export { default as RadarChart } from './components/@UI/RadarChart/RadarChartDynamic'
 export { default as Radio } from './components/@UI/Radio'
-export { default as ScatterChart } from './components/@UI/ScatterChart/ScatterChartDynamic'
+export { default as ScatterChart, ChartDataItem } from './components/@UI/ScatterChart'
 export { default as SliderFade } from './components/@UI/Scroll/SliderFade'
 export { default as SliderIcon } from './components/@UI/Scroll/SliderIcon'
 export { default as Skeleton } from './components/@UI/Skeleton'
@@ -126,5 +126,3 @@ export { formatNumber, parseUint256 } from './utils/number'
  * Constants
  */
 export { NUMBER_PREFIX } from './utils/number'
-
-export { ChartDataItem } from './components/@UI/ScatterChart/components/populatedScatterChart'
