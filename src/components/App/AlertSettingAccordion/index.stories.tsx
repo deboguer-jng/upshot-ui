@@ -13,7 +13,7 @@ type AlertSettingAccordionProps = {
   username?: string
   status: boolean
   following: boolean
-  onFollowChange: (value: boolean) => void
+  onFollowChange?: (value: boolean) => void
 }
 const Template = ({
   address,

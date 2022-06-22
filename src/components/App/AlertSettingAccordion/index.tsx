@@ -53,7 +53,7 @@ export interface AlertSettingAccordionProps
 /**
  * Provides a surface for UI elements.
  */
-const CollectorRow = forwardRef(
+const AlertSettingAccordion = forwardRef(
   (
     {
       address,
@@ -183,7 +183,7 @@ const CollectorRow = forwardRef(
                 variant="secondary"
                 onClick={(e) => {
                   e.stopPropagation()
-                  onFollowChange(!following)
+                  if (onFollowChange) onFollowChange(!following)
                 }}
               >
                 {!isMobile && <> Following </>}
@@ -193,7 +193,7 @@ const CollectorRow = forwardRef(
                 variant="secondary"
                 onClick={(e) => {
                   e.stopPropagation()
-                  onFollowChange(!following)
+                  if (onFollowChange) onFollowChange(!following)
                 }}
               >
                 Follow
@@ -223,4 +223,4 @@ const CollectorRow = forwardRef(
   }
 )
 
-export default CollectorRow
+export default AlertSettingAccordion
