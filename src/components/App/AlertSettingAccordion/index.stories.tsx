@@ -12,14 +12,22 @@ type AlertSettingAccordionProps = {
   address?: string
   username?: string
   status: boolean
-  followed: boolean
+  following: boolean
+  onFollowChange: (value: boolean) => void
 }
 const Template = ({
   address,
   username,
   ...args
 }: AlertSettingAccordionProps) => (
-  <AlertSettingAccordion {...args} address={address} displayName={username}>
+  <AlertSettingAccordion
+    {...args}
+    address={address}
+    displayName={username}
+    onFollowChange={(value) => {
+      console.log(value, 'onFollowChange')
+    }}
+  >
     <Box>children</Box>
   </AlertSettingAccordion>
 )
@@ -29,7 +37,7 @@ Default.args = {
   address: '0xd387a6e4e84a6c86bd90c158c6028a58cc8ac459',
   username: 'Pranksy',
   status: true,
-  followed: true,
+  following: true,
 }
 // Landing.args = {
 //   items: [...new Array(5)].map((_) => ({

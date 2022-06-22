@@ -46,7 +46,8 @@ export interface AlertSettingAccordionProps
    */
   linkComponent?: React.FunctionComponent<any>
   status: boolean
-  followed: boolean
+  following: boolean
+  onFollowChange?: (value: boolean) => void
 }
 
 /**
@@ -61,7 +62,8 @@ const CollectorRow = forwardRef(
       defaultOpen = false,
       linkComponent,
       status,
-      followed,
+      following,
+      onFollowChange,
       ...props
     }: AlertSettingAccordionProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -160,22 +162,42 @@ const CollectorRow = forwardRef(
           </Flex>
           <Flex sx={{ alignItems: 'center' }}>
             {status ? (
-              <IconButton>
+              <IconButton onClick={(e) => e.stopPropagation()}>
                 <Icon icon="alertOn" color="white" size={32} />
               </IconButton>
             ) : (
               <IconButton>
-                <Icon icon="alertOff" color="white" size={32} />
+                <Icon
+                  icon="alertOff"
+                  color="white"
+                  size={32}
+                  onClick={(e) => e.stopPropagation()}
+                />
               </IconButton>
             )}
           </Flex>
           <Flex sx={{ alignItems: 'center' }}>
-            {followed ? (
-              <Button icon={<Icon icon="checkmark" />} variant="secondary">
+            {following ? (
+              <Button
+                icon={<Icon icon="checkmark" />}
+                variant="secondary"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onFollowChange(!following)
+                }}
+              >
                 {!isMobile && <> Following </>}
               </Button>
             ) : (
-              <Button variant="secondary">Follow</Button>
+              <Button
+                variant="secondary"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onFollowChange(!following)
+                }}
+              >
+                Follow
+              </Button>
             )}
           </Flex>
 
@@ -189,9 +211,6 @@ const CollectorRow = forwardRef(
         <CollectorRowExpansion $open={open} $contentHeight={expansionHeight}>
           <Box
             sx={{
-              marginX: [0, 46],
-              paddingBottom: '46px !important',
-              columnGap: 6,
               p: 4,
             }}
             ref={expansionContentRef}
