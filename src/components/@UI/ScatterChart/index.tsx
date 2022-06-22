@@ -14,12 +14,15 @@ import { LegendContainer, TimeFilter, TimeFilterContainer } from './Styled';
 import { TooltipContent } from './TooltipContent';
 import Checkbox from '../Checkbox';
 import Threshold from '@visx/legend/lib/legends/Threshold';
+import EmptyChart from '../Chart/components/emptyChart';
 
 export interface ChartProps {
   data: ChartDataItem[]
   name: string
   showControls?: boolean
   margin?: {top: number, bottom: number, left: number, right: number}
+  loading: boolean
+  error: boolean
 }
 
 interface ChartSizeProps {
@@ -52,6 +55,8 @@ const ScatterChartVisx =
   margin = defaultMargin,
   data = [],
   name,
+  loading,
+  error,
   ...props
 }: ChartProps & ChartSizeProps) => {
   const svgRef = useRef<SVGSVGElement>(null);
@@ -182,6 +187,11 @@ const ScatterChartVisx =
     domain: [900],
     range: [theme.colors.blue, theme.colors.pink]
   })
+
+  if (loading || data.length ==0 || error) 
+    return (
+      <EmptyChart {...{loading, error}} />
+    )
 
   return (
     <div>
