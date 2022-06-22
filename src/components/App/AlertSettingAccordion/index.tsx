@@ -1,7 +1,7 @@
 import React, { forwardRef, useState, useEffect, useRef } from 'react'
 import { useTheme } from '@emotion/react'
 import { format, formatDistance } from 'date-fns'
-import Button from '../../@UI/Button';
+import Button from '../../@UI/Button'
 
 import {
   CollectorRowAvatarWrapper,
@@ -34,61 +34,6 @@ export interface AlertSettingAccordionProps
    */
   displayName?: string
   /**
-   * Small subheading text.
-   */
-  subtitle?: string
-  /**
-   * Collection name
-   */
-  collectionName?: string
-  /**
-   * NFT count
-   */
-  count?: number
-  /**
-   * Tracked portfolio appraisal
-   */
-  portfolioValue?: string
-  /**
-   * Average hold time
-   */
-  avgHoldTime?: number
-  /**
-   * First acquisition
-   */
-  firstAcquisition?: number
-  /**
-   * Age of entire collection
-   */
-  ageOfCollection?: number
-  /**
-   * Renders slightly differently for landing page
-   */
-  isLandingPage?: boolean
-  /**
-   * Total NFT value
-   */
-  totalNftValue?: string
-
-  extraCollectionChanged?: (id: number) => void
-
-  /**
-   * NFT collection
-   */
-  nftCollection?: { imageUrl: string; url: string; pixelated?: boolean }[]
-  /**
-   * Other collections
-   */
-  extraCollections?: {
-    id: number
-    name?: string
-    imageUrl: string
-    url: string
-    pixelated: boolean
-    count?: number
-  }[]
-
-  /**
    * Children element
    */
   children?: React.ReactNode
@@ -100,6 +45,8 @@ export interface AlertSettingAccordionProps
    * Link component
    */
   linkComponent?: React.FunctionComponent<any>
+  status: boolean
+  followed: boolean
 }
 
 /**
@@ -110,21 +57,11 @@ const CollectorRow = forwardRef(
     {
       address,
       displayName,
-      subtitle,
-      collectionName,
-      count,
-      portfolioValue,
-      avgHoldTime,
-      firstAcquisition,
-      ageOfCollection,
-      totalNftValue,
-      nftCollection,
-      extraCollections = [],
       children,
-      extraCollectionChanged,
       defaultOpen = false,
-      isLandingPage = false,
       linkComponent,
+      status,
+      followed,
       ...props
     }: AlertSettingAccordionProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -136,14 +73,8 @@ const CollectorRow = forwardRef(
     const [selectedCollection, setSelectedCollection] = useState<
       number | undefined
     >()
-    const [selectedCollectionName, setSelectedCollectionName] =
-      useState(collectionName)
     const breakpointIndex = useBreakpointIndex()
-    const isFirstColumn =
-      !!avgHoldTime ||
-      !!firstAcquisition ||
-      !!ageOfCollection ||
-      !!totalNftValue
+    const isMobile = useBreakpointIndex() <= 1
     const [expansionHeight, setExpansionHeight] = useState(0)
     const [expansionWidth, setExpansionWidth] = useState(0)
     const expansionContentRef = useRef(null)
@@ -164,49 +95,6 @@ const CollectorRow = forwardRef(
     }) => {
       setExtraCollectionPage(selected)
     }
-
-    const collectionTemplateWidth = [
-      20,
-      20,
-      20,
-      14,
-      extraCollections?.length ? 20 : 14,
-      extraCollections?.length ? 20 : 14,
-      extraCollections?.length ? 20 : 14,
-    ]
-
-    const extraCollectionTemplateWidth = [
-      25,
-      25,
-      25,
-      14,
-      extraCollections?.length ? 25 : 14,
-      extraCollections?.length ? 25 : 14,
-      extraCollections?.length ? 25 : 14,
-    ]
-
-    const collectionPageSize = [
-      4,
-      4,
-      8,
-      12,
-      extraCollections?.length ? 16 : 12,
-      extraCollections?.length ? 16 : 12,
-      extraCollections?.length ? 16 : 12,
-    ]
-
-    const extraCollectionPageSize = [
-      4,
-      4,
-      8,
-      12,
-      extraCollections?.length > 8 ? 8 : 4,
-      extraCollections?.length > 8 ? 8 : 4,
-      extraCollections?.length > 8 ? 8 : 4,
-    ]
-
-    const curCollectionPageSize = collectionPageSize[breakpointIndex]
-    const curextraCollectionPageSize = extraCollectionPageSize[breakpointIndex]
 
     return (
       <CollectorRowBase {...{ ref, ...props }}>
@@ -268,32 +156,27 @@ const CollectorRow = forwardRef(
               >
                 {displayName}
               </Link>
-
             </Flex>
-            {!!subtitle && (
-              <Text
-                sx={{
-                  fontWeight: 'heading',
-                  fontSize: 2,
-                  lineHeight: 1,
-                  color: 'primary',
-                }}
-              >
-                {subtitle}
-              </Text>
+          </Flex>
+          <Flex sx={{ alignItems: 'center' }}>
+            {status ? (
+              <IconButton>
+                <Icon icon="alertOn" color="white" size={32} />
+              </IconButton>
+            ) : (
+              <IconButton>
+                <Icon icon="alertOff" color="white" size={32} />
+              </IconButton>
             )}
           </Flex>
-
           <Flex sx={{ alignItems: 'center' }}>
-            <IconButton>
-                <Icon icon="notifications" size={32} />
-            </IconButton>
-            <Button
-                icon={<Icon icon="checkmark" />}
-                variant="secondary"
-                >
-                {' '}Following{' '}
-            </Button>
+            {followed ? (
+              <Button icon={<Icon icon="checkmark" />} variant="secondary">
+                {!isMobile && <> Following </>}
+              </Button>
+            ) : (
+              <Button variant="secondary">Follow</Button>
+            )}
           </Flex>
 
           <Flex sx={{ alignItems: 'center' }}>
@@ -304,13 +187,7 @@ const CollectorRow = forwardRef(
         </CollectorRowContent>
 
         <CollectorRowExpansion $open={open} $contentHeight={expansionHeight}>
-        <Grid
-            columns={
-              expansionWidth < parseInt(theme.breakpointsNamed.sm) ||
-              !extraCollections?.length
-                ? '1fr'
-                : '1fr 1fr'
-            }
+          <Box
             sx={{
               marginX: [0, 46],
               paddingBottom: '46px !important',
@@ -319,10 +196,8 @@ const CollectorRow = forwardRef(
             }}
             ref={expansionContentRef}
           >
-            <Box>
-                   content
-            </Box>
-        </Grid>
+            {children}
+          </Box>
         </CollectorRowExpansion>
       </CollectorRowBase>
     )
