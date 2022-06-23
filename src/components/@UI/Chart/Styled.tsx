@@ -1,41 +1,39 @@
-import styled from '@emotion/styled'
+import styled from "@emotion/styled"
 
-interface FilterButtonProps {
-  active: boolean
-}
-
-interface ChartWrapperProps {
-  $embedded: boolean
-}
-
-export const ChartWrapper = styled.div<ChartWrapperProps>`
-  width: 100%;
-`
-
-export const ChartNoSelectedTextArea = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
+export const NoDataBoard = styled.div`
+  position: relative;
+  font-family: ${({ theme }) => theme.fonts.body};
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
   width: 100%;
   height: 100%;
-
-  p,
-  h1 {
-    color: white;
-    margin: 0;
-    font-family: ${({ theme }) => theme.fonts.body};
-  }
-
   p {
-    font-size: 14px;
+    color: ${({ theme }) => theme.colors.text};
+    margin: 0;
   }
-
   h1 {
+    color: ${({ theme }) => theme.colors.text};
+    margin: 0;
     font-size: 35px;
+    line-height: 42px;
+  }
+`
+export const ReactChartWrapper = styled.div<{ $isEmpty?: boolean }>`
+  width: 100%;
+  padding-top: ${({ $isEmpty }) => ($isEmpty ? 'calc(25% + 160px)' : '25%')};
+  position: relative;
+  & > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    & > div:first-of-type {
+      min-height: unset !important;
+    }
   }
 `
 
@@ -50,98 +48,40 @@ export const ChartLoadingBoard = styled.div`
   justify-content: center;
 `
 
-export const NoDataBoard = styled.div`
-  position: relative;
-  font-family: ${({ theme }) => theme.fonts.body};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-  width: 100%;
-  height: 100%;
-
-  p {
-    color: ${({ theme }) => theme.colors.text};
-    margin: 0;
-  }
-
-  h1 {
-    color: ${({ theme }) => theme.colors.text};
-    margin: 0;
-    font-size: 35px;
-    line-height: 42px;
-  }
+export const TooltipStyled = styled.div`  
+  background: transparent!important;
+  border: none!important;
+  box-shadow: none!important;
+  overflow: visible;
 `
 
-export const Tooltip = styled.div`
+export const AxisTooltip = styled.div`
   background: black;
-  padding: 0.5rem 1rem;
+  color: ${({ theme }) => theme.rawColors.text};
+  border-radius: ${({ theme }) => theme.radii.pill};
+  font-size: ${({ theme }) => theme.fontSizes[0]};
+`
+
+export const TooltipContainer = styled.div`
+  position: relative;
+  background: black;
   border-radius: 1rem;
-  color: white;
+  padding: 0.1rem 1rem;
+  overflow: visible;
+  font-family: ${({ theme }) => theme.fonts.body};
 `
-
-export const FilterWrapper = styled.div`
-  display: flex;
-  margin-left: 50px;
-  justify-content: space-between;
+export const TooltipThingIdk = styled.div`
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-45deg);
+  width: 10px;
+  height: 10px;
+  background: black;
 `
-
-export const FilterButton = styled.button<FilterButtonProps>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  color: theme.colors.black;
-  font-size: 14px;
-  height: 18px;
-  width: 50px;
-  background: theme.colors.primary;
-  outline: none;
-  border-radius: 9px;
-`
-
 export const CustomLegendWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-top: 3rem;
   flex-wrap: wrap;
-`
-
-export const ReactChartWrapper = styled.div<{ $isEmpty?: boolean }>`
-  width: 100%;
-  padding-top: ${({ $isEmpty }) => ($isEmpty ? 'calc(25% + 160px)' : '25%')};
-  position: relative;
-
-  & > div {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    & > div:first-of-type {
-      min-height: unset !important;
-    }
-  }
-`
-
-export const ReactApexChartWrapper = styled.div<{ isFullWidth?: boolean }>`
-  width: ${({ isFullWidth }) => (isFullWidth ? '100vw' : '100%')};
-  padding-top: 25%;
-  margin-left: ${({ isFullWidth }) => (isFullWidth ? '-16px' : 0)};
-  margin-right: ${({ isFullWidth }) => (isFullWidth ? '-16px' : 0)};
-  position: relative;
-
-  & > div {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-
-  & .apexcharts-xcrosshairs.apexcharts-active {
-    display: none;
-  }
 `
