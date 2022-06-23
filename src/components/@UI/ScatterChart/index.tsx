@@ -190,7 +190,7 @@ const ScatterChartVisx =
 
   if (loading || data.length ==0 || error) 
     return (
-      <EmptyChart {...{loading, error}} />
+      <EmptyChart {...{loading, error, height, width, data}} />
     )
 
   return (

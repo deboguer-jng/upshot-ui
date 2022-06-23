@@ -1,4 +1,28 @@
-import styled from "@emotion/styled"
+import styled from '@emotion/styled'
+
+export const ChartNoSelectedTextArea = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  width: 100%;
+  height: 100%;
+  p,
+  h1 {
+    color: white;
+    margin: 0;
+    font-family: ${({ theme }) => theme.fonts.body};
+  }
+  p {
+    font-size: 14px;
+  }
+  h1 {
+    font-size: 35px;
+  }
+`
 
 export const NoDataBoard = styled.div`
   position: relative;
@@ -21,8 +45,14 @@ export const NoDataBoard = styled.div`
     line-height: 42px;
   }
 `
-export const ReactChartWrapper = styled.div<{ $isEmpty?: boolean }>`
-  width: 100%;
+
+export const ReactChartWrapper = styled.div<{
+  $isEmpty?: boolean
+  isFullWidth?: boolean
+}>`
+  width: ${({ isFullWidth }) => (isFullWidth ? '100vw' : '100%')};
+  margin-left: ${({ isFullWidth }) => (isFullWidth ? '-16px' : 0)};
+  margin-right: ${({ isFullWidth }) => (isFullWidth ? '-16px' : 0)};
   padding-top: ${({ $isEmpty }) => ($isEmpty ? 'calc(25% + 160px)' : '25%')};
   position: relative;
   & > div {
@@ -48,10 +78,10 @@ export const ChartLoadingBoard = styled.div`
   justify-content: center;
 `
 
-export const TooltipStyled = styled.div`  
-  background: transparent!important;
-  border: none!important;
-  box-shadow: none!important;
+export const TooltipStyled = styled.div`
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
   overflow: visible;
 `
 
@@ -70,6 +100,7 @@ export const TooltipContainer = styled.div`
   overflow: visible;
   font-family: ${({ theme }) => theme.fonts.body};
 `
+
 export const TooltipThingIdk = styled.div`
   position: absolute;
   bottom: -6px;
@@ -79,6 +110,7 @@ export const TooltipThingIdk = styled.div`
   height: 10px;
   background: black;
 `
+
 export const CustomLegendWrapper = styled.div`
   display: flex;
   align-items: center;
