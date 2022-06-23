@@ -20,6 +20,7 @@ import { Box, Flex } from 'theme-ui';
 import ButtonChartCollection from '../ButtonChartCollection';
 import { truncateString } from '../../../utils/string';
 import EmptyChart from './components/emptyChart';
+import { formatNumber } from '../../../utils/number';
 
 interface DataPoint {
   x: number
@@ -64,7 +65,7 @@ export interface ChartProps {
   /**
    * Data series as an array of numbers or a list of (timestamp, value) tuples.
    */
-  data: DataItem[]
+  data?: DataItem[]
   /**
    * Link component
    */
@@ -139,6 +140,8 @@ const Chart = forwardRef(
     const getRawColor = (seriesName: string) => theme.rawColors[seriesColors[seriesName]]
 
     const tickFormatTime = (n: number) => format(Number(n), 'MM/dd/yy')
+    const tickFormatPrice = (n: number) => formatNumber(Number(n), { kmbUnits: true, prefix: 'ETHER' })
+
     const handlePointerMove = ({ datum, key }: EventHandlerParams<DataPoint>) => {
       setActiveSeriesKey(key)
       setActiveDataPoint(datum)
@@ -253,7 +256,7 @@ const Chart = forwardRef(
           <>
             <Axis
               key='time-axis'
-              orientation="bottom"
+              orientation='bottom'
               hideAxisLine={true}
               tickFormat={tickFormatTime}
               tickLength={0}
@@ -263,20 +266,23 @@ const Chart = forwardRef(
                 textAnchor: "middle",
                 verticalAnchor: "middle"
               })}
+              tickStroke='none'
             />
             <Axis
               key='price-axis'
-              orientation="left"
+              orientation='left'
+              left={50}
               hideAxisLine={true}
               numTicks={4}
               tickLength={0}
-              tickFormat={(n: number) => `Ξ${n}`}
+              tickFormat={tickFormatPrice}
               tickLabelProps={() => ({
                 fill: theme.colors.white,
                 fontSize: 14,
                 textAnchor: "end",
                 verticalAnchor: "middle",
               })}
+              tickStroke='none'
               />
             {data
               .filter((set) => filterStatus[set.name])
@@ -284,16 +290,17 @@ const Chart = forwardRef(
                 <>
                   {d.name}
                   <LinearGradient id={`area-gradient${i}`} key={`grad-${i}`}>
-                    <stop stopOpacity="0.65" stopColor={getRawColor(d.name)} offset="0"></stop>
-                    <stop stopOpacity="0.3" stopColor="transparent" offset="0.9"></stop>
-                    <stop stopOpacity="0.3" stopColor="transparent" offset="1"></stop>
+                    <stop stopOpacity="0.5" stopColor={getRawColor(d.name)} offset="0"></stop>
+                    <stop stopOpacity="0.3" stopColor={getRawColor(d.name)} offset="0.2"></stop>
+                    <stop stopOpacity="0.1" stopColor={getRawColor(d.name)} offset="0.5"></stop>
+                    <stop stopOpacity="0" stopColor={getRawColor(d.name)} offset="0.9"></stop>
                   </LinearGradient>
                   <AnimatedAreaSeries
                     key={`series-${d.name}`}
                     dataKey={d.name}
                     data={d.data}
-                    xAccessor={d => d.x}
-                    yAccessor={d => d.y}
+                    xAccessor={d => d?.x}
+                    yAccessor={d => d?.y}
                     fill={`url(#area-gradient${i})`}
                     curve={curveCardinal}
                     lineProps={{ stroke: getRawColor(d.name) }}

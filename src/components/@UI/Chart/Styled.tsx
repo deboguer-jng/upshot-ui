@@ -114,6 +114,6 @@ export const TooltipThingIdk = styled.div`
 export const CustomLegendWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 3rem;
+  margin-top: 1rem;
   flex-wrap: wrap;
 `
