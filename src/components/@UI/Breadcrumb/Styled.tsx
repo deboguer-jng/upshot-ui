@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
+import { transientOptions } from '../../../themes/'
 
-export const BreadcrumbWrapper = styled.div`
+export const BreadcrumbWrapper = styled('div', transientOptions)`
   display: flex;
   align-items: center;
   width: fit-content;

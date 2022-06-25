@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import Panel from '../../@UI/Panel'
 import colors from '../../../themes/UpshotUI/colors'
 import { Box, Flex } from 'theme-ui'
+import { transientOptions } from '../../../themes'
 
 type CollectionCardItemImageProps = {
   $isPixelated: boolean
@@ -13,7 +14,10 @@ type CollectionCardItemProps = {
   $hoverUnderglow: keyof typeof colors
 }
 
-export const CollectionCardItemBase = styled(Panel)<CollectionCardItemProps>`
+export const CollectionCardItemBase = styled(
+  Panel,
+  transientOptions
+)<CollectionCardItemProps>`
   display: flex;
   position: relative;
   min-height: 260px;
@@ -32,9 +36,9 @@ export const CollectionCardItemBase = styled(Panel)<CollectionCardItemProps>`
     opacity: 0.0;
   }`}
 
-
   &:hover {
-    box-shadow: ${({ theme, $hoverUnderglow }) => theme.shadow.underglow($hoverUnderglow)};
+    box-shadow: ${({ theme, $hoverUnderglow }) =>
+      theme.shadow.underglow($hoverUnderglow)};
 
     & > div:first-of-type {
       transform: translateY(-72px);
@@ -55,7 +59,8 @@ export const CollectionCardItemBase = styled(Panel)<CollectionCardItemProps>`
 `
 
 export const CollectionCardItemImage = styled(
-  Box
+  Box,
+  transientOptions
 )<CollectionCardItemImageProps>`
   position: absolute;
   height: 100%;
@@ -70,10 +75,10 @@ export const CollectionCardItemImage = styled(
   pointer-events: none;
   z-index: 1;
   border-radius: ${({ theme }) => theme.radii.md};
-  bottom: 10px
+  bottom: 10px;
 `
 
-export const CollectionCardItemDetails = styled(Flex)`
+export const CollectionCardItemDetails = styled(Flex, transientOptions)`
   position: absolute;
   bottom: 0;
   z-index: 1;

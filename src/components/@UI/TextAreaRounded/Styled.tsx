@@ -1,12 +1,13 @@
 import styled from '@emotion/styled'
 import { Flex, Textarea } from 'theme-ui'
 import theme from '../../../themes/UpshotUI'
+import { transientOptions } from '../../../themes'
 
-export const TextareaContainer = styled(Flex)`
+export const TextareaContainer = styled(Flex, transientOptions)`
   padding: ${({ theme }) => theme.sizes[2]}px;
 `
 
-export const WrappedTextarea = styled(Textarea)`
+export const WrappedTextarea = styled(Textarea, transientOptions)`
   width: 100% !important;
   resize: none;
   overflow: hidden;
@@ -28,7 +29,7 @@ export const WrappedTextarea = styled(Textarea)`
   }
 `
 
-export const TextareaOverlay = styled(Flex)`
+export const TextareaOverlay = styled(Flex, transientOptions)`
   width: 100px;
   flex-direction: column;
   text-align: right;

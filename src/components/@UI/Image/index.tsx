@@ -21,7 +21,7 @@ export interface ImageProps extends ImageUIProps {
    */
   aspectRatio?: string
 }
-  
+
 /**
  * Image component based on theme-ui Image.
  * If image src is a cloudinary url, it will be transformed
@@ -40,10 +40,8 @@ const Image = forwardRef(
     }: ImageProps,
     ref: React.ForwardedRef<HTMLImageElement>
   ) => {
-    const optimizedSrc = imageOptimizer(src, {width, height, aspectRatio})
-    return (
-      <ImageUI src={optimizedSrc ?? src} ref={ref} {...props} />
-    )
+    const optimizedSrc = imageOptimizer(src, { width, height, aspectRatio })
+    return <ImageUI src={optimizedSrc ?? src} ref={ref} {...props} />
   }
 )
 

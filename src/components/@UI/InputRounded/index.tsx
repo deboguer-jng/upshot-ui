@@ -1,7 +1,12 @@
 import React, { forwardRef } from 'react'
 import { InputProps, Text, Flex } from 'theme-ui'
 import { getSize } from '../../../themes/UpshotUI/sizes'
-import { SuffixText, PrefixText, WrappedInput, WrappedInputContainer } from './Styled'
+import {
+  SuffixText,
+  PrefixText,
+  WrappedInput,
+  WrappedInputContainer,
+} from './Styled'
 
 export interface InputRoundedProps extends InputProps {
   /**
@@ -23,25 +28,37 @@ export interface InputRoundedProps extends InputProps {
  */
 export const InputRounded = forwardRef(
   (
-    { dark = false, suffix, prefix, disabled = false, ...props }: InputRoundedProps,
+    {
+      dark = false,
+      suffix,
+      prefix,
+      disabled = false,
+      ...props
+    }: InputRoundedProps,
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
     const variant = `forms.inputs.rounded${dark ? 'Dark' : ''}`
-         
+
     if (prefix?.length || suffix?.length)
       return (
         <WrappedInputContainer $dark={dark}>
-          {prefix?.length &&
-            <PrefixText $disabled={disabled}>{prefix}</PrefixText>  
-          }
-          <WrappedInput {...{ variant, $suffix: suffix, ref, disabled, ...props }} />
-          {suffix?.length && 
+          {prefix?.length && (
+            <PrefixText $disabled={disabled}>{prefix}</PrefixText>
+          )}
+          <WrappedInput
+            {...{ variant, $suffix: suffix, ref, disabled, ...props }}
+          />
+          {suffix?.length && (
             <SuffixText $disabled={disabled}>{suffix}</SuffixText>
-          }
+          )}
         </WrappedInputContainer>
       )
     else
-      return <WrappedInput {...{ variant, $suffix: suffix, ref, disabled, ...props }} />
+      return (
+        <WrappedInput
+          {...{ variant, $suffix: suffix, ref, disabled, ...props }}
+        />
+      )
   }
 )
 
