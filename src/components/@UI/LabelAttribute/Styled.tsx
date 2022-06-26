@@ -5,6 +5,7 @@ import { fonts, fontWeights, fontSizes } from '../../../themes/UpshotUI/text'
 import sizes from '../../../themes/UpshotUI/sizes'
 import Button from '../Button'
 import Box from '../../Layout/Box'
+import { transientOptions } from '../../../themes'
 
 interface LabelAttributeBaseProps {
   $transparent: boolean
@@ -16,8 +17,12 @@ interface LabelTextProps {
   showTooltip: boolean
 }
 
-export const LabelAttributeBase = styled.div<LabelAttributeBaseProps>`
-  border-radius: ${({ theme, expanded }) => expanded ? theme.radii.lg : theme.radii.pill};
+export const LabelAttributeBase = styled(
+  'div',
+  transientOptions
+)<LabelAttributeBaseProps>`
+  border-radius: ${({ theme, expanded }) =>
+    expanded ? theme.radii.lg : theme.radii.pill};
   color: ${colors.blue};
   border-color: ${colors.blue};
   border: 2px solid;
@@ -49,7 +54,7 @@ export const LabelAttributeBase = styled.div<LabelAttributeBaseProps>`
   }
 `
 
-export const RightAlignBlock = styled.div`
+export const RightAlignBlock = styled('div', transientOptions)`
   display: flex;
   float: right;
   width: 90px;
@@ -57,7 +62,7 @@ export const RightAlignBlock = styled.div`
   padding-right: ${sizes[3] + 'px'};
 `
 
-export const LabelText = styled.div<LabelTextProps>`
+export const LabelText = styled('div', transientOptions)<LabelTextProps>`
   padding-left: ${sizes[3] + 'px'};
   text-overflow: ellipsis;
   width: 75%;
@@ -68,20 +73,23 @@ export const LabelText = styled.div<LabelTextProps>`
   opacity: ${({ showTooltip }) => (showTooltip ? 0.7 : 1)};
 `
 
-export const ExpandedLabelAttributeTitleText = styled(LabelText)`
+export const ExpandedLabelAttributeTitleText = styled(
+  LabelText,
+  transientOptions
+)`
   font-weight: ${fontWeights.body};
   font-size: ${fontSizes[2]};
 `
 
-export const ExpandedLabelAttributeText = styled(LabelText)`
+export const ExpandedLabelAttributeText = styled(LabelText, transientOptions)`
   font-weight: ${fontWeights.bold};
   font-size: ${fontSizes[3]};
 `
 
-export const Division = styled.div`
+export const Division = styled('div', transientOptions)`
   display: inline-block;
 `
-export const CloseButton = styled(Button)`
+export const CloseButton = styled(Button, transientOptions)`
   padding: 0;
   padding-right: ${sizes[3] + 'px'};
 
@@ -92,7 +100,7 @@ export const CloseButton = styled(Button)`
   }
 `
 
-export const LabelAttributeTooltip = styled.div`
+export const LabelAttributeTooltip = styled('div', transientOptions)`
   position: absolute;
   top: 0;
   right: 0;
@@ -104,7 +112,10 @@ export const LabelAttributeTooltip = styled.div`
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.7);
 `
 
-export const LabelAttributeExpandedTextContainer = styled(Box)`
+export const LabelAttributeExpandedTextContainer = styled(
+  Box,
+  transientOptions
+)`
   margin: 11px 0px 10px 5px;
   width: 95%;
 `

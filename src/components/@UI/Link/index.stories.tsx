@@ -9,12 +9,14 @@ export default {
 } as ComponentMeta<typeof Link>
 
 const Template: ComponentStory<typeof Link> = (args) => (
-  <Link href="https://cryptopunks.net" variant="default" {...args}>Link</Link>
+  <Link href="https://cryptopunks.net" variant="default" {...args}>
+    Link
+  </Link>
 )
 
 export const Default = Template.bind({})
 
 export const NoHover = Template.bind({})
 NoHover.args = {
-  noHover: true
+  noHover: true,
 }

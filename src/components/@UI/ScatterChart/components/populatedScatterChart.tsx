@@ -10,11 +10,11 @@ import colors from '../../../../themes/UpshotUI/colors'
 import { useBreakpointIndex } from '../../../..'
 
 export type ChartDataItem = {
-  x: number,
-  y: number,
-  id: string,
-  address: string | null,
-  gmi?: number,
+  x: number
+  y: number
+  id: string
+  address: string | null
+  gmi?: number
   ens?: string
 }
 type ChartData = {
@@ -52,14 +52,24 @@ const PopulatedScatterChart = ({ chartData }: PopulatedScatterChartProps) => {
   }
   const markerColors = [theme.rawColors.blue, theme.rawColors.pink]
 
-  let highGMISeries: ChartData = { collection: chartData[0].name, name: 'gmi > 900', data: [], labelColor: 'pink' };
-  let lowGMISeries: ChartData = { collection: chartData[0].name, name: 'gmi < 900', data: [], labelColor: 'blue' };
+  let highGMISeries: ChartData = {
+    collection: chartData[0].name,
+    name: 'gmi > 900',
+    data: [],
+    labelColor: 'pink',
+  }
+  let lowGMISeries: ChartData = {
+    collection: chartData[0].name,
+    name: 'gmi < 900',
+    data: [],
+    labelColor: 'blue',
+  }
 
   let min = chartData[0].data[0].x
   chartData[0].data.forEach((info: any) => {
     if (min > info.x) min = info.x
 
-    if(info.gmi > 900) highGMISeries.data.push(info);
+    if (info.gmi > 900) highGMISeries.data.push(info)
     else lowGMISeries.data.push(info)
   })
 

@@ -42,7 +42,8 @@ ErrorSearch.args = {
 
 export const Default = Template1.bind({})
 Default.args = {
-  image: 'http://res.cloudinary.com/upshot-inc/image/upload/v1631374250/ycyzvzym0fagfd8z3b9l.png',
+  image:
+    'http://res.cloudinary.com/upshot-inc/image/upload/v1631374250/ycyzvzym0fagfd8z3b9l.png',
   name: 'nft name',
   price: '$69',
   date: '08/25/2021',
@@ -53,7 +54,8 @@ Default.args = {
 
 export const DefaultRecommends = Template1.bind({})
 DefaultRecommends.args = {
-  image: 'http://res.cloudinary.com/upshot-inc/image/upload/v1631374250/ycyzvzym0fagfd8z3b9l.png',
+  image:
+    'http://res.cloudinary.com/upshot-inc/image/upload/v1631374250/ycyzvzym0fagfd8z3b9l.png',
   name: 'nft name',
   price: '$69',
   type: 'recommend',

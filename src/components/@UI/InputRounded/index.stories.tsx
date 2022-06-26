@@ -22,10 +22,20 @@ export const WithSuffix = Template.bind({})
 WithSuffix.args = { placeholder: '100', suffix: '%', sx: { width: 300 } }
 
 export const WithSuffixDisabled = Template.bind({})
-WithSuffixDisabled.args = { placeholder: '100', suffix: '%', disabled: true, sx: { width: 300 } }
+WithSuffixDisabled.args = {
+  placeholder: '100',
+  suffix: '%',
+  disabled: true,
+  sx: { width: 300 },
+}
 
 export const WithPrefix = Template.bind({})
 WithPrefix.args = { placeholder: '100', prefix: '$', sx: { width: 300 } }
 
 export const WithPrefixAndSuffix = Template.bind({})
-WithPrefixAndSuffix.args = { placeholder: '100', prefix: '+/-', suffix: '%', sx: { width: 300 } }
+WithPrefixAndSuffix.args = {
+  placeholder: '100',
+  prefix: '+/-',
+  suffix: '%',
+  sx: { width: 300 },
+}

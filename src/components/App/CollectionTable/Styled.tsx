@@ -1,7 +1,8 @@
 import styled from '@emotion/styled'
 import Table from '../../Layout/Table'
+import { transientOptions } from '../../../themes'
 
-export const CollectionTableBase = styled(Table)`
+export const CollectionTableBase = styled(Table, transientOptions)`
   /* Constrain cells to 1 line of content. */
   & td {
     padding: ${({ theme }) =>
