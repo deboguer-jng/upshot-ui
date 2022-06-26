@@ -1,38 +1,25 @@
-import React, { forwardRef, useState, useEffect, useRef } from 'react'
 import { useTheme } from '@emotion/react'
-import { format, formatDistance } from 'date-fns'
+import React, { forwardRef, useEffect, useRef, useState } from 'react'
 import Button from '../../@UI/Button'
 
+import { Box, Flex } from 'theme-ui'
+import { useBreakpointIndex } from '../../..'
+import Avatar from '../../@UI/Avatar'
+import Icon from '../../@UI/Icon'
+import IconButton from '../../@UI/IconButton'
+import Link from '../../@UI/Link'
 import {
-  CollectorRowAvatarWrapper,
   CollectorRowBase,
   CollectorRowContent,
   CollectorRowExpansion,
-  StyledPanel,
 } from './Styled'
-import { Grid, Flex, Text, Box } from 'theme-ui'
-import Avatar from '../../@UI/Avatar'
-import Icon from '../../@UI/Icon'
-import Label from '../../@UI/Label'
-import Link from '../../@UI/Link'
-import makeBlockie from 'ethereum-blockies-base64'
-import { Pagination } from '../../..'
-import IconButton from '../../@UI/IconButton'
-import { useBreakpointIndex } from '../../..'
-import { imageOptimizer } from '../../../utils/imageOptimizer'
-import { formatNumber } from '../../../utils/number'
-import Tooltip from '../../@UI/Tooltip'
 
 export interface AlertSettingAccordionProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /**
-   * Collector's address
+   * display name of collection | collector | NFT
    */
-  address?: string
-  /**
-   * Collector's username or address to display
-   */
-  displayName?: string
+  name?: string
   /**
    * Children element
    */
@@ -44,9 +31,10 @@ export interface AlertSettingAccordionProps
   /**
    * Link component
    */
-  linkComponent?: React.FunctionComponent<any>
-  status: boolean
+
   following: boolean
+  imageSrc?: string
+  link: string
   onFollowChange?: (value: boolean) => void
 }
 
@@ -56,13 +44,12 @@ export interface AlertSettingAccordionProps
 const AlertSettingAccordion = forwardRef(
   (
     {
-      address,
-      displayName,
+      name,
       children,
       defaultOpen = false,
-      linkComponent,
-      status,
       following,
+      imageSrc,
+      link,
       onFollowChange,
       ...props
     }: AlertSettingAccordionProps,
@@ -70,11 +57,7 @@ const AlertSettingAccordion = forwardRef(
   ) => {
     const theme = useTheme()
     const [open, setOpen] = useState(defaultOpen)
-    const [page, setPage] = useState(0)
-    const [extraCollectionPage, setExtraCollectionPage] = useState(0)
-    const [selectedCollection, setSelectedCollection] = useState<
-      number | undefined
-    >()
+
     const breakpointIndex = useBreakpointIndex()
     const isMobile = useBreakpointIndex() <= 1
     const [expansionHeight, setExpansionHeight] = useState(0)
@@ -85,18 +68,6 @@ const AlertSettingAccordion = forwardRef(
       setExpansionHeight(expansionContentRef.current.clientHeight)
       setExpansionWidth(expansionContentRef.current.clientWidth)
     })
-
-    const handlePageChange = ({ selected }: { selected: number }) => {
-      setPage(selected)
-    }
-
-    const handleExtrCollectionPageChange = ({
-      selected,
-    }: {
-      selected: number
-    }) => {
-      setExtraCollectionPage(selected)
-    }
 
     return (
       <CollectorRowBase {...{ ref, ...props }}>
@@ -118,10 +89,9 @@ const AlertSettingAccordion = forwardRef(
                 border: '2px solid black',
               },
             }}
-            href={`/analytics/user/${address}`}
-            component={linkComponent}
+            href={link}
           >
-            <Avatar size="md" src={makeBlockie(address)} />
+            <Avatar size="md" src={imageSrc} />
             <Icon
               icon="arrowStylizedRight"
               color="primary"
@@ -153,28 +123,19 @@ const AlertSettingAccordion = forwardRef(
                   color: 'inherit',
                   mr: 1,
                 }}
-                href={`/analytics/user/${address}`}
-                component={linkComponent}
+                href={link}
+                onClick={(e) => e.stopPropagation()}
               >
-                {displayName}
+                {name}
               </Link>
             </Flex>
           </Flex>
           <Flex sx={{ alignItems: 'center' }}>
-            {status ? (
+            <Link href={link}>
               <IconButton onClick={(e) => e.stopPropagation()}>
                 <Icon icon="alertOn" color="white" size={32} />
               </IconButton>
-            ) : (
-              <IconButton>
-                <Icon
-                  icon="alertOff"
-                  color="white"
-                  size={32}
-                  onClick={(e) => e.stopPropagation()}
-                />
-              </IconButton>
-            )}
+            </Link>
           </Flex>
           <Flex sx={{ alignItems: 'center' }}>
             {following ? (

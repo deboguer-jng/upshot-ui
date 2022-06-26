@@ -68,7 +68,14 @@ export { default as Investors } from './components/App/Investors'
 export { default as LandingPanel } from './components/App/LandingPanels'
 export { default as Navbar } from './components/App/Navbar'
 export { default as BuyNowPanel } from './components/App/BuyNowPanel'
-export { SettingsPanel, SettingsMenuItem, SettingsPanelProps } from './components/App/SettingsPanel'
+export { default as AlertSettingsModal } from './components/App/AlertSettingsModal'
+export { default as AlertSettingAccordion } from './components/App/AlertSettingAccordion'
+
+export {
+  SettingsPanel,
+  SettingsMenuItem,
+  SettingsPanelProps,
+} from './components/App/SettingsPanel'
 export { default as NFTCard } from './components/App/NFTCard'
 
 /**
