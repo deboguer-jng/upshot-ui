@@ -68,12 +68,9 @@ export { default as Investors } from './components/App/Investors'
 export { default as LandingPanel } from './components/App/LandingPanels'
 export { default as Navbar } from './components/App/Navbar'
 export { default as BuyNowPanel } from './components/App/BuyNowPanel'
-<<<<<<< HEAD
 export { default as AlertSettingsModal } from './components/App/AlertSettingsModal'
 export { default as AlertSettingAccordion } from './components/App/AlertSettingAccordion'
 
-=======
->>>>>>> fa47be3cd06e63e30ce854d895fdd0e47046c02e
 export {
   SettingsPanel,
   SettingsMenuItem,
