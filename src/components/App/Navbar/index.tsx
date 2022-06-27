@@ -32,6 +32,7 @@ import { shortenAddress } from '../../../utils/address'
 import zIndex from '../../../themes/UpshotUI/zIndex'
 import Modal from '../../@UI/Modal'
 import { Text, Flex, BoxProps } from 'theme-ui'
+import { exampleNotifs } from '../Notification/index.stories'
 
 export interface NavbarInterface extends BoxProps {
   /**
@@ -501,7 +502,7 @@ const Navbar = forwardRef(
           }}
           {...notificationPopper.attributes.popper}
         >
-          <NotifPopper />
+          <NotifPopper notifs={exampleNotifs} />
         </div>
       </Container>
     )

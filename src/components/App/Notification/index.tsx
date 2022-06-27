@@ -66,15 +66,15 @@ export const NotifRow = forwardRef(
     <Link href={url} noHover target="_blank" component={linkComponent} {...{ ref, ...props }}>
       <StyledFlex>
         <CenterFlex>
-          <RoundImage src={`/img/sample_nft_1.jpg`} />
+          <RoundImage src={image} width={52} />
         </CenterFlex>
 
         <CenterFlex sx={{ flexGrow: '1' }}>
           <EllipsisText variant="xLarge">
-            Azuki
+            {title}
           </EllipsisText>
           <EllipsisText color="grey-500">
-            Collection appraisal has been updated
+            {description}
           </EllipsisText>
         </CenterFlex>
         
@@ -84,13 +84,13 @@ export const NotifRow = forwardRef(
             variant="currency"
             sx={{ lineHeight: '1rem' }}
           >
-            420.69
+            {price.toString()}
           </Label>
           <Text color="blue" sx={{ lineHeight: '1rem' }}>
-            +6.9%
+            {percentage}%
           </Text>
           <Text color="grey-700" variant="small" sx={{ lineHeight: '1rem' }}>
-            69 min ago
+            {time}
           </Text>
         </CenterFlex>
 
