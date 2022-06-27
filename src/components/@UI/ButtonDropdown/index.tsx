@@ -74,7 +74,10 @@ const ButtonDropdown = forwardRef(
             isMulti={isMulti}
             onClick={() => !disabled && setOpen(!open)}
           >
-            <span> {label ? label + ':' : isMulti ? 'Filter By' : 'Category:'} </span>
+            <span>
+              {' '}
+              {label ? label + ':' : isMulti ? 'Filter By' : 'Category:'}{' '}
+            </span>
             {isMulti ? (
               <DropdownMultiSelected disabled={disabled}>
                 <Icon icon="filter" />
@@ -106,7 +109,12 @@ const ButtonDropdown = forwardRef(
                     {isMulti ? (
                       <Checkbox readOnly checked={value.includes(option)} />
                     ) : (
-                      <Radio hideRadio={hideRadio} readOnly name={name} checked={option === value} />
+                      <Radio
+                        hideRadio={hideRadio}
+                        readOnly
+                        name={name}
+                        checked={option === value}
+                      />
                     )}
                     {option}
                   </DropdownMenuItem>

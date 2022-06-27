@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { Box } from 'theme-ui'
+import { transientOptions } from '../../../themes'
 
 import colors from '../../../themes/UpshotUI/colors'
 import { radii } from '../../../themes/UpshotUI/sizes'
@@ -11,7 +12,7 @@ interface PanelBaseProps {
   $radii: keyof typeof radii
 }
 
-export const PanelBase = styled(Box)<PanelBaseProps>`
+export const PanelBase = styled(Box, transientOptions)<PanelBaseProps>`
   padding: ${({ $isMobile }) => ($isMobile ? '24px' : '30px')};
   background-color: ${({ theme, $backgroundColor }) =>
     theme.colors[$backgroundColor]};

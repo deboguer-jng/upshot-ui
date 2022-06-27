@@ -1,7 +1,7 @@
 import sizes from './sizes'
 import colors from './colors'
 import { radii } from './sizes'
-import css from '@emotion/css'
+import { css } from '@emotion/react'
 
 const scroll = {
   thin: css`

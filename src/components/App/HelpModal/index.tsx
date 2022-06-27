@@ -93,9 +93,9 @@ const HelpModal = forwardRef(
                   fontSize: ['12px', '14px', '16px'],
                 }}
               >
-                Per-collection review by our Machine Learning
-                team and others to fine-tune our models 
-                for collection-specific properties, &quot;meta traits&quot;, etc.
+                Per-collection review by our Machine Learning team and others to
+                fine-tune our models for collection-specific properties,
+                &quot;meta traits&quot;, etc.
               </Text>
             </Flex>
           </Grid>
@@ -150,16 +150,12 @@ const HelpModal = forwardRef(
         </Footer>
 
         <Flex sx={{ flexDirection: 'row', alignItems: 'center', gap: 1 }}>
-        <ReadMore href={link} target="_blank" rel="noreferrer">
+          <ReadMore href={link} target="_blank" rel="noreferrer">
             {' '}
             Read More{' '}
           </ReadMore>
-          <Icon
-              color="primary"
-              icon="openLink"
-              size={16}
-            />
-          </Flex>
+          <Icon color="primary" icon="openLink" size={16} />
+        </Flex>
       </HelpModalBase>
     )
   }

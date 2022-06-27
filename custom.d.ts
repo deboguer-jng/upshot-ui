@@ -6,4 +6,4 @@ declare module '*.svg' {
   export default content
 }
 
-declare module 'uuid';
+declare module 'uuid'

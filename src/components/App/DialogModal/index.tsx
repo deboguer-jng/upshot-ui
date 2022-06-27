@@ -63,8 +63,7 @@ const DialogModal = forwardRef(
         <Link onClick={onButtonClick}>
           <Flex sx={{ alignItems: 'center', gap: '16px' }}>
             <Text>{button}</Text>
-            {showButtonArrow && 
-              <Icon icon="arrowStylizedRight" size={16} />}
+            {showButtonArrow && <Icon icon="arrowStylizedRight" size={16} />}
           </Flex>
         </Link>
       )}

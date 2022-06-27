@@ -68,7 +68,11 @@ export { default as Investors } from './components/App/Investors'
 export { default as LandingPanel } from './components/App/LandingPanels'
 export { default as Navbar } from './components/App/Navbar'
 export { default as BuyNowPanel } from './components/App/BuyNowPanel'
-export { SettingsPanel, SettingsMenuItem, SettingsPanelProps } from './components/App/SettingsPanel'
+export {
+  SettingsPanel,
+  SettingsMenuItem,
+  SettingsPanelProps,
+} from './components/App/SettingsPanel'
 export { default as NFTCard } from './components/App/NFTCard'
 
 /**
@@ -102,7 +106,11 @@ export { default as SpinnerBoxTemplate } from './components/Loading/SpinnerBox'
  *
  * Theme-UI compatible theme & global styles.
  */
-export { globalStyles, default as UpshotThemeProvider } from './themes'
+export {
+  globalStyles,
+  transientOptions,
+  default as UpshotThemeProvider,
+} from './themes'
 export { default as theme, useTheme } from './themes/UpshotUI'
 export { UpshotUIThemeType } from './themes/UpshotUI'
 

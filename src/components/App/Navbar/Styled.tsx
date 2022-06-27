@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
-import css from '@emotion/css'
+import { css } from '@emotion/react'
 import { breakpoints } from '../../../themes/UpshotUI/sizes'
+import { transientOptions } from '../../../themes'
 
 interface NavbarItemProps {
   grow?: boolean
@@ -10,7 +11,7 @@ interface PopperProps {
   $showWalletPopper?: boolean
 }
 
-export const NavbarBase = styled.div`
+export const NavbarBase = styled('div', transientOptions)`
   padding: ${({ theme }) => `${theme.sizes[5]}px ${theme.sizes[3]}px`};
   width: 100%;
   margin: 0 auto;
@@ -24,7 +25,7 @@ export const NavbarBase = styled.div`
   )}
 `
 
-export const NavbarWrapper = styled.div`
+export const NavbarWrapper = styled('div', transientOptions)`
   display: flex;
   position: relative;
   align-items: center;
@@ -34,12 +35,12 @@ export const NavbarWrapper = styled.div`
   z-index: ${({ theme }) => theme.zIndex.nav + 1};
 `
 
-export const NavbarItem = styled.div<NavbarItemProps>`
+export const NavbarItem = styled('div', transientOptions)<NavbarItemProps>`
   background: transparent;
   flex-grow: ${({ grow }) => (grow ? 1 : 0)};
 `
 
-export const NavbarLogo = styled.div`
+export const NavbarLogo = styled('div', transientOptions)`
   height: 45px;
   width: 45px;
   border-radius: 50%;
@@ -52,7 +53,9 @@ export const NavbarLogo = styled.div`
   }
 `
 
-export const SearchWrapper = styled.div<{ $hasValue?: boolean }>`
+export const SearchWrapper = styled('div', transientOptions)<{
+  $hasValue?: boolean
+}>`
   position: absolute;
   display: flex;
   align-items: center;
@@ -97,7 +100,7 @@ export const SearchWrapper = styled.div<{ $hasValue?: boolean }>`
   }
 `
 
-export const NavbarItemIcon = styled.div`
+export const NavbarItemIcon = styled('div', transientOptions)`
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -112,7 +115,7 @@ export const NavbarItemIcon = styled.div`
   }
 `
 
-export const NavbarUPTBalance = styled.div`
+export const NavbarUPTBalance = styled('div', transientOptions)`
   display: flex;
   align-items: center;
   height: 56px;
@@ -126,14 +129,14 @@ export const NavbarUPTBalance = styled.div`
   }
 `
 
-export const NavbarUPTBalanceText = styled.div`
+export const NavbarUPTBalanceText = styled('div', transientOptions)`
   display: flex;
   flex-direction: column;
   margin-left: 1rem;
   align-items: flex-end;
 `
 
-export const NavbarProfile = styled.div<PopperProps>`
+export const NavbarProfile = styled('div', transientOptions)<PopperProps>`
   display: flex;
   align-items: center;
   height: 56px;
@@ -155,13 +158,13 @@ export const NavbarProfile = styled.div<PopperProps>`
   }
 `
 
-export const NavbarProfileDetails = styled.div`
+export const NavbarProfileDetails = styled('div', transientOptions)`
   display: flex;
   flex-direction: column;
   margin-right: 12px;
 `
 
-export const NavbarWallet = styled.div`
+export const NavbarWallet = styled('div', transientOptions)`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.space[4] + 'px'};
@@ -177,12 +180,12 @@ export const NavbarWallet = styled.div`
   }
 `
 
-export const Divider = styled.div`
+export const Divider = styled('div', transientOptions)`
   border-bottom: 1px solid ${({ theme }) => theme.colors['grey-300']};
   opacity: 5%;
 `
 
-export const StyledLink = styled.a`
+export const StyledLink = styled('a', transientOptions)`
   color: inherit;
   text-decoration: none;
 

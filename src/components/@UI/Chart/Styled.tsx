@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { transientOptions } from '../../../themes'
 
 interface FilterButtonProps {
   active: boolean
@@ -8,11 +9,11 @@ interface ChartWrapperProps {
   $embedded: boolean
 }
 
-export const ChartWrapper = styled.div<ChartWrapperProps>`
+export const ChartWrapper = styled('div', transientOptions)<ChartWrapperProps>`
   width: 100%;
 `
 
-export const ChartNoSelectedTextArea = styled.div`
+export const ChartNoSelectedTextArea = styled('div', transientOptions)`
   position: absolute;
   top: 0;
   left: 0;
@@ -39,7 +40,7 @@ export const ChartNoSelectedTextArea = styled.div`
   }
 `
 
-export const ChartLoadingBoard = styled.div`
+export const ChartLoadingBoard = styled('div', transientOptions)`
   position: relative;
   width: 100%;
   height: 100%;
@@ -50,7 +51,7 @@ export const ChartLoadingBoard = styled.div`
   justify-content: center;
 `
 
-export const NoDataBoard = styled.div`
+export const NoDataBoard = styled('div', transientOptions)`
   position: relative;
   font-family: ${({ theme }) => theme.fonts.body};
   display: flex;
@@ -74,20 +75,23 @@ export const NoDataBoard = styled.div`
   }
 `
 
-export const Tooltip = styled.div`
+export const Tooltip = styled('div', transientOptions)`
   background: black;
   padding: 0.5rem 1rem;
   border-radius: 1rem;
   color: white;
 `
 
-export const FilterWrapper = styled.div`
+export const FilterWrapper = styled('div', transientOptions)`
   display: flex;
   margin-left: 50px;
   justify-content: space-between;
 `
 
-export const FilterButton = styled.button<FilterButtonProps>`
+export const FilterButton = styled(
+  'button',
+  transientOptions
+)<FilterButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,14 +105,16 @@ export const FilterButton = styled.button<FilterButtonProps>`
   border-radius: 9px;
 `
 
-export const CustomLegendWrapper = styled.div`
+export const CustomLegendWrapper = styled('div', transientOptions)`
   display: flex;
   align-items: center;
   margin-top: 3rem;
   flex-wrap: wrap;
 `
 
-export const ReactChartWrapper = styled.div<{ $isEmpty?: boolean }>`
+export const ReactChartWrapper = styled('div', transientOptions)<{
+  $isEmpty?: boolean
+}>`
   width: 100%;
   padding-top: ${({ $isEmpty }) => ($isEmpty ? 'calc(25% + 160px)' : '25%')};
   position: relative;
@@ -126,7 +132,9 @@ export const ReactChartWrapper = styled.div<{ $isEmpty?: boolean }>`
   }
 `
 
-export const ReactApexChartWrapper = styled.div<{ isFullWidth?: boolean }>`
+export const ReactApexChartWrapper = styled('div', transientOptions)<{
+  isFullWidth?: boolean
+}>`
   width: ${({ isFullWidth }) => (isFullWidth ? '100vw' : '100%')};
   padding-top: 25%;
   margin-left: ${({ isFullWidth }) => (isFullWidth ? '-16px' : 0)};

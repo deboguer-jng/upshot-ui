@@ -1,11 +1,16 @@
 import styled from '@emotion/styled'
 import colors from '../../../themes/UpshotUI/colors'
+import { transientOptions } from '../../../themes'
+
 interface CollectionButtonWrapperProps {
   $underglow?: keyof typeof colors
   $hoverUnderglow?: keyof typeof colors
 }
 
-export const CollectionButtonWrapper = styled.div<CollectionButtonWrapperProps>`
+export const CollectionButtonWrapper = styled(
+  'div',
+  transientOptions
+)<CollectionButtonWrapperProps>`
   display: grid;
   grid-template-columns: ${({ theme }) => theme.buttons.collection.iconHeight}px auto;
   gap: ${({ theme }) => theme.buttons.collection.gap}px;
@@ -29,7 +34,7 @@ export const CollectionButtonWrapper = styled.div<CollectionButtonWrapperProps>`
   }
 `
 
-export const CollectionButtonIcon = styled.div`
+export const CollectionButtonIcon = styled('div', transientOptions)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,7 +53,7 @@ export const CollectionButtonIcon = styled.div`
   }
 `
 
-export const CollectionButtonIconBadge = styled.div`
+export const CollectionButtonIconBadge = styled('div', transientOptions)`
   position: absolute;
   bottom: 0px;
   right: 0px;
@@ -66,18 +71,18 @@ export const CollectionButtonIconBadge = styled.div`
   }
 `
 
-export const CollectionButtonIconWrapper = styled.div`
+export const CollectionButtonIconWrapper = styled('div', transientOptions)`
   display: inline-block;
   position: relative;
 `
 
-export const CollectionButtonTextWrapper = styled.div`
+export const CollectionButtonTextWrapper = styled('div', transientOptions)`
   display: flex;
   flex-direction: column;
   overflow: hidden;
 `
 
-export const CollectionButtonText = styled.span`
+export const CollectionButtonText = styled('span', transientOptions)`
   font-family: ${({ theme }) => theme.fonts.body};
   font-size: ${({ theme }) => theme.buttons.collection.textSize}px;
   color: ${({ theme }) => theme.buttons.collection.color};
@@ -89,7 +94,7 @@ export const CollectionButtonText = styled.span`
   white-space: nowrap;
 `
 
-export const CollectionButtonSubText = styled.span`
+export const CollectionButtonSubText = styled('span', transientOptions)`
   font-family: ${({ theme }) => theme.fonts.body};
   font-size: ${({ theme }) => theme.buttons.collection.subTextSize}px;
   color: ${({ theme }) => theme.buttons.collection.color};
