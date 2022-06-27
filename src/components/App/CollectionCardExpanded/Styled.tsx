@@ -1,8 +1,9 @@
 import styled from '@emotion/styled'
 import { Box } from 'theme-ui'
+import { transientOptions } from '../../../themes'
 import Panel from '../../@UI/Panel'
 
-export const CollectionCardExpandedBase = styled(Panel)`
+export const CollectionCardExpandedBase = styled(Panel, transientOptions)`
   padding: 0;
   background-color: ${({ theme }) => theme.colors['grey-900']};
   border-color: ${({ theme }) => theme.colors['grey-700']};
@@ -10,14 +11,14 @@ export const CollectionCardExpandedBase = styled(Panel)`
   border-style: solid;
 `
 
-export const CardContainer = styled(Box)`
+export const CardContainer = styled(Box, transientOptions)`
   display: flex;
   flex-direction: column;
   max-height: 95vh;
   gap: ${({ theme }) => theme.sizes[3] + 'px'};
 `
 
-export const MasonryContainer = styled(Box)`
+export const MasonryContainer = styled(Box, transientOptions)`
   ${({ theme: { scroll } }) => scroll.thin}
   margin-left: ${({ theme }) => theme.space[5] + 'px'};
   margin-right: ${({ theme }) => theme.space[2] + 'px'};
@@ -25,7 +26,7 @@ export const MasonryContainer = styled(Box)`
   overflow-y: scroll;
 `
 
-export const GridItemButton = styled(Box)`
+export const GridItemButton = styled(Box, transientOptions)`
   display: inline-flex;
   align-items: center;
   justify-content: center;

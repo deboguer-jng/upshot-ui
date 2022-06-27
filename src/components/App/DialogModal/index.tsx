@@ -2,7 +2,6 @@ import React, { forwardRef, MouseEventHandler } from 'react'
 import { ModalBase } from './Styled'
 import { BoxProps, Flex, Image } from 'theme-ui'
 import Text from '../../@UI/Text'
-import Spinner from '../../@UI/Spinner'
 import Icon from '../../@UI/Icon'
 import Link from '../../@UI/Link'
 
@@ -54,9 +53,9 @@ const DialogModal = forwardRef(
   ) => (
     <ModalBase {...{ ref, ...props }}>
       {{
-        [DialogSymbolType.LOADING]: <Spinner />,
-        [DialogSymbolType.SUCCESS]: <Icon icon="checkmark" size="50" />,
-        [DialogSymbolType.FAILURE]: <Icon icon="attention" size="50" />,
+        [DialogSymbolType.LOADING]: <Icon icon="upshotWallet" size="50" />,
+        [DialogSymbolType.SUCCESS]: <Icon icon="upshotConfirmation" size="50" />,
+        [DialogSymbolType.FAILURE]: <Icon icon="upshotError" size="50" />,
       }[symbol]}
       <Text variant="large">{header}</Text>
       <Text variant="small">{body}</Text>
@@ -64,8 +63,7 @@ const DialogModal = forwardRef(
         <Link onClick={onButtonClick}>
           <Flex sx={{ alignItems: 'center', gap: '16px' }}>
             <Text>{button}</Text>
-            {showButtonArrow && 
-              <Icon icon="arrowStylizedRight" size={16} />}
+            {showButtonArrow && <Icon icon="arrowStylizedRight" size={16} />}
           </Flex>
         </Link>
       )}

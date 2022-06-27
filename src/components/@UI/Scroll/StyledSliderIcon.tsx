@@ -1,17 +1,18 @@
 import styled from '@emotion/styled'
+import { transientOptions } from '../../../themes'
 
-export const ScrollWrapper = styled.div`
+export const ScrollWrapper = styled('div', transientOptions)`
   overflow: hidden;
   position: relative;
 `
 
-export const SliderIconWrapper = styled.div`
+export const SliderIconWrapper = styled('div', transientOptions)`
   position: absolute;
   bottom: 1px;
   height: 30px;
 `
 
-export const Slider = styled.input`
+export const Slider = styled('input', transientOptions)`
   -webkit-appearance: none;
   width: 100%;
   height: 1px;

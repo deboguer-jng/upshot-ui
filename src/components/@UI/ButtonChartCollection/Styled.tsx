@@ -1,12 +1,13 @@
 import styled from '@emotion/styled'
 import colors from '../../../themes/UpshotUI/colors'
+import { transientOptions } from '../../../themes'
 
 interface ButtonChartCollectionIconProps {
   selected: Boolean
   $color: keyof typeof colors
 }
 
-export const ButtonChartCollectionWrapper = styled.div`
+export const ButtonChartCollectionWrapper = styled('div', transientOptions)`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -14,7 +15,10 @@ export const ButtonChartCollectionWrapper = styled.div`
   padding-bottom: ${({ theme }) => theme.sizes[1] + 'px'};
 `
 
-export const ButtonChartCollectionIcon = styled.div<ButtonChartCollectionIconProps>`
+export const ButtonChartCollectionIcon = styled(
+  'div',
+  transientOptions
+)<ButtonChartCollectionIconProps>`
   width: 18px;
   height: 18px;
   border-radius: ${({ theme }) => theme.sizes[2] + 'px'};

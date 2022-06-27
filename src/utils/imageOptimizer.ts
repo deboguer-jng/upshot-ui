@@ -1,4 +1,3 @@
-
 /**
  * Optimizes image sizes
  *
@@ -26,7 +25,7 @@ export interface ImageProps {
 
 export const imageOptimizer = (
   src: string | undefined,
-  opts: ImageProps = {},
+  opts: ImageProps = {}
 ) => {
   if (!src) return src
 
@@ -45,7 +44,8 @@ export const imageOptimizer = (
     optimizations.push('ar_' + opts.aspectRatio)
   }
 
-  const cloudinaryUrlSchemeStart = '//res.cloudinary.com/upshot-inc/image/upload/'
+  const cloudinaryUrlSchemeStart =
+    '//res.cloudinary.com/upshot-inc/image/upload/'
   if (optimizations.length > 0) {
     optimizations.push('c_' + opts.cropMode)
     optimizations.push('f_auto', 'q_auto', 'dpr_2')
@@ -53,10 +53,22 @@ export const imageOptimizer = (
 
     // If src is already a Cloudinary URL
     if (src.includes(cloudinaryUrlSchemeStart)) {
-      return src.replace(cloudinaryUrlSchemeStart, cloudinaryUrlSchemeStart + optimiationString + '/')
-    // if image is an absolute URL
-    } else if (src.startsWith('//') || src.startsWith('http://') || src.startsWith('https://')) {
-      return '//res.cloudinary.com/upshot-inc/image/fetch/' + optimiationString + '/' + encodeURIComponent(src)
+      return src.replace(
+        cloudinaryUrlSchemeStart,
+        cloudinaryUrlSchemeStart + optimiationString + '/'
+      )
+      // if image is an absolute URL
+    } else if (
+      src.startsWith('//') ||
+      src.startsWith('http://') ||
+      src.startsWith('https://')
+    ) {
+      return (
+        '//res.cloudinary.com/upshot-inc/image/fetch/' +
+        optimiationString +
+        '/' +
+        encodeURIComponent(src)
+      )
     }
   }
   return src

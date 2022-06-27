@@ -1,10 +1,14 @@
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
+import { transientOptions } from '../../../themes'
 
 /**
  * Adds a dimmed layer to draw attention to a foreground component.
  */
-export const Overlay = styled.div<{ $open: boolean; $blur: boolean }>`
+export const Overlay = styled('div', transientOptions)<{
+  $open: boolean
+  $blur: boolean
+}>`
   position: fixed;
   top: 0;
   left: 0;

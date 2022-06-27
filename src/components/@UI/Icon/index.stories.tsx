@@ -340,6 +340,9 @@ TwitterCircle.args = { icon: 'twitterCircle', color: 'primary', size: 32 }
 export const Upshot = Template.bind({})
 Upshot.args = { icon: 'upshot', color: 'primary', size: 32 }
 
+export const UpshotWallet = Template.bind({})
+UpshotWallet.args = { icon: 'upshotWallet', size: 32}
+
 export const Uptoken = Template.bind({})
 Uptoken.args = { icon: 'uptoken', color: 'primary', size: 32 }
 

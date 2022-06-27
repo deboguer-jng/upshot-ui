@@ -69,10 +69,12 @@ const FollowerModal = forwardRef(
                     py={3}
                   >
                     <FollowAvatar src={item.img} />
-                    <Link sx={{ flexGrow: 1 }} href={`/user/${item.address}`} component={component}>
-                      <Text color="white">
-                        {item.address}
-                      </Text>
+                    <Link
+                      sx={{ flexGrow: 1 }}
+                      href={`/user/${item.address}`}
+                      component={component}
+                    >
+                      <Text color="white">{item.address}</Text>
                     </Link>
                     <FollowButton onClick={() => onFollow(index)}>
                       + Follow
@@ -89,10 +91,12 @@ const FollowerModal = forwardRef(
                     py={3}
                   >
                     <FollowAvatar src={item.img} />
-                    <Link sx={{ flexGrow: 1 }} href={`/user/${item.address}`} component={component}>
-                      <Text color="white">
-                        {item.address}
-                      </Text>
+                    <Link
+                      sx={{ flexGrow: 1 }}
+                      href={`/user/${item.address}`}
+                      component={component}
+                    >
+                      <Text color="white">{item.address}</Text>
                     </Link>
                     <FollowButton onClick={() => onFollow(index)}>
                       + Follow

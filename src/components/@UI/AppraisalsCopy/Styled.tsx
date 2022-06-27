@@ -1,10 +1,14 @@
 import styled from '@emotion/styled'
+import { transientOptions } from '../../../themes'
 
 interface AppraisalsCopyWrapperProps {
   open: boolean
 }
 
-export const AppraisalsCopyWrapper = styled.div<AppraisalsCopyWrapperProps>`
+export const AppraisalsCopyWrapper = styled(
+  'div',
+  transientOptions
+)<AppraisalsCopyWrapperProps>`
   background: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.black};
   border: 1px solid ${({ theme }) => theme.colors.primary};
@@ -15,7 +19,7 @@ export const AppraisalsCopyWrapper = styled.div<AppraisalsCopyWrapperProps>`
   }
 `
 
-export const AppraisalsCopyClosed = styled.div`
+export const AppraisalsCopyClosed = styled('div', transientOptions)`
   padding: 10px;
   display: flex;
   align-items: center;
@@ -47,7 +51,7 @@ export const AppraisalsCopyClosed = styled.div`
   }
 `
 
-export const AppraisalsCopyOpened = styled.div`
+export const AppraisalsCopyOpened = styled('div', transientOptions)`
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -58,7 +62,7 @@ export const AppraisalsCopyOpened = styled.div`
   }
 `
 
-export const ArrpaisalsCopyOpenedTopBar = styled.div`
+export const ArrpaisalsCopyOpenedTopBar = styled('div', transientOptions)`
   display: flex;
   font-size: 12px;
   align-items: center;
@@ -72,7 +76,7 @@ export const ArrpaisalsCopyOpenedTopBar = styled.div`
   }
 `
 
-export const AppraisalsCopyButton = styled.span`
+export const AppraisalsCopyButton = styled('span', transientOptions)`
   font-weight: bold;
   width: fit-content;
   cursor: pointer;
@@ -80,7 +84,7 @@ export const AppraisalsCopyButton = styled.span`
   color: ${({ theme }) => theme.colors.black};
 `
 
-export const AppraisalsCopyOpenedContent = styled.p`
+export const AppraisalsCopyOpenedContent = styled('p', transientOptions)`
   margin: 0;
   font-size: 12px;
 

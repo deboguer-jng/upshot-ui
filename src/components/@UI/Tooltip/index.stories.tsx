@@ -17,5 +17,10 @@ const Template: ComponentStory<typeof Tooltip> = (args) => (
 )
 
 export const Default = Template.bind({})
-Default.args = { tooltip: <Text variant="h3Secondary" sx={{ lineHeight: 1.3 }}>Hello, I'm a tooltip</Text> }
-
+Default.args = {
+  tooltip: (
+    <Text variant="h3Secondary" sx={{ lineHeight: 1.3 }}>
+      Hello, I'm a tooltip
+    </Text>
+  ),
+}

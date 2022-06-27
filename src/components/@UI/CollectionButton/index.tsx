@@ -62,7 +62,9 @@ const CollectionButton = forwardRef(
         <CollectionButtonIconWrapper>
           <CollectionButtonIcon>{icon}</CollectionButtonIcon>
           {showBadge && (
-            <CollectionButtonIconBadge><Icon icon="upshot" /></CollectionButtonIconBadge>
+            <CollectionButtonIconBadge>
+              <Icon icon="upshot" />
+            </CollectionButtonIconBadge>
           )}
         </CollectionButtonIconWrapper>
         <CollectionButtonTextWrapper>
