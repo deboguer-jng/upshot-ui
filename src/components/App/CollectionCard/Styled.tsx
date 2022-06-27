@@ -1,8 +1,9 @@
 import styled from '@emotion/styled'
 import { Box } from 'theme-ui'
+import { transientOptions } from '../../../themes'
 import Panel from '../../@UI/Panel'
 
-export const CollectionCardBase = styled(Panel)`
+export const CollectionCardBase = styled(Panel, transientOptions)`
   padding: ${({ theme }) => theme.sizes[2] + 'px'};
   border-color: ${({ theme }) => theme.colors['grey-700']};
   border-width: 2px;
@@ -16,13 +17,15 @@ export const CollectionCardBase = styled(Panel)`
   }
 `
 
-export const CardContainer = styled(Box)`
+export const CardContainer = styled(Box, transientOptions)`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.sizes[3] + 'px'};
 `
 
-export const SeeAllButton = styled(Box)<{ $imageSrc: string }>`
+export const SeeAllButton = styled(Box, transientOptions)<{
+  $imageSrc: string
+}>`
   position: relative;
   width: 100%;
   padding-top: 100%;

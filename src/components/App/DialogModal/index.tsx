@@ -53,19 +53,20 @@ const DialogModal = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => (
     <ModalBase {...{ ref, ...props }}>
-      {{
-        [DialogSymbolType.LOADING]: <Spinner />,
-        [DialogSymbolType.SUCCESS]: <Icon icon="checkmark" size="50" />,
-        [DialogSymbolType.FAILURE]: <Icon icon="attention" size="50" />,
-      }[symbol]}
+      {
+        {
+          [DialogSymbolType.LOADING]: <Spinner />,
+          [DialogSymbolType.SUCCESS]: <Icon icon="checkmark" size="50" />,
+          [DialogSymbolType.FAILURE]: <Icon icon="attention" size="50" />,
+        }[symbol]
+      }
       <Text variant="large">{header}</Text>
       <Text variant="small">{body}</Text>
       {button && (
         <Link onClick={onButtonClick}>
           <Flex sx={{ alignItems: 'center', gap: '16px' }}>
             <Text>{button}</Text>
-            {showButtonArrow && 
-              <Icon icon="arrowStylizedRight" size={16} />}
+            {showButtonArrow && <Icon icon="arrowStylizedRight" size={16} />}
           </Flex>
         </Link>
       )}

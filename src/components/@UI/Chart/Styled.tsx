@@ -1,6 +1,19 @@
 import styled from '@emotion/styled'
+import { transientOptions } from '../../../themes'
 
-export const ChartNoSelectedTextArea = styled.div`
+interface FilterButtonProps {
+  active: boolean
+}
+
+interface ChartWrapperProps {
+  $embedded: boolean
+}
+
+export const ChartWrapper = styled('div', transientOptions)<ChartWrapperProps>`
+  width: 100%;
+`
+
+export const ChartNoSelectedTextArea = styled('div', transientOptions)`
   position: absolute;
   top: 0;
   left: 0;
@@ -24,7 +37,18 @@ export const ChartNoSelectedTextArea = styled.div`
   }
 `
 
-export const NoDataBoard = styled.div`
+export const ChartLoadingBoard = styled('div', transientOptions)`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+  background: ${({ theme }) => theme.colors['grey-900']};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+export const NoDataBoard = styled('div', transientOptions)`
   position: relative;
   font-family: ${({ theme }) => theme.fonts.body};
   display: flex;
@@ -46,13 +70,44 @@ export const NoDataBoard = styled.div`
   }
 `
 
-export const ReactChartWrapper = styled.div<{
+export const Tooltip = styled('div', transientOptions)`
+  background: black;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  color: white;
+`
+
+export const FilterWrapper = styled('div', transientOptions)`
+  display: flex;
+  margin-left: 50px;
+  justify-content: space-between;
+`
+
+export const FilterButton = styled(
+  'button',
+  transientOptions
+)<FilterButtonProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: theme.colors.black;
+  font-size: 14px;
+  height: 18px;
+  width: 50px;
+  background: theme.colors.primary;
+  outline: none;
+  border-radius: 9px;
+`
+
+export const ReactChartWrapper = styled('div', transientOptions)<{
   $isEmpty?: boolean
   isFullWidth?: boolean
 }>`
   width: ${({ isFullWidth }) => (isFullWidth ? '100vw' : '100%')};
   margin-left: ${({ isFullWidth }) => (isFullWidth ? '-16px' : 0)};
   margin-right: ${({ isFullWidth }) => (isFullWidth ? '-16px' : 0)};
+  width: 100%;
   padding-top: ${({ $isEmpty }) => ($isEmpty ? 'calc(25% + 160px)' : '25%')};
   position: relative;
   & > div {
@@ -67,32 +122,21 @@ export const ReactChartWrapper = styled.div<{
   }
 `
 
-export const ChartLoadingBoard = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 0.5rem;
-  background: ${({ theme }) => theme.colors['grey-900']};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
-export const TooltipStyled = styled.div`
+export const TooltipStyled = styled('div', transientOptions)`
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
   overflow: visible;
 `
 
-export const AxisTooltip = styled.div`
+export const AxisTooltip = styled('div', transientOptions)`
   background: black;
   color: ${({ theme }) => theme.rawColors.text};
   border-radius: ${({ theme }) => theme.radii.pill};
   font-size: ${({ theme }) => theme.fontSizes[0]};
 `
 
-export const TooltipContainer = styled.div`
+export const TooltipContainer = styled('div', transientOptions)`
   position: relative;
   background: black;
   border-radius: 1rem;
@@ -101,7 +145,7 @@ export const TooltipContainer = styled.div`
   font-family: ${({ theme }) => theme.fonts.body};
 `
 
-export const TooltipThingIdk = styled.div`
+export const TooltipThingIdk = styled('div', transientOptions)`
   position: absolute;
   bottom: -6px;
   left: 50%;
@@ -111,7 +155,7 @@ export const TooltipThingIdk = styled.div`
   background: black;
 `
 
-export const CustomLegendWrapper = styled.div`
+export const CustomLegendWrapper = styled('div', transientOptions)`
   display: flex;
   align-items: center;
   margin-top: 1rem;

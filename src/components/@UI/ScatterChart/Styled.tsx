@@ -1,11 +1,38 @@
 import styled from '@emotion/styled'
 import { Flex } from 'theme-ui'
+import { transientOptions } from '../../../themes'
 
 interface TimeFilterProps {
   active: boolean
 }
 
-export const TimeFilter = styled.span<TimeFilterProps>`
+export const ScatterChartWrapper = styled('div', transientOptions)`
+  width: 100%;
+
+  & .apexcharts-tooltip,
+  & .apexcharts-tooltip-series-group.active {
+    background: ${({ theme }) => theme.colors.black};
+  }
+
+  & .apexcharts-xcrosshairs.apexcharts-active {
+    display: none;
+  }
+`
+
+export const CustomLegendWrapper = styled('div', transientOptions)`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+`
+
+export const TimeFilterWrapper = styled('div', transientOptions)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+`
+
+export const TimeFilter = styled('span', transientOptions)<TimeFilterProps>`
   border-radius: 20px;
   padding: 4px 16px;
   font-style: normal;
@@ -26,28 +53,28 @@ export const TimeFilter = styled.span<TimeFilterProps>`
   background-color: ${({ theme, active }) =>
     active ? theme.colors.primary : 'transparent'};
 `
-export const LegendContainer = styled.div`
+export const LegendContainer = styled('div', transientOptions)`
   margin-top: -110px;
 `
 
-export const LegendCircle = styled.div<{color: string}>`
+export const LegendCircle = styled('div', transientOptions)<{color: string}>`
   width: 12px;
   height: 12px;
   border-radius: 6px;
   margin-right: 6px;
   background-color: ${({ color }) => color}
 `
-export const LegendItem = styled(Flex)`
+export const LegendItem = styled(Flex, transientOptions)`
   align-items: center;
 `
 
-export const TimeFilterContainer = styled(Flex)`
+export const TimeFilterContainer = styled(Flex, transientOptions)`
   width: 50%;
   padding-top: 30px;
   justify-content: space-between;
 `
 
-export const TooltipContainer = styled.div`
+export const TooltipContainer = styled('div', transientOptions)`
   background-color: ${({theme}) => theme.colors['grey-900']};
   border-radius: 5px;
   color: white;
@@ -56,14 +83,14 @@ export const TooltipContainer = styled.div`
   font-size: 1rem;
 `
 
-export const TooltipDate = styled(Flex)`
+export const TooltipDate = styled(Flex, transientOptions)`
   align-items: center;
   font-weight: 400;
   font-size: 0.9rem;
   color: ${({theme}) => theme.rawColors['grey-400']};
 `
 
-export const AddressDot = styled.div`
+export const AddressDot = styled('div', transientOptions)`
   width: 5px;
   height: 5px;
   border-radius: 50%;
@@ -71,17 +98,17 @@ export const AddressDot = styled.div`
   margin-right: 4px;
 `
 
-export const GMI = styled.span`
+export const GMI = styled('span', transientOptions)`
   font-size: 0.9rem;
   color: ${({theme}) => theme.rawColors.white};
   margin-left: 5px;
 `
 
-export const TooltipPrice = styled.div`
+export const TooltipPrice = styled('div', transientOptions)`
   font-size: 0.9rem;
   color: ${({theme}) => theme.rawColors.white};
 `
 
-export const NFT = styled.div`
+export const NFT = styled('div', transientOptions)`
   color: ${({theme}) => theme.rawColors.blue};
 `

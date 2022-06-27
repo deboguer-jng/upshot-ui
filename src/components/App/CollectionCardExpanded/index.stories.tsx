@@ -20,8 +20,7 @@ Default.args = {
     avatarImage: '/img/defaultAvatar.png',
     imageSrc: `/img/sample_nft_${(idx % 3) + 1}.jpg`,
     collection: 'Bored Ape Yacht Club',
-    name:
-      'The Bored Ape Yacht Club is a collection of 10,000 unique Bored Ape NFTs— unique digital collectibles living on the Ethereum blockchain.',
+    name: 'The Bored Ape Yacht Club is a collection of 10,000 unique Bored Ape NFTs— unique digital collectibles living on the Ethereum blockchain.',
     listPriceEth: 3,
     listPriceUSD: 300,
     appraisalPriceETH: 4,
@@ -41,8 +40,7 @@ Expanded.args = {
     avatarImage: '/img/defaultAvatar.png',
     imageSrc: `/img/sample_nft_${(idx % 3) + 1}.jpg`,
     collection: 'Bored Ape Yacht Club',
-    name:
-      'The Bored Ape Yacht Club is a collection of 10,000 unique Bored Ape NFTs— unique digital collectibles living on the Ethereum blockchain.',
+    name: 'The Bored Ape Yacht Club is a collection of 10,000 unique Bored Ape NFTs— unique digital collectibles living on the Ethereum blockchain.',
     listPriceEth: 3,
     listPriceUSD: 300,
     appraisalPriceETH: 4,

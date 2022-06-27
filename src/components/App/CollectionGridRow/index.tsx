@@ -116,14 +116,14 @@ const CollectionGridRow = forwardRef(
             sx={{
               flexDirection: 'column',
               justifyContent: 'center',
-              gap: 1
+              gap: 1,
             }}
           >
-            <Link 
+            <Link
               sx={{
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
-                whiteSpace: 'nowrap'
+                whiteSpace: 'nowrap',
               }}
               component={linkComponent}
               {...{ href }}
@@ -242,7 +242,7 @@ const CollectionGridRow = forwardRef(
     )
 
     /* if href is provided, wrap the row in a Link */
-    return (href && !isMobile) ? (
+    return href && !isMobile ? (
       <Link noHover component={linkComponent} {...{ href }}>
         {content}
       </Link>
