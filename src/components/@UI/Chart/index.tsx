@@ -258,6 +258,7 @@ const Chart = forwardRef(
               key='time-axis'
               orientation='bottom'
               hideAxisLine={true}
+              numTicks={6}
               tickFormat={tickFormatTime}
               tickLength={0}
               tickLabelProps={() => ({

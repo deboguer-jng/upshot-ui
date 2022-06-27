@@ -57,6 +57,7 @@ const ScatterChartVisx =
   name,
   loading,
   error,
+  showControls = false,
   ...props
 }: ChartProps & ChartSizeProps) => {
   const svgRef = useRef<SVGSVGElement>(null);
@@ -195,15 +196,17 @@ const ScatterChartVisx =
 
   return (
     <div>
-      <Flex>
-        <Label>
-          <Checkbox
-            checked={isLogScale}
-            onChange={e => setIsLogScale(!isLogScale)}
-          />
-          Log scale
-        </Label>
-      </Flex>
+      {showControls && 
+        <Flex>
+          <Label>
+            <Checkbox
+              checked={isLogScale}
+              onChange={e => setIsLogScale(!isLogScale)}
+            />
+            Log scale
+          </Label>
+        </Flex>
+      }
       <svg width={width} height={height} ref={svgRef}>
         <rect width={width} height={height} onClick={handleChartClick} fillOpacity={0} />
         <Group pointerEvents="none" left={margin.left} top={margin.top} height={height}>

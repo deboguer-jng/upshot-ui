@@ -11,7 +11,7 @@ export default {
 
 const Template: ComponentStory<typeof RadarChart> = (args) => (
   <Box sx={{ width: 400 }}>
-    <RadarChart {...args} />
+    <RadarChart {...args} height={400} width={400} />
   </Box>
 )
 
