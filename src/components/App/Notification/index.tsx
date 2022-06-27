@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react'
-import { ButtonProps } from 'theme-ui'
 
-import Link from '../../@UI/Link'
+import Link, { LinkProps } from '../../@UI/Link'
 import { PanelProps } from '../../@UI/Panel'
 import Text from '../../@UI/Text'
 import {
@@ -14,19 +13,35 @@ import {
 } from './Styled'
 import Label from '../../@UI/Label'
 
-export interface NotifRowProps extends ButtonProps {
+export interface NotifRowProps extends LinkProps {
   /**
-   * Button URL
+   * Notification url
    */
-  marketplaceName?: string
+  url: string
   /**
-   * Button URL
+   * Notification image src
    */
-  url?: string
+  image?: string
   /**
-   * Button width
+   * Notification title
    */
-  width?: string
+  title: string
+  /**
+   * Notification description
+   */
+  description: string
+  /**
+   * Notification price
+   */
+  price?: number
+  /**
+   * Notification percentage
+   */
+  percentage?: number
+  /**
+   * Notification time
+   */
+  time?: string
   /**
    * Link component
    */
@@ -37,14 +52,18 @@ export const NotifRow = forwardRef(
   (
     {
       url,
-      width = null,
-      marketplaceName,
+      image,
+      title,
+      description,
+      price,
+      percentage,
+      time,
       linkComponent,
       ...props
     }: NotifRowProps,
     ref: React.ForwardedRef<HTMLAnchorElement>
   ) => (
-    <Link href={url} noHover target="_blank" component={linkComponent} {...{ ref }}>
+    <Link href={url} noHover target="_blank" component={linkComponent} {...{ ref, ...props }}>
       <StyledFlex>
         <CenterFlex>
           <RoundImage src={`/img/sample_nft_1.jpg`} />
@@ -80,11 +99,16 @@ export const NotifRow = forwardRef(
   )
 )
 
+export interface NotifObject {
+  unread: NotifRowProps[]
+  read: NotifRowProps[]
+}
+
 export interface NotifPopperProps extends PanelProps {
   /**
    * Variant: wide or popup. Default: wide. The popup variant has 20% transparency and blurry backdrop.
    */
-  variant?: 'wide' | 'popup'
+   notifs: NotifObject
   /**
    * Link component
    */
@@ -97,7 +121,7 @@ export interface NotifPopperProps extends PanelProps {
 const NotifPopper = forwardRef(
   (
     {
-      variant = 'wide',
+      notifs,
       linkComponent,
       ...props
     }: NotifPopperProps,
@@ -125,9 +149,9 @@ const NotifPopper = forwardRef(
 
         <Divider />
 
-        <NotifRow />
-        <NotifRow />
-        <NotifRow />
+        {notifs.unread.map((item, index) => (
+          <NotifRow linkComponent={linkComponent}  {...item } />          
+        ))}
 
         <Text
           color="grey-600"
@@ -141,9 +165,10 @@ const NotifPopper = forwardRef(
 
         <Divider />
 
-        <NotifRow />
-        <NotifRow />
-        <NotifRow />
+        {notifs.read.map((item, index) => (
+          <NotifRow linkComponent={linkComponent}  {...item } />          
+        ))}
+
       </StyledPanel>
     )
   }
