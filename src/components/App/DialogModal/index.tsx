@@ -54,8 +54,8 @@ const DialogModal = forwardRef(
     <ModalBase {...{ ref, ...props }}>
       {{
         [DialogSymbolType.LOADING]: <Icon icon="upshotWallet" size="50" />,
-        [DialogSymbolType.SUCCESS]: <Icon icon="checkmark" size="50" />,
-        [DialogSymbolType.FAILURE]: <Icon icon="attention" size="50" />,
+        [DialogSymbolType.SUCCESS]: <Icon icon="upshotConfirmation" size="50" />,
+        [DialogSymbolType.FAILURE]: <Icon icon="upshotError" size="50" />,
       }[symbol]}
       <Text variant="large">{header}</Text>
       <Text variant="small">{body}</Text>
