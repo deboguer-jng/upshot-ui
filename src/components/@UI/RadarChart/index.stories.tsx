@@ -41,9 +41,7 @@ Loading.args = {
 }
 
 export const NoData = Template.bind({})
-NoData.args = {
-  noData: true,
-}
+NoData.args = {}
 
 export const error = Template.bind({})
 error.args = {

@@ -1,8 +1,13 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
+import { Group } from '@visx/group'
+import { scaleLinear } from '@visx/scale'
+import { Point } from '@visx/point'
+import { Line, LineRadial } from '@visx/shape'
+import { Label } from '@visx/annotation'
+import theme from '../../../themes/UpshotUI'
 import { RadarChartWrapper } from './Styled'
 import { truncateString } from '../../../utils/string'
 import EmptyChart from '../Chart/components/emptyChart'
-import PopulatedRadarChart from './components/populatedRadarChart'
 
 export interface RadarChartProps {
   /**
@@ -31,48 +36,6 @@ export interface RadarChartData {
   }[]
   labels: string[]
 }
-
-// const Chart = forwardRef(
-//   (
-//     {
-//       loading = false,
-//       error = false,
-//       noSelected = false,
-//       data,
-//       ...props
-//     }: RadarChartProps,
-//     ref: React.ForwardedRef<HTMLDivElement>
-//   ) => {
-//     const dataAvailable =
-//       !loading && data?.series?.length && !error && !noSelected
-
-//     return (
-//       <RadarChartWrapper {...{ ref, ...props }}>
-//         <div>
-//           {dataAvailable ? (
-//             <PopulatedRadarChart chartData={data} />
-//           ) : (
-//             <EmptyChart
-//               {...{
-//                 loading,
-//                 error,
-//                 noSelected,
-//               }}
-//             />
-//           )}
-//         </div>
-//       </RadarChartWrapper>
-//     )
-//   }
-// )
-
-// export default Chart
-import { Group } from '@visx/group'
-import { scaleLinear } from '@visx/scale'
-import { Point } from '@visx/point'
-import { Line, LineRadial } from '@visx/shape'
-import { Label } from '@visx/annotation'
-import theme from '../../../themes/UpshotUI'
 
 const degrees = 360
 
@@ -121,7 +84,7 @@ export type RadarProps = {
   levels?: number
 }
 
-const Chart = ({
+const RadarChart = ({
   width,
   height,
   levels = 5,
@@ -133,7 +96,7 @@ const Chart = ({
   const xMax = width - margin.left - margin.right
   const yMax = height - margin.top - margin.bottom
   const radius = Math.min(xMax, yMax) / 2
-  const dataPoints: number[] = data?.series[0]?.data
+  const dataPoints: number[] = data?.series[0]?.data || []
 
   const radialScale = scaleLinear<number>({
     range: [0, Math.PI * 2],
@@ -168,6 +131,11 @@ const Chart = ({
     if (x > 0) return -labelWidth * 0.22
     if (x < 0) return labelWidth * 0.22
   }
+
+  if (loading || dataPoints.length == 0 || error) 
+    return (
+      <EmptyChart {...{loading, error, height, width}} data={dataPoints} />
+    )
 
   return width < 10 ? null : (
     <svg width={width} height={height}>
@@ -241,4 +209,4 @@ const Chart = ({
   )
 }
 
-export default Chart
+export default RadarChart
