@@ -54,6 +54,10 @@ export interface NavbarInterface extends BoxProps {
    * Sidebar is visible
    */
   showSidebar?: boolean
+  /**
+   * Notifications feature flag
+   */
+  showNotifs?: boolean
   searchSuggestions?: InputSuggestion[]
   searchValue?: string
   searchDefaultValue?: string
@@ -62,7 +66,6 @@ export interface NavbarInterface extends BoxProps {
    */
   notifications?: Array<object>
   onSettings?: VoidFunction
-
 
 
   onSearchValueChange?: ReactEventHandler<HTMLInputElement>
@@ -80,6 +83,7 @@ const Navbar = forwardRef(
     {
       avatarImageUrl = '/img/defaultAvatar.png',
       showSidebar = false,
+      showNotifs = false,
       ensName,
       address,
       searchValue,
@@ -241,112 +245,117 @@ const Navbar = forwardRef(
                   </IconButton>
                 </Tooltip>
               )}
-              <IconButton
-                className="notificationPopperButton"
-                onClick={handleNotificationPopper}
-                sx={{
-                  backgroundColor: showNotificationPopper ? 'grey-300' : 'grey-800',
-                  width: 45,
-                  height: 45,
-                  position: 'relative',
-                  transition: 'default',
-                  '&:hover': {
-                    boxShadow: '0px 0px 14px #0091FF',
-                  },
-                  '&:not(:disabled):hover': {
-                    backgroundColor: showNotificationPopper ? 'white' : 'rgba(35,31,32,0.5)',
-                  }
-                }}
-              >
-                <Icon icon="notificationFilled" color={ showNotificationPopper ? 'grey-800' : ( notifications?.length > 0 ? 'blue' : 'grey-300') } size="20" />
-                {notifications?.length > 0 &&
-                  <StyledBadge />
-                }
-              </IconButton>
-              <Modal
-                onClose={handleNotificationPopper}
-                {...{ open: showNotificationPopper }}
-                style={{
-                  background:
-                    'linear-gradient(180deg, #000000 17.57%, rgba(0, 0, 0, 0) 100%)',
-                  zIndex: zIndex.nav - 1,
-                }}
-              />
-              <>
-                {address ? (
-                  <NavbarItem ref={setReferenceElement}>
-                    <NavbarProfile
-                      ref={setNavProfileElement}
-                      $showWalletPopper={showWalletPopper}
-                    >
-                      <img src={avatarImageUrl} />
-                      {!isMobile && (
-                        <NavbarProfileDetails>
-                          {ensName && (
-                            <Text
-                              variant="medium"
-                              sx={{
-                                fontWeight: 'bold',
-                                textDecoration: 'none',
-                                color: 'white',
-                                textOverflow: 'ellipsis',
-                                overflow: 'hidden',
-                                maxWidth: '120px',
-                                whiteSpace: 'nowrap',
-                                display: 'inline-block',
-                                lineHeight: 1,
-                              }}
-                            >
-                              <StyledLink href={`/analytics/user/${address}`}>
-                                {ensName}
-                              </StyledLink>
-                            </Text>
+
+              {!!showNotifs && (
+                <>
+                  <IconButton
+                    className="notificationPopperButton"
+                    onClick={handleNotificationPopper}
+                    sx={{
+                      backgroundColor: showNotificationPopper ? 'grey-300' : 'grey-800',
+                      width: 45,
+                      height: 45,
+                      position: 'relative',
+                      transition: 'default',
+                      '&:hover': {
+                        boxShadow: '0px 0px 14px #0091FF',
+                      },
+                      '&:not(:disabled):hover': {
+                        backgroundColor: showNotificationPopper ? 'white' : 'rgba(35,31,32,0.5)',
+                      }
+                    }}
+                  >
+                    <Icon icon="notificationFilled" color={ showNotificationPopper ? 'grey-800' : ( notifications?.length > 0 ? 'blue' : 'grey-300') } size="20" />
+                    {notifications?.length > 0 &&
+                      <StyledBadge />
+                    }
+                  </IconButton>
+                  <Modal
+                    onClose={handleNotificationPopper}
+                    {...{ open: showNotificationPopper }}
+                    style={{
+                      background:
+                        'linear-gradient(180deg, #000000 17.57%, rgba(0, 0, 0, 0) 100%)',
+                      zIndex: zIndex.nav - 1,
+                    }}
+                  />
+                  <>
+                    {address ? (
+                      <NavbarItem ref={setReferenceElement}>
+                        <NavbarProfile
+                          ref={setNavProfileElement}
+                          $showWalletPopper={showWalletPopper}
+                        >
+                          <img src={avatarImageUrl} />
+                          {!isMobile && (
+                            <NavbarProfileDetails>
+                              {ensName && (
+                                <Text
+                                  variant="medium"
+                                  sx={{
+                                    fontWeight: 'bold',
+                                    textDecoration: 'none',
+                                    color: 'white',
+                                    textOverflow: 'ellipsis',
+                                    overflow: 'hidden',
+                                    maxWidth: '120px',
+                                    whiteSpace: 'nowrap',
+                                    display: 'inline-block',
+                                    lineHeight: 1,
+                                  }}
+                                >
+                                  <StyledLink href={`/analytics/user/${address}`}>
+                                    {ensName}
+                                  </StyledLink>
+                                </Text>
+                              )}
+                              <Text
+                                variant="small"
+                                sx={{ color: '#A7A7A7', textDecoration: 'none' }}
+                              >
+                                <StyledLink href={`/analytics/user/${address}`}>
+                                  {shortenAddress(address)}
+                                </StyledLink>
+                              </Text>
+                            </NavbarProfileDetails>
                           )}
-                          <Text
-                            variant="small"
-                            sx={{ color: '#A7A7A7', textDecoration: 'none' }}
+                          <IconButton
+                            className="popperButton"
+                            onClick={handleNavPopper}
                           >
-                            <StyledLink href={`/analytics/user/${address}`}>
-                              {shortenAddress(address)}
-                            </StyledLink>
-                          </Text>
-                        </NavbarProfileDetails>
-                      )}
-                      <IconButton
-                        className="popperButton"
-                        onClick={handleNavPopper}
-                      >
-                        <Icon
+                            <Icon
+                              style={{
+                                pointerEvents: 'none',
+                                transform:
+                                  'scaleY(' + (showWalletPopper ? '-1' : '1') + ')',
+                              }}
+                              icon="arrowDropUserBubble"
+                            />
+                          </IconButton>
+                        </NavbarProfile>
+                        <Modal
+                          onClose={handleNavPopper}
+                          {...{ open: showWalletPopper }}
                           style={{
-                            pointerEvents: 'none',
-                            transform:
-                              'scaleY(' + (showWalletPopper ? '-1' : '1') + ')',
+                            background:
+                              'linear-gradient(180deg, #000000 17.57%, rgba(0, 0, 0, 0) 100%)',
+                            zIndex: zIndex.nav - 1,
                           }}
-                          icon="arrowDropUserBubble"
                         />
-                      </IconButton>
-                    </NavbarProfile>
-                    <Modal
-                      onClose={handleNavPopper}
-                      {...{ open: showWalletPopper }}
-                      style={{
-                        background:
-                          'linear-gradient(180deg, #000000 17.57%, rgba(0, 0, 0, 0) 100%)',
-                        zIndex: zIndex.nav - 1,
-                      }}
-                    />
-                  </NavbarItem>
-                ) : (
-                  <NavbarItem onClick={onConnectClick}>
-                    <NavbarWallet>
-                      <Icon icon="wallet" size={32} />
-                      {!isMobileOrTablet && (
-                        <Text sx={{ paddingRight: '4px' }}>Connect Wallet</Text>
-                      )}
-                    </NavbarWallet>
-                  </NavbarItem>
-                )}
-              </>
+                      </NavbarItem>
+                    ) : (
+                      <NavbarItem onClick={onConnectClick}>
+                        <NavbarWallet>
+                          <Icon icon="wallet" size={32} />
+                          {!isMobileOrTablet && (
+                            <Text sx={{ paddingRight: '4px' }}>Connect Wallet</Text>
+                          )}
+                        </NavbarWallet>
+                      </NavbarItem>
+                    )}
+                  </>
+                </>
+              )}
 
               <IconButton
                 onClick={onMenuClick}

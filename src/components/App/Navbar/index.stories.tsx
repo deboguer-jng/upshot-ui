@@ -108,6 +108,7 @@ Notifications.args = {
   address: '0x123400000000000000000000000000000000abcd',
   searchSuggestions,
   notifications: ['notif1', 'notif2'],
+  showNotifs: true,
 }
 
 export const ENSUnavailable = Template.bind({})
