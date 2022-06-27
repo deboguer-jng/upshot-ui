@@ -11,7 +11,7 @@ interface SelectionPromptProps {
   embedded?: boolean
   data?: {
     name: string
-    data: number[] | (Date | number)[][]
+    data: any
   }[]
 }
 
@@ -22,7 +22,7 @@ const SelectionPrompt = ({ embedded }: SelectionPromptProps) => {
   return (
     <>
       <ReactApexChart
-        series={theme.chart.defaultSeries}
+        series={theme.chart.defaultSeries as any}
         type="area"
         height="100%"
         width="100%"

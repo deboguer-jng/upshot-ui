@@ -1,4 +1,4 @@
-import css from '@emotion/css'
+import { css } from '@emotion/react'
 import { keyframes } from '@emotion/react'
 import { Keyframes } from '@emotion/serialize'
 import colors from './colors'
