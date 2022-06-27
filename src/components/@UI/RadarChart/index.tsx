@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
 import { RadarChartWrapper } from './Styled'
+import { truncateString } from '../../../utils/string'
 import EmptyChart from '../Chart/components/emptyChart'
 import PopulatedRadarChart from './components/populatedRadarChart'
 
@@ -149,6 +150,25 @@ const Chart = ({
   const polygonPoints = genPolygonPoints(dataPoints, (d) => yScale(d) ?? 0)
   const zeroPoint = new Point({ x: 0, y: 0 })
 
+  const getLabelAnchorX = (x: number) => {
+    if (Math.round(x) == 0) return 'middle'
+    if (x > 0) return 'start'
+    if (x < 0) return 'end'
+  }
+  
+  const getLabelAnchorY = (y: number) => {
+    if (y > height*0.25) return 'start'
+    if (y < -height*0.25) return 'end'
+    if (Math.abs(y) < height*0.5) return 'middle'
+  }
+
+  const labelWidth = 150
+  const getTextOffset = (x: number) => {
+    if (Math.round(x) == 0) return 0
+    if (x > 0) return -labelWidth * 0.22
+    if (x < 0) return labelWidth * 0.22
+  }
+
   return width < 10 ? null : (
     <svg width={width} height={height}>
       <rect fill='none' width={width} height={height} rx={14} />
@@ -184,7 +204,20 @@ const Chart = ({
               to={points[i]}
               stroke={theme.colors['grey-700']}
             />
-            <Label x={points[i].x} y={points[i].y} title={data.labels[i]} />
+            <Label 
+              x={points[i].x} 
+              y={points[i].y} 
+              width={labelWidth}
+              title={truncateString(data.labels[i], 10)}
+              showBackground={false}
+              showAnchorLine={false}
+              fontColor={theme.colors['grey-500']}
+              titleFontWeight={400}
+              titleFontSize={11}
+              titleProps={{textAnchor: 'middle', dx: getTextOffset(points[i].x) }}
+              horizontalAnchor={getLabelAnchorX(points[i].x)}
+              verticalAnchor={getLabelAnchorY(points[i].y)}
+            />
           </>
         ))}
         <polygon
