@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import Grid from '../../Layout/Grid'
 import { Variant } from './'
 import colors from '../../../themes/UpshotUI/colors'
+import { transientOptions } from '../../../themes'
 
 type ColorsByVariant = { [key: string]: keyof typeof colors }
 
@@ -11,7 +12,9 @@ const colorsByVariant: ColorsByVariant = {
   black: 'black',
 }
 
-export const CollectionGridRowBase = styled(Grid)<{ $variant: Variant }>`
+export const CollectionGridRowBase = styled(Grid, transientOptions)<{
+  $variant: Variant
+}>`
   background-color: ${({ theme, $variant }) =>
     theme.colors[colorsByVariant[$variant]]};
   align-items: center;

@@ -1,12 +1,13 @@
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
+import { transientOptions } from '../../../themes'
 
 interface ModalWrapperProps {
   $open: boolean
   $fullWidth: boolean
 }
 
-export const ModalWrapper = styled.div<ModalWrapperProps>`
+export const ModalWrapper = styled('div', transientOptions)<ModalWrapperProps>`
   position: fixed;
   top: 50%;
   left: 50%;

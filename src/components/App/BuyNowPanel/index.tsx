@@ -125,7 +125,11 @@ const BuyNowPanel = forwardRef(
       : !listAppraisalPercentage
       ? ('white' as keyof typeof colors)
       : ('red' as keyof typeof colors)
-    const title = isUnderPriced ? 'Underpriced' : !listAppraisalPercentage ? 'For Sale' : 'Overpriced'
+    const title = isUnderPriced
+      ? 'Underpriced'
+      : !listAppraisalPercentage
+      ? 'For Sale'
+      : 'Overpriced'
     const belowOrAbove = isUnderPriced ? 'below' : 'above'
     let buttonPosition
     if (variant === 'wide' && isMobile === false) {
@@ -171,9 +175,7 @@ const BuyNowPanel = forwardRef(
             </Text>
             {listAppraisalPercentage && (
               <>
-                <Text color="grey-400">
-                  :
-                </Text>
+                <Text color="grey-400">:</Text>
                 &nbsp;
                 <Text color={textColor}>
                   {Math.abs(listAppraisalPercentage).toFixed(2)}% {belowOrAbove}{' '}

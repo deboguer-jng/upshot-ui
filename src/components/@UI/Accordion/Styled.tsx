@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import theme from '../../../themes/UpshotUI'
+import { transientOptions } from '../../../themes'
 
 interface AccordionHeaderProps {
   isDropdown?: boolean
@@ -16,13 +17,16 @@ interface AccordionBodyWrapperProps {
   open: boolean
 }
 
-export const AccordionWrapper = styled.div`
+export const AccordionWrapper = styled('div', transientOptions)`
   position: relative;
   margin-bottom: ${({ theme }) => theme.accordion.marginBottom}px;
   min-height: 54px;
 `
 
-export const AccordionHeader = styled.div<AccordionHeaderProps>`
+export const AccordionHeader = styled(
+  'div',
+  transientOptions
+)<AccordionHeaderProps>`
   position: relative;
   z-index: ${({ theme, isDropdown, open }) =>
     open
@@ -52,7 +56,10 @@ export const AccordionHeader = styled.div<AccordionHeaderProps>`
   }
 `
 
-export const AccordionBodyWrapper = styled.div<AccordionBodyWrapperProps>`
+export const AccordionBodyWrapper = styled(
+  'div',
+  transientOptions
+)<AccordionBodyWrapperProps>`
   position: ${({ isDropdown }) => (isDropdown ? 'absolute' : 'relative')};
   z-index: ${({ theme, isDropdown, open }) =>
     open
@@ -68,7 +75,10 @@ export const AccordionBodyWrapper = styled.div<AccordionBodyWrapperProps>`
   transition-delay: ${({ open }) => !open && '0.15s'};
 `
 
-export const AccordionBody = styled.div<AccordionBodyProps>`
+export const AccordionBody = styled(
+  'div',
+  transientOptions
+)<AccordionBodyProps>`
   padding: ${({ theme }) => theme.accordion.body.padding}px;
   padding-top: ${({ open }) => (open ? '27px' : 0)};
   padding-bottom: ${({ open }) => (open ? theme.accordion.body.padding : 0)}px;

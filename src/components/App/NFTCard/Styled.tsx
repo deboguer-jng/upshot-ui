@@ -3,6 +3,7 @@ import Panel from '../../@UI/Panel'
 import Image from '../../@UI/Image'
 import colors from '../../../themes/UpshotUI/colors'
 import { Flex } from 'theme-ui'
+import { transientOptions } from '../../../themes'
 
 type NFTCardImageProps = {
   $isPixelated: boolean
@@ -16,7 +17,7 @@ type NFTDealBadgeProps = {
   $percentDifference?: number
 }
 
-export const NFTCardBase = styled(Flex)<NFTCardProps>`
+export const NFTCardBase = styled(Flex, transientOptions)<NFTCardProps>`
   flex-direction: column;
   gap: 4;
   align-items: center;
@@ -36,7 +37,7 @@ export const NFTCardBase = styled(Flex)<NFTCardProps>`
   }
 `
 
-export const NFTCardImage = styled(Image)<NFTCardImageProps>`
+export const NFTCardImage = styled(Image, transientOptions)<NFTCardImageProps>`
   width: 100%;
   image-rendering: ${({ $isPixelated }) => ($isPixelated ? 'pixelated' : '')};
   pointer-events: none;
@@ -45,12 +46,12 @@ export const NFTCardImage = styled(Image)<NFTCardImageProps>`
   border-bottom-right-radius: 0;
 `
 
-export const NFTCardDetails = styled(Flex)`
+export const NFTCardDetails = styled(Flex, transientOptions)`
   flex-direction: row;
   align-items: space-between;
 `
 
-export const DealBadge = styled(Panel)<NFTDealBadgeProps>`
+export const DealBadge = styled(Panel, transientOptions)<NFTDealBadgeProps>`
   border-radius: ${({ theme }) => theme.radii.xs};
   background-color: ${({ theme, $percentDifference }) =>
     $percentDifference > 0 ? theme.colors['greenLabel'] : theme.colors['red']};

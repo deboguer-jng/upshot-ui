@@ -2,12 +2,17 @@ import styled from '@emotion/styled'
 import { Box } from 'theme-ui'
 import colors from '../../../themes/UpshotUI/colors'
 import { transparentize } from 'polished'
+import { transientOptions } from '../../../themes'
+
 interface ProgressBarBaseProps {
   $percent: number
   $bgColor?: keyof typeof colors
 }
 
-export const ProgressBarBase = styled(Box)<ProgressBarBaseProps>`
+export const ProgressBarBase = styled(
+  Box,
+  transientOptions
+)<ProgressBarBaseProps>`
   position: relative;
   height: 22px;
   width: 100%;

@@ -1,19 +1,22 @@
 import styled from '@emotion/styled'
 import { Grid } from 'theme-ui'
 import Panel from '../../@UI/Panel'
+import { transientOptions } from '../../../themes'
 
 interface CollectorRowAvatarWrapperProps {
   selected?: boolean
 }
 
-export const CollectorRowBase = styled.div`
+export const CollectorRowBase = styled('div', transientOptions)`
   width: 100%;
   border-radius: 20px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors['grey-900']};
 `
 
-export const CollectorRowContent = styled(Grid)<{ $hasImage?: boolean }>`
+export const CollectorRowContent = styled(Grid, transientOptions)<{
+  $hasImage?: boolean
+}>`
   grid-template-columns: ${({ $hasImage = true }) =>
     $hasImage
       ? '48px auto min-content min-content'
@@ -24,7 +27,7 @@ export const CollectorRowContent = styled(Grid)<{ $hasImage?: boolean }>`
   cursor: pointer;
 `
 
-export const CollectorRowExpansion = styled.div<{
+export const CollectorRowExpansion = styled('div', transientOptions)<{
   $open: boolean
   $contentHeight?: number
 }>`
@@ -34,7 +37,10 @@ export const CollectorRowExpansion = styled.div<{
     $open ? ($contentHeight ? $contentHeight + 'px' : 'auto') : '0px'};
 `
 
-export const CollectorRowAvatarWrapper = styled.button<CollectorRowAvatarWrapperProps>`
+export const CollectorRowAvatarWrapper = styled(
+  'button',
+  transientOptions
+)<CollectorRowAvatarWrapperProps>`
   background: transparent;
   outline: none;
   border: none;
@@ -59,7 +65,7 @@ export const CollectorRowAvatarWrapper = styled.button<CollectorRowAvatarWrapper
   }
 `
 
-export const StyledPanel = styled(Panel)<{
+export const StyledPanel = styled(Panel, transientOptions)<{
   $hideBorder?: boolean
 }>`
   padding: ${({ $hideBorder }) =>

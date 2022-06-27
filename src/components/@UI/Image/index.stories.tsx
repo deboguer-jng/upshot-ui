@@ -38,7 +38,6 @@ W100H100.args = {
   height: 100,
 }
 
-
 export const W100AR16_9 = Template.bind({})
 W100AR16_9.args = {
   src: 'https://res.cloudinary.com/upshot-inc/image/upload/v1631819750/uvwr9fujso4awqpjxlfq.png',
@@ -59,4 +58,3 @@ RelativeUrl.args = {
   width: 100,
   height: 100,
 }
-

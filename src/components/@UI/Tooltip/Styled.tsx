@@ -1,20 +1,21 @@
 import styled from '@emotion/styled'
+import { transientOptions } from '../../../themes'
 
 import colors from '../../../themes/UpshotUI/colors'
 import Box from '../../Layout/Box'
 import Icon from '../Icon'
 import Panel from '../Panel'
 
-export const BaseBox = styled(Box)`
+export const BaseBox = styled(Box, transientOptions)`
   display: inline-block;
 `
-export const ChildContainer = styled(Box)`
+export const ChildContainer = styled(Box, transientOptions)`
   cursor: pointer;
 `
-export const IconMiddle = styled(Icon)`
+export const IconMiddle = styled(Icon, transientOptions)`
   vertical-align: middle;
 `
-export const StyledPanel = styled(Panel)`
+export const StyledPanel = styled(Panel, transientOptions)`
   backdrop-filter: blur(12px);
   background-color: ${({ theme }) => theme.colors['grey-900']};
   border-radius: ${({ theme }) => theme.radii.md};

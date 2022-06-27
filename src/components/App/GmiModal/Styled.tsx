@@ -1,8 +1,9 @@
 import styled from '@emotion/styled'
 import { Flex } from 'theme-ui'
 import Colors from '../../../themes/UpshotUI/colors'
+import { transientOptions } from '../../../themes'
 
-export const GmiModalBase = styled(Flex)`
+export const GmiModalBase = styled(Flex, transientOptions)`
   flex-direction: column;
   align-items: center;
   gap: 24px;
@@ -15,13 +16,15 @@ export const GmiModalBase = styled(Flex)`
   box-shadow: ${({ theme }) => theme.shadow.default};
 `
 
-export const ConnectProviders = styled(Flex)`
+export const ConnectProviders = styled(Flex, transientOptions)`
   flex-direction: column;
   gap: 8px;
   width: 100%;
 `
 
-export const Provider = styled(Flex)<{ $color: keyof typeof Colors }>`
+export const Provider = styled(Flex, transientOptions)<{
+  $color: keyof typeof Colors
+}>`
   align-items: center;
   justify-content: space-between;
   padding: 0 ${({ theme }) => theme.space[5] + 'px'};
@@ -46,7 +49,9 @@ export const Provider = styled(Flex)<{ $color: keyof typeof Colors }>`
   }
 `
 
-export const Search = styled(Flex)<{ $color: keyof typeof Colors }>`
+export const Search = styled(Flex, transientOptions)<{
+  $color: keyof typeof Colors
+}>`
   position: absolute;
   top: 4px;
   right: 4px;
@@ -74,7 +79,7 @@ export const Search = styled(Flex)<{ $color: keyof typeof Colors }>`
   }
 `
 
-export const StyledLink = styled.a`
+export const StyledLink = styled('a', transientOptions)`
   color: inherit;
   text-decoration: none;
   cursor: pointer;
