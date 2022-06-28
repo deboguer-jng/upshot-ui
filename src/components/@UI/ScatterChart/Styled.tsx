@@ -54,7 +54,7 @@ export const TimeFilter = styled('span', transientOptions)<TimeFilterProps>`
     active ? theme.colors.primary : 'transparent'};
 `
 export const LegendContainer = styled('div', transientOptions)`
-  margin-top: -110px;
+  margin-top: -120px;
 `
 
 export const LegendCircle = styled('div', transientOptions)<{color: string}>`
@@ -81,6 +81,7 @@ export const TooltipContainer = styled('div', transientOptions)`
   padding: 12px;
   font-weight: 600;
   font-size: 1rem;
+  position: relative;
 `
 
 export const TooltipDate = styled(Flex, transientOptions)`

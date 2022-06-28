@@ -1,25 +1,31 @@
-import React, { forwardRef, useEffect, useMemo, useState, useCallback } from 'react'
+import React, {
+  forwardRef,
+  useEffect,
+  useMemo,
+  useState,
+  useCallback,
+} from 'react'
 import {
   XYChart,
   Tooltip,
   Axis,
   EventHandlerParams,
-  AnimatedAreaSeries
-} from '@visx/xychart';
-import { curveCardinal } from '@visx/curve';
-import { LinearGradient } from "@visx/gradient";
+  AnimatedAreaSeries,
+} from '@visx/xychart'
+import { curveCardinal } from '@visx/curve'
+import { LinearGradient } from '@visx/gradient'
 import { ParentSize } from '@visx/responsive'
 import { useTheme } from '@emotion/react'
-import { format } from 'date-fns';
+import { format } from 'date-fns'
 import { CustomLegendWrapper } from './Styled'
-import ChartLabel from '../ChartLabel';
-import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex';
-import colors from '../../../themes/UpshotUI/colors';
-import { Box, Flex } from 'theme-ui';
-import ButtonChartCollection from '../ButtonChartCollection';
-import { truncateString } from '../../../utils/string';
-import EmptyChart from './components/emptyChart';
-import { formatNumber } from '../../../utils/number';
+import ChartLabel from '../ChartLabel'
+import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
+import colors from '../../../themes/UpshotUI/colors'
+import { Box, Flex } from 'theme-ui'
+import ButtonChartCollection from '../ButtonChartCollection'
+import { truncateString } from '../../../utils/string'
+import EmptyChart from './components/emptyChart'
+import { formatNumber } from '../../../utils/number'
 
 interface DataPoint {
   x: number
@@ -80,9 +86,9 @@ export interface ChartProps {
    */
   onClose?: (index: number) => void
 
-  width: number
-  height: number
-  margin?: {top: number, bottom: number, left: number, right: number}
+  width?: number
+  height?: number
+  margin?: { top: number; bottom: number; left: number; right: number }
 }
 
 type HoverDataPoint = {
@@ -116,7 +122,9 @@ const Chart = forwardRef(
   ) => {
     const theme = useTheme()
     const isMobile = useBreakpointIndex() <= 1
-    const emptyFilters: FilterStatus = Object.fromEntries(data.map(d => [d.name, true]))
+    const emptyFilters: FilterStatus = Object.fromEntries(
+      data.map((d) => [d.name, true])
+    )
     const [filterStatus, setFilterStatus] = useState<FilterStatus>(emptyFilters)
     const [activeSeriesKey, setActiveSeriesKey] = useState<string>(null)
     const [activeDataPoint, setActiveDataPoint] = useState<DataPoint>(null)
@@ -126,20 +134,22 @@ const Chart = forwardRef(
       setFilterStatus(emptyFilters)
     }, [data])
 
-    const chartColors = [
-      'blue',
-      'pink',
-      'orange',
-      'green',
-      'yellow',
-    ]
-    const seriesColors: {[key: string]: keyof typeof colors} = Object.fromEntries(data.map((d, i) => [d.name, chartColors[i] as keyof typeof colors]))
-    const getRawColor = (seriesName: string) => theme.rawColors[seriesColors[seriesName]]
+    const chartColors = ['blue', 'pink', 'orange', 'green', 'yellow']
+    const seriesColors: { [key: string]: keyof typeof colors } =
+      Object.fromEntries(
+        data.map((d, i) => [d.name, chartColors[i] as keyof typeof colors])
+      )
+    const getRawColor = (seriesName: string) =>
+      theme.rawColors[seriesColors[seriesName]]
 
     const tickFormatTime = (n: number) => format(Number(n), 'MM/dd/yy')
-    const tickFormatPrice = (n: number) => formatNumber(Number(n), { kmbUnits: true, prefix: 'ETHER' })
+    const tickFormatPrice = (n: number) =>
+      formatNumber(Number(n), { kmbUnits: true, prefix: 'ETHER' })
 
-    const handlePointerMove = ({ datum, key }: EventHandlerParams<DataPoint>) => {
+    const handlePointerMove = ({
+      datum,
+      key,
+    }: EventHandlerParams<DataPoint>) => {
       setActiveSeriesKey(key)
       setActiveDataPoint(datum)
     }
@@ -148,21 +158,26 @@ const Chart = forwardRef(
       setActiveDataPoint(null)
     }
 
-    const toggle = useCallback((seriesName: string) => {
-      setFilterStatus({...filterStatus, [seriesName]: !filterStatus[seriesName]})
-    }, [filterStatus, setFilterStatus])
+    const toggle = useCallback(
+      (seriesName: string) => {
+        setFilterStatus({
+          ...filterStatus,
+          [seriesName]: !filterStatus[seriesName],
+        })
+      },
+      [filterStatus, setFilterStatus]
+    )
 
     const metricKeys = {
       FLOOR: 'currentFloor',
       PAST_WEEK_AVERAGE: 'currentAvg',
       PAST_WEEK_VOLUME: 'currentVolume',
     }
-  
-    const labelValue = (
-      set: DataItem
-    ) => {
-      if (activeDataPoint && activeSeriesKey === set.name) return activeDataPoint.y
-  
+
+    const labelValue = (set: DataItem) => {
+      if (activeDataPoint && activeSeriesKey === set.name)
+        return activeDataPoint.y
+
       return set[
         metricKeys[set.metric as keyof typeof metricKeys] as
           | 'currentFloor'
@@ -171,10 +186,13 @@ const Chart = forwardRef(
       ]
     }
 
-    const isDim = useCallback((seriesName: string) => {
-      if (activeSeriesKey == null) return false
-      return activeSeriesKey !== seriesName
-    }, [activeSeriesKey])
+    const isDim = useCallback(
+      (seriesName: string) => {
+        if (activeSeriesKey == null) return false
+        return activeSeriesKey !== seriesName
+      },
+      [activeSeriesKey]
+    )
 
     const chartLabels = useMemo(
       () =>
@@ -196,10 +214,7 @@ const Chart = forwardRef(
                 isDim={isDim(set.name)}
                 timestamp={
                   activeDataPoint?.x && activeSeriesKey === set.name
-                    ? format(
-                        activeDataPoint?.x,
-                        'LLL dd yyyy hh:mm'
-                      )
+                    ? format(activeDataPoint?.x, 'LLL dd yyyy hh:mm')
                     : null
                 }
                 maxWidth={isMobile ? 140 : 280}
@@ -210,138 +225,133 @@ const Chart = forwardRef(
       [data, filterStatus, activeDataPoint, isMobile]
     )
 
-    if (loading || data.length == 0 || error) 
-      return (
-        <EmptyChart {...{loading, error, width, height, data}} />
-      )
+    if (loading || data.length == 0 || error)
+      return <EmptyChart {...{ loading, error, width, height, data }} />
 
     return (
       <>
-      {!embedded && (
-        <Flex
-          sx={{
-            justifyContent: 'space-between',
-            gap: [2, 0],
-            flexDirection: ['column', 'row'],
-          }}
-        >
-          <Box
+        {!embedded && (
+          <Flex
             sx={{
-              width: '100%',
-              flexDirection: 'row',
-              alignItems: 'flex-start',
-              textAlign: 'left',
-              display: ['inline-grid', 'inline-grid', 'inline-flex'],
-              gridTemplateColumns: ['1fr 1fr', '1fr 1fr', null],
-              flexWrap: 'wrap',
-              gap: '18px',
+              justifyContent: 'space-between',
+              gap: [2, 0],
+              flexDirection: ['column', 'row'],
             }}
           >
-            {chartLabels}
-          </Box>
-        </Flex>
-      )}
-      <XYChart
-          xScale={{type: 'band'}}
-          yScale={{type: 'linear'}}
+            <Box
+              sx={{
+                width: '100%',
+                flexDirection: 'row',
+                alignItems: 'flex-start',
+                textAlign: 'left',
+                display: ['inline-grid', 'inline-grid', 'inline-flex'],
+                gridTemplateColumns: ['1fr 1fr', '1fr 1fr', null],
+                flexWrap: 'wrap',
+                gap: '18px',
+              }}
+            >
+              {chartLabels}
+            </Box>
+          </Flex>
+        )}
+        <XYChart
+          xScale={{ type: 'band', padding: 0 }}
+          yScale={{ type: 'linear' }}
           height={height}
           width={width}
-          margin={margin}
-          pointerEventsDataKey='nearest'
+          // margin={margin}
+          pointerEventsDataKey="nearest"
           onPointerMove={handlePointerMove}
           onPointerOut={handlePointerOut}
         >
           <>
             <Axis
-              orientation='bottom'
-              key='time-axis'
+              orientation="bottom"
+              key="time-axis"
               hideAxisLine={true}
-              numTicks={width/120}
+              hideTicks={true}
+              numTicks={width / 120}
               tickFormat={tickFormatTime}
               tickLabelProps={() => ({
                 fill: theme.colors.white,
                 fontSize: 14,
                 textAnchor: 'middle',
-                verticalAnchor: 'middle'
+                verticalAnchor: 'middle',
               })}
-              tickStroke='none'
             />
             <Axis
-              key='price-axis'
-              orientation='left'
-              left={80}
+              key="price-axis"
+              orientation="left"
+              left={50}
               hideAxisLine={true}
+              hideTicks={true}
               tickFormat={tickFormatPrice}
               tickLabelProps={() => ({
                 fill: theme.colors.white,
                 fontSize: 14,
-                textAnchor: "end",
-                verticalAnchor: "middle",
+                textAnchor: 'end',
+                verticalAnchor: 'middle',
               })}
-              tickStroke='none'
-              />
+            />
             {data
               .filter((set) => filterStatus[set.name])
-              .map((d, i: number) => 
+              .map((d, i: number) => (
                 <>
                   {d.name}
                   <LinearGradient id={`area-gradient${i}`} key={`grad-${d.name}`}>
-                    <stop stopOpacity="0.5" stopColor={getRawColor(d.name)} offset="0"></stop>
-                    <stop stopOpacity="0.3" stopColor={getRawColor(d.name)} offset="0.2"></stop>
-                    <stop stopOpacity="0.1" stopColor={getRawColor(d.name)} offset="0.5"></stop>
-                    <stop stopOpacity="0" stopColor={getRawColor(d.name)} offset="0.9"></stop>
+                    <stop stopOpacity="0.5" stopColor={getRawColor(d.name)} offset="0" />
+                    <stop stopOpacity="0.3" stopColor={getRawColor(d.name)} offset="0.2" />
+                    <stop stopOpacity="0.1" stopColor={getRawColor(d.name)} offset="0.5" />
+                    <stop stopOpacity="0" stopColor={getRawColor(d.name)} offset="0.9" />
                   </LinearGradient>
                   <AnimatedAreaSeries
                     key={`series-${d.name}`}
                     dataKey={d.name}
                     data={d.data}
-                    // xAccessor={d => tickFormatTime(d?.x)}
-                    xAccessor={d => d?.x}
-                    yAccessor={d => d?.y}
+                    xAccessor={(d) => d?.x}
+                    yAccessor={(d) => d?.y}
                     fill={`url(#area-gradient${i})`}
                     curve={curveCardinal}
                     lineProps={{ stroke: getRawColor(d.name) }}
-                    y0Accessor={(d) => 0}
                   />
                 </>
-              )}
-            <Tooltip 
+              ))}
+            <Tooltip
               showDatumGlyph
               unstyled
               applyPositionStyle
-              glyphStyle={{stroke: 'none', fill: activeSeriesKey ? getRawColor(activeSeriesKey) : 'none', r: 6}}
-              renderTooltip={() => <div />}       
+              glyphStyle={{
+                stroke: 'none',
+                fill: activeSeriesKey ? getRawColor(activeSeriesKey) : 'none',
+                r: 6,
+              }}
+              renderTooltip={() => <div />}
             />
           </>
-      </XYChart>
+        </XYChart>
 
-      {!embedded && (
-        <CustomLegendWrapper>
-          {data.map((set, i) => (
-            <ButtonChartCollection
-              key={i}
-              color={seriesColors[set.name]}
-              title={truncateString(set.name, 16)}
-              selected={filterStatus[set.name]}
-              // selected={false}
-              onClick={() =>
-                toggle(set.name)
-              }
-            />
-          ))}
-        </CustomLegendWrapper>
-      )}
-
-    </>
+        {!embedded && (
+          <CustomLegendWrapper>
+            {data.map((set, i) => (
+              <ButtonChartCollection
+                key={i}
+                color={seriesColors[set.name]}
+                title={truncateString(set.name, 16)}
+                selected={filterStatus[set.name]}
+                // selected={false}
+                onClick={() => toggle(set.name)}
+              />
+            ))}
+          </CustomLegendWrapper>
+        )}
+      </>
     )
   }
 )
 
 const ChartParent = (props: ChartProps) => (
   <ParentSize>
-    {({height, width}) => (
-    <Chart {...{height, width, ...props}} />
-    )}
+    {({ height, width }) => <Chart {...{ height, width, ...props }} />}
   </ParentSize>
 )
 

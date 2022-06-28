@@ -34,7 +34,7 @@ export const TooltipContent = ({
   return (
     <TooltipContainer>
       {img?.length && 
-        <img src={img} style={{ width: 150, imageRendering: pixelated ? 'pixelated' : 'auto'}} />}
+        <img src={img} style={{ width: 150, minHeight: 50, imageRendering: pixelated ? 'pixelated' : 'auto'}} />}
       <NFT>
         <Link
           href={`/analytics/nft/${contractAddress}/${id}`}
