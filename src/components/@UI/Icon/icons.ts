@@ -252,10 +252,7 @@ const icons = {
   zora: SVGZora,
   alertOn: SVGAlertOn,
   alertOff: SVGAlertOff,
-<<<<<<< HEAD
   alertOffTest: SVGAlertOffTest,
-=======
->>>>>>> 3a6fa0b85b506159bc09ca74a551ee195dbef811
 }
 
 export default icons
