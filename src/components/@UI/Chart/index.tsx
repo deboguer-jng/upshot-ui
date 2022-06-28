@@ -2,17 +2,16 @@ import React, { forwardRef, useEffect, useMemo, useState, useCallback } from 're
 import {
   XYChart,
   Tooltip,
-  AreaSeries,
   Axis,
   EventHandlerParams,
   AnimatedAreaSeries
 } from '@visx/xychart';
 import { curveCardinal } from '@visx/curve';
-import { Group } from '@visx/group';
 import { LinearGradient } from "@visx/gradient";
-import { useTheme } from '@emotion/react';
+import { ParentSize } from '@visx/responsive'
+import { useTheme } from '@emotion/react'
 import { format } from 'date-fns';
-import { CustomLegendWrapper, TooltipContainer } from './Styled'
+import { CustomLegendWrapper } from './Styled'
 import ChartLabel from '../ChartLabel';
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex';
 import colors from '../../../themes/UpshotUI/colors';
@@ -26,8 +25,6 @@ interface DataPoint {
   x: number
   y: number
 }
-
-const defaultMargin = { top: 50, right: 50, bottom: 50, left: 50 }
 
 export interface DataItem {
   name: string
@@ -97,6 +94,8 @@ type FilterStatus = {
   [key: string]: boolean
 }
 
+const defaultMargin = { top: 50, right: 50, bottom: 50, left: 50 }
+
 const Chart = forwardRef(
   (
     {
@@ -121,8 +120,6 @@ const Chart = forwardRef(
     const [filterStatus, setFilterStatus] = useState<FilterStatus>(emptyFilters)
     const [activeSeriesKey, setActiveSeriesKey] = useState<string>(null)
     const [activeDataPoint, setActiveDataPoint] = useState<DataPoint>(null)
-
-    console.log('filterStatus', filterStatus)
 
     /* Reset filters when data changes. */
     useEffect(() => {
@@ -217,6 +214,7 @@ const Chart = forwardRef(
       return (
         <EmptyChart {...{loading, error, width, height, data}} />
       )
+
     return (
       <>
       {!embedded && (
@@ -244,7 +242,7 @@ const Chart = forwardRef(
         </Flex>
       )}
       <XYChart
-          xScale={{type: 'time'}}
+          xScale={{type: 'band'}}
           yScale={{type: 'linear'}}
           height={height}
           width={width}
@@ -255,27 +253,24 @@ const Chart = forwardRef(
         >
           <>
             <Axis
-              key='time-axis'
               orientation='bottom'
+              key='time-axis'
               hideAxisLine={true}
-              numTicks={6}
+              numTicks={width/120}
               tickFormat={tickFormatTime}
-              tickLength={0}
               tickLabelProps={() => ({
                 fill: theme.colors.white,
                 fontSize: 14,
-                textAnchor: "middle",
-                verticalAnchor: "middle"
+                textAnchor: 'middle',
+                verticalAnchor: 'middle'
               })}
               tickStroke='none'
             />
             <Axis
               key='price-axis'
               orientation='left'
-              left={50}
+              left={80}
               hideAxisLine={true}
-              numTicks={4}
-              tickLength={0}
               tickFormat={tickFormatPrice}
               tickLabelProps={() => ({
                 fill: theme.colors.white,
@@ -290,7 +285,7 @@ const Chart = forwardRef(
               .map((d, i: number) => 
                 <>
                   {d.name}
-                  <LinearGradient id={`area-gradient${i}`} key={`grad-${i}`}>
+                  <LinearGradient id={`area-gradient${i}`} key={`grad-${d.name}`}>
                     <stop stopOpacity="0.5" stopColor={getRawColor(d.name)} offset="0"></stop>
                     <stop stopOpacity="0.3" stopColor={getRawColor(d.name)} offset="0.2"></stop>
                     <stop stopOpacity="0.1" stopColor={getRawColor(d.name)} offset="0.5"></stop>
@@ -300,6 +295,7 @@ const Chart = forwardRef(
                     key={`series-${d.name}`}
                     dataKey={d.name}
                     data={d.data}
+                    // xAccessor={d => tickFormatTime(d?.x)}
                     xAccessor={d => d?.x}
                     yAccessor={d => d?.y}
                     fill={`url(#area-gradient${i})`}
@@ -341,4 +337,12 @@ const Chart = forwardRef(
   }
 )
 
-export default Chart
+const ChartParent = (props: ChartProps) => (
+  <ParentSize>
+    {({height, width}) => (
+    <Chart {...{height, width, ...props}} />
+    )}
+  </ParentSize>
+)
+
+export default ChartParent
