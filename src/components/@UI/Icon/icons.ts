@@ -120,6 +120,7 @@ import SVGZoraBlock from '../../../assets/svg/icons/Zora_BlockColor.svg'
 import SVGZora from '../../../assets/svg/icons/Zora.svg'
 import SVGAlertOn from '../../../assets/svg/icons/AlertOn.svg'
 import SVGAlertOff from '../../../assets/svg/icons/AlertOff.svg'
+import SVGAlertOffTest from '../../../assets/svg/icons/AlertOff.svg'
 
 import SVGUpshotWallet from '../../../assets/svg/icons/Upshot_Wallet.svg'
 import SVGUpshotConfirmation from '../../../assets/svg/icons/Upshot_Confirmation.svg'
@@ -251,6 +252,7 @@ const icons = {
   zora: SVGZora,
   alertOn: SVGAlertOn,
   alertOff: SVGAlertOff,
+  alertOffTest: SVGAlertOffTest,
 }
 
 export default icons

@@ -395,3 +395,6 @@ AlertOn.args = { icon: 'alertOn', color: 'primary', size: 32 }
 
 export const AlertOff = Template.bind({})
 AlertOff.args = { icon: 'alertOff', color: 'primary', size: 32 }
+
+export const AlertOffTest = Template.bind({})
+AlertOffTest.args = { icon: 'alertOffTest', color: 'primary', size: 32 }
