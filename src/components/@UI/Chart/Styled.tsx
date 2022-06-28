@@ -77,12 +77,6 @@ export const Tooltip = styled('div', transientOptions)`
   color: white;
 `
 
-export const FilterWrapper = styled('div', transientOptions)`
-  display: flex;
-  margin-left: 50px;
-  justify-content: space-between;
-`
-
 export const FilterButton = styled(
   'button',
   transientOptions
@@ -122,20 +116,6 @@ export const ReactChartWrapper = styled('div', transientOptions)<{
   }
 `
 
-export const TooltipStyled = styled('div', transientOptions)`
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  overflow: visible;
-`
-
-export const AxisTooltip = styled('div', transientOptions)`
-  background: black;
-  color: ${({ theme }) => theme.rawColors.text};
-  border-radius: ${({ theme }) => theme.radii.pill};
-  font-size: ${({ theme }) => theme.fontSizes[0]};
-`
-
 export const TooltipContainer = styled('div', transientOptions)`
   position: relative;
   background: black;
@@ -145,7 +125,29 @@ export const TooltipContainer = styled('div', transientOptions)`
   font-family: ${({ theme }) => theme.fonts.body};
 `
 
-export const TooltipThingIdk = styled('div', transientOptions)`
+export const CustomLegendWrapper = styled('div', transientOptions)`
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+`
+
+export const StyledTooltip = styled('div', transientOptions)<{ 
+  color: string
+}>`
+  position: relative;
+  background: black;
+  border-radius: 1rem;
+  padding: 0.1rem 1rem;
+  overflow: visible;
+  font-family: ${({theme}) => theme.fonts.body};
+  color: ${({color}) => color};
+  border: 1px solid ${({color}) => color};
+`
+
+export const TooltipTail = styled('div', transientOptions)<{
+  color: string
+}>`
   position: absolute;
   bottom: -6px;
   left: 50%;
@@ -153,11 +155,6 @@ export const TooltipThingIdk = styled('div', transientOptions)`
   width: 10px;
   height: 10px;
   background: black;
-`
-
-export const CustomLegendWrapper = styled('div', transientOptions)`
-  display: flex;
-  align-items: center;
-  margin-top: 1rem;
-  flex-wrap: wrap;
+  border-left: 1px solid ${({color}) => color};
+  border-bottom: 1px solid ${({color}) => color};
 `

@@ -17,7 +17,7 @@ import { LinearGradient } from '@visx/gradient'
 import { ParentSize } from '@visx/responsive'
 import { useTheme } from '@emotion/react'
 import { format } from 'date-fns'
-import { CustomLegendWrapper } from './Styled'
+import { CustomLegendWrapper, StyledTooltip, TooltipTail } from './Styled'
 import ChartLabel from '../ChartLabel'
 import { useBreakpointIndex } from '../../../hooks/useBreakpointIndex'
 import colors from '../../../themes/UpshotUI/colors'
@@ -26,6 +26,8 @@ import ButtonChartCollection from '../ButtonChartCollection'
 import { truncateString } from '../../../utils/string'
 import EmptyChart from './components/emptyChart'
 import { formatNumber } from '../../../utils/number'
+import { useTooltip } from '@visx/tooltip'
+import { RenderTooltipParams } from '@visx/xychart/lib/components/Tooltip'
 
 interface DataPoint {
   x: number
@@ -89,6 +91,12 @@ export interface ChartProps {
   width?: number
   height?: number
   margin?: { top: number; bottom: number; left: number; right: number }
+  showXAxis?: boolean,
+  showYAxis?: boolean,
+  /**
+   * Displays a tooltip over hovered point on a line
+   */
+  showTooltip?: boolean
 }
 
 type HoverDataPoint = {
@@ -116,12 +124,16 @@ const Chart = forwardRef(
       width,
       height,
       margin = defaultMargin,
+      showXAxis = true,
+      showYAxis = true,
+      showTooltip = false,
       ...props
     }: ChartProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const theme = useTheme()
     const isMobile = useBreakpointIndex() <= 1
+
     const emptyFilters: FilterStatus = Object.fromEntries(
       data.map((d) => [d.name, true])
     )
@@ -133,6 +145,8 @@ const Chart = forwardRef(
     useEffect(() => {
       setFilterStatus(emptyFilters)
     }, [data])
+
+    const { tooltipData } = useTooltip()
 
     const chartColors = ['blue', 'pink', 'orange', 'green', 'yellow']
     const seriesColors: { [key: string]: keyof typeof colors } =
@@ -259,50 +273,73 @@ const Chart = forwardRef(
           yScale={{ type: 'linear' }}
           height={height}
           width={width}
-          // margin={margin}
+          margin={margin}
           pointerEventsDataKey="nearest"
           onPointerMove={handlePointerMove}
           onPointerOut={handlePointerOut}
         >
           <>
-            <Axis
-              orientation="bottom"
-              key="time-axis"
-              hideAxisLine={true}
-              hideTicks={true}
-              numTicks={width / 120}
-              tickFormat={tickFormatTime}
-              tickLabelProps={() => ({
-                fill: theme.colors.white,
-                fontSize: 14,
-                textAnchor: 'middle',
-                verticalAnchor: 'middle',
-              })}
-            />
-            <Axis
-              key="price-axis"
-              orientation="left"
-              left={50}
-              hideAxisLine={true}
-              hideTicks={true}
-              tickFormat={tickFormatPrice}
-              tickLabelProps={() => ({
-                fill: theme.colors.white,
-                fontSize: 14,
-                textAnchor: 'end',
-                verticalAnchor: 'middle',
-              })}
-            />
+            {showXAxis && 
+              <Axis
+                orientation="bottom"
+                key="time-axis"
+                hideAxisLine={true}
+                hideTicks={true}
+                numTicks={width / 120}
+                tickFormat={tickFormatTime}
+                tickLabelProps={() => ({
+                  fill: theme.colors.white,
+                  fontSize: 14,
+                  textAnchor: 'middle',
+                  verticalAnchor: 'middle',
+                })}
+              />
+            }
+            {showYAxis && 
+              <Axis
+                key="price-axis"
+                orientation="left"
+                left={50}
+                hideAxisLine={true}
+                hideTicks={true}
+                tickFormat={tickFormatPrice}
+                tickLabelProps={() => ({
+                  fill: theme.colors.white,
+                  fontSize: 14,
+                  textAnchor: 'end',
+                  verticalAnchor: 'middle',
+                })}
+              />
+            }
             {data
               .filter((set) => filterStatus[set.name])
               .map((d, i: number) => (
                 <>
                   {d.name}
-                  <LinearGradient id={`area-gradient${i}`} key={`grad-${d.name}`}>
-                    <stop stopOpacity="0.5" stopColor={getRawColor(d.name)} offset="0" />
-                    <stop stopOpacity="0.3" stopColor={getRawColor(d.name)} offset="0.2" />
-                    <stop stopOpacity="0.1" stopColor={getRawColor(d.name)} offset="0.5" />
-                    <stop stopOpacity="0" stopColor={getRawColor(d.name)} offset="0.9" />
+                  <LinearGradient
+                    id={`area-gradient${i}`}
+                    key={`grad-${d.name}`}
+                  >
+                    <stop
+                      stopOpacity="0.5"
+                      stopColor={getRawColor(d.name)}
+                      offset="0"
+                    />
+                    <stop
+                      stopOpacity="0.3"
+                      stopColor={getRawColor(d.name)}
+                      offset="0.2"
+                    />
+                    <stop
+                      stopOpacity="0.1"
+                      stopColor={getRawColor(d.name)}
+                      offset="0.5"
+                    />
+                    <stop
+                      stopOpacity="0"
+                      stopColor={getRawColor(d.name)}
+                      offset="0.9"
+                    />
                   </LinearGradient>
                   <AnimatedAreaSeries
                     key={`series-${d.name}`}
@@ -320,12 +357,22 @@ const Chart = forwardRef(
               showDatumGlyph
               unstyled
               applyPositionStyle
+              snapTooltipToDatumX
+              snapTooltipToDatumY
               glyphStyle={{
                 stroke: 'none',
                 fill: activeSeriesKey ? getRawColor(activeSeriesKey) : 'none',
                 r: 6,
               }}
-              renderTooltip={() => <div />}
+              offsetTop={-65}
+              offsetLeft={-47}
+              renderTooltip={({ tooltipData }: RenderTooltipParams<DataPoint>) => showTooltip ?
+                <StyledTooltip color={getRawColor(tooltipData.nearestDatum.key)}>
+                  {tickFormatPrice(tooltipData.nearestDatum.datum.y)}<br />
+                  {tickFormatTime(tooltipData.nearestDatum.datum.x)}
+                  <TooltipTail color={getRawColor(tooltipData.nearestDatum.key)} />
+                </StyledTooltip>
+                : <div />}
             />
           </>
         </XYChart>
