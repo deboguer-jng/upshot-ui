@@ -120,11 +120,8 @@ import SVGZoraBlock from '../../../assets/svg/icons/Zora_BlockColor.svg'
 import SVGZora from '../../../assets/svg/icons/Zora.svg'
 import SVGAlertOn from '../../../assets/svg/icons/AlertOn.svg'
 import SVGAlertOff from '../../../assets/svg/icons/AlertOff.svg'
-<<<<<<< HEAD
 import SVGAlertOffTest from '../../../assets/svg/icons/AlertOff.svg'
-=======
 
->>>>>>> 3a6fa0b85b506159bc09ca74a551ee195dbef811
 import SVGUpshotWallet from '../../../assets/svg/icons/Upshot_Wallet.svg'
 import SVGUpshotConfirmation from '../../../assets/svg/icons/Upshot_Confirmation.svg'
 import SVGUpshotError from '../../../assets/svg/icons/Upshot_Error.svg'
