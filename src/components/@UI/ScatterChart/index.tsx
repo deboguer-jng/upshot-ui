@@ -18,12 +18,12 @@ import EmptyChart from '../Chart/components/emptyChart'
 import { Legend, LegendItem, LegendLabel, LegendThreshold } from '@visx/legend'
 
 export interface ChartProps {
-  data?: ChartDataItem[]
-  name?: string
+  data: ChartDataItem[]
+  name: string
   showControls?: boolean
   margin?: { top: number; bottom: number; left: number; right: number }
-  loading?: boolean
-  error?: boolean
+  loading: boolean
+  error: boolean
 }
 
 interface ChartSizeProps {
@@ -296,20 +296,16 @@ const ScatterChartVisx = ({
         </TooltipWithBounds>
       )}
       <LegendContainer>
-        <Threshold
+        <Threshold 
           scale={legendScale}
-          direction="row"
+          direction='row'
           style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}
-          labelLower="gmi &lt; "
-          labelUpper="gmi &gt; "
-          shape="circle"
+          labelLower='gmi &lt; '
+          labelUpper='gmi &gt; '
+          shape='circle'
           shapeWidth={10}
-          shapeStyle={(label) => ({
-            color: label.index === 0 ? theme.colors.blue : theme.colors.pink,
-          })}
-          legendLabelProps={{
-            onClick: (e) => console.log('legendLabel onClick', e),
-          }}
+          shapeStyle={(label) => ({color: label.index === 0 ? theme.colors.blue : theme.colors.pink})}
+          legendLabelProps={{onClick: (e) => console.log('legendLabel onClick',e)}}
         />
 
         <TimeFilterContainer>
