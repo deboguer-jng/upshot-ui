@@ -116,7 +116,7 @@ const ChartLabel = forwardRef(
         {...{ ref, ...props }}
         sx={{
           transition: 'default',
-          opacity: Number(!isDim),
+          opacity: isDim ? 0.5 : 1,
         }}
         $isMobile={isMobile}
         $maxWidth={maxWidth}
