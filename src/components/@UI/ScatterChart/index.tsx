@@ -56,8 +56,8 @@ const ScatterChartVisx = ({
   margin = defaultMargin,
   data = [],
   name,
-  loading,
-  error,
+  loading = false,
+  error = false,
   showControls = false,
   ...props
 }: ChartProps & ChartSizeProps) => {
@@ -290,6 +290,7 @@ const ScatterChartVisx = ({
             position: 'absolute',
             backgroundColor: 'transparent',
             pointerEvents: selectedId ? 'all' : 'none',
+            zIndex: theme.zIndex.modal
           }}
         >
           <TooltipContent {...tooltipData} />
