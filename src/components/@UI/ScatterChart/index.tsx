@@ -22,8 +22,8 @@ export interface ChartProps {
   name: string
   showControls?: boolean
   margin?: { top: number; bottom: number; left: number; right: number }
-  loading: boolean
-  error: boolean
+  loading?: boolean
+  error?: boolean
 }
 
 interface ChartSizeProps {
@@ -56,8 +56,8 @@ const ScatterChartVisx = ({
   margin = defaultMargin,
   data = [],
   name,
-  loading,
-  error,
+  loading = false,
+  error = false,
   showControls = false,
   ...props
 }: ChartProps & ChartSizeProps) => {
