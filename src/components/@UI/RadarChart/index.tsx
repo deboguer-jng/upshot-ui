@@ -8,6 +8,7 @@ import theme from '../../../themes/UpshotUI'
 import { RadarChartWrapper } from './Styled'
 import { truncateString } from '../../../utils/string'
 import EmptyChart from '../Chart/components/emptyChart'
+import { ParentSize } from '@visx/responsive'
 
 export interface RadarChartProps {
   /**
@@ -23,8 +24,8 @@ export interface RadarChartProps {
    */
   data?: RadarChartData
 
-  width: number
-  height: number
+  width?: number
+  height?: number
   margin?: { top: number; right: number; bottom: number; left: number }
   levels?: number
 }
@@ -140,13 +141,13 @@ const RadarChart = ({
   return width < 10 ? null : (
     <svg width={width} height={height}>
       <rect fill='none' width={width} height={height} rx={14} />
-      <Group top={height / 2 - margin.top} left={width / 2}>
+      <Group top={height / 2} left={width / 2}>
           <LineRadial
             key={`web-base`}
             data={webs}
             angle={(d) => radialScale(d.angle) ?? 0}
             radius={radius}
-            fill={theme.colors['grey-800']}
+            fill={theme.colors['grey-900']}
             stroke={theme.colors['grey-700']}
             strokeWidth={1}
             strokeOpacity={0.8}
@@ -209,4 +210,10 @@ const RadarChart = ({
   )
 }
 
-export default RadarChart
+const RadarChartParent = (props: RadarChartProps) => (
+  <ParentSize>
+    {({ height, width }) => <RadarChart {...{ height, width, ...props }} />}
+  </ParentSize>
+)
+
+export default RadarChartParent
