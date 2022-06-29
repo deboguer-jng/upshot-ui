@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
+import bigData from './bigData.json'
 
 import Chart from './'
 
@@ -78,6 +79,9 @@ Main.args = {
     },
   ],
 }
+
+export const MainBigData = Template.bind({})
+MainBigData.args = { data: bigData }
 
 export const MainSingle = Template.bind({})
 MainSingle.args = {

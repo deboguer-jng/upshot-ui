@@ -146,7 +146,6 @@ const Chart = forwardRef(
       setFilterStatus(emptyFilters)
     }, [data])
 
-    const { tooltipData } = useTooltip()
 
     const chartColors = ['blue', 'pink', 'orange', 'green', 'yellow']
     const seriesColors: { [key: string]: keyof typeof colors } =
@@ -269,7 +268,7 @@ const Chart = forwardRef(
           </Flex>
         )}
         <XYChart
-          xScale={{ type: 'band', padding: 0 }}
+          xScale={{ type: 'time' }} 
           yScale={{ type: 'linear' }}
           height={height}
           width={width}
@@ -311,48 +310,47 @@ const Chart = forwardRef(
                 })}
               />
             }
+            {data.map(d => 
+              <LinearGradient
+                id={d.name.replace(/\s/g, '')}
+                key={`grad-${d.name}`}
+              >
+                <stop
+                  stopOpacity="0.5"
+                  stopColor={getRawColor(d.name)}
+                  offset="0"
+                />
+                <stop
+                  stopOpacity="0.3"
+                  stopColor={getRawColor(d.name)}
+                  offset="0.2"
+                />
+                <stop
+                  stopOpacity="0.1"
+                  stopColor={getRawColor(d.name)}
+                  offset="0.5"
+                />
+                <stop
+                  stopOpacity="0"
+                  stopColor={getRawColor(d.name)}
+                  offset="0.9"
+                />
+              </LinearGradient>
+            )}
             {data
               .filter((set) => filterStatus[set.name])
               .map((d, i: number) => (
-                <>
-                  {d.name}
-                  <LinearGradient
-                    id={`area-gradient${i}`}
-                    key={`grad-${d.name}`}
-                  >
-                    <stop
-                      stopOpacity="0.5"
-                      stopColor={getRawColor(d.name)}
-                      offset="0"
-                    />
-                    <stop
-                      stopOpacity="0.3"
-                      stopColor={getRawColor(d.name)}
-                      offset="0.2"
-                    />
-                    <stop
-                      stopOpacity="0.1"
-                      stopColor={getRawColor(d.name)}
-                      offset="0.5"
-                    />
-                    <stop
-                      stopOpacity="0"
-                      stopColor={getRawColor(d.name)}
-                      offset="0.9"
-                    />
-                  </LinearGradient>
-                  <AnimatedAreaSeries
-                    key={`series-${d.name}`}
-                    dataKey={d.name}
-                    data={d.data}
-                    xAccessor={(d) => d?.x}
-                    yAccessor={(d) => d?.y}
-                    fill={`url(#area-gradient${i})`}
-                    curve={curveCardinal}
-                    lineProps={{ stroke: getRawColor(d.name) }}
-                  />
-                </>
-              ))}
+                <AnimatedAreaSeries
+                  key={`series-${d.name}`}
+                  dataKey={d.name}
+                  data={d.data}
+                  xAccessor={(d) => d?.x}
+                  yAccessor={(d) => d?.y}
+                  fill={`url(#${d.name.replace(/\s/g, '')})`}
+                  curve={curveCardinal}
+                  lineProps={{ stroke: getRawColor(d.name) }}
+                />
+            ))}
             <Tooltip
               showDatumGlyph
               unstyled
