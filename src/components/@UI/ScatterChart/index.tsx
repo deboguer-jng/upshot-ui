@@ -16,6 +16,8 @@ import Checkbox from '../Checkbox'
 import Threshold from '@visx/legend/lib/legends/Threshold'
 import EmptyChart from '../Chart/components/emptyChart'
 import { Legend, LegendItem, LegendLabel, LegendThreshold } from '@visx/legend'
+import { voronoi } from '@visx/voronoi'
+import { localPoint } from '@visx/event'
 
 export interface ChartProps {
   data?: ChartDataItem[]
@@ -49,6 +51,8 @@ enum SERIES_KEYS {
 }
 
 const defaultMargin = { top: 30, right: 50, bottom: 150, left: 50 }
+
+let tooltipTimeout: any
 
 const ScatterChartVisx = ({
   width,
@@ -121,50 +125,83 @@ const ScatterChartVisx = ({
     else return scaleLinear<number>(scaleParams)
   }, [yMax, yRange, isLogScale])
 
-  const handlePointClick = useCallback(
-    (point) => {
-      if (!selectedId || selectedId != point.id) {
-        setSelectedId(point.id)
+  const voronoiLayout = useMemo(() => {
+    return voronoi<ChartDataItem>({
+      x: (d) => xScale(d.x) + margin.left,
+      y: (d) => yScale(d.y) + margin.top,
+      width: xMax,
+      height: yMax,
+    })(data)
+  }, [xMax, yMax, xScale, yScale])
+
+  const handleMouseMove = useCallback(
+    (event: React.MouseEvent | React.TouchEvent) => {
+      if (tooltipTimeout) clearTimeout(tooltipTimeout)
+      if (!svgRef.current) return
+
+      // find the nearest polygon to the current mouse position
+      const point = localPoint(svgRef.current, event)
+      if (!point) return
+
+      const neighborRadius = 100
+      const closest = voronoiLayout.find(point.x, point.y, neighborRadius)
+      if (
+        closest &&
+        closest.data.id !== hoverId &&
+        closest.data.id !== selectedId
+      ) {
+        setHoverId(closest.data.id)
+        if (!selectedId)
+          showTooltip({
+            tooltipLeft: xScale(closest.data.x),
+            tooltipTop: yScale(closest.data.y),
+            tooltipData: closest.data,
+          })
+      }
+    },
+    [xScale, yScale, showTooltip, voronoiLayout, selectedId, hoverId]
+  )
+
+  const handleMouseLeave = useCallback(() => {
+    tooltipTimeout = setTimeout(() => {
+      setHoverId(null)
+      if (!selectedId) hideTooltip()
+    }, 300)
+  }, [selectedId, hideTooltip])
+
+  const handleChartClick = useCallback(
+    (event: React.MouseEvent | React.TouchEvent) => {
+      if (!svgRef.current) return
+
+      // find the nearest polygon to the current mouse position
+      const point = localPoint(svgRef.current, event)
+      if (!point) return
+
+      const neighborRadius = 100
+      const closest = voronoiLayout.find(point.x, point.y, neighborRadius)
+      if (closest && closest?.data?.id !== selectedId) {
+        setSelectedId(closest.data.id)
         showTooltip({
-          tooltipLeft: xScale(point.x),
-          tooltipTop: yScale(point.y),
-          tooltipData: point,
+          tooltipLeft: xScale(closest.data.x),
+          tooltipTop: yScale(closest.data.y),
+          tooltipData: closest.data,
         })
       } else {
         setSelectedId(null)
+        setHoverId(null)
         hideTooltip()
       }
     },
-    [xScale, yScale, selectedId, setSelectedId, showTooltip, hideTooltip]
-  )
-
-  const handleMouseOver = useCallback(
-    (point) => {
-      setHoverId(point.id)
-      if (!selectedId)
-        showTooltip({
-          tooltipLeft: xScale(point.x),
-          tooltipTop: yScale(point.y),
-          tooltipData: point,
-        })
-    },
-    [xScale, yScale, selectedId, showTooltip]
-  )
-
-  const handleMouseOut = useCallback(
-    (e) => {
-      setHoverId(null)
-      if (!selectedId) hideTooltip()
-    },
-    [selectedId, hideTooltip]
-  )
-
-  const handleChartClick = useCallback(
-    (e) => {
-      setSelectedId(null)
-      hideTooltip()
-    },
-    [hideTooltip, setSelectedId]
+    [
+      xScale,
+      yScale,
+      showTooltip,
+      hideTooltip,
+      voronoiLayout,
+      selectedId,
+      setSelectedId,
+      hoverId,
+    ]
   )
 
   const tickFormatTime = useCallback(
@@ -218,11 +255,19 @@ const ScatterChartVisx = ({
           </Label>
         </Flex>
       )}
-      <svg width={width} height={height} ref={svgRef}>
+      <svg 
+        width={width} 
+        height={height} 
+        ref={svgRef}
+        style={{ cursor: 'pointer' }}
+      >
         <rect
           width={width}
           height={height}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
           onClick={handleChartClick}
+          onTouchEnd={handleChartClick}
           fillOpacity={0}
         />
         <Group
@@ -261,7 +306,7 @@ const ScatterChartVisx = ({
             numTicks={numTicksTime}
           />
         </Group>
-        <Group left={margin.left} top={margin.top}>
+        <Group left={margin.left} top={margin.top} pointerEvents='none'>
           {data
             .sort((a) => a.gmi - 900)
             .map((point: ChartDataItem, i: number) => (
@@ -270,13 +315,10 @@ const ScatterChartVisx = ({
                 className="dot"
                 cx={xScale(point.x)}
                 cy={yScale(point.y)}
-                r={hoverId === point.id || selectedId === point.id ? 8 : 6}
+                r={point.id === hoverId || point.id === selectedId ? 8 : 6}
                 fill={point.gmi > 900 ? theme.colors.pink : theme.colors.blue}
                 filter={getMarkerFilter(point)}
                 cursor="pointer"
-                onMouseOver={(e) => handleMouseOver(point)}
-                onMouseOut={(e) => handleMouseOut(point)}
-                onClick={(e) => handlePointClick(point)}
               />
             ))}
         </Group>
