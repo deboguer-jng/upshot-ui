@@ -37,7 +37,7 @@ export const TooltipContent = ({
   return (
     <TooltipContainer>
       <div style={{minHeight: 50}}>
-        {!imageLoaded && <Spinner size='sm' sx={{position: 'absolute', left: '50px', top: '25px'}} />}
+        {!imageLoaded && <Spinner size='sm' sx={{margin: '10px auto'}} />}
         {img?.length && 
           <img 
             src={img} 
