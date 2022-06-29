@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import React, { useState } from 'react'
 import { shortenAddress } from '../../../utils/address'
-import { AddressDot, GMI, NFT, TooltipContainer, TooltipDate, TooltipPrice } from './Styled'
+import { AddressDot, GMI, NFT, TooltipContainer, TooltipDate, TooltipImageContainer, TooltipPrice } from './Styled'
 import Link from '../Link'
 import { sanitizeStoryContextUpdate } from '@storybook/store'
 import Spinner from '../Spinner'
@@ -36,15 +36,15 @@ export const TooltipContent = ({
 
   return (
     <TooltipContainer>
-      <div style={{minHeight: 50}}>
-        {!imageLoaded && <Spinner size='sm' sx={{margin: '10px auto'}} />}
+      <TooltipImageContainer>
+        {!imageLoaded && <Spinner size='sm' sx={{position: 'absolute'}} />}
         {img?.length && 
           <img 
             src={img} 
             style={{ width: 150, minHeight: 50, imageRendering: pixelated ? 'pixelated' : 'auto'}} 
             onLoad={e => setImageLoaded(true)}
           />}
-      </div>
+      </TooltipImageContainer>
       <NFT>
         <Link
           href={`/analytics/nft/${contractAddress}/${id}`}

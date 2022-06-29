@@ -113,3 +113,10 @@ export const TooltipPrice = styled('div', transientOptions)`
 export const NFT = styled('div', transientOptions)`
   color: ${({theme}) => theme.rawColors.blue};
 `
+
+export const TooltipImageContainer = styled(Flex, transientOptions)`
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
