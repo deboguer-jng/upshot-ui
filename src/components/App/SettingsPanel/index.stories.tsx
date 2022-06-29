@@ -11,7 +11,7 @@ export default {
 const Template: ComponentStory<typeof SettingsPanel> = (args) => (
   <SettingsPanel {...args}>
     <SettingsMenuItem label="Profile">Profile content</SettingsMenuItem>
-    <SettingsMenuItem label="Notifications">
+    <SettingsMenuItem label="Notifications" subMenu={true}>
       Notifications content
     </SettingsMenuItem>
   </SettingsPanel>

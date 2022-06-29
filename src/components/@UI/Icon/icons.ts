@@ -118,6 +118,13 @@ import SVGYoutubeBlock from '../../../assets/svg/icons/Youtube_BlockColor.svg'
 import SVGYoutube from '../../../assets/svg/icons/Youtube.svg'
 import SVGZoraBlock from '../../../assets/svg/icons/Zora_BlockColor.svg'
 import SVGZora from '../../../assets/svg/icons/Zora.svg'
+import SVGAlertOn from '../../../assets/svg/icons/AlertOn.svg'
+import SVGAlertOff from '../../../assets/svg/icons/AlertOff.svg'
+import SVGAlertOffTest from '../../../assets/svg/icons/AlertOff.svg'
+
+import SVGUpshotWallet from '../../../assets/svg/icons/Upshot_Wallet.svg'
+import SVGUpshotConfirmation from '../../../assets/svg/icons/Upshot_Confirmation.svg'
+import SVGUpshotError from '../../../assets/svg/icons/Upshot_Error.svg'
 
 const icons = {
   addLinkBlock: SVGAddLinkBlock,
@@ -228,6 +235,9 @@ const icons = {
   twitter: SVGTwitter,
   twitterCircle: SVGTwitterCircle,
   upshot: SVGUpshot,
+  upshotWallet: SVGUpshotWallet,
+  upshotConfirmation: SVGUpshotConfirmation,
+  upshotError: SVGUpshotError,
   uptoken: SVGUptoken,
   uptokenStacked: SVGUptokenStacked,
   usdc: SVGUSDC,
@@ -240,6 +250,9 @@ const icons = {
   youtube: SVGYoutube,
   zoraBlock: SVGZoraBlock,
   zora: SVGZora,
+  alertOn: SVGAlertOn,
+  alertOff: SVGAlertOff,
+  alertOffTest: SVGAlertOffTest,
 }
 
 export default icons
