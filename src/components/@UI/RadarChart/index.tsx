@@ -58,22 +58,13 @@ const genPolygonPoints = (
   scale: (n: number) => number
 ) => {
   const step = (Math.PI * 2) / dataArray.length
-  const points: { x: number; y: number }[] = new Array(dataArray.length).fill({
-    x: 0,
-    y: 0,
+  const pointArray: number[][] = dataArray.map((d, i) => { 
+      const xVal = scale(d) * Math.sin(i * step)
+      const yVal = scale(d) * Math.cos(i * step)
+      return [xVal, yVal]  
   })
-  const pointString: string = new Array(dataArray.length + 1)
-    .fill('')
-    .reduce((res, _, i) => {
-      if (i > dataArray.length) return res
-      const xVal = scale(dataArray[i - 1]) * Math.sin(i * step)
-      const yVal = scale(dataArray[i - 1]) * Math.cos(i * step)
-      points[i - 1] = { x: xVal, y: yVal }
-      res += `${xVal},${yVal} `
-      return res
-    })
-
-  return { points, pointString }
+  const pointString: string = pointArray.join(' ')
+  return { pointArray, pointString }
 }
 
 const defaultMargin = { top: 40, left: 80, right: 80, bottom: 80 }
@@ -196,11 +187,11 @@ const RadarChart = ({
           stroke={theme.colors.primary}
           strokeWidth={1}
         />
-        {polygonPoints.points.map((point, i) => (
+        {polygonPoints.pointArray.map((point, i) => (
           <circle
             key={`radar-point-${i}`}
-            cx={point.x}
-            cy={point.y}
+            cx={point[0]}
+            cy={point[1]}
             r={2}
             fill={theme.colors.blue}
           />
