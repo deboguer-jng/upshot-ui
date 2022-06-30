@@ -4,7 +4,7 @@ import { Flex, Text, Label } from 'theme-ui'
 import { Group } from '@visx/group'
 import { Circle } from '@visx/shape'
 import { scaleLinear, scaleLog, scaleThreshold } from '@visx/scale'
-import { defaultStyles, useTooltip, TooltipWithBounds } from '@visx/tooltip'
+import { useTooltip, TooltipWithBounds } from '@visx/tooltip'
 import { AxisLeft, AxisBottom } from '@visx/axis'
 import { ParentSize } from '@visx/responsive'
 import { UseTooltipParams } from '@visx/tooltip/lib/hooks/useTooltip'
@@ -16,6 +16,8 @@ import Checkbox from '../Checkbox'
 import Threshold from '@visx/legend/lib/legends/Threshold'
 import EmptyChart from '../Chart/components/emptyChart'
 import { Legend, LegendItem, LegendLabel, LegendThreshold } from '@visx/legend'
+import { voronoi } from '@visx/voronoi'
+import { localPoint } from '@visx/event'
 
 export interface ChartProps {
   data?: ChartDataItem[]
@@ -49,6 +51,8 @@ enum SERIES_KEYS {
 }
 
 const defaultMargin = { top: 30, right: 50, bottom: 150, left: 50 }
+
+let tooltipTimeout: any
 
 const ScatterChartVisx = ({
   width,
@@ -121,50 +125,82 @@ const ScatterChartVisx = ({
     else return scaleLinear<number>(scaleParams)
   }, [yMax, yRange, isLogScale])
 
-  const handlePointClick = useCallback(
-    (point) => {
-      if (!selectedId || selectedId != point.id) {
-        setSelectedId(point.id)
+  const voronoiLayout = useMemo(() => {
+    return voronoi<ChartDataItem>({
+      x: (d) => xScale(d.x),
+      y: (d) => yScale(d.y),
+      width: xMax,
+      height: yMax,
+    })(data)
+  }, [xMax, yMax, xScale, yScale])
+
+  const getClosestPoint = (event: React.MouseEvent | React.TouchEvent) => {
+    if (!svgRef.current) return null
+
+    // find the nearest polygon to the current mouse position
+    const point = localPoint(svgRef.current, event)
+    if (!point) return null
+
+    const neighborRadius = 50
+    return voronoiLayout.find(point.x - margin.left, point.y - margin.top, neighborRadius)
+  }
+
+  const handleMouseMove = useCallback(
+    (event: React.MouseEvent | React.TouchEvent) => {
+      const closest = getClosestPoint(event)
+
+      if (closest == null) return
+      if (tooltipTimeout) clearTimeout(tooltipTimeout)
+      if (
+        closest &&
+        closest.data.id !== hoverId &&
+        closest.data.id !== selectedId
+      ) {
+        setHoverId(closest.data.id)
+        if (!selectedId)
+          showTooltip({
+            tooltipLeft: xScale(closest.data.x),
+            tooltipTop: yScale(closest.data.y),
+            tooltipData: closest.data,
+          })
+      }
+    },
+    [xScale, yScale, showTooltip, voronoiLayout, selectedId, hoverId]
+  )
+
+  const handleMouseLeave = useCallback(() => {
+    tooltipTimeout = setTimeout(() => {
+      setHoverId(null)
+      if (!selectedId) hideTooltip()
+    }, 300)
+  }, [selectedId, hideTooltip])
+
+  const handleChartClick = useCallback(
+    (event: React.MouseEvent | React.TouchEvent) => {
+      const closest = getClosestPoint(event)
+      if (closest && closest?.data?.id !== selectedId) {
+        setSelectedId(closest.data.id)
         showTooltip({
-          tooltipLeft: xScale(point.x),
-          tooltipTop: yScale(point.y),
-          tooltipData: point,
+          tooltipLeft: xScale(closest.data.x),
+          tooltipTop: yScale(closest.data.y),
+          tooltipData: closest.data,
         })
       } else {
         setSelectedId(null)
+        setHoverId(null)
         hideTooltip()
       }
     },
-    [xScale, yScale, selectedId, setSelectedId, showTooltip, hideTooltip]
-  )
-
-  const handleMouseOver = useCallback(
-    (point) => {
-      setHoverId(point.id)
-      if (!selectedId)
-        showTooltip({
-          tooltipLeft: xScale(point.x),
-          tooltipTop: yScale(point.y),
-          tooltipData: point,
-        })
-    },
-    [xScale, yScale, selectedId, showTooltip]
-  )
-
-  const handleMouseOut = useCallback(
-    (e) => {
-      setHoverId(null)
-      if (!selectedId) hideTooltip()
-    },
-    [selectedId, hideTooltip]
-  )
-
-  const handleChartClick = useCallback(
-    (e) => {
-      setSelectedId(null)
-      hideTooltip()
-    },
-    [hideTooltip, setSelectedId]
+    [
+      xScale,
+      yScale,
+      showTooltip,
+      hideTooltip,
+      voronoiLayout,
+      selectedId,
+      setSelectedId,
+      hoverId,
+    ]
   )
 
   const tickFormatTime = useCallback(
@@ -218,19 +254,14 @@ const ScatterChartVisx = ({
           </Label>
         </Flex>
       )}
-      <svg width={width} height={height} ref={svgRef}>
-        <rect
-          width={width}
-          height={height}
-          onClick={handleChartClick}
-          fillOpacity={0}
-        />
-        <Group
-          pointerEvents="none"
-          left={margin.left}
-          top={margin.top}
-          height={height}
-        >
+      <svg width={width} height={height} 
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleChartClick}
+        onTouchEnd={handleChartClick}
+        ref={svgRef}
+      >
+        <Group left={margin.left} top={margin.top} pointerEvents='none'>
           <AxisLeft
             scale={yScale}
             hideAxisLine={true}
@@ -245,6 +276,7 @@ const ScatterChartVisx = ({
             tickLength={0}
             numTicks={6}
           />
+          
           <AxisBottom
             top={yMax}
             scale={xScale}
@@ -261,7 +293,7 @@ const ScatterChartVisx = ({
             numTicks={numTicksTime}
           />
         </Group>
-        <Group left={margin.left} top={margin.top}>
+        <Group left={margin.left} top={margin.top} style={{ cursor: 'pointer' }}>
           {data
             .sort((a) => a.gmi - 900)
             .map((point: ChartDataItem, i: number) => (
@@ -270,13 +302,10 @@ const ScatterChartVisx = ({
                 className="dot"
                 cx={xScale(point.x)}
                 cy={yScale(point.y)}
-                r={hoverId === point.id || selectedId === point.id ? 8 : 6}
+                r={point.id === hoverId || point.id === selectedId ? 5 : 3}
                 fill={point.gmi > 900 ? theme.colors.pink : theme.colors.blue}
                 filter={getMarkerFilter(point)}
                 cursor="pointer"
-                onMouseOver={(e) => handleMouseOver(point)}
-                onMouseOut={(e) => handleMouseOut(point)}
-                onClick={(e) => handlePointClick(point)}
               />
             ))}
         </Group>
