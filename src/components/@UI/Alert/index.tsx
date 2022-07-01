@@ -1,13 +1,11 @@
 import React, { forwardRef } from 'react'
-import colors from '../../../themes/UpshotUI/colors'
-import { AlertProps as ThemeUIAlertProps, Theme } from 'theme-ui'
-import { AlertCloseButton, ThemeUIAlertWrapper } from './Styled'
-import { useTheme } from '@emotion/react'
+import { AlertProps as ThemeUIAlertProps } from 'theme-ui'
+import { AlertCloseButton, AlertWrapperInner, ThemeUIAlertWrapper } from './Styled'
 import Icon from '../Icon'
 import Spinner from '../Spinner'
 
 export interface AlertProps {
-  
+  onClose?: () => void
 }
 
 /**
@@ -18,24 +16,27 @@ const Alert = forwardRef(
     {
       children,
       variant,
+      onClose,
       ...props
     }: AlertProps & ThemeUIAlertProps,
     ref: React.ForwardedRef<HTMLImageElement>
-  ) => {
-    const theme = useTheme()
-
-    return (
-      <ThemeUIAlertWrapper {...props} variant={variant} bg='grey-900'>
+  ) => (
+    <ThemeUIAlertWrapper {...props} variant={variant}>
+      <AlertWrapperInner variant={variant}>
+        <div style={{ paddingRight: '10px' }}>
         {{
           ['pending']:  <Spinner size='sm' />,
           ['error']:    <Icon icon="attention" color='red' size='20' />,
           ['success']:  <Icon icon="checkmark" color='green' size='20' />,
         }[variant]}
+        </div>
         {children}
-        <AlertCloseButton icon='close' size='15' color='grey-300' />
-      </ThemeUIAlertWrapper>
-    )
-  }
+        <AlertCloseButton onClick={onClose}>
+          <Icon icon='close' size='15' color='grey-300' />
+        </AlertCloseButton>
+      </AlertWrapperInner>
+    </ThemeUIAlertWrapper>
+  )
 )
 
 export default Alert
