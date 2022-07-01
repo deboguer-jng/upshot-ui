@@ -4,6 +4,7 @@
  * Core building blocks for the Upshot design system.
  */
 export { default as Accordion } from './components/@UI/Accordion'
+export { default as Alert } from './components/@UI/Alert'
 export { default as Avatar } from './components/@UI/Avatar'
 export { default as AvatarInitials } from './components/@UI/AvatarInitials'
 export { default as AppraisalsCopy } from './components/@UI/AppraisalsCopy'
