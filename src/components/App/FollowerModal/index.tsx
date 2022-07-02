@@ -2,9 +2,12 @@ import React, { forwardRef, useState } from 'react'
 import Text from '../../@UI/Text'
 import { Box, Close, Flex } from 'theme-ui'
 import { useTheme } from '../../../themes/UpshotUI'
+import Icon from '../../@UI/Icon'
+
 import {
   FollowAvatar,
   FollowButton,
+  FollowingButton,
   FollowContentWrapper,
   ModalContent,
   TabButton,
@@ -15,8 +18,9 @@ export interface FollowerModalProps {
   following: any[]
   follower: any[]
   userAddress: string
-  onFollow: (id: number) => void
-  onClose: () => void
+  onFollow?: (id: number) => void
+  onUnFollow?: (id: number) => void
+  onClose?: () => void
   component?: React.FunctionComponent<any>
 }
 
@@ -27,6 +31,7 @@ const FollowerModal = forwardRef(
       follower,
       userAddress,
       onFollow,
+      onUnFollow,
       onClose,
       component,
       ...props
@@ -35,7 +40,7 @@ const FollowerModal = forwardRef(
   ) => {
     const [tab, setTab] = useState(0)
     const { theme } = useTheme()
-
+    console.log(follower)
     return (
       <Box
         sx={{ width: ['100vw', '720px'], padding: 0 }}
@@ -76,8 +81,8 @@ const FollowerModal = forwardRef(
                     >
                       <Text color="white">{item.address}</Text>
                     </Link>
-                    <FollowButton onClick={() => onFollow(index)}>
-                      + Follow
+                    <FollowButton onClick={() => onUnFollow(item.id)}>
+                      Unfollow
                     </FollowButton>
                   </Flex>
                 ))}
@@ -98,9 +103,15 @@ const FollowerModal = forwardRef(
                     >
                       <Text color="white">{item.address}</Text>
                     </Link>
-                    <FollowButton onClick={() => onFollow(index)}>
-                      + Follow
-                    </FollowButton>
+                    {item.isFollowing ? (
+                      <FollowingButton>
+                        <Icon icon={'checkmark'} size="10" /> Following
+                      </FollowingButton>
+                    ) : (
+                      <FollowButton onClick={() => onFollow(item.id)}>
+                        + Follow
+                      </FollowButton>
+                    )}
                   </Flex>
                 ))}
               </>
