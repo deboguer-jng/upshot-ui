@@ -82,10 +82,7 @@ const FollowerModal = forwardRef(
                       >
                         <Text color="white">{item.address}</Text>
                       </Link>
-                      <FollowButton
-                        onClick={() => onUnFollow(item.id)}
-                        disabled
-                      >
+                      <FollowButton onClick={() => onUnFollow(item.id)}>
                         Unfollow
                       </FollowButton>
                     </Flex>
