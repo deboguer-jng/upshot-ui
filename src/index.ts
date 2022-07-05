@@ -70,6 +70,8 @@ export { default as LandingPanel } from './components/App/LandingPanels'
 export { default as Navbar } from './components/App/Navbar'
 export { default as BuyNowPanel } from './components/App/BuyNowPanel'
 export { default as AlertSettingsModal } from './components/App/AlertSettingsModal'
+export { default as FollowerModal } from './components/App/FollowerModal'
+
 export { default as AlertSettingAccordion } from './components/App/AlertSettingAccordion'
 
 export {
