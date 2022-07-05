@@ -31,7 +31,6 @@ export const StyledFlex = styled(Flex)`
   margin-left: -30px;
   margin-right: -30px;
   gap: 12px;
-  max-width: 500px;
   padding-top: 10px; 
   padding-bottom: 10px;
   padding-left: 30px;

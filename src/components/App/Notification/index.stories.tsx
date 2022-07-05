@@ -16,7 +16,7 @@ const TemplateRow: ComponentStory<typeof NotifPopper> = (args) => (
   <NotifRow {...args} />
 )
 
-export const exampleNotifs = {
+const exampleNotifs = {
   unread: [
     {
       url: 'https://upshot.xyz/analytics/collection/4489',
