@@ -1,0 +1,189 @@
+[
+  {
+    "x": 1655837250000,
+    "y": 0.2,
+    "id": "285000319",
+    "address": "0x53DDA0a69992B87E51F0f14B1337281f09A2c8Da",
+    "gmi": 975.7164027198496,
+    "ens": "cryptodubs.eth",
+    "img": "https://media.artblocks.io/285000319.png",
+    "contractAddress": "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270",
+    "pixelated": false
+  },
+  {
+    "x": 1655837329000,
+    "y": 0.2,
+    "id": "285000146",
+    "address": "0x53DDA0a69992B87E51F0f14B1337281f09A2c8Da",
+    "gmi": 975.7164027198496,
+    "ens": "cryptodubs.eth",
+    "img": "https://media.artblocks.io/285000146.png",
+    "contractAddress": "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270",
+    "pixelated": false
+  },
+  {
+    "x": 1655837403000,
+    "y": 0.2,
+    "id": "285000327",
+    "address": "0x53DDA0a69992B87E51F0f14B1337281f09A2c8Da",
+    "gmi": 975.7164027198496,
+    "ens": "cryptodubs.eth",
+    "img": "https://media.artblocks.io/285000327.png",
+    "contractAddress": "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270",
+    "pixelated": false
+  },
+  {
+    "x": 1655837022000,
+    "y": 0.155,
+    "id": "285000186",
+    "address": "0x53DDA0a69992B87E51F0f14B1337281f09A2c8Da",
+    "gmi": 975.7164027198496,
+    "ens": "cryptodubs.eth",
+    "img": "https://media.artblocks.io/285000186.png",
+    "contractAddress": "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270",
+    "pixelated": false
+  },
+  {
+    "x": 1655837815000,
+    "y": 0.25,
+    "id": "285000328",
+    "address": "0x5A57b80dE5fbAA49bf30865F3113C893e1752e2a",
+    "gmi": 572.9369378930113,
+    "ens": "byteup.eth",
+    "img": "https://media.artblocks.io/285000328.png",
+    "contractAddress": "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270",
+    "pixelated": false
+  },
+  {
+    "x": 1653995681000,
+    "y": 0.099,
+    "id": "285000087",
+    "address": "0x1e7EAA723E73b0c1ce713A4d14513AB0a31a535c",
+    "gmi": 487.1773438758628,
+    "ens": null,
+    "img": "https://media.artblocks.io/285000087.png",
+    "contractAddress": "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270",
+    "pixelated": false
+  },
+  {
+    "x": 1653996230000,
+    "y": 0.145,
+    "id": "285000365",
+    "address": "0x1e7EAA723E73b0c1ce713A4d14513AB0a31a535c",
+    "gmi": 487.1773438758628,
+    "ens": null,
+    "img": "https://media.artblocks.io/285000365.png",
+    "contractAddress": "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270",
+    "pixelated": false
+  },
+  {
+    "x": 1653996273000,
+    "y": 0.15,
+    "id": "285000275",
+    "address": "0x1e7EAA723E73b0c1ce713A4d14513AB0a31a535c",
+    "gmi": 487.1773438758628,
+    "ens": null,
+    "img": "https://media.artblocks.io/285000275.png",
+    "contractAddress": "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270",
+    "pixelated": false
+  },
+  {
+    "x": 1655663469000,
+    "y": 0.15,
+    "id": "285000342",
+    "address": "0xF4c579bDB49dBF5C1bfD3c48C37c4b3e6d8A2FB5",
+    "gmi": 759.0558840151284,
+    "ens": "nullflicker.eth",
+    "img": "https://media.artblocks.io/285000342.png",
+    "contractAddress": "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270",
+    "pixelated": false
+  },
+  {
+    "x": 1653506509000,
+    "y": 0.142,
+    "id": "285000059",
+    "address": "0x5e8a9AFaD6225118ED0F4C1Fe944924262fe61C4",
+    "gmi": 680.5563724424691,
+    "ens": null,
+    "img": "https://media.artblocks.io/285000059.png",
+    "contractAddress": "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270",
+    "pixelated": false
+  },
+  {
+    "x": 1655477836000,
+    "y": 0.1,
+    "id": "285000035",
+    "address": "0x4B6760682191DE7e476b801b7AB42d8E8A5b041a",
+    "gmi": 966.5030903897444,
+    "ens": null,
+    "img": "https://media.artblocks.io/285000035.png",
+    "contractAddress": "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270",
+    "pixelated": false
+  },
+  {
+    "x": 1655477762000,
+    "y": 0.099,
+    "id": "285000318",
+    "address": "0x4B6760682191DE7e476b801b7AB42d8E8A5b041a",
+    "gmi": 966.5030903897444,
+    "ens": null,
+    "img": "https://media.artblocks.io/285000318.png",
+    "contractAddress": "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270",
+    "pixelated": false
+  },
+  {
+    "x": 1653662706000,
+    "y": 0.09,
+    "id": "285000160",
+    "address": "0x4B6760682191DE7e476b801b7AB42d8E8A5b041a",
+    "gmi": 966.5030903897444,
+    "ens": null,
+    "img": "https://media.artblocks.io/285000160.png",
+    "contractAddress": "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270",
+    "pixelated": false
+  },
+  {
+    "x": 1655654755000,
+    "y": 0.1,
+    "id": "285000157",
+    "address": "0x53DDA0a69992B87E51F0f14B1337281f09A2c8Da",
+    "gmi": 975.7164027198496,
+    "ens": "cryptodubs.eth",
+    "img": "https://media.artblocks.io/285000157.png",
+    "contractAddress": "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270",
+    "pixelated": false
+  },
+  {
+    "x": 1655649623000,
+    "y": 0.1,
+    "id": "285000141",
+    "address": "0x6301Add4fb128de9778B8651a2a9278B86761423",
+    "gmi": 998.3801665255937,
+    "ens": "athrab.eth",
+    "img": "https://media.artblocks.io/285000141.png",
+    "contractAddress": "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270",
+    "pixelated": false
+  },
+  {
+    "x": 1653683296000,
+    "y": 0.09,
+    "id": "285000384",
+    "address": "0x97a6c796FE543cABC2cA7aE026206e8B260C4dA0",
+    "gmi": 683.946435375437,
+    "ens": null,
+    "img": "https://media.artblocks.io/285000384.png",
+    "contractAddress": "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270",
+    "pixelated": false
+  },
+  {
+    "x": 1653639773000,
+    "y": 0.089,
+    "id": "285000396",
+    "address": "0xb789221616C7be137f33D545758F5510591D725E",
+    "gmi": 919.1248392153454,
+    "ens": "yuzu.eth",
+    "img": "https://media.artblocks.io/285000396.png",
+    "contractAddress": "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270",
+    "pixelated": false
+  }
+]

@@ -4,6 +4,7 @@
  * Core building blocks for the Upshot design system.
  */
 export { default as Accordion } from './components/@UI/Accordion'
+export { default as Alert } from './components/@UI/Alert'
 export { default as Avatar } from './components/@UI/Avatar'
 export { default as AvatarInitials } from './components/@UI/AvatarInitials'
 export { default as AppraisalsCopy } from './components/@UI/AppraisalsCopy'
@@ -12,7 +13,7 @@ export { default as Breadcrumb } from './components/@UI/Breadcrumb'
 export { default as Button } from './components/@UI/Button'
 export { default as ButtonNav } from './components/@UI/ButtonNav'
 export { default as ButtonDropdown } from './components/@UI/ButtonDropdown'
-export { default as Chart } from './components/@UI/Chart/ChartDynamic'
+export { default as Chart } from './components/@UI/Chart'
 export { default as ChartLabel } from './components/@UI/ChartLabel'
 export { default as Checkbox } from './components/@UI/Checkbox'
 export { default as CollectionButton } from './components/@UI/CollectionButton'
@@ -30,9 +31,9 @@ export { default as Modal } from './components/@UI/Modal'
 export { default as Pagination } from './components/@UI/Pagination'
 export { default as Panel } from './components/@UI/Panel'
 export { default as ProgressBar } from './components/@UI/ProgressBar'
-export { default as RadarChart } from './components/@UI/RadarChart/RadarChartDynamic'
+export { default as RadarChart } from './components/@UI/RadarChart'
 export { default as Radio } from './components/@UI/Radio'
-export { default as ScatterChart } from './components/@UI/ScatterChart/ScatterChartDynamic'
+export { default as ScatterChart, ChartDataItem } from './components/@UI/ScatterChart'
 export { default as SliderFade } from './components/@UI/Scroll/SliderFade'
 export { default as SliderIcon } from './components/@UI/Scroll/SliderIcon'
 export { default as Skeleton } from './components/@UI/Skeleton'
@@ -42,7 +43,7 @@ export { default as SwitchDropdown } from './components/@UI/SwitchDropdown'
 export { default as Text } from './components/@UI/Text'
 export { default as TextareaRounded } from './components/@UI/TextAreaRounded'
 export { default as Tooltip } from './components/@UI/Tooltip'
-export { default as TreeMap } from './components/@UI/TreeMap/TreeMapDynamic'
+// export { default as TreeMap } from './components/@UI/TreeMap/TreeMapDynamic'
 
 /**
  * Components: App
@@ -139,5 +140,3 @@ export { formatNumber, parseUint256 } from './utils/number'
  * Constants
  */
 export { NUMBER_PREFIX } from './utils/number'
-
-export { ChartDataItem } from './components/@UI/ScatterChart/components/populatedScatterChart'
