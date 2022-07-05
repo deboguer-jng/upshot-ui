@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import { breakpoints } from '../../../themes/UpshotUI/sizes'
 import { transientOptions } from '../../../themes'
+import { Badge } from 'theme-ui'
 
 interface NavbarItemProps {
   grow?: boolean
@@ -192,4 +193,14 @@ export const StyledLink = styled('a', transientOptions)`
   &:hover {
     text-decoration: underline;
   }
+`
+
+export const StyledBadge = styled(Badge)`
+  background-color: #FF5628;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  borderRadius: 5px;
+  top: 2px;
+  right: 2px;
 `

@@ -43,6 +43,7 @@ const Template: ComponentStory<typeof Navbar> = (args: any) => {
         onMenuClick={() => setShowSidebar(!showSidebar)}
         onHelpClick={() => setShowHelpModal(!showHelpModal)}
         showSidebar={showSidebar}
+        notifications={args.notifications}
         {...args}
       />
       <Modal
@@ -99,6 +100,15 @@ Default.args = {
   ensName: 'emmons.eth',
   address: '0x123400000000000000000000000000000000abcd',
   searchSuggestions,
+}
+
+export const Notifications = Template.bind({})
+Notifications.args = {
+  ensName: 'emmons.eth',
+  address: '0x123400000000000000000000000000000000abcd',
+  searchSuggestions,
+  notifications: ['notif1', 'notif2'],
+  showNotifs: true,
 }
 
 export const ENSUnavailable = Template.bind({})
