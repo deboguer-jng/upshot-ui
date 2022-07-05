@@ -30,7 +30,7 @@ export const FollowContentWrapper = styled(Flex, transientOptions)`
 `
 
 export const FollowButton = styled('button', transientOptions)`
-  backgorund: white;
+  background-color: white;
   color: ${({ theme }) => theme.colors['grey-800']};
   padding: 6.5px 15px;
   border-radius: 15px;
@@ -44,7 +44,14 @@ export const FollowButton = styled('button', transientOptions)`
     color: white;
   }
 `
-
+export const FollowingButton = styled('button', transientOptions)`
+  background: transparent;
+  color: white;
+  padding: 6.5px 15px;
+  border-radius: 15px;
+  border: 1px solid white;
+  margin-right: 1rem;
+`
 export const FollowAvatar = styled('img', transientOptions)`
   width: 50px;
   height: 50px;

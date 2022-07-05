@@ -15,6 +15,7 @@ import Spinner from '../../@UI/Spinner'
 
 interface SettingsMenuItemProps extends BoxProps {
   label: string
+  subMenu?: boolean
 }
 
 export const SettingsMenuItem = (props: SettingsMenuItemProps) => (
@@ -76,7 +77,13 @@ export const SettingsPanel = forwardRef(
                   onClick={() => setActiveItem(item.props.label)}
                   sx={{ fontWeight: 600 }}
                 >
-                  {item.props.label}
+                  {item.props.subMenu ? (
+                    <span style={{ marginLeft: '20px' }}>
+                      {item.props.label}
+                    </span>
+                  ) : (
+                    item.props.label
+                  )}
                   {isMobile && (
                     <Icon
                       icon="arrowSmallRight"

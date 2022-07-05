@@ -2,9 +2,12 @@ import React, { forwardRef, useState } from 'react'
 import Text from '../../@UI/Text'
 import { Box, Close, Flex } from 'theme-ui'
 import { useTheme } from '../../../themes/UpshotUI'
+import Icon from '../../@UI/Icon'
+
 import {
   FollowAvatar,
   FollowButton,
+  FollowingButton,
   FollowContentWrapper,
   ModalContent,
   TabButton,
@@ -15,8 +18,9 @@ export interface FollowerModalProps {
   following: any[]
   follower: any[]
   userAddress: string
-  onFollow: (id: number) => void
-  onClose: () => void
+  onFollow?: (id: number) => void
+  onUnFollow?: (id: number) => void
+  onClose?: () => void
   component?: React.FunctionComponent<any>
 }
 
@@ -27,6 +31,7 @@ const FollowerModal = forwardRef(
       follower,
       userAddress,
       onFollow,
+      onUnFollow,
       onClose,
       component,
       ...props
@@ -62,47 +67,67 @@ const FollowerModal = forwardRef(
           <FollowContentWrapper>
             {tab === 0 ? (
               <>
-                {following.map((item, index) => (
-                  <Flex
-                    sx={{ alignItems: 'center', gap: 2 }}
-                    key={index}
-                    py={3}
-                  >
-                    <FollowAvatar src={item.img} />
-                    <Link
-                      sx={{ flexGrow: 1 }}
-                      href={`/user/${item.address}`}
-                      component={component}
+                {following?.length ? (
+                  following.map((item, index) => (
+                    <Flex
+                      sx={{ alignItems: 'center', gap: 2 }}
+                      key={index}
+                      py={3}
                     >
-                      <Text color="white">{item.address}</Text>
-                    </Link>
-                    <FollowButton onClick={() => onFollow(index)}>
-                      + Follow
-                    </FollowButton>
+                      <FollowAvatar src={item.img} />
+                      <Link
+                        sx={{ flexGrow: 1 }}
+                        href={`/user/${item.address}`}
+                        component={component}
+                      >
+                        <Text color="white">{item.address}</Text>
+                      </Link>
+                      <FollowButton onClick={() => onUnFollow(item.id)}>
+                        Unfollow
+                      </FollowButton>
+                    </Flex>
+                  ))
+                ) : (
+                  <Flex sx={{ justifyContent: 'center', marginTop: '20px' }}>
+                    {' '}
+                    <Text> No following(s) exist! </Text>
                   </Flex>
-                ))}
+                )}
               </>
             ) : (
               <>
-                {follower.map((item, index) => (
-                  <Flex
-                    sx={{ alignItems: 'center', gap: 2 }}
-                    key={index}
-                    py={3}
-                  >
-                    <FollowAvatar src={item.img} />
-                    <Link
-                      sx={{ flexGrow: 1 }}
-                      href={`/user/${item.address}`}
-                      component={component}
+                {follower?.length ? (
+                  follower.map((item, index) => (
+                    <Flex
+                      sx={{ alignItems: 'center', gap: 2 }}
+                      key={index}
+                      py={3}
                     >
-                      <Text color="white">{item.address}</Text>
-                    </Link>
-                    <FollowButton onClick={() => onFollow(index)}>
-                      + Follow
-                    </FollowButton>
+                      <FollowAvatar src={item.img} />
+                      <Link
+                        sx={{ flexGrow: 1 }}
+                        href={`/user/${item.address}`}
+                        component={component}
+                      >
+                        <Text color="white">{item.address}</Text>
+                      </Link>
+                      {item.isFollowing ? (
+                        <FollowingButton>
+                          <Icon icon={'checkmark'} size="10" /> Following
+                        </FollowingButton>
+                      ) : (
+                        <FollowButton onClick={() => onFollow(item.id)}>
+                          + Follow
+                        </FollowButton>
+                      )}
+                    </Flex>
+                  ))
+                ) : (
+                  <Flex sx={{ justifyContent: 'center', marginTop: '20px' }}>
+                    {' '}
+                    <Text> No follower(s) exist! </Text>
                   </Flex>
-                ))}
+                )}
               </>
             )}
           </FollowContentWrapper>
