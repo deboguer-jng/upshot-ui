@@ -40,7 +40,7 @@ const Button = forwardRef(
     if (variant === 'plain') {
       return (
         <PlainButton
-          capitalize={capitalize}
+          $capitalize={capitalize}
           $size={size}
           {...{ ref, ...props }}
         >
@@ -54,11 +54,11 @@ const Button = forwardRef(
 
     return (
       <PrimaryButton
-        capitalize={capitalize}
+        $capitalize={capitalize}
         $type={variant}
         $size={size}
-        minimized={!children}
-        toggled={toggled}
+        $minimized={!children}
+        $toggled={toggled}
         {...{ ref, ...props }}
       >
         {icon}

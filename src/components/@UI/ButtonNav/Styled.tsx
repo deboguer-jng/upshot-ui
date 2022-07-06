@@ -3,8 +3,7 @@ import { Flex } from '../../..'
 import { transientOptions } from '../../../themes'
 
 interface ButtonNavProps {
-  toggled: boolean
-  capitalize?: boolean
+  $toggled: boolean
 }
 
 export const StyledButtonNav = styled('div', transientOptions)<ButtonNavProps>`
@@ -15,11 +14,11 @@ export const StyledButtonNav = styled('div', transientOptions)<ButtonNavProps>`
   padding: 15px;
   width: min-content;
   transition: ${({ theme }) => theme.transitions.default};
-  border-bottom: ${({ toggled }) =>
-    toggled ? `3px solid white` : `3px solid transparent`};
+  border-bottom: ${({ $toggled }) =>
+    $toggled ? `3px solid white` : `3px solid transparent`};
   flex-wrap: nowrap;
-  color: ${({ theme, toggled }) =>
-    toggled ? theme.colors.white : theme.colors['grey-500']};
+  color: ${({ theme, $toggled }) =>
+    $toggled ? theme.colors.white : theme.colors['grey-500']};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
 
   &:hover {
