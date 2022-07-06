@@ -130,6 +130,7 @@ const MiniNftCard = forwardRef(
     const imageSrc = pixelated ? image : optimizedSrc
 
     return (
+      <MiniNftCardWrapper isMobile={isMobile} {...{ ref, ...props }}>
         <MiniNftCardMainBoard error={error}>
           <MiniNftCardImageWrapper
             src={error ? ErrorSvg : imageSrc}
@@ -182,7 +183,6 @@ const MiniNftCard = forwardRef(
             )}
           </MiniNftCardMainContentWrapper>
         </MiniNftCardMainBoard>
-      <MiniNftCardWrapper $isMobile={isMobile} {...{ ref, ...props }}>
         {!isMobile && (
           <MiniNftCardDetailsBoard>
             {type === 'search' ? (
@@ -192,7 +192,7 @@ const MiniNftCard = forwardRef(
             ) : null}
             <MiniNftCardDetailsName
               variant="small"
-              $error={error}
+              error={error}
               sx={{ mb: 2 }}
             >
               {error
@@ -204,7 +204,7 @@ const MiniNftCard = forwardRef(
                 : creator}
             </MiniNftCardDetailsName>
             {type === 'default' ? (
-              <MiniNftCardDetailValue variant="xSmall" $error={error}>
+              <MiniNftCardDetailValue variant="xSmall" error={error}>
                 {error ? 'Error' : 'Sold ' + date + ' ago'}
               </MiniNftCardDetailValue>
             ) : null}
@@ -221,7 +221,7 @@ const MiniNftCard = forwardRef(
             </MiniNftCardDetailLabel>
             <MiniNftCardDetailValue
               variant="small"
-              $error={error}
+              error={error}
               color={
                 type === 'recommend' ? theme.colors.primary : theme.colors.white
               }
@@ -268,7 +268,7 @@ const MiniNftCard = forwardRef(
             </MiniNftCardDetailLabel>
             <MiniNftCardDetailValue
               variant="small"
-              $error={error}
+              error={error}
               sx={{ flexGrow: 1 }}
             >
               {error ? (
