@@ -7,31 +7,31 @@ import { transientOptions } from '../../../themes'
 interface PrimaryButtonProps {
   $type: keyof typeof Buttons.variants
   $size: keyof typeof Buttons.property
-  toggled: boolean
-  minimized: boolean
-  capitalize?: boolean
+  $toggled: boolean
+  $minimized: boolean
+  $capitalize?: boolean
 }
 
 interface PlainButtonProps {
   $size: keyof typeof Buttons.property
-  capitalize?: boolean
+  $capitalize?: boolean
 }
 
 export const PrimaryButton = styled(
   Button,
   transientOptions
 )<PrimaryButtonProps>`
-  background: ${({ theme, $type, toggled }) =>
-    typeof toggled === 'undefined'
+  background: ${({ theme, $type, $toggled }) =>
+    typeof $toggled === 'undefined'
       ? theme.buttons.variants[$type].colors.background
-      : toggled
+      : $toggled
       ? theme.buttons.variants[$type].colors.toggledBackground
       : theme.buttons.variants[$type].colors.hoverBackground};
   border: none;
-  box-shadow: ${({ theme, $type, toggled }) =>
-      typeof toggled === 'undefined'
+  box-shadow: ${({ theme, $type, $toggled }) =>
+      typeof $toggled === 'undefined'
         ? theme.buttons.variants[$type].colors.border
-        : toggled
+        : $toggled
         ? theme.buttons.variants[$type].colors.toggledBorder
         : theme.buttons.variants[$type].colors.hoverBorder}
     0px 0px 0px 1.8px;
@@ -45,20 +45,20 @@ export const PrimaryButton = styled(
   padding: 0px 25px;
   transition: ${({ theme }) => theme.transitions.default};
   white-space: nowrap;
-  text-transform: ${({ capitalize }) =>
-    capitalize ? 'capitalize' : 'uppercase'};
+  text-transform: ${({ $capitalize }) =>
+    $capitalize ? 'capitalize' : 'uppercase'};
 
   & svg {
-    margin-right: ${({ theme, $size, minimized }) =>
-      minimized ? 0 : theme.buttons.property[$size].iconMargin}px;
+    margin-right: ${({ theme, $size, $minimized }) =>
+      $minimized ? 0 : theme.buttons.property[$size].iconMargin}px;
     width: ${({ theme, $size }) => theme.buttons.property[$size].iconWidth}px;
   }
 
   & * {
-    fill: ${({ theme, $type, toggled }) =>
-      typeof toggled === 'undefined'
+    fill: ${({ theme, $type, $toggled }) =>
+      typeof $toggled === 'undefined'
         ? theme.buttons.variants[$type].colors.color
-        : toggled
+        : $toggled
         ? theme.buttons.variants[$type].colors.toggledColor
         : theme.buttons.variants[$type].colors.hoverColor};
   }
@@ -66,12 +66,12 @@ export const PrimaryButton = styled(
   span {
     flex-grow: 1;
     font-family: ${({ theme }) => theme.fonts.body};
-    text-transform: ${({ capitalize }) =>
-      capitalize ? 'capitalize' : 'uppercase'};
-    color: ${({ theme, $type, toggled }) =>
-      typeof toggled === 'undefined'
+    text-transform: ${({ $capitalize }) =>
+      $capitalize ? 'capitalize' : 'uppercase'};
+    color: ${({ theme, $type, $toggled }) =>
+      typeof $toggled === 'undefined'
         ? theme.buttons.variants[$type].colors.color
-        : toggled
+        : $toggled
         ? theme.buttons.variants[$type].colors.toggledColor
         : theme.buttons.variants[$type].colors.hoverColor};
   }
@@ -87,19 +87,19 @@ export const PrimaryButton = styled(
   }
 
   &:not(:disabled):not(:focus):hover {
-    background: ${({ theme, $type, toggled }) =>
-      typeof toggled === 'undefined'
+    background: ${({ theme, $type, $toggled }) =>
+      typeof $toggled === 'undefined'
         ? theme.buttons.variants[$type].colors.hoverBackground
-        : toggled
+        : $toggled
         ? `${darken(
             0.1,
             theme.buttons.variants[$type].colors.toggledHoverBackground
           )}`
         : theme.buttons.variants[$type].colors.background};
-    box-shadow: ${({ theme, $type, toggled }) =>
-        typeof toggled === 'undefined'
+    box-shadow: ${({ theme, $type, $toggled }) =>
+        typeof $toggled === 'undefined'
           ? theme.buttons.variants[$type].colors.hoverBorder
-          : toggled
+          : $toggled
           ? `${darken(
               0.1,
               theme.buttons.variants[$type].colors.toggledHoverBorder
@@ -107,10 +107,10 @@ export const PrimaryButton = styled(
           : theme.buttons.variants[$type].colors.border}
       0px 0px 0px 1.8px;
     span {
-      color: ${({ theme, $type, toggled }) =>
-        typeof toggled === 'undefined'
+      color: ${({ theme, $type, $toggled }) =>
+        typeof $toggled === 'undefined'
           ? theme.buttons.variants[$type].colors.hoverColor
-          : toggled
+          : $toggled
           ? `${darken(
               0.1,
               theme.buttons.variants[$type].colors.toggledHoverColor
@@ -119,10 +119,10 @@ export const PrimaryButton = styled(
     }
 
     & * {
-      fill: ${({ theme, $type, toggled }) =>
-        typeof toggled === 'undefined'
+      fill: ${({ theme, $type, $toggled }) =>
+        typeof $toggled === 'undefined'
           ? theme.buttons.variants[$type].colors.hoverColor
-          : toggled
+          : $toggled
           ? `${darken(
               0.1,
               theme.buttons.variants[$type].colors.toggledHoverColor
@@ -133,8 +133,8 @@ export const PrimaryButton = styled(
 
   &:not(:disabled):active {
     transform: scale(0.95);
-    ${({ theme, $type, toggled }) => `background: ${
-      typeof toggled === 'undefined'
+    ${({ theme, $type, $toggled }) => `background: ${
+      typeof $toggled === 'undefined'
         ? theme.buttons.variants[$type].colors.pressedBackground
         : theme.buttons.variants[$type].colors.background
     };
@@ -142,7 +142,7 @@ export const PrimaryButton = styled(
         ${theme.buttons.variants[$type].colors.pressedBorder} 0px 0px 0px 1.8px;
       span {
         color: ${
-          typeof toggled === 'undefined'
+          typeof $toggled === 'undefined'
             ? theme.buttons.variants[$type].colors.pressedColor
             : theme.buttons.variants[$type].colors.color
         };
@@ -151,7 +151,7 @@ export const PrimaryButton = styled(
       svg {
         path {
           fill: ${
-            typeof toggled === 'undefined'
+            typeof $toggled === 'undefined'
               ? theme.buttons.variants[$type].colors.pressedColor
               : theme.buttons.variants[$type].colors.color
           };
@@ -160,8 +160,8 @@ export const PrimaryButton = styled(
   }
 
   &:not(:disabled):focus {
-    ${({ theme, $type, toggled }) =>
-      typeof toggled !== 'undefined'
+    ${({ theme, $type, $toggled }) =>
+      typeof $toggled !== 'undefined'
         ? ''
         : `background: ${theme.buttons.variants[$type].colors.pressedBackground};
           box-shadow:
@@ -193,8 +193,8 @@ export const PlainButton = styled(Button, transientOptions)<PlainButtonProps>`
   white-space: nowrap;
 
   span {
-    text-transform: ${({ capitalize }) =>
-      capitalize ? 'capitalize' : 'uppercase'};
+    text-transform: ${({ $capitalize }) =>
+      $capitalize ? 'capitalize' : 'uppercase'};
   }
 
   &:not(:disabled):hover {

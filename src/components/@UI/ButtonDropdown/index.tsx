@@ -71,7 +71,7 @@ const ButtonDropdown = forwardRef(
           <Dropdown
             disabled={disabled}
             open={open}
-            isMulti={isMulti}
+            $isMulti={isMulti}
             onClick={() => !disabled && setOpen(!open)}
           >
             <span>
@@ -88,7 +88,7 @@ const ButtonDropdown = forwardRef(
                 ) : null}
               </DropdownMultiSelected>
             ) : (
-              <DropdownSelected disabled={disabled} isSelected={!!value.length}>
+              <DropdownSelected disabled={disabled} $isSelected={!!value.length}>
                 {disabled ? '--' : value.length ? value : 'Select'}
               </DropdownSelected>
             )}
@@ -102,7 +102,7 @@ const ButtonDropdown = forwardRef(
                 {options.map((option, index) => (
                   <DropdownMenuItem
                     key={index}
-                    isMulti={isMulti}
+                    $isMulti={isMulti}
                     unSelected={option !== value && !!value.length}
                     onClick={() => handleChange(option)}
                   >

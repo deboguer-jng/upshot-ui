@@ -4,7 +4,7 @@ import { transientOptions } from '../../../themes'
 interface DropdownProps {
   open: boolean
   disabled: boolean
-  isMulti: boolean
+  $isMulti: boolean
 }
 
 interface DropdownMenuArrowProps {
@@ -13,13 +13,13 @@ interface DropdownMenuArrowProps {
 }
 
 interface DropdownSelectedProps {
-  isSelected: boolean
+  $isSelected: boolean
   disabled: boolean
 }
 
 interface DropdownMenuItemProps {
   unSelected: boolean
-  isMulti: boolean
+  $isMulti: boolean
 }
 
 interface DropdownMultiSelectedProps {
@@ -46,10 +46,10 @@ export const Dropdown = styled('div', transientOptions)<DropdownProps>`
 
   span {
     font-family: ${({ theme }) => theme.fonts.body};
-    color: ${({ theme, isMulti, disabled }) =>
+    color: ${({ theme, $isMulti, disabled }) =>
       disabled
         ? theme.buttons.dropdown.variants.disabled.color
-        : isMulti
+        : $isMulti
         ? theme.buttons.dropdown.variants.isMulti.color
         : theme.buttons.dropdown.variants.default.color};
   }
@@ -107,10 +107,10 @@ export const DropdownSelected = styled(
   margin-left: 6px;
   margin-right: 6px;
   font-family: ${({ theme }) => theme.fonts.body};
-  color: ${({ theme, isSelected, disabled }) =>
+  color: ${({ theme, $isSelected, disabled }) =>
     disabled
       ? theme.buttons.dropdown.variants.disabled.color
-      : isSelected
+      : $isSelected
       ? theme.buttons.dropdown.variants.default.selected
       : theme.buttons.dropdown.variants.isMulti.color};
 `
@@ -125,8 +125,8 @@ export const DropdownMenuItem = styled(
   user-select: none;
   cursor: pointer;
   font-family: ${({ theme }) => theme.fonts.body};
-  color: ${({ theme, unSelected, isMulti }) => {
-    if (isMulti) return theme.buttons.dropdown.variants.isMulti.color
+  color: ${({ theme, unSelected, $isMulti }) => {
+    if ($isMulti) return theme.buttons.dropdown.variants.isMulti.color
     if (unSelected) return theme.buttons.dropdown.variants.default.unSelected
     return theme.buttons.dropdown.variants.default.isSelected
   }};

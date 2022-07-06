@@ -7,8 +7,6 @@ export interface ButtonNavProps {
   children?: ReactNode
 
   toggled?: boolean
-
-  capitalize?: boolean
 }
 
 /**
@@ -20,15 +18,13 @@ const ButtonNav = forwardRef(
       icon,
       toggled,
       children,
-      capitalize = false,
       ...props
     }: ButtonNavProps & HTMLAttributes<HTMLDivElement>,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
       <StyledButtonNav
-        capitalize={capitalize}
-        toggled={toggled}
+        $toggled={toggled}
         {...{ ref, ...props }}
       >
         {icon}
