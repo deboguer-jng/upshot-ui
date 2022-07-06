@@ -34,7 +34,7 @@ const Avatar = forwardRef(
     <ThemeUIAvatarWrapper
       variant={`images.avatar.${size}`}
       sx={{ borderColor, flexShrink: 0 }}
-      pixelated={pixelated}
+      $pixelated={pixelated}
       {...{ ref, ...props }}
     />
   )

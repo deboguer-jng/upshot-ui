@@ -26,7 +26,6 @@ import ButtonChartCollection from '../ButtonChartCollection'
 import { truncateString } from '../../../utils/string'
 import EmptyChart from './components/emptyChart'
 import { formatNumber } from '../../../utils/number'
-import { useTooltip } from '@visx/tooltip'
 import { RenderTooltipParams } from '@visx/xychart/lib/components/Tooltip'
 
 interface DataPoint {

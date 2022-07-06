@@ -3,7 +3,7 @@ import { Flex } from 'theme-ui'
 import { transientOptions } from '../../../themes'
 
 interface TimeFilterProps {
-  active: boolean
+  $active: boolean
 }
 
 export const ScatterChartWrapper = styled('div', transientOptions)`
@@ -48,10 +48,10 @@ export const TimeFilter = styled('span', transientOptions)<TimeFilterProps>`
 
   /* Text Primary Grey 300 #E4E4E4 */
 
-  color: ${({ active, theme }) =>
-    active ? theme.colors['grey-900'] : '#E4E4E4'};
-  background-color: ${({ theme, active }) =>
-    active ? theme.colors.primary : 'transparent'};
+  color: ${({ $active, theme }) =>
+    $active ? theme.colors['grey-900'] : '#E4E4E4'};
+  background-color: ${({ theme, $active }) =>
+    $active ? theme.colors.primary : 'transparent'};
 `
 export const LegendContainer = styled('div', transientOptions)`
   margin-top: -120px;
