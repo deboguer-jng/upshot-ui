@@ -57,6 +57,9 @@ export const MiniNftCardWrapper = styled(
       transform: ${({ $isMobile }) => ($isMobile ? 'none' : 'translateX(70%)')};
     }
   }
+  a:hover {
+    text-decoration: none;
+  }
 `
 
 export const MiniNftCardImageWrapper = styled(
