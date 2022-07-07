@@ -140,12 +140,6 @@ const Chart = forwardRef(
     const [activeSeriesKey, setActiveSeriesKey] = useState<string>(null)
     const [activeDataPoint, setActiveDataPoint] = useState<DataPoint>(null)
 
-    /* Reset filters when data changes. */
-    useEffect(() => {
-      setFilterStatus(emptyFilters)
-    }, [data])
-
-
     const chartColors = ['blue', 'pink', 'orange', 'green', 'yellow']
     const seriesColors: { [key: string]: keyof typeof colors } =
       Object.fromEntries(
