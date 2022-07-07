@@ -3,12 +3,11 @@ import { Text, Link } from 'theme-ui'
 import { transientOptions } from '../../../themes'
 
 interface MiniNftCardPriceProps {
-  error?: boolean
   isRecommendListing?: boolean
 }
 
-interface MiniNftCardNameProps {
-  error?: boolean
+interface ErrorProp {
+  $error?: boolean
 }
 
 interface MiniNftCardMainContentWrapperProps {
@@ -19,55 +18,43 @@ interface AddressCircleProps {
   variant: 'from' | 'to'
 }
 
-interface MiniNftCardMainBoardProps {
-  error?: boolean
-}
-
-interface MiniNftCardDetailsNameProps {
-  error?: boolean
-}
-
-interface MiniNftCardDetailValueProps {
-  error?: boolean
-}
-
 interface MiniNftCardImageWrapperProps {
-  pixelated?: boolean
+  $pixelated?: boolean
 }
 
 interface MiniNftCardWrapperProps {
-  isMobile: boolean
+  $isMobile: boolean
 }
 
 export const MiniNftCardWrapper = styled(
   'div',
   transientOptions
-)<MiniNftCardWrapperProps>`
+)<MiniNftCardWrapperProps & ErrorProp>`
   position: relative;
   width: fit-content;
   width: ${({ theme }) => theme.miniNftCard.width}px;
   height: ${({ theme }) => theme.miniNftCard.height}px;
-  transition: ${({ isMobile }) => (isMobile ? 'none' : 'width 0.5s ease')};
+  transition: ${({ $isMobile }) => ($isMobile ? 'none' : 'width 0.5s ease')};
 
   & > div:last-child {
-    transition: ${({ isMobile }) =>
-      isMobile ? 'none' : 'transform 0.5s ease'};
-    transform: ${({ isMobile }) => (isMobile ? 'none' : 'translateX(0)')};
+    transition: ${({ $isMobile }) =>
+      $isMobile ? 'none' : 'transform 0.5s ease'};
+    transform: ${({ $isMobile }) => ($isMobile ? 'none' : 'translateX(0)')};
   }
 
   &:hover {
     width: calc(
-      ${({ theme, isMobile }) =>
-          isMobile
+      ${({ theme, $isMobile }) =>
+          $isMobile
             ? `${theme.miniNftCard.width}px`
             : theme.miniNftCard.width}px * 1.7 + 10px
     );
-    transition: ${({ isMobile }) => (isMobile ? 'none' : 'width 0.5s ease')};
+    transition: ${({ $isMobile }) => ($isMobile ? 'none' : 'width 0.5s ease')};
 
     & > div:last-child {
-      transition: ${({ isMobile }) =>
-        isMobile ? 'none' : 'transform 0.5s ease'};
-      transform: ${({ isMobile }) => (isMobile ? 'none' : 'translateX(70%)')};
+      transition: ${({ $isMobile }) =>
+        $isMobile ? 'none' : 'transform 0.5s ease'};
+      transform: ${({ $isMobile }) => ($isMobile ? 'none' : 'translateX(70%)')};
     }
   }
 `
@@ -76,13 +63,13 @@ export const MiniNftCardImageWrapper = styled(
   'img',
   transientOptions
 )<MiniNftCardImageWrapperProps>`
-  image-rendering: ${({ pixelated }) => (pixelated ? 'pixelated' : '')};
+  image-rendering: ${({ $pixelated }) => ($pixelated ? 'pixelated' : '')};
 `
 
 export const MiniNftCardMainBoard = styled(
   'div',
   transientOptions
-)<MiniNftCardMainBoardProps>`
+)<ErrorProp>`
   position: relative;
   background-color: ${({ theme }) => theme.miniNftCard.errorBackground};
   border-radius: ${({ theme }) => theme.miniNftCard.borderRadius}px;
@@ -97,8 +84,8 @@ export const MiniNftCardMainBoard = styled(
     object-fit: cover;
     width: 100%;
     height: 100%;
-    top: ${({ theme, error }) =>
-      error ? theme.miniNftCard.errorImageTop : 0}px;
+    top: ${({ theme, $error }) =>
+      $error ? theme.miniNftCard.errorImageTop : 0}px;
     left: 0;
     z-index: ${({ theme }) => theme.zIndex.default};
   }
@@ -134,7 +121,7 @@ export const MiniNftCardMainContentWrapper = styled(
 export const MiniNftCardPrice = styled(
   'span',
   transientOptions
-)<MiniNftCardPriceProps>`
+)<MiniNftCardPriceProps & ErrorProp>`
   position: relative;
   font-weight: bold;
   text-transform: uppercase;
@@ -142,8 +129,8 @@ export const MiniNftCardPrice = styled(
   border-radius: ${({ theme }) => theme.miniNftCard.borderRadius}px;
   background-color: ${({ theme }) => theme.colors.black};
   font-size: ${({ theme }) => theme.miniNftCard.price.fontSize}px;
-  color: ${({ theme, error, isRecommendListing }) =>
-    error
+  color: ${({ theme, $error, isRecommendListing }) =>
+    $error
       ? theme.miniNftCard.price.error
       : isRecommendListing
       ? 'white'
@@ -163,10 +150,10 @@ export const MiniNftCardPrice = styled(
 export const MiniNftCardName = styled(
   'div',
   transientOptions
-)<MiniNftCardNameProps>`
-  text-transform: ${({ error }) => (error ? 'uppercase' : 'none')};
-  color: ${({ theme, error }) =>
-    error ? theme.miniNftCard.name.error : theme.miniNftCard.name.default};
+)<ErrorProp>`
+  text-transform: ${({ $error }) => ($error ? 'uppercase' : 'none')};
+  color: ${({ theme, $error }) =>
+    $error ? theme.miniNftCard.name.error : theme.miniNftCard.name.default};
   font-size: ${({ theme }) => theme.miniNftCard.name.fontSize}px;
   border-radius: ${({ theme }) => theme.miniNftCard.name.borderRadius}px;
   padding-top: ${({ theme }) => theme.miniNftCard.name.paddingTop}px;
@@ -198,9 +185,9 @@ export const AddressCircle = styled(
 export const MiniNftCardDetailsName = styled(
   Text,
   transientOptions
-)<MiniNftCardDetailsNameProps>`
-  color: ${({ theme, error }) =>
-    error ? theme.colors.red : theme.colors.white};
+)<ErrorProp>`
+  color: ${({ theme, $error }) =>
+    $error ? theme.colors.red : theme.colors.white};
   line-height: ${({ theme }) => theme.miniNftCard.name.lineHeight}px;
   -webkit-line-clamp: 1;
   overflow: hidden;
@@ -215,10 +202,10 @@ export const MiniNftCardDetailLabel = styled(Text, transientOptions)`
 export const MiniNftCardDetailValue = styled(
   Text,
   transientOptions
-)<MiniNftCardDetailValueProps>`
+)<ErrorProp>`
   margin-bottom: 5px;
-  color: ${({ theme, error }) =>
-    error ? theme.colors.red : theme.colors.white};
+  color: ${({ theme, $error }) =>
+    $error ? theme.colors.red : theme.colors.white};
   -webkit-line-clamp: 2;
   text-overflow: elipsis;
   overflow: hidden;

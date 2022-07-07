@@ -3,7 +3,7 @@ import { Avatar } from 'theme-ui'
 import { transientOptions } from '../../../themes'
 
 interface ThemeUIAvatarWrapperProps {
-  pixelated?: boolean
+  $pixelated?: boolean
 }
 
 export const ThemeUIAvatarWrapper = styled(
@@ -11,5 +11,5 @@ export const ThemeUIAvatarWrapper = styled(
   transientOptions
 )<ThemeUIAvatarWrapperProps>`
   object-fit: cover;
-  image-rendering: ${({ pixelated }) => (pixelated ? 'pixelated' : '')};
+  image-rendering: ${({ $pixelated }) => ($pixelated ? 'pixelated' : '')};
 `

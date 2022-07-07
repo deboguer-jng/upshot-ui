@@ -346,7 +346,7 @@ const ScatterChartVisx = ({
           {['1h', '1d', '1w', '1m', 'all'].map((t) => (
             <TimeFilter
               key={t}
-              active={t === timeScale}
+              $active={t === timeScale}
               onClick={(e) => setTimeScale(t)}
             >
               {t.toUpperCase()}

@@ -149,8 +149,8 @@ const NotifPopper = forwardRef(
 
         <Divider />
 
-        {notifs.unread.map((item, index) => (
-          <NotifRow linkComponent={linkComponent}  {...item } />          
+        {notifs.unread.map((item, i) => (
+          <NotifRow key={`notif-unread-${i}`} linkComponent={linkComponent}  {...item } />          
         ))}
 
         <Text
@@ -165,8 +165,8 @@ const NotifPopper = forwardRef(
 
         <Divider />
 
-        {notifs.read.map((item, index) => (
-          <NotifRow linkComponent={linkComponent}  {...item } />          
+        {notifs.read.map((item, i) => (
+          <NotifRow key={`notif-read-${i}`} linkComponent={linkComponent}  {...item } />          
         ))}
 
       </StyledPanel>
