@@ -82,7 +82,14 @@ export interface MiniNftCardInterface {
 
   pixelated?: boolean
 
-  link?: string
+  /**
+   * link to nft collection
+   */
+  collectionLink?: string
+  /**
+   * link to nft
+   */
+  nftLink?: string
 
   tooltip?: string
 
@@ -110,7 +117,8 @@ const MiniNftCard = forwardRef(
       to,
       toLink,
       date,
-      link,
+      collectionLink,
+      nftLink,
       pixelated = false,
       linkComponent,
       tooltip,
@@ -131,58 +139,61 @@ const MiniNftCard = forwardRef(
 
     return (
       <MiniNftCardWrapper $isMobile={isMobile} {...{ ref, ...props }}>
-        <MiniNftCardMainBoard $error={error}>
-          <MiniNftCardImageWrapper
-            src={error ? ErrorSvg : imageSrc}
-            $pixelated={pixelated}
-          />
-          <MiniNftCardMainContentWrapper type={type}>
-            {type === 'default' ||
-            type === 'collection' ||
-            type === 'recommend' ? (
-              <>
-                {error ? (
-                  <MiniNftCardPrice $error={error}>Error</MiniNftCardPrice>
-                ) : appraisal?.length || listing?.length ? (
-                  <MiniNftCardPrice
-                    isRecommendListing={
-                      type === 'recommend' && !appraisal && !!listing
-                    }
-                  >
-                    {type === 'recommend' && appraisal ? (
-                      <>
-                        <Text sx={{ marginRight: 1, fontWeight: 'bold' }}>
-                          {appraisal}
-                        </Text>
-                        <Icon size={16} icon="upshot" />
-                      </>
-                    ) : (
-                      listing
-                    )}
-                    {!!tooltip && (
-                      <PriceTooltip>
-                        <Text
-                          sx={{
-                            fontSize: '12px',
-                            lineHeight: '14px',
-                            textTransform: 'none',
-                          }}
-                          color="grey-200"
-                        >
-                          {tooltip}
-                        </Text>
-                      </PriceTooltip>
-                    )}
-                  </MiniNftCardPrice>
-                ) : null}
-              </>
-            ) : (
-              <MiniNftCardName $error={error}>
-                {error ? 'Error' : name}
-              </MiniNftCardName>
-            )}
-          </MiniNftCardMainContentWrapper>
-        </MiniNftCardMainBoard>
+        <Link href={nftLink} component={linkComponent}>
+          <MiniNftCardMainBoard $error={error}>
+              <MiniNftCardImageWrapper
+                src={error ? ErrorSvg : imageSrc}
+                $pixelated={pixelated}
+              />
+            <MiniNftCardMainContentWrapper type={type}>
+              {type === 'default' ||
+              type === 'collection' ||
+              type === 'recommend' ? (
+                <>
+                  {error ? (
+                    <MiniNftCardPrice $error={error}>Error</MiniNftCardPrice>
+                  ) : appraisal?.length || listing?.length ? (
+                    <MiniNftCardPrice
+                      isRecommendListing={
+                        type === 'recommend' && !appraisal && !!listing
+                      }
+                    >
+                      {type === 'recommend' && appraisal ? (
+                        <>
+                          <Text sx={{ marginRight: 1, fontWeight: 'bold' }}>
+                            {appraisal}
+                          </Text>
+                          <Icon size={16} icon="upshot" />
+                        </>
+                      ) : (
+                        listing
+                      )}
+                      {!!tooltip && (
+                        <PriceTooltip>
+                          <Text
+                            sx={{
+                              fontSize: '12px',
+                              lineHeight: '14px',
+                              textTransform: 'none',
+                            }}
+                            color="grey-200"
+                          >
+                            {tooltip}
+                          </Text>
+                        </PriceTooltip>
+                      )}
+                    </MiniNftCardPrice>
+                  ) : null}
+                </>
+              ) : (
+                <MiniNftCardName $error={error}>
+                  {error ? 'Error' : name}
+                </MiniNftCardName>
+              )}
+            </MiniNftCardMainContentWrapper>
+          </MiniNftCardMainBoard>
+        </Link>
+
         {!isMobile && (
           <MiniNftCardDetailsBoard>
             {type === 'search' ? (
@@ -294,7 +305,7 @@ const MiniNftCard = forwardRef(
                 price
               )}
             </MiniNftCardDetailValue>
-            {!!link && (
+            {!!collectionLink && (
               <MiniNftCardDetailValue>
                 {error ? (
                   <Text variant="small" color="grey-600">
@@ -303,9 +314,9 @@ const MiniNftCard = forwardRef(
                 ) : (
                   <Link
                     color="primary"
-                    target={type === 'recommend' && '_blank'}
+                    target={type === 'recommend' ? '_blank' : undefined}
                     onClick={(e) => e.stopPropagation()}
-                    href={link}
+                    href={collectionLink}
                     component={linkComponent}
                   >
                     <Text variant="small">
