@@ -77,7 +77,7 @@ export const NotifRow = forwardRef(
             {description}
           </EllipsisText>
         </CenterFlex>
-
+        
         <CenterFlex sx={{ minWidth: 'min-content' }}>
           <Label
             size="xs"
@@ -108,7 +108,7 @@ export interface NotifPopperProps extends PanelProps {
   /**
    * Variant: wide or popup. Default: wide. The popup variant has 20% transparency and blurry backdrop.
    */
-  notifs: NotifObject
+   notifs: NotifObject
   /**
    * Link component
    */
@@ -127,8 +127,6 @@ const NotifPopper = forwardRef(
     }: NotifPopperProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    const showUnread = notifs.unread && notifs.unread.length > 0
-    const showRead = notifs.read && notifs.read.length > 0
 
     return (
       <StyledPanel>
@@ -139,61 +137,38 @@ const NotifPopper = forwardRef(
           Notifications
         </Text>
 
-        {showUnread && ( // if there are unread notifs
-          <>
-            <Text
-              color="grey-600"
-              sx={{
-                fontWeight: 'bold',
-                marginTop: '10px',
-              }}
-            >
-              Unread
-            </Text>
+        <Text
+          color="grey-600"
+          sx={{
+            fontWeight: 'bold',
+            marginTop: '10px',
+          }}
+        >
+          Unread
+        </Text>
 
-            <Divider />
+        <Divider />
 
-            {notifs.unread.map((item, i) => (
-              <NotifRow key={`notif-unread-${i}`} linkComponent={linkComponent}  {...item } />          
-            ))}
-          </>
-        )}
+        {notifs.unread.map((item, i) => (
+          <NotifRow key={`notif-unread-${i}`} linkComponent={linkComponent}  {...item } />          
+        ))}
 
-        {showRead && ( // if there are read notifs
-          <>
-            <Text
-              color="grey-600"
-              sx={{
-                fontWeight: 'bold',
-                marginTop: '10px',
-              }}
-            >
-              Read
-            </Text>
+        <Text
+          color="grey-600"
+          sx={{
+            fontWeight: 'bold',
+            marginTop: '10px',
+          }}
+        >
+          Read
+        </Text>
 
-            <Divider />
+        <Divider />
 
-            {notifs.read.map((item, i) => (
-              <NotifRow key={`notif-read-${i}`} linkComponent={linkComponent}  {...item } />          
-            ))}
-          </>
-        )}
+        {notifs.read.map((item, i) => (
+          <NotifRow key={`notif-read-${i}`} linkComponent={linkComponent}  {...item } />          
+        ))}
 
-        {!showUnread && !showRead && (
-          <>
-            <Divider />
-            <Text
-              color="grey-600"
-              sx={{
-                fontWeight: 'bold',
-                marginTop: '10px',
-              }}
-            >
-              There are no notifications yet
-            </Text>
-          </>
-        )}
-        
       </StyledPanel>
     )
   }
