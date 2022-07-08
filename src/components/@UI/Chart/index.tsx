@@ -142,6 +142,9 @@ const Chart = forwardRef(
 
     /* Reset filters when data changes. */
     useEffect(() => {
+      // if filter statuses are already default then bail
+      if (Object.keys(data).length == Object.keys(filterStatus).length && 
+          Object.values(filterStatus).reduce((p, c) => p && c, true)) return
       setFilterStatus(emptyFilters)
     }, [data])
 
@@ -153,7 +156,7 @@ const Chart = forwardRef(
     const getRawColor = (seriesName: string) =>
       theme.rawColors[seriesColors[seriesName]]
 
-    const tickFormatTime = (n: number) => format(Number(n), 'MM/dd/yy')
+    const tickFormatTime = (n: number) => format(Number(n), 'MM/dd')
     const tickFormatPrice = (n: number) =>
       formatNumber(Number(n), { kmbUnits: true, prefix: 'ETHER' })
 
