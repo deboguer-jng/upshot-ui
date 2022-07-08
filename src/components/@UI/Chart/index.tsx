@@ -12,7 +12,7 @@ import {
   EventHandlerParams,
   AnimatedAreaSeries,
 } from '@visx/xychart'
-import { curveCardinal } from '@visx/curve'
+import { curveMonotoneX } from '@visx/curve'
 import { LinearGradient } from '@visx/gradient'
 import { ParentSize } from '@visx/responsive'
 import { useTheme } from '@emotion/react'
@@ -90,8 +90,8 @@ export interface ChartProps {
   width?: number
   height?: number
   margin?: { top: number; bottom: number; left: number; right: number }
-  showXAxis?: boolean,
-  showYAxis?: boolean,
+  showXAxis?: boolean
+  showYAxis?: boolean
   /**
    * Displays a tooltip over hovered point on a line
    */
@@ -144,7 +144,6 @@ const Chart = forwardRef(
     useEffect(() => {
       setFilterStatus(emptyFilters)
     }, [data])
-
 
     const chartColors = ['blue', 'pink', 'orange', 'green', 'yellow']
     const seriesColors: { [key: string]: keyof typeof colors } =
@@ -267,7 +266,7 @@ const Chart = forwardRef(
           </Flex>
         )}
         <XYChart
-          xScale={{ type: 'time' }} 
+          xScale={{ type: 'time' }}
           yScale={{ type: 'linear' }}
           height={height}
           width={width}
@@ -277,7 +276,7 @@ const Chart = forwardRef(
           onPointerOut={handlePointerOut}
         >
           <>
-            {showXAxis && 
+            {showXAxis && (
               <Axis
                 orientation="bottom"
                 key="time-axis"
@@ -292,8 +291,8 @@ const Chart = forwardRef(
                   verticalAnchor: 'middle',
                 })}
               />
-            }
-            {showYAxis && 
+            )}
+            {showYAxis && (
               <Axis
                 key="price-axis"
                 orientation="left"
@@ -308,8 +307,8 @@ const Chart = forwardRef(
                   verticalAnchor: 'middle',
                 })}
               />
-            }
-            {data.map(d => 
+            )}
+            {data.map((d) => (
               <LinearGradient
                 id={d.name.replace(/\s/g, '')}
                 key={`grad-${d.name}`}
@@ -335,7 +334,7 @@ const Chart = forwardRef(
                   offset="0.9"
                 />
               </LinearGradient>
-            )}
+            ))}
             {data
               .filter((set) => filterStatus[set.name])
               .map((d, i: number) => (
@@ -346,10 +345,10 @@ const Chart = forwardRef(
                   xAccessor={(d) => d?.x}
                   yAccessor={(d) => d?.y}
                   fill={`url(#${d.name.replace(/\s/g, '')})`}
-                  curve={curveCardinal}
+                  curve={curveMonotoneX}
                   lineProps={{ stroke: getRawColor(d.name) }}
                 />
-            ))}
+              ))}
             <Tooltip
               showDatumGlyph
               unstyled
@@ -363,13 +362,24 @@ const Chart = forwardRef(
               }}
               offsetTop={-65}
               offsetLeft={-47}
-              renderTooltip={({ tooltipData }: RenderTooltipParams<DataPoint>) => showTooltip ?
-                <StyledTooltip color={getRawColor(tooltipData.nearestDatum.key)}>
-                  {tickFormatPrice(tooltipData.nearestDatum.datum.y)}<br />
-                  {tickFormatTime(tooltipData.nearestDatum.datum.x)}
-                  <TooltipTail color={getRawColor(tooltipData.nearestDatum.key)} />
-                </StyledTooltip>
-                : <div />}
+              renderTooltip={({
+                tooltipData,
+              }: RenderTooltipParams<DataPoint>) =>
+                showTooltip ? (
+                  <StyledTooltip
+                    color={getRawColor(tooltipData.nearestDatum.key)}
+                  >
+                    {tickFormatPrice(tooltipData.nearestDatum.datum.y)}
+                    <br />
+                    {tickFormatTime(tooltipData.nearestDatum.datum.x)}
+                    <TooltipTail
+                      color={getRawColor(tooltipData.nearestDatum.key)}
+                    />
+                  </StyledTooltip>
+                ) : (
+                  <div />
+                )
+              }
             />
           </>
         </XYChart>
