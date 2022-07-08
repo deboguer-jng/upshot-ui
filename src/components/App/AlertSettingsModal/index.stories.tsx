@@ -10,7 +10,7 @@ import {
   InputLabel,
   NumberInput,
   Setting,
-  SettingsGroup
+  SettingsGroup,
 } from './Styled'
 NumberInput.defaultProps = { dark: true, type: 'number' }
 

@@ -21,13 +21,13 @@ const Template: ComponentStory<typeof ScatterChart> = (args) => (
 export const Default = Template.bind({})
 Default.args = {
   name: 'Supermental',
-  data: smallData
+  data: smallData,
 }
 
 export const BigData = Template.bind({})
 BigData.args = {
   name: 'Azuki',
-  data: bigData
+  data: bigData,
 }
 
 export const Loading = Template.bind({})

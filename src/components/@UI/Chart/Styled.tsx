@@ -132,7 +132,7 @@ export const CustomLegendWrapper = styled('div', transientOptions)`
   flex-wrap: wrap;
 `
 
-export const StyledTooltip = styled('div', transientOptions)<{ 
+export const StyledTooltip = styled('div', transientOptions)<{
   color: string
 }>`
   position: relative;
@@ -140,9 +140,9 @@ export const StyledTooltip = styled('div', transientOptions)<{
   border-radius: 1rem;
   padding: 0.1rem 1rem;
   overflow: visible;
-  font-family: ${({theme}) => theme.fonts.body};
-  color: ${({color}) => color};
-  border: 1px solid ${({color}) => color};
+  font-family: ${({ theme }) => theme.fonts.body};
+  color: ${({ color }) => color};
+  border: 1px solid ${({ color }) => color};
 `
 
 export const TooltipTail = styled('div', transientOptions)<{
@@ -155,6 +155,6 @@ export const TooltipTail = styled('div', transientOptions)<{
   width: 10px;
   height: 10px;
   background: black;
-  border-left: 1px solid ${({color}) => color};
-  border-bottom: 1px solid ${({color}) => color};
+  border-left: 1px solid ${({ color }) => color};
+  border-bottom: 1px solid ${({ color }) => color};
 `

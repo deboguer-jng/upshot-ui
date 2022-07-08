@@ -143,8 +143,11 @@ const Chart = forwardRef(
     /* Reset filters when data changes. */
     useEffect(() => {
       // if filter statuses are already default then bail
-      if (Object.keys(data).length == Object.keys(filterStatus).length && 
-          Object.values(filterStatus).reduce((p, c) => p && c, true)) return
+      if (
+        Object.keys(data).length == Object.keys(filterStatus).length &&
+        Object.values(filterStatus).reduce((p, c) => p && c, true)
+      )
+        return
       setFilterStatus(emptyFilters)
     }, [data])
 

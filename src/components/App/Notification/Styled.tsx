@@ -5,7 +5,6 @@ import Flex from '../../Layout/Flex'
 import Image from '../../@UI/Image'
 import Text from '../../@UI/Text'
 
-
 /* interface panelProps {
   $variant: 'wide' | 'popup'
 } */
@@ -31,7 +30,7 @@ export const StyledFlex = styled(Flex)`
   margin-left: -30px;
   margin-right: -30px;
   gap: 12px;
-  padding-top: 10px; 
+  padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 30px;
   padding-right: 30px;

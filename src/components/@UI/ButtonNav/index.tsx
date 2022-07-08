@@ -23,10 +23,7 @@ const ButtonNav = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
-      <StyledButtonNav
-        $toggled={toggled}
-        {...{ ref, ...props }}
-      >
+      <StyledButtonNav $toggled={toggled} {...{ ref, ...props }}>
         {icon}
         <span>{children}</span>
       </StyledButtonNav>

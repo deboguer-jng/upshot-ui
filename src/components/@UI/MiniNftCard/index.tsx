@@ -141,10 +141,10 @@ const MiniNftCard = forwardRef(
       <MiniNftCardWrapper $isMobile={isMobile} {...{ ref, ...props }}>
         <Link href={nftLink} component={linkComponent}>
           <MiniNftCardMainBoard $error={error}>
-              <MiniNftCardImageWrapper
-                src={error ? ErrorSvg : imageSrc}
-                $pixelated={pixelated}
-              />
+            <MiniNftCardImageWrapper
+              src={error ? ErrorSvg : imageSrc}
+              $pixelated={pixelated}
+            />
             <MiniNftCardMainContentWrapper type={type}>
               {type === 'default' ||
               type === 'collection' ||

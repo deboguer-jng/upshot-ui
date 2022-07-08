@@ -1,7 +1,15 @@
 import { format } from 'date-fns'
 import React, { useState } from 'react'
 import { shortenAddress } from '../../../utils/address'
-import { AddressDot, GMI, NFT, TooltipContainer, TooltipDate, TooltipImageContainer, TooltipPrice } from './Styled'
+import {
+  AddressDot,
+  GMI,
+  NFT,
+  TooltipContainer,
+  TooltipDate,
+  TooltipImageContainer,
+  TooltipPrice,
+} from './Styled'
 import Link from '../Link'
 import Spinner from '../Spinner'
 
@@ -30,24 +38,29 @@ export const TooltipContent = ({
   contractAddress,
   linkComponent,
 }: TooltipContentProps) => {
-  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
+  const [imageLoaded, setImageLoaded] = useState<boolean>(false)
   const shortAddress = shortenAddress(address)
 
   return (
     <TooltipContainer>
       <TooltipImageContainer>
-        {!imageLoaded && <Spinner size='sm' sx={{position: 'absolute'}} />}
+        {!imageLoaded && <Spinner size="sm" sx={{ position: 'absolute' }} />}
         <Link
           href={`/analytics/nft/${contractAddress}/${id}`}
           component={linkComponent}
         >
-        {img?.length && 
-          <img 
-            src={img} 
-            style={{ width: 150, minHeight: 50, imageRendering: pixelated ? 'pixelated' : 'auto'}} 
-            onLoad={e => setImageLoaded(true)}
-          />}
-          </Link>
+          {img?.length && (
+            <img
+              src={img}
+              style={{
+                width: 150,
+                minHeight: 50,
+                imageRendering: pixelated ? 'pixelated' : 'auto',
+              }}
+              onLoad={(e) => setImageLoaded(true)}
+            />
+          )}
+        </Link>
       </TooltipImageContainer>
       <NFT>
         <Link
@@ -62,14 +75,10 @@ export const TooltipContent = ({
       </TooltipPrice>
       <TooltipDate>
         <AddressDot />
-        <Link 
-          href={`/analytics/user/${address}`}
-          component={linkComponent}>
+        <Link href={`/analytics/user/${address}`} component={linkComponent}>
           {ens ? ens : shortAddress}
         </Link>
-        <GMI>
-          ({Math.round(gmi)})
-        </GMI>
+        <GMI>({Math.round(gmi)})</GMI>
       </TooltipDate>
     </TooltipContainer>
   )
