@@ -71,11 +71,12 @@ export const SettingsPanel = forwardRef(
               }}
             >
               <MenuItem sx={{ fontSize: '13px' }}>User Settings</MenuItem>
-              {children.map((item: ReactElement<SettingsMenuItemProps>) => (
+              {children.map((item: ReactElement<SettingsMenuItemProps>, i) => (
                 <MenuItem
-                  active={activeItem === item.props.label}
+                  $active={activeItem === item.props.label}
                   onClick={() => setActiveItem(item.props.label)}
                   sx={{ fontWeight: 600 }}
+                  key={`menu-${i}`}
                 >
                   {item.props.subMenu ? (
                     <span style={{ marginLeft: '20px' }}>
