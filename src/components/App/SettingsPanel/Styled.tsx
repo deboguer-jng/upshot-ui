@@ -10,7 +10,7 @@ interface SettingsMenuProps {
 }
 
 interface MenuItemProps {
-  active?: boolean
+  $active?: boolean
 }
 
 export const PanelBase = styled(Panel, transientOptions)`
@@ -29,8 +29,8 @@ export const SettingsMenu = styled(Flex, transientOptions)<SettingsMenuProps>`
 `
 
 export const MenuItem = styled(Text, transientOptions)<MenuItemProps>`
-  color: ${({ active }) =>
-    active ? theme.colors.text : theme.colors['grey-400']};
+  color: ${({ $active }) =>
+    $active ? theme.colors.text : theme.colors['grey-400']};
   border-bottom: thin solid ${({ theme }) => theme.colors['grey-700']};
   padding: 20px;
   cursor: pointer;
