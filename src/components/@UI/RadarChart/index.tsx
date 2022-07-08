@@ -58,10 +58,10 @@ const genPolygonPoints = (
   scale: (n: number) => number
 ) => {
   const step = (Math.PI * 2) / dataArray.length
-  const pointArray: number[][] = dataArray.map((d, i) => { 
-      const xVal = scale(d) * Math.sin(i * step)
-      const yVal = scale(d) * Math.cos(i * step)
-      return [xVal, yVal]  
+  const pointArray: number[][] = dataArray.map((d, i) => {
+    const xVal = scale(d) * Math.sin(i * step)
+    const yVal = scale(d) * Math.cos(i * step)
+    return [xVal, yVal]
   })
   const pointString: string = pointArray.join(' ')
   return { pointArray, pointString }
@@ -110,11 +110,11 @@ const RadarChart = ({
     if (x > 0) return 'start'
     if (x < 0) return 'end'
   }
-  
+
   const getLabelAnchorY = (y: number) => {
-    if (y > height*0.25) return 'start'
-    if (y < -height*0.25) return 'end'
-    if (Math.abs(y) < height*0.5) return 'middle'
+    if (y > height * 0.25) return 'start'
+    if (y < -height * 0.25) return 'end'
+    if (Math.abs(y) < height * 0.5) return 'middle'
   }
 
   const labelWidth = 150
@@ -124,27 +124,27 @@ const RadarChart = ({
     if (x < 0) return labelWidth * 0.22
   }
 
-  if (loading || dataPoints.length == 0 || error) 
+  if (loading || dataPoints.length == 0 || error)
     return (
-      <EmptyChart {...{loading, error, height, width}} data={dataPoints} />
+      <EmptyChart {...{ loading, error, height, width }} data={dataPoints} />
     )
 
   return width < 10 ? null : (
     <svg width={width} height={height}>
-      <rect fill='none' width={width} height={height} rx={14} />
+      <rect fill="none" width={width} height={height} rx={14} />
       <Group top={height / 2} left={width / 2}>
-          <LineRadial
-            key={`web-base`}
-            data={webs}
-            angle={(d) => radialScale(d.angle) ?? 0}
-            radius={radius}
-            fill={theme.colors['grey-900']}
-            stroke={theme.colors['grey-700']}
-            strokeWidth={1}
-            strokeOpacity={0.8}
-            strokeLinecap="round"
-          />
-        {[...new Array(levels-1)].reverse().map((_, i) => (
+        <LineRadial
+          key={`web-base`}
+          data={webs}
+          angle={(d) => radialScale(d.angle) ?? 0}
+          radius={radius}
+          fill={theme.colors['grey-900']}
+          stroke={theme.colors['grey-700']}
+          strokeWidth={1}
+          strokeOpacity={0.8}
+          strokeLinecap="round"
+        />
+        {[...new Array(levels - 1)].reverse().map((_, i) => (
           <LineRadial
             key={`web-${i}`}
             data={webs}
@@ -157,16 +157,15 @@ const RadarChart = ({
           />
         ))}
         {[...new Array(dataPoints.length)].map((_, i) => (
-          <>
+          <React.Fragment key={`radar-line-${i}`}>
             <Line
-              key={`radar-line-${i}`}
               from={zeroPoint}
               to={points[i]}
               stroke={theme.colors['grey-700']}
             />
-            <Label 
-              x={points[i].x} 
-              y={points[i].y} 
+            <Label
+              x={points[i].x}
+              y={points[i].y}
               width={labelWidth}
               title={truncateString(data.labels[i], 10)}
               showBackground={false}
@@ -174,11 +173,14 @@ const RadarChart = ({
               fontColor={theme.colors['grey-500']}
               titleFontWeight={400}
               titleFontSize={11}
-              titleProps={{textAnchor: 'middle', dx: getTextOffset(points[i].x) }}
+              titleProps={{
+                textAnchor: 'middle',
+                dx: getTextOffset(points[i].x),
+              }}
               horizontalAnchor={getLabelAnchorX(points[i].x)}
               verticalAnchor={getLabelAnchorY(points[i].y)}
             />
-          </>
+          </React.Fragment>
         ))}
         <polygon
           points={polygonPoints.pointString}
