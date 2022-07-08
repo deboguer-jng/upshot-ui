@@ -88,7 +88,10 @@ const ButtonDropdown = forwardRef(
                 ) : null}
               </DropdownMultiSelected>
             ) : (
-              <DropdownSelected disabled={disabled} $isSelected={!!value.length}>
+              <DropdownSelected
+                disabled={disabled}
+                $isSelected={!!value.length}
+              >
                 {disabled ? '--' : value.length ? value : 'Select'}
               </DropdownSelected>
             )}

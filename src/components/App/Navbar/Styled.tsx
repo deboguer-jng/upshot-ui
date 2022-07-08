@@ -196,11 +196,11 @@ export const StyledLink = styled('a', transientOptions)`
 `
 
 export const StyledBadge = styled(Badge)`
-  background-color: #FF5628;
+  background-color: #ff5628;
   width: 10px;
   height: 10px;
   position: absolute;
-  borderRadius: 5px;
+  borderradius: 5px;
   top: 2px;
   right: 2px;
 `

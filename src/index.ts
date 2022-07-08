@@ -33,7 +33,10 @@ export { default as Panel } from './components/@UI/Panel'
 export { default as ProgressBar } from './components/@UI/ProgressBar'
 export { default as RadarChart } from './components/@UI/RadarChart'
 export { default as Radio } from './components/@UI/Radio'
-export { default as ScatterChart, ChartDataItem } from './components/@UI/ScatterChart'
+export {
+  default as ScatterChart,
+  ChartDataItem,
+} from './components/@UI/ScatterChart'
 export { default as SliderFade } from './components/@UI/Scroll/SliderFade'
 export { default as SliderIcon } from './components/@UI/Scroll/SliderIcon'
 export { default as Skeleton } from './components/@UI/Skeleton'

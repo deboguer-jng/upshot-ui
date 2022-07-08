@@ -63,27 +63,25 @@ export const NotifRow = forwardRef(
     }: NotifRowProps,
     ref: React.ForwardedRef<HTMLAnchorElement>
   ) => (
-    <Link href={url} noHover target="_blank" component={linkComponent} {...{ ref, ...props }}>
+    <Link
+      href={url}
+      noHover
+      target="_blank"
+      component={linkComponent}
+      {...{ ref, ...props }}
+    >
       <StyledFlex>
         <CenterFlex>
           <RoundImage src={image} width={52} />
         </CenterFlex>
 
         <CenterFlex sx={{ flexGrow: '1' }}>
-          <EllipsisText variant="xLarge">
-            {title}
-          </EllipsisText>
-          <EllipsisText color="grey-500">
-            {description}
-          </EllipsisText>
+          <EllipsisText variant="xLarge">{title}</EllipsisText>
+          <EllipsisText color="grey-500">{description}</EllipsisText>
         </CenterFlex>
 
         <CenterFlex sx={{ minWidth: 'min-content' }}>
-          <Label
-            size="xs"
-            variant="currency"
-            sx={{ lineHeight: '1rem' }}
-          >
+          <Label size="xs" variant="currency" sx={{ lineHeight: '1rem' }}>
             {price.toString()}
           </Label>
           <Text color="blue" sx={{ lineHeight: '1rem' }}>
@@ -93,7 +91,6 @@ export const NotifRow = forwardRef(
             {time}
           </Text>
         </CenterFlex>
-
       </StyledFlex>
     </Link>
   )
@@ -120,11 +117,7 @@ export interface NotifPopperProps extends PanelProps {
  */
 const NotifPopper = forwardRef(
   (
-    {
-      notifs,
-      linkComponent,
-      ...props
-    }: NotifPopperProps,
+    { notifs, linkComponent, ...props }: NotifPopperProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const showUnread = notifs.unread && notifs.unread.length > 0
@@ -132,10 +125,7 @@ const NotifPopper = forwardRef(
 
     return (
       <StyledPanel>
-        <Text
-          color="white"
-          variant="h3Primary"
-        >
+        <Text color="white" variant="h3Primary">
           Notifications
         </Text>
 
@@ -154,7 +144,11 @@ const NotifPopper = forwardRef(
             <Divider />
 
             {notifs.unread.map((item, i) => (
-              <NotifRow key={`notif-unread-${i}`} linkComponent={linkComponent}  {...item } />          
+              <NotifRow
+                key={`notif-unread-${i}`}
+                linkComponent={linkComponent}
+                {...item}
+              />
             ))}
           </>
         )}
@@ -174,7 +168,11 @@ const NotifPopper = forwardRef(
             <Divider />
 
             {notifs.read.map((item, i) => (
-              <NotifRow key={`notif-read-${i}`} linkComponent={linkComponent}  {...item } />          
+              <NotifRow
+                key={`notif-read-${i}`}
+                linkComponent={linkComponent}
+                {...item}
+              />
             ))}
           </>
         )}
@@ -193,7 +191,6 @@ const NotifPopper = forwardRef(
             </Text>
           </>
         )}
-        
       </StyledPanel>
     )
   }

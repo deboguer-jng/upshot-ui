@@ -142,7 +142,11 @@ const ScatterChartVisx = ({
     if (!point) return null
 
     const neighborRadius = 50
-    return voronoiLayout.find(point.x - margin.left, point.y - margin.top, neighborRadius)
+    return voronoiLayout.find(
+      point.x - margin.left,
+      point.y - margin.top,
+      neighborRadius
+    )
   }
 
   const handleMouseMove = useCallback(
@@ -254,14 +258,16 @@ const ScatterChartVisx = ({
           </Label>
         </Flex>
       )}
-      <svg width={width} height={height} 
+      <svg
+        width={width}
+        height={height}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         onClick={handleChartClick}
         onTouchEnd={handleChartClick}
         ref={svgRef}
       >
-        <Group left={margin.left} top={margin.top} pointerEvents='none'>
+        <Group left={margin.left} top={margin.top} pointerEvents="none">
           <AxisLeft
             scale={yScale}
             hideAxisLine={true}
@@ -276,7 +282,7 @@ const ScatterChartVisx = ({
             tickLength={0}
             numTicks={6}
           />
-          
+
           <AxisBottom
             top={yMax}
             scale={xScale}
@@ -293,7 +299,11 @@ const ScatterChartVisx = ({
             numTicks={numTicksTime}
           />
         </Group>
-        <Group left={margin.left} top={margin.top} style={{ cursor: 'pointer' }}>
+        <Group
+          left={margin.left}
+          top={margin.top}
+          style={{ cursor: 'pointer' }}
+        >
           {data
             .sort((a) => a.gmi - 900)
             .map((point: ChartDataItem, i: number) => (
@@ -319,7 +329,7 @@ const ScatterChartVisx = ({
             position: 'absolute',
             backgroundColor: 'transparent',
             pointerEvents: selectedId ? 'all' : 'none',
-            zIndex: theme.zIndex.modal
+            zIndex: theme.zIndex.modal,
           }}
         >
           <TooltipContent {...tooltipData} />

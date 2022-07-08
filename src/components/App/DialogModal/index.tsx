@@ -52,11 +52,15 @@ const DialogModal = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => (
     <ModalBase {...{ ref, ...props }}>
-      {{
-        [DialogSymbolType.LOADING]: <Icon icon="upshotWallet" size="50" />,
-        [DialogSymbolType.SUCCESS]: <Icon icon="upshotConfirmation" size="50" />,
-        [DialogSymbolType.FAILURE]: <Icon icon="upshotError" size="50" />,
-      }[symbol]}
+      {
+        {
+          [DialogSymbolType.LOADING]: <Icon icon="upshotWallet" size="50" />,
+          [DialogSymbolType.SUCCESS]: (
+            <Icon icon="upshotConfirmation" size="50" />
+          ),
+          [DialogSymbolType.FAILURE]: <Icon icon="upshotError" size="50" />,
+        }[symbol]
+      }
       <Text variant="large">{header}</Text>
       <Text variant="small">{body}</Text>
       {button && (

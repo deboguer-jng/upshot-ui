@@ -26,10 +26,9 @@ interface MiniNftCardWrapperProps {
   $isMobile: boolean
 }
 
-export const MiniNftCardWrapper = styled(
-  'div',
-  transientOptions
-)<MiniNftCardWrapperProps & ErrorProp>`
+export const MiniNftCardWrapper = styled('div', transientOptions)<
+  MiniNftCardWrapperProps & ErrorProp
+>`
   position: relative;
   width: fit-content;
   width: ${({ theme }) => theme.miniNftCard.width}px;
@@ -69,10 +68,7 @@ export const MiniNftCardImageWrapper = styled(
   image-rendering: ${({ $pixelated }) => ($pixelated ? 'pixelated' : '')};
 `
 
-export const MiniNftCardMainBoard = styled(
-  'div',
-  transientOptions
-)<ErrorProp>`
+export const MiniNftCardMainBoard = styled('div', transientOptions)<ErrorProp>`
   position: relative;
   background-color: ${({ theme }) => theme.miniNftCard.errorBackground};
   border-radius: ${({ theme }) => theme.miniNftCard.borderRadius}px;
@@ -121,10 +117,9 @@ export const MiniNftCardMainContentWrapper = styled(
   position: relative;
 `
 
-export const MiniNftCardPrice = styled(
-  'span',
-  transientOptions
-)<MiniNftCardPriceProps & ErrorProp>`
+export const MiniNftCardPrice = styled('span', transientOptions)<
+  MiniNftCardPriceProps & ErrorProp
+>`
   position: relative;
   font-weight: bold;
   text-transform: uppercase;
@@ -150,10 +145,7 @@ export const MiniNftCardPrice = styled(
   }
 `
 
-export const MiniNftCardName = styled(
-  'div',
-  transientOptions
-)<ErrorProp>`
+export const MiniNftCardName = styled('div', transientOptions)<ErrorProp>`
   text-transform: ${({ $error }) => ($error ? 'uppercase' : 'none')};
   color: ${({ theme, $error }) =>
     $error ? theme.miniNftCard.name.error : theme.miniNftCard.name.default};
@@ -185,10 +177,7 @@ export const AddressCircle = styled(
     variant === 'from' ? theme.colors.purple : theme.colors.yellow};
 `
 
-export const MiniNftCardDetailsName = styled(
-  Text,
-  transientOptions
-)<ErrorProp>`
+export const MiniNftCardDetailsName = styled(Text, transientOptions)<ErrorProp>`
   color: ${({ theme, $error }) =>
     $error ? theme.colors.red : theme.colors.white};
   line-height: ${({ theme }) => theme.miniNftCard.name.lineHeight}px;
@@ -202,10 +191,7 @@ export const MiniNftCardDetailLabel = styled(Text, transientOptions)`
   color: ${({ theme }) => theme.colors['grey-500']};
 `
 
-export const MiniNftCardDetailValue = styled(
-  Text,
-  transientOptions
-)<ErrorProp>`
+export const MiniNftCardDetailValue = styled(Text, transientOptions)<ErrorProp>`
   margin-bottom: 5px;
   color: ${({ theme, $error }) =>
     $error ? theme.colors.red : theme.colors.white};

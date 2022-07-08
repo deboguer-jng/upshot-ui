@@ -57,12 +57,12 @@ export const LegendContainer = styled('div', transientOptions)`
   margin-top: -120px;
 `
 
-export const LegendCircle = styled('div', transientOptions)<{color: string}>`
+export const LegendCircle = styled('div', transientOptions)<{ color: string }>`
   width: 12px;
   height: 12px;
   border-radius: 6px;
   margin-right: 6px;
-  background-color: ${({ color }) => color}
+  background-color: ${({ color }) => color};
 `
 export const LegendItem = styled(Flex, transientOptions)`
   align-items: center;
@@ -75,7 +75,7 @@ export const TimeFilterContainer = styled(Flex, transientOptions)`
 `
 
 export const TooltipContainer = styled('div', transientOptions)`
-  background-color: ${({theme}) => theme.colors['grey-900']};
+  background-color: ${({ theme }) => theme.colors['grey-900']};
   border-radius: 5px;
   color: white;
   padding: 12px;
@@ -88,30 +88,30 @@ export const TooltipDate = styled(Flex, transientOptions)`
   align-items: center;
   font-weight: 400;
   font-size: 0.9rem;
-  color: ${({theme}) => theme.rawColors['grey-400']};
+  color: ${({ theme }) => theme.rawColors['grey-400']};
 `
 
 export const AddressDot = styled('div', transientOptions)`
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background-color: ${({theme}) => theme.rawColors.purple};
+  background-color: ${({ theme }) => theme.rawColors.purple};
   margin-right: 4px;
 `
 
 export const GMI = styled('span', transientOptions)`
   font-size: 0.9rem;
-  color: ${({theme}) => theme.rawColors.white};
+  color: ${({ theme }) => theme.rawColors.white};
   margin-left: 5px;
 `
 
 export const TooltipPrice = styled('div', transientOptions)`
   font-size: 0.9rem;
-  color: ${({theme}) => theme.rawColors.white};
+  color: ${({ theme }) => theme.rawColors.white};
 `
 
 export const NFT = styled('div', transientOptions)`
-  color: ${({theme}) => theme.rawColors.blue};
+  color: ${({ theme }) => theme.rawColors.blue};
 `
 
 export const TooltipImageContainer = styled(Flex, transientOptions)`

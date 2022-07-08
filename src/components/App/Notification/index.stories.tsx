@@ -19,7 +19,7 @@ const TemplateRow: ComponentStory<typeof NotifPopper> = (args) => (
 
 export const Popper = TemplatePopper.bind({})
 Popper.args = {
-  notifs: exampleNotifs
+  notifs: exampleNotifs,
 }
 
 export const Row = TemplateRow.bind({})
