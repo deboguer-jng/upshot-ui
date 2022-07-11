@@ -32,7 +32,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-inlinesvg": "^3.0.0",
-    "react-paginate": "https://github.com/DaWe35/react-paginate.git#fix/pagesBreaking",
+    "react-paginate": "https://github.com/upshot-tech/react-paginate.git#fix/pagesBreaking",
     "react-popper-tooltip": "^4.4.2",
     "react-spring": "^9.4.5",
     "theme-ui": "^0.14.6",
